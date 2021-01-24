@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/2020xctf%E6%88%98%E5%BD%B9/" />
+    <link rel="next" href="http://localhost:1313/2021/tsctf202-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            wasi使用笔记 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="wasi使用笔记 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "wasi使用笔记",
+    "headline" : "wasi使用笔记",
+    "description" : ".c编译成.wasm 第一个工具: wasmcc 安装 curl https:\/\/raw.githubusercontent.com\/wasienv\/wasienv\/master\/install.sh | sh https:\/\/github.com\/wasienv\/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 $ wasirun hello.wasm Hello wasi emscripten https:\/\/segmentfault.com\/a\/1190000014208777 git clone https:\/\/github.com\/juj\/emsdk.git cd emsdk",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0\/",
+    "wordCount" : "497",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">wasi使用笔记</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">497 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="c编译成wasm">.c编译成.wasm</h2>
+<ol>
+<li>第一个工具: wasmcc
+安装
+<code>curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh</code>
+<a href="https://github.com/wasienv/wasienv">https://github.com/wasienv/wasienv</a>
+其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ wasirun hello.wasm
+Hello wasi
+</code></pre></div><ol start="2">
+<li>emscripten
+<a href="https://segmentfault.com/a/1190000014208777">https://segmentfault.com/a/1190000014208777</a></li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/juj/emsdk.git
+cd emsdk
+emsdk update
+emsdk install latest
+emsdk activate latest
+//如果没有出现emcc命令:
+source ./emsdk_env.sh
+</code></pre></div><p>编译命令：<code>emcc hello.c -s WASM=1 -o hello.wasm</code></p>
+<h2 id="c代码调用wasm代码">c代码调用wasm代码</h2>
+<p><a href="https://docs.wasmer.io/integrations/c/setup">https://docs.wasmer.io/integrations/c/setup</a>
+环境设置:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Extract the contents to a dir</span>
+mkdir wasmer-c-api
+tar -C wasmer-c-api -zxvf wasmer-c-api*.tar.gz
+
+export WASMER_C_API<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/wasmer-c-api
+
+<span style="color:#75715e"># Update LD_LIBRARY_PATH to link against the libwasmer.so in the examples</span>
+export LD_LIBRARY_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/wasmer-c-api/lib/:$LD_LIBRARY_PATH
+</code></pre></div><p>编译命令:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">静态链接：gcc test.c -I<span style="color:#e6db74">${</span>WASMER_C_API<span style="color:#e6db74">}</span>/include -L<span style="color:#e6db74">${</span>WASMER_C_API<span style="color:#e6db74">}</span>/lib -lwasmer -o test
+动态链接：gcc -static main.c -I<span style="color:#e6db74">${</span>WASMER_C_API<span style="color:#e6db74">}</span>/include -L<span style="color:#e6db74">${</span>WASMER_C_API<span style="color:#e6db74">}</span>/lib -lwasmer -lpthread -lm -ldl -o main
+</code></pre></div><ol start="3">
+<li>例子
+在这里有很多wasi使用的例子
+<a href="https://docs.wasmer.io/integrations/c/setup">https://docs.wasmer.io/integrations/c/setup</a>
+但是没看见直接运行整个wasm代码的(例子是调用wasm函数的)</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// wasm部分
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">char</span> s[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+    scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, s);
+    puts(s);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#75715e">// c部分
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;wasmer.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;assert.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Function to print the most recent error string from Wasmer if we have them
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_wasmer_error</span>()
+{
+  <span style="color:#66d9ef">int</span> error_len <span style="color:#f92672">=</span> wasmer_last_error_length();
+  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>error_str <span style="color:#f92672">=</span> malloc(error_len);
+  wasmer_last_error_message(error_str, error_len);
+  printf(<span style="color:#e6db74">&#34;Error: `%s`</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, error_str);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    FILE <span style="color:#f92672">*</span>file <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;hello.wasm&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+    assert(file <span style="color:#f92672">!=</span> NULL);
+    fseek(file, <span style="color:#ae81ff">0</span>, SEEK_END);
+    <span style="color:#66d9ef">long</span> len <span style="color:#f92672">=</span> ftell(file);
+    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>bytes <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">*</span>)malloc(len);
+    fseek(file, <span style="color:#ae81ff">0</span>, SEEK_SET);
+    fread(bytes, <span style="color:#ae81ff">1</span>, len, file);
+    fclose(file);
+
+    wasmer_module_t <span style="color:#f92672">*</span>module <span style="color:#f92672">=</span> NULL;
+    wasmer_result_t compile_result <span style="color:#f92672">=</span> wasmer_compile(<span style="color:#f92672">&amp;</span>module, bytes, len);
+    <span style="color:#66d9ef">if</span> (compile_result <span style="color:#f92672">!=</span> WASMER_OK)
+    {
+        print_wasmer_error();
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+    wasmer_import_object_t <span style="color:#f92672">*</span>wasi_import_obj <span style="color:#f92672">=</span> wasmer_wasi_generate_default_import_object();
+
+    <span style="color:#75715e">// find out what version of WASI the module is
+</span><span style="color:#75715e"></span>    Version wasi_version <span style="color:#f92672">=</span> wasmer_wasi_get_version(module);
+    <span style="color:#75715e">// char* progname = &#34;ProgramName&#34;;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// wasmer_byte_array args[] = { { .bytes = progname; .bytes_len = sizeof(progname); } };
+</span><span style="color:#75715e"></span>    wasmer_import_object_t <span style="color:#f92672">*</span> import_object <span style="color:#f92672">=</span> wasmer_wasi_generate_import_object_for_version(wasi_version, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, NULL, <span style="color:#ae81ff">0</span>, NULL, <span style="color:#ae81ff">0</span>, NULL, <span style="color:#ae81ff">0</span>);
+
+    <span style="color:#75715e">// Instantiate a WebAssembly Instance from Wasm bytes and imports
+</span><span style="color:#75715e"></span>    wasmer_instance_t <span style="color:#f92672">*</span>instance <span style="color:#f92672">=</span> NULL;
+    <span style="color:#75715e">// clock_gettime(CLOCK_REALTIME, &amp;start);
+</span><span style="color:#75715e"></span>    wasmer_result_t instantiate_result <span style="color:#f92672">=</span> wasmer_module_import_instantiate(<span style="color:#f92672">&amp;</span>instance, module, import_object);
+
+    <span style="color:#66d9ef">if</span>(instantiate_result <span style="color:#f92672">!=</span> WASMER_OK)
+    {
+        print_wasmer_error();
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+    wasmer_value_t arguments[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+    wasmer_value_t results[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+    <span style="color:#75715e">// Call the `sum` function with the prepared arguments and the return value.
+</span><span style="color:#75715e"></span>    wasmer_result_t call_result <span style="color:#f92672">=</span> wasmer_instance_call(instance, <span style="color:#e6db74">&#34;_start&#34;</span>, arguments, <span style="color:#ae81ff">0</span>, results, <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">int</span> response_value <span style="color:#f92672">=</span> results[<span style="color:#ae81ff">0</span>].value.I32; 
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, response_value);
+    wasmer_instance_destroy(instance);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>调用<code>_start</code>函数相当于运行整个wasm代码</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/>http://localhost:1313/2021/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/2020xctf%E6%88%98%E5%BD%B9/" class="prev" rel="prev" title="xctf战役_部分re题目"><i class="iconfont icon-left"></i>&nbsp;xctf战役_部分re题目</a>
+        
+        
+        <a href="http://localhost:1313/2021/tsctf202-re/" class="next" rel="next" title="TSCTF202-re">TSCTF202-re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

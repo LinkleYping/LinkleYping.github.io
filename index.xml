@@ -1,0 +1,35 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EP`s Blog on EP`s Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in EP`s Blog on EP`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Jan 2021 15:22:45 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;ep&lt;/li&gt;
+&lt;li&gt;BUPT &amp;amp;&amp;amp; 天枢Dubhe&lt;/li&gt;
+&lt;li&gt;Have a good time.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Posts</title>
+      <link>http://localhost:1313/posts/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/posts/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

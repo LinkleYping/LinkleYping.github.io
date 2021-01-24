@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>writeup on EP`s Blog</title>
+    <link>http://localhost:1313/categories/writeup/</link>
+    <description>Recent content in writeup on EP`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Jan 2021 15:22:45 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/writeup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2019-中关村网络与信息安全领域专项赛</title>
+      <link>http://localhost:1313/2021/2019zgc/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/2019zgc/</guid>
+      <description>参考链接 https://apeng.fun/2019/08/16/2019zgc_quals/ PYC 文件的简单分析 PYC文件格式分析 Python字节码解混淆 Python字节码解混淆之反控制流扁平化 src_leak 题目给了源码如下： #include&amp;lt;iostream&amp;gt;using namespace std; typedef unsigned int</description>
+    </item>
+    
+    <item>
+      <title>BUUCTF刷题-1</title>
+      <link>http://localhost:1313/2021/buuctf%E5%88%B7%E9%A2%98-1/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/buuctf%E5%88%B7%E9%A2%98-1/</guid>
+      <description>crackRTF 是一个资源题，以前没见过，记录一下。 反编译一下: int __cdecl main_0(int argc, const char **argv, const char **envp) { DWORD v3; // eax DWORD v4; // eax CHAR String; // [esp+4Ch] [ebp-310h] int v7; // [esp+150h] [ebp-20Ch] CHAR String1; // [esp+154h] [ebp-208h] BYTE pbData; // [esp+258h] [ebp-104h] memset(&amp;amp;pbData, 0, 0x104u); memset(&amp;amp;String1, 0, 0x104u);</description>
+    </item>
+    
+    <item>
+      <title>ByteCTF2020-re</title>
+      <link>http://localhost:1313/2021/bytectf2020-re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/bytectf2020-re/</guid>
+      <description>碎碎念 这次比赛让我知道了AES密钥长度除了可以等于16还可以等于32&amp;hellip;不要看到AES256的时候脑子里只有AES没有256==</description>
+    </item>
+    
+    <item>
+      <title>De1CTF-2020--re</title>
+      <link>http://localhost:1313/2021/de1ctf-2020-re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/de1ctf-2020-re/</guid>
+      <description>碎碎念 wtclwtclwtclwtclwtcl&amp;hellip;&amp;hellip;1w遍 参考链接 https://mp.weixin.qq.com/s/KKkxUb_rUEi7Pxj0Qj5Odw 是Chamd5的wp，感觉详细很多 parser 这道题挣扎</description>
+    </item>
+    
+    <item>
+      <title>De1CTF2019-signal-vm</title>
+      <link>http://localhost:1313/2021/de1ctf2019-signal-vm/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/de1ctf2019-signal-vm/</guid>
+      <description>题外 De1CTF2019这两道vm的题都是与signal通信相关，记录一下。 参考链接 https://blog.bi0s.in/2019/08/08/RE/Linux/de1ctf19-signal-vm/ https://blog.bi0s.in/2019/08/09/RE/Linux/de1ctf19-signal-vm-de1ta/ signal vm 恢复符号表 静态链接去符号表文件，需要恢复符号表 $</description>
+    </item>
+    
+    <item>
+      <title>GeekPWN2020-部分re</title>
+      <link>http://localhost:1313/2021/geekpwn2020-%E9%83%A8%E5%88%86re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/geekpwn2020-%E9%83%A8%E5%88%86re/</guid>
+      <description>12. androidcmd 程序被平坦化了，尝试去掉混淆没成功，只能直接看了。 首先在sub_10BC中进行了md5值的验证，可以直接把f5后的代码写进.c文件，加上</description>
+    </item>
+    
+    <item>
+      <title>InsHack-2019-papavm</title>
+      <link>http://localhost:1313/2021/inshack-2019-papavm/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/inshack-2019-papavm/</guid>
+      <description>参考链接 https://x0r19x91.github.io/2019/2019-05-06-inshack-papavm/ https://github.com/InsecurityAsso/inshack-2019/blob/ab25eaa9ee/papavm/writeup.md 脱壳 是一个UPX的壳，程序中把UPX换成了ZOB，所以直接用upx -d无法脱壳，将ZOB替换成UPX后就可以直接使用upx -d脱</description>
+    </item>
+    
+    <item>
+      <title>i春秋公益赛_部分re题目</title>
+      <link>http://localhost:1313/2021/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/</guid>
+      <description>First 官方wp有点简略&amp;hellip;研究了一下补个详细的。我好菜我好菜我好菜。很多代码都是官方wp里面的，拿过来做个笔记. 奇怪的安装包 这道题其</description>
+    </item>
+    
+    <item>
+      <title>Nu1L第一次RE公开赛WP</title>
+      <link>http://localhost:1313/2021/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/</guid>
+      <description>因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。 引用 Nu1L官方wp 某大佬的博客 花指令 关于花</description>
+    </item>
+    
+    <item>
+      <title>RCTF2020-部分re</title>
+      <link>http://localhost:1313/2021/rctf2020-%E9%83%A8%E5%88%86re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/rctf2020-%E9%83%A8%E5%88%86re/</guid>
+      <description>碎碎念 上周末的RCTF，自闭依旧，不过比De1CTF好一点，一共做了三道，跟学弟一起，依旧是wtclwtclwtcl。浪了两天，补上writ</description>
+    </item>
+    
+    <item>
+      <title>ROP学习</title>
+      <link>http://localhost:1313/2021/rop%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/rop%E5%AD%A6%E4%B9%A0/</guid>
+      <description>Nullcon HackIM的第一道re题，虽然做出来了但是原理没太明白，flag里面显示用了ROP，所以学习一下。 参考链接 蒸米大佬的一步步学ROP系列 一</description>
+    </item>
+    
+    <item>
+      <title>TSCTF202-re</title>
+      <link>http://localhost:1313/2021/tsctf202-re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/tsctf202-re/</guid>
+      <description>碎碎念 第一次出题，前两个题是我出的，后两个是师父出的，师父好厉害。感觉最后一道题是我最不擅长的题，大概算算法题？想加强一下了== easyre 有两层加密</description>
+    </item>
+    
+    <item>
+      <title>wasi使用笔记</title>
+      <link>http://localhost:1313/2021/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>.c编译成.wasm 第一个工具: wasmcc 安装 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh https://github.com/wasienv/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 $ wasirun hello.wasm Hello wasi emscripten https://segmentfault.com/a/1190000014208777 git clone https://github.com/juj/emsdk.git cd emsdk</description>
+    </item>
+    
+    <item>
+      <title>xctf战役_部分re题目</title>
+      <link>http://localhost:1313/2021/2020xctf%E6%88%98%E5%BD%B9/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/2020xctf%E6%88%98%E5%BD%B9/</guid>
+      <description>这次比赛做了四道简单的RE&amp;hellip;难的师父做了嘻嘻,我好菜我好菜我好菜,Helica tql！ cycle graph 主要记录一份图路径搜索算法的代码hh</description>
+    </item>
+    
+    <item>
+      <title>XNUCA2020-re</title>
+      <link>http://localhost:1313/2021/xnuca2020-re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/xnuca2020-re/</guid>
+      <description>unravelmfc (主要是学弟出的，我就打个下手 flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框 首先使用下面的mfc的</description>
+    </item>
+    
+    <item>
+      <title>强网杯2020-部分re</title>
+      <link>http://localhost:1313/2021/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/</guid>
+      <description>wtclwtclwtcl拖后腿一级选手哭 xx_warmup_obf 加了混淆不能直接f5，但是很容易能找到各种乘法和比较的区域，猜测是check的代码，算出第一个字符</description>
+    </item>
+    
+    <item>
+      <title>看雪2020-第二题</title>
+      <link>http://localhost:1313/2021/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/</guid>
+      <description>第二题 子鼠开天 算法识别 从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码 openssl_0.9.8.sig 其他没有识别出</description>
+    </item>
+    
+    <item>
+      <title>第五空间2020-re</title>
+      <link>http://localhost:1313/2021/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/</guid>
+      <description>nop 去掉花指令后的main函数如下: int __cdecl main(int a1, char **a2) { _BYTE *v2; // eax sub_804865B(*a2); puts(&amp;#34;input your flag&amp;#34;); __isoc99_scanf(&amp;#34;%d&amp;#34;, &amp;amp;dword_804A038); ++dword_804A038; sub_804857B(); ++dword_804A038; sub_80485C4(); dword_804A038 -= 0x33333334; sub_80485C4(); ++dword_804A038; sub_80485C4(); v2 = sub_8048691((_BYTE *)dword_804A038); sub_8048691(v2 + 1); puts(&amp;#34;Wrong!&amp;#34;); return 0; } 输入是一个数字，sub_804</description>
+    </item>
+    
+    <item>
+      <title>网鼎杯-幸运的数字</title>
+      <link>http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/</guid>
+      <description>参考链接 https://l0x1c.github.io/2020/05/15/2020-5-14/ libgmp库 静态链接去符号表文件，首先制作sig导入，但是可能因为库版本和libc版本问题，能够识别的函数并不是很多，只有参照源</description>
+    </item>
+    
+    <item>
+      <title>蓝帽杯2020--js_is_so_NICE</title>
+      <link>http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/</guid>
+      <description>这个题是仿照kctf2020的一道题出的，就是quickjs的版本不一样。 参考链接： https://bbs.pediy.com/thread-259014.htm 打开搜索字符串可以看到使用了QucikJS, 版本是20</description>
+    </item>
+    
+    <item>
+      <title>虎符2020部分re</title>
+      <link>http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/</guid>
+      <description>game 根据python的反汇编代码可以得到下面的逻辑： check0 每个字符为32 - 128 check1(s): len(s) &amp;lt; 100 &amp;amp;&amp;amp; (len * len % 777) ^ 233 == 513 &amp;gt; len(s) = 39 check2(s): ((s[0]*128 + s[1])) * 128) + s[2]&amp;hellip;s[5]=3533889469877 -&amp;gt; s[5]=&amp;lsquo;5&amp;rsquo; check3: arr = map(ord(s)) a = arr[slice(6,</description>
+    </item>
+    
+    <item>
+      <title>钓鱼城杯-mobile题解</title>
+      <link>http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/</guid>
+      <description>碎碎念 一共三道re，只会一个&amp;hellip;另外两个0解，这道mobile都知道算法了，可是临了了还是没解出来，都怪我RC5没咋了解过，稍微</description>
+    </item>
+    
+    <item>
+      <title>钓鱼城杯2020-reg</title>
+      <link>http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/</link>
+      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/</guid>
+      <description>是用aardio写的程序，没找到直接获取脚本的工具，先下载aardio的编译器尝试自己写脚本编译，查看生成的二进制文件。比较题目给的文件和自</description>
+    </item>
+    
+  </channel>
+</rss>

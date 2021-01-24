@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/" />
+    <link rel="next" href="http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            钓鱼城杯-mobile题解 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="钓鱼城杯-mobile题解 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "钓鱼城杯-mobile题解",
+    "headline" : "钓鱼城杯-mobile题解",
+    "description" : "碎碎念 一共三道re，只会一个\u0026hellip;另外两个0解，这道mobile都知道算法了，可是临了了还是没解出来，都怪我RC5没咋了解过，稍微",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3\/",
+    "wordCount" : "2556",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">钓鱼城杯-mobile题解</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2556 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="碎碎念">碎碎念</h2>
+<p>一共三道re，只会一个&hellip;另外两个0解，这道mobile都知道算法了，可是临了了还是没解出来，都怪我RC5没咋了解过，稍微记录一下。</p>
+<h2 id="aes">AES</h2>
+<p>前面是AES加密，把AES的四个步骤拼在一起了，然后S盒是动态生成的，可以调试的时候看一下是不是S盒的特征数字(当然也有时候会换掉标准的S盒）
+我稍微记一下这种AES的步骤</p>
+<ol>
+<li>密钥生成</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">sub_7FA04C1AC4</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a1, <span style="color:#66d9ef">__int64</span> a2, __int128 <span style="color:#f92672">*</span>a3)
+{
+  v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+  v4 <span style="color:#f92672">=</span> bswap32(<span style="color:#f92672">*</span>a1);
+  <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">=</span> v4;
+  <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> bswap32(a1[<span style="color:#ae81ff">1</span>]);
+  <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">=</span> bswap32(a1[<span style="color:#ae81ff">2</span>]);
+  v5 <span style="color:#f92672">=</span> a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> bswap32(a1[<span style="color:#ae81ff">3</span>]);
+  <span style="color:#66d9ef">do</span>
+  {
+    v6 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    v7 <span style="color:#f92672">=</span> unk_7FA04C5E20[<span style="color:#ae81ff">0</span>].n128_u32[v3];
+    <span style="color:#f92672">++</span>v3;
+    v4 <span style="color:#f92672">^=</span> v7 <span style="color:#f92672">^</span> (((stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(v6 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">24</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF00FFFF</span> <span style="color:#f92672">|</span> (stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int16</span>)v6 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>)) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFFFF00FF</span> <span style="color:#f92672">|</span> (stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v6] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">|</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v6 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>]);
+    v8 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+    v9 <span style="color:#f92672">=</span> v4 <span style="color:#f92672">^</span> <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>);
+    <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">=</span> v4;
+    <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> v9;
+    v10 <span style="color:#f92672">=</span> v9 <span style="color:#f92672">^</span> v8;
+    <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">=</span> v10;
+    <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v5 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> v10 <span style="color:#f92672">^</span> v6;
+    <span style="color:#f92672">++</span>v5;
+  }
+  <span style="color:#66d9ef">while</span> ( v3 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">10</span> );
+  v11 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">9</span>];
+  v13 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">7</span>];
+  v12 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">8</span>];
+  a3[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">10</span>];
+  a3[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> v11;
+  v14 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">5</span>];
+  v15 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">6</span>];
+  a3[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> v12;
+  a3[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">=</span> v13;
+  v17 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">3</span>];
+  result <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">double</span> <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>);
+  a3[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">=</span> v15;
+  a3[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> v14;
+  v18 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>a3;
+  v20 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">1</span>];
+  v19 <span style="color:#f92672">=</span> a3[<span style="color:#ae81ff">2</span>];
+  <span style="color:#f92672">*</span>((<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">double</span> <span style="color:#f92672">*</span>)a3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">17</span>) <span style="color:#f92672">=</span> result;
+  a3[<span style="color:#ae81ff">18</span>] <span style="color:#f92672">=</span> v17;
+  a3[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">=</span> v18;
+  a3[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">=</span> v19;
+  a3[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">=</span> v20;
+  <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><ol start="2">
+<li>加密</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">  <span style="color:#66d9ef">if</span> ( v7 )
+  {
+    v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">do</span>
+    {
+      v10 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>v6;
+      BYTE4(v75) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">1</span>];
+      v11 <span style="color:#f92672">=</span> v10 <span style="color:#f92672">^</span> (v79 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v12 <span style="color:#f92672">=</span> BYTE4(v75) <span style="color:#f92672">^</span> (v79 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v13 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+      LOBYTE(v76) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">2</span>];
+      v14 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v76 <span style="color:#f92672">^</span> (v79 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      BYTE4(v76) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">3</span>];
+      v15 <span style="color:#f92672">=</span> BYTE4(v76) <span style="color:#f92672">^</span> v79;
+      v16 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">4</span>];
+      v17 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">5</span>];
+      BYTE1(v76) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">6</span>];
+      v18 <span style="color:#f92672">=</span> v16 <span style="color:#f92672">^</span> (v80 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v19 <span style="color:#f92672">=</span> v17 <span style="color:#f92672">^</span> (v80 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v20 <span style="color:#f92672">=</span> BYTE1(v76) <span style="color:#f92672">^</span> (v80 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      BYTE5(v76) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">7</span>];
+      v21 <span style="color:#f92672">=</span> BYTE5(v76) <span style="color:#f92672">^</span> v80;
+      v22 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">8</span>];
+      v23 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">9</span>];
+      v24 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">10</span>];
+      BYTE6(v76) <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">11</span>];
+      v25 <span style="color:#f92672">=</span> v22 <span style="color:#f92672">^</span> (v81 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v26 <span style="color:#f92672">=</span> v23 <span style="color:#f92672">^</span> (v81 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v27 <span style="color:#f92672">=</span> v24 <span style="color:#f92672">^</span> (v81 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v28 <span style="color:#f92672">=</span> BYTE6(v76) <span style="color:#f92672">^</span> v81;
+      v29 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">14</span>];
+      v30 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">15</span>];
+      v31 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">^</span> (v82 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v32 <span style="color:#f92672">=</span> v6[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">^</span> (v82 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v33 <span style="color:#f92672">=</span> v29 <span style="color:#f92672">^</span> (v82 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v34 <span style="color:#f92672">=</span> v30 <span style="color:#f92672">^</span> v82;
+      LOBYTE(v75) <span style="color:#f92672">=</span> v11;
+      BYTE1(v75) <span style="color:#f92672">=</span> v18;
+      BYTE2(v75) <span style="color:#f92672">=</span> v25;
+      BYTE4(v75) <span style="color:#f92672">^=</span> BYTE2(v79);
+      BYTE5(v75) <span style="color:#f92672">=</span> v19;
+      BYTE6(v75) <span style="color:#f92672">=</span> v26;
+      LOBYTE(v76) <span style="color:#f92672">=</span> v76 <span style="color:#f92672">^</span> BYTE1(v79);
+      BYTE1(v76) <span style="color:#f92672">^=</span> BYTE1(v80);
+      BYTE2(v76) <span style="color:#f92672">=</span> v27;
+      BYTE4(v76) <span style="color:#f92672">^=</span> v79;
+      BYTE5(v76) <span style="color:#f92672">^=</span> v80;
+      BYTE6(v76) <span style="color:#f92672">^=</span> v81;
+      BYTE3(v75) <span style="color:#f92672">=</span> v31;
+      HIBYTE(v75) <span style="color:#f92672">=</span> v32;
+      BYTE3(v76) <span style="color:#f92672">=</span> v29 <span style="color:#f92672">^</span> BYTE1(v82);
+      HIBYTE(v76) <span style="color:#f92672">=</span> v30 <span style="color:#f92672">^</span> v82;
+      <span style="color:#66d9ef">do</span>
+      {
+        v35 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v11];
+        v36 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v18];
+        v37 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v25];
+        v38 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v31];
+        v39 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v12];
+        v40 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v26];
+        v41 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v32];
+        v42 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v14];
+        v43 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v20];
+        v44 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v27];
+        v45 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v33];
+        v46 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v15];
+        v47 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v21];
+        v48 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v28];
+        v49 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v34];
+        BYTE4(v75) <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v19];
+        LOBYTE(v75) <span style="color:#f92672">=</span> v35;
+        BYTE1(v75) <span style="color:#f92672">=</span> v36;
+        BYTE2(v75) <span style="color:#f92672">=</span> v37;
+        BYTE3(v75) <span style="color:#f92672">=</span> v38;
+        BYTE5(v75) <span style="color:#f92672">=</span> v40;
+        BYTE6(v75) <span style="color:#f92672">=</span> v41;
+        HIBYTE(v75) <span style="color:#f92672">=</span> v39;
+        LOBYTE(v76) <span style="color:#f92672">=</span> v44;
+        BYTE1(v76) <span style="color:#f92672">=</span> v45;
+        BYTE2(v76) <span style="color:#f92672">=</span> v42;
+        BYTE3(v76) <span style="color:#f92672">=</span> v43;
+        BYTE4(v76) <span style="color:#f92672">=</span> v49;
+        BYTE5(v76) <span style="color:#f92672">=</span> v46;
+        BYTE6(v76) <span style="color:#f92672">=</span> v47;
+        HIBYTE(v76) <span style="color:#f92672">=</span> v48;
+        sub_7FA04C1EE0((__int128 <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v75);
+        v50 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>);
+        v51 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">20</span>);
+        v11 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v75 <span style="color:#f92672">^</span> (v50 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+        v12 <span style="color:#f92672">=</span> BYTE4(v75) <span style="color:#f92672">^</span> (v50 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+        v14 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v76 <span style="color:#f92672">^</span> (v50 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+        v15 <span style="color:#f92672">=</span> BYTE4(v76) <span style="color:#f92672">^</span> v50;
+        v53 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">24</span>);
+        v52 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">28</span>);
+        v18 <span style="color:#f92672">=</span> BYTE1(v75) <span style="color:#f92672">^</span> (v51 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+        v19 <span style="color:#f92672">=</span> BYTE5(v75) <span style="color:#f92672">^</span> (v51 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+        v20 <span style="color:#f92672">=</span> BYTE1(v76) <span style="color:#f92672">^</span> (v51 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+        v21 <span style="color:#f92672">=</span> BYTE5(v76) <span style="color:#f92672">^</span> v51;
+        v13 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">16LL</span>;
+        v25 <span style="color:#f92672">=</span> BYTE2(v75) <span style="color:#f92672">^</span> (v53 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+        v26 <span style="color:#f92672">=</span> BYTE6(v75) <span style="color:#f92672">^</span> (v53 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+        v27 <span style="color:#f92672">=</span> BYTE2(v76) <span style="color:#f92672">^</span> (v53 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+        v28 <span style="color:#f92672">=</span> BYTE6(v76) <span style="color:#f92672">^</span> v53;
+        v31 <span style="color:#f92672">=</span> BYTE3(v75) <span style="color:#f92672">^</span> (v52 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+        v32 <span style="color:#f92672">=</span> HIBYTE(v75) <span style="color:#f92672">^</span> (v52 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+        v33 <span style="color:#f92672">=</span> BYTE3(v76) <span style="color:#f92672">^</span> (v52 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+        v34 <span style="color:#f92672">=</span> HIBYTE(v76) <span style="color:#f92672">^</span> v52;
+        LOBYTE(v75) <span style="color:#f92672">=</span> v11;
+        BYTE1(v75) <span style="color:#f92672">=</span> v18;
+        BYTE2(v75) <span style="color:#f92672">=</span> v25;
+        BYTE3(v75) <span style="color:#f92672">^=</span> HIBYTE(v52);
+        BYTE4(v75) <span style="color:#f92672">=</span> v12;
+        BYTE5(v75) <span style="color:#f92672">=</span> v19;
+        BYTE6(v75) <span style="color:#f92672">=</span> v26;
+        HIBYTE(v75) <span style="color:#f92672">^=</span> BYTE2(v52);
+        LOBYTE(v76) <span style="color:#f92672">=</span> v14;
+        BYTE1(v76) <span style="color:#f92672">=</span> v20;
+        BYTE2(v76) <span style="color:#f92672">=</span> v27;
+        BYTE3(v76) <span style="color:#f92672">^=</span> BYTE1(v52);
+        BYTE4(v76) <span style="color:#f92672">=</span> v15;
+        BYTE5(v76) <span style="color:#f92672">=</span> v21;
+        BYTE6(v76) <span style="color:#f92672">=</span> v28;
+        HIBYTE(v76) <span style="color:#f92672">^=</span> v52;
+      }
+      <span style="color:#66d9ef">while</span> ( (_DWORD)v13 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">144</span> );
+      v54 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13;
+      v55 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>);
+      v56 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v79 <span style="color:#f92672">+</span> v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">20</span>);
+      v57 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v54 <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span>);
+      LODWORD(v54) <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((_DWORD <span style="color:#f92672">*</span>)v54 <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+      v9 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">16</span>;
+      v58 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v18] <span style="color:#f92672">^</span> (v56 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v59 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v25] <span style="color:#f92672">^</span> (v57 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v60 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v31] <span style="color:#f92672">^</span> ((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)v54 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>);
+      v61 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v19] <span style="color:#f92672">^</span> (v55 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v62 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v26] <span style="color:#f92672">^</span> (v56 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v63 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v32] <span style="color:#f92672">^</span> (v57 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v64 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v12] <span style="color:#f92672">^</span> ((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)v54 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>);
+      v65 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v27] <span style="color:#f92672">^</span> (v55 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v66 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v33] <span style="color:#f92672">^</span> (v56 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v67 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v14] <span style="color:#f92672">^</span> (v57 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v68 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v20] <span style="color:#f92672">^</span> ((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)v54 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>);
+      v69 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v34] <span style="color:#f92672">^</span> v55;
+      v70 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v15] <span style="color:#f92672">^</span> v56;
+      v71 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v21] <span style="color:#f92672">^</span> v57;
+      v72 <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[v28] <span style="color:#f92672">^</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v54;
+      LOBYTE(v75) <span style="color:#f92672">=</span> stru_7FA04C5040[<span style="color:#ae81ff">0</span>].n128_u8[(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v11] <span style="color:#f92672">^</span> HIBYTE(v55);
+      BYTE1(v75) <span style="color:#f92672">=</span> v58;
+      BYTE2(v75) <span style="color:#f92672">=</span> v59;
+      BYTE3(v75) <span style="color:#f92672">=</span> v60;
+      BYTE4(v75) <span style="color:#f92672">=</span> v61;
+      BYTE5(v75) <span style="color:#f92672">=</span> v62;
+      BYTE6(v75) <span style="color:#f92672">=</span> v63;
+      HIBYTE(v75) <span style="color:#f92672">=</span> v64;
+      LOBYTE(v76) <span style="color:#f92672">=</span> v65;
+      BYTE1(v76) <span style="color:#f92672">=</span> v66;
+      BYTE2(v76) <span style="color:#f92672">=</span> v67;
+      BYTE3(v76) <span style="color:#f92672">=</span> v68;
+      BYTE4(v76) <span style="color:#f92672">=</span> v69;
+      BYTE5(v76) <span style="color:#f92672">=</span> v70;
+      BYTE6(v76) <span style="color:#f92672">=</span> v71;
+      HIBYTE(v76) <span style="color:#f92672">=</span> v72;
+      <span style="color:#f92672">*</span>v5 <span style="color:#f92672">=</span> v75;
+      v5[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> v61;
+      v6 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">16</span>;
+      v5[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> v76;
+      v73 <span style="color:#f92672">=</span> BYTE4(v76);
+      v5[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> v58;
+      v5[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> v73;
+      v5[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> BYTE5(v75);
+      v5[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> BYTE1(v76);
+      v5[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> BYTE5(v76);
+      v5[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> BYTE2(v75);
+      v5[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> BYTE6(v75);
+      v5[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> BYTE2(v76);
+      v5[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> BYTE6(v76);
+      v5[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> BYTE3(v75);
+      v5[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> HIBYTE(v75);
+      v5[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">=</span> BYTE3(v76);
+      v5[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">=</span> HIBYTE(v76);
+      v5 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">16</span>;
+    }
+    <span style="color:#66d9ef">while</span> ( v9 <span style="color:#f92672">&lt;</span> v7 );
+  }
+</code></pre></div><p>这里是ECB模式加密，密钥是'\x01'*16</p>
+<h2 id="rc5">RC5</h2>
+<p>然后找到RC5的magic number以为自己要出了，结果一直解密到结束都没解密出来，菜狗罢了。
+RC5的magic number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">  v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xB7E15163</span>; <span style="color:#75715e">// 0xB7E15163就是-0x481EAE9D
+</span><span style="color:#75715e"></span>  v9 <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x20u</span>);
+  v10 <span style="color:#f92672">=</span> vcvtmd_u64_f64((sqrt(<span style="color:#ae81ff">5.0</span>) <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2147483650.0</span>); <span style="color:#75715e">// 0x9E3779B9
+</span><span style="color:#75715e"></span>  dword_7FA04C5E60[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xB7E15163</span>;
+  unk_7FA04C5E64 <span style="color:#f92672">=</span> v10 <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x481EAE9D</span>;
+  unk_7FA04C5E68 <span style="color:#f92672">=</span> v10 <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x481EAE9D</span> <span style="color:#f92672">+</span> v10;
+  unk_7FA04C5E6C <span style="color:#f92672">=</span> v10 <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x481EAE9D</span> <span style="color:#f92672">+</span> v10 <span style="color:#f92672">+</span> v10;
+</code></pre></div><p>RC5支持可变的<a href="https://zh.wikipedia.org/wiki/%E5%9D%97%E5%A4%A7%E5%B0%8F" title="块大小">块大小</a>(32、64或128<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83" title="比特">比特</a>)，<a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E9%92%A5%E9%95%BF%E5%BA%A6" title="密钥长度">密钥长度</a>（0至2040位）和加密轮数（0～255）。最初建议选择的参数是64位的块大小，128位的密钥和12轮加密。</p>
+<p>RC5的一个关键特征是使用基于数据的置换。RC5的其中一个目标是促进对于这类作为原始密码的操作的研究和评估。RC5也包括一些的<a href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E7%AE%97%E6%95%B8" title="模算数">取模</a>加法和<a href="https://zh.wikipedia.org/wiki/%E9%80%BB%E8%BE%91%E5%BC%82%E6%88%96" title="逻辑异或">逻辑异或(XOR)</a>运算。这个加密的一般结构是一种类<a href="https://zh.wikipedia.org/wiki/%E8%B4%B9%E6%96%AF%E5%A6%A5%E5%AF%86%E7%A0%81" title="费斯妥密码">费斯妥</a>网络。加密和解密程序可以用几行代码写完，但密钥的生成算法更复杂。密钥扩展使用了<a href="https://zh.wikipedia.org/wiki/E_(%E6%95%B0%E5%AD%A6%E5%B8%B8%E6%95%B0)" title="E (数学常数)">e</a>和<a href="https://zh.wikipedia.org/wiki/%E9%BB%84%E9%87%91%E5%88%86%E5%89%B2%E7%8E%87" title="黄金分割率">黄金比例</a>代入一个<a href="https://zh.wikipedia.org/wiki/%E5%96%AE%E5%90%91%E5%87%BD%E6%95%B8" title="单向函数">单向函数</a>，将所得值作为“<a href="https://zh.wikipedia.org/w/index.php?title=%E8%A2%96%E5%AD%90%E9%87%8C%E6%98%AF%E7%A9%BA%E7%9A%84%E6%95%B0%E5%AD%97&amp;action=edit&amp;redlink=1" title="袖子里是空的数字（页面不存在）">袖子里是空的</a>”数字（即无任何来源依据的魔法数字）。算法的诱人的简洁性和基于数据的置换的特性，让RC5吸引了众多密码研究人员将其作为研究对象。 RC5通常被记为RC5-w/r/b，w=字的大小（以bit为单位），r=加密轮数，b=密钥的字节数。</p>
+<p>解RC5最主要的是确定密钥的长度，轮数，块大小以及padding的内容
+这里padding的方式是PKCS#7，基本长度是8。密钥长度是32字节(这里被坑了，以为是16，IDA里OWord表示16字节)，轮数是12，块大小是32
+记一份标准RC5加解密的python算法：
+<a href="https://github.com/tbb/pyRC5">https://github.com/tbb/pyRC5</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RC5</span>:
+
+    <span style="color:#66d9ef">def</span> __init__(self, w, R, key, strip_extra_nulls<span style="color:#f92672">=</span>False):
+        self<span style="color:#f92672">.</span>w <span style="color:#f92672">=</span> w  <span style="color:#75715e"># block size (32, 64 or 128 bits)</span>
+        self<span style="color:#f92672">.</span>R <span style="color:#f92672">=</span> R  <span style="color:#75715e"># number of rounds (0 to 255)</span>
+        self<span style="color:#f92672">.</span>key <span style="color:#f92672">=</span> key  <span style="color:#75715e"># key (0 to 2040 bits)</span>
+        self<span style="color:#f92672">.</span>strip_extra_nulls <span style="color:#f92672">=</span> strip_extra_nulls
+        <span style="color:#75715e"># some useful constants</span>
+        self<span style="color:#f92672">.</span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (R <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        self<span style="color:#f92672">.</span>w4 <span style="color:#f92672">=</span> w <span style="color:#f92672">//</span> <span style="color:#ae81ff">4</span>
+        self<span style="color:#f92672">.</span>w8 <span style="color:#f92672">=</span> w <span style="color:#f92672">//</span> <span style="color:#ae81ff">8</span>
+        self<span style="color:#f92672">.</span>mod <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> self<span style="color:#f92672">.</span>w
+        self<span style="color:#f92672">.</span>mask <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>mod <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> len(key)
+
+        self<span style="color:#f92672">.</span>__keyAlign()
+        self<span style="color:#f92672">.</span>__keyExtend()
+        self<span style="color:#f92672">.</span>__shuffle()
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__lshift</span>(self, val, n):
+        n <span style="color:#f92672">%=</span> self<span style="color:#f92672">.</span>w
+        <span style="color:#66d9ef">return</span> ((val <span style="color:#f92672">&lt;&lt;</span> n) <span style="color:#f92672">&amp;</span> self<span style="color:#f92672">.</span>mask) <span style="color:#f92672">|</span> ((val <span style="color:#f92672">&amp;</span> self<span style="color:#f92672">.</span>mask) <span style="color:#f92672">&gt;&gt;</span> (self<span style="color:#f92672">.</span>w <span style="color:#f92672">-</span> n))
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__rshift</span>(self, val, n):
+        n <span style="color:#f92672">%=</span> self<span style="color:#f92672">.</span>w
+        <span style="color:#66d9ef">return</span> ((val <span style="color:#f92672">&amp;</span> self<span style="color:#f92672">.</span>mask) <span style="color:#f92672">&gt;&gt;</span> n) <span style="color:#f92672">|</span> (val <span style="color:#f92672">&lt;&lt;</span> (self<span style="color:#f92672">.</span>w <span style="color:#f92672">-</span> n) <span style="color:#f92672">&amp;</span> self<span style="color:#f92672">.</span>mask)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__const</span>(self):  <span style="color:#75715e"># constants generation</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>w <span style="color:#f92672">==</span> <span style="color:#ae81ff">16</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xB7E1</span>, <span style="color:#ae81ff">0x9E37</span>  <span style="color:#75715e"># return P, Q values</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>w <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xB7E15163</span>, <span style="color:#ae81ff">0x9E3779B9</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>w <span style="color:#f92672">==</span> <span style="color:#ae81ff">64</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xB7E151628AED2A6B</span>, <span style="color:#ae81ff">0x9E3779B97F4A7C15</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__keyAlign</span>(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:  <span style="color:#75715e"># key is empty</span>
+            self<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>b <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>w8:
+            self<span style="color:#f92672">.</span>key <span style="color:#f92672">+=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> (self<span style="color:#f92672">.</span>w8 <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>b <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>w8)  <span style="color:#75715e"># fill key with \x00 bytes</span>
+            self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> len(self<span style="color:#f92672">.</span>key)
+            self<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>b <span style="color:#f92672">//</span> self<span style="color:#f92672">.</span>w8
+        <span style="color:#66d9ef">else</span>:
+            self<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>b <span style="color:#f92672">//</span> self<span style="color:#f92672">.</span>w8
+        L <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>c
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+            L[i <span style="color:#f92672">//</span> self<span style="color:#f92672">.</span>w8] <span style="color:#f92672">=</span> (L[i <span style="color:#f92672">//</span> self<span style="color:#f92672">.</span>w8] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>key[i]
+        self<span style="color:#f92672">.</span>L <span style="color:#f92672">=</span> L
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__keyExtend</span>(self):
+        P, Q <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__const()
+        self<span style="color:#f92672">.</span>S <span style="color:#f92672">=</span> [(P <span style="color:#f92672">+</span> i <span style="color:#f92672">*</span> Q) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>T)]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__shuffle</span>(self):
+        i, j, A, B <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> max(self<span style="color:#f92672">.</span>c, self<span style="color:#f92672">.</span>T)):
+            A <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>S[i] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__lshift((self<span style="color:#f92672">.</span>S[i] <span style="color:#f92672">+</span> A <span style="color:#f92672">+</span> B), <span style="color:#ae81ff">3</span>)
+            B <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>L[j] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__lshift((self<span style="color:#f92672">.</span>L[j] <span style="color:#f92672">+</span> A <span style="color:#f92672">+</span> B), A <span style="color:#f92672">+</span> B)
+            i <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>T
+            j <span style="color:#f92672">=</span> (j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>c
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encryptBlock</span>(self, data):
+        A <span style="color:#f92672">=</span> int<span style="color:#f92672">.</span>from_bytes(data[:self<span style="color:#f92672">.</span>w8], byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+        B <span style="color:#f92672">=</span> int<span style="color:#f92672">.</span>from_bytes(data[self<span style="color:#f92672">.</span>w8:], byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+        A <span style="color:#f92672">=</span> (A <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+        B <span style="color:#f92672">=</span> (B <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, self<span style="color:#f92672">.</span>R <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+            A <span style="color:#f92672">=</span> (self<span style="color:#f92672">.</span>__lshift((A <span style="color:#f92672">^</span> B), B) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> i]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+            B <span style="color:#f92672">=</span> (self<span style="color:#f92672">.</span>__lshift((A <span style="color:#f92672">^</span> B), A) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+        <span style="color:#66d9ef">return</span> (A<span style="color:#f92672">.</span>to_bytes(self<span style="color:#f92672">.</span>w8, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+                <span style="color:#f92672">+</span> B<span style="color:#f92672">.</span>to_bytes(self<span style="color:#f92672">.</span>w8, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>))
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decryptBlock</span>(self, data):
+        A <span style="color:#f92672">=</span> int<span style="color:#f92672">.</span>from_bytes(data[:self<span style="color:#f92672">.</span>w8], byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+        B <span style="color:#f92672">=</span> int<span style="color:#f92672">.</span>from_bytes(data[self<span style="color:#f92672">.</span>w8:], byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>R, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+            B <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__rshift(B <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>], A) <span style="color:#f92672">^</span> A
+            A <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__rshift(A <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> i], B) <span style="color:#f92672">^</span> B
+        B <span style="color:#f92672">=</span> (B <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+        A <span style="color:#f92672">=</span> (A <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>S[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>mod
+        <span style="color:#66d9ef">return</span> (A<span style="color:#f92672">.</span>to_bytes(self<span style="color:#f92672">.</span>w8, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>)
+                <span style="color:#f92672">+</span> B<span style="color:#f92672">.</span>to_bytes(self<span style="color:#f92672">.</span>w8, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;little&#39;</span>))
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encryptFile</span>(self, inpFileName, outFileName):
+        <span style="color:#66d9ef">with</span> open(inpFileName, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> inp, open(outFileName, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> out:
+            run <span style="color:#f92672">=</span> True
+            <span style="color:#66d9ef">while</span> run:
+                text <span style="color:#f92672">=</span> inp<span style="color:#f92672">.</span>read(self<span style="color:#f92672">.</span>w4)
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> text:
+                    <span style="color:#66d9ef">break</span>
+                <span style="color:#66d9ef">if</span> len(text) <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>w4:
+                    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>ljust(self<span style="color:#f92672">.</span>w4, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>)
+                    run <span style="color:#f92672">=</span> False
+                text <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>encryptBlock(text)
+                out<span style="color:#f92672">.</span>write(text)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decryptFile</span>(self, inpFileName, outFileName):
+        <span style="color:#66d9ef">with</span> open(inpFileName, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> inp, open(outFileName, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> out:
+            <span style="color:#66d9ef">while</span> True:
+                text <span style="color:#f92672">=</span> inp<span style="color:#f92672">.</span>read(self<span style="color:#f92672">.</span>w4)
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> text:
+                    <span style="color:#66d9ef">break</span>
+                text <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>decryptBlock(text)
+                <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>strip_extra_nulls:
+                    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>)
+                out<span style="color:#f92672">.</span>write(text)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encryptBytes</span>(self, data):
+        res, run <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&#39;</span>, True
+        <span style="color:#66d9ef">while</span> run:
+            temp <span style="color:#f92672">=</span> data[:self<span style="color:#f92672">.</span>w4]
+            <span style="color:#66d9ef">if</span> len(temp) <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>w4:
+                data <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>ljust(self<span style="color:#f92672">.</span>w4, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># padding</span>
+                run <span style="color:#f92672">=</span> False
+            res <span style="color:#f92672">+=</span> self<span style="color:#f92672">.</span>encryptBlock(temp)
+            data <span style="color:#f92672">=</span> data[self<span style="color:#f92672">.</span>w4:]
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> data:
+                <span style="color:#66d9ef">break</span>
+        <span style="color:#66d9ef">return</span> res
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decryptBytes</span>(self, data):
+        res, run <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&#39;</span>, True
+        <span style="color:#66d9ef">while</span> run:
+            temp <span style="color:#f92672">=</span> data[:self<span style="color:#f92672">.</span>w4]
+            <span style="color:#66d9ef">if</span> len(temp) <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>w4:
+                run <span style="color:#f92672">=</span> False
+            res <span style="color:#f92672">+=</span> self<span style="color:#f92672">.</span>decryptBlock(temp)
+            data <span style="color:#f92672">=</span> data[self<span style="color:#f92672">.</span>w4:]
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> data:
+                <span style="color:#66d9ef">break</span>
+        <span style="color:#66d9ef">return</span> res<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># padding</span>
+</code></pre></div><h2 id="exp">exp</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
+<span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
+<span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">from</span> RC5 <span style="color:#f92672">import</span> RC5
+<span style="color:#f92672">import</span> struct
+
+datalist <span style="color:#f92672">=</span> [<span style="color:#ae81ff">202</span> , <span style="color:#ae81ff">96</span> , <span style="color:#ae81ff">85</span> , <span style="color:#ae81ff">48</span> , <span style="color:#ae81ff">181</span> , <span style="color:#ae81ff">219</span> , <span style="color:#ae81ff">212</span> , <span style="color:#ae81ff">166</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">21</span> , <span style="color:#ae81ff">63</span> , <span style="color:#ae81ff">184</span> , <span style="color:#ae81ff">188</span> , <span style="color:#ae81ff">76</span> , <span style="color:#ae81ff">156</span> , <span style="color:#ae81ff">136</span> , <span style="color:#ae81ff">234</span> , <span style="color:#ae81ff">244</span> , <span style="color:#ae81ff">118</span> , <span style="color:#ae81ff">221</span> , <span style="color:#ae81ff">141</span> , <span style="color:#ae81ff">123</span> , <span style="color:#ae81ff">26</span> , <span style="color:#ae81ff">38</span> , <span style="color:#ae81ff">218</span> , <span style="color:#ae81ff">116</span> , <span style="color:#ae81ff">44</span> , <span style="color:#ae81ff">29</span> , <span style="color:#ae81ff">40</span> , <span style="color:#ae81ff">99</span> , <span style="color:#ae81ff">75</span> , <span style="color:#ae81ff">136</span> , <span style="color:#ae81ff">68</span> , <span style="color:#ae81ff">34</span> , <span style="color:#ae81ff">126</span> , <span style="color:#ae81ff">33</span> , <span style="color:#ae81ff">14</span> , <span style="color:#ae81ff">108</span> , <span style="color:#ae81ff">244</span> , <span style="color:#ae81ff">174</span> , <span style="color:#ae81ff">228</span> , <span style="color:#ae81ff">33</span> , <span style="color:#ae81ff">199</span> , <span style="color:#ae81ff">103</span> , <span style="color:#ae81ff">33</span> , <span style="color:#ae81ff">64</span> , <span style="color:#ae81ff">197</span> , <span style="color:#ae81ff">59</span> , <span style="color:#ae81ff">178</span> , <span style="color:#ae81ff">85</span> , <span style="color:#ae81ff">146</span> , <span style="color:#ae81ff">33</span> , <span style="color:#ae81ff">155</span> , <span style="color:#ae81ff">41</span> , <span style="color:#ae81ff">250</span> , <span style="color:#ae81ff">51</span>]
+data <span style="color:#f92672">=</span> bytes(datalist)
+<span style="color:#66d9ef">print</span>(data,len(data))
+
+key <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x02</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">32</span>
+
+rc5 <span style="color:#f92672">=</span> RC5(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">12</span>, key)
+result <span style="color:#f92672">=</span> rc5<span style="color:#f92672">.</span>decryptBytes(data)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;xxx</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> result:
+    <span style="color:#66d9ef">print</span>(hex(int(r)), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;end</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+key <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x01</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">16</span>
+cipher <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key, AES<span style="color:#f92672">.</span>MODE_ECB)
+msg <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span>decrypt(result)
+<span style="color:#66d9ef">print</span>(msg)
+<span style="color:#75715e"># flag{AES_and_rc5_modified_in_jni_onloadXDDD}</span>
+</code></pre></div><p><a href="https://qianfei11.github.io/2019/09/03/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0RC2%E3%80%81RC5%E3%80%81RC6%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/#Intro">一个RC系列实现的文章</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/>http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/" class="prev" rel="prev" title="钓鱼城杯2020-reg"><i class="iconfont icon-left"></i>&nbsp;钓鱼城杯2020-reg</a>
+        
+        
+        <a href="http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" class="next" rel="next" title="虎符2020部分re">虎符2020部分re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

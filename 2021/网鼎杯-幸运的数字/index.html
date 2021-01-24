@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/" />
+    <link rel="next" href="http://localhost:1313/2021/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            网鼎杯-幸运的数字 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="网鼎杯-幸运的数字 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "网鼎杯-幸运的数字",
+    "headline" : "网鼎杯-幸运的数字",
+    "description" : "参考链接 https:\/\/l0x1c.github.io\/2020\/05\/15\/2020-5-14\/ libgmp库 静态链接去符号表文件，首先制作sig导入，但是可能因为库版本和libc版本问题，能够识别的函数并不是很多，只有参照源",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97\/",
+    "wordCount" : "984",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">网鼎杯-幸运的数字</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">984 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="参考链接">参考链接</h2>
+<p><a href="https://l0x1c.github.io/2020/05/15/2020-5-14/">https://l0x1c.github.io/2020/05/15/2020-5-14/</a></p>
+<h2 id="libgmp库">libgmp库</h2>
+<p>静态链接去符号表文件，首先制作sig导入，但是可能因为库版本和libc版本问题，能够识别的函数并不是很多，只有参照源码+调试</p>
+<h2 id="代码解析">代码解析</h2>
+<p>关键函数在<code>sub_401F8A</code>和<code>sub_401C7D</code>，其中<code>sub_401C7D</code>是一个RSA函数，处理后的<code>sub_401F8A</code>如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_BOOL8 <span style="color:#a6e22e">sub_401F8A</span>()
+{
+  <span style="color:#66d9ef">char</span> input_str; <span style="color:#75715e">// [rsp+0h] [rbp-1F0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v2; <span style="color:#75715e">// [rsp+60h] [rbp-190h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v3; <span style="color:#75715e">// [rsp+64h] [rbp-18Ch]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v4; <span style="color:#75715e">// [rsp+70h] [rbp-180h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v5; <span style="color:#75715e">// [rsp+F0h] [rbp-100h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num n; <span style="color:#75715e">// [rsp+110h] [rbp-E0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num q; <span style="color:#75715e">// [rsp+120h] [rbp-D0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num p; <span style="color:#75715e">// [rsp+130h] [rbp-C0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v9; <span style="color:#75715e">// [rsp+140h] [rbp-B0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v10; <span style="color:#75715e">// [rsp+150h] [rbp-A0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v11; <span style="color:#75715e">// [rsp+160h] [rbp-90h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num v12; <span style="color:#75715e">// [rsp+170h] [rbp-80h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v13; <span style="color:#75715e">// [rsp+180h] [rbp-70h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v14; <span style="color:#75715e">// [rsp+190h] [rbp-60h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num v15; <span style="color:#75715e">// [rsp+1A0h] [rbp-50h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num v16; <span style="color:#75715e">// [rsp+1B0h] [rbp-40h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v17; <span style="color:#75715e">// [rsp+1C0h] [rbp-30h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> mpz_num input_n; <span style="color:#75715e">// [rsp+1D0h] [rbp-20h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v19; <span style="color:#75715e">// [rsp+1E8h] [rbp-8h]
+</span><span style="color:#75715e"></span>
+  mpz_init(<span style="color:#f92672">&amp;</span>v17);
+  mpz_init_set_str((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v16, (<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;226&#34;</span>, <span style="color:#ae81ff">0xAu</span>);
+  sub_47AC70(<span style="color:#f92672">&amp;</span>v16, <span style="color:#e6db74">&#34;226&#34;</span>);
+  sub_4430F0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v5);
+  v19 <span style="color:#f92672">=</span> sub_444530(<span style="color:#f92672">&amp;</span>v5, <span style="color:#e6db74">&#34;r&#34;</span>);
+  sub_444290(<span style="color:#f92672">&amp;</span>v4, <span style="color:#ae81ff">128LL</span>, v19);
+  sub_443F20(v19);
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_401098(<span style="color:#f92672">&amp;</span>v4, <span style="color:#e6db74">&#34;hdb&#34;</span>) )
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1LL</span>;
+  mpz_init(<span style="color:#f92672">&amp;</span>v13);
+  mpz_init(<span style="color:#f92672">&amp;</span>v10);
+  mpz_init(<span style="color:#f92672">&amp;</span>v9);
+  mpz_init(<span style="color:#f92672">&amp;</span>v11);
+  sub_403080(<span style="color:#f92672">&amp;</span>v14, <span style="color:#ae81ff">2LL</span>);
+  mpz_init(<span style="color:#f92672">&amp;</span>n);
+  mpz_init(<span style="color:#f92672">&amp;</span>v12);
+  mpz_init_set_str((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, (<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;2&#34;</span>, <span style="color:#ae81ff">0xAu</span>);
+  mpz_init_set_str((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>p, (<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;170141183460469231731687303715884106303&#34;</span>, <span style="color:#ae81ff">0xAu</span>);
+  mpz_init_set_str((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>q, (<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;170141183460469231731687303715884106207&#34;</span>, <span style="color:#ae81ff">0xAu</span>);
+  memset(<span style="color:#f92672">&amp;</span>input_str, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0x60uLL</span>);
+  v2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  getinput((<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#f92672">&amp;</span>input_str, <span style="color:#f92672">&amp;</span>v3);
+  mpz_init_set_str((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>input_n, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>input_str, <span style="color:#ae81ff">0xAu</span>);
+  mpz_mul(<span style="color:#f92672">&amp;</span>n.a1, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>p, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>q);     <span style="color:#75715e">// n = p * q
+</span><span style="color:#75715e"></span>  mpz_square((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>input_n, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v12); <span style="color:#75715e">// v12 = inputn * inputn
+</span><span style="color:#75715e"></span>  mpz_div((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v11, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>input_n, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v16);<span style="color:#75715e">// v11 = inputn // 226
+</span><span style="color:#75715e"></span>  mpz_mul((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v11, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v11, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>input_n);<span style="color:#75715e">// v11 * inputn
+</span><span style="color:#75715e"></span>  mpz_sub(<span style="color:#f92672">&amp;</span>v9, <span style="color:#f92672">&amp;</span>v12, <span style="color:#f92672">&amp;</span>v11);                     <span style="color:#75715e">// v9 = v12 - v11
+</span><span style="color:#75715e"></span>  sub_404920(<span style="color:#f92672">&amp;</span>v10, <span style="color:#ae81ff">1LL</span>);                        <span style="color:#75715e">// v10 = 1
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span> ( (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_402E20((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v9) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> )<span style="color:#75715e">// v15 &lt;= v9
+</span><span style="color:#75715e"></span>  {
+    mpz_pow(<span style="color:#f92672">&amp;</span>v14, <span style="color:#f92672">&amp;</span>v15, <span style="color:#ae81ff">3LL</span>);                   <span style="color:#75715e">// v14 = pow(v15, 3)
+</span><span style="color:#75715e"></span>    mpz_add(<span style="color:#f92672">&amp;</span>v10, <span style="color:#f92672">&amp;</span>v10, <span style="color:#f92672">&amp;</span>v14);
+    mpz_add1(<span style="color:#f92672">&amp;</span>v15.a1, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, <span style="color:#ae81ff">1uLL</span>);     <span style="color:#75715e">// v15 = v15 + 1
+</span><span style="color:#75715e"></span>  }
+  mpz_mul(<span style="color:#f92672">&amp;</span>n.a1, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>p, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>q);
+  mpz_mod((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v10, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v10, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>n);
+  rsa((<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v13, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v10);
+  gmp_printf((<span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;%ZX</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>v13);
+  mpz_clear(<span style="color:#f92672">&amp;</span>input_n.a1);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v17);
+  mpz_clear(<span style="color:#f92672">&amp;</span>v16.a1);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v11);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v13);
+  mpz_clear(<span style="color:#f92672">&amp;</span>v15.a1);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v10);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v9);
+  mpz_clear(<span style="color:#f92672">&amp;</span>p.a1);
+  mpz_clear(<span style="color:#f92672">&amp;</span>q.a1);
+  mpz_clear(<span style="color:#f92672">&amp;</span>v12.a1);
+  sub_47AC70(<span style="color:#f92672">&amp;</span>v12, <span style="color:#f92672">&amp;</span>v13);
+  sub_4430F0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v5);
+  v19 <span style="color:#f92672">=</span> sub_444530(<span style="color:#f92672">&amp;</span>v5, <span style="color:#e6db74">&#34;r&#34;</span>);
+  sub_444290(<span style="color:#f92672">&amp;</span>v4, <span style="color:#ae81ff">128LL</span>, v19);
+  sub_443F20(v19);
+  <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_401098(<span style="color:#f92672">&amp;</span>v4, <span style="color:#e6db74">&#34;hdb&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>RSA函数:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">__int64</span> <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">rsa</span>(<span style="color:#66d9ef">__int64</span> a1, <span style="color:#66d9ef">__int64</span> a2)
+{
+  <span style="color:#66d9ef">__int64</span> result; <span style="color:#75715e">// rax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v3; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v4; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v5; <span style="color:#75715e">// [rsp+10h] [rbp-110h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v6; <span style="color:#75715e">// [rsp+90h] [rbp-90h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v7; <span style="color:#75715e">// [rsp+B0h] [rbp-70h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> e; <span style="color:#75715e">// [rsp+C0h] [rbp-60h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> n; <span style="color:#75715e">// [rsp+D0h] [rbp-50h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v10; <span style="color:#75715e">// [rsp+E0h] [rbp-40h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> q; <span style="color:#75715e">// [rsp+F0h] [rbp-30h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> p; <span style="color:#75715e">// [rsp+100h] [rbp-20h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v13; <span style="color:#75715e">// [rsp+118h] [rbp-8h]
+</span><span style="color:#75715e"></span>
+  mpz_init(<span style="color:#f92672">&amp;</span>p);
+  mpz_init(<span style="color:#f92672">&amp;</span>q);
+  mpz_init(<span style="color:#f92672">&amp;</span>v10);
+  mpz_init(<span style="color:#f92672">&amp;</span>n);
+  sub_403080(<span style="color:#f92672">&amp;</span>e, <span style="color:#ae81ff">65537LL</span>);
+  mpz_init(<span style="color:#f92672">&amp;</span>v7);
+  sub_404600(<span style="color:#f92672">&amp;</span>p, <span style="color:#e6db74">&#34;170141183460469231731687303715884105757&#34;</span>, <span style="color:#ae81ff">10LL</span>);
+  sub_404600(<span style="color:#f92672">&amp;</span>q, <span style="color:#e6db74">&#34;170141183460469231731687303715884106001&#34;</span>, <span style="color:#ae81ff">10LL</span>);
+  mpz_mul((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v10, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>p, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>q);
+  sub_47AC70(<span style="color:#f92672">&amp;</span>v10, <span style="color:#f92672">&amp;</span>p);
+  sub_4430F0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v6);
+  v13 <span style="color:#f92672">=</span> sub_444530(<span style="color:#f92672">&amp;</span>v6, <span style="color:#e6db74">&#34;r&#34;</span>);
+  sub_444290(<span style="color:#f92672">&amp;</span>v5, <span style="color:#ae81ff">128LL</span>, v13);
+  sub_443F20(v13);
+  result <span style="color:#f92672">=</span> sub_401098(<span style="color:#f92672">&amp;</span>v5, <span style="color:#e6db74">&#34;hdb&#34;</span>);
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>(_DWORD)result )
+    <span style="color:#66d9ef">return</span> result;
+  sub_404DA0(<span style="color:#f92672">&amp;</span>p, <span style="color:#f92672">&amp;</span>p, <span style="color:#ae81ff">1LL</span>);
+  sub_404DA0(<span style="color:#f92672">&amp;</span>q, <span style="color:#f92672">&amp;</span>q, <span style="color:#ae81ff">1LL</span>);
+  mpz_mul((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>n, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>p, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>q);
+  sub_402EC0(<span style="color:#f92672">&amp;</span>v7, <span style="color:#f92672">&amp;</span>e, <span style="color:#f92672">&amp;</span>n);
+  sub_403670((<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)a1, a2, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>e, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v10, v3, v4);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>q);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>p);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v10);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>n);
+  mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>e);
+  result <span style="color:#f92672">=</span> mpz_clear((<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v7);
+  <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><p>从上面解析后的可以比较清晰的看到加密流程:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">1. 输入inputn
+2. t <span style="color:#f92672">=</span> input // <span style="color:#ae81ff">226</span>
+3. 计算a <span style="color:#f92672">=</span> input*input - t*input
+4. 计算<span style="color:#f92672">(</span>1^3 + 2^3 + 3^3 + ... + a^3<span style="color:#f92672">)</span> % n <span style="color:#f92672">=</span> b，可以化成: <span style="color:#f92672">(</span>a*<span style="color:#f92672">(</span>a+1<span style="color:#f92672">)</span>/2<span style="color:#f92672">)</span>^2 % n <span style="color:#f92672">=</span> b
+5. 对b进行rsa运算，各种参数在rsa函数中可见
+</code></pre></div><h2 id="solve">solve</h2>
+<p>首先解RSA得到b:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8</span>
+<span style="color:#f92672">import</span> gmpy2
+c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x37CFC2B07BF92321BFCEAF6330C667D217BB881B0911A8810D28D9986CA52E2F</span>
+p <span style="color:#f92672">=</span> <span style="color:#ae81ff">170141183460469231731687303715884105757</span>
+q <span style="color:#f92672">=</span> <span style="color:#ae81ff">170141183460469231731687303715884106001</span>
+e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>
+n <span style="color:#f92672">=</span> p <span style="color:#f92672">*</span> q
+phi <span style="color:#f92672">=</span> (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+d <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>invert(e, phi)
+a <span style="color:#f92672">=</span> pow(c,d,n) <span style="color:#75715e"># 解RSA</span>
+</code></pre></div><p>由于<code>(a*(a+1)/2)^2 % n = b</code>，类似Rabin加密算法，p,q已知，可以求得<code>a*(a+1)/2</code>的值</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> <span style="color:#ae81ff">170141183460469231731687303715884106303</span>
+q <span style="color:#f92672">=</span> <span style="color:#ae81ff">170141183460469231731687303715884106207</span>
+n <span style="color:#f92672">=</span> p <span style="color:#f92672">*</span> q
+a1 <span style="color:#f92672">=</span> pow(a, (p<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, p)
+a2 <span style="color:#f92672">=</span> pow(a, (q<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, q)
+x <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>invert(p,q)
+y <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>invert(q,p)
+z <span style="color:#f92672">=</span> (y<span style="color:#f92672">*</span>q<span style="color:#f92672">*</span>a1<span style="color:#f92672">+</span>x<span style="color:#f92672">*</span>p<span style="color:#f92672">*</span>a2)<span style="color:#f92672">%</span>n
+k <span style="color:#f92672">=</span> (y<span style="color:#f92672">*</span>q<span style="color:#f92672">*</span>a1<span style="color:#f92672">-</span>x<span style="color:#f92672">*</span>p<span style="color:#f92672">*</span>a2)<span style="color:#f92672">%</span>n
+res <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span>k<span style="color:#f92672">%</span>n, z<span style="color:#f92672">%</span>n, <span style="color:#f92672">-</span>y<span style="color:#f92672">%</span>n, x<span style="color:#f92672">%</span>n]
+<span style="color:#66d9ef">print</span> res
+</code></pre></div><p>求出来有四个解，有符合条件的唯一解，需要试，然后<code>a*(a+1)/2</code>的值已知时，需要求a的值，方程是: <code>a^2 + a = 2n</code> =&gt; <code>(2a+1)^2=8n+1</code>， 求a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">i <span style="color:#f92672">=</span> res[<span style="color:#ae81ff">0</span>]
+v <span style="color:#f92672">=</span> i <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>
+v <span style="color:#f92672">=</span> v <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+sq <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>iroot(v, <span style="color:#ae81ff">2</span>)
+ceshi1 <span style="color:#f92672">=</span> sq[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+num <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>c_div(ceshi1, <span style="color:#ae81ff">2</span>)
+<span style="color:#66d9ef">print</span> num
+</code></pre></div><p>其中<code>a = input*input - t*input</code> and <code>t = input // 226</code>可以求得input</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">num1 <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">226</span> <span style="color:#f92672">//</span> <span style="color:#ae81ff">225</span>
+num1 <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>iroot(num1, <span style="color:#ae81ff">2</span>)[<span style="color:#ae81ff">0</span>]
+x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;flag{&#34;</span><span style="color:#f92672">+</span>str(num1) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;}&#34;</span>
+<span style="color:#66d9ef">print</span> x
+sha256 <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>sha256()
+x <span style="color:#f92672">=</span> sha256<span style="color:#f92672">.</span>update(x<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
+h <span style="color:#f92672">=</span> sha256<span style="color:#f92672">.</span>hexdigest()
+<span style="color:#66d9ef">print</span> h
+<span style="color:#75715e"># flag{244466666888888108}</span>
+<span style="color:#75715e"># 0a4b7f6c8baf4b16465975218d547f820a3802972b1512e8e6f704893cdccb2e</span>
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/>http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/" class="prev" rel="prev" title="蓝帽杯2020--js_is_so_NICE"><i class="iconfont icon-left"></i>&nbsp;蓝帽杯2020--js_is_so_NICE</a>
+        
+        
+        <a href="http://localhost:1313/2021/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" class="next" rel="next" title="第五空间2020-re">第五空间2020-re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/inshack-2019-papavm/" />
+    <link rel="next" href="http://localhost:1313/2021/geekpwn2020-%E9%83%A8%E5%88%86re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            IISC2020-线下赛re | EP`s Blog
+        
+    </title>
+    <meta name="title" content="IISC2020-线下赛re | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "IISC2020-线下赛re",
+    "headline" : "IISC2020-线下赛re",
+    "description" : "碎碎念 帮忙做了一个re题，题目挺简单的，是python 的exe解包，做了还是写写吧hhh python exe解包 首先利用pyinstxtractor脚本",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre\/",
+    "wordCount" : "1533",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">IISC2020-线下赛re</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <span class="post-word-count">1533 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="碎碎念">碎碎念</h2>
+<p>帮忙做了一个re题，题目挺简单的，是python 的exe解包，做了还是写写吧hhh</p>
+<h2 id="python-exe解包">python exe解包</h2>
+<p>首先利用pyinstxtractor脚本将.exe文件转为.pyc文件，指令格式为</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">python pyinstxtractor.py  exe文件名称
+</code></pre></div><p>执行完成之后会生成一个<code>xxx_extracted</code>文件夹，反编译之前先把<code>struct</code>文件中<code>E3</code>之前的字符复制到想要反编译的文件中
+<img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-de8194d2b63b7386.png" alt="">
+这道题需要反编译的文件是<code>snake</code>
+<img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-f57fbd400ab6bb23.png" alt="before.png" loading="lazy" > <img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-d5cb9e9cc8db5b64.png" alt="after.png" loading="lazy" >
+补完头部信息之后可以用uncompyle6反编译<code>uncompyle6 snake.pyc &gt; snake.py</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># uncompyle6 version 3.7.4</span>
+<span style="color:#75715e"># Python bytecode 3.7 (3394)</span>
+<span style="color:#75715e"># Decompiled from: Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]</span>
+<span style="color:#75715e"># Embedded file name: snake.py</span>
+<span style="color:#75715e"># Compiled at: 1995-09-28 00:18:56</span>
+<span style="color:#75715e"># Size of source mod 2**32: 272 bytes</span>
+<span style="color:#f92672">import</span> hashlib<span style="color:#f92672">,</span> sys<span style="color:#f92672">,</span> random<span style="color:#f92672">,</span> time
+maze <span style="color:#f92672">=</span> [
+ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+ [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>]]
+s <span style="color:#f92672">=</span> str(input())
+seed <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+random<span style="color:#f92672">.</span>seed(seed)
+random<span style="color:#f92672">.</span>seed(random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">999999</span>))
+maze[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">987</span>, <span style="color:#ae81ff">1000</span>)
+maze[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">345</span>, <span style="color:#ae81ff">356</span>)
+maze[<span style="color:#ae81ff">7</span>][<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">116</span>)
+maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">833</span>, <span style="color:#ae81ff">856</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">12</span>):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">12</span>):
+        tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> j
+        <span style="color:#66d9ef">if</span> maze[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            maze[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">3456</span> <span style="color:#f92672">+</span> tmp
+            <span style="color:#66d9ef">continue</span>
+        <span style="color:#66d9ef">if</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>])
+            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">999</span>)
+
+            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">999</span>)
+        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>])
+            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">555</span>, <span style="color:#ae81ff">1234</span>)
+
+            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">555</span>, <span style="color:#ae81ff">1234</span>)
+        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">7</span>][<span style="color:#ae81ff">7</span>])
+            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">777</span>, <span style="color:#ae81ff">888</span>)
+
+            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">777</span>, <span style="color:#ae81ff">888</span>)
+        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
+            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">8</span>])
+            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">369</span>, <span style="color:#ae81ff">777</span>)
+
+            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">369</span>, <span style="color:#ae81ff">777</span>)
+
+maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+<span style="color:#66d9ef">if</span> len(s) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">56</span>:
+    sys<span style="color:#f92672">.</span>exit(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+idx1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+idx2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> s:
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;w&#39;</span>:
+        idx1 <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;s&#39;</span>:
+            idx1 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;a&#39;</span>:
+                idx2 <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>:
+                    idx2 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> maze[idx1][idx2] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1234</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Where are you going?&#39;</span>)
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">2</span>)
+
+<span style="color:#66d9ef">if</span> maze[idx1][idx2] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">9</span>:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;You lost in the maze!&#39;</span>)
+result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+<span style="color:#66d9ef">for</span> xx <span style="color:#f92672">in</span> maze:
+    <span style="color:#66d9ef">for</span> xxx <span style="color:#f92672">in</span> xx:
+        result <span style="color:#f92672">+=</span> str(xxx)
+
+hash_res <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>sha256(result<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;latin-1&#39;</span>))<span style="color:#f92672">.</span>hexdigest()
+<span style="color:#66d9ef">print</span>(hash_res)
+<span style="color:#66d9ef">if</span> hash_res <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;f1793dcf5ad3858512b944ac34413725a27c63e25618858231e88b9686466b00&#39;</span>:
+    flag1 <span style="color:#f92672">=</span> str(maze[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> str(maze[<span style="color:#ae81ff">7</span>][<span style="color:#ae81ff">7</span>]) <span style="color:#f92672">+</span> str(maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">8</span>]) <span style="color:#f92672">+</span> str(maze[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>])
+    flag2 <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>sha256(s<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;latin-1&#39;</span>))<span style="color:#f92672">.</span>hexdigest()
+    flag <span style="color:#f92672">=</span> flag2[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> flag1[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    final_flag <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>sha256(flag<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;latin-1&#39;</span>))<span style="color:#f92672">.</span>hexdigest()
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;flag{&#39;</span> <span style="color:#f92672">+</span> final_flag[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">32</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;}&#39;</span>)
+<span style="color:#75715e"># okay decompiling snake.pyc</span>
+</code></pre></div><h2 id="逆向">逆向</h2>
+<p>从文件逻辑可以看出来这道题需要走迷宫和爆破这个迷宫(因为有要求迷宫的hash值)
+爆破迷宫的话只需要爆破<code>maze[1][1]</code>, <code>maze[3][4]</code>, <code>maze[7][7]</code>, <code>maze[11][8]</code>的值就可以了，因为这几个值确定了以后整个迷宫就确定了。
+爆破迷宫</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> hashlib<span style="color:#f92672">,</span> sys<span style="color:#f92672">,</span> random<span style="color:#f92672">,</span> time
+flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">987</span>, <span style="color:#ae81ff">1001</span>):
+    <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">345</span>, <span style="color:#ae81ff">357</span>):
+        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">117</span>):
+            <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">833</span>, <span style="color:#ae81ff">857</span>):
+                maze <span style="color:#f92672">=</span> [
+                    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+                    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>]]
+                maze[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> a
+                maze[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> b
+                maze[<span style="color:#ae81ff">7</span>][<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> c
+                maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> d
+                <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">12</span>):
+                    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">12</span>):
+                        tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> j
+                        <span style="color:#66d9ef">if</span> maze[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                            maze[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">3456</span> <span style="color:#f92672">+</span> tmp
+                            <span style="color:#66d9ef">continue</span>
+                        <span style="color:#66d9ef">if</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>])
+                            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">999</span>)
+
+                            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">999</span>)
+                        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+                            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>])
+                            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">555</span>, <span style="color:#ae81ff">1234</span>)
+
+                            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">555</span>, <span style="color:#ae81ff">1234</span>)
+                        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+                            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">7</span>][<span style="color:#ae81ff">7</span>])
+                            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">777</span>, <span style="color:#ae81ff">888</span>)
+
+                            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">777</span>, <span style="color:#ae81ff">888</span>)
+                        <span style="color:#66d9ef">elif</span> tmp <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
+                            random<span style="color:#f92672">.</span>seed(maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">8</span>])
+                            <span style="color:#66d9ef">for</span> cnt <span style="color:#f92672">in</span> range(tmp):
+                                random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">369</span>, <span style="color:#ae81ff">777</span>)
+
+                            maze[i][j] <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">369</span>, <span style="color:#ae81ff">777</span>)
+                maze[<span style="color:#ae81ff">11</span>][<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+                result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+                <span style="color:#66d9ef">for</span> xx <span style="color:#f92672">in</span> maze:
+                    <span style="color:#66d9ef">for</span> xxx <span style="color:#f92672">in</span> xx:
+                        result <span style="color:#f92672">+=</span> str(xxx)
+                hash_res <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>sha256(result<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;latin-1&#39;</span>))<span style="color:#f92672">.</span>hexdigest()
+                <span style="color:#66d9ef">if</span> hash_res <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;f1793dcf5ad3858512b944ac34413725a27c63e25618858231e88b9686466b00&#39;</span>:
+                    flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+                    <span style="color:#66d9ef">print</span>(a, b, c, d)
+                <span style="color:#66d9ef">if</span> flag:
+                    <span style="color:#66d9ef">break</span>
+            <span style="color:#66d9ef">if</span> flag:
+                <span style="color:#66d9ef">break</span>
+        <span style="color:#66d9ef">if</span> flag:
+            <span style="color:#66d9ef">break</span>
+    <span style="color:#66d9ef">if</span> flag:
+        <span style="color:#66d9ef">break</span>
+    <span style="color:#66d9ef">print</span>(a)
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">爆破出来的值：
+</span><span style="color:#e6db74">maze[1][1] = 996
+</span><span style="color:#e6db74">maze[3][4] = 352
+</span><span style="color:#e6db74">maze[7][7] = 113
+</span><span style="color:#e6db74">maze[11][8] = 849
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p>走迷宫:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8</span>
+MIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999999</span>
+
+a <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>)] <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>)]<span style="color:#75715e">#迷宫最大数组</span>
+book <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>)] <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>)]<span style="color:#75715e">#标记数组</span>
+lujing <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;*&#39;</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>
+index_step <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#e6db74">&#39;s&#39;</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>]
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(start_x,start_y,end_x,end_y,migong_array,step):
+    <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    :param start_x: 起始横坐标
+</span><span style="color:#e6db74">    :param start_y: 起始纵坐标
+</span><span style="color:#e6db74">    :param end_x: 终点横坐标
+</span><span style="color:#e6db74">    :param end_y: 终点纵坐标
+</span><span style="color:#e6db74">    :param migong_array: 迷宫的数组
+</span><span style="color:#e6db74">    :return:
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+    next_step <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>],  <span style="color:#75715e">#向右走</span>
+            [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>],  <span style="color:#75715e">#向下走</span>
+            [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#75715e">#向左走</span>
+            [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]  <span style="color:#75715e">#向上走</span>
+            ]
+    <span style="color:#66d9ef">if</span> (start_x <span style="color:#f92672">==</span> end_x <span style="color:#f92672">and</span> start_y <span style="color:#f92672">==</span> end_y):
+        <span style="color:#66d9ef">global</span> MIN
+        <span style="color:#66d9ef">if</span>(step <span style="color:#f92672">&lt;</span> MIN):
+            MIN <span style="color:#f92672">=</span> step
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(next_step)):
+        next_x <span style="color:#f92672">=</span> start_x <span style="color:#f92672">+</span> next_step[i][<span style="color:#ae81ff">0</span>]
+        next_y <span style="color:#f92672">=</span> start_y <span style="color:#f92672">+</span> next_step[i][<span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">if</span>(next_x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> next_y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> next_x <span style="color:#f92672">&gt;</span> len(migong_array) <span style="color:#f92672">or</span> next_y <span style="color:#f92672">&gt;</span> len(migong_array[<span style="color:#ae81ff">0</span>])):
+            <span style="color:#66d9ef">continue</span>
+        <span style="color:#66d9ef">if</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">&lt;=</span> a[next_x][next_y] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1234</span> <span style="color:#f92672">and</span> book[next_x][next_y] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
+            book[next_x][next_y] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> dfs(next_x,next_y,end_x,end_y,migong_array,step<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+                lujing[step] <span style="color:#f92672">=</span> index_step[i]
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+            book[next_x][next_y] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    start_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    start_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    end_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>
+    end_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>
+    migong_array <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">545</span>, <span style="color:#ae81ff">3457</span>, <span style="color:#ae81ff">3458</span>, <span style="color:#ae81ff">3459</span>, <span style="color:#ae81ff">3460</span>, <span style="color:#ae81ff">3461</span>, <span style="color:#ae81ff">3462</span>, <span style="color:#ae81ff">3463</span>, <span style="color:#ae81ff">3464</span>, <span style="color:#ae81ff">3465</span>, <span style="color:#ae81ff">3466</span>, <span style="color:#ae81ff">3467</span>], [<span style="color:#ae81ff">239</span>, <span style="color:#ae81ff">796</span>, <span style="color:#ae81ff">3470</span>, <span style="color:#ae81ff">3471</span>, <span style="color:#ae81ff">640</span>, <span style="color:#ae81ff">948</span>, <span style="color:#ae81ff">831</span>, <span style="color:#ae81ff">3475</span>, <span style="color:#ae81ff">3476</span>, <span style="color:#ae81ff">3477</span>, <span style="color:#ae81ff">3478</span>, <span style="color:#ae81ff">3479</span>], [<span style="color:#ae81ff">3480</span>, <span style="color:#ae81ff">1095</span>, <span style="color:#ae81ff">843</span>, <span style="color:#ae81ff">3483</span>, <span style="color:#ae81ff">766</span>, <span style="color:#ae81ff">3485</span>, <span style="color:#ae81ff">848</span>, <span style="color:#ae81ff">464</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">703</span>, <span style="color:#ae81ff">3490</span>, <span style="color:#ae81ff">3491</span>], [<span style="color:#ae81ff">3492</span>, <span style="color:#ae81ff">3493</span>, <span style="color:#ae81ff">864</span>, <span style="color:#ae81ff">627</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">3497</span>, <span style="color:#ae81ff">3498</span>, <span style="color:#ae81ff">3499</span>, <span style="color:#ae81ff">3500</span>, <span style="color:#ae81ff">1064</span>, <span style="color:#ae81ff">3502</span>, <span style="color:#ae81ff">3503</span>], [<span style="color:#ae81ff">3504</span>, <span style="color:#ae81ff">3505</span>, <span style="color:#ae81ff">3506</span>, <span style="color:#ae81ff">3507</span>, <span style="color:#ae81ff">3508</span>, <span style="color:#ae81ff">3509</span>, <span style="color:#ae81ff">881</span>, <span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">985</span>, <span style="color:#ae81ff">706</span>, <span style="color:#ae81ff">3514</span>, <span style="color:#ae81ff">3515</span>], [<span style="color:#ae81ff">3516</span>, <span style="color:#ae81ff">3517</span>, <span style="color:#ae81ff">3518</span>, <span style="color:#ae81ff">3519</span>, <span style="color:#ae81ff">3520</span>, <span style="color:#ae81ff">3521</span>, <span style="color:#ae81ff">864</span>, <span style="color:#ae81ff">3523</span>, <span style="color:#ae81ff">3524</span>, <span style="color:#ae81ff">3525</span>, <span style="color:#ae81ff">3526</span>, <span style="color:#ae81ff">3527</span>], [<span style="color:#ae81ff">3528</span>, <span style="color:#ae81ff">1214</span>, <span style="color:#ae81ff">779</span>, <span style="color:#ae81ff">709</span>, <span style="color:#ae81ff">804</span>, <span style="color:#ae81ff">3533</span>, <span style="color:#ae81ff">813</span>, <span style="color:#ae81ff">403</span>, <span style="color:#ae81ff">861</span>, <span style="color:#ae81ff">1096</span>, <span style="color:#ae81ff">829</span>, <span style="color:#ae81ff">3539</span>], [<span style="color:#ae81ff">3540</span>, <span style="color:#ae81ff">628</span>, <span style="color:#ae81ff">3542</span>, <span style="color:#ae81ff">3543</span>, <span style="color:#ae81ff">494</span>, <span style="color:#ae81ff">3545</span>, <span style="color:#ae81ff">3546</span>, <span style="color:#ae81ff">395</span>, <span style="color:#ae81ff">3548</span>, <span style="color:#ae81ff">3549</span>, <span style="color:#ae81ff">798</span>, <span style="color:#ae81ff">3551</span>], [<span style="color:#ae81ff">3552</span>, <span style="color:#ae81ff">988</span>, <span style="color:#ae81ff">3554</span>, <span style="color:#ae81ff">3555</span>, <span style="color:#ae81ff">485</span>, <span style="color:#ae81ff">3557</span>, <span style="color:#ae81ff">3558</span>, <span style="color:#ae81ff">3559</span>, <span style="color:#ae81ff">3560</span>, <span style="color:#ae81ff">674</span>, <span style="color:#ae81ff">777</span>, <span style="color:#ae81ff">3563</span>], [<span style="color:#ae81ff">3564</span>, <span style="color:#ae81ff">761</span>, <span style="color:#ae81ff">802</span>, <span style="color:#ae81ff">3567</span>, <span style="color:#ae81ff">412</span>, <span style="color:#ae81ff">568</span>, <span style="color:#ae81ff">829</span>, <span style="color:#ae81ff">721</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">1137</span>, <span style="color:#ae81ff">3574</span>, <span style="color:#ae81ff">3575</span>], [<span style="color:#ae81ff">3576</span>, <span style="color:#ae81ff">3577</span>, <span style="color:#ae81ff">853</span>, <span style="color:#ae81ff">763</span>, <span style="color:#ae81ff">3580</span>, <span style="color:#ae81ff">3581</span>, <span style="color:#ae81ff">3582</span>, <span style="color:#ae81ff">3583</span>, <span style="color:#ae81ff">3584</span>, <span style="color:#ae81ff">3585</span>, <span style="color:#ae81ff">3586</span>, <span style="color:#ae81ff">3587</span>], [<span style="color:#ae81ff">3588</span>, <span style="color:#ae81ff">3589</span>, <span style="color:#ae81ff">3590</span>, <span style="color:#ae81ff">372</span>, <span style="color:#ae81ff">962</span>, <span style="color:#ae81ff">923</span>, <span style="color:#ae81ff">785</span>, <span style="color:#ae81ff">502</span>, <span style="color:#ae81ff">368</span>, <span style="color:#ae81ff">707</span>, <span style="color:#ae81ff">795</span>, <span style="color:#ae81ff">9</span>]]   <span style="color:#75715e">#初始化迷宫</span>
+
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(migong_array)):
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(migong_array[<span style="color:#ae81ff">0</span>])):
+            a[i][j] <span style="color:#f92672">=</span> migong_array[i][j]  <span style="color:#75715e">#将迷宫数组写入a中</span>
+    book[start_x][start_y] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e">#将第一步标记为1，证明走过了。避免重复走</span>
+
+    dfs(start_x,start_y,end_x,end_y,migong_array,<span style="color:#ae81ff">0</span>)
+
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;The min length of path is : {}&#39;</span><span style="color:#f92672">.</span>format(MIN))
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> lujing)[:MIN])
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/>http://localhost:1313/2021/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/inshack-2019-papavm/" class="prev" rel="prev" title="InsHack-2019-papavm"><i class="iconfont icon-left"></i>&nbsp;InsHack-2019-papavm</a>
+        
+        
+        <a href="http://localhost:1313/2021/geekpwn2020-%E9%83%A8%E5%88%86re/" class="next" rel="next" title="GeekPWN2020-部分re">GeekPWN2020-部分re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

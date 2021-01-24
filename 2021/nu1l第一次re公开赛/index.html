@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/rctf2020-%E9%83%A8%E5%88%86re/" />
+    <link rel="next" href="http://localhost:1313/2021/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Nu1L第一次RE公开赛WP | EP`s Blog
+        
+    </title>
+    <meta name="title" content="Nu1L第一次RE公开赛WP | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "Nu1L第一次RE公开赛WP",
+    "headline" : "Nu1L第一次RE公开赛WP",
+    "description" : "因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。 引用 Nu1L官方wp 某大佬的博客 花指令 关于花",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B\/",
+    "wordCount" : "3389",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Nu1L第一次RE公开赛WP</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">3389 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。</p>
+<h2 id="引用">引用</h2>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4MTg1NzAzMA==&amp;mid=2247483865&amp;idx=1&amp;sn=718b2929fc7aac8ac550a4c6160e5bb4&amp;chksm=fd407bb0ca37f2a649951d2643dce6bbbcb376ef3fed2153b4b0f953c7dcafd150d32d69c296&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1583753556598&amp;sharer_shareid=f0e8c979e190e71002368e0459a8dd84#rd">Nu1L官方wp</a><br>
+<a href="https://www.cnblogs.com/y-m-y/p/12535795.html">某大佬的博客</a></p>
+<h2 id="花指令">花指令</h2>
+<p>关于花指令<br>
+<a href="https://blog.csdn.net/whklhhhh/article/details/88677670">https://blog.csdn.net/whklhhhh/article/details/88677670</a><br>
+<a href="https://blog.csdn.net/whklhhhh/article/details/88730934">https://blog.csdn.net/whklhhhh/article/details/88730934</a><br>
+在没有去除花指令之前，打开ida的关键代码如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sub_123413B0</span>()
+{
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// ST40_4
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v1; <span style="color:#75715e">// ST44_4
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v2; <span style="color:#75715e">// ST78_4
+</span><span style="color:#75715e"></span>
+  nullsub_11();
+  sub_12341340(<span style="color:#ae81ff">0</span>);
+  v0 <span style="color:#f92672">=</span> strlen(<span style="color:#e6db74">&#34;npointer{&#34;</span>);
+  v1 <span style="color:#f92672">=</span> strlen(<span style="color:#e6db74">&#34;}&#34;</span>);
+  v2 <span style="color:#f92672">=</span> sub_123416AD(v0 <span style="color:#f92672">+</span> v1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">33</span>);
+  nullsub_12();
+  sub_12341020(<span style="color:#e6db74">&#34;Input the correct keys: &#34;</span>);
+  nullsub_24();
+  sub_12341050(<span style="color:#e6db74">&#34;%s&#34;</span>, v2, v0 <span style="color:#f92672">+</span> v1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">33</span>);
+  JUMPOUT((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>loc_1234148F <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+}
+</code></pre></div><p>JUMPOUT后面的代码没有反编译出来，查看汇编代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">.text:12341487 E8 <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>                    call    near ptr loc_1234148F+1
+.text:1234148C <span style="color:#ae81ff">77</span> EB                             ja      short loc_12341479
+.text:1234148E <span style="color:#ae81ff">07</span>                                pop     es
+.text:1234148F
+.text:1234148F                         loc_1234148F:                     ; CODE XREF: sub_123413B0+D7↑p
+.text:1234148F <span style="color:#ae81ff">88</span> <span style="color:#ae81ff">36</span>                             mov     <span style="color:#f92672">[</span>esi<span style="color:#f92672">]</span>, dh
+.text:12341491 <span style="color:#ae81ff">83</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">01</span>                       add     <span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span>, <span style="color:#ae81ff">1</span>
+.text:12341495 C3                                retn
+</code></pre></div><p>call指令等于这样两条指令，一是把自身所在位置的下一条指令的地址压入堆栈，二是jmp到call的地址处，而ret指令可以理解为jmp到call指令压入堆栈的地址，因此，可以用call指令这样来写花指令：
+1.call一个地址，在call下面随便写一点花指令，但是要注意一点与jmp版花指令不同的，我们要记得自己写的花指令占了多少个字节，比如，占了2字节
+2.在call里面，也就是函数里面，首先pop出压入的地址，然后把这个地址减去花指令占用的字节数，这里是2字节，再重新push进堆栈，然后就ret，这样，call结束以后执行的下一条指令就是我们想要去的位置了，也就是花指令下面的正常的指令了
+对于这样一个花指令，call一个函数内的地址然后再retn返回，IDA会认为被call的地址是一个新的函数，当前函数就被截断了，影响到了IDA的分析。
+图中call指令之后在call函数里将栈顶的值加了1，所以call指令后面的77可以忽略直接到<code>EB 07</code>这条指令，这个是<code>jmp 7</code>的意思，可以直接跳到retn指令后面。
+官方wp中说主程序中穿插的花指令形式如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#define JUNK2(idx) __asm{          \</span>
+  __asm  call next1_junk2_##idx          <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  __emit 0x77          <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  jmp next_junk2_##idx        <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  __emit 0x88          <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  next1_junk2_##idx:            <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  add dword ptr ss:<span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span>, <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  ret              <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  __asm  next_junk2_##idx:              <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#f92672">}</span>
+
+
+<span style="color:#75715e">#define JUNK1(idx) __asm{\</span>
+__asm jmp jlabel##idx <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm __emit 0x88 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm jlabel_##idx : <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm ret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm __emit 0xba <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm jlabel##idx : <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>__asm call jlabel_##idx  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>这两个花指令的二进制形式如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">EB0388C3BAE8F9FFFFFF
+</span><span style="color:#e6db74">E80400000077EB07883683042401C3
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+stripd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;gatesXgame_un.exe&#39;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+    raw <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> len(raw):
+        <span style="color:#66d9ef">if</span> raw[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xEB\x03\x88\xC3\xBA\xE8\xF9\xFF\xFF\xFF</span><span style="color:#e6db74">&#34;</span>:
+            stripd <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x90</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span>
+            i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>
+        <span style="color:#66d9ef">elif</span> raw[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">15</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xE8\x04\x00\x00\x00\x77\xEB\x07\x88\x36\x83\x04\x24\x01\xC3</span><span style="color:#e6db74">&#34;</span>:
+            stripd <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x90</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">15</span>
+            i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">15</span>
+        <span style="color:#66d9ef">else</span>:
+            stripd <span style="color:#f92672">+=</span> raw[i]
+            i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;gate_str.exe&#39;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    f<span style="color:#f92672">.</span>write(stripd)
+</code></pre></div><p>去除花指令后的代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sub_123413B0</span>()
+{
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// ST40_4
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v1; <span style="color:#75715e">// ST44_4
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>Buf1; <span style="color:#75715e">// [esp+6Ch] [ebp-Ch]
+</span><span style="color:#75715e"></span>
+  sub_12341340(<span style="color:#ae81ff">0</span>);
+  v0 <span style="color:#f92672">=</span> strlen(<span style="color:#e6db74">&#34;npointer{&#34;</span>);
+  v1 <span style="color:#f92672">=</span> strlen(<span style="color:#e6db74">&#34;}&#34;</span>);
+  Buf1 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)sub_123416AD(v0 <span style="color:#f92672">+</span> v1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">33</span>);
+  print(<span style="color:#e6db74">&#34;Input the correct keys: &#34;</span>);
+  sub_12341050(<span style="color:#e6db74">&#34;%s&#34;</span>, Buf1, v0 <span style="color:#f92672">+</span> v1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">33</span>);
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>memcmp(Buf1, <span style="color:#e6db74">&#34;npointer{&#34;</span>, strlen(<span style="color:#e6db74">&#34;npointer{&#34;</span>))
+    <span style="color:#f92672">&amp;&amp;</span> Buf1[strlen(Buf1) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> asc_12343738[<span style="color:#ae81ff">0</span>]
+    <span style="color:#f92672">&amp;&amp;</span> (Buf1[strlen(Buf1) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, sub_12341090(sub_12343798, <span style="color:#ae81ff">0x30D3u</span>, (<span style="color:#66d9ef">int</span>)<span style="color:#f92672">&amp;</span>Buf1[strlen(<span style="color:#e6db74">&#34;npointer{&#34;</span>)])) )
+  {
+    sub_12341340(<span style="color:#ae81ff">1</span>);
+    print(<span style="color:#e6db74">&#34;Congrats!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+  }
+  <span style="color:#66d9ef">else</span>
+  {
+    print(<span style="color:#e6db74">&#34;Sorry, the gate remains closed.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+  }
+  <span style="color:#66d9ef">return</span> system(<span style="color:#e6db74">&#34;pause&#34;</span>);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#66d9ef">__cdecl</span> <span style="color:#a6e22e">sub_12341090</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>Src, SIZE_T dwSize, <span style="color:#66d9ef">int</span> a3)
+{
+  HANDLE v4; <span style="color:#75715e">// eax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v5; <span style="color:#75715e">// ST38_4
+</span><span style="color:#75715e"></span>  LPVOID Dst; <span style="color:#75715e">// [esp+1Ch] [ebp-14h]
+</span><span style="color:#75715e"></span>
+  Dst <span style="color:#f92672">=</span> VirtualAlloc(<span style="color:#ae81ff">0</span>, dwSize, <span style="color:#ae81ff">0x3000u</span>, <span style="color:#ae81ff">0x40u</span>);
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>Dst )
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  memcpy(Dst, Src, dwSize);
+  v4 <span style="color:#f92672">=</span> GetCurrentProcess();
+  FlushInstructionCache(v4, Dst, dwSize);
+  sub_12341240();
+  v5 <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">int</span> (<span style="color:#66d9ef">__fastcall</span> <span style="color:#f92672">*</span>)(_DWORD, <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>))Dst)(<span style="color:#ae81ff">0</span>, a3, strlen((<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)a3));
+  VirtualFree(Dst, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0x8000u</span>);
+  <span style="color:#66d9ef">return</span> v5;
+}
+</code></pre></div><p>所以主要的验证部分在sub_12343798处,在进入检测代码之前设置了一些参数信息:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">//edx --&gt; char* flag
+//ecx --&gt; int idx
+//edi --&gt; payload_base
+//ebx --&gt; MAX_STEP <span style="color:#f92672">(</span>len<span style="color:#f92672">(</span>flag<span style="color:#f92672">))</span>
+</code></pre></div><h2 id="天堂之门">天堂之门</h2>
+<p>在Windows64操作系统下，所有的32位程序会被装载到WoW64子系统中运行。而某些windows kernel调用，WoW64会将其钩取为64位调用。在这个过程中，运行的程序会从兼容模式暂时地切换成64位模式运行。利用这个特性，我们可以在程序运行过程中主动切换为64位模式来执行64位代码，以达到某种保护程序(如使静态分析失败、动态跟踪混乱)的目的。
+这种保护方法被称为Heaven&rsquo;s Gate，直译就是天堂之门。架构的切换对于运行在 Wow64 环境下的程序是必不可少的，运行在 64 位 Windows 系统下的 32 位程序在进入系统调用前需要完成下述操作：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">32-bit ntdll.dll -&gt; wow64cpu.dll’s Heaven’s Gate -&gt; 64-bit ntdll.dll -&gt; syscall into the kernel
+</code></pre></div><p>WoW64根据段寄存器cs的值来确定程序的运行模式，如果cs的值为0x33，则当前是64位模式；如果cs的值为0x23，则当前为兼容模式。
+这道题采用了这样的方式来切换运行模式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">// open_gate_template_x86
+push 0x33 // cs:0x33
+sub esp, <span style="color:#ae81ff">4</span>
+mov dword ptr ss:<span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span>, grid_dst_ip // next grid
+add qword ptr ss:<span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span>, edi // payload_base
+inc ecx // step++
+retf
+
+// open_gate_template_x64
+push 0x23 // cs:0x23
+sub rsp, <span style="color:#ae81ff">8</span>
+mov qword ptr ss:<span style="color:#f92672">[</span>rsp<span style="color:#f92672">]</span>, grid_dst_ip
+add qword ptr ss:<span style="color:#f92672">[</span>rsp<span style="color:#f92672">]</span>, rdi
+inc rcx // step++
+retfq
+</code></pre></div><p>因为架构的切换过程加上验证部分中间依旧穿插了部分花指令，x86到x64的切换大致过程如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">b <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0x7f</span>)
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x33</span> <span style="color:#f92672">^</span> b
+open_gate_template_x86_mutated <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        open_gate_label:
+</span><span style="color:#e6db74">            push {hex(a)}
+</span><span style="color:#e6db74">            xor dword ptr ss:[esp], {hex(b)}
+</span><span style="color:#e6db74">            call next_label // sub esp, 4
+</span><span style="color:#e6db74">            .byte {random.randint(0,255)}
+</span><span style="color:#e6db74">            next_label:
+</span><span style="color:#e6db74">            mov dword ptr ss:[esp], grid_dst_ip
+</span><span style="color:#e6db74">            add dword ptr ss:[esp], edi
+</span><span style="color:#e6db74">            inc ecx
+</span><span style="color:#e6db74">            retf&#34;&#34;&#34;</span>
+</code></pre></div><p>再弄明白这个架构的切换之后，可以看出来验证部分主要是一个迷宫(图搜索),不过需要确定最最开始的两条路径(即最前面两个字母需要时f4)然后后面的路径过程基本一致，可以写出遍历程序求解。<br>
+补一些关于天堂之门的学习链接<br>
+<a href="http://rce.co/knockin-on-heavens-gate-dynamic-processor-mode-switching/">http://rce.co/knockin-on-heavens-gate-dynamic-processor-mode-switching/</a><br>
+<a href="https://medium.com/@fsx30/hooking-heavens-gate-a-wow64-hooking-technique-5235e1aeed73">https://medium.com/@fsx30/hooking-heavens-gate-a-wow64-hooking-technique-5235e1aeed73</a><br>
+<a href="https://www.malwaretech.com/2014/02/the-0x33-segment-selector-heavens-gate.html">https://www.malwaretech.com/2014/02/the-0x33-segment-selector-heavens-gate.html</a><br>
+这部分代码调试需要使用WinDbg(x64),这个调试器可以自动完成32到64位的切换，我试了一下使用这个调试器，在执行retf后，寄存器从eax变成了rax，在执行retfq后，寄存器从rax变成了eax.</p>
+<h2 id="solve">solve</h2>
+<p>膜Thiner</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/python</span>
+
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Solution Author: Thiner @ NeSE
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">The challenge is solved with some luck.
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">note here
+</span><span style="color:#e6db74">rbx=total
+</span><span style="color:#e6db74">rcx=0
+</span><span style="color:#e6db74">rdx=buffer without npointer{}
+</span><span style="color:#e6db74">rdi=&amp;code
+</span><span style="color:#e6db74">init is 32bit
+</span><span style="color:#e6db74">return value is check result
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">offset  : 0x2198
+</span><span style="color:#e6db74">virtaddr: 0x12343798
+</span><span style="color:#e6db74">code len: 0x30d3
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+
+<span style="color:#75715e"># gatesXgame_un.exe is the upx unpacked binary</span>
+
+
+<span style="color:#f92672">import</span> capstone <span style="color:#f92672">as</span> cs
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;gatesXgame_un.exe&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    raw <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+
+
+
+
+code <span style="color:#f92672">=</span> raw[<span style="color:#ae81ff">0x2198</span>:<span style="color:#ae81ff">0x2198</span><span style="color:#f92672">+</span><span style="color:#ae81ff">0x30d3</span>]
+
+
+<span style="color:#75715e"># &#34;&#34;&#34;</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(code)<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>):
+    <span style="color:#66d9ef">if</span> code[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xe8\x01\x00\x00\x00</span><span style="color:#e6db74">&#39;</span>:
+        code <span style="color:#f92672">=</span> code[:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xf1</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">+</span>code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">6</span>:]
+    <span style="color:#66d9ef">if</span> code[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xe8\x02\x00\x00\x00</span><span style="color:#e6db74">&#39;</span>:
+        code <span style="color:#f92672">=</span> code[:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xcd\x81</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">+</span>code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">7</span>:]
+    <span style="color:#66d9ef">if</span> code[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xe8\x03\x00\x00\x00</span><span style="color:#e6db74">&#39;</span>:
+        code <span style="color:#f92672">=</span> code[:i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xcd\x82\xf1</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">+</span>code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">8</span>:]
+
+
+<span style="color:#75715e"># code=code.replace(&#39;e803000000e4de78&#39;.replace())</span>
+
+
+md32 <span style="color:#f92672">=</span> cs<span style="color:#f92672">.</span>Cs(cs<span style="color:#f92672">.</span>CS_ARCH_X86, cs<span style="color:#f92672">.</span>CS_MODE_32)
+md64 <span style="color:#f92672">=</span> cs<span style="color:#f92672">.</span>Cs(cs<span style="color:#f92672">.</span>CS_ARCH_X86, cs<span style="color:#f92672">.</span>CS_MODE_64)
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dis32</span>(addr):
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39; code 32 {:#x} &#39;</span><span style="color:#f92672">.</span>format(addr)<span style="color:#f92672">.</span>center(<span style="color:#ae81ff">80</span>, <span style="color:#e6db74">&#39;-&#39;</span>)
+    <span style="color:#66d9ef">for</span> h, i <span style="color:#f92672">in</span> enumerate(md32<span style="color:#f92672">.</span>disasm(code[addr:addr<span style="color:#f92672">+</span><span style="color:#ae81ff">0x100</span>], addr)):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;{:3d}{:&gt;#8x} {:&gt;7s} {}&#39;</span><span style="color:#f92672">.</span>format(h, i<span style="color:#f92672">.</span>address, i<span style="color:#f92672">.</span>mnemonic, i<span style="color:#f92672">.</span>op_str)
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dis64</span>(addr):
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39; code 64 {:#x} &#39;</span><span style="color:#f92672">.</span>format(addr)<span style="color:#f92672">.</span>center(<span style="color:#ae81ff">80</span>, <span style="color:#e6db74">&#39;-&#39;</span>)
+    <span style="color:#66d9ef">for</span> h, i <span style="color:#f92672">in</span> enumerate(md64<span style="color:#f92672">.</span>disasm(code[addr:addr<span style="color:#f92672">+</span><span style="color:#ae81ff">0x100</span>], addr)):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;{:3d}{:&gt;#8x} {:&gt;7s} {}&#39;</span><span style="color:#f92672">.</span>format(h, i<span style="color:#f92672">.</span>address, i<span style="color:#f92672">.</span>mnemonic, i<span style="color:#f92672">.</span>op_str)
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ext32</span>(addr):
+    <span style="color:#75715e">#dis32(addr)</span>
+    head <span style="color:#f92672">=</span> list(md32<span style="color:#f92672">.</span>disasm(code[addr:addr<span style="color:#f92672">+</span><span style="color:#ae81ff">0x80</span>], addr))
+    <span style="color:#75715e"># 3+2k</span>
+    l <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+        <span style="color:#66d9ef">if</span> head[<span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>mnemonic <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;cmp&#39;</span>:
+            <span style="color:#66d9ef">break</span>
+        ch <span style="color:#f92672">=</span> int(head[<span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>op_str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">0</span>)
+        tar <span style="color:#f92672">=</span> int(head[<span style="color:#ae81ff">4</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>op_str, <span style="color:#ae81ff">0</span>)
+        inst <span style="color:#f92672">=</span> list(md32<span style="color:#f92672">.</span>disasm(code[tar:tar<span style="color:#f92672">+</span><span style="color:#ae81ff">0x30</span>], tar))[<span style="color:#ae81ff">4</span>]
+        addr <span style="color:#f92672">=</span> int(inst<span style="color:#f92672">.</span>op_str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">0</span>)
+        l<span style="color:#f92672">.</span>append((ch, addr))
+    <span style="color:#66d9ef">return</span> l
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ext64</span>(addr):
+    <span style="color:#75715e">#dis64(addr)</span>
+    head <span style="color:#f92672">=</span> list(md64<span style="color:#f92672">.</span>disasm(code[addr:addr<span style="color:#f92672">+</span><span style="color:#ae81ff">0x80</span>], addr))
+    <span style="color:#75715e"># 3+5k</span>
+    l <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+        <span style="color:#66d9ef">if</span> head[<span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>mnemonic <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;cmp&#39;</span>:
+            <span style="color:#66d9ef">break</span>
+        ch <span style="color:#f92672">=</span> int(head[<span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>op_str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">0</span>)
+        tar <span style="color:#f92672">=</span> int(head[<span style="color:#ae81ff">4</span><span style="color:#f92672">+</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>i]<span style="color:#f92672">.</span>op_str, <span style="color:#ae81ff">0</span>)
+        inst <span style="color:#f92672">=</span> list(md64<span style="color:#f92672">.</span>disasm(code[tar:tar<span style="color:#f92672">+</span><span style="color:#ae81ff">0x30</span>], tar))[<span style="color:#ae81ff">5</span>]
+        addr <span style="color:#f92672">=</span> int(inst<span style="color:#f92672">.</span>op_str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">0</span>)
+        l<span style="color:#f92672">.</span>append((ch, addr))
+    <span style="color:#66d9ef">return</span> l
+
+
+
+
+flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;f4&#39;</span>
+addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x558</span>
+aset <span style="color:#f92672">=</span> set([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0x49e</span>, <span style="color:#ae81ff">0x558</span>])
+switch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(flag, addr, aset, switch):
+    <span style="color:#66d9ef">if</span> switch <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#75715e"># 32bit</span>
+        extract <span style="color:#f92672">=</span> ext32
+    <span style="color:#66d9ef">else</span>:
+        extract <span style="color:#f92672">=</span> ext64
+    <span style="color:#66d9ef">try</span>:
+        ca <span style="color:#f92672">=</span> extract(addr)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">IndexError</span>:
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;flag may be&#34;</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;npointer{&#39;</span><span style="color:#f92672">+</span>flag<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;}&#39;</span>
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">for</span> c, a <span style="color:#f92672">in</span> ca:
+        <span style="color:#66d9ef">if</span> a <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> aset:
+            dfs(flag<span style="color:#f92672">+</span>chr(c), a, aset <span style="color:#f92672">|</span> set([a]), switch <span style="color:#f92672">^</span> <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e">#print(&#39;dead at&#39;,repr(flag))</span>
+        <span style="color:#66d9ef">pass</span>
+
+
+
+
+dfs(flag, addr, aset, switch)
+</code></pre></div><p>代码最前面的修改部分是用来修改花指令的，但是使用int指令代替nop主要是因为int指令可以不改变一条指令的长度</p>
+<h2 id="感想">感想</h2>
+<p>我好菜我好菜我好菜，出题人原话&quot;本题作为逆向公开赛的第一题，其难度较低&quot;，哎继续努力吧.</p>
+<h2 id="补一个控制转移指令的总结">补一个控制转移指令的总结</h2>
+<h3 id="call指令">Call指令</h3>
+<p>一条call指令的字节数可以是（2,5,6）byte，对应不同的操作数，下面分情况讨论。</p>
+<ol>
+<li>假设我们在函数src中调用函数dst，对应的call指令是的机器码长度是5 byte，其中第一个字节是e8代表指令，后面四个字节是一个相对偏移offset，dst=src_next+offset，其中src_next是下一条指令的地址，也可以看出是当前指令的地址加上该指令的长度。可以称这种情况为直接转移。</li>
+<li>假设有一个全局函数指针变量g_pDst指向dst函数，我们在函数src中call这个变量，则对应的机器码长度是6 byte，前两个字节是ff 15代表指令，后面四个字节是一个绝对地址即变量g_pDst的地址。可以称这种情况为内存间接寻址。</li>
+<li>假设函数src中有一个函数指针变量pDst指向dst函数，在函数src中call该变量，因为这个指针式保存在栈中的，编译时无法知道它的全局位置，只知道它相对于栈底的位置，所以根据pDst距离栈底ebp的距离。当距离小于0xff时，机器码长度为3，前两个字节是ff 55代表指令，后面一个字节代表相对ebp的偏移（注意偏移都是负数，比如f8，则ebp-8即为实际内存地址）。当距离大于0xff时，机器码长度为6，前两个字节为ff 95表指令，后四个字节是相对ebp的偏移，计算方法与上面相同。可以称这种情况为栈间接寻址。</li>
+<li>call寄存器，比如call eax、call ebx；还有call eax + 4。可以称这种情况为寄存器直接寻址。</li>
+<li>call寄存器间接转移，比如call [eax]，call [ebx]；以及call [eax] + 4。可以称这种情况为寄存器间接寻址。<br>
+注：对于第一种情况，还有短转移，也就是偏移为一个字节，但是有些编译器（如MSVC）不会编译这种短的call，总之现在比较少见。为什么没有call functionA + 10 这类代码呢，这是因为编译器在编译的时候会自动计算相加后的地址。</li>
+</ol>
+<h3 id="ret指令">Ret指令</h3>
+<p>ret指令比较简单，只有两种情况，ret和ret n。</p>
+<h3 id="jmp指令">Jmp指令</h3>
+<p>直接的jmp分3种
+Short Jump（短跳转）机器码 EB rel8
+只能跳转到256字节的范围内
+Near Jump（近跳转）机器码 E9 rel16/32
+可跳至同一个段的范围内的地址
+Far Jump（远跳转）机器码EA ptr 16:16/32
+可跳至任意地址，使用48位/32位全指针
+要注意的是，短跳转和近跳转指令中包含的操作数都是相对于(E)IP的偏移，而远跳转指令中包含的是目标的绝对地址，所以短/近跳转会出现跳至同一目标的指令机器码不同，不仅会不同，而且应该不同。而远跳转中包含的是绝对地址，因此转移到同一地址的指令机器码相同</p>
+<h3 id="条件转移指令">条件转移指令</h3>
+<p>条件转移类指令与jmp指令的分类大体类似，但是有一个重要的区别就是，条件转移类指令只有直接转移，没有后面四种，所以条件转移类指令全部是相对偏移的，每种指令可分为长跳转和短跳转。<br>
+<img src="/images/ed495c9624349256ef02ab1960a9201b/11884068-c22281944fda6692.jpg" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/>http://localhost:1313/2021/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/rctf2020-%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="RCTF2020-部分re"><i class="iconfont icon-left"></i>&nbsp;RCTF2020-部分re</a>
+        
+        
+        <a href="http://localhost:1313/2021/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" class="next" rel="next" title="i春秋公益赛_部分re题目">i春秋公益赛_部分re题目&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

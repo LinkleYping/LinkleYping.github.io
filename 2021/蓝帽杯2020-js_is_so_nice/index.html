@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" />
+    <link rel="next" href="http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            蓝帽杯2020--js_is_so_NICE | EP`s Blog
+        
+    </title>
+    <meta name="title" content="蓝帽杯2020--js_is_so_NICE | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "蓝帽杯2020--js_is_so_NICE",
+    "headline" : "蓝帽杯2020--js_is_so_NICE",
+    "description" : "这个题是仿照kctf2020的一道题出的，就是quickjs的版本不一样。 参考链接： https:\/\/bbs.pediy.com\/thread-259014.htm 打开搜索字符串可以看到使用了QucikJS, 版本是20",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-08 15:22:45 \u002b0800 CST",
+    "dateModified" : "2021-01-08 15:22:45 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice\/",
+    "wordCount" : "1268",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">蓝帽杯2020--js_is_so_NICE</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-08 itemprop="datePublished">January 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1268 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>这个题是仿照kctf2020的一道题出的，就是quickjs的版本不一样。
+参考链接：
+<a href="https://bbs.pediy.com/thread-259014.htm">https://bbs.pediy.com/thread-259014.htm</a></p>
+<p>打开搜索字符串可以看到使用了QucikJS, 版本是2020-07-05
+主要逻辑如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">puts(<span style="color:#e6db74">&#34;Please input flag:&#34;</span>);
+  gets(<span style="color:#f92672">&amp;</span>s);
+  v7 <span style="color:#f92672">=</span> strlen(<span style="color:#f92672">&amp;</span>s);
+  v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x2A</span>;
+  <span style="color:#66d9ef">if</span> ( v7 <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x2A</span> )
+    v3 <span style="color:#f92672">=</span> v7;
+  memcpy(<span style="color:#f92672">&amp;</span>unk_6CF4E9, <span style="color:#f92672">&amp;</span>s, v3);
+  rt <span style="color:#f92672">=</span> sub_40D500();
+  sub_487A60(rt);
+  ctx <span style="color:#f92672">=</span> (_QWORD <span style="color:#f92672">*</span>)sub_4746F0(rt);
+  sub_40EA30(rt, <span style="color:#ae81ff">0LL</span>, (<span style="color:#66d9ef">__int64</span>)sub_4875C0, <span style="color:#ae81ff">0LL</span>);
+  sub_476860(ctx);
+  sub_4762F0(ctx);
+  sub_476390(ctx);
+  sub_474DE0(ctx);
+  sub_474E50(ctx);
+  sub_475BC0(ctx);
+  sub_475BE0(ctx);
+  sub_475CC0(ctx);
+  sub_479330(ctx);
+  sub_475EC0(ctx);
+  sub_4764B0(ctx);
+  sub_4878A0(ctx, a1, a2);
+  sub_4886E0((<span style="color:#66d9ef">__int64</span>)ctx, (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>unk_6CF4E0, <span style="color:#ae81ff">662LL</span>, <span style="color:#ae81ff">0</span>);
+  sub_4884F0(ctx);
+  sub_40BD80(ctx);
+  sub_40CEB0(rt);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0LL</span>;
+</code></pre></div><p>其中<code>unk_6CF4E0</code>处存储的是js编译后的二进制代码，数组长度是662.
+QucikJS编译以后有一个hello.c文件, 其与我们反编译的逻辑基本一致，所以只需要将<code>qjsc_hello</code>数组替换成<code>unk_6CF4E0</code>的内容即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* File generated automatically by the QuickJS compiler. */</span>
+
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;quickjs-libc.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> uint32_t qjsc_s_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">662</span>;
+
+uint8_t qjsc_s[<span style="color:#ae81ff">662</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">236</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">177</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">236</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">218</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">213</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">68</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">254</span>};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv)
+{
+    <span style="color:#66d9ef">char</span> un[<span style="color:#ae81ff">0x2a</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+    <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> unpos <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>qjsc_s[<span style="color:#ae81ff">9</span>];
+    <span style="color:#66d9ef">int</span> unlen;
+    printf(<span style="color:#e6db74">&#34;Please input flag:&#34;</span>);
+    gets(un);
+    unlen <span style="color:#f92672">=</span> strlen(un) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0x2a</span><span style="color:#f92672">?</span> <span style="color:#ae81ff">0x2a</span>, strlen(un);
+    memcpy(unpos, un, unlen); 
+    JSRuntime <span style="color:#f92672">*</span>rt;
+    JSContext <span style="color:#f92672">*</span>ctx;
+    rt <span style="color:#f92672">=</span> JS_NewRuntime();
+    ctx <span style="color:#f92672">=</span> JS_NewContextRaw(rt);
+    JS_SetModuleLoaderFunc(rt, NULL, js_module_loader, NULL);
+    JS_AddIntrinsicBaseObjects(ctx);
+    JS_AddIntrinsicBigInt(ctx);
+    js_std_add_helpers(ctx, argc, argv);
+    js_std_eval_binary(ctx, qjsc_s, qjsc_s_size, <span style="color:#ae81ff">0</span>);
+    js_std_loop(ctx);
+    JS_FreeContext(ctx);
+    JS_FreeRuntime(rt);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>使用<code>gcc -ggdb -pthread hello.c libquickjs.a -lm -ldl -o hello</code>可以编译生成二进制文件，运行逻辑与题目给出的二进制文件相同。现在只需要将二进制文件的字节码打印即可。对quickjs.c文件进行如下3处修改：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">###########1
+</span><span style="color:#75715e"></span><span style="color:#f92672">-</span><span style="color:#75715e">//#define DUMP_BYTECODE  (1)
+</span><span style="color:#75715e"></span><span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">#</span>define DUMP_BYTECODE  (<span style="color:#ae81ff">1</span>)
+
+
+<span style="color:#75715e">###########2
+</span><span style="color:#75715e"></span><span style="color:#f92672">-</span><span style="color:#75715e">//#define DUMP_READ_OBJECT
+</span><span style="color:#75715e"></span><span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">#</span>define DUMP_READ_OBJECT
+
+
+<span style="color:#75715e">##########3
+</span><span style="color:#75715e"></span>                 bc_read_trace(s, <span style="color:#e6db74">&#34;}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+             }
+             bc_read_trace(s, <span style="color:#e6db74">&#34;}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">if</span> DUMP_BYTECODE
+<span style="color:#f92672">+</span>            js_dump_function_bytecode(ctx, b);
+<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">#</span>endif
+         }
+</code></pre></div><p>修改完成后重新编译quickjs和上面的hello.c文件，即可打印出字节码
+<img src="/images/9462a78f9a0807efb6fde28df0a0e9a7/11884068-1a61ac7965b23653.png" alt=""></p>
+<p>字节码的大致逻辑如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;thisisyourflag&#34;</span>
+b <span style="color:#f92672">=</span> []
+c <span style="color:#f92672">=</span> [<span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">25</span>,<span style="color:#ae81ff">158</span>,<span style="color:#ae81ff">236</span>,<span style="color:#ae81ff">38</span>,<span style="color:#ae81ff">101</span>,<span style="color:#ae81ff">177</span>,<span style="color:#ae81ff">221</span>,<span style="color:#ae81ff">155</span>,<span style="color:#ae81ff">90</span>,<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">222</span>,<span style="color:#ae81ff">99</span>,<span style="color:#ae81ff">121</span>,<span style="color:#ae81ff">163</span>,<span style="color:#ae81ff">229</span>,<span style="color:#ae81ff">74</span>,<span style="color:#ae81ff">77</span>,<span style="color:#ae81ff">180</span>]
+i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> len(a):
+	j <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>charAt(i)
+	b<span style="color:#f92672">.</span>append(((i<span style="color:#f92672">*</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">56</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">255</span>) <span style="color:#f92672">^</span> j)
+	i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">assert</span>( a <span style="color:#f92672">==</span> b<span style="color:#f92672">.</span>toString())
+</code></pre></div><p>做逆运算即可求得flag:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ss <span style="color:#f92672">=</span> [<span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">25</span>,<span style="color:#ae81ff">158</span>,<span style="color:#ae81ff">236</span>,<span style="color:#ae81ff">38</span>,<span style="color:#ae81ff">101</span>,<span style="color:#ae81ff">177</span>,<span style="color:#ae81ff">221</span>,<span style="color:#ae81ff">155</span>,<span style="color:#ae81ff">90</span>,<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">222</span>,<span style="color:#ae81ff">99</span>,<span style="color:#ae81ff">121</span>,<span style="color:#ae81ff">163</span>,<span style="color:#ae81ff">229</span>,<span style="color:#ae81ff">74</span>,<span style="color:#ae81ff">77</span>,<span style="color:#ae81ff">180</span>]
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(chr(ss[i] <span style="color:#f92672">^</span> ((i<span style="color:#f92672">*</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">56</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">255</span>)) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(ss)))
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/>http://localhost:1313/2021/%E8%93%9D%E5%B8%BD%E6%9D%AF2020-js_is_so_nice/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="虎符2020部分re"><i class="iconfont icon-left"></i>&nbsp;虎符2020部分re</a>
+        
+        
+        <a href="http://localhost:1313/2021/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" class="next" rel="next" title="网鼎杯-幸运的数字">网鼎杯-幸运的数字&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>
