@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            信息安全数学基础 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="信息安全数学基础 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "信息安全数学基础",
+    "headline" : "信息安全数学基础",
+    "description" : "广义欧几里得除法 a = q * b \u002b c, 0 \u0026lt;= c \u0026lt; b; 则(a, b) = (b, c)，可以用来计算最大公因数 def gcd(a, b): # a \u0026lt;= b if a * b == 0: return 0 r = b \/\/ a c = b % a while c != 0:",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-21 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-21 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80\/",
+    "wordCount" : "1507",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">信息安全数学基础</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-21 itemprop="datePublished">May 21, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1507 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%b9%bf%e4%b9%89%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e9%99%a4%e6%b3%95" class="toc-link">广义欧几里得除法</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e7%ae%97%e6%95%b0%e5%9f%ba%e6%9c%ac%e5%ae%9a%e7%90%86" class="toc-link">算数基本定理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0" class="toc-link">欧拉函数</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86" class="toc-link">欧拉定理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e8%b4%b9%e9%a9%ac%e5%b0%8f%e5%ae%9a%e7%90%86" class="toc-link">费马小定理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#wilson%e5%ae%9a%e7%90%86" class="toc-link">Wilson定理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%90%8c%e4%bd%99%e5%bc%8f" class="toc-link">同余式</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e4%b8%ad%e5%9b%bd%e5%89%a9%e4%bd%99%e5%ae%9a%e7%90%86" class="toc-link">中国剩余定理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%b9%b3%e6%96%b9%e5%89%a9%e4%bd%99" class="toc-link">平方剩余</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e6%ac%a7%e6%8b%89%e5%88%a4%e5%88%ab%e6%9d%a1%e4%bb%b6" class="toc-link">欧拉判别条件</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e7%be%a4" class="toc-link">群</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%90%8c%e6%80%81%e5%92%8c%e5%90%8c%e6%9e%84" class="toc-link">同态和同构</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e7%8e%af" class="toc-link">环</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%9f%9f" class="toc-link">域</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e7%8e%af" class="toc-link">多项式环</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="广义欧几里得除法">广义欧几里得除法</h2>
+<blockquote>
+<p>a = q * b + c, 0 &lt;= c &lt; b; 则(a, b) = (b, c)，可以用来计算最大公因数</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gcd</span>(a, b):  <span style="color:#75715e"># a &lt;= b</span>
+    <span style="color:#66d9ef">if</span> a <span style="color:#f92672">*</span> b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    r <span style="color:#f92672">=</span> b <span style="color:#f92672">//</span> a
+    c <span style="color:#f92672">=</span> b <span style="color:#f92672">%</span> a
+    <span style="color:#66d9ef">while</span> c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#75715e"># print(&#34;%d = %d * %d + %d&#34;%(b, r, a, c))</span>
+        b <span style="color:#f92672">=</span> a
+        a <span style="color:#f92672">=</span> c
+        r <span style="color:#f92672">=</span> b <span style="color:#f92672">//</span> a
+        c <span style="color:#f92672">=</span> b <span style="color:#f92672">%</span> a
+    <span style="color:#66d9ef">return</span> a
+</code></pre></div><h2 id="算数基本定理">算数基本定理</h2>
+<blockquote>
+<p>任意整数n &gt; 1都可以表示成素数的乘积， 且在不考虑乘积顺序的情况下，该表达式唯一。</p>
+</blockquote>
+<h2 id="欧拉函数">欧拉函数</h2>
+<blockquote>
+<p>设m是一个正整数，则m个整数1,2,3&hellip;m中，与m互素的整数个数，计做$\varphi$，通常叫做欧拉函数。</p>
+</blockquote>
+<p>欧拉函数性质：
+假设m, n是互素的两个正整数，则
+$\varphi(m*n) = \varphi(m) * \varphi(n)$</p>
+<h2 id="欧拉定理">欧拉定理</h2>
+<p>(Euler) 设m是大于1的整数，如果a是满足$(a, m) = 1$的整数，则
+$a^{\varphi(m)} \equiv 1(mod;m)$
+但是使得$a^e \equiv 1(mod;m)$成立的最小整数e不一定是$\varphi(m)$, 只有$e  \leq \varphi(m)$，如果取等号则a称为m的原根。</p>
+<h2 id="费马小定理">费马小定理</h2>
+<p>(Fermat) 设p是一个素数，则对任意整数a，有：
+$a^p\equiv a(mod;p)$</p>
+<h2 id="wilson定理">Wilson定理</h2>
+<p>(Wilson) 设p是一个素数，则
+$(p-1)! \equiv -1 (mod;p)$</p>
+<h2 id="同余式">同余式</h2>
+<p>设m是一个正整数，m不是a的因子，则一次同余式$ax \equiv 1(mod;m)$有解的充分必要条件是 $(a, m) =1$</p>
+<h2 id="中国剩余定理">中国剩余定理</h2>
+<p>设$m_1, m_2, m_3,&hellip;,m_k$是k个<strong>两两互素</strong>的正整数，则对任意的整数$b_1, b_2, &hellip;, b_n$同余式组
+$x \equiv b_1(mod;m_1)$
+&hellip;
+$x \equiv b_k(mod;m_k)$
+一定有解，且解唯一。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sage</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">CRT</span>(mi, ai):
+    <span style="color:#66d9ef">assert</span>(isinstance(mi, list) <span style="color:#f92672">and</span> isinstance(ai, list))
+    <span style="color:#66d9ef">assert</span>(reduce(gcd, mi) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># mi之间互素</span>
+    M <span style="color:#f92672">=</span> reduce(<span style="color:#66d9ef">lambda</span> x, y: x <span style="color:#f92672">*</span> y, mi)
+    ai_ti_Mi <span style="color:#f92672">=</span> [a <span style="color:#f92672">*</span> (M <span style="color:#f92672">//</span> m) <span style="color:#f92672">*</span> inverse_mod(M <span style="color:#f92672">//</span> m, m) <span style="color:#66d9ef">for</span> (m, a) <span style="color:#f92672">in</span> zip(mi, ai)]
+    <span style="color:#66d9ef">return</span> reduce(<span style="color:#66d9ef">lambda</span> x, y: x <span style="color:#f92672">+</span> y, ai_ti_Mi) <span style="color:#f92672">%</span> M
+<span style="color:#75715e"># sage中也有crt函数</span>
+<span style="color:#75715e"># sage: x = crt(2, 1, 3, 5); x</span>
+<span style="color:#75715e"># 11</span>
+</code></pre></div><h2 id="平方剩余">平方剩余</h2>
+<p>设m是正整数，若同余式
+$x^2 \equiv a (mod;m),:(a, m) = 1$
+有解，则a叫做m的平方剩余(或二次剩余)；否则，a叫做模m的平方非剩余。</p>
+<h2 id="欧拉判别条件">欧拉判别条件</h2>
+<p>设p是奇素数，(a, p) = 1, 则
+(i) a是模p的平方剩余的充分必要条件是
+$a^{\frac{p-1} 2} \equiv 1(mod;p)$
+(ii) a是模p的平方非剩余的充分必要条件是
+$a^{\frac{p-1} 2} \equiv -1(mod;p)$
+由这个判别推出勒让得符号和雅克比符号</p>
+<h2 id="群">群</h2>
+<p>设G是一个具有结合法的非空集合，G叫做一个群，如果G中的结合法满足以下三个条件，
+(i) 结合律：即对任意的$a, b, c \in G$，都有
+$(ab)c=a(bc)$
+(ii) 单位元：即存在一个元素$e \in G$，使得对任意$a \in G$，都有
+$ae=ea=a$
+(iii) 可逆性：即对任意的$a \in G$，都存在$a' \in G$，使得
+$aa' = a&rsquo;a = e$
+特别的，当G的结合法写作乘法时，G叫做乘群，当G的结合法写作加法时，G叫做加群。群G中元素的个数叫做群G的阶。</p>
+<h2 id="同态和同构">同态和同构</h2>
+<p>设G, G&rsquo;都是群，f是G到G&rsquo;的一个映射，如果对任意的$a, b \in G$， 都有
+$f(a, b) = f(a) f(b)$
+则f叫做G到G&rsquo;的一个同态，如果f是一一对应的，则称f为同构。</p>
+<h2 id="环">环</h2>
+<p>设R是具有两种结合法(通常表示为加法和乘法)的非空集合，如果以下条件成立：
+(i) R对于加法构成一个交换群
+(ii) (结合律) 对任意的$a,b,c \in R$，有$(ab)c=a(bc)$
+(iii) (分配律) 对任意的$a, b, c \in R$，有
+$(a + b)c = ac + bc$和$a(b + c) = ab + ac$
+则R称为环。(即加法构成交换群，乘法满足结合率，加法乘法满足分配律)
+(iv) 对任意的$a,b,c \in R$，有$ab = ba$，则R叫做交换环
+(v) 对任意的$a \in R$，有$a 1_R=1_Ra=a$，则R叫做有单位元环。</p>
+<h2 id="域">域</h2>
+<p>称交换环K为一个域，如果K中有单位元，且每个非零元都是可逆元，即K对于加法构成一个交换群，$K* = K \ {0}$对于乘法构成一个交换群。域$F_p$</p>
+<h2 id="多项式环">多项式环</h2>
+<p>设R为整环，x为变量，则R上形为
+$a_nx^n + &hellip; + a_1x + a_0,::a_i \in R$
+的元素称为R上的多项式。
+设$f(x) = a_nx^n + &hellip; + a_1x + a_0,::a_i \neq R$是整环R上的多项式，如果再定义加法和乘法则可以生成整环R[x]
+注意定义多项式环需要声明是定义在哪个环或者域上的。
+$Z[x]$：定义在整数环上的多项式环
+$F_2[x]$：定义在域$F_2$上的多项式环
+GF(2)到GF(2^8)的扩张: <a href="https://blog.openacid.com/storage/ec-2/">https://blog.openacid.com/storage/ec-2/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/" class="prev" rel="prev" title="代码注入"><i class="iconfont icon-left"></i>&nbsp;代码注入</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" class="next" rel="next" title="API勾取">API勾取&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

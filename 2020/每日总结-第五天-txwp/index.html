@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/" />
+    <link rel="next" href="https://linkleyping.top/2020/2020xctf%E6%88%98%E5%BD%B9/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            腾讯游戏安全竞赛2020 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="腾讯游戏安全竞赛2020 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "腾讯游戏安全竞赛2020",
+    "headline" : "腾讯游戏安全竞赛2020",
+    "description" : "ring3 从dmp文件中恢复出可执行文件 使用windbg open crash dump: 0:004\u0026gt; lmvm winmine Browse full module list start end module name 01000000 01020000 winmine (deferred) Image path: D:\\Temp\\bin\\winmine.exe Image name: winmine.exe Browse all global symbols functions data Timestamp: Sat Aug 18 04:54:13 2001 (3B7D8475) CheckSum: 000273C4 ImageSize: 00020000 File version: 5.1.2600.0 Product version:",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-05 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-04-05 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp\/",
+    "wordCount" : "473",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">腾讯游戏安全竞赛2020</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-04-05 itemprop="datePublished">April 5, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">473 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/#ring3" class="toc-link">ring3</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/#%e4%bb%8edmp%e6%96%87%e4%bb%b6%e4%b8%ad%e6%81%a2%e5%a4%8d%e5%87%ba%e5%8f%af%e6%89%a7%e8%a1%8c%e6%96%87%e4%bb%b6" class="toc-link">从dmp文件中恢复出可执行文件</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/#%e6%9f%a5%e6%89%bedump%e5%87%ba%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8e%e5%8e%9f%e5%a7%8b%e6%96%87%e4%bb%b6%e6%8c%87%e4%bb%a4%e7%9a%84%e4%b8%8d%e5%90%8c%e4%b9%8b%e5%a4%84" class="toc-link">查找dump出的文件与原始文件指令的不同之处</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/#%e6%8c%87%e4%bb%a4%e4%bf%ae%e6%94%b9%e7%9a%84%e4%bd%9c%e7%94%a8" class="toc-link">指令修改的作用</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/#ring0" class="toc-link">ring0</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="ring3">ring3</h2>
+<h3 id="从dmp文件中恢复出可执行文件">从dmp文件中恢复出可执行文件</h3>
+<p>使用windbg <code>open crash dump</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">0:004&gt; lmvm winmine
+Browse full module list
+start    end        module name
+<span style="color:#ae81ff">01000000</span> <span style="color:#ae81ff">01020000</span>   winmine    <span style="color:#f92672">(</span>deferred<span style="color:#f92672">)</span>             
+    Image path: D:<span style="color:#ae81ff">\T</span>emp<span style="color:#ae81ff">\b</span>in<span style="color:#ae81ff">\w</span>inmine.exe
+    Image name: winmine.exe
+    Browse all global symbols  functions  data
+    Timestamp:        Sat Aug <span style="color:#ae81ff">18</span> 04:54:13 <span style="color:#ae81ff">2001</span> <span style="color:#f92672">(</span>3B7D8475<span style="color:#f92672">)</span>
+    CheckSum:         000273C4
+    ImageSize:        <span style="color:#ae81ff">00020000</span>
+    File version:     5.1.2600.0
+    Product version:  5.1.2600.0
+    File flags:       <span style="color:#ae81ff">0</span> <span style="color:#f92672">(</span>Mask 3F<span style="color:#f92672">)</span>
+    File OS:          <span style="color:#ae81ff">40004</span> NT Win32
+    File type:        1.0 App
+    File date:        00000000.00000000
+    Translations:     0804.04b0
+    Information from resource tables:
+        CompanyName:      Microsoft Corporation
+        ProductName:      Microsoft<span style="color:#f92672">(</span>R<span style="color:#f92672">)</span> Windows<span style="color:#f92672">(</span>R<span style="color:#f92672">)</span> Operating System
+        InternalName:     winmine
+        OriginalFilename: WINMINE.EXE
+        ProductVersion:   5.1.2600.0
+        FileVersion:      5.1.2600.0 <span style="color:#f92672">(</span>xpclient.010817-1148<span style="color:#f92672">)</span>
+        FileDescription:  Entertainment Pack Minesweeper Game
+        LegalCopyright:   <span style="color:#f92672">(</span>C<span style="color:#f92672">)</span> Microsoft Corporation. All rights reserved.
+
+0:004&gt; .writemem D:<span style="color:#ae81ff">\w</span>inmine1.exe <span style="color:#ae81ff">01000000</span> L?20000
+</code></pre></div><h2 id="查找dump出的文件与原始文件指令的不同之处">查找dump出的文件与原始文件指令的不同之处</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding:utf-8</span>
+<span style="color:#f92672">import</span> capstone <span style="color:#f92672">as</span> cs
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;winmine.exe&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    raw1 <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;winmine1.exe&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    raw2 <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+
+
+code1 <span style="color:#f92672">=</span> raw1[<span style="color:#ae81ff">0x80c</span>:<span style="color:#ae81ff">0x80c</span><span style="color:#f92672">+</span><span style="color:#ae81ff">0x2a15</span>]
+code2 <span style="color:#f92672">=</span> raw2[<span style="color:#ae81ff">0x140c</span>:<span style="color:#ae81ff">0x140c</span><span style="color:#f92672">+</span><span style="color:#ae81ff">0x2a15</span>]
+
+md32 <span style="color:#f92672">=</span> cs<span style="color:#f92672">.</span>Cs(cs<span style="color:#f92672">.</span>CS_ARCH_X86, cs<span style="color:#f92672">.</span>CS_MODE_32)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ext32</span>():
+    discode1 <span style="color:#f92672">=</span> list(md32<span style="color:#f92672">.</span>disasm(code1, <span style="color:#ae81ff">0x0100140C</span>))
+    discode2 <span style="color:#f92672">=</span> list(md32<span style="color:#f92672">.</span>disasm(code2, <span style="color:#ae81ff">0x0100140C</span>))
+    length1 <span style="color:#f92672">=</span> len(discode1)
+    length2 <span style="color:#f92672">=</span> len(discode2)
+    j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(length1):
+        op1 <span style="color:#f92672">=</span> discode1[i]<span style="color:#f92672">.</span>mnemonic
+        ch1 <span style="color:#f92672">=</span> discode1[i]<span style="color:#f92672">.</span>op_str
+        op2 <span style="color:#f92672">=</span> discode2[j]<span style="color:#f92672">.</span>mnemonic
+        ch2 <span style="color:#f92672">=</span> discode2[j]<span style="color:#f92672">.</span>op_str
+        <span style="color:#66d9ef">if</span> op1 <span style="color:#f92672">==</span> op2 <span style="color:#f92672">and</span> ch1 <span style="color:#f92672">==</span> ch2:
+            j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            address <span style="color:#f92672">=</span> discode1[i]<span style="color:#f92672">.</span>address
+            offset <span style="color:#f92672">=</span> address <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x0100140C</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">0x80c</span>
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">offset: &#34;</span>, hex(offset)<span style="color:#f92672">.</span>strip(<span style="color:#e6db74">&#39;L&#39;</span>)
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;address: &#34;</span>, hex(address)<span style="color:#f92672">.</span>strip(<span style="color:#e6db74">&#39;L&#39;</span>)
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;==========before=========&#34;</span>
+            <span style="color:#66d9ef">print</span> discode1[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>mnemonic, discode1[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>op_str
+            <span style="color:#66d9ef">print</span> op1, ch1
+            <span style="color:#66d9ef">print</span> discode1[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>mnemonic, discode1[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>op_str
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;==========after=========&#34;</span>
+            <span style="color:#66d9ef">print</span> discode2[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>mnemonic, discode2[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>op_str
+            <span style="color:#66d9ef">print</span> op2, ch2,
+            <span style="color:#66d9ef">if</span> op2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;nop&#34;</span>:
+                <span style="color:#66d9ef">while</span> op2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;nop&#34;</span>:
+                    j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                    op2 <span style="color:#f92672">=</span> discode2[j]<span style="color:#f92672">.</span>mnemonic
+                    <span style="color:#66d9ef">if</span> op2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;nop&#34;</span>:
+                        <span style="color:#66d9ef">print</span> op2,
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;&#34;</span>
+                <span style="color:#66d9ef">print</span> discode2[j]<span style="color:#f92672">.</span>mnemonic, discode2[j]<span style="color:#f92672">.</span>op_str
+            <span style="color:#66d9ef">else</span>:
+                j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;&#34;</span>
+                <span style="color:#66d9ef">print</span> discode2[j]<span style="color:#f92672">.</span>mnemonic, discode2[j]<span style="color:#f92672">.</span>op_str
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    ext32()
+</code></pre></div><p>执行结果如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python cmp.py
+
+offset:  0x23f5
+address:  0x1002ff5
+<span style="color:#f92672">==========</span>before<span style="color:#f92672">=========</span>
+jge 0x1003007
+inc dword ptr <span style="color:#f92672">[</span>0x100579c<span style="color:#f92672">]</span>
+call 0x10028b5
+<span style="color:#f92672">==========</span>after<span style="color:#f92672">=========</span>
+jge 0x1003007
+nop  nop nop nop nop nop 
+call 0x10028b5
+
+offset:  0x2991
+address:  0x1003591
+<span style="color:#f92672">==========</span>before<span style="color:#f92672">=========</span>
+call 0x1002eab
+push <span style="color:#ae81ff">0</span>
+jmp 0x10035ab
+<span style="color:#f92672">==========</span>after<span style="color:#f92672">=========</span>
+call 0x1002eab
+jmp 0x10035b0 
+jmp 0x10035ab
+</code></pre></div><p>可以看到有两处修改，分别位于0x23f5和0x2991处</p>
+<h2 id="指令修改的作用">指令修改的作用</h2>
+<p>分别对这两处进行分析可知0x23f5处执行修改的目的是<strong>停止计时</strong>，0x2991处指令修改的目的是<strong>即使踩雷也不会结束游戏</strong>。</p>
+<h2 id="ring0">ring0</h2>
+<p>膜大佬[跪] <a href="https://www.jianshu.com/p/daf0a914df3c">https://www.jianshu.com/p/daf0a914df3c</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/" class="prev" rel="prev" title="Android调试"><i class="iconfont icon-left"></i>&nbsp;Android调试</a>
+        
+        
+        <a href="https://linkleyping.top/2020/2020xctf%E6%88%98%E5%BD%B9/" class="next" rel="next" title="xctf战役_部分re题目">xctf战役_部分re题目&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

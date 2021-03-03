@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            汇编基础 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="汇编基础 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "汇编基础",
+    "headline" : "汇编基础",
+    "description" : "使用gcc生成AT\u0026amp;T汇编风格的代码 gcc -S -o test.s test.c 与Intel相比 寄存器前冠以“％”，而立即数前冠以“$” 目标操作数在源操作数的右边mo",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-10 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-04-10 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87\/",
+    "wordCount" : "1907",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">汇编基础</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-04-10 itemprop="datePublished">April 10, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1907 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e4%bd%bf%e7%94%a8gcc%e7%94%9f%e6%88%90att%e6%b1%87%e7%bc%96%e9%a3%8e%e6%a0%bc%e7%9a%84%e4%bb%a3%e7%a0%81" class="toc-link">使用gcc生成AT&amp;T汇编风格的代码</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e4%b8%8eintel%e7%9b%b8%e6%af%94" class="toc-link">与Intel相比</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#cmp%e6%8c%87%e4%bb%a4" class="toc-link">cmp指令</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e7%a7%bb%e4%bd%8d%e6%8c%87%e4%bb%a4" class="toc-link">移位指令</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#jljg-%e5%92%8c-jbja" class="toc-link">JL/JG 和 JB/JA</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#switch%e6%8c%87%e4%bb%a4%e6%b1%87%e7%bc%96%e5%bd%a2%e5%bc%8f" class="toc-link">switch指令汇编形式</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e6%a0%88%e7%bb%93%e6%9e%84" class="toc-link">栈结构</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#gdb%e6%8c%87%e4%bb%a4" class="toc-link">gdb指令</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#mov%e6%8c%87%e4%bb%a4%e4%b8%8elea%e6%8c%87%e4%bb%a4" class="toc-link">mov指令与lea指令</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#test%e6%8c%87%e4%bb%a4" class="toc-link">test指令</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e5%af%84%e5%ad%98%e5%99%a8" class="toc-link">寄存器</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e7%9b%b4%e6%8e%a5%e8%b7%b3%e8%bd%ac%e9%97%b4%e6%8e%a5%e8%b7%b3%e8%bd%ac" class="toc-link">直接跳转&amp;间接跳转</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#typdef" class="toc-link">typdef</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e7%9a%84%e5%ad%98%e5%82%a8" class="toc-link">二维数组的存储</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#%e7%bb%93%e6%9e%84%e4%bd%93%e5%92%8c%e5%81%8f%e7%a7%bb" class="toc-link">结构体和偏移</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#union" class="toc-link">Union</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#isa" class="toc-link">ISA</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#y86-64%e6%8c%87%e4%bb%a4%e9%9b%86" class="toc-link">Y86-64指令集</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#hcl" class="toc-link">HCL</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/#seq-cpu" class="toc-link">SEQ CPU</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="使用gcc生成att汇编风格的代码">使用gcc生成AT&amp;T汇编风格的代码</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">gcc <span style="color:#f92672">-</span>S <span style="color:#f92672">-</span>o test.s test.c
+</code></pre></div><h2 id="与intel相比">与Intel相比</h2>
+<ul>
+<li>寄存器前冠以“％”，而立即数前冠以“$”</li>
+<li>目标操作数在源操作数的右边<code>mov $1, a ==&gt; a=1</code>, <code>sub 1,a ==&gt; a=a-1</code></li>
+<li>操作数的字长由操作符的最后一个字母决定</li>
+<li>内存寻址<code>movw array(%base, %index, scale), %cx ==&gt; cx=base+index*scale(scale等于1, 4 or 8</code></li>
+<li>intel中基地址使用“[” 、“]” ，而在 AT&amp;T 中使用“(”、“)” ；另外处理复杂操作数的语法 也 不同 ， intel为 <code>Segreg:[base+index*scale+disp]</code>， 而在 AT&amp;T 中为<code>%segreg:disp(base,index,sale)</code>，其中segreg，index，scale，disp都是可选的，在指定index而没有显式指定Scale的情况下使用默认值 1。Scale和 disp不需要加前缀“&amp;”
+内存操作数的语法及举例
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-e7aad3cc7a8e22be.png" alt=""></li>
+</ul>
+<h2 id="cmp指令">cmp指令</h2>
+<p>cmp是比较指令,cmp的功能相当于减法指令(sub)。它不保存结果，只是影响相应的标志位。其他的指令通过识别这些被影响的标志位来得知比较结果。
+cmp指令格式:   <code>cmp   操作对象1, 操作对象2</code>
+注意是计算 <code>操作对象2 - 操作对象1</code>，和sub的一样， 但不保存结果，只是根据结果修改相应的标志位。
+flag寄存器
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-dd083056fa40291c.png" alt=""></p>
+<h2 id="移位指令">移位指令</h2>
+<p>;SHL(Shift Left):             逻辑左移
+;SHR(Shift Right):            逻辑右移
+;SAL(Shift Arithmetic Left):  算术左移
+;SAR(Shift Arithmetic Right): 算术右移</p>
+<p>;其中的 SHL 和 SAL 相同, 但 SHR 和 SAR 不同.</p>
+<p>;SHL、SAL: 每位左移, 低位补 0,  高位进 CF
+;SHR     : 每位右移, 低位进 CF, 高位补 0
+;SAR     : 每位右移, 低位进 CF, 高位不变</p>
+<p>;它们的结果影响 OF、SF、ZF、PF、CF
+;它们的指令格式相同:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">movl<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">0</span>, <span style="color:#f92672">%</span>eax <span style="color:#960050;background-color:#1e0010">#</span> result<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+.L2: <span style="color:#960050;background-color:#1e0010">#</span> loop:
+movq<span style="color:#f92672">%</span>rdi, <span style="color:#f92672">%</span>rdx
+andl<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">%</span>edx <span style="color:#960050;background-color:#1e0010">#</span> t <span style="color:#f92672">=</span> x<span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x1</span>
+addq<span style="color:#f92672">%</span>rdx, <span style="color:#f92672">%</span>rax <span style="color:#960050;background-color:#1e0010">#</span> result<span style="color:#f92672">+=</span> t
+shrq<span style="color:#f92672">%</span>rdi <span style="color:#960050;background-color:#1e0010">#</span> x<span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>
+jne.L2 <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">if</span>(x) gotoloop <span style="color:#75715e">//注意这里
+</span><span style="color:#75715e"></span>rep; ret <span style="color:#960050;background-color:#1e0010">#</span> synonym of <span style="color:#960050;background-color:#1e0010">“</span>ret<span style="color:#960050;background-color:#1e0010">”</span>
+</code></pre></div><h2 id="jljg-和-jbja">JL/JG 和 JB/JA</h2>
+<p><img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-d2544a055d68512f.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">JL: jump less 有符号小于跳转
+JG: jump great 有符号大于
+JB: jump below 无符号小于
+JA: jump above 无符号大于
+JLE/JNE...
+</code></pre></div><h2 id="switch指令汇编形式">switch指令汇编形式</h2>
+<ol>
+<li>条件判断</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">test_switch</span>(){
+    <span style="color:#66d9ef">int</span> i ;
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>rand();
+    <span style="color:#66d9ef">switch</span>(a){
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">return</span> i;
+}
+</code></pre></div><p>汇编</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">	movl	<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>(<span style="color:#f92672">%</span>rbp), <span style="color:#f92672">%</span>eax
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">%</span>eax
+	je	.L3
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">%</span>eax
+	je	.L4
+	testl	<span style="color:#f92672">%</span>eax, <span style="color:#f92672">%</span>eax
+	jne	.L8
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	jmp	.L6
+.L3:
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	jmp	.L6
+.L4:
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	jmp	.L6
+.L8:
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	nop
+</code></pre></div><ol start="2">
+<li>逐条件判断法</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">test_switch</span>(){
+    <span style="color:#66d9ef">int</span> i ;
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>rand();
+    <span style="color:#66d9ef">switch</span>(a){
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;<span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">return</span> i;
+}
+</code></pre></div><p>汇编</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">	movl	<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>(<span style="color:#f92672">%</span>rbp), <span style="color:#f92672">%</span>eax
+	movq	.L4(,<span style="color:#f92672">%</span>rax,<span style="color:#ae81ff">8</span>), <span style="color:#f92672">%</span>rax
+	jmp	<span style="color:#f92672">*%</span>rax
+.L4:
+	.quad	.L3
+	.quad	.L5
+	.quad	.L6
+	.quad	.L7
+	.quad	.L8
+	.quad	.L9
+	.quad	.L10
+	.quad	.L11
+	.quad	.L12
+	.quad	.L13
+	.text
+.L3:
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	jmp	.L14
+.L5:
+	movl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>(<span style="color:#f92672">%</span>rbp)
+	jmp	.L14
+...
+</code></pre></div><ol start="3">
+<li>二分查找</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">test_switch</span>(){
+    <span style="color:#66d9ef">int</span> i ;
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>rand();
+    <span style="color:#66d9ef">switch</span>(a){
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">50</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">200</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">500</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;<span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">return</span> i;
+}
+</code></pre></div><p>汇编</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">        movl	<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>(<span style="color:#f92672">%</span>rbp), <span style="color:#f92672">%</span>eax
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">50</span>, <span style="color:#f92672">%</span>eax
+	je	.L3
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">50</span>, <span style="color:#f92672">%</span>eax
+	jg	.L4
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">4</span>, <span style="color:#f92672">%</span>eax
+	je	.L5
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">%</span>eax
+	je	.L6
+	jmp	.L2
+.L4:
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">200</span>, <span style="color:#f92672">%</span>eax
+	je	.L7
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">500</span>, <span style="color:#f92672">%</span>eax
+	je	.L8
+	cmpl	<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">100</span>, <span style="color:#f92672">%</span>eax
+	je	.L9
+	jmp	.L2
+</code></pre></div><h2 id="栈结构">栈结构</h2>
+<p><img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-b3a32f91efac31eb.png" alt="">
+函数调用时的栈结构
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-9d554d83635d7d9a.png" alt="">
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-7debf96a4e375451.png" alt="">
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-b235c1a6a13a8258.png" alt=""></p>
+<h2 id="gdb指令">gdb指令</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gdb$ p *<span style="color:#f92672">(</span>int *<span style="color:#f92672">)(</span>$rbp-0x14<span style="color:#f92672">)</span> //打印$rbp-0x14处地址中存储的值
+gdb$ x /x $rbp-0x14 //same
+</code></pre></div><h2 id="mov指令与lea指令">mov指令与lea指令</h2>
+<p>lea指令不解引用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mov 8<span style="color:#f92672">(</span>%rbp<span style="color:#f92672">)</span>, rdi   --&gt; rdi <span style="color:#f92672">=</span> *<span style="color:#f92672">(</span>$rbp+8<span style="color:#f92672">)</span>
+lea 8<span style="color:#f92672">(</span>%rbp<span style="color:#f92672">)</span>, rdi    --&gt; rdi <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>$rbp + 8<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="test指令">test指令</h2>
+<p>test属于逻辑运算指令
+功能: 执行BIT与BIT之间的逻辑运算
+测试(两操作数作与运算,仅修改标志位,不回送结果).
+Test对两个参数(目标，源)执行AND逻辑操作,并根据结果设置标志寄存器,结果本身不会保存。EST AX,BX 与 AND AX,BX 命令有相同效果
+语法: TEST r/m,r/m/data
+影响标志: C,O,P,Z,S(其中C与O两个标志会被设为0)</p>
+<p>运用举例:
+1.Test用来测试一个位,例如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">test eax, 100b; b表示二进制
+jnz **; 如果eax右数第三个位为1,jnz将会跳转
+</code></pre></div><p>2.Test的一个非常普遍的用法是用来测试一方寄存器是否为空:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">test ecx, ecx 
+jz somewhere
+</code></pre></div><p>如果ecx为零,设置ZF零标志为1,Jz跳转</p>
+<h2 id="寄存器">寄存器</h2>
+<p><img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-dcbad6def99efbfc.png" alt=""></p>
+<h2 id="直接跳转间接跳转">直接跳转&amp;间接跳转</h2>
+<p>直接跳转：跳转目标是作为指令封一部分编码。
+间接跳转：目标是从寄存器或存储器位置读出来的。</p>
+<h2 id="typdef">typdef</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#define ZLEN 5
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">int</span> zip_dig[ZLEN];
+zip_dig cmu<span style="color:#f92672">=</span> { <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span> }; <span style="color:#75715e">//zip_dig cmu相当于int cmu[5]
+</span></code></pre></div><h2 id="二维数组的存储">二维数组的存储</h2>
+<p><img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-0959697b6bff7b3a.png" alt="">
+A[i][j]的地址<code>A+(i*C*4)+(j*4)</code>
+指针数组版本
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-20633bb734106a22.png" alt=""></p>
+<h3 id="结构体和偏移">结构体和偏移</h3>
+<p><img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-86e07e753aea91db.png" alt="">
+如果结构体中最大的对齐要求是k那么总结构体的大小一定是k的倍数
+eg</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> S1{
+    <span style="color:#66d9ef">double</span> v;
+    <span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">2</span>];
+    <span style="color:#66d9ef">char</span> c;
+};
+<span style="color:#75715e">//结构体大小为24(double的倍数)而不是17/18
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> S1{
+    <span style="color:#66d9ef">double</span> v;
+    <span style="color:#66d9ef">char</span> c[<span style="color:#ae81ff">4</span>];
+};
+<span style="color:#75715e">//结构体大小是16(double的倍数)而不是12
+</span></code></pre></div><h2 id="union">Union</h2>
+<p>只分配最大的变量的存储空间，一次只允许使用一个值。
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-527ac0f9a021bb16.png" alt=""></p>
+<h2 id="isa">ISA</h2>
+<p>一个处理器支持的指令和指令的字节级编码称为它的指令集体系结构（Instruction-Set Architecture,ISA）
+<img src="/images/048a2bfa594b80479584648bbb1a51f8/11884068-baeebb52bbbe601a.png" alt=""></p>
+<h3 id="y86-64指令集">Y86-64指令集</h3>
+<p><a href="https://www.cnblogs.com/ysocean/p/7686213.html">https://www.cnblogs.com/ysocean/p/7686213.html</a>
+<a href="http://hczhcz.github.io/2014/06/13/y86-instruction-set.html">http://hczhcz.github.io/2014/06/13/y86-instruction-set.html</a></p>
+<h2 id="hcl">HCL</h2>
+<p><a href="https://www.cnblogs.com/ysocean/p/7686219.html">https://www.cnblogs.com/ysocean/p/7686219.html</a></p>
+<ul>
+<li>门电路</li>
+<li>MUX &amp; ALU</li>
+<li>寄存器与存储器</li>
+</ul>
+<blockquote>
+<p>大多数时候，寄存器都保持在稳定状态（用x表示），产生的输出等于它的当前状态，信号沿着寄存器前面的组合逻辑传播，这时产生了一个新的寄存器输入（用y表示），但是只要时钟信号是低电位的，寄存器的输出就保持不变。当时钟变为高电位时，输入信号就加载到寄存器中，称为下一个状态y，直到下一个时钟上升沿，这个状态就一直是寄存器的新输出。</p>
+</blockquote>
+<h2 id="seq-cpu">SEQ CPU</h2>
+<p><a href="https://blog.csdn.net/dennis_fan/article/details/8284248">https://blog.csdn.net/dennis_fan/article/details/8284248</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" class="prev" rel="prev" title="i春秋公益赛_部分re题目"><i class="iconfont icon-left"></i>&nbsp;i春秋公益赛_部分re题目</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" class="next" rel="next" title="虎符2020部分re">虎符2020部分re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

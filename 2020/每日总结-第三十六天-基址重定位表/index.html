@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E5%A4%A9-pe%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            基址重定位表 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="基址重定位表 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "基址重定位表",
+    "headline" : "基址重定位表",
+    "description" : "基址重定位表中罗列了硬编码地址的偏移，读取这张表就能获得准确的硬编码地址偏移，基址重定位表就是IMAGE_BASE_RELOCATION的结",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-16 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-16 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8\/",
+    "wordCount" : "548",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">基址重定位表</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-16 itemprop="datePublished">May 16, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">548 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            </div>
+</div>
+
+        
+        <p>基址重定位表中罗列了硬编码地址的偏移，读取这张表就能获得准确的硬编码地址偏移，基址重定位表就是IMAGE_BASE_RELOCATION的结构体数组。
+结构体定义如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _IMAGE_BASE_RELOCATION {
+      DWORD VirtualAddress;  <span style="color:#75715e">// 基准地址
+</span><span style="color:#75715e"></span>      DWORD SizeOfBlock;  <span style="color:#75715e">// 重定位块的大小
+</span><span style="color:#75715e">//    WORD TypeOffset[1];
+</span><span style="color:#75715e"></span>    } IMAGE_BASE_RELOCATION; <span style="color:#75715e">// 
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">typedef</span> IMAGE_BASE_RELOCATION UNALIGNED <span style="color:#f92672">*</span>PIMAGE_BASE_RELOCATION;
+
+<span style="color:#75715e">#define IMAGE_SIZEOF_BASE_RELOCATION 8
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define IMAGE_REL_BASED_ABSOLUTE 0
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_HIGH 1
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_LOW 2
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_HIGHLOW 3
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_HIGHADJ 4
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_MIPS_JMPADDR 5
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_ARM_MOV32 5
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_THUMB_MOV32 7
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_MIPS_JMPADDR16 9
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_IA64_IMM64 9
+</span><span style="color:#75715e">#define IMAGE_REL_BASED_DIR64 10
+</span></code></pre></div><p>最后一项TypeOffset数组不是结构体成员，而是以注释的形式存在的，表示在该结构体之下会出现WORD类型的数组，并且该数组元素的值就是硬编码在程序中的地址偏移。TypeOffset是2字节16位，由4位Type和12位offser组成
+<img src="/images/32b1ce20a0858750cc63cf23f5e7d9c2/11884068-32621a826a359b06.png" alt="IMAGE_BASE_RELOCATION" loading="lazy" >
+如图是基址重定位表，也就是一个IMAGE_BASE_RELOCATION的结构体数组，图中Page RVA即VirtualAddress，  A2608位置处是第一个硬编码在程序中的地址偏移，这里的值为3800，Type是3，Offset是800，3表示IMAGE_REL_BASED_HIGHLOW，在64位PE+文件中常见的Type是A(IMAGE_REL_BASED_DIR64)。
+在恶意代码中正常修改文件代码后，有时要修改指向相应区域的重定位表(为了略去PE装载器的重定位过程，常常把Type值修改为0(IMAGE_REL_BASED_ABSOLUTE))</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E5%A4%A9-pe%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" class="prev" rel="prev" title="PE文件格式"><i class="iconfont icon-left"></i>&nbsp;PE文件格式</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" class="next" rel="next" title="网鼎杯-幸运的数字">网鼎杯-幸运的数字&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

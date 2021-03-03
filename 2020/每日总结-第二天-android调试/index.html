@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/buuctf%E5%88%B7%E9%A2%98-1/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Android调试 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="Android调试 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "Android调试",
+    "headline" : "Android调试",
+    "description" : "IDA调试so 往年的腾讯的Android题都是native编程比较多，关键代码都在so文件里，先学习一下ida调试动态库。 android常用",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-01 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-04-01 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95\/",
+    "wordCount" : "1379",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Android调试</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-04-01 itemprop="datePublished">April 1, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1379 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/#ida%e8%b0%83%e8%af%95so" class="toc-link">IDA调试so</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/#android%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%a1%8c" class="toc-link">android常用命令行</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/#%e8%b0%83%e8%af%95" class="toc-link">调试</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/#jeb%e8%b0%83%e8%af%95" class="toc-link">JEB调试</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/#%e8%ae%be%e7%bd%aeandroiddebuggabletrue" class="toc-link">设置android:debuggable=“true”</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="ida调试so">IDA调试so</h2>
+<p>往年的腾讯的Android题都是native编程比较多，关键代码都在so文件里，先学习一下ida调试动态库。</p>
+<h3 id="android常用命令行">android常用命令行</h3>
+<p><a href="https://blog.csdn.net/willba/article/details/80215447">Android中使用的shell命令</a>
+adb shell dumpsys * 常用的如下：</p>
+<blockquote>
+<p>activity 显示所有的Activity信息
+查看Activity: <code>adb shell dumpsys activity | findstr &quot;mFocusedActivity&quot;</code>
+查看顶部Activity:  <code>adb shell dumpsys activity top</code>
+meminfo 内存信息
+battery 电池信息
+package 包信息
+wifi 信息wifi信息
+alarm 显示alarm信息
+procstats 显示内存信息
+<code>adb shell dumpsys&gt; info info.txt</code> 将命令行信息输出到txt中</p>
+</blockquote>
+<p>文件操作</p>
+<blockquote>
+<p>安装应用包apk文件 用法：<code>adb install [apk文件]</code><br>
+覆盖或升级相同应用包apk文件 用法：<code>adb install -r [apk文件]</code><br>
+卸载应用 用法：<code>adb uninstall [packagename]</code><br>
+将设备中的文件放到本地 用法：adb pull 示例：<code>adb pull /sdcard/Pictures/11.jpg D:\gif</code> 将手机中11.jpg的图片放置到电脑d盘中gif文件下<br>
+将本地文件放置到设备中 用法：adb push</p>
+</blockquote>
+<p>查看当前运行应用程序日志</p>
+<blockquote>
+<p>查看所有打印出来的日志信息 用法：adb logcat<br>
+查看某个标签名的日志信息 用法：adb logcat -s tag 示例如下：<code>adb shell -s tag</code> 查看标签为tag的日志<br>
+查看包含某个关键字或者进程名或者包名下的日志 用法：adb logcat |findstr pname/pid/keyword 示例如下：<code>adb logcat |findstr com.android.coolweather</code><br>
+将日志输出到文件 用法：adb logcat -f 文件名<br>
+输出某一级别的日志 用法：adb logcat *:级别（注意：星号后面有个冒号）</p>
+</blockquote>
+<h3 id="调试">调试</h3>
+<p><strong>这个需要手机有root权限</strong></p>
+<ol>
+<li>安装应用: <code>adb install -r xxx.apk</code></li>
+<li>上传android_server文件:<code>adb push android_server /data/local/tmp/</code></li>
+<li>可执行权限: <code>adb shell chmod 777 /data/local/tmp/android_server</code></li>
+<li>开启android_server与IDA通信:<code>adb shell /data/local/tmp/android_server</code></li>
+<li>本地端口转发:<code>adb forward tcp:23946 tcp:23946</code></li>
+<li>以调试模式启动程序:<code>adb shell am start -D -n com.qq.gslab.regme/.MainActivity</code></li>
+<li>启动IDA pro，点击Debugger-&gt;attach-&gt;Remote ARMLinux/Android debugger，输入localhost和相应端口号。</li>
+<li>选择Debugger option，勾选</li>
+</ol>
+<blockquote>
+<p>suspend on process entry point<br>
+suspend on thread start/exit<br>
+suspend on library load/unload</p>
+</blockquote>
+<ol start="9">
+<li>打开ddms查看相应apk进程的端口号，使用jdb恢复程序执行<code>jdb -connect com.sun.jdi.SocketAttach:port=8700,hostname=localhost</code></li>
+<li>点击<code>f9</code>, 在ida弹出的”Add map”窗口中，一律点击”Cancle”按钮。</li>
+<li>点击ida中的<code>Debugger -&gt; Debugger windows -&gt; Module list </code>。在<code>Modules</code>窗口中找到要调试的so文件。</li>
+<li>点击ida中的暂停调试按钮，暂停当前的调试
+右击相应so文件，双击找到要调试的函数，再双击即可跳转到函数所在的起始地址，然后在地址处下断点</li>
+<li>再按F9重新开始调试，即可看到程序成功地停在了断点处，到此处就可以正常地调试so文件了。</li>
+</ol>
+<h2 id="jeb调试">JEB调试</h2>
+<h3 id="设置androiddebuggabletrue">设置android:debuggable=&ldquo;true&rdquo;</h3>
+<ol>
+<li>使用apktool反编译apk，打开AndroidManifest文件，如果设置了android:debuggable=&ldquo;true&quot;可以直接使用，如果没有，首先在application中添加android:debuggable=&ldquo;true&rdquo;</li>
+<li>使用apktool重打包apk，<code>apktool b dirpath xxx.apk</code></li>
+<li>使用keytool生成keystore文件<code>keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.keystore</code>，各个参数：</li>
+</ol>
+<blockquote>
+<p>-genkey 产生证书文件<br>
+-alias 产生别名<br>
+-keystore 指定密钥库的.keystore文件中
+-keyalg 指定密钥的算法,这里指定为RSA(非对称密钥算法)
+-validity 为证书有效天数，这里我们写的是40000天</p>
+</blockquote>
+<ol start="4">
+<li>签名apk
+<code>jarsigner -verbose -keystore demo.keystore xxx.apk demo.keystore</code></li>
+</ol>
+<blockquote>
+<p>-verbose 指定生成详细输出
+-keystore 指定数字证书存储路径</p>
+</blockquote>
+<p>5.jeb附加程序
+<a href="https://www.jianshu.com/p/8e8ed503d69b">https://www.jianshu.com/p/8e8ed503d69b</a>
+到这里为止可以调试smali代码了</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/buuctf%E5%88%B7%E9%A2%98-1/" class="prev" rel="prev" title="BUUCTF刷题"><i class="iconfont icon-left"></i>&nbsp;BUUCTF刷题</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/" class="next" rel="next" title="腾讯游戏安全竞赛2020">腾讯游戏安全竞赛2020&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

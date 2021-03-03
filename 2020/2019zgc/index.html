@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/2019zgc/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            2019-中关村网络与信息安全领域专项赛 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="2019-中关村网络与信息安全领域专项赛 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "2019-中关村网络与信息安全领域专项赛",
+    "headline" : "2019-中关村网络与信息安全领域专项赛",
+    "description" : "参考链接 https:\/\/apeng.fun\/2019\/08\/16\/2019zgc_quals\/ PYC 文件的简单分析 PYC文件格式分析 Python字节码解混淆 Python字节码解混淆之反控制流扁平化 src_leak 题目给了源码如下： #include\u0026lt;iostream\u0026gt;using namespace std; typedef unsigned int",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-18 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-06-18 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/2019zgc\/",
+    "wordCount" : "3641",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">2019-中关村网络与信息安全领域专项赛</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-06-18 itemprop="datePublished">June 18, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">3641 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/2019zgc/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                        <li><a href="/2020/2019zgc/#src_leak" class="toc-link">src_leak</a></li>
+                        <li><a href="/2020/2019zgc/#pyc" class="toc-link">pyc</a></li>
+                        <li><a href="/2020/2019zgc/#%e5%8e%bb%e6%b7%b7%e6%b7%86" class="toc-link">去混淆</a></li>
+                        <li><a href="/2020/2019zgc/#nop%e6%8c%87%e4%bb%a4%e5%8e%bb%e9%99%a4%e4%b8%8e%e5%9d%97%e7%9a%84%e5%90%88%e5%b9%b6" class="toc-link">NOP指令去除与块的合并</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考链接">参考链接</h2>
+<p><a href="https://apeng.fun/2019/08/16/2019zgc_quals/">https://apeng.fun/2019/08/16/2019zgc_quals/</a>
+<a href="https://wzt.ac.cn/2019/02/13/pyc-simple/">PYC 文件的简单分析</a>
+<a href="https://kdr2.com/tech/python/pyc-format.html">PYC文件格式分析</a>
+<a href="https://www.anquanke.com/post/id/185481">Python字节码解混淆</a>
+<a href="https://www.anquanke.com/post/id/185482">Python字节码解混淆之反控制流扁平化</a></p>
+<h2 id="src_leak">src_leak</h2>
+<p>题目给了源码如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>using namespace std;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> uint;
+
+
+template <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span> Flag, class MaybeA, class MaybeB<span style="color:#f92672">&gt;</span> class IfElse;
+
+template <span style="color:#f92672">&lt;</span>class MaybeA, class MaybeB<span style="color:#f92672">&gt;</span>
+class IfElse<span style="color:#f92672">&lt;</span>true, MaybeA, MaybeB<span style="color:#f92672">&gt;</span> {
+public:
+	using ResultType <span style="color:#f92672">=</span> MaybeA;
+};
+
+template <span style="color:#f92672">&lt;</span>class MaybeA, class MaybeB<span style="color:#f92672">&gt;</span>
+class IfElse<span style="color:#f92672">&lt;</span>false, MaybeA, MaybeB<span style="color:#f92672">&gt;</span> {
+public:
+	using ResultType <span style="color:#f92672">=</span> MaybeB;
+};
+
+template <span style="color:#f92672">&lt;</span>uint N, uint L, uint R<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> func1 {
+	<span style="color:#66d9ef">enum</span> { mid <span style="color:#f92672">=</span> (L <span style="color:#f92672">+</span> R <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> };
+
+	using ResultType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> IfElse<span style="color:#f92672">&lt;</span>(N <span style="color:#f92672">&lt;</span> mid <span style="color:#f92672">*</span> mid),
+		func1<span style="color:#f92672">&lt;</span>N, L, mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>, func1<span style="color:#f92672">&lt;</span>N, mid, R<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;::</span>ResultType;
+
+	<span style="color:#66d9ef">enum</span> { result <span style="color:#f92672">=</span> ResultType<span style="color:#f92672">::</span>result };
+};
+
+template <span style="color:#f92672">&lt;</span>uint N, uint L<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> func1<span style="color:#f92672">&lt;</span>N, L, L<span style="color:#f92672">&gt;</span> { <span style="color:#66d9ef">enum</span> { result <span style="color:#f92672">=</span> L }; };
+
+template <span style="color:#f92672">&lt;</span>uint N<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> _func1 { <span style="color:#66d9ef">enum</span> { result <span style="color:#f92672">=</span> func1<span style="color:#f92672">&lt;</span>N, <span style="color:#ae81ff">1</span>, N<span style="color:#f92672">&gt;::</span>result }; };
+
+
+template<span style="color:#f92672">&lt;</span>size_t Input<span style="color:#f92672">&gt;</span>
+constexpr size_t func2 <span style="color:#f92672">=</span> (Input <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> func2<span style="color:#f92672">&lt;</span> (Input <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&gt;</span>;
+
+template<span style="color:#f92672">&lt;&gt;</span>
+constexpr size_t func2<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+template<span style="color:#f92672">&lt;</span>size_t num<span style="color:#f92672">&gt;</span>
+constexpr size_t func3 <span style="color:#f92672">=</span> num <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>;
+
+template<span style="color:#f92672">&lt;</span>uint n, uint m<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> NEXTN {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> ((n <span style="color:#f92672">%</span> m <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">*</span> n);
+};
+template<span style="color:#f92672">&lt;</span>uint n, uint m<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> NEXTM {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> (m <span style="color:#f92672">*</span> m <span style="color:#f92672">&lt;=</span> n <span style="color:#f92672">?</span> (m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>);
+};
+template<span style="color:#f92672">&lt;</span>uint n, uint m<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> TEST {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> TEST<span style="color:#f92672">&lt;</span>NEXTN<span style="color:#f92672">&lt;</span>n, m<span style="color:#f92672">&gt;::</span>value, NEXTM<span style="color:#f92672">&lt;</span>n, m<span style="color:#f92672">&gt;::</span>value<span style="color:#f92672">&gt;::</span>value;
+};
+template<span style="color:#f92672">&lt;</span>uint m<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> TEST<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>, m<span style="color:#f92672">&gt;</span> {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+template<span style="color:#f92672">&lt;</span>uint n<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> TEST<span style="color:#f92672">&lt;</span>n, <span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span> {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+};
+template<span style="color:#f92672">&lt;</span>uint n<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> func4 {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> TEST<span style="color:#f92672">&lt;</span>n, <span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;::</span>value;
+};
+template<span style="color:#f92672">&lt;&gt;</span><span style="color:#66d9ef">struct</span> func4<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span> {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+template<span style="color:#f92672">&lt;&gt;</span><span style="color:#66d9ef">struct</span> func4<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> {
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">static</span> uint value <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+};
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span>argv) {
+	<span style="color:#75715e">//input 5 uint numbers ,x1,x2,x3,x4,x5
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//the sum of them should be MIN
+</span><span style="color:#75715e"></span>
+
+	cout <span style="color:#f92672">&lt;&lt;</span> func3<span style="color:#f92672">&lt;</span> func2<span style="color:#f92672">&lt;</span>x1<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> func3<span style="color:#f92672">&lt;</span> func2<span style="color:#f92672">&lt;</span>x2<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> func3<span style="color:#f92672">&lt;</span> func2<span style="color:#f92672">&lt;</span>x3<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> func3<span style="color:#f92672">&lt;</span> func2<span style="color:#f92672">&lt;</span>x4<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> func3<span style="color:#f92672">&lt;</span> func2<span style="color:#f92672">&lt;</span>x5<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+
+	<span style="color:#75715e">// output: 1 1 1 1 1
+</span><span style="color:#75715e"></span>
+
+	cout <span style="color:#f92672">&lt;&lt;</span> _func1<span style="color:#f92672">&lt;</span>x1<span style="color:#f92672">&gt;::</span>result <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> _func1<span style="color:#f92672">&lt;</span>x2<span style="color:#f92672">&gt;::</span>result <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> _func1<span style="color:#f92672">&lt;</span>x3<span style="color:#f92672">&gt;::</span>result <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> _func1<span style="color:#f92672">&lt;</span>x4<span style="color:#f92672">&gt;::</span>result <span style="color:#f92672">&lt;&lt;</span> endl;
+	cout <span style="color:#f92672">&lt;&lt;</span> _func1<span style="color:#f92672">&lt;</span>x5<span style="color:#f92672">&gt;::</span>result <span style="color:#f92672">&lt;&lt;</span> endl;
+
+	<span style="color:#75715e">//output: 963 4396 6666 1999 3141
+</span><span style="color:#75715e"></span>
+	<span style="color:#75715e">//how many &#34;1&#34; will func4&lt;1&gt;,func4&lt;2&gt;,fun4&lt;3&gt;......fun4&lt;10000&gt; ::value  return?
+</span><span style="color:#75715e"></span>	x6 <span style="color:#f92672">=</span> count;
+
+
+	<span style="color:#75715e">// your flag is flag{x1-x2-x3-x4-x5-x6}
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// if x1=1,x2=2,x3=3,x4=4,x5=5,x6=6
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// flag is     flag{1-2-3-4-5-6}
+</span><span style="color:#75715e"></span>
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>模板:
+<a href="https://zh.cppreference.com/w/cpp/language/template_specialization">https://zh.cppreference.com/w/cpp/language/template_specialization</a>
+模板特化：
+<a href="https://blog.csdn.net/gatieme/article/details/50953564">https://blog.csdn.net/gatieme/article/details/50953564</a></p>
+<ul>
+<li>_func1求参数的平方根，向下取整(二分法)</li>
+<li>func2求参数的二进制数中1的个数</li>
+<li>func3求参数的奇偶</li>
+<li>func4求是否位素数(sqrt(n)以下的数是否是n的参数)</li>
+</ul>
+<p>所以函数要求: x1-x5都是奇数，而且平方根分别为963 4396 6666 1999 3141, x6是10000以内素数的个数。</p>
+<h2 id="pyc">pyc</h2>
+<p>使用010Editor的相应模板打开，并修改pyc.bt中的以下部分:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">enum</span> <span style="color:#f92672">&lt;</span>uint16<span style="color:#f92672">&gt;</span> MagicValue {
+    PY_24a0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62041</span>,
+    PY_24a3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62051</span>,
+    PY_24b1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62061</span>,
+    PY_25a0_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62071</span>,
+    PY_25a0_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62081</span>,
+    PY_25a0_3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62091</span>,
+    PY_25a0_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62092</span>,
+    PY_25b3_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62101</span>,
+    PY_25b3_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62111</span>,
+    PY_25c1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62121</span>,
+    PY_25c2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62131</span>,
+    PY_26a0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62151</span>,
+    PY_26a1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62161</span>,
+    PY_27a0_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62171</span>,
+    PY_27a0_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">62181</span>,
+    PY_27a0_a <span style="color:#f92672">=</span> <span style="color:#ae81ff">62211</span>,
+};
+</code></pre></div><ul>
+<li>Magic Number(四字节)
+<img src="/images/9978a4a673035e941d972171ca2bd329/11884068-27fc58dc2c1ff56d.png" alt="">
+前两个字节是可变的，它和编译 python 文件的 python 版本有关，接下来两个字节是固定的 0D0A，转换成 ASC 码就是 \r\n</li>
+<li>mtime(四字节)
+这个字段表示该 pyc 文件的编译日期，用 unix 时间戳来表示</li>
+<li>PyCodeObject</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">//Include/code.h
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    PyObject_HEAD <span style="color:#75715e">// 用它来表示一个 PyCodeObject的开始
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> co_argcount;        <span style="color:#75715e">/* #arguments, except *args */</span>
+    <span style="color:#66d9ef">int</span> co_nlocals;     <span style="color:#75715e">/* #local variables */</span>
+    <span style="color:#66d9ef">int</span> co_stacksize;       <span style="color:#75715e">/* #entries needed for evaluation stack */</span>
+    <span style="color:#66d9ef">int</span> co_flags;       <span style="color:#75715e">/* CO_..., see below */</span>
+    PyObject <span style="color:#f92672">*</span>co_code;      <span style="color:#75715e">/* instruction opcodes */</span>
+    PyObject <span style="color:#f92672">*</span>co_consts;    <span style="color:#75715e">/* list (constants used) */</span>
+    PyObject <span style="color:#f92672">*</span>co_names;     <span style="color:#75715e">/* list of strings (names used) */</span>
+    PyObject <span style="color:#f92672">*</span>co_varnames;  <span style="color:#75715e">/* tuple of strings (local variable names) */</span>
+    PyObject <span style="color:#f92672">*</span>co_freevars;  <span style="color:#75715e">/* tuple of strings (free variable names) */</span>
+    PyObject <span style="color:#f92672">*</span>co_cellvars;      <span style="color:#75715e">/* tuple of strings (cell variable names) */</span>
+    <span style="color:#75715e">/* The rest doesn&#39;t count for hash/cmp */</span>
+    PyObject <span style="color:#f92672">*</span>co_filename;  <span style="color:#75715e">/* string (where it was loaded from) */</span>
+    PyObject <span style="color:#f92672">*</span>co_name;      <span style="color:#75715e">/* string (name, for reference) */</span>
+    <span style="color:#66d9ef">int</span> co_firstlineno;     <span style="color:#75715e">/* first source line number */</span>
+    PyObject <span style="color:#f92672">*</span>co_lnotab;    <span style="color:#75715e">/* string (encoding addr&lt;-&gt;lineno mapping) See
+</span><span style="color:#75715e">                   Objects/lnotab_notes.txt for details. */</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>co_zombieframe;     <span style="color:#75715e">/* for optimization only (see frameobject.c) */</span>
+    PyObject <span style="color:#f92672">*</span>co_weakreflist;   <span style="color:#75715e">/* to support weakrefs to code objects */</span>
+} PyCodeObject;
+</code></pre></div><p>各个字段的含义如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">argcount  <span style="color:#960050;background-color:#1e0010">参数个数</span>
+nlocals   <span style="color:#960050;background-color:#1e0010">局部变量个数</span>
+stacksize <span style="color:#960050;background-color:#1e0010">栈空间大小</span>
+flags     N<span style="color:#f92672">/</span>A
+TYPE_STRING <span style="color:#960050;background-color:#1e0010">表示字节码开始</span>
+r_long n  <span style="color:#960050;background-color:#1e0010">字节码的数量</span>
+<span style="color:#66d9ef">struct</span> Instruction inst[] <span style="color:#960050;background-color:#1e0010">字节码序列</span>
+</code></pre></div><p>PyObject 的序列化在 python/marshal.c 内实现，一般是先写入一个 byte 来标识此 PyObject 的类型，每种 PyObject 对应的类型也在 Python/marshal.c 内定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#define TYPE_NULL               &#39;0&#39;
+</span><span style="color:#75715e">#define TYPE_NONE               &#39;N&#39;
+</span><span style="color:#75715e">#define TYPE_FALSE              &#39;F&#39;
+</span><span style="color:#75715e">#define TYPE_TRUE               &#39;T&#39;
+</span><span style="color:#75715e">#define TYPE_STOPITER           &#39;S&#39;
+</span><span style="color:#75715e">#define TYPE_ELLIPSIS           &#39;.&#39;
+</span><span style="color:#75715e">#define TYPE_INT                &#39;i&#39;
+</span><span style="color:#75715e">#define TYPE_INT64              &#39;I&#39;
+</span><span style="color:#75715e">#define TYPE_FLOAT              &#39;f&#39;
+</span><span style="color:#75715e">#define TYPE_BINARY_FLOAT       &#39;g&#39;
+</span><span style="color:#75715e">#define TYPE_COMPLEX            &#39;x&#39;
+</span><span style="color:#75715e">#define TYPE_BINARY_COMPLEX     &#39;y&#39;
+</span><span style="color:#75715e">#define TYPE_LONG               &#39;l&#39;
+</span><span style="color:#75715e">#define TYPE_STRING             &#39;s&#39;
+</span><span style="color:#75715e">#define TYPE_INTERNED           &#39;t&#39;
+</span><span style="color:#75715e">#define TYPE_STRINGREF          &#39;R&#39;
+</span><span style="color:#75715e">#define TYPE_TUPLE              &#39;(&#39;
+</span><span style="color:#75715e">#define TYPE_LIST               &#39;[&#39;
+</span><span style="color:#75715e">#define TYPE_DICT               &#39;{&#39;
+</span><span style="color:#75715e">#define TYPE_CODE               &#39;c&#39;
+</span><span style="color:#75715e">#define TYPE_UNICODE            &#39;u&#39;
+</span><span style="color:#75715e">#define TYPE_UNKNOWN            &#39;?&#39;
+</span><span style="color:#75715e">#define TYPE_SET                &#39;&lt;&#39;
+</span><span style="color:#75715e">#define TYPE_FROZENSET          &#39;&gt;&#39;
+</span></code></pre></div><p><img src="/images/9978a4a673035e941d972171ca2bd329/11884068-efc60ce7950d8041.png" alt="">
+如图type等于99就是TYPE_CODE类型,PyCodeObject 的第一个部分肯定是 TYPE_CODE，表示字节码区块
+使用dis模块转化为反编译字节码区块部分:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> dis
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">read</span>():
+    <span style="color:#66d9ef">def</span> __init__(self, filename, mode):
+        <span style="color:#75715e"># print filename, mode</span>
+        self<span style="color:#f92672">.</span>file <span style="color:#f92672">=</span> open(filename, mode)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(self, num):
+        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>file)<span style="color:#f92672">.</span>read(num)
+
+pyc <span style="color:#f92672">=</span> read(<span style="color:#e6db74">&#34;test.pyc&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>)
+pyc<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">30</span>)
+target <span style="color:#f92672">=</span> pyc<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">0x31</span>)
+<span style="color:#75715e"># print bytes(target)</span>
+dis<span style="color:#f92672">.</span>dis(target)
+</code></pre></div><p>结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"> <span style="color:#ae81ff">0</span> LOAD_CONST          <span style="color:#ae81ff">0</span> (<span style="color:#ae81ff">0</span>)    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">读取常量列表中的</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">号常量</span>
+ <span style="color:#ae81ff">3</span> MAKE_FUNCTION       <span style="color:#ae81ff">0</span>      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">制作一个函数</span>
+ <span style="color:#ae81ff">6</span> STORE_NAME          <span style="color:#ae81ff">0</span> (<span style="color:#ae81ff">0</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">函数命名为字符串列表中的</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">号</span>
+ <span style="color:#ae81ff">9</span> LOAD_CONST          <span style="color:#ae81ff">1</span> (<span style="color:#ae81ff">1</span>)
+<span style="color:#ae81ff">12</span> MAKE_FUNCTION       <span style="color:#ae81ff">0</span>
+<span style="color:#ae81ff">15</span> STORE_NAME          <span style="color:#ae81ff">1</span> (<span style="color:#ae81ff">1</span>)
+<span style="color:#ae81ff">18</span> LOAD_NAME           <span style="color:#ae81ff">0</span> (<span style="color:#ae81ff">0</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">取出函数</span> <span style="color:#ae81ff">1</span>
+<span style="color:#ae81ff">21</span> CALL_FUNCTION       <span style="color:#ae81ff">0</span>     <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">调用</span>
+<span style="color:#ae81ff">24</span> STORE_NAME          <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">存储返回值</span>
+<span style="color:#ae81ff">27</span> LOAD_NAME           <span style="color:#ae81ff">1</span> (<span style="color:#ae81ff">1</span>) 
+<span style="color:#ae81ff">30</span> CALL_FUNCTION       <span style="color:#ae81ff">0</span>
+<span style="color:#ae81ff">33</span> STORE_NAME          <span style="color:#ae81ff">3</span> (<span style="color:#ae81ff">3</span>)
+<span style="color:#ae81ff">36</span> LOAD_NAME           <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">2</span>)   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">取出两个返回值</span>
+<span style="color:#ae81ff">39</span> LOAD_NAME           <span style="color:#ae81ff">3</span> (<span style="color:#ae81ff">3</span>)
+<span style="color:#ae81ff">42</span> BINARY_ADD                 <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">相加</span>
+<span style="color:#ae81ff">43</span> PRINT_ITEM                 <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">打印结果</span>
+<span style="color:#ae81ff">44</span> PRINT_NEWLINE
+<span style="color:#ae81ff">45</span> LOAD_CONST          <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">2</span>)
+<span style="color:#ae81ff">48</span> RETURN_VALUE
+</code></pre></div><p><img src="/images/9978a4a673035e941d972171ca2bd329/11884068-bcba931ae7ce9c12.png" alt="">
+混淆的一般思路:
+<img src="/images/9978a4a673035e941d972171ca2bd329/11884068-409d19f3223da194.png" alt="">
+uncompyle 的工作原理和一般的反编译器类似，它会尽力去匹配每一条指令，尝试将所有指令都覆盖到，但是在解析上面的代码时，碰到 load 不存在的常量时就会出错，无法继续反编译。
+所有的指令可以分为两类，不需要参数和需要参数的，Python字节码在设计的时候故意把没有参数的指令分配在了对应编号的低位，高位都是有参数的，以Include/opcode.h中的HAVE_ARGUMENT分界。他们的在二进制级别上的组织是这样的：</p>
+<p>[指令] 不需要参数的指令只占用一个字节
+[指令] [参数低字节] [参数高字节] 需要参数的指令占用三个字节，一个字节指令，两个字节参数
+本题中经过混淆的字节码:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#f92672">&gt;&gt;&gt;</span> list(map(ord,code.co_code[<span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>]))
+[<span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">140</span>]
+<span style="color:#f92672">&gt;&gt;&gt;</span> dis.opname[<span style="color:#ae81ff">113</span>]
+<span style="color:#960050;background-color:#1e0010">&#39;</span>JUMP_ABSOLUTE<span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">256</span><span style="color:#f92672">+</span><span style="color:#ae81ff">158</span>
+<span style="color:#ae81ff">670</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> dis.opname[<span style="color:#ae81ff">136</span>]
+<span style="color:#960050;background-color:#1e0010">&#39;</span>LOAD_DEREF<span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#ae81ff">110</span><span style="color:#f92672">*</span><span style="color:#ae81ff">256</span><span style="color:#f92672">+</span><span style="color:#ae81ff">104</span>
+<span style="color:#ae81ff">28264</span>
+</code></pre></div><p>从上面可以看到，第一条指令是JUMP_ABSOLTE 670，这个offset的指令是真实存在的，所以指令合法。但是第二条指令应该是LOAD_DEREF 28264，这个index的对象并不存在，在dis尝试解析的时候就会崩溃。</p>
+<p>实际上因为之前的跳转指令所以第二条的非法指令并不会被真实执行到，所以pyc文件作者是故意加入不影响执行的非法指令触发分析软件崩溃，阻碍对该pyc文件的分析。</p>
+<h2 id="去混淆">去混淆</h2>
+<p>用Apeng师傅的方法可以去掉混淆</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># python2 disasm_anti.py py.pyc</span>
+<span style="color:#f92672">import</span> dis<span style="color:#f92672">,</span> marshal<span style="color:#f92672">,</span> struct<span style="color:#f92672">,</span> sys<span style="color:#f92672">,</span> time<span style="color:#f92672">,</span> types
+<span style="color:#f92672">from</span> opcode <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ana_branch</span>(code, i, hits):
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> len(code):
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> hits:
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">else</span>:
+        hits<span style="color:#f92672">.</span>append(i)
+    c <span style="color:#f92672">=</span> code[i]
+    op <span style="color:#f92672">=</span> ord(c)
+    <span style="color:#66d9ef">if</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">111</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">112</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">114</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">115</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">93</span>:
+        oparg <span style="color:#f92672">=</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+        <span style="color:#66d9ef">if</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">120</span> <span style="color:#f92672">or</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">93</span>:
+            oparg <span style="color:#f92672">+=</span> i
+            oparg <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span>
+        ana_branch(code, oparg, hits)
+        ana_branch(code, i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>, hits)
+    <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">110</span>:
+        oparg <span style="color:#f92672">=</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+        ana_branch(code, i <span style="color:#f92672">+</span> oparg <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>, hits)
+    <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> <span style="color:#ae81ff">113</span>:
+        oparg <span style="color:#f92672">=</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+        ana_branch(code, oparg, hits)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">if</span> op<span style="color:#f92672">&gt;=</span>HAVE_ARGUMENT:
+            ana_branch(code, i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>, hits)
+        <span style="color:#66d9ef">else</span>:
+            ana_branch(code, i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, hits)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">findlinestarts</span>(code):
+    <span style="color:#e6db74">&#34;&#34;&#34;Find the offsets in a byte code which are start of lines in the source.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    Generate pairs (offset, lineno) as described in Python/compile.c.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    byte_increments <span style="color:#f92672">=</span> [ord(c) <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> code<span style="color:#f92672">.</span>co_lnotab[<span style="color:#ae81ff">0</span>::<span style="color:#ae81ff">2</span>]]
+    line_increments <span style="color:#f92672">=</span> [ord(c) <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> code<span style="color:#f92672">.</span>co_lnotab[<span style="color:#ae81ff">1</span>::<span style="color:#ae81ff">2</span>]]
+
+    lastlineno <span style="color:#f92672">=</span> None
+    lineno <span style="color:#f92672">=</span> code<span style="color:#f92672">.</span>co_firstlineno
+    addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> byte_incr, line_incr <span style="color:#f92672">in</span> zip(byte_increments, line_increments):
+        <span style="color:#66d9ef">if</span> byte_incr:
+            <span style="color:#66d9ef">if</span> lineno <span style="color:#f92672">!=</span> lastlineno:
+                <span style="color:#66d9ef">yield</span> (addr, lineno)
+                lastlineno <span style="color:#f92672">=</span> lineno
+            addr <span style="color:#f92672">+=</span> byte_incr
+        lineno <span style="color:#f92672">+=</span> line_incr
+    <span style="color:#66d9ef">if</span> lineno <span style="color:#f92672">!=</span> lastlineno:
+        <span style="color:#66d9ef">yield</span> (addr, lineno)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">findhits</span>(code):
+    hits <span style="color:#f92672">=</span> []
+    n <span style="color:#f92672">=</span> len(code)
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    ana_branch(code, i, hits)
+    hits<span style="color:#f92672">.</span>sort()
+    <span style="color:#66d9ef">return</span> hits
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">anti_findlabels</span>(code):
+    <span style="color:#e6db74">&#34;&#34;&#34;Detect all offsets in a byte code which are jump targets.
+</span><span style="color:#e6db74">    Return the list of offsets.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    hits <span style="color:#f92672">=</span> findhits(code)
+    labels <span style="color:#f92672">=</span> []
+    n <span style="color:#f92672">=</span> len(code)
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> n:
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> hits:
+            i<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">continue</span>
+        c <span style="color:#f92672">=</span> code[i]
+        op <span style="color:#f92672">=</span> ord(c)
+        i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> op <span style="color:#f92672">&gt;=</span> HAVE_ARGUMENT:
+            oparg <span style="color:#f92672">=</span> ord(code[i]) <span style="color:#f92672">+</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+            i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>
+            label <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> op <span style="color:#f92672">in</span> hasjrel:
+                label <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span>oparg
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> hasjabs:
+                label <span style="color:#f92672">=</span> oparg
+            <span style="color:#66d9ef">if</span> label <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">if</span> label <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> labels:
+                    labels<span style="color:#f92672">.</span>append(label)
+    <span style="color:#66d9ef">return</span> labels
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dis_anti_obf</span>(co, lasti <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;Disassemble a code object, anti obf&#34;&#34;&#34;</span>
+    anti_code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    code <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>co_code
+    hits <span style="color:#f92672">=</span> findhits(code)
+    labels <span style="color:#f92672">=</span> anti_findlabels(code)
+    linestarts <span style="color:#f92672">=</span> dict(findlinestarts(co))
+    n <span style="color:#f92672">=</span> len(code)
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    extended_arg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    free <span style="color:#f92672">=</span> None
+    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> n:
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> hits:
+            i<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+            anti_code<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x09</span><span style="color:#e6db74">&#34;</span>
+            <span style="color:#66d9ef">continue</span>
+        c <span style="color:#f92672">=</span> code[i]
+        op <span style="color:#f92672">=</span> ord(c)
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> linestarts:
+            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">print</span>
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%3d</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> linestarts[i],
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;   &#39;</span>,
+        
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> lasti: <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;--&gt;&#39;</span>,
+        <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;   &#39;</span>,
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> labels: <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;&gt;&gt;&#39;</span>,
+        <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;  &#39;</span>,
+        <span style="color:#66d9ef">print</span> repr(i)<span style="color:#f92672">.</span>rjust(<span style="color:#ae81ff">4</span>),
+        <span style="color:#66d9ef">print</span> opname[op]<span style="color:#f92672">.</span>ljust(<span style="color:#ae81ff">20</span>),
+        anti_code <span style="color:#f92672">+=</span> code[i]
+        i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> op <span style="color:#f92672">&gt;=</span> HAVE_ARGUMENT:
+            oparg <span style="color:#f92672">=</span> ord(code[i]) <span style="color:#f92672">+</span> ord(code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span> <span style="color:#f92672">+</span> extended_arg
+            extended_arg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            anti_code<span style="color:#f92672">+=</span>code[i]
+            anti_code<span style="color:#f92672">+=</span>code[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">if</span> op <span style="color:#f92672">==</span> EXTENDED_ARG:
+                extended_arg <span style="color:#f92672">=</span> oparg<span style="color:#f92672">*</span><span style="color:#ae81ff">65536L</span>
+            <span style="color:#66d9ef">print</span> repr(oparg)<span style="color:#f92672">.</span>rjust(<span style="color:#ae81ff">5</span>),
+            <span style="color:#66d9ef">if</span> op <span style="color:#f92672">in</span> hasconst:
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">+</span> repr(co<span style="color:#f92672">.</span>co_consts[oparg]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> hasname:
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">+</span> co<span style="color:#f92672">.</span>co_names[oparg] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> hasjrel:
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(to &#39;</span> <span style="color:#f92672">+</span> repr(i <span style="color:#f92672">+</span> oparg) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> haslocal:
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">+</span> co<span style="color:#f92672">.</span>co_varnames[oparg] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> hascompare:
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">+</span> cmp_op[oparg] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+            <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">in</span> hasfree:
+                <span style="color:#66d9ef">if</span> free <span style="color:#f92672">is</span> None:
+                    free <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>co_cellvars <span style="color:#f92672">+</span> co<span style="color:#f92672">.</span>co_freevars
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">+</span> free[oparg] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>,
+        <span style="color:#66d9ef">print</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;patch code:&#34;</span>
+    <span style="color:#66d9ef">print</span>(anti_code<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;hex&#34;</span>))
+
+
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_file</span>(fname):
+    f <span style="color:#f92672">=</span> open(fname, <span style="color:#e6db74">&#34;rb&#34;</span>)
+    magic <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">4</span>)
+    moddate <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">4</span>)
+    modtime <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>asctime(time<span style="color:#f92672">.</span>localtime(struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;L&#39;</span>, moddate)[<span style="color:#ae81ff">0</span>]))
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;magic </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (magic<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;hex&#39;</span>))
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;moddate </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">)&#34;</span> <span style="color:#f92672">%</span> (moddate<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;hex&#39;</span>), modtime)
+    code <span style="color:#f92672">=</span> marshal<span style="color:#f92672">.</span>load(f)
+    show_code(code)
+     
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_code</span>(code, indent<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>):
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">code&#34;</span> <span style="color:#f92672">%</span> indent
+    indent <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;   &#39;</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">argcount </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_argcount)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">nlocals </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_nlocals)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">stacksize </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_stacksize)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">flags </span><span style="color:#e6db74">%04x</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_flags)
+    show_hex(<span style="color:#e6db74">&#34;code&#34;</span>, code<span style="color:#f92672">.</span>co_code, indent<span style="color:#f92672">=</span>indent)
+    dis_anti_obf(code)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">consts&#34;</span> <span style="color:#f92672">%</span> indent
+    <span style="color:#66d9ef">for</span> const <span style="color:#f92672">in</span> code<span style="color:#f92672">.</span>co_consts:
+        <span style="color:#66d9ef">if</span> type(const) <span style="color:#f92672">==</span> types<span style="color:#f92672">.</span>CodeType:
+            show_code(const, indent<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;   &#39;</span>)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;   </span><span style="color:#e6db74">%s%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, const)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">names </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_names)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">varnames </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_varnames)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">freevars </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_freevars)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">cellvars </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_cellvars)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">filename </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_filename)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">name </span><span style="color:#e6db74">%r</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_name)
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">firstlineno </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, code<span style="color:#f92672">.</span>co_firstlineno)
+    show_hex(<span style="color:#e6db74">&#34;lnotab&#34;</span>, code<span style="color:#f92672">.</span>co_lnotab, indent<span style="color:#f92672">=</span>indent)
+     
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_hex</span>(label, h, indent):
+    h <span style="color:#f92672">=</span> h<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;hex&#39;</span>)
+    <span style="color:#66d9ef">if</span> len(h) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">60</span>:
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, label, h)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, label)
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(h), <span style="color:#ae81ff">60</span>):
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">   </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (indent, h[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">60</span>])
+
+show_file(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>])
+</code></pre></div><p>或者使用FXTi师傅的方法将不合法的指令转换为nop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> marshal<span style="color:#f92672">,</span> sys<span style="color:#f92672">,</span> opcode<span style="color:#f92672">,</span> types<span style="color:#f92672">,</span> dis
+
+NOP <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+
+HAVE_ARGUMENT <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>
+
+JUMP_FORWARD <span style="color:#f92672">=</span> <span style="color:#ae81ff">110</span>
+JUMP_IF_FALSE_OR_POP <span style="color:#f92672">=</span> <span style="color:#ae81ff">111</span>
+JUMP_IF_TRUE_OR_POP <span style="color:#f92672">=</span> <span style="color:#ae81ff">112</span>
+JUMP_ABSOLUTE <span style="color:#f92672">=</span> <span style="color:#ae81ff">113</span>
+POP_JUMP_IF_FALSE <span style="color:#f92672">=</span> <span style="color:#ae81ff">114</span>
+POP_JUMP_IF_TRUE <span style="color:#f92672">=</span> <span style="color:#ae81ff">115</span>
+
+CONTINUE_LOOP <span style="color:#f92672">=</span> <span style="color:#ae81ff">119</span>
+FOR_ITER <span style="color:#f92672">=</span> <span style="color:#ae81ff">93</span>
+
+RETURN_VALUE <span style="color:#f92672">=</span> <span style="color:#ae81ff">83</span>
+
+used_set <span style="color:#f92672">=</span> set()
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deconf_inner</span>(code, now):
+    <span style="color:#66d9ef">global</span> used_set
+
+    <span style="color:#66d9ef">while</span> code[now] <span style="color:#f92672">!=</span> RETURN_VALUE:
+        <span style="color:#66d9ef">if</span> now <span style="color:#f92672">in</span> used_set:
+            <span style="color:#66d9ef">break</span>
+        used_set<span style="color:#f92672">.</span>add(now)
+        <span style="color:#66d9ef">if</span> code[now] <span style="color:#f92672">&gt;=</span> HAVE_ARGUMENT:
+            used_set<span style="color:#f92672">.</span>add(now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+            used_set<span style="color:#f92672">.</span>add(now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)
+        op <span style="color:#f92672">=</span> code[now]
+
+        <span style="color:#75715e">#print(str(now) + &#34; &#34; + opcode.opname[op])</span>
+
+        <span style="color:#66d9ef">if</span> op <span style="color:#f92672">==</span> JUMP_FORWARD:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            now <span style="color:#f92672">+=</span> arg <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>
+            <span style="color:#66d9ef">continue</span>
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> JUMP_ABSOLUTE:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            now <span style="color:#f92672">=</span> arg
+            <span style="color:#66d9ef">continue</span>
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> JUMP_IF_TRUE_OR_POP:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, arg)
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> JUMP_IF_FALSE_OR_POP:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, arg)
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> POP_JUMP_IF_TRUE:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, arg)
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> POP_JUMP_IF_FALSE: 
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, arg)
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> CONTINUE_LOOP:
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, arg)
+
+        <span style="color:#66d9ef">elif</span> op <span style="color:#f92672">==</span> FOR_ITER: 
+            arg <span style="color:#f92672">=</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> code[now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] 
+            deconf_inner(code, now <span style="color:#f92672">+</span> arg <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
+
+        <span style="color:#66d9ef">if</span> op <span style="color:#f92672">&lt;</span> HAVE_ARGUMENT:
+            now <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            now <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span>
+
+    used_set<span style="color:#f92672">.</span>add(now)
+    <span style="color:#66d9ef">if</span> code[now] <span style="color:#f92672">&gt;=</span> HAVE_ARGUMENT:
+        used_set<span style="color:#f92672">.</span>add(now<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+        used_set<span style="color:#f92672">.</span>add(now<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deconf</span>(code):
+    <span style="color:#66d9ef">global</span> used_set
+
+    used_set <span style="color:#f92672">=</span> set() <span style="color:#75715e">#Remember to clean up used_set for every target function</span>
+
+    cod <span style="color:#f92672">=</span> list(map(ord, code))
+    deconf_inner(cod, <span style="color:#ae81ff">0</span>)
+
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(cod)):
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> used_set:
+            cod[i] <span style="color:#f92672">=</span> NOP
+
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(list(map(chr, cod)))
+
+<span style="color:#66d9ef">with</span> open(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    header <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">8</span>)
+    code <span style="color:#f92672">=</span> marshal<span style="color:#f92672">.</span>load(f)
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">print(code.co_consts[3].co_name)
+</span><span style="color:#e6db74">print(dis.dis(deconf(code.co_consts[3].co_code)))
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+
+consts <span style="color:#f92672">=</span> list()
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(code<span style="color:#f92672">.</span>co_consts)):
+    <span style="color:#66d9ef">if</span> hasattr(code<span style="color:#f92672">.</span>co_consts[i], <span style="color:#e6db74">&#39;co_code&#39;</span>):
+        consts<span style="color:#f92672">.</span>append(types<span style="color:#f92672">.</span>CodeType(code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_argcount,
+            <span style="color:#75715e"># c.co_kwonlyargcount,  Add this in Python3</span>
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_nlocals,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_stacksize,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_flags,
+            deconf(code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_code),
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_consts,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_names,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_varnames,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_filename,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_name,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_firstlineno,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_lnotab,   <span style="color:#75715e"># In general, You should adjust this</span>
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_freevars,
+            code<span style="color:#f92672">.</span>co_consts[i]<span style="color:#f92672">.</span>co_cellvars))
+    <span style="color:#66d9ef">else</span>:
+        consts<span style="color:#f92672">.</span>append(code<span style="color:#f92672">.</span>co_consts[i])
+
+mode <span style="color:#f92672">=</span> types<span style="color:#f92672">.</span>CodeType(code<span style="color:#f92672">.</span>co_argcount,
+    <span style="color:#75715e"># c.co_kwonlyargcount,  Add this in Python3</span>
+    code<span style="color:#f92672">.</span>co_nlocals,
+    code<span style="color:#f92672">.</span>co_stacksize,
+    code<span style="color:#f92672">.</span>co_flags,
+    deconf(code<span style="color:#f92672">.</span>co_code),
+    tuple(consts),
+    code<span style="color:#f92672">.</span>co_names,
+    code<span style="color:#f92672">.</span>co_varnames,
+    code<span style="color:#f92672">.</span>co_filename,
+    code<span style="color:#f92672">.</span>co_name,
+    code<span style="color:#f92672">.</span>co_firstlineno,
+    code<span style="color:#f92672">.</span>co_lnotab,   <span style="color:#75715e"># In general, You should adjust this</span>
+    code<span style="color:#f92672">.</span>co_freevars,
+    code<span style="color:#f92672">.</span>co_cellvars)
+
+f <span style="color:#f92672">=</span> open(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;.mod&#34;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>) 
+f<span style="color:#f92672">.</span>write(header)
+marshal<span style="color:#f92672">.</span>dump(mode, f)
+</code></pre></div><h2 id="nop指令去除与块的合并">NOP指令去除与块的合并</h2>
+<p>fxti师傅给了一个工具:
+<a href="https://github.com/extremecoders-re/bytecode_simplifier">https://github.com/extremecoders-re/bytecode_simplifier</a>
+利用这个工具可以去除上面去混淆以后生成的全是NOP指令的块，以及合并一些块
+完成之后使用uncompyle6可以反汇编一下(反编译还是会失败)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"> L.   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>  LOAD_CONST               <span style="color:#ae81ff">2694209818L</span>
+                <span style="color:#ae81ff">3</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+                <span style="color:#ae81ff">6</span>  JUMP_FORWARD          <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">9</span>_0  COME_FROM             <span style="color:#ae81ff">6</span>  <span style="color:#e6db74">&#39;6&#39;</span>
+                <span style="color:#ae81ff">9</span>  LOAD_CONST               <span style="color:#ae81ff">4130330538L</span>
+
+ L.   <span style="color:#ae81ff">3</span>        <span style="color:#ae81ff">12</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">15</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">18</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">366</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">366</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+
+ L.   <span style="color:#ae81ff">9</span>        <span style="color:#ae81ff">21</span>  LOAD_CONST               <span style="color:#ae81ff">3168701571L</span>
+               <span style="color:#ae81ff">24</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">27</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+
+ L.  <span style="color:#ae81ff">14</span>        <span style="color:#ae81ff">30</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">345</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">345</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">33</span>  LOAD_CONST               <span style="color:#ae81ff">3715947653L</span>
+               <span style="color:#ae81ff">36</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+
+ L.  <span style="color:#ae81ff">17</span>        <span style="color:#ae81ff">39</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">42</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">324</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">324</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">45</span>  LOAD_CONST               <span style="color:#ae81ff">2694209818L</span>
+
+ L.  <span style="color:#ae81ff">20</span>        <span style="color:#ae81ff">48</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">51</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">54</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">306</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">306</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+
+ L.  <span style="color:#ae81ff">38</span>        <span style="color:#ae81ff">57</span>  LOAD_CONST               <span style="color:#ae81ff">651787064</span>
+               <span style="color:#ae81ff">60</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">63</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">66</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">285</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">285</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">69</span>  LOAD_CONST               <span style="color:#ae81ff">3521152606L</span>
+               <span style="color:#ae81ff">72</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">75</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">78</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">264</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">264</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">81</span>  LOAD_CONST               <span style="color:#ae81ff">2730391645L</span>
+               <span style="color:#ae81ff">84</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">87</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+               <span style="color:#ae81ff">90</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">246</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">246</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">93</span>  LOAD_CONST               <span style="color:#ae81ff">4084147187L</span>
+               <span style="color:#ae81ff">96</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+               <span style="color:#ae81ff">99</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+              <span style="color:#ae81ff">102</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">222</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">222</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">105</span>  LOAD_CONST               <span style="color:#ae81ff">1860581437</span>
+              <span style="color:#ae81ff">108</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">111</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+              <span style="color:#ae81ff">114</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">204</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">204</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">117</span>  LOAD_CONST               <span style="color:#ae81ff">3816944324L</span>
+              <span style="color:#ae81ff">120</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">123</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+              <span style="color:#ae81ff">126</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">203</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">203</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">129</span>  LOAD_CONST               <span style="color:#ae81ff">394367122</span>
+              <span style="color:#ae81ff">132</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">135</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+              <span style="color:#ae81ff">138</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">181</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">181</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">141</span>  LOAD_CONST               <span style="color:#ae81ff">1627830889</span>
+              <span style="color:#ae81ff">144</span>  LOAD_FAST             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">147</span>  COMPARE_OP            <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span>
+              <span style="color:#ae81ff">150</span>  POP_JUMP_IF_TRUE    <span style="color:#ae81ff">157</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">157</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">153</span>  LOAD_CONST               None
+              <span style="color:#ae81ff">156</span>  RETURN_END_IF    
+            <span style="color:#ae81ff">157</span>_0  COME_FROM           <span style="color:#ae81ff">150</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">150</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">157</span>  STORE_NAME            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>sys<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">160</span>  LOAD_CODE                <span style="color:#f92672">&lt;</span>code_object str2hex<span style="color:#f92672">&gt;</span>
+              <span style="color:#ae81ff">163</span>  MAKE_FUNCTION_0       <span style="color:#ae81ff">0</span>  None
+              <span style="color:#ae81ff">166</span>  STORE_NAME            <span style="color:#ae81ff">1</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>str2hex<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">169</span>  LOAD_CODE                <span style="color:#f92672">&lt;</span>code_object hex2str<span style="color:#f92672">&gt;</span>
+              <span style="color:#ae81ff">172</span>  LOAD_CONST               <span style="color:#ae81ff">3715947653L</span>
+              <span style="color:#ae81ff">175</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">178</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">181</span>  LOAD_NAME            <span style="color:#ae81ff">10</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>flag<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">184</span>  CALL_FUNCTION_1       <span style="color:#ae81ff">1</span>  None
+              <span style="color:#ae81ff">187</span>  CALL_FUNCTION_1       <span style="color:#ae81ff">1</span>  None
+              <span style="color:#ae81ff">190</span>  POP_TOP          
+              <span style="color:#ae81ff">191</span>  LOAD_CONST               None
+              <span style="color:#ae81ff">194</span>  LOAD_CONST               <span style="color:#ae81ff">3816944324L</span>
+              <span style="color:#ae81ff">197</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">200</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">203</span>  RETURN_END_IF    
+            <span style="color:#ae81ff">204</span>_0  COME_FROM           <span style="color:#ae81ff">114</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">114</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">204</span>  LOAD_CONST               <span style="color:#ae81ff">97</span>
+              <span style="color:#ae81ff">207</span>  LOAD_CONST               <span style="color:#ae81ff">103</span>
+              <span style="color:#ae81ff">210</span>  LOAD_CONST               <span style="color:#ae81ff">58</span>
+              <span style="color:#ae81ff">213</span>  LOAD_CONST               <span style="color:#ae81ff">2730391645L</span>
+              <span style="color:#ae81ff">216</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">219</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">222</span>  LOAD_ATTR             <span style="color:#ae81ff">6</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>stdout<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">225</span>  LOAD_ATTR             <span style="color:#ae81ff">7</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>write<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">228</span>  LOAD_NAME             <span style="color:#ae81ff">2</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>hex2str<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">231</span>  LOAD_CONST               <span style="color:#ae81ff">102</span>
+              <span style="color:#ae81ff">234</span>  LOAD_CONST               <span style="color:#ae81ff">108</span>
+              <span style="color:#ae81ff">237</span>  LOAD_CONST               <span style="color:#ae81ff">1860581437</span>
+              <span style="color:#ae81ff">240</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">243</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">246</span>  BUILD_LIST_5          <span style="color:#ae81ff">5</span> 
+              <span style="color:#ae81ff">249</span>  CALL_FUNCTION_1       <span style="color:#ae81ff">1</span>  None
+              <span style="color:#ae81ff">252</span>  CALL_FUNCTION_1       <span style="color:#ae81ff">1</span>  None
+              <span style="color:#ae81ff">255</span>  LOAD_CONST               <span style="color:#ae81ff">4130330538L</span>
+              <span style="color:#ae81ff">258</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">261</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">264</span>  CALL_FUNCTION_1       <span style="color:#ae81ff">1</span>  None
+              <span style="color:#ae81ff">267</span>  STORE_NAME           <span style="color:#ae81ff">10</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>flag<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">270</span>  LOAD_NAME             <span style="color:#ae81ff">5</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>count<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">273</span>  LOAD_NAME             <span style="color:#ae81ff">1</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>str2hex<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">276</span>  LOAD_CONST               <span style="color:#ae81ff">394367122</span>
+              <span style="color:#ae81ff">279</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">282</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">285</span>  STORE_NAME            <span style="color:#ae81ff">3</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>p_s<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">288</span>  LOAD_CODE                <span style="color:#f92672">&lt;</span>code_object p_f<span style="color:#f92672">&gt;</span>
+              <span style="color:#ae81ff">291</span>  MAKE_FUNCTION_0       <span style="color:#ae81ff">0</span>  None
+              <span style="color:#ae81ff">294</span>  STORE_NAME            <span style="color:#ae81ff">4</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>p_f<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">297</span>  LOAD_CONST               <span style="color:#ae81ff">3168701571L</span>
+              <span style="color:#ae81ff">300</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">303</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">306</span>  LOAD_CONST               <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+              <span style="color:#ae81ff">309</span>  LOAD_CONST               None
+              <span style="color:#ae81ff">312</span>  IMPORT_NAME           <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>sys<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">315</span>  LOAD_CONST               <span style="color:#ae81ff">1627830889</span>
+              <span style="color:#ae81ff">318</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">321</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">324</span>  MAKE_FUNCTION_0       <span style="color:#ae81ff">0</span>  None
+              <span style="color:#ae81ff">327</span>  STORE_NAME            <span style="color:#ae81ff">2</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>hex2str<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">330</span>  LOAD_CODE                <span style="color:#f92672">&lt;</span>code_object p_s<span style="color:#f92672">&gt;</span>
+              <span style="color:#ae81ff">333</span>  MAKE_FUNCTION_0       <span style="color:#ae81ff">0</span>  None
+              <span style="color:#ae81ff">336</span>  LOAD_CONST               <span style="color:#ae81ff">651787064</span>
+              <span style="color:#ae81ff">339</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">342</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">345</span>  LOAD_CODE                <span style="color:#f92672">&lt;</span>code_object count<span style="color:#f92672">&gt;</span>
+              <span style="color:#ae81ff">348</span>  MAKE_FUNCTION_0       <span style="color:#ae81ff">0</span>  None
+              <span style="color:#ae81ff">351</span>  STORE_NAME            <span style="color:#ae81ff">5</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>count<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">354</span>  LOAD_NAME             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>sys<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">357</span>  LOAD_CONST               <span style="color:#ae81ff">4084147187L</span>
+              <span style="color:#ae81ff">360</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">363</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">366</span>  POP_TOP          
+              <span style="color:#ae81ff">367</span>  LOAD_NAME             <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>sys<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">370</span>  LOAD_ATTR             <span style="color:#ae81ff">8</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>stdin<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">373</span>  LOAD_ATTR             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>read<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">376</span>  LOAD_CONST               <span style="color:#ae81ff">38</span>
+              <span style="color:#ae81ff">379</span>  LOAD_CONST               <span style="color:#ae81ff">3521152606L</span>
+              <span style="color:#ae81ff">382</span>  STORE_FAST            <span style="color:#ae81ff">0</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>DIVIDER<span style="color:#960050;background-color:#1e0010">&#39;</span>
+              <span style="color:#ae81ff">385</span>  JUMP_BACK             <span style="color:#ae81ff">9</span>  <span style="color:#960050;background-color:#1e0010">&#39;</span>to <span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</code></pre></div><p>然后我暂时只会看这个字节码，fxti师傅那个自己去混淆的方案没开源，我打算自己仔细研究一下这个发编译的代码，看能不能按照那个思路复现一下。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/2019zgc/>https://linkleyping.top/2020/2019zgc/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" class="prev" rel="prev" title="Unicorn"><i class="iconfont icon-left"></i>&nbsp;Unicorn</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" class="next" rel="next" title="第五空间2020-re">第五空间2020-re&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

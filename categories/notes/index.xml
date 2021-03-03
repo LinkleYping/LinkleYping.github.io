@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>notes on EP`s Blog</title>
+    <link>https://linkleyping.top/categories/notes/</link>
+    <description>Recent content in notes on EP`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 13 Sep 2020 15:22:45 +0800</lastBuildDate><atom:link href="https://linkleyping.top/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin开发</title>
+      <link>https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Sun, 13 Sep 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/</guid>
+      <description>Kotlin一些特性 var: 变量，val:常量 定义变量时，可在类型后面加一个问号?，表示该变量是Nullable，不加表示该变量不可为null 扩展</description>
+    </item>
+    
+    <item>
+      <title>Unicorn</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/</link>
+      <pubDate>Tue, 16 Jun 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/</guid>
+      <description>参考链接 https://bbs.pediy.com/thread-224330.htm http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/ 这里有很多代码示例： https://github.com/unicorn-engine/unicorn/tree/master/bindings/python 介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时</description>
+    </item>
+    
+    <item>
+      <title>Android脱壳</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/</link>
+      <pubDate>Mon, 15 Jun 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/</guid>
+      <description>参考链接 ApkShelling脱壳和FART脱壳 Frida从入门到入门—安卓逆向菜鸟的frida食用说明 初识Frida&amp;ndash;Andr</description>
+    </item>
+    
+    <item>
+      <title>反调试技术</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Fri, 12 Jun 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
+      <description>参考链接 反调试技术总结 白话windows之四 异常处理机制(VEH、SEH、TopLevelEH&amp;hellip;) 动态反调试技术 静态反调试技术</description>
+    </item>
+    
+    <item>
+      <title>angr使用</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/</link>
+      <pubDate>Sat, 06 Jun 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/</guid>
+      <description>参考链接 https://xz.aliyun.com/t/6557 https://lantern.cool/2020/05/15/note-tool-angr/ https://xz.aliyun.com/t/7117 https://github.com/firmianay/CTF-All-In-One/blob/master/doc/5.3.1_angr.md 基础 #coding=utf-8 import angr import networkx as nx import matplotlib matplotlib.use(&amp;#39;Agg&amp;#39;) import matplotlib.pyplot as plt proj = angr.Project(&amp;#39;/bin/true&amp;#39;) print proj.filename # 文件名 print proj.arch # 一个 archinfo.Arch 对象 print hex(proj.entry) # 入口点 loader = proj.loader for obj in loader.all_objects: # 程序加载时会将二进制文件和共享</description>
+    </item>
+    
+    <item>
+      <title>去平坦化环境搭建</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%8E%BB%E5%B9%B3%E5%9D%A6%E5%8C%96%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Sat, 06 Jun 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%8E%BB%E5%B9%B3%E5%9D%A6%E5%8C%96%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>碎碎念 rctf的那道play the game对安卓native文件用了平坦化的混淆，我开始准备用Bird的脚本去掉平坦化的，但是失败了，因为ang</description>
+    </item>
+    
+    <item>
+      <title>ELF动态链接</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/</link>
+      <pubDate>Wed, 27 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/</guid>
+      <description>参考链接 https://github.com/tinyclub/open-c-book/blob/master/zh/chapters/02-chapter4.markdown https://luomuxiaoxiao.com/?p=578 https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html https://www.jianshu.com/p/0ac63c3744dd 什么是PLT和GOT GOT全称Global Offset Table，即全局偏移量表。它在可执行文件中是一个单独的section，位于.d</description>
+    </item>
+    
+    <item>
+      <title>ELF文件组成</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Mon, 25 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</guid>
+      <description>参考 https://blog.csdn.net/xuehuafeiwu123/article/details/72963229 https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/ ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述</description>
+    </item>
+    
+    <item>
+      <title>密码学</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+      <pubDate>Sat, 23 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+      <description>https://blog.51cto.com/13479739/2484361 有关13种常见密码学算法的一个系列 分组加密算法 DES 长度：8字节，加密轮数：16 https://xz.aliyun.com/t/6748 识别：S盒，IP置换表，P置换表 AES AES 密钥长度(32位比特字)</description>
+    </item>
+    
+    <item>
+      <title>API勾取</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/</link>
+      <pubDate>Thu, 21 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/</guid>
+      <description>调试钩取 流程如下： 对想钩取的进程进行附加操作，使之成为被调试者 钩子：将API起始地址的第一个字节修改为0xCC 调用相应API时，控制权转移到</description>
+    </item>
+    
+    <item>
+      <title>信息安全数学基础</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 21 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
+      <description>广义欧几里得除法 a = q * b + c, 0 &amp;lt;= c &amp;lt; b; 则(a, b) = (b, c)，可以用来计算最大公因数 def gcd(a, b): # a &amp;lt;= b if a * b == 0: return 0 r = b // a c = b % a while c != 0:</description>
+    </item>
+    
+    <item>
+      <title>代码注入</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Wed, 20 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/</guid>
+      <description>代码注入是一种向目标进程插入独立运行代码并使之运行的技术，一般调用CreateRemoteThread()API以远程线程形式运行插入的代码</description>
+    </item>
+    
+    <item>
+      <title>DLL注入</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Mon, 18 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/</guid>
+      <description>参考文献 逆向工程核心原理 Windows消息勾取 消息钩子 Windows操作系统向用户提供GUI，它以事件驱动方式工作，在操作系统中借助键盘、鼠</description>
+    </item>
+    
+    <item>
+      <title>基址重定位表</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8/</link>
+      <pubDate>Sat, 16 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%9F%BA%E5%9D%80%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8/</guid>
+      <description>基址重定位表中罗列了硬编码地址的偏移，读取这张表就能获得准确的硬编码地址偏移，基址重定位表就是IMAGE_BASE_RELOCATION的结</description>
+    </item>
+    
+    <item>
+      <title>PE文件格式</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E5%A4%A9-pe%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Fri, 15 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E5%A4%A9-pe%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</guid>
+      <description>参考 逆向工程核心原理 地址概念 虚拟内存地址（Virtual Address, VA）PE文件中的指令被装入内存后的地址。 相对虚拟内存地址（Reverse Virtual Address, RV</description>
+    </item>
+    
+    <item>
+      <title>sig制作</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E5%A4%A9-sig%E5%88%B6%E4%BD%9C/</link>
+      <pubDate>Thu, 14 May 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E5%A4%A9-sig%E5%88%B6%E4%BD%9C/</guid>
+      <description>https://blog.csdn.net/Breeze_CAT/article/details/103788796 工具: flair ./pelf libc.a libc.pat #如果这句话报错: Unknown relocation type 42 (offset in section=0x16).那么要加一个参数： ./pelf -r42:0:0 libc.a libc.pat #如果有出现别的错误，继续添加这个参数 -</description>
+    </item>
+    
+    <item>
+      <title>gcc详解</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/</link>
+      <pubDate>Sat, 25 Apr 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/</guid>
+      <description>编译流程 gcc、g++分别是gnu的c、c++编译器，gcc/g++在执行编译工作的时候，总共需要4步: 预处理： 生成预处理文件，后缀名 .i (预</description>
+    </item>
+    
+    <item>
+      <title>汇编基础</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Fri, 10 Apr 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>使用gcc生成AT&amp;amp;T汇编风格的代码 gcc -S -o test.s test.c 与Intel相比 寄存器前冠以“％”，而立即数前冠以“$” 目标操作数在源操作数的右边mo</description>
+    </item>
+    
+    <item>
+      <title>腾讯游戏安全竞赛2020</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/</link>
+      <pubDate>Sun, 05 Apr 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%A4%A9-txwp/</guid>
+      <description>ring3 从dmp文件中恢复出可执行文件 使用windbg open crash dump: 0:004&amp;gt; lmvm winmine Browse full module list start end module name 01000000 01020000 winmine (deferred) Image path: D:\Temp\bin\winmine.exe Image name: winmine.exe Browse all global symbols functions data Timestamp: Sat Aug 18 04:54:13 2001 (3B7D8475) CheckSum: 000273C4 ImageSize: 00020000 File version: 5.1.2600.0 Product version:</description>
+    </item>
+    
+    <item>
+      <title>Android调试</title>
+      <link>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Wed, 01 Apr 2020 15:22:45 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%A4%A9-android%E8%B0%83%E8%AF%95/</guid>
+      <description>IDA调试so 往年的腾讯的Android题都是native编程比较多，关键代码都在so文件里，先学习一下ida调试动态库。 android常用</description>
+    </item>
+    
+    <item>
+      <title>ubuntu下LLVM开发环境的配置</title>
+      <link>https://linkleyping.top/2019/llvm/</link>
+      <pubDate>Tue, 08 Oct 2019 19:56:14 +0000</pubDate>
+      
+      <guid>https://linkleyping.top/2019/llvm/</guid>
+      <description>安装clang和cmake sudo apt-get install clang cmake 安装llvm sudo apt-get install llvm 使用这种方法我默认安装上的llvm版本为3.8.0，安装后的文件目录为/usr/sh</description>
+    </item>
+    
+  </channel>
+</rss>

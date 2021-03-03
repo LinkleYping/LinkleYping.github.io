@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/" />
+    <link rel="next" href="https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/geekpwn2020-%E9%83%A8%E5%88%86re/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            GeekPWN2020-部分re | EP`s Blog
+        
+    </title>
+    <meta name="title" content="GeekPWN2020-部分re | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "GeekPWN2020-部分re",
+    "headline" : "GeekPWN2020-部分re",
+    "description" : "12. androidcmd 程序被平坦化了，尝试去掉混淆没成功，只能直接看了。 首先在sub_10BC中进行了md5值的验证，可以直接把f5后的代码写进.c文件，加上",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-30 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-08-30 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/geekpwn2020-%E9%83%A8%E5%88%86re\/",
+    "wordCount" : "765",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">GeekPWN2020-部分re</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-08-30 itemprop="datePublished">August 30, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">765 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/geekpwn2020-%E9%83%A8%E5%88%86re/#12-androidcmd" class="toc-link">12. androidcmd</a></li>
+                        <li><a href="/2020/geekpwn2020-%E9%83%A8%E5%88%86re/#13-babyre" class="toc-link">13. babyre</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="12-androidcmd">12. androidcmd</h2>
+<p>程序被平坦化了，尝试去掉混淆没成功，只能直接看了。
+首先在<code>sub_10BC</code>中进行了md5值的验证，可以直接把f5后的代码写进.c文件，加上一个验证的main函数，用angr求解(后来发现其实字符串是直接用字符相等验证的)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">......
+<span style="color:#66d9ef">int</span> main()
+{
+    <span style="color:#66d9ef">char</span> s[<span style="color:#ae81ff">40</span>];
+    scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, s);
+    <span style="color:#66d9ef">if</span>(sub_848(s) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        printf(<span style="color:#e6db74">&#34;Right</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Wrong</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+}
+</code></pre></div><p>求解脚本：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> angr<span style="color:#f92672">,</span> sys
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_successful</span>(state):
+    stdout_output <span style="color:#f92672">=</span> state<span style="color:#f92672">.</span>posix<span style="color:#f92672">.</span>dumps(sys<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>fileno()) <span style="color:#75715e"># (1)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;Right&#39;</span> <span style="color:#f92672">in</span> stdout_output: <span style="color:#75715e"># (2)</span>
+        <span style="color:#66d9ef">return</span> True <span style="color:#75715e"># (3)</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">should_abort</span>(state):
+    stdout_output <span style="color:#f92672">=</span> state<span style="color:#f92672">.</span>posix<span style="color:#f92672">.</span>dumps(sys<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>fileno())   
+    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;Wrong&#39;</span> <span style="color:#f92672">in</span>  stdout_output:
+        <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    filename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>
+    proj <span style="color:#f92672">=</span> angr<span style="color:#f92672">.</span>Project(filename)
+    initial_state <span style="color:#f92672">=</span> proj<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>entry_state()
+    simgr <span style="color:#f92672">=</span> proj<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>simgr(initial_state)
+    simgr<span style="color:#f92672">.</span>explore(find<span style="color:#f92672">=</span>is_successful, avoid<span style="color:#f92672">=</span>should_abort)
+    <span style="color:#66d9ef">if</span> simgr<span style="color:#f92672">.</span>found:
+        solution <span style="color:#f92672">=</span> simgr<span style="color:#f92672">.</span>found[<span style="color:#ae81ff">0</span>]
+        <span style="color:#66d9ef">print</span>(solution<span style="color:#f92672">.</span>posix<span style="color:#f92672">.</span>dumps(sys<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>fileno()))
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    main()
+</code></pre></div><p>求解出来md5的一部分是:&ldquo;94bda84799d&rdquo;
+后面的验证部分跟求md5的一样，字符格式是<code>82600087-****-4524-9eaa-69646e04bf68</code>中间差了4字节需要用md5来爆破一下。注意求md5的字符串后面需要加上换行符&hellip;不然出不来结果</p>
+<h2 id="13-babyre">13. babyre</h2>
+<p>加密过程如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">consts <span style="color:#f92672">=</span> xxx
+j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">8</span>):
+    a<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>(flag[i] <span style="color:#f92672">|</span> (flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">8</span>))
+    buf[j]<span style="color:#f92672">=</span>(a<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)<span style="color:#f92672">^</span>nums[j]
+    j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    b<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>(flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">|</span> (flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">8</span>))
+    buf[j]<span style="color:#f92672">=</span>(b<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)<span style="color:#f92672">^</span>nums[j]
+    j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    c<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>(flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">7</span>] <span style="color:#f92672">|</span> (flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">8</span>))
+    buf[j]<span style="color:#f92672">=</span>(c<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)<span style="color:#f92672">^</span>nums[j]
+    j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    d<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>(flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">6</span>] <span style="color:#f92672">|</span> flag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">5</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>)
+    buf[j]<span style="color:#f92672">=</span>(d<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)<span style="color:#f92672">^</span>nums[j]
+    j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    consts<span style="color:#f92672">=</span>consts <span style="color:#f92672">^</span> buf[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">^</span> buf[j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> buf[j<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">^</span> buf[j<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>]
+
+a<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>(flag[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">|</span> flag[<span style="color:#ae81ff">35</span>]<span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>)<span style="color:#f92672">^</span><span style="color:#ae81ff">0xFFFFBF9E</span>
+buf[j]<span style="color:#f92672">=</span>(a<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)
+j <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+a <span style="color:#f92672">=</span> (flag[<span style="color:#ae81ff">33</span>] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> flag[<span style="color:#ae81ff">34</span>]) <span style="color:#f92672">^</span> consts <span style="color:#f92672">^</span> <span style="color:#ae81ff">0xFA2C</span>
+buf[j]<span style="color:#f92672">=</span>(a<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>)
+</code></pre></div><p>首先要求出加密用的常数，这个常数是根据main函数的部分异或算出来的，所以不能通过调试的方式得到，可以使用unicorn求得常数的值:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8</span>
+<span style="color:#f92672">from</span> unicorn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">from</span> unicorn.x86_const <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+mu <span style="color:#f92672">=</span> Uc (UC_ARCH_X86, UC_MODE_64)
+
+BASE <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x400000</span>
+STACK_ADDR <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>
+STACK_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>
+mu<span style="color:#f92672">.</span>mem_map(BASE, <span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span>) <span style="color:#75715e"># 初始化存储空间</span>
+mu<span style="color:#f92672">.</span>mem_map(STACK_ADDR, STACK_SIZE) <span style="color:#75715e"># 初始化栈空间</span>
+
+mu<span style="color:#f92672">.</span>mem_write(BASE, read(<span style="color:#e6db74">&#34;./babyre&#34;</span>)) <span style="color:#75715e"># 加载程序</span>
+mu<span style="color:#f92672">.</span>reg_write(UC_X86_REG_RSP, STACK_ADDR <span style="color:#f92672">+</span> STACK_SIZE <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hook_code</span>(mu, address, size, user_data):
+    <span style="color:#66d9ef">if</span> address <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x4054A9</span>:
+        c <span style="color:#f92672">=</span> mu<span style="color:#f92672">.</span>reg_read(UC_X86_REG_RBX)
+        <span style="color:#66d9ef">print</span>(hex(c))
+
+mu<span style="color:#f92672">.</span>hook_add(UC_HOOK_CODE, hook_code)
+
+mu<span style="color:#f92672">.</span>emu_start(<span style="color:#ae81ff">0x40546B</span>, <span style="color:#ae81ff">0x4054B0</span>)
+</code></pre></div><p>这里得到的是v5,进行下面的操作后是const:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">HIDWORD</span>(a):
+    b <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff00000000</span>
+    b <span style="color:#f92672">=</span> b <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">32</span>
+    <span style="color:#66d9ef">return</span> b
+consts <span style="color:#f92672">=</span> (v5<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffffffff</span>) <span style="color:#f92672">^</span> ((v5<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffffffff</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">^</span> HIDWORD(v5) <span style="color:#f92672">^</span> (v5 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">48</span>)
+</code></pre></div><p>得到常数后直接解密就行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nums <span style="color:#f92672">=</span> [<span style="color:#ae81ff">7107</span>, <span style="color:#ae81ff">2676</span>, <span style="color:#ae81ff">52815</span>, <span style="color:#ae81ff">3666</span>, <span style="color:#ae81ff">54091</span>, <span style="color:#ae81ff">28777</span>, <span style="color:#ae81ff">35367</span>, <span style="color:#ae81ff">10586</span>, <span style="color:#ae81ff">25358</span>, <span style="color:#ae81ff">65063</span>, <span style="color:#ae81ff">6311</span>, <span style="color:#ae81ff">24454</span>, <span style="color:#ae81ff">42823</span>, <span style="color:#ae81ff">33695</span>, <span style="color:#ae81ff">16895</span>, <span style="color:#ae81ff">7107</span>, <span style="color:#ae81ff">49054</span>, <span style="color:#ae81ff">64044</span>]
+
+enc <span style="color:#f92672">=</span> [<span style="color:#ae81ff">55568</span>, <span style="color:#ae81ff">49906</span>, <span style="color:#ae81ff">1737</span>, <span style="color:#ae81ff">38871</span>, <span style="color:#ae81ff">50041</span>, <span style="color:#ae81ff">14151</span>, <span style="color:#ae81ff">40283</span>, <span style="color:#ae81ff">30065</span>, <span style="color:#ae81ff">9059</span>, <span style="color:#ae81ff">61980</span>, <span style="color:#ae81ff">19841</span>, <span style="color:#ae81ff">3054</span>, <span style="color:#ae81ff">26730</span>, <span style="color:#ae81ff">6325</span>, <span style="color:#ae81ff">56961</span>, <span style="color:#ae81ff">34785</span>, <span style="color:#ae81ff">23561</span>, <span style="color:#ae81ff">8122</span>]
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dec</span>(consts):
+    const_list <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>):
+        const_list<span style="color:#f92672">.</span>append(consts)
+        consts<span style="color:#f92672">=</span>consts<span style="color:#f92672">^</span>enc[i]<span style="color:#f92672">^</span>enc[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">^</span>enc[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">^</span>enc[i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]
+    const_list<span style="color:#f92672">.</span>append(consts)
+    j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
+        consts<span style="color:#f92672">=</span>const_list[i]
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>i, <span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>):
+            enc[j]<span style="color:#f92672">=</span>enc[j]<span style="color:#f92672">^</span>nums[j]
+            enc[j]<span style="color:#f92672">=</span>enc[j]<span style="color:#f92672">^</span>consts
+            enc[j]<span style="color:#f92672">=</span>enc[j]<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>
+    enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0xFFFFBF9E</span>
+    enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">^</span> const_list[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffff</span>
+    enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0xFA2C</span>
+    enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">^</span> const_list[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> enc[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffff</span>
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    dec(<span style="color:#ae81ff">0x64e2fbe3</span>)
+    s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(hex(i)[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>zfill(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> enc)
+    <span style="color:#66d9ef">print</span>(bytes<span style="color:#f92672">.</span>fromhex(s)<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
+</code></pre></div><p>解密以后需要根据加密调整一下字符的顺序</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/geekpwn2020-%E9%83%A8%E5%88%86re/>https://linkleyping.top/2020/geekpwn2020-%E9%83%A8%E5%88%86re/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="强网杯2020-部分re"><i class="iconfont icon-left"></i>&nbsp;强网杯2020-部分re</a>
+        
+        
+        <a href="https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/" class="next" rel="next" title="Kotlin开发">Kotlin开发&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

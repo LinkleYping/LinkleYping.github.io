@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/de1ctf2019-signal-vm/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E5%A4%A9-sig%E5%88%B6%E4%BD%9C/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/de1ctf-2020-re/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            De1CTF-2020--re | EP`s Blog
+        
+    </title>
+    <meta name="title" content="De1CTF-2020--re | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "De1CTF-2020--re",
+    "headline" : "De1CTF-2020--re",
+    "description" : "碎碎念 wtclwtclwtclwtclwtcl\u0026hellip;\u0026hellip;1w遍 参考链接 https:\/\/mp.weixin.qq.com\/s\/KKkxUb_rUEi7Pxj0Qj5Odw 是Chamd5的wp，感觉详细很多 parser 这道题挣扎",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-07 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-07 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/de1ctf-2020-re\/",
+    "wordCount" : "5384",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">De1CTF-2020--re</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-07 itemprop="datePublished">May 7, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">5384 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/de1ctf-2020-re/#%e7%a2%8e%e7%a2%8e%e5%bf%b5" class="toc-link">碎碎念</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#parser" class="toc-link">parser</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/de1ctf-2020-re/#flag%e6%a0%bc%e5%bc%8f%e6%a3%80%e6%9f%a5" class="toc-link">flag格式检查</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#solve" class="toc-link">solve</a></li>
+                        
+                                <ul class="toc-h4"><li><a href="/2020/de1ctf-2020-re/#rc4" class="toc-link">RC4</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#des" class="toc-link">DES</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#aes" class="toc-link">AES</a></li>
+                        
+                                </ul>
+                                </ul><li><a href="/2020/de1ctf-2020-re/#flw" class="toc-link">FLw</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#little-elves" class="toc-link">little elves</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/de1ctf-2020-re/#pe%e5%a4%b4%e4%bf%ae%e6%94%b9" class="toc-link">PE头修改</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#%e5%8e%bb%e9%99%a4%e8%8a%b1%e6%8c%87%e4%bb%a4" class="toc-link">去除花指令</a></li>
+                        <li><a href="/2020/de1ctf-2020-re/#solve" class="toc-link">solve</a></li>
+                        
+                                </ul><li><a href="/2020/de1ctf-2020-re/#mc_ticktock" class="toc-link">mc_ticktock</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/de1ctf-2020-re/#go%e7%a8%8b%e5%ba%8f%e8%af%86%e5%88%ab" class="toc-link">go程序识别</a></li>
+                        
+                                </ul><li><a href="/2020/de1ctf-2020-re/#%e7%a8%8b%e5%ba%8f%e5%88%86%e6%9e%90" class="toc-link">程序分析</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="碎碎念">碎碎念</h2>
+<p>wtclwtclwtclwtclwtcl&hellip;&hellip;1w遍</p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://mp.weixin.qq.com/s/KKkxUb_rUEi7Pxj0Qj5Odw">https://mp.weixin.qq.com/s/KKkxUb_rUEi7Pxj0Qj5Odw</a>
+是Chamd5的wp，感觉详细很多</p>
+<h2 id="parser">parser</h2>
+<p>这道题挣扎的做出来了，但是我看了别人的wp之后发现我密码学真的很差==</p>
+<h3 id="flag格式检查">flag格式检查</h3>
+<p>程序首先把输入进行拆分，分为<code>De1CTF</code>, <code>{</code>, <code>strs</code>, <code>_</code>, <code>+</code>, &hellip; ,<code>}</code>, <code>\n</code>这几个部分，所以flag的格式是<code>De1CTF{str+'_/+'+str+...}</code>，拆分以后对括号里面的内容进行加密运算，加密的方式有三种，分别是RC4, DES和AES, 其中每一个被<code>_ or +</code>分开的字符部分都要做RC4, 然后<code>_</code>是DES运算, <code>+</code>是AES运算，_的优先级高于+。</p>
+<h3 id="solve">solve</h3>
+<h4 id="rc4">RC4</h4>
+<p>RC4的解密部分很好写，密钥就是<code>De1CTF</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">de_rc4</span>(s,k):
+  ci <span style="color:#f92672">=</span> ARC4<span style="color:#f92672">.</span>new(k)
+  <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>decrypt(s)
+</code></pre></div><h4 id="des">DES</h4>
+<p>菜的部分来了，首先我看到它padding了一部分，padding的内容是padding的长度，然后异或了一个东西，然后8字节一加密，密钥是<code>De1CTF\x02\x02</code>，然后8字节加密完成之后，加密的结果又与下一个8字节以后后在加密，然后我按照这个过程写的script，就这样我都没看出来这是个CBC模式的加密==我真的是服了自己了，菜哭了。就这样我也配说我学过密码学==还是刷刷Crypto吧</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">padding</span>(s,n):
+  len1 <span style="color:#f92672">=</span> len(s)
+  n1 <span style="color:#f92672">=</span> len1 <span style="color:#f92672">%</span> n
+  s <span style="color:#f92672">+=</span> chr(n<span style="color:#f92672">-</span>n1)<span style="color:#f92672">*</span>(n<span style="color:#f92672">-</span>n1)
+  <span style="color:#66d9ef">return</span> s
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">de_des_cbc</span>(s,k):
+  <span style="color:#66d9ef">if</span> len(s) <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+    s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">8</span>)
+  key <span style="color:#f92672">=</span> padding(k,<span style="color:#ae81ff">8</span>)
+  iv <span style="color:#f92672">=</span> key
+  ci <span style="color:#f92672">=</span> DES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
+  <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>decrypt(s)
+<span style="color:#75715e">#   out = &#39;&#39;</span>
+<span style="color:#75715e">#   for i in range(len(s)/8):</span>
+<span style="color:#75715e">#     ci = DES.new(key,DES.MODE_ECB)</span>
+<span style="color:#75715e">#     m1 = ci.decrypt(s[8*i:8*i+8])    </span>
+<span style="color:#75715e">#     out += xor_str(m1,iv)</span>
+<span style="color:#75715e">#     iv = s[8*i:8*i+8]</span>
+<span style="color:#75715e">#   return out  </span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">en_des_cbc</span>(s,k):
+  s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">8</span>)
+  key <span style="color:#f92672">=</span> padding(k,<span style="color:#ae81ff">8</span>)
+  iv <span style="color:#f92672">=</span> key
+  ci <span style="color:#f92672">=</span> DES<span style="color:#f92672">.</span>new(key, DES<span style="color:#f92672">.</span>MODE_CBC,iv)
+  <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>encrypt(s)
+<span style="color:#75715e">#   out = &#39;&#39;</span>
+<span style="color:#75715e">#   for i in range(len(s)/8):</span>
+<span style="color:#75715e">#     ci = DES.new(key,DES.MODE_ECB)</span>
+<span style="color:#75715e">#     m1 = xor_str(s[8*i:8*i+8],iv)</span>
+<span style="color:#75715e">#     iv = ci.encrypt(m1)    </span>
+<span style="color:#75715e">#     out += iv</span>
+<span style="color:#75715e">#   return out</span>
+</code></pre></div><h4 id="aes">AES</h4>
+<p>一样的没看出来CBC==我不配我不配我不配</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">padding</span>(s,n):
+  len1 <span style="color:#f92672">=</span> len(s)
+  n1 <span style="color:#f92672">=</span> len1 <span style="color:#f92672">%</span> n
+  s <span style="color:#f92672">+=</span> chr(n<span style="color:#f92672">-</span>n1)<span style="color:#f92672">*</span>(n<span style="color:#f92672">-</span>n1)
+  <span style="color:#66d9ef">return</span> s
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">de_aes_cbc</span>(s,k):
+  <span style="color:#66d9ef">if</span> len(s) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+    s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">16</span>)
+  key <span style="color:#f92672">=</span> padding(k,<span style="color:#ae81ff">16</span>)
+  iv <span style="color:#f92672">=</span> key
+  ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
+  <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>decrypt(s)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">en_aes_cbc</span>(s,k):
+  s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">16</span>)
+  key <span style="color:#f92672">=</span> padding(k,<span style="color:#ae81ff">16</span>)
+  iv <span style="color:#f92672">=</span> key
+  ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
+  <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>encrypt(s)
+</code></pre></div><h2 id="flw">FLw</h2>
+<p>这道题我没有仔细做，前面是学弟解析了一下，然后学长就做出来了，虚拟机有点特别，是基于队列的，一个是一个循环队列，跟我平时做的基于栈的还挺不一样的，这个故事告诉我们就也不一定是模仿程序执行的</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> Queue <span style="color:#f92672">import</span> Queue
+<span style="color:#f92672">from</span> string <span style="color:#f92672">import</span> printable
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">vm</span>():
+	pcode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\x3A\x14\x1C\x34\xFF\x41\x20\x19\x20\x1A\x20\x1B\x20\x1C\x20\x1D\x20\x1E\x20\x1F\x20\x20\x20\x21\x20\x22\x20\x23\x20\x24\x20\x25\x20\x26\x20\x27\x20\x28\x20\x29\x20\x2A\x20\x2B\x20\x2C\x20\x2D\x20\x2E\x20\x2F\x20\x30\x20\x31\x20\x32\x20\x33\x20\x34\x2A\x19\x14\x44\x34\xFF\x14\x00\x20\xFF\x2A\x1A\x14\x65\x34\xFF\x14\x20\x2A\xFF\x2A\xFF\x33\x33\x2B\x30\x14\x21\x2A\xFF\x2A\xFF\x33\x33\x2B\x30\x14\x03\x20\xFE\x2A\xFF\x14\x03\x35\x2A\xFE\x14\x3F\x33\x33\x31\x3A\x2C\x14\x01\x2A\xFE\x34\x20\xFE\x2A\xFE\x40\x17\x2A\xFF\x14\x01\x33\x20\xFF\x2A\xFF\x14\x0A\x34\x40\x3D\x2A\x1D\x14\x54\x34\xFF\x2A\x1E\x14\x46\x34\xFF\x2A\x1F\x14\x7B\x34\xFF\x14\x00\x20\xFF\x36\x15\x2A\xFF\x14\x40\x33\x2B\x32\x30\x2A\xFF\x14\x40\x33\x36\x2C\x2A\xFF\x14\x01\x33\x20\xFF\x2A\xFF\x14\x1E\x34\x40\x1D\x2A\x1C\x14\x43\x34\xFF\x2A\x1B\x14\x31\x34\xFF\x14\x00\x20\xFF\x14\x00\x14\x00\x30\x30\x2A\xFF\x14\x40\x2A\xFF\x14\x41\x33\x33\x2B\x2B\x34\x30\x2A\xFF\x14\x41\x33\x36\x2C\x2A\xFF\x14\x41\x2A\xFF\x14\x42\x33\x33\x2B\x2B\x33\x30\x2A\xFF\x14\x42\x33\x36\x2C\x2A\xFF\x14\x40\x2A\xFF\x14\x42\x33\x33\x2B\x2B\x37\x30\x2A\xFF\x14\x40\x33\x36\x2C\x2A\xFF\x14\x03\x33\x20\xFF\x2A\xFF\x14\x1E\x34\x40\x51\x2A\x34\x14\x7D\x34\xFF\x2A\x40\x14\x7A\x34\xFF\x2A\x41\x14\x19\x34\xFF\x2A\x42\x14\x4F\x34\xFF\x2A\x43\x14\x6E\x34\xFF\x2A\x44\x14\x0E\x34\xFF\x2A\x45\x14\x56\x34\xFF\x2A\x46\x14\xAF\x34\xFF\x2A\x47\x14\x1F\x34\xFF\x2A\x48\x14\x98\x34\xFF\x2A\x49\x14\x58\x34\xFF\x2A\x4A\x14\x0E\x34\xFF\x2A\x4B\x14\x60\x34\xFF\x2A\x4C\x14\xBD\x34\xFF\x2A\x4D\x14\x42\x34\xFF\x2A\x4E\x14\x8A\x34\xFF\x2A\x4F\x14\xA2\x34\xFF\x2A\x50\x14\x20\x34\xFF\x2A\x51\x14\x97\x34\xFF\x2A\x52\x14\xB0\x34\xFF\x2A\x53\x14\x3D\x34\xFF\x2A\x54\x14\x87\x34\xFF\x2A\x55\x14\xA0\x34\xFF\x2A\x56\x14\x22\x34\xFF\x2A\x57\x14\x95\x34\xFF\x2A\x58\x14\x79\x34\xFF\x2A\x59\x14\xF9\x34\xFF\x2A\x5A\x14\x41\x34\xFF\x2A\x5B\x14\x54\x34\xFF\x2A\x5C\x14\x0C\x34\xFF\x2A\x5D\x14\x6D\x34\xFF\xAB</span><span style="color:#e6db74">&#39;</span>
+
+	data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm+/=&#39;</span>
+
+	queue <span style="color:#f92672">=</span> Queue(maxsize<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+	mem <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+	inpt <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">256</span>
+
+	reg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+	pc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">while</span> True:
+		code <span style="color:#f92672">=</span> ord(pcode[pc])<span style="color:#f92672">-</span><span style="color:#ae81ff">20</span>
+		<span style="color:#66d9ef">if</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+			opnum <span style="color:#f92672">=</span> ord(pcode[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+			queue<span style="color:#f92672">.</span>put(opnum)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> push imm </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,opnum)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+			opnum <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> simple pop </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,opnum)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>:
+			opnum1 <span style="color:#f92672">=</span> ord(pcode[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			mem[opnum1] <span style="color:#f92672">=</span> opnum2
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> mem[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum1,opnum2)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">22</span>:
+			opnum <span style="color:#f92672">=</span> ord(pcode[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+			queue<span style="color:#f92672">.</span>put(mem[opnum])
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> push mem[imm </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code, opnum, mem[opnum])
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">23</span>:
+			opnum <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(mem[opnum])
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> push mem[queue </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum, mem[opnum])
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">24</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			mem[opnum1] <span style="color:#f92672">=</span> opnum2<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> mem[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum1, opnum2<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">28</span>:
+			reg <span style="color:#f92672">=</span> (queue<span style="color:#f92672">.</span>get() <span style="color:#f92672">+</span> (reg <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>))<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xffff</span>
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> fetch </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,reg)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">29</span>:
+			opnum <span style="color:#f92672">=</span> ord(pcode[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+			oreg <span style="color:#f92672">=</span> reg
+			mod <span style="color:#f92672">=</span> reg <span style="color:#f92672">%</span> opnum
+			queue<span style="color:#f92672">.</span>put(mod)
+			reg <span style="color:#f92672">/=</span> opnum
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">/</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">...</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,oreg,opnum,reg,mod)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">30</span>:
+			opnum <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(ord(data[opnum]))
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> push data[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum,ord(data[opnum]))
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">31</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(opnum1<span style="color:#f92672">+</span>opnum2)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">+</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum2,opnum1,opnum2<span style="color:#f92672">+</span>opnum1)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(opnum2<span style="color:#f92672">-</span>opnum1)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum2,opnum1,opnum2<span style="color:#f92672">-</span>opnum1)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">33</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(opnum1<span style="color:#f92672">*</span>opnum2)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">*</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum2,opnum1,opnum2<span style="color:#f92672">*</span>opnum1)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">35</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			queue<span style="color:#f92672">.</span>put(opnum1<span style="color:#f92672">^</span>opnum2)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">^</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#39;</span><span style="color:#f92672">%</span>(pc,code,opnum2,opnum1,opnum2<span style="color:#f92672">^</span>opnum1)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">38</span>:
+			inpt <span style="color:#f92672">=</span> list(<span style="color:#e6db74">&#39;De1CTF{01234567890123456789}&#39;</span>)
+			queue<span style="color:#f92672">.</span>put(<span style="color:#ae81ff">28</span>)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> input </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,<span style="color:#e6db74">&#39;De1CTF{01234567890123456789}&#39;</span>)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">44</span>:
+			opnum1 <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			opnum2 <span style="color:#f92672">=</span> ord(pcode[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> jnz </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> flag </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,opnum2, opnum1)
+			<span style="color:#66d9ef">if</span> opnum1<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>:
+				pc <span style="color:#f92672">-=</span> opnum2
+			<span style="color:#66d9ef">else</span>:
+				pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">45</span>:
+			<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">28</span>):
+				queue<span style="color:#f92672">.</span>put(ord(inpt[i]))
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> pushall flag&#39;</span><span style="color:#f92672">%</span>(pc,code)
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">151</span>:
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;failed&#39;</span>
+			<span style="color:#66d9ef">break</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">235</span>:
+			opnum <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>get()
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> jnz fail flag </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,opnum)
+			<span style="color:#75715e"># if opnum!=0:</span>
+				<span style="color:#75715e"># print &#39;failed&#39;</span>
+				<span style="color:#75715e"># break</span>
+			<span style="color:#75715e"># else:</span>
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">elif</span> code <span style="color:#f92672">==</span> <span style="color:#ae81ff">34</span>:
+			queue<span style="color:#f92672">.</span>put(reg)
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> push reg=</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">%</span>(pc,code,reg)
+			pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">else</span>:
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;0x</span><span style="color:#e6db74">%02x</span><span style="color:#e6db74"> code </span><span style="color:#e6db74">%03d</span><span style="color:#e6db74"> nop&#39;</span><span style="color:#f92672">%</span>(pc,code)
+			pc<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>
+vm()
+</code></pre></div><h2 id="little-elves">little elves</h2>
+<h3 id="pe头修改">PE头修改</h3>
+<p>用ida无法直接打开，用readelf显示PE头跟正常PE差距挺大的，但是只要修改标识大端序小端序的那个位(第5字节)，改成0x01后还是可以用ida打开的，PE文件:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">; [ Full breakdown ]
+; <span style="color:#f92672">---</span> Elf Header 
+; Offset  <span style="color:#960050;background-color:#1e0010">#</span>  Value             Purpose
+; <span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>     A  <span style="color:#ae81ff">7f</span><span style="color:#ae81ff">454</span>c46          Magic number <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x7F</span>, then <span style="color:#960050;background-color:#1e0010">&#39;</span>ELF<span style="color:#960050;background-color:#1e0010">&#39;</span> in ASCII
+; <span style="color:#ae81ff">4</span>       B  ba                <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span> bit, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span> bit
+; <span style="color:#ae81ff">5</span>       C  dc                <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> little endian, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> big endian
+; <span style="color:#ae81ff">6</span>       D  fe                ELF Version
+; <span style="color:#ae81ff">7</span>       E  <span style="color:#ae81ff">21</span>                OS ABI <span style="color:#f92672">-</span> usually <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> System V
+; <span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>F     F  <span style="color:#ae81ff">43</span>be69191228eb3c  Unused<span style="color:#f92672">/</span>padding 
+; <span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span>   G  <span style="color:#ae81ff">0200</span>              <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> relocatable, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> executable, <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> shared, <span style="color:#ae81ff">4</span> <span style="color:#f92672">=</span> core
+; <span style="color:#ae81ff">12</span><span style="color:#f92672">-</span><span style="color:#ae81ff">13</span>   H  <span style="color:#ae81ff">3e00</span>              Instruction set
+; <span style="color:#ae81ff">14</span><span style="color:#f92672">-</span><span style="color:#ae81ff">17</span>   I  <span style="color:#ae81ff">01000000</span>          ELF Version
+; <span style="color:#ae81ff">18</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1F</span>   J  <span style="color:#ae81ff">0400000001000000</span>  Program entry position
+; <span style="color:#ae81ff">20</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span>   K  <span style="color:#ae81ff">1</span>c00000000000000  Program header table position <span style="color:#f92672">-</span> This is actually in the middle of J.
+; <span style="color:#ae81ff">28</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2f</span>   L  <span style="color:#ae81ff">0000000000000000</span>  Section header table position (Don<span style="color:#960050;background-color:#1e0010">&#39;</span>t have one here so whatev)
+; <span style="color:#ae81ff">30</span><span style="color:#f92672">-</span><span style="color:#ae81ff">33</span>   M  <span style="color:#ae81ff">01000000</span>          Flags <span style="color:#f92672">-</span> architecture dependent
+; <span style="color:#ae81ff">34</span><span style="color:#f92672">-</span><span style="color:#ae81ff">35</span>   N  <span style="color:#ae81ff">4000</span>              Header size
+; <span style="color:#ae81ff">36</span><span style="color:#f92672">-</span><span style="color:#ae81ff">37</span>   O  <span style="color:#ae81ff">3800</span>              Size of an entry in the program header table
+; <span style="color:#ae81ff">38</span><span style="color:#f92672">-</span><span style="color:#ae81ff">39</span>   P  <span style="color:#ae81ff">0100</span>              Number of entries in the program header table
+; <span style="color:#ae81ff">3</span>A<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>B   Q  <span style="color:#ae81ff">0200</span>              Size of an entry in the section header table
+; <span style="color:#ae81ff">3</span>C<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>D   R  b0a9              Number of entries in the section header table [holds mov al, <span style="color:#ae81ff">0xa9</span> load syscall]
+; <span style="color:#ae81ff">3E-3</span>F   S  <span style="color:#ae81ff">0f</span><span style="color:#ae81ff">05</span>              Index in section header table with the section name [holds syscall opcodes]
+;
+; <span style="color:#f92672">---</span> Program Header
+; OFFSET  <span style="color:#960050;background-color:#1e0010">#</span>   Value            Purpose 
+; <span style="color:#ae81ff">1</span>C<span style="color:#f92672">-</span><span style="color:#ae81ff">1F</span>   PA  <span style="color:#ae81ff">01000000</span>         Type of segment
+;                                <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> null <span style="color:#f92672">-</span> ignore the entry
+;                                <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> load <span style="color:#f92672">-</span> clear p_memsz bytes at p_vaddr to <span style="color:#ae81ff">0</span>, then copy p_filesz bytes from p_offset to p_vaddr 
+;                                <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> dynamic <span style="color:#f92672">-</span> requires dynamic linking
+;                                <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> interp <span style="color:#f92672">-</span> contains a file path to an executable to use as an interpreter <span style="color:#66d9ef">for</span> the following segment
+;                                <span style="color:#ae81ff">4</span> <span style="color:#f92672">=</span> note section
+; <span style="color:#ae81ff">20</span><span style="color:#f92672">-</span><span style="color:#ae81ff">23</span>   PB  <span style="color:#ae81ff">1</span>c000000         Flags 
+;                                <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> executable
+;                                <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> writable
+;                                <span style="color:#ae81ff">4</span> <span style="color:#f92672">=</span> readable
+;                                In this <span style="color:#66d9ef">case</span> the flags are <span style="color:#ae81ff">1</span>c which is <span style="color:#ae81ff">00011100</span>
+;                                The ABI only pays attention to the lowest three bits, meaning this is marked <span style="color:#e6db74">&#34;read&#34;</span>
+; <span style="color:#ae81ff">24</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>B   PC <span style="color:#ae81ff">0000000000000000</span>   The offset in the file that the data <span style="color:#66d9ef">for</span> this segment can be found (p_offset)
+; <span style="color:#ae81ff">2</span>C<span style="color:#f92672">-</span><span style="color:#ae81ff">33</span>   PD <span style="color:#ae81ff">0000000001000000</span>   Where you should start to put this segment in virtual memory (p_vaddr)
+; <span style="color:#ae81ff">34</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>B   PE <span style="color:#ae81ff">4000380001000200</span>   Physical Address 
+; <span style="color:#ae81ff">3</span>C<span style="color:#f92672">-</span><span style="color:#ae81ff">43</span>   PF b0a90f0500000000   Size of the segment in the file (p_filesz) <span style="color:#f92672">|</span> NOTE: Can store string here and p_memsz as <span style="color:#66d9ef">long</span> as they
+; <span style="color:#ae81ff">44</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>B   PG b0a90f0500000000   Size of the segment in memory (p_memsz)    <span style="color:#f92672">|</span> are equal and not over <span style="color:#ae81ff">0xffff</span> <span style="color:#f92672">-</span> holds mov al, <span style="color:#ae81ff">0xa9</span> and syscall 
+; <span style="color:#ae81ff">4</span>C<span style="color:#f92672">-</span><span style="color:#ae81ff">43</span>   PH bfaddee1feebe990   The required alignment <span style="color:#66d9ef">for</span> this section (must be a power of <span style="color:#ae81ff">2</span>)  Well... supposedly, because you can write code here.
+; 
+; Breakdown of the hex dump according to the above data
+;           A<span style="color:#f92672">----------</span> B<span style="color:#f92672">-</span> C<span style="color:#f92672">-</span> D<span style="color:#f92672">-</span> E<span style="color:#f92672">-</span>  F<span style="color:#f92672">----------------------</span>
+; <span style="color:#ae81ff">00000000</span>  <span style="color:#ae81ff">7f</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">4</span>c <span style="color:#ae81ff">46</span> ba dc fe <span style="color:#ae81ff">21</span>  <span style="color:#ae81ff">43</span> be <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">28</span> eb <span style="color:#ae81ff">3</span>c  <span style="color:#f92672">|</span>.ELF...<span style="color:#f92672">!</span>C.i..(.<span style="color:#f92672">&lt;|</span>
+;                                                PA<span style="color:#f92672">---------</span>
+;           G<span style="color:#f92672">----</span> H<span style="color:#f92672">----</span> I<span style="color:#f92672">----------</span>  J<span style="color:#f92672">----------------------</span>
+; <span style="color:#ae81ff">00000010</span>  <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">3</span>e <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  <span style="color:#f92672">|</span>..<span style="color:#f92672">&gt;</span>.............<span style="color:#f92672">|</span>
+;           PB<span style="color:#f92672">---------</span> PC<span style="color:#f92672">----------------------</span> PD<span style="color:#f92672">---------</span>
+;           K<span style="color:#f92672">----------------------</span>  L<span style="color:#f92672">----------------------</span>
+; <span style="color:#ae81ff">00000020</span>  <span style="color:#ae81ff">1</span>c <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  <span style="color:#f92672">|</span>................<span style="color:#f92672">|</span>
+;           PD<span style="color:#f92672">---------</span> PE<span style="color:#f92672">----------------------</span> PF<span style="color:#f92672">---------</span>
+;           M<span style="color:#f92672">----------</span> N<span style="color:#f92672">----</span> O<span style="color:#f92672">----</span>  P<span style="color:#f92672">----</span> Q<span style="color:#f92672">----</span> R<span style="color:#f92672">----</span> S<span style="color:#f92672">----</span>
+; <span style="color:#ae81ff">00000030</span>  <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">00</span>  <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">00</span> b0 a9 <span style="color:#ae81ff">0f</span> <span style="color:#ae81ff">05</span>  <span style="color:#f92672">|</span>....<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">.8</span>.........<span style="color:#f92672">|</span>
+;           PF<span style="color:#f92672">---------</span> PG<span style="color:#f92672">----------------------</span> PH<span style="color:#f92672">---------</span>
+; <span style="color:#ae81ff">00000040</span>  <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> b0 a9 <span style="color:#ae81ff">0f</span> <span style="color:#ae81ff">05</span>  <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> bf ad de e1  <span style="color:#f92672">|</span>................<span style="color:#f92672">|</span>
+;           PH<span style="color:#f92672">---------</span>
+; <span style="color:#ae81ff">00000050</span>  fe eb e9 <span style="color:#ae81ff">90</span>                                       <span style="color:#f92672">|</span>....<span style="color:#f92672">|</span>
+</code></pre></div><h3 id="去除花指令">去除花指令</h3>
+<p>花指令大致格式是<code>jz xxx jmp xxx</code>这种，需要把中间的jmp patch</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> struct
+stripd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+jmp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0xe7</span>,<span style="color:#ae81ff">0xe8</span>,<span style="color:#ae81ff">0xe9</span>,<span style="color:#ae81ff">0xea</span>,<span style="color:#ae81ff">0xeb</span>]
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;little_elves&#39;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+    raw <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> len(raw):
+        <span style="color:#66d9ef">if</span> raw[i] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x74</span><span style="color:#e6db74">&#34;</span>:
+            length <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;&lt;B&#39;</span>, raw[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])[<span style="color:#ae81ff">0</span>]
+            next_ins <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;&lt;B&#39;</span>, raw[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>])[<span style="color:#ae81ff">0</span>]
+            <span style="color:#75715e"># print next_ins</span>
+            <span style="color:#66d9ef">if</span> next_ins <span style="color:#f92672">in</span> jmp:
+                stripd <span style="color:#f92672">+=</span> raw[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x90</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">*</span>length
+                i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> length <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">else</span>:
+                stripd <span style="color:#f92672">+=</span> raw[i]
+                i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            stripd <span style="color:#f92672">+=</span> raw[i]
+            i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;little_elves_strip&#39;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    f<span style="color:#f92672">.</span>write(stripd)
+</code></pre></div><p>去除花指令后可以看到大致的检测流程</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">44</span>):
+    ch3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">44</span>):
+      ch1 <span style="color:#f92672">=</span> input[j]
+      ch2 <span style="color:#f92672">=</span> t1[i][j]     
+      <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">8</span>):
+        <span style="color:#66d9ef">if</span> ch2 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>:
+          ch3 <span style="color:#f92672">^=</span> ch1
+        flag <span style="color:#f92672">=</span> ch1 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x80</span>
+        ch1 <span style="color:#f92672">=</span> (ch1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>
+        <span style="color:#66d9ef">if</span> flag:
+          ch1 <span style="color:#f92672">^=</span> <span style="color:#ae81ff">0x39</span>
+        ch2 <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">assert</span>(ch3 <span style="color:#f92672">==</span> t2[i])
+</code></pre></div><h3 id="solve-1">solve</h3>
+<p>我做到这一步就不会解了==z3也解不出来，我哭了，还是密码学==
+就是在GF(2^8)下解一个AX=B的线性方程组
+其中，当a2&amp;0x80==1时，<code>a2 = ((a2 * 2)&amp;0xff) ^ 0x39</code>相当于<code>a2 = (a2 * 2) ^ 0x139</code>
+<a href="https://blog.csdn.net/hunyxv/article/details/89033227">https://blog.csdn.net/hunyxv/article/details/89033227</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">F<span style="color:#f92672">.&lt;</span>x<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> GF(<span style="color:#ae81ff">2</span><span style="color:#f92672">^</span><span style="color:#ae81ff">8</span>,modulus<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>])
+mt <span style="color:#f92672">=</span>  [[<span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">84</span>],
+        [<span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">130</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">236</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">255</span>],
+        [<span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">239</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">42</span>],
+        [<span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">133</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">110</span>],
+        [<span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">129</span>],
+        [<span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">239</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">213</span>],
+        [<span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">133</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">135</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">15</span>],
+        [<span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">137</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">177</span>, <span style="color:#ae81ff">83</span>],
+        [<span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">242</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">247</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">148</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">199</span>, <span style="color:#ae81ff">224</span>],
+        [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">242</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">179</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">105</span>],
+        [<span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">67</span>],
+        [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">135</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">148</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">178</span>],
+        [<span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">130</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">148</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">181</span>],
+        [<span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">236</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">134</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">155</span>],
+        [<span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">213</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">148</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">15</span>],
+        [<span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">148</span>],
+        [<span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">216</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">137</span>],
+        [<span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">218</span>],
+        [<span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">184</span>],
+        [<span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">223</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">83</span>],
+        [<span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">242</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">188</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">179</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">189</span>],
+        [<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">193</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">223</span>, <span style="color:#ae81ff">68</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">75</span>],
+        [<span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">133</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">213</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">164</span>],
+        [<span style="color:#ae81ff">242</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">136</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">137</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">247</span>, <span style="color:#ae81ff">242</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">37</span>],
+        [<span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">111</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">73</span>],
+        [<span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">133</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">235</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">39</span>],
+        [<span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">247</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">118</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">133</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">97</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">218</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">170</span>],
+        [<span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">223</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">179</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">199</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">135</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">33</span>],
+        [<span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">238</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">68</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">251</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">185</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">205</span>],
+        [<span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">188</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">74</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">94</span>],
+        [<span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">174</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">199</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">216</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">117</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">79</span>],
+        [<span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">148</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">177</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">239</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">75</span>],
+        [<span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">208</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">216</span>, <span style="color:#ae81ff">205</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">223</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">254</span>],
+        [<span style="color:#ae81ff">216</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">82</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">79</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">247</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">205</span>],
+        [<span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">134</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">179</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">239</span>, <span style="color:#ae81ff">15</span>],
+        [<span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">224</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">92</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">226</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">16</span>],
+        [<span style="color:#ae81ff">245</span>, <span style="color:#ae81ff">140</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">89</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">247</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">240</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">95</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">49</span>],
+        [<span style="color:#ae81ff">254</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">181</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">210</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">106</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">98</span>],
+        [<span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">71</span>, <span style="color:#ae81ff">214</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">196</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">178</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">245</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">213</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">134</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">198</span>, <span style="color:#ae81ff">166</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">183</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">163</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">52</span>, <span style="color:#ae81ff">68</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">127</span>],
+        [<span style="color:#ae81ff">142</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">245</span>, <span style="color:#ae81ff">130</span>, <span style="color:#ae81ff">182</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">217</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">223</span>, <span style="color:#ae81ff">221</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">66</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">195</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">167</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">135</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">197</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">159</span>],
+        [<span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">159</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">137</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">250</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">233</span>, <span style="color:#ae81ff">147</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">172</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">162</span>, <span style="color:#ae81ff">212</span>, <span style="color:#ae81ff">115</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">146</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">157</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">131</span>, <span style="color:#ae81ff">190</span>, <span style="color:#ae81ff">125</span>, <span style="color:#ae81ff">175</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">4</span>],
+        [<span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">137</span>, <span style="color:#ae81ff">137</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">155</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">237</span>, <span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">126</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">188</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">68</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">2</span>],
+        [<span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">188</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">194</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">225</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">59</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">234</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">176</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">187</span>, <span style="color:#ae81ff">248</span>, <span style="color:#ae81ff">244</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">188</span>, <span style="color:#ae81ff">107</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">222</span>, <span style="color:#ae81ff">202</span>, <span style="color:#ae81ff">73</span>, <span style="color:#ae81ff">141</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">139</span>, <span style="color:#ae81ff">151</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">227</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">81</span>],
+        [<span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">138</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">173</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">84</span>, <span style="color:#ae81ff">218</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">184</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">114</span>, <span style="color:#ae81ff">55</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">192</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">241</span>, <span style="color:#ae81ff">168</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">191</span>, <span style="color:#ae81ff">216</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">229</span>, <span style="color:#ae81ff">153</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">171</span>]]
+t <span style="color:#f92672">=</span> [<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">116</span>, <span style="color:#ae81ff">124</span>, <span style="color:#ae81ff">94</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">211</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">134</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">132</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">152</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">171</span>, <span style="color:#ae81ff">228</span>, <span style="color:#ae81ff">156</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">203</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">63</span>, <span style="color:#ae81ff">215</span>, <span style="color:#ae81ff">186</span>, <span style="color:#ae81ff">201</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">103</span>, <span style="color:#ae81ff">52</span>]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">44</span>):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">44</span>):
+        mt[i][j] <span style="color:#f92672">=</span> F(mt[i][j]<span style="color:#f92672">.</span>bits())
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">44</span>):
+    t[i] <span style="color:#f92672">=</span> F(t[i]<span style="color:#f92672">.</span>bits())
+MT <span style="color:#f92672">=</span> matrix(F, mt)
+TT <span style="color:#f92672">=</span> matrix(F, t)<span style="color:#f92672">.</span>T
+<span style="color:#75715e">#print(T)</span>
+inp <span style="color:#f92672">=</span> MT<span style="color:#f92672">.</span>inverse() <span style="color:#f92672">*</span> TT
+inp <span style="color:#f92672">=</span> inp<span style="color:#f92672">.</span>T[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>list()
+x <span style="color:#f92672">=</span> [i<span style="color:#f92672">.</span>integer_representation() <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> inp]
+<span style="color:#66d9ef">print</span> (x)
+flag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> x:
+    flag<span style="color:#f92672">+=</span>chr(i)
+<span style="color:#66d9ef">print</span>(flag)
+</code></pre></div><h2 id="mc_ticktock">mc_ticktock</h2>
+<p>解出upx之后没看明白是个啥我就点了x。。。whcwhcwhc</p>
+<h3 id="go程序识别">go程序识别</h3>
+<p><a href="https://www.anquanke.com/post/id/170332">https://www.anquanke.com/post/id/170332</a>
+是个striped的程序，go程序的会包含.gopclntab这个段，段中存储了函数的实际名称(windows下编译的除外)
+<img src="/images/321088362703dcf03b556004eb7fd0d1/11884068-7cd3cd8fc9cf9450.png" alt="">
+可以使用https://github.com/sibears/IDAGolangHelper这个插件来恢复符号信息，如果运行了以后出现以下错误:
+<img src="/images/321088362703dcf03b556004eb7fd0d1/11884068-5a10a294d970276a.png" alt="">
+需要将<code>ida_ida.inf_get_min_ea()</code>修改为<code>idc.BeginEA()</code></p>
+<h2 id="程序分析">程序分析</h2>
+<p>运行webserver发现程序使用了80和8080两个端口
+<img src="/images/321088362703dcf03b556004eb7fd0d1/11884068-229f5e59a8c3ac4d.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_QWORD <span style="color:#f92672">*</span><span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">main_muxRegister</span>(<span style="color:#66d9ef">__int64</span> a1, <span style="color:#66d9ef">__int64</span> a2)
+{
+  <span style="color:#66d9ef">__int64</span> v2; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v3; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v4; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v5; <span style="color:#75715e">// rax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v6; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v7; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v8; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v9; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v11; <span style="color:#75715e">// rcx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v12; <span style="color:#75715e">// [rsp+0h] [rbp-40h]
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v13; <span style="color:#75715e">// [rsp+8h] [rbp-38h]
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v14; <span style="color:#75715e">// [rsp+18h] [rbp-28h]
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v15; <span style="color:#75715e">// [rsp+28h] [rbp-18h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>retaddr; <span style="color:#75715e">// [rsp+40h] [rbp+0h]
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">&amp;</span>retaddr <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*</span>(__readfsqword(<span style="color:#ae81ff">0xFFFFFFF8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>) )
+    runtime_morestack_noctxt(a1, a2);
+  runtime_makemap_small(a1);
+  runtime_newobject(a1, a2);
+  v5 <span style="color:#f92672">=</span> v13;
+  <span style="color:#66d9ef">if</span> ( dword_9B4370 )
+  {
+    a1 <span style="color:#f92672">=</span> (v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+    runtime_gcWriteBarrier(v13 <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+    v5 <span style="color:#f92672">=</span> v11;
+  }
+  <span style="color:#66d9ef">else</span>
+  {
+    v13[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> v12;
+  }
+  v15 <span style="color:#f92672">=</span> v5;
+  github_com_gorilla_mux__ptr_Router_HandleFunc(a1, a2, v2, <span style="color:#f92672">&amp;</span>off_753B08, v3, v4, v5, <span style="color:#f92672">&amp;</span>unk_73CD7C, <span style="color:#ae81ff">9LL</span>, <span style="color:#f92672">&amp;</span>off_753B08);
+  github_com_gorilla_mux__ptr_Router_HandleFunc(a1, a2, v6, off_753B20, v7, v8, v15, <span style="color:#f92672">&amp;</span>unk_73CD73, <span style="color:#ae81ff">9LL</span>, off_753B20);
+  github_com_gorilla_mux__ptr_Router_PathPrefix(a1, a2, v9, <span style="color:#e6db74">&#34;/0456:;&lt;=&gt;?@BCLMNOPSZ[</span><span style="color:#ae81ff">\&#34;\\\n\r\t</span><span style="color:#e6db74">&#34;</span>);
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>v14[<span style="color:#ae81ff">5</span>] )
+  {
+    <span style="color:#f92672">*</span>v14 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>off_7A4E40;
+    <span style="color:#66d9ef">if</span> ( dword_9B4370 )
+      runtime_gcWriteBarrier(v14 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">else</span>
+      v14[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>off_753B28;
+  }
+  <span style="color:#66d9ef">return</span> v15;
+}
+</code></pre></div><p>Router_HandleFunc是设置访问路由的，第一个设置的是<code>webproxy</code>第二个是<code>ticktock</code>，尝试访问<code>http://192.168.190.128/ticktock</code>会提示缺少text字段，加上后显示如下:
+<img src="/images/321088362703dcf03b556004eb7fd0d1/11884068-6df7fc5bec2d1bea.png" alt="">
+处理<code>ticktock</code>路由的函数如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">__int64</span> <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">main_muxRegister_func2</span>(<span style="color:#66d9ef">__int64</span> a1, <span style="color:#66d9ef">__int64</span> a2, <span style="color:#66d9ef">__int64</span> a3, <span style="color:#66d9ef">__int64</span> a4, <span style="color:#66d9ef">__int64</span> a5, <span style="color:#66d9ef">__int64</span> a6, <span style="color:#66d9ef">__int64</span> a7, <span style="color:#66d9ef">__int64</span> a8, <span style="color:#66d9ef">__int64</span> <span style="color:#f92672">*</span>a9)
+{
+  <span style="color:#66d9ef">__int64</span> v9; <span style="color:#75715e">// rcx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> result; <span style="color:#75715e">// rax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v11; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v12; <span style="color:#75715e">// rcx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v13; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v14; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v15; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v16; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v17; <span style="color:#75715e">// rcx
+</span><span style="color:#75715e"></span>  __int128 v18; <span style="color:#75715e">// ST00_16
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v19; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v20; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v21; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v22; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v23; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v24; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v25; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v26; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v27; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v28; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v29; <span style="color:#75715e">// rdx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v30; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v31; <span style="color:#75715e">// dl
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v32; <span style="color:#75715e">// ecx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v33; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v34; <span style="color:#75715e">// [rsp+8h] [rbp-88h]
+</span><span style="color:#75715e"></span>  _QWORD <span style="color:#f92672">*</span>v35; <span style="color:#75715e">// [rsp+8h] [rbp-88h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>v36; <span style="color:#75715e">// [rsp+8h] [rbp-88h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v37; <span style="color:#75715e">// [rsp+18h] [rbp-78h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> <span style="color:#f92672">*</span>v38; <span style="color:#75715e">// [rsp+20h] [rbp-70h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v39; <span style="color:#75715e">// [rsp+20h] [rbp-70h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v40; <span style="color:#75715e">// [rsp+28h] [rbp-68h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v41; <span style="color:#75715e">// [rsp+30h] [rbp-60h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v42; <span style="color:#75715e">// [rsp+38h] [rbp-58h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v43; <span style="color:#75715e">// [rsp+58h] [rbp-38h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v44; <span style="color:#75715e">// [rsp+80h] [rbp-10h]
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">&amp;</span>v44 <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*</span>(__readfsqword(<span style="color:#ae81ff">0xFFFFFFF8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>) )
+    runtime_morestack_noctxt(a1, a2);
+  v9 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>a9;
+  <span style="color:#66d9ef">if</span> ( a9[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> <span style="color:#f92672">*</span>v9 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">17735</span> <span style="color:#f92672">||</span> <span style="color:#f92672">*</span>(v9 <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">84</span> )
+    <span style="color:#66d9ef">return</span> (<span style="color:#f92672">*</span>(a7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">40</span>))(a1, a2, a3, a8, a5, a6, a8, <span style="color:#ae81ff">405LL</span>);
+  net_url__ptr_URL_Query(a1, a2, a3, a9[<span style="color:#ae81ff">2</span>], a5, a6, a9[<span style="color:#ae81ff">2</span>]);
+  runtime_mapaccess2_faststr(a1, a2, v11, v12, v13, v14);
+  v17 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>v38;
+  <span style="color:#66d9ef">if</span> ( v40 <span style="color:#f92672">&amp;&amp;</span> v38[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">*</span>(v17 <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0LL</span> )
+  {
+    <span style="color:#66d9ef">if</span> ( qword_996E00 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x10</span> )
+      runtime_panicSliceAcap(a1, a2);
+    v43 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>v38;
+    <span style="color:#f92672">*&amp;</span>v18 <span style="color:#f92672">=</span> qword_996DF0;
+    <span style="color:#f92672">*</span>(<span style="color:#f92672">&amp;</span>v18 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">16LL</span>;
+    webserver_crypt_NewCipher(a1, a2, qword_996E00, v17, v15, v16, v18, qword_996E00);
+    <span style="color:#66d9ef">if</span> ( v40 )
+    {
+      runtime_newobject(a1, a2);
+      <span style="color:#f92672">*</span>v35 <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>lanretni<span style="color:#960050;background-color:#1e0010">&#39;</span>;
+      <span style="color:#f92672">*</span>(v35 <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>rorre la<span style="color:#960050;background-color:#1e0010">&#39;</span>;
+      result <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(a7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>))(a1);
+    }
+    <span style="color:#66d9ef">else</span>
+    {
+      <span style="color:#66d9ef">if</span> ( qword_996E20 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x10</span> )
+        runtime_panicSliceAcap(a1, a2);
+      crypto_cipher_newCFB(a1, a2, qword_996E20, <span style="color:#ae81ff">4LL</span>, v19, v20, <span style="color:#ae81ff">4LL</span>, v38, qword_996E10, <span style="color:#ae81ff">0x10</span>, qword_996E20, <span style="color:#ae81ff">0</span>);
+      runtime_stringtoslicebyte(a1, a2, v42, <span style="color:#f92672">*</span>(v43 <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>), v21);
+      runtime_makeslice(a1, a2, v37);
+      (<span style="color:#f92672">*</span>(v41 <span style="color:#f92672">+</span> <span style="color:#ae81ff">24</span>))(a1, a2, v39, <span style="color:#f92672">*</span>(v41 <span style="color:#f92672">+</span> <span style="color:#ae81ff">24</span>));
+      encoding_base64__ptr_Encoding_EncodeToString(a1, a2, v22, v39, v23, v24);
+      runtime_convTstring(a1, a2, v25);
+      v44 <span style="color:#f92672">=</span> v39;
+      fmt_Sprintf(a1, a2, v26, <span style="color:#f92672">&amp;</span>unk_6C5A40, v27, v28, <span style="color:#f92672">&amp;</span>unk_73DD90);<span style="color:#75715e">// TickTock %s
+</span><span style="color:#75715e"></span>      runtime_stringtoslicebyte(a1, a2, v29, v39, v30);
+      v36 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>unk_1;
+      (<span style="color:#f92672">*</span>(a7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>))(a8);
+      <span style="color:#66d9ef">if</span> ( qword_98B3C8 <span style="color:#f92672">==</span> v39 )
+      {
+        v36 <span style="color:#f92672">=</span> off_98B3C0;
+        runtime_memequal(a8, <span style="color:#ae81ff">1LL</span>, v37, v39);
+        result <span style="color:#f92672">=</span> v39;
+      }
+      <span style="color:#66d9ef">else</span>
+      {
+        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+      }
+      <span style="color:#66d9ef">if</span> ( result )
+      {
+        runtime_newobject(a8, <span style="color:#ae81ff">1LL</span>);
+        <span style="color:#f92672">*</span>v36 <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>arceniM<span style="color:#960050;background-color:#1e0010">\</span>n<span style="color:#960050;background-color:#1e0010">&#39;</span>;
+        <span style="color:#f92672">*</span>(v36 <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> byte_741CD8;               <span style="color:#75715e">// Minecra is ticking...
+</span><span style="color:#75715e"></span>        (<span style="color:#f92672">*</span>(a7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>))(a8);
+        result <span style="color:#f92672">=</span> runtime_newproc(a8, <span style="color:#ae81ff">1</span>, v31, v32, v33);
+      }
+    }
+  }
+  <span style="color:#66d9ef">else</span>
+  {
+    runtime_newobject(a1, a2);
+    <span style="color:#f92672">*</span>v34 <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span> dilavni<span style="color:#960050;background-color:#1e0010">&#39;</span>;                          <span style="color:#75715e">// invalid param: text
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span>(v34 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> <span style="color:#f92672">*&amp;</span>byte_7400D5;
+    result <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>(a7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>))(a1);
+  }
+  <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><p>处理过程是经过一层CFB模式的加密后再base64，结果需要与<code> off_98B3C0</code>比较，比较过程在<code>runtime_memequal(a8, 1LL, v37, v39)</code>中，根据恢复出来的函数名称可以看到加密算法为feistel结构的分组对称加密，CFB模式，KEY和IV为常量的sha256的hash值，<strong>crypto_cipher_newCFB参数中有控制加解密模式的参数。将0x693743处的patch将解密模式变成解密模式</strong>
+<code>mov     byte ptr [rsp+90h+var_68], 1</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">http://192.168.190.128/ticktock?text<span style="color:#f92672">=</span>%A4%A3%04%B9%1E%F1%96%C6%0A%26%4D%E9%AF%FD%B1%FF%06%EE%E5%CF%6B%2E%0C%02%17%6A%97%B7%95%AC%B8%11%1A%8F%13%83%E5%AF%67%C9%6A%26%99%2B%1C%AD%3F%41%DF%AA%36%36%08%A2%04%9D
+TickTock: SGVyZSBpcyBhIEZMQUc6IERlMUNURnt0MUNrLXQwY2tfVGxjay0xb2NLX01DMk8yMF86KVNNNH0<span style="color:#f92672">=</span>
+base64 decode: Here is a FLAG: De1CTF<span style="color:#f92672">{</span>t1Ck-t0ck_Tlck-1ocK_MC2O20_:<span style="color:#f92672">)</span>SM4<span style="color:#f92672">}</span>
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/de1ctf-2020-re/>https://linkleyping.top/2020/de1ctf-2020-re/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/de1ctf2019-signal-vm/" class="prev" rel="prev" title="De1CTF2019-signal-vm"><i class="iconfont icon-left"></i>&nbsp;De1CTF2019-signal-vm</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E5%A4%A9-sig%E5%88%B6%E4%BD%9C/" class="next" rel="next" title="sig制作">sig制作&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

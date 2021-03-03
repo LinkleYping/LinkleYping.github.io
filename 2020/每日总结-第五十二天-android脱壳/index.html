@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Android脱壳 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="Android脱壳 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "Android脱壳",
+    "headline" : "Android脱壳",
+    "description" : "参考链接 ApkShelling脱壳和FART脱壳 Frida从入门到入门—安卓逆向菜鸟的frida食用说明 初识Frida\u0026ndash;Andr",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-15 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-06-15 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3\/",
+    "wordCount" : "993",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Android脱壳</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-06-15 itemprop="datePublished">June 15, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">993 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/#apkshelling" class="toc-link">ApkShelling</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/#frida%e6%a1%86%e6%9e%b6%e4%bd%bf%e7%94%a8" class="toc-link">Frida框架使用</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考链接">参考链接</h2>
+<p><a href="https://www.jianshu.com/p/ed64212ccd38">ApkShelling脱壳和FART脱壳</a>
+<a href="https://bbs.pediy.com/thread-226846.htm">Frida从入门到入门—安卓逆向菜鸟的frida食用说明</a>
+<a href="https://bbs.pediy.com/thread-226846.htm">初识Frida&ndash;Android逆向之Java层hook</a></p>
+<h2 id="apkshelling">ApkShelling</h2>
+<p><a href="https://github.com/OakChen/ApkShelling">https://github.com/OakChen/ApkShelling</a></p>
+<ul>
+<li>修改XposedEntry.java中的targetPackages</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">private <span style="color:#66d9ef">static</span> final String[] targetPackages <span style="color:#f92672">=</span>
+            new String[]{<span style="color:#e6db74">&#34;com.sfysoft.shellingtest&#34;</span>, <span style="color:#e6db74">&#34;com.sfysoft.shellingtest2&#34;</span>, <span style="color:#e6db74">&#34;com.example.how_debug&#34;</span>};
+</code></pre></div><ul>
+<li>重启手机运行加壳程序</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ adb logcat -s Xposed
+06-15 14:58:01.091  <span style="color:#ae81ff">6048</span>  <span style="color:#ae81ff">6048</span> I Xposed  : Found com.SecShell.SecShell.ApplicationWrapper
+06-15 14:58:01.119  <span style="color:#ae81ff">6048</span>  <span style="color:#ae81ff">6064</span> I Xposed  : Thread: 246, File: /data/data/com.example.how_debug/00246-01.dex
+06-15 14:58:01.228  <span style="color:#ae81ff">6048</span>  <span style="color:#ae81ff">6064</span> I Xposed  : Thread: 246, File: /data/data/com.example.how_debug/00246-02.dex
+</code></pre></div><ul>
+<li>pull 生成的dex
+如果出现Not found object的问题，可以先把文件移动到<code>/sdcard/</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@angler:/data/data/com.example.how_debug <span style="color:#75715e"># cp 00246-01.dex /sdcard/01.dex</span>
+root@angler:/data/data/com.example.how_debug <span style="color:#75715e"># cp 00246-02.dex /sdcard/02.dex</span>
+</code></pre></div><h2 id="frida框架使用">Frida框架使用</h2>
+<ul>
+<li>安装：
+<a href="https://github.com/frida/frida">https://github.com/frida/frida</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">push frida-server-arm64 /data/local/tmp
+chmod <span style="color:#ae81ff">777</span> frida-server-arm64
+./frida-server-arm64
+<span style="color:#75715e"># 端口转发</span>
+adb forward tcp:27043 tcp:27043
+adb forward tcp:27042 tcp:27042
+<span style="color:#75715e"># 检查是否成功</span>
+frida-ps -U
+</code></pre></div><p>frida自带的Messages机制与进程交互</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> frida<span style="color:#f92672">,</span> sys
+ 
+<span style="color:#f92672">//</span>hook代码<span style="color:#960050;background-color:#1e0010">，采用</span>javascript编写
+jscode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">//javascript代码，重点
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+ 
+<span style="color:#f92672">//</span><span style="color:#960050;background-color:#1e0010">自定义回调函数</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(message, data):
+    <span style="color:#66d9ef">if</span> message[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;send&#39;</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;[*] {0}&#34;</span><span style="color:#f92672">.</span>format(message[<span style="color:#e6db74">&#39;payload&#39;</span>]))
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(message)
+ 
+<span style="color:#75715e">#重点的4行代码</span>
+<span style="color:#75715e"># 获取手机设备并附加到进程</span>
+process <span style="color:#f92672">=</span> frida<span style="color:#f92672">.</span>get_usb_device()<span style="color:#f92672">.</span>attach(<span style="color:#e6db74">&#39;应用完整包名&#39;</span>)
+script <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>create_script(jscode)
+<span style="color:#75715e"># 回调</span>
+script<span style="color:#f92672">.</span>on(<span style="color:#e6db74">&#39;message&#39;</span>, on_message)
+<span style="color:#75715e"># 在服务端就启动javascript脚本了</span>
+script<span style="color:#f92672">.</span>load()
+sys<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>read()
+</code></pre></div><p>这里用到的语言分别是python和javascript，他们之间的关系是python作为载体，javascript作为在android中真正执行代码。
+运行给的两个实例</p>
+<ol>
+<li>直接hook MainActivity中的OnCreate()方法，获取calc函数的返回值
+js代码解释</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//Java.Perform 开始执行JavaScript脚本。
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">perform</span>(<span style="color:#66d9ef">function</span> () {
+<span style="color:#75715e">//定义变量MainActivity，Java.use指定要使用的类
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">use</span>(<span style="color:#e6db74">&#39;com.example.seccon2015.rock_paper_scissors.MainActivity&#39;</span>);
+    <span style="color:#75715e">//hook该类下的onCreate方法，重新实现它
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">MainActivity</span>.<span style="color:#a6e22e">onCreate</span>.<span style="color:#a6e22e">implementation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+        <span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hook Start...&#34;</span>);
+        <span style="color:#75715e">//调用calc()方法，获取返回值
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">calc</span>();
+        <span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Return:&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">returnValue</span>);
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1000</span><span style="color:#f92672">+</span><span style="color:#a6e22e">returnValue</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">107</span>;
+        <span style="color:#75715e">//解出答案
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Flag:&#34;</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;SECCON{&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">toString</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;}&#34;</span>);
+    }
+});
+</code></pre></div><p>完整实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> frida<span style="color:#f92672">,</span> sys
+ 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(message, data):
+    <span style="color:#66d9ef">if</span> message[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;send&#39;</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;[*] {0}&#34;</span><span style="color:#f92672">.</span>format(message[<span style="color:#e6db74">&#39;payload&#39;</span>]))
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(message)
+ 
+jscode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Java.perform(function () {
+</span><span style="color:#e6db74">    var MainActivity = Java.use(&#39;com.example.seccon2015.rock_paper_scissors.MainActivity&#39;);
+</span><span style="color:#e6db74">    MainActivity.onCreate.implementation = function () {
+</span><span style="color:#e6db74">        send(&#34;Hook Start...&#34;);
+</span><span style="color:#e6db74">        var returnValue = this.calc();
+</span><span style="color:#e6db74">        send(&#34;Return:&#34;+returnValue);
+</span><span style="color:#e6db74">        var result = (1000+returnValue)*107;
+</span><span style="color:#e6db74">        send(&#34;Flag:&#34;+&#34;SECCON{&#34;+result.toString()+&#34;}&#34;);
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">});
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+process <span style="color:#f92672">=</span> frida<span style="color:#f92672">.</span>get_usb_device()<span style="color:#f92672">.</span>attach(<span style="color:#e6db74">&#39;com.example.seccon2015.rock_paper_scissors&#39;</span>)
+script <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>create_script(jscode)
+script<span style="color:#f92672">.</span>on(<span style="color:#e6db74">&#39;message&#39;</span>, on_message)
+script<span style="color:#f92672">.</span>load()
+sys<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>read()
+</code></pre></div><ol start="2">
+<li>修改MainActivity中的变量
+js代码</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">perform</span>(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Java</span>.<span style="color:#a6e22e">use</span>(<span style="color:#e6db74">&#39;com.example.seccon2015.rock_paper_scissors.MainActivity&#39;</span>);
+    <span style="color:#75715e">//hook onClick方法，此处要注意的是onClick方法是传递了一个View参数v
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">MainActivity</span>.<span style="color:#a6e22e">onClick</span>.<span style="color:#a6e22e">implementation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">v</span>) {
+        <span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hook Start...&#34;</span>);
+        <span style="color:#75715e">//调用onClick,模拟点击事件
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onClick</span>(<span style="color:#a6e22e">v</span>);
+        <span style="color:#75715e">//修改参数
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cnt</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span>;
+        <span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Success!&#34;</span>)
+    }
+});
+</code></pre></div><p>完整代码实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> frida<span style="color:#f92672">,</span> sys
+ 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(message, data):
+    <span style="color:#66d9ef">if</span> message[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;send&#39;</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;[*] {0}&#34;</span><span style="color:#f92672">.</span>format(message[<span style="color:#e6db74">&#39;payload&#39;</span>]))
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(message)
+ 
+jscode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Java.perform(function () {
+</span><span style="color:#e6db74">    var MainActivity = Java.use(&#39;com.example.seccon2015.rock_paper_scissors.MainActivity&#39;);
+</span><span style="color:#e6db74">    MainActivity.onClick.implementation = function (v) {
+</span><span style="color:#e6db74">        send(&#34;Hook Start...&#34;);
+</span><span style="color:#e6db74">        this.onClick(v);
+</span><span style="color:#e6db74">        this.n.value = 0;
+</span><span style="color:#e6db74">        this.m.value = 2;
+</span><span style="color:#e6db74">        this.cnt.value = 999;
+</span><span style="color:#e6db74">        send(&#34;Success!&#34;)
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">});
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+ 
+process <span style="color:#f92672">=</span> frida<span style="color:#f92672">.</span>get_usb_device()<span style="color:#f92672">.</span>attach(<span style="color:#e6db74">&#39;com.example.seccon2015.rock_paper_scissors&#39;</span>)
+script <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>create_script(jscode)
+script<span style="color:#f92672">.</span>on(<span style="color:#e6db74">&#39;message&#39;</span>, on_message)
+script<span style="color:#f92672">.</span>load()
+sys<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>read()
+</code></pre></div><p>由于关键的实现部分其实在于js代码，下面是frida js中的一些关键函数
+<a href="https://www.frida.re/docs/javascript-api/">https://www.frida.re/docs/javascript-api/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" class="prev" rel="prev" title="反调试技术"><i class="iconfont icon-left"></i>&nbsp;反调试技术</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" class="next" rel="next" title="Unicorn">Unicorn&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

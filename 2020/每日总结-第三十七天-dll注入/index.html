@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            DLL注入 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="DLL注入 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "DLL注入",
+    "headline" : "DLL注入",
+    "description" : "参考文献 逆向工程核心原理 Windows消息勾取 消息钩子 Windows操作系统向用户提供GUI，它以事件驱动方式工作，在操作系统中借助键盘、鼠",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-18 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-18 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5\/",
+    "wordCount" : "3826",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">DLL注入</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-18 itemprop="datePublished">May 18, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">3826 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="toc-link">参考文献</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#windows%e6%b6%88%e6%81%af%e5%8b%be%e5%8f%96" class="toc-link">Windows消息勾取</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#%e6%b6%88%e6%81%af%e9%92%a9%e5%ad%90" class="toc-link">消息钩子</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#setwindowshookex%e5%87%bd%e6%95%b0" class="toc-link">SetWindowsHookEx函数</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#%e4%b8%be%e4%be%8b" class="toc-link">举例</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#dll%e6%b3%a8%e5%85%a5" class="toc-link">Dll注入</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#createremotethread" class="toc-link">CreateRemoteThread</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#appinit_dlls" class="toc-link">AppInit_DLLs</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/#dll%e5%8d%b8%e8%bd%bd" class="toc-link">DLL卸载</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考文献">参考文献</h2>
+<p>逆向工程核心原理</p>
+<h2 id="windows消息勾取">Windows消息勾取</h2>
+<h3 id="消息钩子">消息钩子</h3>
+<p>Windows操作系统向用户提供GUI，它以事件驱动方式工作，在操作系统中借助键盘、鼠标、选择菜单、按钮以及移动鼠标等都是事件(Event)。发生这些事件时，OS会把事先定义好的消息发送给相应的应用程序，应用程序分析收到的消息后执行相应的动作。
+常规Windows消息流</p>
+<ol>
+<li>发生键盘输入事件时，WM_KETDOWN消息被添加到[OS message queue].</li>
+<li>OS判断那个应用程序发生了事件，然后从[OS message queue]中取出消息，添加到相应应用程序的[application message queue]中。</li>
+<li>应用程序监视自身的[application message queue], 发现新添加的
+WM_KEYDOWN消息后，调用相应的事件处理程序处理。</li>
+</ol>
+<p>OS消息队列与应用程序消息队列之间存在一条钩链(Hook Chain)，设置好键盘消息钩子之后，处于钩链中的键盘消息钩子会比应用程序先看到相应信息。在键盘消息钩子函数的内部，除了可以查看消息之外，还可以修改消息本身，而且还能对消息实施拦截，阻止消息传递。</p>
+<h3 id="setwindowshookex函数">SetWindowsHookEx函数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">HHOOK <span style="color:#a6e22e">SetWindowsHookEx</span>(
+        <span style="color:#66d9ef">int</span> idHook,   <span style="color:#75715e">// hook type
+</span><span style="color:#75715e"></span>        HOOKPROC lpfn,    <span style="color:#75715e">// hook procedure
+</span><span style="color:#75715e"></span>        HINSTANCE hMod,    <span style="color:#f92672">//</span> hook procedure所属的DLL句柄 (Handle)
+        DWORD dwThreadID    <span style="color:#75715e">// 想要挂钩的线程ID
+</span><span style="color:#75715e"></span>);
+</code></pre></div><p>钩子过程(hook procedure)是由操作系统调用的回调函数，安装消息钩子时，钩子过程需要存在于某个DLL内部，且该DLL的实例句柄(instance procedure)即是hMod.
+如果dwThreadID参数被设置为0，则安装的钩子为全局安全钩子(Global Hook)，它会影响运行中的以及以后要运行的所有进程。
+像这样，使用<code>SetWindowsHookEx</code>设置好钩子之后，在某个进程中生成指定消息时，操作系统会将相关的DLL文件强制注入相应进程，然后调用注册的钩子过程。</p>
+<h3 id="举例">举例</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">// HookMain.cpp
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;conio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define DEF_DLL_NAME &#34;KeyHook.dll&#34;
+</span><span style="color:#75715e">#define DEL_HOOKSTART &#34;HookStart&#34;
+</span><span style="color:#75715e">#define DEF_HOOKSTOP &#34;HookStop&#34;
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">void</span>(<span style="color:#f92672">*</span>PFN_HOOKSTART)();
+<span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">void</span>(<span style="color:#f92672">*</span>PFN_HOOKSTOP)();
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+	HMODULE hDll <span style="color:#f92672">=</span> NULL;
+	PFN_HOOKSTART HookStart <span style="color:#f92672">=</span> NULL;
+	PFN_HOOKSTOP HookStop <span style="color:#f92672">=</span> NULL;
+	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	hDll <span style="color:#f92672">=</span> LoadLibraryA(DEF_DLL_NAME);
+	<span style="color:#66d9ef">if</span> (hDll <span style="color:#f92672">==</span> NULL)
+	{
+		printf(<span style="color:#e6db74">&#34;load library failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+	}
+	HookStart <span style="color:#f92672">=</span> (PFN_HOOKSTART)GetProcAddress(hDll, DEL_HOOKSTART);
+	HookStop <span style="color:#f92672">=</span> (PFN_HOOKSTOP)GetProcAddress(hDll, DEF_HOOKSTOP);
+	HookStart();
+	printf(<span style="color:#e6db74">&#34;print q to stop</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+	<span style="color:#66d9ef">while</span> (_getch() <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;q&#39;</span>);
+	HookStop();
+	FreeLibrary(hDll);
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>先加载KeyHook.dll文件，然后调用<code>HookStart</code>函数开始钩取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">// dllmain.cpp : 定义 DLL 应用程序的入口点。
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;pch.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tchar.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define DEF_PROCESS_NAME &#34;notepad.exe&#34;
+</span><span style="color:#75715e"></span>HINSTANCE g_hInstance <span style="color:#f92672">=</span> NULL;
+HHOOK g_hHook <span style="color:#f92672">=</span> NULL;
+HWND g_hWnd <span style="color:#f92672">=</span> NULL;
+
+BOOL APIENTRY <span style="color:#a6e22e">DllMain</span>( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                     )
+{
+    <span style="color:#66d9ef">switch</span> (ul_reason_for_call)
+    {
+    <span style="color:#66d9ef">case</span> DLL_PROCESS_ATTACH:
+		g_hInstance <span style="color:#f92672">=</span> hModule;
+		<span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> DLL_THREAD_ATTACH:
+    <span style="color:#66d9ef">case</span> DLL_THREAD_DETACH:
+    <span style="color:#66d9ef">case</span> DLL_PROCESS_DETACH:
+        <span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">return</span> TRUE;
+}
+
+LRESULT CALLBACK <span style="color:#a6e22e">KeyboardProc</span>(<span style="color:#66d9ef">int</span> nCode, WPARAM wParam, LPARAM lParam)
+{
+	<span style="color:#66d9ef">char</span> szPath[MAX_PATH] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span>, };
+	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> NULL;
+	<span style="color:#66d9ef">if</span> (nCode <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>)
+	{
+		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(lParam <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x80000000</span>))  <span style="color:#75715e">//释放键盘按键
+</span><span style="color:#75715e"></span>		{
+			GetModuleFileNameA(NULL, szPath, MAX_PATH);
+			p <span style="color:#f92672">=</span> strrchr(szPath, <span style="color:#e6db74">&#39;\\&#39;</span>);
+			<span style="color:#75715e">//比较当前函数名称，如果名称是notepad.exe则消息不会传递给下一个勾子
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>_stricmp(p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, DEF_PROCESS_NAME))
+			{
+				OutputDebugString(_T(<span style="color:#e6db74">&#34;knock</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+				<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+			}
+		}
+	}
+	<span style="color:#75715e">// 将消息传递给应用程序(或者下一个钩子)
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> CallNextHookEx(g_hHook, nCode, wParam, lParam);
+}
+
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> {
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__declspec</span>(dllexport) <span style="color:#66d9ef">void</span> HookStart()
+{
+	g_hHook <span style="color:#f92672">=</span> SetWindowsHookEx(WH_KEYBOARD, KeyboardProc, g_hInstance, <span style="color:#ae81ff">0</span>);
+}
+<span style="color:#66d9ef">__declspec</span>(dllexport) <span style="color:#66d9ef">void</span> HookStop()
+{
+	<span style="color:#66d9ef">if</span> (g_hHook)
+	{
+		UnhookWindowsHookEx(g_hHook);
+		g_hHook <span style="color:#f92672">=</span> NULL;
+	}
+}
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span>}
+<span style="color:#75715e">#endif </span><span style="color:#75715e">// __cplusplus
+</span></code></pre></div><p>调用Dll代码中的<code>HookStart</code>函数时，<code>SetWindowsHookEx</code>函数就会将<code>KeyboardProc</code>添加到键盘钩链。安装好键盘钩子后，无论哪个进程，只要发生键盘输入事件，OS就会强制将KeyHook.dll注入相应进程，加载了KeyHook.dll的进程中，发生键盘事件时会首先调用执行KeyHook.KeyboardProc()
+运行HookMain.cpp中的代码后，使用Process Explorer搜索加载了KeyHook.dll的进程:
+<img src="/images/57f3984cd5f90ddf8dba5af2411ee1fd/11884068-069b98395ffdaac0.png" alt="">
+如图，只要发生了键盘输入事件的进程都被注入了KeyHook.dll，在notepad中输入会在DebugView中看到相应的调试输出结果:
+<img src="/images/57f3984cd5f90ddf8dba5af2411ee1fd/11884068-f97871a605a26a4e.png" alt=""></p>
+<h2 id="dll注入">Dll注入</h2>
+<p>Dll被加载到进程后会自动运行DllMain()函数，用户可以把想执行的代码放到DllMain函数，每当加载Dll时，添加的代码就会自然而然得到执行，利用这个特性可以修复程序Bug，或者向程序添加新功能。
+Dll注入的工作原理就是从外部促使目标进程调用LoadLibrary()API，所以会强制调用DllMain函数。
+<strong>Windows OS默认提供的消息钩取功能应用就是一种Dll注入技术，与常规的Dll注入唯一的区别就是OS会直接将已注册的钩取Dll注入目标进程。</strong>
+向某个进程注入Dll时主要使用以下三种办法:</p>
+<ul>
+<li>创建远程线程<code>CreateRemoteThread()</code></li>
+<li>使用注册表<code>AppInit_Dlls</code>值</li>
+<li>消息钩取<code>SetWindowsHookEx()</code></li>
+</ul>
+<h3 id="createremotethread">CreateRemoteThread</h3>
+<p>`CreateRemoteThread()API用来在目标进程中执行其创建出的线程，函数原型如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">HANDLE WINAPI <span style="color:#a6e22e">CreateRemoteThread</span>(
+    _In_ HANDLE hProcess,   <span style="color:#75715e">// 目标进程句柄
+</span><span style="color:#75715e"></span>    _In_opt_ LPSECURITY_ATTRIBUTES lpThreadAttributes,
+    _In_ SIZE_T dwStackSize,
+    _In_ LPTHREAD_START_ROUTINE lpStartAddress,  <span style="color:#75715e">//线程函数地址
+</span><span style="color:#75715e"></span>    _In_opt_ LPVOID lpParameter,   <span style="color:#75715e">//  线程参数地址
+</span><span style="color:#75715e"></span>    _In_ DWORD dwCreationFlags,
+    _Out_opt_ LPDWORD lpThreadId
+    );
+</code></pre></div><p>除第一个参数外，其余参数与CreateThread()函数完全一样。hProcess参数是要执行线程的目标进程句柄</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">// myhack.dll
+</span><span style="color:#75715e">// dllmain.cpp : 定义 DLL 应用程序的入口点。
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;pch.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tchar.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;urlmon.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#pragma comment(lib, &#34;urlmon.lib&#34;)
+</span><span style="color:#75715e">#define DEL_URL (L&#34;http:</span><span style="color:#75715e">//baidu.com/index.html&#34;)
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define DEL_FILE_NAME (L&#34;index.html&#34;)
+</span><span style="color:#75715e"></span>
+HMODULE g_hMod <span style="color:#f92672">=</span> NULL;
+
+DWORD WINAPI <span style="color:#a6e22e">ThreadProc</span>(LPVOID lParam)
+{
+	TCHAR szPath[_MAX_PATH] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span>, };
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>GetModuleFileName(g_hMod, szPath, MAX_PATH))
+		<span style="color:#66d9ef">return</span> FALSE;
+	OutputDebugString(szPath);
+	TCHAR <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> _tcsrchr(szPath, <span style="color:#e6db74">&#39;\\&#39;</span>);
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>p)
+		<span style="color:#66d9ef">return</span> FALSE;
+	_tcscpy_s(p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, _MAX_PATH, DEL_FILE_NAME);
+	URLDownloadToFile(NULL, DEL_URL, szPath, <span style="color:#ae81ff">0</span>, NULL);
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+BOOL APIENTRY <span style="color:#a6e22e">DllMain</span>( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                     )
+{
+	HANDLE hThread <span style="color:#f92672">=</span> NULL;
+	g_hMod <span style="color:#f92672">=</span> hModule;
+    <span style="color:#66d9ef">switch</span> (ul_reason_for_call)
+    {
+    <span style="color:#66d9ef">case</span> DLL_PROCESS_ATTACH:
+		OutputDebugString(_T(<span style="color:#e6db74">&#34;myhack.dll Injection!!!&#34;</span>));
+		hThread <span style="color:#f92672">=</span> CreateThread(NULL, <span style="color:#ae81ff">0</span>, ThreadProc, NULL, <span style="color:#ae81ff">0</span>, NULL);
+		CloseHandle(hThread);
+		<span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> DLL_THREAD_ATTACH:
+    <span style="color:#66d9ef">case</span> DLL_THREAD_DETACH:
+    <span style="color:#66d9ef">case</span> DLL_PROCESS_DETACH:
+        <span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">return</span> TRUE;
+}
+
+<span style="color:#75715e">// InjectDll.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tchar.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>BOOL <span style="color:#a6e22e">InjectDll</span>(DWORD dwPID, LPCTSTR szDllPath)
+{
+	HANDLE hProcess <span style="color:#f92672">=</span> NULL, hThread <span style="color:#f92672">=</span> NULL;
+	HMODULE hMod <span style="color:#f92672">=</span> NULL;
+	LPVOID pRemoteBuf <span style="color:#f92672">=</span> NULL;
+	DWORD dwBufSize <span style="color:#f92672">=</span> (DWORD)(_tcslen(szDllPath) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(TCHAR);
+	LPTHREAD_START_ROUTINE pThreadProc;
+        <span style="color:#75715e">// 获取目标进程句柄
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(hProcess <span style="color:#f92672">=</span> OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPID)))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;OpenProcess(%d) failed!!![%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dwPID, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	<span style="color:#75715e">// 在目标进程内存中分配szDllName大小的内存
+</span><span style="color:#75715e"></span>	pRemoteBuf <span style="color:#f92672">=</span> VirtualAllocEx(hProcess, NULL, dwBufSize, MEM_COMMIT, PAGE_READWRITE);
+	<span style="color:#66d9ef">if</span> (pRemoteBuf <span style="color:#f92672">==</span> NULL)
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;VirtualAllocEx Failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		CloseHandle(hProcess);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	<span style="color:#75715e">// 将myhack.dll路径写入分配的内存
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>WriteProcessMemory(hProcess, pRemoteBuf, szDllPath, dwBufSize, NULL))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;WriteProcessMemory Failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		VirtualFreeEx(hProcess, pRemoteBuf, (DWORD)(_tcslen(szDllPath) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), MEM_DECOMMIT);
+		CloseHandle(hProcess);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	
+	<span style="color:#75715e">// 获取LoadLibraryW()API的地址, kernel32.dll在每个进程中加载的地址都相同
+</span><span style="color:#75715e"></span>	hMod <span style="color:#f92672">=</span> GetModuleHandle(_T(<span style="color:#e6db74">&#34;kernel32&#34;</span>));
+	pThreadProc <span style="color:#f92672">=</span> (LPTHREAD_START_ROUTINE)GetProcAddress(hMod, <span style="color:#e6db74">&#34;LoadLibraryW&#34;</span>);
+
+	<span style="color:#75715e">// 在notepad.exe进程中运行线程
+</span><span style="color:#75715e"></span>	hThread <span style="color:#f92672">=</span> CreateRemoteThread(hProcess, <span style="color:#75715e">// hProcess
+</span><span style="color:#75715e"></span>		NULL,                              <span style="color:#75715e">// lpThreadAttributes
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>,                                 <span style="color:#75715e">// dwStackSize
+</span><span style="color:#75715e"></span>		pThreadProc,                       <span style="color:#75715e">// lpStartAddress
+</span><span style="color:#75715e"></span>		pRemoteBuf,                        <span style="color:#75715e">// lpParameter
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>,                                 <span style="color:#75715e">// dwCreationFlags
+</span><span style="color:#75715e"></span>		NULL);                             <span style="color:#75715e">// lpThreadID
+</span><span style="color:#75715e"></span>
+	_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, hThread);
+	<span style="color:#66d9ef">if</span> (hThread <span style="color:#f92672">==</span> NULL)
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;[%s]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	WaitForSingleObject(hThread, INFINITE);
+	VirtualFreeEx(hProcess, pRemoteBuf, (DWORD)(_tcslen(szDllPath) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), MEM_DECOMMIT);
+	CloseHandle(hThread);
+	CloseHandle(hProcess);
+
+	<span style="color:#66d9ef">return</span> TRUE;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">_tmain</span>(<span style="color:#66d9ef">int</span> argc, TCHAR <span style="color:#f92672">*</span>argv[])
+{
+
+	<span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span>)
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;Usage: %s pid dll_path</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	}
+
+	<span style="color:#75715e">// inject dll
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (InjectDll((DWORD)_tstol(argv[<span style="color:#ae81ff">1</span>]), argv[<span style="color:#ae81ff">2</span>]))
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;InjectDll(</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">) success!!!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">2</span>]);
+	<span style="color:#66d9ef">else</span>
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;InjectDll(</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">) failed!!!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">2</span>]);
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>运行时需要注意，第二个参数是notepad.exe进程的PID，第三个参数是要注入Dll的<strong>完整路径</strong>(或者我感觉Dll与notepad.exe在同一目录下也行)
+<img src="/images/57f3984cd5f90ddf8dba5af2411ee1fd/11884068-4878b604e978d393.png" alt="">
+<img src="/images/57f3984cd5f90ddf8dba5af2411ee1fd/11884068-ab7d397c15b6e4b9.png" alt=""></p>
+<h3 id="appinit_dlls">AppInit_DLLs</h3>
+<p>进行DLL注入的第二种办法是使用注册表，Windows操作系统的注册表中默认提供了AppInit_DLLs与LoadAppInit_DLLs两个注册表项。如果将要注入的DLL的路径字符串写入AppInit_DLLs项目，然后把LoadAppInit_DLLs的项目值设置为1。重启后，指定DLL会注入所有运行进程。
+<img src="/images/57f3984cd5f90ddf8dba5af2411ee1fd/11884068-c0f70c5b15ae1657.png" alt=""></p>
+<p>原理：User32.dll被加载到进程时，会读取AppInit_DLLs注册表项，若有值，则调用LoadLibrary()API加载用户DLL，所以相应DLL并不会被加载到所有进程，而只是加载到会加载User32.dll的进程。</p>
+<h2 id="dll卸载">DLL卸载</h2>
+<p>DLL卸载(DLL Ejection)是将强制插入进程的DLL弹出的一种技术，其基本工作原理与使用CreateRemoteThread API进行DLL注入的原理类似。
+DLL注入的原理是驱使目标进程调用LoadLibrary()API，同样，DLL卸载原理是驱使目标进程调用FreeLibrary()API</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">//EjectDll.exe
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tlhelp32.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tchar.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define DEF_PROC_NAME (L&#34;notepad.exe&#34;)
+</span><span style="color:#75715e">#define DEF_DLL_NAME (L&#34;MYHACK.dll&#34;)
+</span><span style="color:#75715e"></span>
+DWORD <span style="color:#a6e22e">FindProcessID</span>(LPCTSTR szProcessName)
+{
+	DWORD dwPID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xFFFFFFFF</span>;
+	HANDLE hSnapShot <span style="color:#f92672">=</span> INVALID_HANDLE_VALUE;
+	PROCESSENTRY32 pe;
+
+	<span style="color:#75715e">// 获取系统快照
+</span><span style="color:#75715e"></span>	pe.dwSize <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(PROCESSENTRY32);
+	hSnapShot <span style="color:#f92672">=</span> CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
+
+	<span style="color:#75715e">// 查找进程
+</span><span style="color:#75715e"></span>	Process32First(hSnapShot, <span style="color:#f92672">&amp;</span>pe);
+	<span style="color:#66d9ef">do</span>
+	{
+		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>_tcsicmp(szProcessName, (LPCTSTR)pe.szExeFile))
+		{
+			dwPID <span style="color:#f92672">=</span> pe.th32ProcessID;
+			<span style="color:#66d9ef">break</span>;
+		}
+	} <span style="color:#66d9ef">while</span> (Process32Next(hSnapShot, <span style="color:#f92672">&amp;</span>pe));
+
+	CloseHandle(hSnapShot);
+	<span style="color:#66d9ef">return</span> dwPID;
+}
+
+BOOL <span style="color:#a6e22e">SetPrivilege</span>(LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
+{
+	TOKEN_PRIVILEGES tp;
+	HANDLE hToken;
+	LUID luid;
+
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>OpenProcessToken(GetCurrentProcess(),
+		TOKEN_ADJUST_PRIVILEGES <span style="color:#f92672">|</span> TOKEN_QUERY,
+		<span style="color:#f92672">&amp;</span>hToken))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;OpneProcessToken error:%u</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>LookupPrivilegeValue(NULL,
+		lpszPrivilege,
+		<span style="color:#f92672">&amp;</span>luid))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;LookupPrivilegeValue error: %u</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	tp.PrivilegeCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+	tp.Privileges[<span style="color:#ae81ff">0</span>].Luid <span style="color:#f92672">=</span> luid;
+	<span style="color:#66d9ef">if</span> (bEnablePrivilege)
+		tp.Privileges[<span style="color:#ae81ff">0</span>].Attributes <span style="color:#f92672">=</span> SE_PRIVILEGE_ENABLED;
+	<span style="color:#66d9ef">else</span>
+		tp.Privileges[<span style="color:#ae81ff">0</span>].Attributes <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+	<span style="color:#75715e">// Enable the privilege or disable all privileges.
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>AdjustTokenPrivileges(hToken,
+		FALSE,
+		<span style="color:#f92672">&amp;</span>tp,
+		<span style="color:#66d9ef">sizeof</span>(TOKEN_PRIVILEGES),
+		(PTOKEN_PRIVILEGES) NULL,
+		(PDWORD) NULL))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;AdjustTokenPrivileges error: %u</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	<span style="color:#66d9ef">if</span> (GetLastError() <span style="color:#f92672">==</span> ERROR_NOT_ALL_ASSIGNED)
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;The token does not have the specified privilege.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	<span style="color:#66d9ef">return</span> TRUE;
+}
+
+BOOL <span style="color:#a6e22e">EjectDll</span>(DWORD dwPID, LPCTSTR szDllName)
+{
+	BOOL bMore <span style="color:#f92672">=</span> FALSE, bFound <span style="color:#f92672">=</span> FALSE;
+	HANDLE hSnapshot, hProcess, hThread;
+	HMODULE hModule <span style="color:#f92672">=</span> NULL;
+	MODULEENTRY32 me <span style="color:#f92672">=</span> { <span style="color:#66d9ef">sizeof</span>(me) };
+	LPTHREAD_START_ROUTINE pThreadProc;
+
+	<span style="color:#75715e">// dwPID = notepad进程ID
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 使用TH32CS_SNAPMODULE参数，获取加载到notepad进程的DLL名称
+</span><span style="color:#75715e"></span>	hSnapshot <span style="color:#f92672">=</span> CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPID);
+
+	bMore <span style="color:#f92672">=</span> Module32First(hSnapshot, <span style="color:#f92672">&amp;</span>me);
+	<span style="color:#66d9ef">for</span> (; bMore; bMore <span style="color:#f92672">=</span> Module32Next(hSnapshot, <span style="color:#f92672">&amp;</span>me))
+	{
+		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>_tcsicmp((LPCTSTR)me.szModule, szDllName))
+		{
+			bFound <span style="color:#f92672">=</span> TRUE;
+			<span style="color:#66d9ef">break</span>;
+		}
+	}
+
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>bFound)
+	{
+		CloseHandle(hSnapshot);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(hProcess <span style="color:#f92672">=</span> OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPID)))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;OpenProcess(%d) failed!!![%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dwPID, GetLastError());
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	hModule <span style="color:#f92672">=</span> GetModuleHandle(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;kernel32.dll&#34;</span>);
+	pThreadProc <span style="color:#f92672">=</span> (LPTHREAD_START_ROUTINE)GetProcAddress(hModule,
+		<span style="color:#e6db74">&#34;FreeLibrary&#34;</span>);
+	hThread <span style="color:#f92672">=</span> CreateRemoteThread(hProcess, NULL, <span style="color:#ae81ff">0</span>,
+		pThreadProc, me.modBaseAddr,
+		<span style="color:#ae81ff">0</span>, NULL);
+
+	WaitForSingleObject(hThread, INFINITE);
+
+	CloseHandle(hThread);
+	CloseHandle(hProcess);
+	CloseHandle(hSnapshot);
+
+	<span style="color:#66d9ef">return</span> TRUE;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">_tmain</span>(<span style="color:#66d9ef">int</span> argc, TCHAR<span style="color:#f92672">*</span> argv[])
+{
+	DWORD dwPID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xFFFFFFFF</span>;
+
+	<span style="color:#75715e">// 查找process
+</span><span style="color:#75715e"></span>	dwPID <span style="color:#f92672">=</span> FindProcessID(DEF_PROC_NAME);
+	<span style="color:#66d9ef">if</span> (dwPID <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xFFFFFFFF</span>)
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;There is no %s process!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, DEF_PROC_NAME);
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	}
+
+	_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;PID of %s is %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, DEF_PROC_NAME, dwPID);
+
+	<span style="color:#75715e">//更改Privilege
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>SetPrivilege(SE_DEBUG_NAME, TRUE))
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+
+	<span style="color:#66d9ef">if</span> (EjectDll(dwPID, DEF_DLL_NAME))
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;EjectDll(%d, %s) success!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dwPID, DEF_DLL_NAME);
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	}
+	<span style="color:#66d9ef">else</span>
+	{
+		_tprintf(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;EjectDll(%d, %s) failed!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dwPID, DEF_DLL_NAME);
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	}
+}
+</code></pre></div><p><code> CreateToolhelp32Snapshot()</code>API可以获取加载到进程的模块(DLL)信息，将获取的hSnapshot句柄传递给Module32First()/Module32Next()函数后，即可设置MODULEENTRY32结构体相关的模块信息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> tagMODULEENTRY32W
+{
+    DWORD   dwSize;
+    DWORD   th32ModuleID;       <span style="color:#75715e">// This module
+</span><span style="color:#75715e"></span>    DWORD   th32ProcessID;      <span style="color:#75715e">// owning process
+</span><span style="color:#75715e"></span>    DWORD   GlblcntUsage;       <span style="color:#75715e">// Global usage count on the module
+</span><span style="color:#75715e"></span>    DWORD   ProccntUsage;       <span style="color:#75715e">// Module usage count in th32ProcessID&#39;s context
+</span><span style="color:#75715e"></span>    BYTE  <span style="color:#f92672">*</span> modBaseAddr;        <span style="color:#75715e">// Base address of module in th32ProcessID&#39;s context
+</span><span style="color:#75715e"></span>    DWORD   modBaseSize;        <span style="color:#75715e">// Size in bytes of module starting at modBaseAddr
+</span><span style="color:#75715e"></span>    HMODULE hModule;            <span style="color:#75715e">// The hModule of this module in th32ProcessID&#39;s context
+</span><span style="color:#75715e"></span>    WCHAR   szModule[MAX_MODULE_NAME32 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+    WCHAR   szExePath[MAX_PATH];
+} MODULEENTRY32W;
+</code></pre></div><blockquote>
+<p>dwFlags:
+TH32CS_INHERIT :使用这个标志表示，这个快照句柄是可继承的<br>
+TH32CS_SNAPALL :表示使用了以下的全部标志,总共四个TH32CS_SNAPHEAPLIST, TH32CS_SNAPMODULE, TH32CS_SNAPPROCESS, and TH32CS_SNAPTHREAD.<br>
+TH32CS_SNAPHEAPLIST:表示快照信息包含特定进程的堆栈列表<br>
+TH32CS_SNAPMODULE :表示快照信息包含特定进程的使用模块的列表<br>
+TH32CS_SNAPPROCESS:表示快照信息包含系统的所有进程的列表<br>
+TH32CS_SNAPTHREAD :表示快照信息包含系统所有线程的列表<br>
+th32ProcessID： 只有当dwFlags信息中包含TH32CS_SNAPHEAPLIST，TH32CS_SNAPMODULE 时这个值才有效，否则，这个值会被忽略</p>
+</blockquote>
+<p>szModule成员表示DLL的名称，modBaseAddr成员表示相应DLL被加载的地址(进程虚拟内存), 在EjectDll()函数的for循环中比较szModule与希望卸载的DLL文件名称，能够准确查找到相应模块信息。
+<strong>使用FreeLibrary()方法仅适用于卸载自己强制注入的DLL文件，PE文件直接导入的DLL文件是没有办法在进程运行过程中卸载的</strong></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E5%B9%B8%E8%BF%90%E7%9A%84%E6%95%B0%E5%AD%97/" class="prev" rel="prev" title="网鼎杯-幸运的数字"><i class="iconfont icon-left"></i>&nbsp;网鼎杯-幸运的数字</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/" class="next" rel="next" title="代码注入">代码注入&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

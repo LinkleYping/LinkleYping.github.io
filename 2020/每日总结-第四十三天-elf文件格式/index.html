@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            ELF文件组成 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="ELF文件组成 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "ELF文件组成",
+    "headline" : "ELF文件组成",
+    "description" : "参考 https:\/\/blog.csdn.net\/xuehuafeiwu123\/article\/details\/72963229 https:\/\/felixzhang00.github.io\/2016\/12\/24\/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86\/ ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-25 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-25 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F\/",
+    "wordCount" : "4360",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">ELF文件组成</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-25 itemprop="datePublished">May 25, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">4360 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%8f%82%e8%80%83" class="toc-link">参考</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e6%96%87%e4%bb%b6%e7%bb%84%e6%88%90" class="toc-link">ELF文件组成</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e5%a4%b4" class="toc-link">ELF头</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%a8%8b%e5%ba%8f%e5%a4%b4" class="toc-link">程序头</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_load" class="toc-link">PT_LOAD</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_dynamic%e5%8a%a8%e6%80%81%e6%ae%b5%e7%9a%84phdr" class="toc-link">PT_DYNAMIC——动态段的Phdr</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_interp" class="toc-link">PT_INTERP</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_phdr" class="toc-link">PT_PHDR</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e8%8a%82%e5%a4%b4" class="toc-link">ELF节头</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e8%8a%82%e4%b8%8e%e6%ae%b5" class="toc-link">节与段</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%a1%a8string-table" class="toc-link">字符串表（String Table）</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%ac%a6%e5%8f%b7%e8%a1%a8symbol-table" class="toc-link">符号表（Symbol Table）</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考">参考</h2>
+<p><a href="https://blog.csdn.net/xuehuafeiwu123/article/details/72963229">https://blog.csdn.net/xuehuafeiwu123/article/details/72963229</a>
+<a href="https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/">https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/</a></p>
+<h2 id="elf文件组成">ELF文件组成</h2>
+<p>ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件的组织,如: 版本信息,入口信息,偏移信息等。程序执行也必须依靠其提供的信息。</p>
+<p>程序头部表(Program_Header_Table): 可选的一个表，用于告诉系统如何在内存中创建映像,在图中也可以看出来,有程序头部表才有段,有段就必须有程序头部表。其中存放各个段的基本信息(包括地址指针)。</p>
+<p>节区头部表(Section_Header_Table): 类似与Program_Header_Table,但与其相对应的是节区(Section)。</p>
+<p>节区(Section): 将文件分成一个个节区，每个节区都有其对应的功能，如符号表，哈希表等。</p>
+<p>段(Segment): 将文件分成一段一段映射到内存中。段中通常包括一个或多个节区。
+<img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg" alt="image" loading="lazy" ></p>
+<h2 id="elf头">ELF头</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ readelf -h main
+ELF Header:
+  Magic:   7f <span style="color:#ae81ff">45</span> 4c <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>
+  Class:                             ELF64
+  Data:                              2<span style="color:#960050;background-color:#1e0010">&#39;</span>s complement, little endian
+  Version:                           <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>current<span style="color:#f92672">)</span>
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       <span style="color:#ae81ff">0</span>
+  Type:                              DYN <span style="color:#f92672">(</span>Shared object file<span style="color:#f92672">)</span>
+  Machine:                           Advanced Micro Devices X86-64
+  Version:                           0x1
+  Entry point address:               0x660
+  Start of program headers:          <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
+  Start of section headers:          <span style="color:#ae81ff">6616</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
+  Flags:                             0x0
+  Size of this header:               <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+  Size of program headers:           <span style="color:#ae81ff">56</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+  Number of program headers:         <span style="color:#ae81ff">9</span>
+  Size of section headers:           <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+  Number of section headers:         <span style="color:#ae81ff">29</span>
+  Section header string table index: <span style="color:#ae81ff">28</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* ELF Header */</span>
+<span style="color:#75715e">#define EI_NIDENT 16
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> elfhdr {
+    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT]; <span style="color:#75715e">/* ELF Identification */</span>
+    Elf32_Half    e_type;        <span style="color:#75715e">/* object file type */</span>
+    Elf32_Half    e_machine;    <span style="color:#75715e">/* machine */</span>
+    Elf32_Word    e_version;    <span style="color:#75715e">/* object file version */</span>
+    Elf32_Addr    e_entry;      <span style="color:#75715e">/* virtual entry point */</span>
+    Elf32_Off     e_phoff;      <span style="color:#75715e">/* program header table offset */</span>
+    Elf32_Off     e_shoff;      <span style="color:#75715e">/* section header table offset */</span>
+    Elf32_Word    e_flags;      <span style="color:#75715e">/* processor-specific flags */</span>
+    Elf32_Half    e_ehsize;     <span style="color:#75715e">/* ELF header size */</span>
+    Elf32_Half    e_phentsize;    <span style="color:#75715e">/* program header entry size */</span>
+    Elf32_Half    e_phnum;      <span style="color:#75715e">/* number of program header entries */</span>
+    Elf32_Half    e_shentsize;    <span style="color:#75715e">/* section header entry size */</span>
+    Elf32_Half    e_shnum;      <span style="color:#75715e">/* number of section header entries */</span>
+    Elf32_Half    e_shstrndx;    <span style="color:#75715e">/* section header table&#39;s &#34;section 
+</span><span style="color:#75715e">                       header string table&#34; entry offset */</span>
+} Elf32_Ehdr;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT];    <span style="color:#75715e">/* Id bytes */</span>
+    Elf64_Quarter    e_type;            <span style="color:#75715e">/* file type */</span>
+    Elf64_Quarter    e_machine;        <span style="color:#75715e">/* machine type */</span>
+    Elf64_Half       e_version;        <span style="color:#75715e">/* version number */</span>
+    Elf64_Addr       e_entry;         <span style="color:#75715e">/* entry point */</span>
+    Elf64_Off        e_phoff;         <span style="color:#75715e">/* Program hdr offset */</span>
+    Elf64_Off        e_shoff;         <span style="color:#75715e">/* Section hdr offset */</span>
+    Elf64_Half       e_flags;         <span style="color:#75715e">/* Processor flags */</span>
+    Elf64_Quarter    e_ehsize;        <span style="color:#75715e">/* sizeof ehdr */</span>
+    Elf64_Quarter    e_phentsize;     <span style="color:#75715e">/* Program header entry size */</span>
+    Elf64_Quarter    e_phnum;         <span style="color:#75715e">/* Number of program headers */</span>
+    Elf64_Quarter    e_shentsize;     <span style="color:#75715e">/* Section header entry size */</span>
+    Elf64_Quarter    e_shnum;         <span style="color:#75715e">/* Number of section headers */</span>
+    Elf64_Quarter    e_shstrndx;      <span style="color:#75715e">/* String table index */</span>
+} Elf64_Ehdr;
+</code></pre></div><p>e_ident字段含义
+<img src="https://upload-images.jianshu.io/upload_images/11884068-dec3fc1f6df50ce3?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+ELF Header 中各个字段的说明如表：
+<img src="https://upload-images.jianshu.io/upload_images/11884068-6ecbdf2d01aad98c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" loading="lazy" ></p>
+<h2 id="程序头">程序头</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ep@EP:/mnt/d/code/linux$ readelf -l main
+
+Elf file type is DYN <span style="color:#f92672">(</span>Shared object file<span style="color:#f92672">)</span>
+Entry point 0x660
+There are <span style="color:#ae81ff">9</span> program headers, starting at offset <span style="color:#ae81ff">64</span>
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+                 0x00000000000001f8 0x00000000000001f8  R      0x8
+  INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238
+                 0x000000000000001c 0x000000000000001c  R      0x1
+      <span style="color:#f92672">[</span>Requesting program interpreter: /lib64/ld-linux-x86-64.so.2<span style="color:#f92672">]</span>
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x00000000000009e8 0x00000000000009e8  R E    0x200000
+  LOAD           0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
+                 0x0000000000000278 0x0000000000000280  RW     0x200000
+  DYNAMIC        0x0000000000000da8 0x0000000000200da8 0x0000000000200da8
+                 0x00000000000001f0 0x00000000000001f0  RW     0x8
+  NOTE           0x0000000000000254 0x0000000000000254 0x0000000000000254
+                 0x0000000000000044 0x0000000000000044  R      0x4
+  GNU_EH_FRAME   0x00000000000008a4 0x00000000000008a4 0x00000000000008a4
+                 0x000000000000003c 0x000000000000003c  R      0x4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x10
+  GNU_RELRO      0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
+                 0x0000000000000268 0x0000000000000268  R      0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   <span style="color:#ae81ff">00</span>
+   <span style="color:#ae81ff">01</span>     .interp
+   <span style="color:#ae81ff">02</span>     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame
+   <span style="color:#ae81ff">03</span>     .init_array .fini_array .dynamic .got .data .bss
+   <span style="color:#ae81ff">04</span>     .dynamic
+   <span style="color:#ae81ff">05</span>     .note.ABI-tag .note.gnu.build-id
+   <span style="color:#ae81ff">06</span>     .eh_frame_hdr
+   <span style="color:#ae81ff">07</span>
+   <span style="color:#ae81ff">08</span>     .init_array .fini_array .dynamic .got
+</code></pre></div><p>可执行文件或者共享目标文件的程序头部是一个结构数组，每个结构描述了一个段 或者系统准备程序执行所必需的其它信息。目标文件的“段”包含一个或者多个“节区”， 也就是“段内容(Segment Contents)”。程序头部仅对于可执行文件和共享目标文件 有意义。 可执行目标文件在 ELF 头部的 e_phentsize和e_phnum 成员中给出其自身程序头部 的大小。程序头部的数据结构:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Program Header */</span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    Elf32_Word    p_type;        <span style="color:#75715e">/* segment type */</span>
+    Elf32_Off    p_offset;    <span style="color:#75715e">/* segment offset */</span>
+    Elf32_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address of segment */</span>
+    Elf32_Addr    p_paddr;    <span style="color:#75715e">/* physical address - ignored? */</span>
+    Elf32_Word    p_filesz;    <span style="color:#75715e">/* number of bytes in file for seg. */</span>
+    Elf32_Word    p_memsz;    <span style="color:#75715e">/* number of bytes in mem. for seg. */</span>
+    Elf32_Word    p_flags;    <span style="color:#75715e">/* flags */</span>
+    Elf32_Word    p_align;    <span style="color:#75715e">/* memory alignment */</span>
+} Elf32_Phdr;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    Elf64_Half    p_type;        <span style="color:#75715e">/* entry type */</span>
+    Elf64_Half    p_flags;    <span style="color:#75715e">/* flags */</span>
+    Elf64_Off    p_offset;    <span style="color:#75715e">/* offset */</span>
+    Elf64_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address */</span>
+    Elf64_Addr    p_paddr;    <span style="color:#75715e">/* physical address */</span>
+    Elf64_Xword    p_filesz;    <span style="color:#75715e">/* file size */</span>
+    Elf64_Xword    p_memsz;    <span style="color:#75715e">/* memory size */</span>
+    Elf64_Xword    p_align;    <span style="color:#75715e">/* memory &amp; file alignment */</span>
+} Elf64_Phdr;
+</code></pre></div><p>其中各个字段说明：</p>
+<ul>
+<li>p_offset 此成员给出从文件头到该段第一个字节的偏移。</li>
+<li>p_vaddr 此成员给出段的第一个字节将被放到内存中的虚拟地址。</li>
+<li>p_paddr 此成员仅用于与物理地址相关的系统中。因为 System V 忽略所有应用程序的物理地址信息，此字段对与可执行文件和共享目标文件而言具体内容是指定的。</li>
+<li>p_filesz 此成员给出段在文件映像中所占的字节数。可以为 0。</li>
+<li>p_memsz 此成员给出段在内存映像中占用的字节数。可以为 0。</li>
+<li>p_flags 此成员给出与段相关的标志。</li>
+<li>p_align 可加载的进程段的 p_vaddr 和 p_offset 取值必须合适，相对于对页面大小的取模而言。此成员给出段在文件中和内存中如何 对齐。数值 0 和 1 表示不需要对齐。否则 p_align 应该是个正整数，并且是 2 的幂次数，p_vaddr 和 p_offset 对 p_align 取模后应该相等。</li>
+<li>p_type 此数组元素描述的段的类型，或者如何解释此数组元素的信息。具体如下图。
+<img src="https://upload-images.jianshu.io/upload_images/11884068-b3945fe549c5c31e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
+<h3 id="pt_load">PT_LOAD</h3>
+<p>一个可执行文件至少有一个PT_LOAD 类型的段。这类程序头描述的是可装载的段，也就是说，这种类型的段将被装载或者映射到内存中。例如，一个需要动态链接的ELF 可执行文件通常包含以下两个可装载的段（类型为PT_LOAD）：</p>
+<ol>
+<li>存放程序代码的text 段；</li>
+<li>存放全局变量和动态链接信息的data 段。</li>
+</ol>
+<h3 id="pt_dynamic动态段的phdr">PT_DYNAMIC——动态段的Phdr</h3>
+<p>动态段是动态链接可执行文件所特有的，包含了动态链接器所必需的一些信息。在动态段中包含了一些标记值和指针，包括但不限于以下内容：</p>
+<ul>
+<li>运行时需要链接的共享库列表；</li>
+<li>全局偏移表（GOT）的地址</li>
+<li>重定位条目的相关信息。</li>
+</ul>
+<h3 id="pt_interp">PT_INTERP</h3>
+<p>PT_INTERP 段只将位置和大小信息存放在一个以null 为终止符的字符串中，是对程序解释器位置的描述。例如，/lib/linux-ld.so.2 一般是指动态链接器的位置，也即程序解释器的位置。</p>
+<h3 id="pt_phdr">PT_PHDR</h3>
+<p>PT_PHDR 段保存了程序头表本身的位置和大小。Phdr 表保存了所有的Phdr 对文件（以及内存镜像）中段的描述信息。</p>
+<h2 id="elf节头">ELF节头</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">ep<span style="color:#960050;background-color:#1e0010">@</span>EP:<span style="color:#f92672">/</span>mnt<span style="color:#f92672">/</span>d<span style="color:#f92672">/</span>code<span style="color:#f92672">/</span>linux<span style="color:#960050;background-color:#1e0010">$</span> readelf <span style="color:#f92672">-</span>S main
+There are <span style="color:#ae81ff">29</span> section headers, starting at offset <span style="color:#ae81ff">0x19d8</span><span style="color:#f92672">:</span>
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ <span style="color:#ae81ff">0</span>]                   NULL             <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">00000000</span>
+       <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">0000000000000000</span>           <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>
+  [ <span style="color:#ae81ff">1</span>] .interp           PROGBITS         <span style="color:#ae81ff">000000000000023</span><span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">0000023</span><span style="color:#ae81ff">8</span>
+       <span style="color:#ae81ff">000000000000001</span>c  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1</span>
+  [ <span style="color:#ae81ff">2</span>] .note.ABI<span style="color:#f92672">-</span>tag     NOTE             <span style="color:#ae81ff">0000000000000254</span>  <span style="color:#ae81ff">00000254</span>
+       <span style="color:#ae81ff">0000000000000020</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
+  [ <span style="color:#ae81ff">3</span>] .note.gnu.build<span style="color:#f92672">-</span>i NOTE             <span style="color:#ae81ff">0000000000000274</span>  <span style="color:#ae81ff">00000274</span>
+       <span style="color:#ae81ff">0000000000000024</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
+......
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  l (large), p (processor specific)
+</code></pre></div><p>节头的数据结构：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Section Header */</span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    Elf32_Word    sh_name;    <span style="color:#75715e">/* name - index into section header
+</span><span style="color:#75715e">                       string table section */</span>
+    Elf32_Word    sh_type;    <span style="color:#75715e">/* type */</span>
+    Elf32_Word    sh_flags;    <span style="color:#75715e">/* flags */</span>
+    Elf32_Addr    sh_addr;    <span style="color:#75715e">/* address */</span>
+    Elf32_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
+    Elf32_Word    sh_size;    <span style="color:#75715e">/* section size */</span>
+    Elf32_Word    sh_link;    <span style="color:#75715e">/* section header table index link */</span>
+    Elf32_Word    sh_info;    <span style="color:#75715e">/* extra information */</span>
+    Elf32_Word    sh_addralign;    <span style="color:#75715e">/* address alignment */</span>
+    Elf32_Word    sh_entsize;    <span style="color:#75715e">/* section entry size */</span>
+} Elf32_Shdr;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    Elf64_Half    sh_name;    <span style="color:#75715e">/* section name */</span>
+    Elf64_Half    sh_type;    <span style="color:#75715e">/* section type */</span>
+    Elf64_Xword   sh_flags;    <span style="color:#75715e">/* section flags */</span>
+    Elf64_Addr    sh_addr;    <span style="color:#75715e">/* virtual address */</span>
+    Elf64_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
+    Elf64_Xword   sh_size;    <span style="color:#75715e">/* section size */</span>
+    Elf64_Half    sh_link;    <span style="color:#75715e">/* link to another */</span>
+    Elf64_Half    sh_info;    <span style="color:#75715e">/* misc info */</span>
+    Elf64_Xword   sh_addralign;    <span style="color:#75715e">/* memory alignment */</span>
+    Elf64_Xword   sh_entsize;    <span style="color:#75715e">/* table entry size */</span>
+} Elf64_Shdr;
+</code></pre></div><p>各个字段的解释如下:
+<img src="https://upload-images.jianshu.io/upload_images/11884068-2ac7a0afb44b51f9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+sh_type 字段 节区类型定义：
+<img src="https://upload-images.jianshu.io/upload_images/11884068-3a53fe7d050d047f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+常用节区:
+<img src="https://upload-images.jianshu.io/upload_images/11884068-8e8dfde7128ba932?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="节与段">节与段</h3>
+<p>节，不是段。段是程序执行的必要组成部分，在每个段中，会有代码或者数据被划分为不同的节。节头表是对这些节的位置和大小的描述，主要用于链接和调试。节头对于程序的执行来说不是必需的，没有节头表，程序仍可以正常执行，因为节头表没有对程序的内存布局进行描述，对程序内存布局的描述是程序头表的任务。节头是对程序头的补充。readelf –l 命令可以显示一个段对应有哪些节，可以很直观地看到节和段之间的关系。
+如果二进制文件中缺少节头，并不意味着节就不存在。只是没有办法通过
+节头来引用节，对于调试器或者反编译程序来说，只是可以参考的信息变少了而已。</p>
+<h2 id="字符串表string-table">字符串表（String Table）</h2>
+<p>字符串表节区包含以 NULL(ASCII 码 0)结尾的字符序列，通常称为字符串。ELF 目标文件通常使用字符串来表示符号和节区名称。对字符串的引用通常以字符串在字符串表中的下标给出。
+比如下面这样：
+<img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg" alt="">
+那么偏移与他们对用的字符串如下表:
+!](/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg)
+这样在ELF中引用字符串只需要给出一个数组下标即可。字符串表在ELF也以段的形式保存，常见的段名为”.strtab”或”.shstrtab”。这两个字符串表分别为字符串表(String Table)和段表字符串表(Header String Table)，字符串表保存的是普通的字符串，而段表字符串表用来保存段表中用到的字符串，比如段名。</p>
+<p>在使用、分析字符串表时，要注意以下几点:</p>
+<ol>
+<li>字符串表索引可以引用节区中任意字节。</li>
+<li>字符串可以出现多次</li>
+<li>可以存在对子字符串的引用</li>
+<li>同一个字符串可以被引用多次。</li>
+<li>字符串表中也可以存在未引用的字符串。</li>
+</ol>
+<h2 id="符号表symbol-table">符号表（Symbol Table）</h2>
+<p>目标文件的符号表中包含用来定位、重定位程序中符号定义和引用的信息。符号表 索引是对此数组的索引。索引 0 表示表中的第一表项，同时也作为 定义符号的索引。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Symbol Table Entry */</span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> elf32_sym {
+    Elf32_Word    st_name;    <span style="color:#75715e">/* name - index into string table */</span>
+    Elf32_Addr    st_value;    <span style="color:#75715e">/* symbol value */</span>
+    Elf32_Word    st_size;    <span style="color:#75715e">/* symbol size */</span>
+    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_info;    <span style="color:#75715e">/* type and binding */</span>
+    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_other;    <span style="color:#75715e">/* 0 - no defined meaning */</span>
+    Elf32_Half    st_shndx;    <span style="color:#75715e">/* section header index */</span>
+} Elf32_Sym;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
+    Elf64_Half    st_name;    <span style="color:#75715e">/* Symbol name index in str table */</span>
+    Elf_Byte    st_info;    <span style="color:#75715e">/* type / binding attrs */</span>
+    Elf_Byte    st_other;    <span style="color:#75715e">/* unused */</span>
+    Elf64_Quarter    st_shndx;    <span style="color:#75715e">/* section index of symbol */</span>
+    Elf64_Xword    st_value;    <span style="color:#75715e">/* value of symbol */</span>
+    Elf64_Xword    st_size;    <span style="color:#75715e">/* size of symbol */</span>
+} Elf64_Sym;
+</code></pre></div><p>各个字段的含义如下:
+<img src="https://upload-images.jianshu.io/upload_images/11884068-d56d236da5e8104e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+符号是对某些类型的数据或者代码（如全局变量或函数）的符号引用。例如，printf()函数会在动态符号表<code>.dynsym</code> 中存有一个指向该函数的符号条目。在大多数共享库和动态链接可执行文件中，存在两个符号表。如前面使用<code>readelf –S</code> 命令输出的内容中，可以看到有两个节：<code>.dynsym</code>和<code>.symtab</code>。
+<code>.dynsym </code>保存了引用来自外部文件符号的全局符号，如printf 这样的库函数，<code>.dynsym</code> 保存的符号是<code>.symtab</code> 所保存符号的子集，<code>.symtab</code> 中还保存了可执行文件的本地符号，如全局变量，或者代码中定义的本地函数等。因此，<code>.symtab</code> 保存了所有的符号，而<code>.dynsym</code> 只保存动态/全局符号。
+因此，就存在这样一个问题：既然<code>.symtab</code> 中保存了<code>.dynsym</code> 中所有的符号，那么为什么还需要两个符号表呢？使用<code>readelf –S</code> 命令查看可执行文件的输出，可以看到一部分节被标记为了A（ALLOC）、WA（WRITE/ALLOC）或者AX（ALLOC/EXEC）。<code>.dynsym</code> 是被标记了ALLOC 的，而<code>.symtab</code>则没有标记。
+ALLOC 表示有该标记的节会在运行时分配并装载进入内存，而<code>.symtab</code>不是在运行时必需的，因此不会被装载到内存中。<code>.dynsym</code> 保存的符号只能在运行时被解析，因此是运行时动态链接器所需要的唯一符号。<code>.dynsym</code> 符号表对于动态链接可执行文件的执行来说是必需的，而<code>.symtab</code> 符号表只是用来进行调试和链接的，有时候为了节省空间，会将<code>.symtab </code>符号表从生产二进制文件中删掉。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ep@EP:/mnt/d/code/linux$ readelf -s main
+
+Symbol table <span style="color:#e6db74">&#39;.dynsym&#39;</span> contains <span style="color:#ae81ff">11</span> entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
+     1: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
+     2: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+     3: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+     4: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+     5: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+     6: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     7: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+     8: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+     9: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+    10: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+
+Symbol table <span style="color:#e6db74">&#39;.symtab&#39;</span> contains <span style="color:#ae81ff">67</span> entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
+     1: <span style="color:#ae81ff">0000000000000238</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">1</span>
+     2: <span style="color:#ae81ff">0000000000000254</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">2</span>
+     3: <span style="color:#ae81ff">0000000000000274</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">3</span>
+     4: <span style="color:#ae81ff">0000000000000298</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">4</span>
+     5: 00000000000002b8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">5</span>
+     6: 00000000000003c0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">6</span>
+     7: 000000000000045c     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">7</span>
+     8: <span style="color:#ae81ff">0000000000000478</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">8</span>
+     9: <span style="color:#ae81ff">0000000000000498</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">9</span>
+    10: <span style="color:#ae81ff">0000000000000558</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">10</span>
+    11: 00000000000005d0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">11</span>
+    12: 00000000000005f0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">12</span>
+    13: <span style="color:#ae81ff">0000000000000650</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">13</span>
+    14: <span style="color:#ae81ff">0000000000000660</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">14</span>
+    15: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">15</span>
+    16: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">16</span>
+    17: 00000000000008a4     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">17</span>
+    18: 00000000000008e0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">18</span>
+    19: 0000000000200d98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">19</span>
+    20: 0000000000200da0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">20</span>
+    21: 0000000000200da8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">21</span>
+    22: 0000000000200f98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">22</span>
+    23: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">23</span>
+    24: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">24</span>
+    25: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">25</span>
+    26: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    27: <span style="color:#ae81ff">0000000000000690</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> deregister_tm_clones
+    28: 00000000000006d0     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> register_tm_clones
+    29: <span style="color:#ae81ff">0000000000000720</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> __do_global_dtors_aux
+    30: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">1</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">24</span> completed.7698
+    31: 0000000000200da0     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">20</span> __do_global_dtors_aux_fin
+    32: <span style="color:#ae81ff">0000000000000760</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> frame_dummy
+    33: 0000000000200d98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __frame_dummy_init_array_
+    34: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS main.c
+    35: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    36: 00000000000009e4     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">18</span> __FRAME_END__
+    37: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS
+    38: 0000000000200da0     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_end
+    39: 0000000000200da8     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">21</span> _DYNAMIC
+    40: 0000000000200d98     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_start
+    41: 00000000000008a4     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">17</span> __GNU_EH_FRAME_HDR
+    42: 0000000000200f98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">22</span> _GLOBAL_OFFSET_TABLE_
+    43: <span style="color:#ae81ff">0000000000000860</span>     <span style="color:#ae81ff">2</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_fini
+    44: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
+    45: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT   <span style="color:#ae81ff">23</span> data_start
+    46: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5
+    47: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> _edata
+    48: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">15</span> _fini
+    49: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@@GLIBC_2.2.5
+    50: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@@GLIBC_2.2.5
+    51: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
+    52: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> __data_start
+    53: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    54: <span style="color:#ae81ff">0000000000201008</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __dso_handle
+    55: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">4</span> OBJECT  GLOBAL DEFAULT   <span style="color:#ae81ff">16</span> _IO_stdin_used
+    56: 00000000000007f0   <span style="color:#ae81ff">101</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_init
+    57: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@@GLIBC_2.2.5
+    58: <span style="color:#ae81ff">0000000000201018</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> _end
+    59: <span style="color:#ae81ff">0000000000000660</span>    <span style="color:#ae81ff">43</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> _start
+    60: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> __bss_start
+    61: 000000000000076a   <span style="color:#ae81ff">126</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> main
+    62: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __TMC_END__
+    63: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+    64: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@@GLIBC_2.2.5
+    65: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2
+    66: 00000000000005d0     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">11</span> _init
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" class="prev" rel="prev" title="密码学"><i class="iconfont icon-left"></i>&nbsp;密码学</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" class="next" rel="next" title="ELF动态链接">ELF动态链接&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/geekpwn2020-%E9%83%A8%E5%88%86re/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Kotlin开发 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="Kotlin开发 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "Kotlin开发",
+    "headline" : "Kotlin开发",
+    "description" : "Kotlin一些特性 var: 变量，val:常量 定义变量时，可在类型后面加一个问号?，表示该变量是Nullable，不加表示该变量不可为null 扩展",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-09-13 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-09-13 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/kotlin-android%E5%BC%80%E5%8F%91\/",
+    "wordCount" : "1640",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Kotlin开发</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-09-13 itemprop="datePublished">September 13, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1640 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#kotlin%e4%b8%80%e4%ba%9b%e7%89%b9%e6%80%a7" class="toc-link">Kotlin一些特性</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e5%8f%82%e8%80%83" class="toc-link">参考</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e6%a8%a1%e5%9d%97%e5%8c%96" class="toc-link">模块化</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#mvp%e6%9e%b6%e6%9e%84" class="toc-link">MVP架构</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e6%8a%80%e6%9c%af%e9%80%89%e5%9e%8b" class="toc-link">技术选型</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e8%a7%86%e5%9b%be%e5%b1%82" class="toc-link">视图层</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e4%b8%9a%e5%8a%a1%e5%b1%82" class="toc-link">业务层</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e5%85%b6%e4%bb%96" class="toc-link">其他</a></li>
+                        
+                                </ul><li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#application%e4%b8%8elibrary" class="toc-link">Application与Library</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e5%90%af%e5%8a%a8" class="toc-link">启动</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e5%88%87%e6%8d%a2" class="toc-link">切换</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#%e4%b8%a4%e5%a5%97androidmanifest" class="toc-link">两套AndroidManifest</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#androidmanifest%e7%9a%84%e5%88%87%e6%8d%a2" class="toc-link">AndroidManifest的切换</a></li>
+                        
+                                </ul><li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#android-extensions%e4%bb%8b%e7%bb%8d" class="toc-link">android-extensions介绍</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#anko" class="toc-link">Anko</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#rxjava" class="toc-link">RxJava</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#retrofit" class="toc-link">Retrofit</a></li>
+                        <li><a href="/2020/kotlin-android%E5%BC%80%E5%8F%91/#dagger2%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" class="toc-link">Dagger2:依赖注入</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="kotlin一些特性">Kotlin一些特性</h2>
+<ul>
+<li>var: 变量，val:常量</li>
+<li>定义变量时，可在类型后面加一个问号?，表示该变量是Nullable，不加表示该变量不可为null</li>
+<li>扩展(好神奇)</li>
+<li>继承&ndash;有点不明白为什么有的类继承的时候需要实例化</li>
+<li>object: 类似java的匿名内部类</li>
+<li>companion：Kotlin给Java开发者带来最大改变之一就是废弃了static修饰符。与Java不同的是在Kotlin的类中不允许你声明静态成员或方法。相反，你必须向类中添加Companion对象来包装这些静态引用</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.bilibili.com/video/BV1654y1X7Jo?from=search&amp;seid=7649962615194993068">https://www.bilibili.com/video/BV1654y1X7Jo?from=search&amp;seid=7649962615194993068</a>
+因为最近的项目需要Android开发的基础比较高，准备学习一下kotlin，先学习的是这个视频中的内容，在这里做个笔记。</p>
+<h2 id="模块化">模块化</h2>
+<p>模块化的作用</p>
+<ul>
+<li>业务分离</li>
+<li>通用化，代码复用</li>
+</ul>
+<p>如何实现模块化</p>
+<ul>
+<li>公用模块抽取</li>
+<li>业务模块抽取</li>
+<li>主工程组装业务模块</li>
+</ul>
+<p>模块间的通讯</p>
+<ul>
+<li>跨模块跳转</li>
+<li>跨模块接口调用</li>
+<li>ARouter路由框架(alibaba)</li>
+</ul>
+<h2 id="mvp架构">MVP架构</h2>
+<p>MVP 全称：Model - View - Presenter</p>
+<p>Model 表示数据层，View 表示视图层，Presenter 表示逻辑处理层
+在 MVP 模式中</p>
+<ul>
+<li>View 不和 Model 进行直接交互，View 通过 Presenter 将前端数据传给 Model，或者通过 Presenter 从 Model 中获取数据，View 和 Model 所有的交互都发生在 Presenter 中</li>
+<li>View 负责前端的展示以及与用户的交互</li>
+<li>Model 负责数据的存储以及调用</li>
+</ul>
+<p>好处：能够有效解耦工程，分为各个独立模块，功能清晰，有利于重复使用，在调试过程中也能够快速定位错误
+缺陷：增加代码工作量</p>
+<p><a href="https://www.viseator.com/2017/05/25/android_google_mvp/">https://www.viseator.com/2017/05/25/android_google_mvp/</a>
+<img src="/images/977d40f26cf19a1c69cb03fa3aeb2a79/11884068-ac55b2b181ce11ac.jpg" alt="android_mvp_uml.jpg" loading="lazy" ></p>
+<h2 id="技术选型">技术选型</h2>
+<h3 id="视图层">视图层</h3>
+<ul>
+<li>kotlin-android-extensions</li>
+<li>Butterknife</li>
+</ul>
+<h3 id="业务层">业务层</h3>
+<ul>
+<li>RxKotlin</li>
+<li>RxAndroid</li>
+<li>RxLifecycle</li>
+</ul>
+<h3 id="其他">其他</h3>
+<ul>
+<li>Dagger2（依赖注入）</li>
+<li>Gson（数据路由）</li>
+<li>ARouter（模块路由）</li>
+<li>Glide（图片加载）</li>
+<li>takephoto（图片选择）</li>
+<li>七牛（数据云存储）</li>
+<li>MultiStateView（多状态视图）</li>
+<li>bga-refreshlayout（上下拉刷新）</li>
+</ul>
+<h2 id="application与library">Application与Library</h2>
+<h3 id="启动">启动</h3>
+<ul>
+<li>Application作为应用程序启动: apply plugin: &lsquo;com.android.application&rsquo;</li>
+<li>Library作为库工程被引用: apply plugin: &lsquo;com.android.library&rsquo;</li>
+</ul>
+<h3 id="切换">切换</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>xxx<span style="color:#f92672">.</span><span style="color:#a6e22e">toBoolean</span><span style="color:#f92672">()){</span>
+    apply plugin<span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">android</span><span style="color:#f92672">.</span><span style="color:#a6e22e">library</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+    apply plugin<span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">android</span><span style="color:#f92672">.</span><span style="color:#a6e22e">application</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="两套androidmanifest">两套AndroidManifest</h3>
+<ul>
+<li>一套用于Application时使用，配置主题及默认启动，位于debug目录</li>
+<li>一套用于Library时使用，注册组件及权限，位于release目录</li>
+</ul>
+<h3 id="androidmanifest的切换">AndroidManifest的切换</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">sourceSers<span style="color:#f92672">{</span>
+    main<span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>xxx<span style="color:#f92672">.</span><span style="color:#a6e22e">toBoolean</span><span style="color:#f92672">()){</span>
+            mainfest<span style="color:#f92672">.</span><span style="color:#a6e22e">srcFile</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>src<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>release<span style="color:#f92672">/</span>AndroidManifest<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+            mainfest<span style="color:#f92672">.</span><span style="color:#a6e22e">srcFile</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>src<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>debug<span style="color:#f92672">/</span>AndroidManifest<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="android-extensions介绍">android-extensions介绍</h2>
+<ul>
+<li>视图绑定，可直接使用XML中ID操作该控件</li>
+<li>插件级别，无需引入第三方库</li>
+<li>无需定义变量，极大减少代码</li>
+<li>适用于Activity, Fragment, Adapter及自定义View</li>
+</ul>
+<h2 id="anko">Anko</h2>
+<p>Anko组成部分：</p>
+<ul>
+<li>Anko Commons</li>
+<li>Anko Layouts</li>
+<li>Anko SQLite：数据库</li>
+<li>Anko Coroutines: 协程</li>
+</ul>
+<h2 id="rxjava">RxJava</h2>
+<p>下面这个是两个作者写的RxJava2.0的一系列教程
+<a href="https://maxwell-nc.github.io/categories.html">https://maxwell-nc.github.io/categories.html</a>
+<a href="https://www.jianshu.com/u/c50b715ccaeb">https://www.jianshu.com/u/c50b715ccaeb</a></p>
+<h2 id="retrofit">Retrofit</h2>
+<p>官方网址：https://square.github.io/retrofit/</p>
+<h2 id="dagger2依赖注入">Dagger2:依赖注入</h2>
+<ul>
+<li>@Inject和@Component</li>
+<li>@Module和@Provides</li>
+<li>@Scope和@Singleton</li>
+<li>@Qualifier和@Named
+依赖注入的含义：
+正常版：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassB</span><span style="color:#f92672">{</span>
+    fun <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">(){</span>
+        println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassA</span><span style="color:#f92672">{</span>
+    var mClassB<span style="color:#f92672">:</span> ClassB
+    init<span style="color:#f92672">{</span>
+        mClassB <span style="color:#f92672">=</span> ClassB<span style="color:#f92672">()</span>
+    <span style="color:#f92672">}</span>
+    fun <span style="color:#a6e22e">doSomething</span><span style="color:#f92672">(){</span>
+        mClassB<span style="color:#f92672">.</span><span style="color:#a6e22e">sayHello</span><span style="color:#f92672">()</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>依赖注入版：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassB</span> <span style="color:#a6e22e">@Inject</span> constructor<span style="color:#f92672">{</span>
+    fun <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">(){</span>
+        println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassA</span><span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Inject</span>
+    lateinit var mClassB<span style="color:#f92672">:</span> ClassB
+
+    fun <span style="color:#a6e22e">doSomething</span><span style="color:#f92672">(){</span>
+        mClassB<span style="color:#f92672">.</span><span style="color:#a6e22e">sayHello</span><span style="color:#f92672">()</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>@Component</p>
+<ul>
+<li>注入器，连接目标类和依赖实例的桥梁</li>
+<li>以@Component标注的类必须是接口或者抽象类</li>
+<li>Component依赖关系通过dependencier属性添加</li>
+<li>App必须有一个Component用来管理全局实例</li>
+</ul>
+<p>@Module</p>
+<ul>
+<li>第三方库无法修改，不能在其构造函数添加@Inject</li>
+<li>接口不能实例化， 只能通过实现类实例化</li>
+<li>Module是一个简单工厂，创建类实例的方法</li>
+<li>Component通过Modules属性加入多个Module</li>
+</ul>
+<p>@Proivides</p>
+<ul>
+<li>在Module中，使用@Provides标注创建实例的方法</li>
+<li>实例化流程
+&ndash; Component搜索@Inject注解的属性
+&ndash; Component查找Module中以@Provides注解的对应方法，创建实例</li>
+</ul>
+<p>Inject和Module维度</p>
+<ul>
+<li>Module优先级高于Inject构造函数</li>
+<li>查找到实例对象，依次查看其参数实例化</li>
+<li>Module中存在创建实例方法，停止查找Inject维度，如果没有，查找Inject构造函数</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/>https://linkleyping.top/2020/kotlin-android%E5%BC%80%E5%8F%91/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/geekpwn2020-%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="GeekPWN2020-部分re"><i class="iconfont icon-left"></i>&nbsp;GeekPWN2020-部分re</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/" class="next" rel="next" title="钓鱼城杯-mobile题解">钓鱼城杯-mobile题解&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            代码注入 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="代码注入 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "代码注入",
+    "headline" : "代码注入",
+    "description" : "代码注入是一种向目标进程插入独立运行代码并使之运行的技术，一般调用CreateRemoteThread()API以远程线程形式运行插入的代码",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-20 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-20 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5\/",
+    "wordCount" : "704",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">代码注入</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-20 itemprop="datePublished">May 20, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">704 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            </div>
+</div>
+
+        
+        <p>代码注入是一种向目标进程插入独立运行代码并使之运行的技术，一般调用CreateRemoteThread()API以远程线程形式运行插入的代码，所以也被称为线程注入。
+首先向目标进程插入代码和数据，在此过程中，代码以线程过程形式插入，而代码中使用的数据则以线程参数的形式传入，也就是说代码与数据是分别注入的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">// CodeInjection.cpp : 此文件包含 &#34;main&#34; 函数。程序执行将在此处开始并结束。
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windows.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stdio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;windef.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _THREAD_PARAM
+{
+	<span style="color:#75715e">//FARPROC是一个(int FAR WINAPI*)()类型的指针
+</span><span style="color:#75715e"></span>	FARPROC pFunc[<span style="color:#ae81ff">2</span>];  <span style="color:#75715e">// LoadLibraryA(), GetProcAddress()
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">char</span> szBuf[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">128</span>];  <span style="color:#75715e">// &#34;user32.dll&#34;, &#34;MessageBoxA&#34;,
+</span><span style="color:#75715e"></span>	                     <span style="color:#75715e">// &#34;www.reversecore.com&#34;, &#34;ReverseCore&#34;
+</span><span style="color:#75715e"></span>} THREAD_PARAM, <span style="color:#f92672">*</span>PTHREAF_PARAM;
+
+<span style="color:#75715e">// LoadLibraryA() 函数指针PFLOADLIBRARYA
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">HMODULE</span> (WINAPI <span style="color:#f92672">*</span>PFLOADLIBRARYA)(LPCSTR lpLibFileName);
+
+<span style="color:#75715e">// GetProcAddress()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">FARPROC</span> (WINAPI <span style="color:#f92672">*</span>PFGETPROCADDRESS)
+(
+	HMODULE hModule,
+	LPCSTR lpProcName
+);
+
+<span style="color:#75715e">// MessageBoxA()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">int</span> (WINAPI <span style="color:#f92672">*</span>PFMESSAGEBOXA)
+(
+	HWND hWnd,
+	LPCSTR lpText,
+	LPCSTR lpCaption,
+	UINT uType
+);
+
+<span style="color:#75715e">// Thread Procedure
+</span><span style="color:#75715e"></span>DWORD WINAPI <span style="color:#a6e22e">ThreadProc</span>(LPVOID lParam)
+{
+	PTHREAF_PARAM pParam <span style="color:#f92672">=</span> (PTHREAF_PARAM)lParam;
+	HMODULE hMod <span style="color:#f92672">=</span> NULL;
+	FARPROC pFunc <span style="color:#f92672">=</span> NULL;
+
+	<span style="color:#75715e">// LoadLibraryA(&#34;user32.dll&#34;)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;pFunc[0] -&gt; kernel32!LoadLibraryA()
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;szBuf[0] -&gt; &#34;user32.dll&#34;
+</span><span style="color:#75715e"></span>	hMod <span style="color:#f92672">=</span> ((PFLOADLIBRARYA)pParam<span style="color:#f92672">-&gt;</span>pFunc[<span style="color:#ae81ff">0</span>])(pParam<span style="color:#f92672">-&gt;</span>szBuf[<span style="color:#ae81ff">0</span>]);
+
+	<span style="color:#75715e">// GetProcAddress(&#34;MessageBoxA&#34;)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;pFunc[1] -&gt; kernel32!GetProcAddress()
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;szBuf[1] -&gt; &#34;MessageBoxA&#34;
+</span><span style="color:#75715e"></span>	pFunc <span style="color:#f92672">=</span> (FARPROC)((PFGETPROCADDRESS)pParam<span style="color:#f92672">-&gt;</span>pFunc[<span style="color:#ae81ff">1</span>])(hMod, 
+		pParam<span style="color:#f92672">-&gt;</span>szBuf[<span style="color:#ae81ff">1</span>]);
+
+	<span style="color:#75715e">// MessageBoxA(NULL, &#34;www...&#34;, &#34;ReverseCore&#34;, MB_OK)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;szBuf[2] = &#34;www...&#34;
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// pParam-&gt;szBuf[3] = &#34;ReverseCore&#34;
+</span><span style="color:#75715e"></span>	((PFMESSAGEBOXA)pFunc)(NULL, pParam<span style="color:#f92672">-&gt;</span>szBuf[<span style="color:#ae81ff">2</span>], pParam<span style="color:#f92672">-&gt;</span>szBuf[<span style="color:#ae81ff">3</span>], MB_OK);
+
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+BOOL <span style="color:#a6e22e">InjectCode</span>(DWORD dwPID)
+{
+	HMODULE hMod <span style="color:#f92672">=</span> NULL;
+	THREAD_PARAM param <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span>, };
+	HANDLE hProcess <span style="color:#f92672">=</span> NULL;
+	HANDLE hThread <span style="color:#f92672">=</span> NULL;
+	LPVOID pRemoteBuf[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span>, };
+	DWORD dwSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+	hMod <span style="color:#f92672">=</span> GetModuleHandleA(<span style="color:#e6db74">&#34;kernel32.dll&#34;</span>);
+
+	param.pFunc[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> GetProcAddress(hMod, <span style="color:#e6db74">&#34;LoadLibraryA&#34;</span>);
+	param.pFunc[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> GetProcAddress(hMod, <span style="color:#e6db74">&#34;GetProcAddress&#34;</span>);
+	strcpy_s(param.szBuf[<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#34;user32.dll&#34;</span>);
+	strcpy_s(param.szBuf[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;MessageBoxA&#34;</span>);
+	strcpy_s(param.szBuf[<span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#34;www.reversecore.com&#34;</span>);
+	strcpy_s(param.szBuf[<span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#34;ReverseCore&#34;</span>);
+
+	<span style="color:#75715e">// OpenProcess
+</span><span style="color:#75715e"></span>	hProcess <span style="color:#f92672">=</span> OpenProcess(PROCESS_ALL_ACCESS,
+		FALSE,
+		dwPID);
+
+	<span style="color:#75715e">// Allocation for THREAD_PRARM
+</span><span style="color:#75715e"></span>	dwSize <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(THREAD_PARAM);
+	pRemoteBuf[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> VirtualAllocEx(hProcess, 
+		NULL, dwSize, MEM_COMMIT, PAGE_READWRITE);
+	<span style="color:#66d9ef">if</span> (pRemoteBuf[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> NULL)
+	{
+		printf(<span style="color:#e6db74">&#34;VirtualAllocEx failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>WriteProcessMemory(hProcess,
+		pRemoteBuf[<span style="color:#ae81ff">0</span>], (LPVOID)<span style="color:#f92672">&amp;</span>param, dwSize, NULL))
+	{
+		printf(<span style="color:#e6db74">&#34;WriteProcessMemory failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	<span style="color:#75715e">// Allocation for ThreadProc
+</span><span style="color:#75715e"></span>	dwSize <span style="color:#f92672">=</span> (DWORD)InjectCode <span style="color:#f92672">-</span> (DWORD)ThreadProc;
+	printf(<span style="color:#e6db74">&#34;dwSize: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dwSize);
+	pRemoteBuf[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> VirtualAllocEx(hProcess, NULL, dwSize,
+		MEM_COMMIT, PAGE_EXECUTE_READWRITE);  <span style="color:#75715e">// 这里注意要有可执行权限
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (pRemoteBuf[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> NULL)
+	{
+		printf(<span style="color:#e6db74">&#34;VirtualAllocEx failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>WriteProcessMemory(hProcess, pRemoteBuf[<span style="color:#ae81ff">1</span>],
+		(LPVOID)ThreadProc, dwSize, NULL))
+	{
+		printf(<span style="color:#e6db74">&#34;WriteProcessMemory failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	hThread <span style="color:#f92672">=</span> CreateRemoteThread(hProcess,
+		NULL,
+		<span style="color:#ae81ff">0</span>,
+		(LPTHREAD_START_ROUTINE)pRemoteBuf[<span style="color:#ae81ff">1</span>],
+		pRemoteBuf[<span style="color:#ae81ff">0</span>],
+		<span style="color:#ae81ff">0</span>,
+		NULL);
+	<span style="color:#66d9ef">if</span> (hThread <span style="color:#f92672">==</span> NULL)
+	{
+		printf(<span style="color:#e6db74">&#34;CreateRemoteThread failed</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
+
+	WaitForSingleObject(hThread, INFINITE);
+
+	CloseHandle(hThread);
+	CloseHandle(hProcess);
+
+	<span style="color:#66d9ef">return</span> TRUE;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+{
+	DWORD dwPID <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+	<span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>)
+	{
+		printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> usage: %s PID</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	}
+
+	dwPID <span style="color:#f92672">=</span> (DWORD)atol(argv[<span style="color:#ae81ff">1</span>]);
+	InjectCode(dwPID);
+
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>执行的时候注意要生成<code>release</code>版本，因为MS Virual C++中使用Release模式编译程序代码后，源代码中函数顺序与二进制代码中的顺序是一致的，所以代码中的<code>InjectCode-ThreadProc</code>才可以表示ThreadProc函数的大小。
+将PID设置成notepad.exe的PID时，结果如下:
+<img src="/images/21d8d61c53b99e6af83f51a8c6e3e0dd/11884068-a20500ef68d53dfc.png" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%A4%A9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%A4%A9-dll%E6%B3%A8%E5%85%A5/" class="prev" rel="prev" title="DLL注入"><i class="iconfont icon-left"></i>&nbsp;DLL注入</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="信息安全数学基础">信息安全数学基础&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2019/ustc2019/" />
+    <link rel="next" href="https://linkleyping.top/2020/buuctf%E5%88%B7%E9%A2%98-1/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/java-1/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Java 泛型与回调 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="Java 泛型与回调 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "Java 泛型与回调",
+    "headline" : "Java 泛型与回调",
+    "description" : "Java泛型 一个最基础的例子 List\u0026lt;String\u0026gt; arrayList = new ArrayList\u0026lt;String\u0026gt;(); 泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法 泛型类 泛型类型用于类的定义中，被称为泛型类。通过",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-02-25 11:18:50 \u002b0000 UTC",
+    "dateModified" : "2020-02-25 11:18:50 \u002b0000 UTC",
+    "url" : "https:\/\/linkleyping.top\/2020\/java-1\/",
+    "wordCount" : "2910",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Java 泛型与回调</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-02-25 itemprop="datePublished">February 25, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/writeup/"> writeup, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2910 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e7%b1%bb" class="toc-link">泛型类</a></li>
+                        <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%8e%a5%e5%8f%a3" class="toc-link">泛型接口</a></li>
+                        <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%96%b9%e6%b3%95" class="toc-link">泛型方法</a></li>
+                        </div>
+</div>
+
+        
+        <h1 id="java泛型">Java泛型</h1>
+<p>一个最基础的例子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> arrayList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+</code></pre></div><p>泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法</p>
+<h2 id="泛型类">泛型类</h2>
+<p>泛型类型用于类的定义中，被称为泛型类。通过泛型可以完成对一组类的操作对外开放相同的接口。最典型的就是各种容器类，如：List、Set、Map。<br>
+一个最普通的泛型类:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
+</span><span style="color:#75715e">//在实例化泛型类时，必须指定T的具体类型
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span> 
+    <span style="color:#75715e">//key这个成员变量的类型为T,T的类型由外部指定  
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">//泛型构造方法形参key的类型也为T，T的类型由外部指定
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span> <span style="color:#75715e">//泛型方法getKey的返回值类型为T，T的类型由外部指定
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型:eg:不能用int只能用Integer
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为Integer.
+</span><span style="color:#75715e"></span>    Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> genericInteger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;(</span>123456<span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为String.
+</span><span style="color:#75715e"></span>    Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> genericString <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;key_vlaue&#34;</span><span style="color:#f92672">);</span>
+    Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+    Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericString<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>泛型的类型参数只能是类类型（包括自定义类），不能是简单类型</strong><br>
+在定义泛型类的时候并不一定要传输参数类型，在使用泛型的时候如果传入泛型实参，则会根据传入的泛型实参做相应的限制，此时泛型才会起到本应起到的限制作用。如果不传入泛型类型实参的话，在泛型类中使用泛型的方法或成员变量定义的类型可以为任何的类型。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Generic generic <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;111111&#34;</span><span style="color:#f92672">);</span>
+Generic generic1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">(</span>4444<span style="color:#f92672">);</span>
+<span style="color:#75715e">//同样不会报错
+</span></code></pre></div><h2 id="泛型接口">泛型接口</h2>
+<p>泛型接口与泛型类的定义及使用基本相同</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//定义一个泛型接口
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Generator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>当实现泛型接口的类，未传入泛型实参时：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 未传入泛型实参时，与泛型类的定义相同，在声明类的时候，需将泛型的声明也一起加到类中
+</span><span style="color:#75715e"> * 即：class FruitGenerator&lt;T&gt; implements Generator&lt;T&gt;{
+</span><span style="color:#75715e"> * 如果不声明泛型，如：class FruitGenerator implements Generator&lt;T&gt;，编译器会报错：&#34;Unknown class&#34;
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FruitGenerator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Generator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>当实现泛型接口的类，传入泛型实参时：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 传入泛型实参时：
+</span><span style="color:#75715e"> * 定义一个生产器实现这个接口,虽然我们只创建了一个泛型接口Generator&lt;T&gt;
+</span><span style="color:#75715e"> * 但是我们可以为T传入无数个实参，形成无数种类型的Generator接口。
+</span><span style="color:#75715e"> * 在实现类实现泛型接口时，如已将泛型类型传入实参类型，则所有使用泛型的地方都要替换成传入的实参类型
+</span><span style="color:#75715e"> * 即：Generator&lt;T&gt;, public T next();中的的T都要替换成传入的String类型。
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FruitGenerator</span> <span style="color:#66d9ef">implements</span> Generator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> String<span style="color:#f92672">[]</span> fruits <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;Apple&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Banana&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pear&#34;</span><span style="color:#f92672">};</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Random rand <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">return</span> fruits<span style="color:#f92672">[</span>rand<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>3<span style="color:#f92672">)];</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="泛型方法">泛型方法</h2>
+<p>泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GenericTest</span> <span style="color:#f92672">{</span>
+   <span style="color:#75715e">//这个类是个泛型类，在上面已经介绍过
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>     
+        <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#75715e">//我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//所以在这个方法中才可以继续使用 T 这个泛型。
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span>
+            <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/** 
+</span><span style="color:#75715e">     * 这才是一个真正的泛型方法。
+</span><span style="color:#75715e">     * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T
+</span><span style="color:#75715e">     * 这个T可以出现在这个泛型方法的任意位置.
+</span><span style="color:#75715e">     * 泛型的数量也可以为任意多个 
+</span><span style="color:#75715e">     *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container){
+</span><span style="color:#75715e">     *        ...
+</span><span style="color:#75715e">     *        }
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">showKeyName</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> container<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;container key :&#34;</span> <span style="color:#f92672">+</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+        <span style="color:#75715e">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。
+</span><span style="color:#75715e"></span>        T test <span style="color:#f92672">=</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">return</span> test<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic&lt;Number&gt;这个泛型类做形参而已。
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue1</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>Number<span style="color:#f92672">&gt;</span> obj<span style="color:#f92672">){</span>
+        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue2</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;?&gt;</span> obj<span style="color:#f92672">){</span>
+        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>在泛型类中使用泛型方法的时候，泛型方法的参数类型不需要与泛型类的类型相同
+泛型方法与可变参数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printMsg</span><span style="color:#f92672">(</span> T<span style="color:#f92672">...</span> args<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>T t <span style="color:#f92672">:</span> args<span style="color:#f92672">){</span>
+        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;t is &#34;</span> <span style="color:#f92672">+</span> t<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+printMsg<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">,</span>222<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;aaaa&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;2323.4&#34;</span><span style="color:#f92672">,</span>55<span style="color:#f92672">.</span><span style="color:#a6e22e">55</span><span style="color:#f92672">);</span>
+</code></pre></div><h1 id="java回调">Java回调</h1>
+<p>回调的概念：举个例子就是，我们想要问别人一道题，我们把题跟对方说了一下，对方说好，等我做完这道题，我就告诉你，这个时候就用到了回调，因为我们并不知道对方什么时候会做完，而是对方做完了来主动找我们。<br>
+同步回调:代码运行到某一个位置的时候，如果遇到了需要回调的代码，会在这里等待，等待回调结果返回后再继续执行。<br>
+异步回调:代码执行到需要回调的代码的时候，并不会停下来，而是继续执行，当然可能过一会回调的结果会返回回来。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Callback<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Callback</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+Printer<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Printer</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;正在打印 . . . &#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">();</span>
+            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>3000<span style="color:#f92672">);</span><span style="color:#75715e">// 毫秒
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#f92672">}</span>
+        callback<span style="color:#f92672">.</span><span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印完成&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+
+People<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">People</span> <span style="color:#f92672">{</span>
+
+    Printer printer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Printer<span style="color:#f92672">();</span>
+
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">     * 同步回调
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">     * 异步回调
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+                printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+Main<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span><span style="color:#75715e">//测试类，同步回调
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
+        Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">};</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+        people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+Main<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span><span style="color:#75715e">//异步回调
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
+        Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">};</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+        people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>android中实现回调</p>
+<pre><code>private  OnCampaignClickListener mListener;
+//定义接口，不考虑方法实现，方法实现由调用者去考虑
+public  interface OnCampaignClickListener{
+
+    void onClick(View view,Campaign campaign);
+
+}
+
+//暴露一个方法给调用者来注册接口回调，通过接口来获得回调者对接口方法的实现
+public void setOnCampaignClickListener(OnCampaignClickListener listener){
+    this.mListener = listener;
+}
+
+
+ imageViewBig.setOnClickListener(this);
+ imageViewSmallTop.setOnClickListener(this);
+ imageViewSmallBottom.setOnClickListener(this);  
+
+      //对这些组件的点击事件设置点击效果
+    @Override
+    public void onClick( View v) {
+        anim(v);
+    }
+
+        //**为三个组件添加点击事件，调用接口中的方法，待需要回调时，会有具体的实现**
+      private void anim(final  View v){
+
+          //通过ObjectAnimator设置动画属性
+          ObjectAnimator animator = ObjectAnimator.ofFloat(v,&quot;rotationX&quot;,0.0F,360.0F)
+                  .setDuration(200);
+
+          animator.addListener(new AnimatorListenerAdapter() {
+              //动画效果结束后回调
+              @Override
+              public void onAnimationEnd(Animator animation) {
+                  super.onAnimationEnd(animation);
+
+
+                  HomeCampaign homeCampaign = mDatas.get(getLayoutPosition());
+                  if(mListener !=null){
+
+                      switch (v.getId()){
+
+                          case  R.id.imgview_big:
+                              mListener.onClick(v,homeCampaign.getCpOne());
+                              break;
+
+                          case  R.id.imgview_small_top:
+                              mListener.onClick(v,homeCampaign.getCpTwo());
+                              break;
+
+                          case  R.id.imgview_small_bottom:
+                              mListener.onClick(v,homeCampaign.getCpThree());
+                              break;
+
+
+
+                      }
+                  }
+
+
+              }
+          });
+          animator.start();
+
+      }
+
+}
+**实现接口回调**
+**调用者需要实现接口，完成接口的方法，将接口对象传入到被调用者暴露出来的注册方法中，从而完成回调**
+ //对商品拥有点击事件,跳转到WareListActivity
+    mAdatper.setOnCampaignClickListener(new HomeCatgoryAdapter.OnCampaignClickListener() {
+        @Override
+        public void onClick(View view, Campaign campaign) {
+
+            Intent intent = new Intent(getContext(), WareListActivity.class);
+            //把value值传入intent，key需要用常量来标记
+            intent.putExtra(Constants.COMPAINGAIN_ID,campaign.getId());
+
+            startActivity(intent);
+
+
+
+        }
+    });
+</code></pre>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/java-1/>https://linkleyping.top/2020/java-1/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2019/ustc2019/" class="prev" rel="prev" title="USTC CTF 2019"><i class="iconfont icon-left"></i>&nbsp;USTC CTF 2019</a>
+        
+        
+        <a href="https://linkleyping.top/2020/buuctf%E5%88%B7%E9%A2%98-1/" class="next" rel="next" title="BUUCTF刷题">BUUCTF刷题&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

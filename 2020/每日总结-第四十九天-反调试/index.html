@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            反调试技术 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="反调试技术 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "反调试技术",
+    "headline" : "反调试技术",
+    "description" : "参考链接 反调试技术总结 白话windows之四 异常处理机制(VEH、SEH、TopLevelEH\u0026hellip;) 动态反调试技术 静态反调试技术",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-12 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-06-12 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95\/",
+    "wordCount" : "5215",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">反调试技术</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-06-12 itemprop="datePublished">June 12, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">5215 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e9%9d%99%e6%80%81%e5%8f%8d%e8%b0%83%e8%af%95" class="toc-link">静态反调试</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e6%9f%a5%e7%9c%8bpebbeingdebugged%e7%9a%84%e5%80%bc" class="toc-link">查看PEB.BeingDebugged的值</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#pebldrpeb0xc" class="toc-link">PEB.Ldr(PEB&#43;0xC)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#pebprocess-heappeb0x18" class="toc-link">PEB.Process Heap(PEB&#43;0x18)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#ntglobalfalgpeb0x68" class="toc-link">NtGlobalFalg(PEB&#43;0x68)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#ntqueryinformationprocess%e7%b3%bb%e5%88%97" class="toc-link">NtQueryInformationProcess()系列</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#processdebugport0x7" class="toc-link">ProcessDebugPort(0x7)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#processdebugobjecthandle0x1e" class="toc-link">ProcessDebugObjectHandle(0x1E)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#processdebugflags0x1f" class="toc-link">ProcessDebugFlags(0x1F)</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#ntquerysysteminformation" class="toc-link">NtQuerySystemInformation()</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#ntqueryobject" class="toc-link">NtQueryObject()</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#zwsetinformationthread" class="toc-link">ZwSetInformationThread()</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#debugactiveprocessstop" class="toc-link">DebugActiveProcessStop()</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e5%8a%a8%e6%80%81%e5%8f%8d%e8%b0%83%e8%af%95" class="toc-link">动态反调试</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e5%bc%82%e5%b8%b8" class="toc-link">异常</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#timing-check" class="toc-link">Timing Check</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e9%99%b7%e9%98%b1%e6%a0%87%e5%bf%97" class="toc-link">陷阱标志</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#0xcc%e6%8e%a2%e6%b5%8b" class="toc-link">0xCC探测</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e6%af%94%e8%be%83%e6%a0%a1%e9%aa%8c%e5%92%8c" class="toc-link">比较校验和</a></li>
+                        
+                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" class="toc-link">异常处理</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/#%e4%be%8b%e5%ad%90" class="toc-link">例子</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考链接">参考链接</h2>
+<p><a href="https://bbs.pediy.com/thread-225740.htm">反调试技术总结</a>
+<a href="https://bbs.pediy.com/thread-173853.htm">白话windows之四 异常处理机制(VEH、SEH、TopLevelEH&hellip;)</a>
+<a href="https://www.jianshu.com/p/14c51e3ba70a">动态反调试技术</a>
+<a href="https://www.jianshu.com/p/947c6197c328">静态反调试技术</a>
+<a href="https://apeng.fun/2020/06/11/2020npointer-5/">2020 空指针 5月RE公开赛</a></p>
+<h2 id="静态反调试">静态反调试</h2>
+<h3 id="查看pebbeingdebugged的值">查看PEB.BeingDebugged的值</h3>
+<p>即<code>IsDebuggerPresent()</code>的实现方式，如果该值为1，则表示当前进程被调试。
+PEB访问方法：</p>
+<ol>
+<li>直接获取PEB地址</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">MOV EAX, DWORD PTR FS:<span style="color:#f92672">[</span>30<span style="color:#f92672">]</span> ; FS<span style="color:#f92672">[</span>30<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> address of PEB
+</code></pre></div><ol start="2">
+<li>先获取TEB地址，在通过ProcessEnvironmentBlock成员(+30偏移)获取PEB地址</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">MOV EAX, DWORD PTR FS:<span style="color:#f92672">[</span>18<span style="color:#f92672">]</span> ; FS<span style="color:#f92672">[</span>18<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> address of TEB
+MOV EAX, DWORD PTR DS:<span style="color:#f92672">[</span>EAX+30<span style="color:#f92672">]</span> ; DS<span style="color:#f92672">[</span>EAX+30<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> address of PEB
+</code></pre></div><h3 id="pebldrpeb0xc">PEB.Ldr(PEB+0xC)</h3>
+<p>（仅限在WindowsXP系统，之后的系统无法使用，且以附加形式将无法在堆内存中出现上述标识）
+调试进程时，其堆内存会出现一些奇怪的标志，表示它正处于被调试状态。最醒目的是，未使用的堆内存区域全部填充着0xEEFEEEFE,这证明该进程正在被调试。
+PEB.Ldr指向_PEB_LDR_DATA结构体的指针，而_PEB_LDR_DATA结构体结构体又恰好在堆内存中创建，所以扫描该区域是否存在0xEEFEEEFE区域即可判断。</p>
+<ul>
+<li>破解方法：将相关0xEEFEEEFE区域全部覆盖为NULL即可。</li>
+</ul>
+<h3 id="pebprocess-heappeb0x18">PEB.Process Heap(PEB+0x18)</h3>
+<p>（仅限在WindowsXP系统，且以附加形式将无法在堆内存中出现上述特征）</p>
+<p>PEB.Process Heap成员既可以直接从PEB结构体获取，也可以从<code>GetProcessHeap()</code>API获取。</p>
+<p>HEAP(PEB+0x18)地址(黄色方框)为0x00790000
+<img src="//upload-images.jianshu.io/upload_images/13348817-7e74638309987cd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/540/format/webp" alt="">
+我们访问0x00790000
+进程正常运行(非调试运行)时，<code>Heap.Flags</code>成员（+0xC）的值为<code>0x2</code>,<code>Heap.ForceFlags</code>成员(+0x10)的值为<code>0x0</code>.
+进程处于被调试状态时，这些值也会随之改变。比较这些值即可判断。
+<img src="//upload-images.jianshu.io/upload_images/13348817-6ab9fd129ee41ca0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/583/format/webp" alt=""></p>
+<ul>
+<li>破解方法：将Heap.Flags与Heap.ForceFlags的值分别重新设置为2与0即可。</li>
+</ul>
+<h3 id="ntglobalfalgpeb0x68">NtGlobalFalg(PEB+0x68)</h3>
+<p>(将运行中的进程附加到调试器的时候，NtGlobalFalg值不变)
+调试进程时，<code>PEB.NtGlobalFalg</code>成员(+0x68)的值会被设置为0x70.所以，检测该成员的值即可判断进程是否处于被调试阶段.
+NtGlobalFalg 0x70是由下列的flags值进行位或(bit OR)运算的结果</p>
+<blockquote>
+<p>FLG_HEAP_ENABLE_TAIL_CHECK(0X10)
+FLG_HEAP_ENABLE_FREE_CHECK(0X20)
+FLG_HEAP_VALIDATE_PARAMETERS(0X40)</p>
+</blockquote>
+<ul>
+<li>破解方法：设置<code>PEB.NtGlobalFalg</code>为0即可。</li>
+</ul>
+<h3 id="ntqueryinformationprocess系列">NtQueryInformationProcess()系列</h3>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntqueryinformationprocess">函数原型</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">__kernel_entry NTSTATUS <span style="color:#a6e22e">NtQueryInformationProcess</span>(
+  IN HANDLE           ProcessHandle,
+  IN PROCESSINFOCLASS ProcessInformationClass,
+  OUT PVOID           ProcessInformation,
+  IN ULONG            ProcessInformationLength,
+  OUT PULONG          ReturnLength
+);
+</code></pre></div><p>ProcessInformationClass为enum类型。其中，与调试器探测有关的成员为</p>
+<ul>
+<li>ProcessDebugPort(0x7)</li>
+<li>ProcessDebugObjectHandle(0x1E)</li>
+<li>ProcessDebugFlags(0x1F)</li>
+</ul>
+<h3 id="processdebugport0x7">ProcessDebugPort(0x7)</h3>
+<p>进程处于非调试阶段时，dwDebugPort的值为0，处于调试阶段，则为0xFFFFFFFF
+例如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">DWORD dwDebugPort<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+pNtQueryInformationProcess(GetCurrentProcess(), ProcessDebugPort, <span style="color:#f92672">&amp;</span>dwDebugPort, <span style="color:#66d9ef">sizeof</span>(dwDebugPort), NULL);
+<span style="color:#66d9ef">if</span>(dwDebugPort <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+        printf(<span style="color:#e6db74">&#34;being debuged</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</code></pre></div><p>即CheckRemoteDebuggerPresent()函数的实现方法，该函数还可以检测其他进程是否处于被调试状态。</p>
+<h3 id="processdebugobjecthandle0x1e">ProcessDebugObjectHandle(0x1E)</h3>
+<p>如果进程处于被调试状态，则调试对象句柄存在，反之，该句柄值为NULL
+例如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">HANDLE hDebugObject <span style="color:#f92672">=</span> NULL;
+pNtQueryInformationProcess(GetCurrentProcess(),(PROCESSINFOCLASS)<span style="color:#ae81ff">30</span> , <span style="color:#f92672">&amp;</span>hDebugObject, <span style="color:#66d9ef">sizeof</span>(hDebugObject), NULL);
+<span style="color:#66d9ef">if</span>(hDebugObject <span style="color:#f92672">!=</span> null)
+        printf(<span style="color:#e6db74">&#34;being debuged</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</code></pre></div><p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntqueryinformationprocess">API文档</a>头文件中的ProcessInformationClass成员中找不到此值，故直接写入30作为参数。当然，也可以自己声明好PROCESSINFOCLASS。</p>
+<h3 id="processdebugflags0x1f">ProcessDebugFlags(0x1F)</h3>
+<p>函数的第二个参数设置为ProcessDebugFlags(0x1F)后，调用函数后，通过第三个参数即可获取调试标志的值。如果为0，则进程处于被调试状态;若为1,则进程处于非调试状态。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">BOOL bDebugFlag <span style="color:#f92672">=</span> TRUE;
+    pNtQueryInformationProcess(GetCurrentProcess(),
+                               ProcessDebugFlags,
+                               <span style="color:#f92672">&amp;</span>bDebugFlag,
+                               <span style="color:#66d9ef">sizeof</span>(bDebugFlag),
+                               NULL);
+    printf(<span style="color:#e6db74">&#34;NtQueryInformationProcess(ProcessDebugFlags) = 0x%X</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, bDebugFlag);
+    <span style="color:#66d9ef">if</span>( bDebugFlag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x0</span>  )  printf(<span style="color:#e6db74">&#34;  =&gt; Debugging!!!</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">else</span>                      <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;  =&gt; Not debugging...</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>);
+
+</code></pre></div><p>注意，此处BOOL为大写，即与int等价（如果用了bool，会导致结果错误）</p>
+<h3 id="ntquerysysteminformation">NtQuerySystemInformation()</h3>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntquerysysteminformation">API文档</a>
+函数原型</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">__kernel_entry NTSTATUS <span style="color:#a6e22e">NtQuerySystemInformation</span>(
+  IN SYSTEM_INFORMATION_CLASS SystemInformationClass,
+  OUT PVOID                   SystemInformation,
+  IN ULONG                    SystemInformationLength,
+  OUT PULONG                  ReturnLength
+);
+
+</code></pre></div><ul>
+<li>SystemInformationClass是枚举类型，其成员SystemKernelDebuggerInformation的值为0x23</li>
+<li>向函数第一个参数传入0x23，通过获取的第二个参数SystemInformation结构体的DebuggerEnabled和DebuggerInfo的值即可判断。</li>
+<li>注：当前(2018.12.26)的API文档中没有了SystemInformation结构体的定义，官方说明NtQuerySystemInformation可能将在未来的Windows版本中发生改变。</li>
+<li>破解方法：windows7中在命令行窗口(管理员模式)执行<code>bcdedit /debug off</code>即可。</li>
+</ul>
+<h3 id="ntqueryobject">NtQueryObject()</h3>
+<p>系统中的调试器调试进程的时候，会创建一个调试对象类型的内核对象。检测该对象是否存在即可判断是否有进程正在被调试。</p>
+<h3 id="zwsetinformationthread">ZwSetInformationThread()</h3>
+<ul>
+<li>通过设置当前线程的信息来将自身从调试器中分离出来。</li>
+<li>原理:隐藏当前线程，使调试器无法再收到该线程的调试事件。</li>
+</ul>
+<h3 id="debugactiveprocessstop">DebugActiveProcessStop()</h3>
+<p>用于分离调试器和被调试进程。</p>
+<h2 id="动态反调试">动态反调试</h2>
+<h3 id="异常">异常</h3>
+<ol>
+<li>SEH</li>
+<li>SetUnhandledExceptionFilter()</li>
+</ol>
+<p>进程中发生异常，若SEH未处理或者注册的SEH不存在，此时会调用执行系统的<code>kernel32!UnhandledExceptionFilter()</code>API.该函数内部会运行系统的最后一个异常处理器(名为Top Level Exception Filter或Last Exception Filter).系统最后的异常处理器通常会弹出错误消息框，然后终止进程运行。
+<code>kernel32!UnhandledExceptionFilter()</code>API内部调用了<code>ntdll!NtQueryInformationProcess(ProcessDebugPort)</code>这个API（静态反调试），来判断是否正在调试进程。若进程正常运行（非调试状态），则运行系统最后的异常处理器，否则将异常派送给调试器。通过<code>kernel32!SetUnhandledExceptionFilter</code>可以修改系统最后的异常处理器。
+基于异常的反调试技术中，通常先故意触发异常，然后在新注册的Last Exception Filter内部判断进程是正常运行还是调试运行，并根据判断结果修改EIP。</p>
+<h3 id="timing-check">Timing Check</h3>
+<p>在调试器中逐行跟踪代码比程序正常运行耗费的时间要长很多，Timing Check技术通过计算运行的时间差异来判断进程是否处于被调试状态。</p>
+<ol>
+<li>时间间隔测量</li>
+</ol>
+<p>测量时间间隔的方法有很多，例如
+基于计数器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">RDTSC <span style="color:#f92672">(</span>汇编指令<span style="color:#f92672">)</span>
+kernel32!QueryPerformanceCounter<span style="color:#f92672">()</span> / ntdll!NtQueryPerformanceCounter<span style="color:#f92672">()</span>
+kernel32!GetTickCount<span style="color:#f92672">()</span>
+</code></pre></div><p>基于时间</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">timeGetTime()
+__ftime()
+</code></pre></div><p>计数器的精准程度从高到低：
+RDTSC&gt;NtQueryPerformanceCounter()&gt;GetTickCount()</p>
+<ol start="2">
+<li>RDTSC</li>
+</ol>
+<p>x64CPU中存在一个名为TSC(Time Stamp Counter时间戳计数器)的64位寄存器。RDTSC这个汇编指令将TSC值读入EDX:EAX寄存器(高32位被保存到EDX，低32位被保存到EAX)</p>
+<h3 id="陷阱标志">陷阱标志</h3>
+<p>陷阱标志指EFLAGS寄存器的第九个(Index 8)比特位, Trap Flag，（在x64dbg中表示为TF）
+TF设置为1后，CPU将进入单步执行模式。单步执行模式中，CPU执行1条指令后即触发<code>EXCEPTION_SINGLE_STEP</code>异常，然后TF会自动清零(0)。
+INT 2D
+在调试模式下执行完INT 2D后，下一条指令的第一个字节将被调试器忽略。（od的bug？）（若设置TF为1后再执行INT 2D，则不会忽略）</p>
+<h3 id="0xcc探测">0xCC探测</h3>
+<p>API断点0xCC检测</p>
+<h3 id="比较校验和">比较校验和</h3>
+<h2 id="异常处理">异常处理</h2>
+<p>SEH: 结构化异常处理
+VEH: 向量化异常处理
+TopLevelEH：顶层异常处理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">EXCEPTION_EXECUTE_HANDLER ：该异常被处理。从异常处下一条指令继续执行
+EXCEPTION_CONTINUE_SEARCH：不能处理该异常，让别人处理它吧
+EXCEPTION_CONTINUE_EXECUTION：该异常被忽略。从异常处处继续执行
+
+//调试器返回值：
+DBG_CONTINUE ： 等同于EXCEPTION_CONTINUE_EXECUTION
+DBG_EXCEPTION_NOT_HANDLED ：等同于EXCEPTION_CONTINUE_SEARCH
+</code></pre></div><p>异常处理器处理顺序流程：</p>
+<ol>
+<li>交给调试器(进程必须被调试)</li>
+<li>执行VEH</li>
+<li>执行SEH</li>
+<li>TopLevelEH(进程被调试时不会被执行)</li>
+<li>交给调试器(上面的异常处理都说处理不了，就再次交给调试器)</li>
+<li>调用异常端口通知csrss.exe</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">// exception.cpp : 此文件包含 &#34;main&#34; 函数。程序执行将在此处开始并结束。
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;windows.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;atlstr.h&#34; </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//先介绍一下返回值的意思
+</span><span style="color:#75715e">//EXCEPTION_EXECUTE_HANDLER			//该指令异常被处理。从下一条指令继续执行
+</span><span style="color:#75715e">//EXCEPTION_CONTINUE_SEARCH			//不能处理该异常，让别人处理它吧
+</span><span style="color:#75715e">//EXCEPTION_CONTINUE_EXECUTION		//该指令被忽略。从该指令处继续执行
+</span><span style="color:#75715e"></span>
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ShowExceptionInfo</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+
+}
+LONG <span style="color:#a6e22e">ShowSelectMessageBox</span>(TCHAR<span style="color:#f92672">*</span> pTitle)
+{
+	<span style="color:#66d9ef">int</span> nRet <span style="color:#f92672">=</span> MessageBox(<span style="color:#ae81ff">0</span>, _T(<span style="color:#e6db74">&#34;--------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">我要“认领”该异常?</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">YES：认领该异常。</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">NO: 交给别人处理(return EXCEPTION_CONTINUE_SEARCH)&#34;</span>), pTitle, MB_YESNO);
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">!=</span> IDYES)
+	{<span style="color:#75715e">//让别人处理
+</span><span style="color:#75715e"></span>		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SELE] Select EXCEPTION_CONTINUE_SEARCH</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		<span style="color:#66d9ef">return</span> EXCEPTION_CONTINUE_SEARCH;
+	}
+	nRet <span style="color:#f92672">=</span> MessageBox(<span style="color:#ae81ff">0</span>, _T(<span style="color:#e6db74">&#34;--------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">是“忽略”还是“处理”该异常?</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">YES：忽略，从该指令处继续执行(return EXCEPTION_CONTINUE_EXECUTION)。</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">NO: 处理，从下一条指令继续执行(return EXCEPTION_EXECUTE_HANDLER)&#34;</span>), pTitle, MB_YESNO);
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">!=</span> IDYES)
+	{<span style="color:#75715e">//处理
+</span><span style="color:#75715e"></span>		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SELE] Select EXCEPTION_EXECUTE_HANDLER</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		<span style="color:#66d9ef">return</span> EXCEPTION_EXECUTE_HANDLER;
+	}
+
+	<span style="color:#75715e">//忽略
+</span><span style="color:#75715e"></span>	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SELE] Select EXCEPTION_CONTINUE_EXECUTION</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> EXCEPTION_CONTINUE_EXECUTION;
+}
+LONG NTAPI <span style="color:#a6e22e">FirstVectExcepHandler</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;*首个* VEH异常处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][1] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">==</span> EXCEPTION_EXECUTE_HANDLER)
+	{
+		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][1] EXCEPTION_EXECUTE_HANDLER 标志在VEH中无效！,所以第二个VEH被调用。</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	}
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">==</span> EXCEPTION_CONTINUE_EXECUTION)
+	{
+		<span style="color:#66d9ef">if</span> (MessageBox(<span style="color:#ae81ff">0</span>, _T(<span style="color:#e6db74">&#34;jmp int3？(跳过INT3指令,否则还会被断下)&#34;</span>), _T(<span style="color:#e6db74">&#34;是否修正到下一条指令执行&#34;</span>), MB_YESNO) <span style="color:#f92672">==</span> IDYES)
+		{
+			pExcepInfo<span style="color:#f92672">-&gt;</span>ContextRecord<span style="color:#f92672">-&gt;</span>Eip <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//跳过int3
+</span><span style="color:#75715e"></span>			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][1] 该异常被处理。 且：jmp int3</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		}
+		<span style="color:#66d9ef">else</span>
+		{
+			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][1] 该异常被处理</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		}
+	}
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][1] out</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> nRet;
+}
+
+LONG NTAPI <span style="color:#a6e22e">LastVectExcepHandler</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;*最后* VEH异常处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][2] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">==</span> EXCEPTION_EXECUTE_HANDLER)
+	{
+		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][2] EXCEPTION_EXECUTE_HANDLER 标志在VEH中无效！,所以SEH被调用。</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	}
+	<span style="color:#66d9ef">if</span> (nRet <span style="color:#f92672">==</span> EXCEPTION_CONTINUE_EXECUTION)
+	{
+		<span style="color:#66d9ef">if</span> (MessageBox(<span style="color:#ae81ff">0</span>, _T(<span style="color:#e6db74">&#34;jmp int3？(跳过INT3指令,否则还会被断下)&#34;</span>), _T(<span style="color:#e6db74">&#34;是否修正到下一条指令执行&#34;</span>), MB_YESNO) <span style="color:#f92672">==</span> IDYES)
+		{
+			pExcepInfo<span style="color:#f92672">-&gt;</span>ContextRecord<span style="color:#f92672">-&gt;</span>Eip <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//跳过int3
+</span><span style="color:#75715e"></span>			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][2] 该异常被处理。 且：jmp int3</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		}
+		<span style="color:#66d9ef">else</span>
+		{
+			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][2] 该异常被处理</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		}
+	}
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [VEH][2] out </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> nRet;
+}
+
+LONG NTAPI <span style="color:#a6e22e">TopLevelExcepFilter</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;*顶级* 异常处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [TOP] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [TOP] out </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));;
+	<span style="color:#66d9ef">return</span> nRet;
+}
+
+LONG <span style="color:#a6e22e">FirstSEHer</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;第一个SEH处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][1] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][1] out </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> nRet;
+}
+LONG <span style="color:#a6e22e">SecondSEHer</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;第二个SEH处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][2] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][2] out </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));;
+	<span style="color:#66d9ef">return</span> nRet;
+}
+
+LONG <span style="color:#a6e22e">ThirdSEHer</span>(PEXCEPTION_POINTERS pExcepInfo)
+{
+	TCHAR<span style="color:#f92672">*</span> pTitle <span style="color:#f92672">=</span> _T(<span style="color:#e6db74">&#34;第三个SEH处理器&#34;</span>);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][3] in </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	LONG nRet <span style="color:#f92672">=</span> ShowSelectMessageBox(pTitle);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][3] out </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));;
+	<span style="color:#66d9ef">return</span> nRet;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ExcepFunction</span>()
+{
+	<span style="color:#66d9ef">__try</span>
+	{
+		<span style="color:#66d9ef">__try</span>
+		{
+			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] *[CALL] int 3</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+			<span style="color:#66d9ef">__asm</span> <span style="color:#66d9ef">int</span> <span style="color:#ae81ff">3</span>;
+		}
+		<span style="color:#66d9ef">__except</span> (FirstSEHer(GetExceptionInformation()))
+		{
+			_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][1] 被俺处理了~(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		}
+	}
+	<span style="color:#66d9ef">__except</span> (SecondSEHer(GetExceptionInformation()))
+	{
+		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][2] 被俺处理了(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	}
+}
+
+DWORD <span style="color:#66d9ef">__stdcall</span> <span style="color:#a6e22e">ExcepThread</span>(LPVOID lpThreadParameter)
+{
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [ExcepThread] in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">__try</span>
+	{
+		ExcepFunction();
+	}
+	<span style="color:#66d9ef">__except</span> (ThirdSEHer(GetExceptionInformation()))
+	{
+		_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [SEH][3] 被俺处理了(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	}
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] [ExcepThread] out</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">_tmain</span>(<span style="color:#66d9ef">int</span> argc, _TCHAR<span style="color:#f92672">*</span> argv[])
+{
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] Add VEH.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	AddVectoredExceptionHandler(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>FirstVectExcepHandler);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] Add VEH.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	AddVectoredExceptionHandler(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">&amp;</span>LastVectExcepHandler);
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] Add Top LEF.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	SetUnhandledExceptionFilter(<span style="color:#f92672">&amp;</span>TopLevelExcepFilter);
+
+	HANDLE hThread <span style="color:#f92672">=</span> CreateThread(NULL, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">&amp;</span>ExcepThread, NULL, <span style="color:#ae81ff">0</span>, NULL);
+	<span style="color:#66d9ef">if</span> (hThread)
+	{
+		WaitForSingleObject(hThread, INFINITE);
+	}
+	_tprintf(_T(<span style="color:#e6db74">&#34;[EH.Exe] 进程退出</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="例子">例子</h2>
+<p>空指针六月re公开赛这道题用了很多反调试的技术。</p>
+<ol>
+<li>TLS回调函数中进行反调试检测</li>
+</ol>
+<p>TLS回调函数是指，每当创建/终止进程的线程时，会自动调用执行的函数。创建或终止某线程时，TLS回调函数都会自动调用执行，前后共两次。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">__stdcall</span> <span style="color:#a6e22e">TlsCallback_0</span>(<span style="color:#66d9ef">int</span> a1, <span style="color:#66d9ef">int</span> a2, <span style="color:#66d9ef">int</span> a3)
+{
+  HMODULE v3; <span style="color:#75715e">// eax
+</span><span style="color:#75715e"></span>  FARPROC v4; <span style="color:#75715e">// eax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> result; <span style="color:#75715e">// eax
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// [esp+DCh] [ebp-8h]
+</span><span style="color:#75715e"></span>
+  v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  v3 <span style="color:#f92672">=</span> GetModuleHandleW(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;ntdll.dll&#34;</span>);
+  v4 <span style="color:#f92672">=</span> GetProcAddress(v3, <span style="color:#e6db74">&#34;NtQueryInformationProcess&#34;</span>);
+  result <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">int</span> (<span style="color:#66d9ef">__stdcall</span> <span style="color:#f92672">*</span>)(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>, <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>, _DWORD))v4)(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>, <span style="color:#f92672">&amp;</span>v6, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>);
+  <span style="color:#66d9ef">if</span> ( result )
+    <span style="color:#66d9ef">return</span> result;
+  <span style="color:#66d9ef">if</span> ( v6 )
+  {
+    result <span style="color:#f92672">=</span> TlsIndex;
+    <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(<span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(__readfsdword(<span style="color:#ae81ff">0x2Cu</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> TlsIndex) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xDEADBEEF</span>;
+  }
+  <span style="color:#66d9ef">else</span>
+  {
+    result <span style="color:#f92672">=</span> TlsIndex;
+    <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(<span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(__readfsdword(<span style="color:#ae81ff">0x2Cu</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> TlsIndex) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  }
+  <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><p>NtQueryInformationProcess，等于7检测ProcessDebugPort。
+2. NtGlobalFalg(PEB+0x68)</p>
+<p>调试进程时，PEB.NtGlobalFalg成员(+0x68)的值会被设置为0x70</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">__int64</span> <span style="color:#a6e22e">sub_402740</span>()
+{
+  <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// edx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v1; <span style="color:#75715e">// ST00_8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> i; <span style="color:#75715e">// [esp+D0h] [ebp-6Ch]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v4[<span style="color:#ae81ff">24</span>]; <span style="color:#75715e">// [esp+DCh] [ebp-60h]
+</span><span style="color:#75715e"></span>
+  v4[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  v4[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(__readfsdword(<span style="color:#ae81ff">0x30u</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0x68</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x70</span>;
+  v4[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>;
+  v4[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">43</span>;
+  v4[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>;
+  v4[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">87</span>;
+  v4[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">34</span>;
+  v4[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>;
+  v4[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
+  v4[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+  v4[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">56</span>;
+  v4[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
+  v4[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>;
+  v4[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">98</span>;
+  v4[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
+  v4[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>;
+  v4[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">87</span>;
+  v4[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">63</span>;
+  v4[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
+  v4[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">74</span>;
+  v4[<span style="color:#ae81ff">18</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">68</span>;
+  v4[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">88</span>;
+  <span style="color:#66d9ef">if</span> ( v4[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">23</span> )
+  {
+    <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>; <span style="color:#f92672">++</span>i )
+      byte_452F80[i] <span style="color:#f92672">=</span> LOBYTE(v4[i]) <span style="color:#f92672">^</span> (<span style="color:#ae81ff">23</span> <span style="color:#f92672">-</span> LOBYTE(v4[<span style="color:#ae81ff">22</span>]));
+  }
+  AddVectoredExceptionHandler(<span style="color:#ae81ff">0</span>, Handler);
+  HIDWORD(v1) <span style="color:#f92672">=</span> v0;
+  LODWORD(v1) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">return</span> v1;
+}
+</code></pre></div><ol start="3">
+<li>GetTickCount</li>
+</ol>
+<p>获取时间间隔</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sub_402AB0</span>()
+{
+  <span style="color:#66d9ef">__int16</span> v0; <span style="color:#75715e">// STE8_2
+</span><span style="color:#75715e"></span>
+  v0 <span style="color:#f92672">=</span> GetTickCount();
+  <span style="color:#66d9ef">return</span> (((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int16</span>)GetTickCount() <span style="color:#f92672">-</span> v0) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF00</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>;
+}
+</code></pre></div><ol start="4">
+<li>校验和
+这里不仅是代码不能修改，也不能下断点，因为断点的0xcc也会被检测</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">__cdecl</span> <span style="color:#a6e22e">sub_4029E0</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>a1, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> a2)
+{
+  <span style="color:#66d9ef">int</span> v3; <span style="color:#75715e">// [esp+D0h] [ebp-8h]
+</span><span style="color:#75715e"></span>
+  v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> ( (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)a1 <span style="color:#f92672">&lt;</span> a2 )
+    v3 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>a1<span style="color:#f92672">++</span>;
+  <span style="color:#66d9ef">return</span> v3;
+}
+<span style="color:#66d9ef">__int64</span> <span style="color:#a6e22e">sub_402470</span>()
+{
+  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// edx
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v1; <span style="color:#75715e">// ST00_8
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> j; <span style="color:#75715e">// [esp+D0h] [ebp-DCh]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> i; <span style="color:#75715e">// [esp+DCh] [ebp-D0h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v5[<span style="color:#ae81ff">24</span>]; <span style="color:#75715e">// [esp+E8h] [ebp-C4h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// [esp+150h] [ebp-5Ch]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v7; <span style="color:#75715e">// [esp+15Ch] [ebp-50h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v8; <span style="color:#75715e">// [esp+168h] [ebp-44h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v9; <span style="color:#75715e">// [esp+174h] [ebp-38h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v10; <span style="color:#75715e">// [esp+180h] [ebp-2Ch]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v11; <span style="color:#75715e">// [esp+18Ch] [ebp-20h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v12; <span style="color:#75715e">// [esp+198h] [ebp-14h]
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v13; <span style="color:#75715e">// [esp+1A4h] [ebp-8h]
+</span><span style="color:#75715e"></span>
+  v13 <span style="color:#f92672">=</span> sub_402A30();
+  v12 <span style="color:#f92672">=</span> sub_402AB0();
+  v10 <span style="color:#f92672">=</span> sub_4029E0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>)sub_402B50 <span style="color:#f92672">+</span> <span style="color:#ae81ff">80</span>, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_402B50 <span style="color:#f92672">+</span> <span style="color:#ae81ff">188</span>);
+  v9 <span style="color:#f92672">=</span> sub_4029E0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>)main <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)main <span style="color:#f92672">+</span> <span style="color:#ae81ff">206</span>);
+  v8 <span style="color:#f92672">=</span> sub_4029E0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>)sub_402E90 <span style="color:#f92672">+</span> <span style="color:#ae81ff">50</span>, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_402E90 <span style="color:#f92672">+</span> <span style="color:#ae81ff">139</span>);
+  v7 <span style="color:#f92672">=</span> sub_4029E0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>)TopLevelExceptionFilter, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)TopLevelExceptionFilter <span style="color:#f92672">+</span> <span style="color:#ae81ff">300</span>);
+  v6 <span style="color:#f92672">=</span> sub_4029E0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span> <span style="color:#f92672">*</span>)sub_402DC0 <span style="color:#f92672">+</span> <span style="color:#ae81ff">123</span>, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_402DC0 <span style="color:#f92672">+</span> <span style="color:#ae81ff">136</span>);
+  v0 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v8;
+  v11 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v6
+      <span style="color:#f92672">+</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v8
+      <span style="color:#f92672">+</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v7
+      <span style="color:#f92672">+</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v10
+      <span style="color:#f92672">+</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v9
+      <span style="color:#f92672">+</span> (<span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(<span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)(__readfsdword(<span style="color:#ae81ff">0x2Cu</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> TlsIndex) <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>)
+      <span style="color:#f92672">+</span> v12
+      <span style="color:#f92672">+</span> v13;
+  v5[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>;
+  v5[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">43</span>;
+  v5[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>;
+  v5[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">87</span>;
+  v5[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">34</span>;
+  v5[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>;
+  v5[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
+  v5[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+  v5[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">56</span>;
+  v5[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
+  v5[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>;
+  v5[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">98</span>;
+  v5[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
+  v5[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>;
+  v5[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">87</span>;
+  v5[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">63</span>;
+  v5[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
+  v5[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">74</span>;
+  v5[<span style="color:#ae81ff">18</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">68</span>;
+  v5[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">88</span>;
+  v5[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>;
+  v5[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">113</span>;
+  v5[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">57</span>;
+  v5[<span style="color:#ae81ff">23</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">97</span>;
+  <span style="color:#66d9ef">if</span> ( v11 )
+  {
+    <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">24</span>; <span style="color:#f92672">++</span>i )
+    {
+      v0 <span style="color:#f92672">=</span> i;
+      byte_452F80[i] <span style="color:#f92672">=</span> LOBYTE(v5[i]) <span style="color:#f92672">^</span> v11;
+    }
+  }
+  <span style="color:#66d9ef">else</span>
+  {
+    <span style="color:#66d9ef">for</span> ( j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">24</span>; <span style="color:#f92672">++</span>j )
+    {
+      LOBYTE(v0) <span style="color:#f92672">=</span> v5[j];
+      byte_452F80[j] <span style="color:#f92672">=</span> v0;
+    }
+  }
+  HIDWORD(v1) <span style="color:#f92672">=</span> v0;
+  LODWORD(v1) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">return</span> v1;
+}
+</code></pre></div><ol start="5">
+<li>VEH</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">AddVectoredExceptionHandler(<span style="color:#ae81ff">0</span>, Handler);
+</code></pre></div><ol start="6">
+<li>SetUnhandledExceptionFilter</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sub_402DC0</span>()
+{
+  DWORD flOldProtect; <span style="color:#75715e">// [esp+D0h] [ebp-2Ch]
+</span><span style="color:#75715e"></span>  LPVOID lpAddress; <span style="color:#75715e">// [esp+DCh] [ebp-20h]
+</span><span style="color:#75715e"></span>  SIZE_T dwSize; <span style="color:#75715e">// [esp+E8h] [ebp-14h]
+</span><span style="color:#75715e"></span>  HMODULE v4; <span style="color:#75715e">// [esp+F4h] [ebp-8h]
+</span><span style="color:#75715e"></span>
+  v4 <span style="color:#f92672">=</span> GetModuleHandleW(<span style="color:#ae81ff">0</span>);
+  SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)TopLevelExceptionFilter);
+  dwSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">188</span>;
+  lpAddress <span style="color:#f92672">=</span> sub_402B50;
+  dword_452FA0 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span>)sub_402B50;
+  VirtualProtect(sub_402B50, <span style="color:#ae81ff">0xBCu</span>, <span style="color:#ae81ff">0x40u</span>, <span style="color:#f92672">&amp;</span>flOldProtect);
+  <span style="color:#66d9ef">return</span> sub_4032A0((<span style="color:#66d9ef">int</span>)lpAddress, dwSize, (<span style="color:#66d9ef">int</span>)<span style="color:#f92672">&amp;</span>byte_452F90, <span style="color:#ae81ff">16</span>);
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" class="prev" rel="prev" title="angr使用"><i class="iconfont icon-left"></i>&nbsp;angr使用</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" class="next" rel="next" title="Android脱壳">Android脱壳&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

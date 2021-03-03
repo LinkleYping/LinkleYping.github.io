@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    <link rel="prev" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" />
+    <link rel="next" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%8E%BB%E5%B9%B3%E5%9D%A6%E5%8C%96%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            ELF动态链接 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="ELF动态链接 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "ELF动态链接",
+    "headline" : "ELF动态链接",
+    "description" : "参考链接 https:\/\/github.com\/tinyclub\/open-c-book\/blob\/master\/zh\/chapters\/02-chapter4.markdown https:\/\/luomuxiaoxiao.com\/?p=578 https:\/\/www.cnblogs.com\/pannengzhi\/p\/2018-04-09-about-got-plt.html https:\/\/www.jianshu.com\/p\/0ac63c3744dd 什么是PLT和GOT GOT全称Global Offset Table，即全局偏移量表。它在可执行文件中是一个单独的section，位于.d",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-05-27 15:22:45 \u002b0800 CST",
+    "dateModified" : "2020-05-27 15:22:45 \u002b0800 CST",
+    "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5\/",
+    "wordCount" : "1516",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">ELF动态链接</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-05-27 itemprop="datePublished">May 27, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1516 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#%e4%bb%80%e4%b9%88%e6%98%afplt%e5%92%8cgot" class="toc-link">什么是PLT和GOT</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#%e8%b0%83%e7%94%a8%e8%bf%87%e7%a8%8b" class="toc-link">调用过程</a></li>
+                        
+                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#got" class="toc-link">.got</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#plt" class="toc-link">.plt</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#gotplt" class="toc-link">.got.plt</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#%e5%87%bd%e6%95%b0%e7%ac%ac%e4%b8%80%e6%ac%a1%e8%a2%ab%e8%b0%83%e7%94%a8%e7%9a%84%e8%bf%87%e7%a8%8b" class="toc-link">函数第一次被调用的过程</a></li>
+                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#%e5%87%bd%e6%95%b0%e5%90%8e%e6%9d%a5%e8%a2%ab%e8%b0%83%e7%94%a8%e7%9a%84%e8%bf%87%e7%a8%8b" class="toc-link">函数后来被调用的过程</a></li>
+                        </div>
+</div>
+
+        
+        <h2 id="参考链接">参考链接</h2>
+<p><a href="https://github.com/tinyclub/open-c-book/blob/master/zh/chapters/02-chapter4.markdown">https://github.com/tinyclub/open-c-book/blob/master/zh/chapters/02-chapter4.markdown</a>
+<a href="https://luomuxiaoxiao.com/?p=578">https://luomuxiaoxiao.com/?p=578</a>
+<a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html">https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html</a>
+<a href="https://www.jianshu.com/p/0ac63c3744dd">https://www.jianshu.com/p/0ac63c3744dd</a></p>
+<h2 id="什么是plt和got">什么是PLT和GOT</h2>
+<p> GOT全称Global Offset Table，即全局偏移量表。它在可执行文件中是一个单独的section，位于.data section的前面。每个被目标模块引用的全局符号（函数或者变量）都对应于GOT中一个8字节的条目。编译器还为GOT中每个条目生成一个重定位记录。在加载时，动态链接器会重定位GOT中的每个条目，使得它包含正确的目标地址。
+ PLT全称Procedure Linkage Table，即过程链接表。它在可执行文件中也是一个单独的section，位于.textsection的前面。每个被可执行程序调用的库函数都有它自己的PLT条目。每个条目实际上都是一小段可执行的代码。</p>
+<h2 id="调用过程">调用过程</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/11884068-3fe27d4506439072?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" loading="lazy" ></p>
+<h3 id="got">.got</h3>
+<p>这是我们常说的GOT, 即Global Offset Table, 全局偏移表. 这是链接器在执行链接时
+实际上要填充的部分, 保存了所有外部符号的地址信息.
+不过值得注意的是, 在i386架构下, 除了每个函数占用一个GOT表项外，GOT表项还保留了
+3个公共表项, 每项32位(4字节), 保存在前三个位置, 分别是:</p>
+<ul>
+<li>got[0]: 本ELF动态段(.dynamic段)的装载地址</li>
+<li>got<a href="http://www.cs.stevens.edu/~jschauma/810/elf.html">1</a>: 本ELF的<code>link_map</code>数据结构描述符地址</li>
+<li>got<a href="http://www.cs.dartmouth.edu/~sergey/cs108/dyn-linking-with-gdb.txt">2</a>: <code>_dl_runtime_resolve</code>函数的地址</li>
+</ul>
+<p>其中, <code>link_map</code>数据结构的定义如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> link_map
+{
+   <span style="color:#75715e">/* Shared library&#39;s load address. */</span>
+   ElfW(Addr) l_addr;                 
+   <span style="color:#75715e">/* Pointer to library&#39;s name in the string table. */</span>                                 
+   <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>l_name;    
+   <span style="color:#75715e">/* 
+</span><span style="color:#75715e">        Dynamic section of the shared object.
+</span><span style="color:#75715e">        Includes dynamic linking info etc.
+</span><span style="color:#75715e">        Not interesting to us.  
+</span><span style="color:#75715e">   */</span>                   
+   ElfW(Dyn) <span style="color:#f92672">*</span>l_ld;   
+   <span style="color:#75715e">/* Pointer to previous and next link_map node. */</span>                 
+   <span style="color:#66d9ef">struct</span> link_map <span style="color:#f92672">*</span>l_next, <span style="color:#f92672">*</span>l_prev;   
+};
+
+</code></pre></div><h3 id="plt">.plt</h3>
+<p>这也是我们常说的PLT, 即Procedure Linkage Table, 进程链接表. 这个表里包含了一些代码,
+用来(1)调用链接器来解析某个外部函数的地址, 并填充到.got.plt中, 然后跳转到该函数; 或者
+(2)直接在.got.plt中查找并跳转到对应外部函数(如果已经填充过).</p>
+<h3 id="gotplt">.got.plt</h3>
+<p>.got.plt相当于.plt的GOT全局偏移表, 其内容有两种情况, 1)如果在之前查找过该符号,
+内容为外部函数的具体地址. 2)如果没查找过, 则内容为跳转回.plt的代码, 并执行查找.</p>
+<p>ld-linux-x86-64.so.2 是一个动态链接库，负责查找程序所使用的函数绝对地址，并将其写入到GOT表中，以供后续调用。其中GOT[0]为空，GOT[1]和GOT[2]用于保存查找的绝对函数地址，GOT[1]保存的是一个地址，指向已经加载的共享库的链表地址；GOT[2]保存的是一个函数的地址，定义如下：GOT[2] = &amp;_dl_runtime_resolve，这个函数的主要作用就是找到某个符号的地址，并把它写到与此符号相关的GOT项中，然后将控制转移到目标函数，而后面的GOT[3]，GOT[4]…都是通过_dl_fixup 添加的。</p>
+<h3 id="函数第一次被调用的过程">函数第一次被调用的过程</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/5970003-bcf9343191848103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="">
+第一步由函数调用跳入到PLT表中，然后第二步PLT表跳到GOT表中，可以看到第三步由GOT表回跳到PLT表中，这时候进行压栈，把代表函数的ID压栈，接着第四步跳转到公共的PLT表项中，第5步进入到GOT表中，然后_dl_runtime_resolve对动态函数进行地址解析和重定位，第七步把动态函数真实的地址写入到GOT表项中，然后执行函数并返回。</p>
+<p>解释下dynamic段，link_map和_dl_runtime_resolve
+dynamic段：提供动态链接的信息，例如动态链接中各个表的位置
+link_map：已加载库的链表，由动态库函数的地址构成的链表
+_dl_runtime_resolve：在第一次运行时进行地址解析和重定位工作</p>
+<h3 id="函数后来被调用的过程">函数后来被调用的过程</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/5970003-9baedd55881a39dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="">
+可以看到，第一步还是由函数调用跳入到PLT表，但是第二步跳入到GOT表中时，由于这个时候该表项已经是动态函数的真实地址了，所以可以直接执行然后返回。</p>
+<p>对于动态函数的调用，第一次要经过地址解析和回写到GOT表项中，第二次直接调用即可</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/>https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" class="prev" rel="prev" title="ELF文件组成"><i class="iconfont icon-left"></i>&nbsp;ELF文件组成</a>
+        
+        
+        <a href="https://linkleyping.top/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AD%E5%A4%A9-%E5%8E%BB%E5%B9%B3%E5%9D%A6%E5%8C%96%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="next" rel="next" title="去平坦化环境搭建">去平坦化环境搭建&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>

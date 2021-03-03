@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="ep">
+    
+    
+    
+    
+    <link rel="next" href="https://linkleyping.top/2019/ustc2019/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><link rel="canonical" href="https://linkleyping.top/2019/llvm/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            ubuntu下LLVM开发环境的配置 | EP`s Blog
+        
+    </title>
+    <meta name="title" content="ubuntu下LLVM开发环境的配置 | EP`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/linkleyping.top"
+    },
+    "articleSection" : "posts",
+    "name" : "ubuntu下LLVM开发环境的配置",
+    "headline" : "ubuntu下LLVM开发环境的配置",
+    "description" : "安装clang和cmake sudo apt-get install clang cmake 安装llvm sudo apt-get install llvm 使用这种方法我默认安装上的llvm版本为3.8.0，安装后的文件目录为\/usr\/sh",
+    "inLanguage" : "zh-cn",
+    "author" : "ep",
+    "creator" : "ep",
+    "publisher": "ep",
+    "accountablePerson" : "ep",
+    "copyrightHolder" : "ep",
+    "copyrightYear" : "2019",
+    "datePublished": "2019-10-08 19:56:14 \u002b0000 UTC",
+    "dateModified" : "2019-10-08 19:56:14 \u002b0000 UTC",
+    "url" : "https:\/\/linkleyping.top\/2019\/llvm\/",
+    "wordCount" : "760",
+    "keywords" : [  "EP`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://linkleyping.top">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        <li style="display:inline-block;margin-left:370px;margin-top:20px;">
+            <input type="search" class="docsearch-input" placeholder="Search" />
+            </li><div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://linkleyping.top">EP`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">ubuntu下LLVM开发环境的配置</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://linkleyping.top" rel="author">ep</a> with ♥
+                <span class="post-time">
+                on <time datetime=2019-10-08 itemprop="datePublished">October 8, 2019</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://linkleyping.top/categories/notes/"> notes, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">760 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        <div class="post-toc">
+    <div class="toc-header">TOC</div>
+        <div class="toc-content">
+            <ul class="toc-h3"><li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85clang%e5%92%8ccmake" class="toc-link">安装clang和cmake</a></li>
+                        <li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85llvm" class="toc-link">安装llvm</a></li>
+                        <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmconfigcmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMConfig.cmake文件</a></li>
+                        <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmexports-relwithdebinfocmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMExports-relwithdebinfo.cmake文件</a></li>
+                        <li><a href="/2019/llvm/#%e4%bd%bf%e7%94%a8llvm%e8%bf%9b%e8%a1%8c%e5%bc%80%e5%8f%91" class="toc-link">使用LLVM进行开发</a></li>
+                        </div>
+</div>
+
+        
+        <h3 id="安装clang和cmake">安装clang和cmake</h3>
+<p><code>sudo apt-get install clang cmake</code></p>
+<h3 id="安装llvm">安装llvm</h3>
+<p><code>sudo apt-get install llvm</code><br>
+使用这种方法我默认安装上的llvm版本为3.8.0，安装后的文件目录为<code>/usr/share/llvm-3.8</code></p>
+<h3 id="修改llvmconfigcmake文件">修改LLVMConfig.cmake文件</h3>
+<p><code>set(LLVM_CMAKE_DIR &quot;${LLVM_INSTALL_PREFIX}/share/llvm/cmake&quot;)</code><br>
+改为<br>
+<code>set(LLVM_CMAKE_DIR &quot;${LLVM_INSTALL_PREFIX}/share/llvm-3.8/cmake&quot;)</code></p>
+<h3 id="修改llvmexports-relwithdebinfocmake文件">修改LLVMExports-relwithdebinfo.cmake文件</h3>
+<p>由于权限问题不能直接打开修改，在命令行中写入:<br>
+<code>sudo gedit LLVMExports-relwithdebinfo.cmake</code><br>
+对文件进行如下修改:</p>
+<pre><code>#Commands may need to know the format version.  
+set(CMAKE_IMPORT_FILE_VERSION 1)
+set(_IMPORT_PREFIX &quot;/usr/lib/llvm-3.8&quot;)
+</code></pre><p>注释与Polly相关的库引用</p>
+<pre><code># Import target &quot;PollyISL&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                               
+# set_property(TARGET PollyISL APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                      
+# set_target_properties(PollyISL PROPERTIES                                                                                                                                                                 
+#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &quot;C&quot;                                                                                                                                                    
+#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/libPollyISL.a&quot;                                                                                                                                  
+#   )                                                                                                                                                                                                       
+#                                                                                                                                                                                                           
+# list(APPEND _IMPORT_CHECK_TARGETS PollyISL )                                                                                                                                                              
+# list(APPEND _IMPORT_CHECK_FILES_FOR_PollyISL &quot;${_IMPORT_PREFIX}/lib/libPollyISL.a&quot; )                                                                                                                      
+#                                                                                                                                                                                                           
+# # Import target &quot;Polly&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                                
+# set_property(TARGET Polly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                         
+# set_target_properties(Polly PROPERTIES                                                                                                                                                                    
+#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &quot;CXX&quot;                                                                                                                                                  
+#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/libPolly.a&quot;                                                                                                                                     
+#   )                                                                                                                                                                                                       
+#                                                                                                                                                                                                           
+# list(APPEND _IMPORT_CHECK_TARGETS Polly )                                                                                                                                                                 
+# list(APPEND _IMPORT_CHECK_FILES_FOR_Polly &quot;${_IMPORT_PREFIX}/lib/libPolly.a&quot; )                                                                                                                            
+#                                                                                                                                                                                                           
+# # Import target &quot;LLVMPolly&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                            
+# set_property(TARGET LLVMPolly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                     
+# set_target_properties(LLVMPolly PROPERTIES                                                                                                                                                                
+#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/LLVMPolly.so&quot;                                                                                                                                   
+#   IMPORTED_NO_SONAME_RELWITHDEBINFO &quot;TRUE&quot;                                                                                                                                                                
+#   )                                                                                                                                                                                                       
+#                                                                                                                                                                                                           
+# list(APPEND _IMPORT_CHECK_TARGETS LLVMPolly )                                                                                                                                                             
+# list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMPolly &quot;${_IMPORT_PREFIX}/lib/LLVMPolly.so&quot; )  
+</code></pre><h3 id="使用llvm进行开发">使用LLVM进行开发</h3>
+<p>新建文件夹: <code>HowToUseJIT</code><br>
+目录结构如下:</p>
+<pre><code>HowToUseJIT  
+    -- src
+        +  -- HowToUseJIT.cpp
+    -- CMakeLists.txt
+    -- build
+</code></pre><p>在<code>HowToUseJIT</code>文件夹下进行如下操作:</p>
+<pre><code>cd build
+cmake ..
+make
+</code></pre><p><code>HowToUseJIT.cpp</code>和<code>CMakeLists.txt</code>文件可以自己根据LLVM提供的API自行开发，也可以使用下面所给的例子：
+<code>HowToUseJIT.cpp</code></p>
+<pre><code>#include &quot;llvm/IR/LLVMContext.h&quot;
+#include &quot;llvm/IR/Function.h&quot;
+#include &quot;llvm/IR/BasicBlock.h&quot;
+#include &quot;llvm/ADT/ArrayRef.h&quot;
+#include &quot;llvm/IR/Module.h&quot;
+#include &quot;llvm/IR/IRBuilder.h&quot;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+ 
+int main()
+{
+  llvm::LLVMContext &amp; context = llvm::getGlobalContext();
+  llvm::Module *module = new llvm::Module(&quot;asdf&quot;, context);
+  llvm::IRBuilder&lt;&gt; builder(context);
+ 
+  llvm::FunctionType *funcType = llvm::FunctionType::get(builder.getVoidTy(), false);
+  llvm::Function *mainFunc = 
+    llvm::Function::Create(funcType, llvm::Function::ExternalLinkage, &quot;main&quot;, module);
+  llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, &quot;entrypoint&quot;, mainFunc);
+  builder.SetInsertPoint(entry);
+ 
+  llvm::Value *helloWorld = builder.CreateGlobalStringPtr(&quot;hello world!\n&quot;);
+ 
+  std::vector&lt;llvm::Type *&gt; putsArgs;
+  putsArgs.push_back(builder.getInt8Ty()-&gt;getPointerTo());
+  llvm::ArrayRef&lt;llvm::Type*&gt;  argsRef(putsArgs);
+ 
+  llvm::FunctionType *putsType = 
+    llvm::FunctionType::get(builder.getInt32Ty(), argsRef, false);
+  //llvm::Constant *putsFunc = module-&gt;getOrInsertFunction(&quot;puts&quot;, putsType);
+  llvm::Function *putsFunc = 
+    llvm::Function::Create(putsType, llvm::Function::ExternalLinkage, &quot;puts&quot;, module);
+  llvm::BasicBlock *putsentry = llvm::BasicBlock::Create(context, &quot;entrypoint&quot;, putsFunc);
+  builder.SetInsertPoint(putsentry);
+  builder.CreateCall(putsFunc, helloWorld);
+  builder.CreateRetVoid();
+  module-&gt;dump();
+}
+</code></pre><p><code>CMakeLists.txt</code></p>
+<pre><code>cmake_minimum_required(VERSION 2.8)
+project(llvm_test)
+
+set(LLVM_TARGETS_TO_BUILD X86)
+set(LLVM_BUILD_RUNTIME OFF)
+set(LLVM_BUILD_TOOLS OFF)
+
+find_package(LLVM REQUIRED CONFIG)
+
+message(STATUS &quot;Found LLVM ${LLVM_INCLUDE_DIRS}&quot;)
+message(STATUS &quot;Using LLVMConfig.cmake in: ${LLVM_DIR}&quot;)
+
+
+SET (CMAKE_CXX_COMPILER_ENV_VAR &quot;clang++&quot;)
+
+SET (CMAKE_CXX_FLAGS &quot;-std=c++11&quot;)
+SET (CMAKE_CXX_FLAGS_DEBUG   &quot;-g&quot;)
+SET (CMAKE_CXX_FLAGS_MINSIZEREL  &quot;-Os -DNDEBUG&quot;)
+SET (CMAKE_CXX_FLAGS_RELEASE  &quot;-O4 -DNDEBUG&quot;)
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO &quot;-O2 -g&quot;)
+
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+
+include_directories(${LLVM_INCLUDE_DIRS})
+add_definitions(${LLVM_DEFINITIONS})
+
+file(GLOB_RECURSE source_files &quot;${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp&quot;)
+add_executable(llvm_test ${source_files})
+install(TARGETS llvm_test RUNTIME DESTINATION bin)
+
+# Find the libraries that correspond to the LLVM components
+# that we wish to use
+llvm_map_components_to_libnames(llvm_libs 
+    Core
+    ExecutionEngine
+    Interpreter
+    MC
+    Support
+    nativecodegen)
+
+# Link against LLVM libraries
+target_link_libraries(llvm_test ${llvm_libs})
+</code></pre><p>如果编译通过说明LLVM开发环境搭建成功，如果报一些库文件缺失的错误有可能是因为默认LLVM文件夹的文件名为<code>llvm</code>而安装LLVM后自带的文件名为<code>llvm-3.8</code>可以根据报错内容对<code>/usr/share/llvm-3.8</code>或<code>usr/lib/llvm-3.8</code>的文件名进行修改</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>ep </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://linkleyping.top/2019/llvm/>https://linkleyping.top/2019/llvm/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://linkleyping.top">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        
+        <a href="https://linkleyping.top/2019/ustc2019/" class="next" rel="next" title="USTC CTF 2019">USTC CTF 2019&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://linkleyping.top">ep</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+    docsearch({
+    apiKey: "d13f32411166c6212551ffa815910ba5",
+    indexName: "blog",
+    appId: "RFO4PNFHT1",
+    inputSelector: '.docsearch-input',
+    debug: false,
+    });
+</script>
+
+        </div>
+    </body>
+</html>
