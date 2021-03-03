@@ -5,8 +5,17 @@
     <description>Recent content in EP`s Blog on EP`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 08 Jan 2021 15:22:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 11:02:48 +0800</lastBuildDate>
     <atom:link href="https://linkleyping.top/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Posts</title>
+      <link>https://linkleyping.top/posts/</link>
+      <pubDate>Fri, 19 Feb 2021 11:02:48 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/posts/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>About</title>
@@ -18,7 +27,7 @@
 &lt;ul&gt;
 &lt;li&gt;ep&lt;/li&gt;
 &lt;li&gt;BUPT &amp;amp;&amp;amp; 天枢Dubhe&lt;/li&gt;
-&lt;li&gt;Have a good time.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;mailto:ypinglinkle@gmail.com&#34;&gt;ypinglinkle@gmail.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;my-friends&#34;&gt;my friends&lt;/h2&gt;
 &lt;ul&gt;
@@ -27,15 +36,6 @@
 &lt;li&gt;&lt;a href=&#34;https://sisselcbp.github.io/&#34;&gt;Sissel&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Posts</title>
-      <link>https://linkleyping.top/posts/</link>
-      <pubDate>Fri, 08 Jan 2021 15:22:45 +0800</pubDate>
-      
-      <guid>https://linkleyping.top/posts/</guid>
-      <description></description>
     </item>
     
   </channel>

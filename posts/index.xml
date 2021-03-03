@@ -6,7 +6,16 @@
     <description>Recent content in Posts on EP`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 08 Jan 2021 15:22:45 +0800</lastBuildDate><atom:link href="https://linkleyping.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 11:02:48 +0800</lastBuildDate><atom:link href="https://linkleyping.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HITCON Training</title>
+      <link>https://linkleyping.top/2021/hitcon-training/</link>
+      <pubDate>Fri, 19 Feb 2021 11:02:48 +0800</pubDate>
+      
+      <guid>https://linkleyping.top/2021/hitcon-training/</guid>
+      <description>参考链接 https://xz.aliyun.com/t/3902 https://www.sec4.fun/2020/07/15/hitcon-training-writeup https://www.anquanke.com/post/id/186447 https://introspelliam.github.io/2017/08/07/int-80h%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95/ lab1 略 lab2 反编译 unsigned int orw_seccomp() { __int16 v1; // [esp+4h] [ebp-84h] char *v2; // [esp+8h] [ebp-80h] char v3; // [esp+Ch] [ebp-7Ch] unsigned int v4; // [esp+6Ch] [ebp-1Ch] v4 = __readgsdword(0x14u); qmemcpy(&amp;amp;v3, &amp;amp;unk_8048640, 0x60u); v1 = 12; v2 = &amp;amp;v3; prctl(38, 1, 0, 0, 0); prctl(22, 2, &amp;amp;v1); return __readgsdword(0x14u) ^ v4; } int __cdecl main(int argc, const char</description>
+    </item>
+    
     <item>
       <title>2019-中关村网络与信息安全领域专项赛</title>
       <link>https://linkleyping.top/2021/2019zgc/</link>
