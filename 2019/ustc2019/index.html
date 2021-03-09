@@ -305,21 +305,21 @@
 <p>基础太差了，考点是DNS。
 题目说这个域名无法通过浏览器访问，也就是这个域名没有指向任何 IP 地址。实际上一个域名除了可以指向一个或多个 IP 地址（A 或 AAAA 记录）之外还可以包含其他信息，例如指向另一个域名（CNAME 记录），指示接收邮件的服务器（MX 记录），或者提供任意字符串（TXT 记录）。最后一个就是这道题的第二个知识点，域名 xn&ndash;g28h.hack.ustclug.org. 有一个 TXT 记录，其中就是 flag。查询 DNS 记录有很多种方式，例如网上搜一个查询服务或者使用 nslookup 等命令行工具，总之查出这个 TXT 记录就对了。
 用DNS查询TXT记录的方法是：nslookup -q=TXT yourdomain.com</p>
-<pre><code>λ nslookup -q=TXT xn--g28h.hack.ustclug.org
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">λ nslookup -q<span style="color:#f92672">=</span>TXT xn--g28h.hack.ustclug.org
 服务器:  UnKnown
 Address:  10.3.9.5
 
 非权威应答:
-xn--g28h.hack.ustclug.org       text =
+xn--g28h.hack.ustclug.org       text <span style="color:#f92672">=</span>
 
-        &quot;flag{DN5_C4N_H4VE_em0ji_haha}&quot;
-</code></pre><h2 id="正则验证器">正则验证器</h2>
+        <span style="color:#e6db74">&#34;flag{DN5_C4N_H4VE_em0ji_haha}&#34;</span>
+</code></pre></div><h2 id="正则验证器">正则验证器</h2>
 <p>这里用了ReDos这个知识点，是我没见过的知识点&hellip;是我太菜了hhh
 <a href="https://en.wikipedia.org/wiki/ReDoS">https://en.wikipedia.org/wiki/ReDoS</a>
 <a href="https://www.anquanke.com/post/id/177100">https://www.anquanke.com/post/id/177100</a></p>
-<pre><code>Regex: (a*)*$
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Regex: <span style="color:#f92672">(</span>a*<span style="color:#f92672">)</span>*$
 String: aaaaaaaaaaaaaaaaaaaaaaab
-</code></pre><p>上面这个正则由于失败时回溯的存在，每增加一个 a 就会使匹配时间翻一倍</p>
+</code></pre></div><p>上面这个正则由于失败时回溯的存在，每增加一个 a 就会使匹配时间翻一倍</p>
 <h2 id="驴啃计算器">驴啃计算器</h2>
 <p>是一道数学题，知识点是：给定实数x，一步操作可选择将其变为sin(x),cos(x),tan(x),arcsin(x),arccos(x),arctan(x)，初始时x=0，求证对于任意的正有理数q，可经过有限次操作后使x=q。
 <a href="http://blog.sina.com.cn/s/blog_a661ecd501012xsr.html">http://blog.sina.com.cn/s/blog_a661ecd501012xsr.html</a>
@@ -425,7 +425,7 @@ test2()
 chroot&hellip;</p>
 <p>我没想过用RE的方式解来着&ndash;idagolang-helper还原符号，然后用patch的方法。试一下。</p>
 <h2 id="十次方根">十次方根</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-easy_math.py" data-lang="easy_math.py">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">130095999494467643631574289251374479743427759332282644620931023932981730612064829262332840253969261363881910701276769455728130421459878658660627330362688856751252524519341435317968272275310598639991033512763704530123231772642623291899534454658707761230166809620539187116816778418242273580873637781313957589597</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">130095999494467643631574289251374479743427759332282644620931023932981730612064829262332840253969261363881910701276769455728130421459878658660627330362688856751252524519341435317968272275310598639991033512763704530123231772642623291899534454658707761230166809620539187116816778418242273580873637781313957589597</span>
 y <span style="color:#f92672">=</span> <span style="color:#ae81ff">116513882455567447431772208851676203256471727099349255694179213039239989833646726805040167642952589899809273716764673737423792812107737304956679717082391151505476360762847773608327055926832394948293052633869637754201186227370594688119795413400655007893009882742908697688490841023621108562593724732469462968731</span>
 z <span style="color:#f92672">=</span> <span style="color:#ae81ff">88688615046438957657148589794574470139777919686383514327296565433247300792803913489977671293854830459385807133302995575774658605472491904258624914486448276269854207404533062581134557448023142028865220726281791025833570337140263511960407206818858439353134327592503945131371190285416230131136007578355799517986306208039490339159501009668785839201465041101739825050371023956782364610889969860432267781626941824596468923354157981771773589236462813563647577651117020694251283103175874783965004467136515096081442018965974870665038880840823708377340101510978112755669470752689525778937276250835072011344062132449232775717960070624563850487919381138228636278647776184490240264110748648486121139328569423969642059474027527737521891542567351630545570488901368570734520954996585774666946913854038917494322793749823245652065062604226133920469926888309742466030087045251385865707151307850662127591419171619721200858496299127088429333831383287417361021420824398501423875648199373623572614151830871182111045650469239575676312393555191890749537174702485617397506191658938798937462708198240714491454507874141432982611857838173469612147092460359775924447976521509874765598726655964369735759375793871985156532139719500175158914354647101621378769238233</span>
 n <span style="color:#f92672">**</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">%</span> (x <span style="color:#f92672">*</span> y <span style="color:#f92672">*</span> y <span style="color:#f92672">*</span> y) <span style="color:#f92672">==</span> z
@@ -786,17 +786,17 @@ m_all <span style="color:#f92672">=</span> [m <span style="color:#66d9ef">for</s
 <p>题目很简单，但是在wp上看到了用angr解题的方法，记录一下。
 emmm一直说要研究angr，希望能提上日程&hellip;菜还是要多读书
 程序中的可见字符串:</p>
-<pre><code>strings tinyELF
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">strings tinyELF
 please in put flag:
 correct
-</code></pre><p>用angr求解什么样的输入可以让程序输出&quot;correct&quot;</p>
-<pre><code>import angr
+</code></pre></div><p>用angr求解什么样的输入可以让程序输出&quot;correct&quot;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> angr
 
-proj = angr.Project(&quot;tinyELF&quot;)
-simgr = proj.factory.simgr()
-simgr.explore(find=lambda s: b&quot;correct&quot; in s.posix.dumps(1))
-print(simgr.found[0].posix.dumps(0))
-</code></pre><p>运行一下就能出flag</p>
+proj <span style="color:#f92672">=</span> angr<span style="color:#f92672">.</span>Project(<span style="color:#e6db74">&#34;tinyELF&#34;</span>)
+simgr <span style="color:#f92672">=</span> proj<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>simgr()
+simgr<span style="color:#f92672">.</span>explore(find<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> s: <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;correct&#34;</span> <span style="color:#f92672">in</span> s<span style="color:#f92672">.</span>posix<span style="color:#f92672">.</span>dumps(<span style="color:#ae81ff">1</span>))
+<span style="color:#66d9ef">print</span>(simgr<span style="color:#f92672">.</span>found[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>posix<span style="color:#f92672">.</span>dumps(<span style="color:#ae81ff">0</span>))
+</code></pre></div><p>运行一下就能出flag</p>
 
     </div>
 

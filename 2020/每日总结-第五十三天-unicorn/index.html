@@ -191,9 +191,9 @@
 
         
         <h2 id="参考链接">参考链接</h2>
-<p><a href="https://bbs.pediy.com/thread-224330.htm">https://bbs.pediy.com/thread-224330.htm</a>
-<a href="http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet">http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet</a>
-<a href="https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/">https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/</a>
+<p><a href="https://bbs.pediy.com/thread-224330.htm">https://bbs.pediy.com/thread-224330.htm</a><br>
+<a href="http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet">http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet</a><br>
+<a href="https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/">https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/</a><br>
 这里有很多代码示例：
 <a href="https://github.com/unicorn-engine/unicorn/tree/master/bindings/python">https://github.com/unicorn-engine/unicorn/tree/master/bindings/python</a></p>
 <h2 id="介绍">介绍</h2>
@@ -250,12 +250,12 @@ UC_ERR_RESOURCE             UC_MEM_FETCH_UNMAPPED       UC_MODE_V9
 <li>mu = Uc(UC_ARCH_X86,UC_MODE_64) - 获取X86-64架构的实例。</li>
 <li>mu = Uc(UC_ARCH_X86,UC_MODE_32) - 获取X86-32架构的实例。</li>
 </ul>
-<p>mu.mem_map(ADDRESS,4096) - 映射一片内存区域
-mu.mem_write(ADDRESS,DATA) - 向内存中写入数据
-tmp = mu.mem_read(ADDRESS,SIZE) - 从内存中读取数据
-mu.reg_write(UC_X86_REG_ECX,0X0) - 设置ECX值。
-r_esp = mu.reg_read(UC_X86_REG_ESP) - 读取ESP的值。
-mu.emu_start(ADDRESS_START,ADDRESS_END) - 开始执行模拟。
+<p>mu.mem_map(ADDRESS,4096) - 映射一片内存区域<br>
+mu.mem_write(ADDRESS,DATA) - 向内存中写入数据<br>
+tmp = mu.mem_read(ADDRESS,SIZE) - 从内存中读取数据<br>
+mu.reg_write(UC_X86_REG_ECX,0X0) - 设置ECX值。<br>
+r_esp = mu.reg_read(UC_X86_REG_ESP) - 读取ESP的值。<br>
+mu.emu_start(ADDRESS_START,ADDRESS_END) - 开始执行模拟。<br>
 命令追踪:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hook_code</span>(mu, address, size, user_data): 
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;&gt;&gt;&gt; Tracing instruction at 0x</span><span style="color:#e6db74">%x</span><span style="color:#e6db74">, instruction size = 0x</span><span style="color:#e6db74">%x</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span>(address, size)) 

@@ -55,7 +55,7 @@
     "datePublished": "2019-10-08 19:56:14 \u002b0000 UTC",
     "dateModified" : "2019-10-08 19:56:14 \u002b0000 UTC",
     "url" : "https:\/\/linkleyping.top\/2019\/llvm\/",
-    "wordCount" : "760",
+    "wordCount" : "753",
     "keywords" : [  "EP`s Blog"]
 }
 </script>
@@ -156,7 +156,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">760 words</span>
+                <span class="post-word-count">753 words</span>
         </div>
     </header>
 
@@ -201,93 +201,93 @@
 <p>由于权限问题不能直接打开修改，在命令行中写入:<br>
 <code>sudo gedit LLVMExports-relwithdebinfo.cmake</code><br>
 对文件进行如下修改:</p>
-<pre><code>#Commands may need to know the format version.  
-set(CMAKE_IMPORT_FILE_VERSION 1)
-set(_IMPORT_PREFIX &quot;/usr/lib/llvm-3.8&quot;)
-</code></pre><p>注释与Polly相关的库引用</p>
-<pre><code># Import target &quot;PollyISL&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                               
-# set_property(TARGET PollyISL APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                      
-# set_target_properties(PollyISL PROPERTIES                                                                                                                                                                 
-#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &quot;C&quot;                                                                                                                                                    
-#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/libPollyISL.a&quot;                                                                                                                                  
-#   )                                                                                                                                                                                                       
-#                                                                                                                                                                                                           
-# list(APPEND _IMPORT_CHECK_TARGETS PollyISL )                                                                                                                                                              
-# list(APPEND _IMPORT_CHECK_FILES_FOR_PollyISL &quot;${_IMPORT_PREFIX}/lib/libPollyISL.a&quot; )                                                                                                                      
-#                                                                                                                                                                                                           
-# # Import target &quot;Polly&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                                
-# set_property(TARGET Polly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                         
-# set_target_properties(Polly PROPERTIES                                                                                                                                                                    
-#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &quot;CXX&quot;                                                                                                                                                  
-#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/libPolly.a&quot;                                                                                                                                     
-#   )                                                                                                                                                                                                       
-#                                                                                                                                                                                                           
-# list(APPEND _IMPORT_CHECK_TARGETS Polly )                                                                                                                                                                 
-# list(APPEND _IMPORT_CHECK_FILES_FOR_Polly &quot;${_IMPORT_PREFIX}/lib/libPolly.a&quot; )                                                                                                                            
-#                                                                                                                                                                                                           
-# # Import target &quot;LLVMPolly&quot; for configuration &quot;RelWithDebInfo&quot;                                                                                                                                            
-# set_property(TARGET LLVMPolly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                     
-# set_target_properties(LLVMPolly PROPERTIES                                                                                                                                                                
-#   IMPORTED_LOCATION_RELWITHDEBINFO &quot;${_IMPORT_PREFIX}/lib/LLVMPolly.so&quot;                                                                                                                                   
-#   IMPORTED_NO_SONAME_RELWITHDEBINFO &quot;TRUE&quot;                                                                                                                                                                
-#   )                                                                                                                                                                                                       
-#                                                                                                                                                                                                           
-# list(APPEND _IMPORT_CHECK_TARGETS LLVMPolly )                                                                                                                                                             
-# list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMPolly &quot;${_IMPORT_PREFIX}/lib/LLVMPolly.so&quot; )  
-</code></pre><h3 id="使用llvm进行开发">使用LLVM进行开发</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#Commands may need to know the format version.  </span>
+set<span style="color:#f92672">(</span>CMAKE_IMPORT_FILE_VERSION 1<span style="color:#f92672">)</span>
+set<span style="color:#f92672">(</span>_IMPORT_PREFIX <span style="color:#e6db74">&#34;/usr/lib/llvm-3.8&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p>注释与Polly相关的库引用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Import target &#34;PollyISL&#34; for configuration &#34;RelWithDebInfo&#34;                                                                                                                                               </span>
+<span style="color:#75715e"># set_property(TARGET PollyISL APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                      </span>
+<span style="color:#75715e"># set_target_properties(PollyISL PROPERTIES                                                                                                                                                                 </span>
+<span style="color:#75715e">#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &#34;C&#34;                                                                                                                                                    </span>
+<span style="color:#75715e">#   IMPORTED_LOCATION_RELWITHDEBINFO &#34;${_IMPORT_PREFIX}/lib/libPollyISL.a&#34;                                                                                                                                  </span>
+<span style="color:#75715e">#   )                                                                                                                                                                                                       </span>
+<span style="color:#75715e">#                                                                                                                                                                                                           </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_TARGETS PollyISL )                                                                                                                                                              </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_FILES_FOR_PollyISL &#34;${_IMPORT_PREFIX}/lib/libPollyISL.a&#34; )                                                                                                                      </span>
+<span style="color:#75715e">#                                                                                                                                                                                                           </span>
+<span style="color:#75715e"># # Import target &#34;Polly&#34; for configuration &#34;RelWithDebInfo&#34;                                                                                                                                                </span>
+<span style="color:#75715e"># set_property(TARGET Polly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                         </span>
+<span style="color:#75715e"># set_target_properties(Polly PROPERTIES                                                                                                                                                                    </span>
+<span style="color:#75715e">#   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO &#34;CXX&#34;                                                                                                                                                  </span>
+<span style="color:#75715e">#   IMPORTED_LOCATION_RELWITHDEBINFO &#34;${_IMPORT_PREFIX}/lib/libPolly.a&#34;                                                                                                                                     </span>
+<span style="color:#75715e">#   )                                                                                                                                                                                                       </span>
+<span style="color:#75715e">#                                                                                                                                                                                                           </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_TARGETS Polly )                                                                                                                                                                 </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_FILES_FOR_Polly &#34;${_IMPORT_PREFIX}/lib/libPolly.a&#34; )                                                                                                                            </span>
+<span style="color:#75715e">#                                                                                                                                                                                                           </span>
+<span style="color:#75715e"># # Import target &#34;LLVMPolly&#34; for configuration &#34;RelWithDebInfo&#34;                                                                                                                                            </span>
+<span style="color:#75715e"># set_property(TARGET LLVMPolly APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)                                                                                                                     </span>
+<span style="color:#75715e"># set_target_properties(LLVMPolly PROPERTIES                                                                                                                                                                </span>
+<span style="color:#75715e">#   IMPORTED_LOCATION_RELWITHDEBINFO &#34;${_IMPORT_PREFIX}/lib/LLVMPolly.so&#34;                                                                                                                                   </span>
+<span style="color:#75715e">#   IMPORTED_NO_SONAME_RELWITHDEBINFO &#34;TRUE&#34;                                                                                                                                                                </span>
+<span style="color:#75715e">#   )                                                                                                                                                                                                       </span>
+<span style="color:#75715e">#                                                                                                                                                                                                           </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_TARGETS LLVMPolly )                                                                                                                                                             </span>
+<span style="color:#75715e"># list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMPolly &#34;${_IMPORT_PREFIX}/lib/LLVMPolly.so&#34; )  </span>
+</code></pre></div><h3 id="使用llvm进行开发">使用LLVM进行开发</h3>
 <p>新建文件夹: <code>HowToUseJIT</code><br>
 目录结构如下:</p>
-<pre><code>HowToUseJIT  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">HowToUseJIT  
     -- src
         +  -- HowToUseJIT.cpp
     -- CMakeLists.txt
     -- build
-</code></pre><p>在<code>HowToUseJIT</code>文件夹下进行如下操作:</p>
-<pre><code>cd build
+</code></pre></div><p>在<code>HowToUseJIT</code>文件夹下进行如下操作:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd build
 cmake ..
 make
-</code></pre><p><code>HowToUseJIT.cpp</code>和<code>CMakeLists.txt</code>文件可以自己根据LLVM提供的API自行开发，也可以使用下面所给的例子：
+</code></pre></div><p><code>HowToUseJIT.cpp</code>和<code>CMakeLists.txt</code>文件可以自己根据LLVM提供的API自行开发，也可以使用下面所给的例子：
 <code>HowToUseJIT.cpp</code></p>
-<pre><code>#include &quot;llvm/IR/LLVMContext.h&quot;
-#include &quot;llvm/IR/Function.h&quot;
-#include &quot;llvm/IR/BasicBlock.h&quot;
-#include &quot;llvm/ADT/ArrayRef.h&quot;
-#include &quot;llvm/IR/Module.h&quot;
-#include &quot;llvm/IR/IRBuilder.h&quot;
-#include &lt;vector&gt;
-#include &lt;string&gt;
- 
-int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/IR/LLVMContext.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/IR/Function.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/IR/BasicBlock.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/ADT/ArrayRef.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/IR/Module.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;llvm/IR/IRBuilder.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  llvm::LLVMContext &amp; context = llvm::getGlobalContext();
-  llvm::Module *module = new llvm::Module(&quot;asdf&quot;, context);
-  llvm::IRBuilder&lt;&gt; builder(context);
+  llvm<span style="color:#f92672">::</span>LLVMContext <span style="color:#f92672">&amp;</span> context <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>getGlobalContext();
+  llvm<span style="color:#f92672">::</span>Module <span style="color:#f92672">*</span>module <span style="color:#f92672">=</span> new llvm<span style="color:#f92672">::</span>Module(<span style="color:#e6db74">&#34;asdf&#34;</span>, context);
+  llvm<span style="color:#f92672">::</span>IRBuilder<span style="color:#f92672">&lt;&gt;</span> builder(context);
  
-  llvm::FunctionType *funcType = llvm::FunctionType::get(builder.getVoidTy(), false);
-  llvm::Function *mainFunc = 
-    llvm::Function::Create(funcType, llvm::Function::ExternalLinkage, &quot;main&quot;, module);
-  llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, &quot;entrypoint&quot;, mainFunc);
+  llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>funcType <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getVoidTy(), false);
+  llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>mainFunc <span style="color:#f92672">=</span> 
+    llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(funcType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;main&#34;</span>, module);
+  llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>entry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, mainFunc);
   builder.SetInsertPoint(entry);
  
-  llvm::Value *helloWorld = builder.CreateGlobalStringPtr(&quot;hello world!\n&quot;);
+  llvm<span style="color:#f92672">::</span>Value <span style="color:#f92672">*</span>helloWorld <span style="color:#f92672">=</span> builder.CreateGlobalStringPtr(<span style="color:#e6db74">&#34;hello world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
  
-  std::vector&lt;llvm::Type *&gt; putsArgs;
-  putsArgs.push_back(builder.getInt8Ty()-&gt;getPointerTo());
-  llvm::ArrayRef&lt;llvm::Type*&gt;  argsRef(putsArgs);
+  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type <span style="color:#f92672">*&gt;</span> putsArgs;
+  putsArgs.push_back(builder.getInt8Ty()<span style="color:#f92672">-&gt;</span>getPointerTo());
+  llvm<span style="color:#f92672">::</span>ArrayRef<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type<span style="color:#f92672">*&gt;</span>  argsRef(putsArgs);
  
-  llvm::FunctionType *putsType = 
-    llvm::FunctionType::get(builder.getInt32Ty(), argsRef, false);
-  //llvm::Constant *putsFunc = module-&gt;getOrInsertFunction(&quot;puts&quot;, putsType);
-  llvm::Function *putsFunc = 
-    llvm::Function::Create(putsType, llvm::Function::ExternalLinkage, &quot;puts&quot;, module);
-  llvm::BasicBlock *putsentry = llvm::BasicBlock::Create(context, &quot;entrypoint&quot;, putsFunc);
+  llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>putsType <span style="color:#f92672">=</span> 
+    llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getInt32Ty(), argsRef, false);
+  <span style="color:#75715e">//llvm::Constant *putsFunc = module-&gt;getOrInsertFunction(&#34;puts&#34;, putsType);
+</span><span style="color:#75715e"></span>  llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>putsFunc <span style="color:#f92672">=</span> 
+    llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(putsType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;puts&#34;</span>, module);
+  llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>putsentry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, putsFunc);
   builder.SetInsertPoint(putsentry);
   builder.CreateCall(putsFunc, helloWorld);
   builder.CreateRetVoid();
-  module-&gt;dump();
+  module<span style="color:#f92672">-&gt;</span>dump();
 }
-</code></pre><p><code>CMakeLists.txt</code></p>
-<pre><code>cmake_minimum_required(VERSION 2.8)
+</code></pre></div><p>CMakeLists.txt</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">cmake_minimum_required(VERSION <span style="color:#ae81ff">2.8</span>)
 project(llvm_test)
 
 set(LLVM_TARGETS_TO_BUILD X86)
@@ -296,30 +296,30 @@ set(LLVM_BUILD_TOOLS OFF)
 
 find_package(LLVM REQUIRED CONFIG)
 
-message(STATUS &quot;Found LLVM ${LLVM_INCLUDE_DIRS}&quot;)
-message(STATUS &quot;Using LLVMConfig.cmake in: ${LLVM_DIR}&quot;)
+message(STATUS <span style="color:#e6db74">&#34;Found LLVM ${LLVM_INCLUDE_DIRS}&#34;</span>)
+message(STATUS <span style="color:#e6db74">&#34;Using LLVMConfig.cmake in: ${LLVM_DIR}&#34;</span>)
 
 
-SET (CMAKE_CXX_COMPILER_ENV_VAR &quot;clang++&quot;)
+SET (CMAKE_CXX_COMPILER_ENV_VAR <span style="color:#e6db74">&#34;clang++&#34;</span>)
 
-SET (CMAKE_CXX_FLAGS &quot;-std=c++11&quot;)
-SET (CMAKE_CXX_FLAGS_DEBUG   &quot;-g&quot;)
-SET (CMAKE_CXX_FLAGS_MINSIZEREL  &quot;-Os -DNDEBUG&quot;)
-SET (CMAKE_CXX_FLAGS_RELEASE  &quot;-O4 -DNDEBUG&quot;)
-SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO &quot;-O2 -g&quot;)
+SET (CMAKE_CXX_FLAGS <span style="color:#e6db74">&#34;-std=c++11&#34;</span>)
+SET (CMAKE_CXX_FLAGS_DEBUG   <span style="color:#e6db74">&#34;-g&#34;</span>)
+SET (CMAKE_CXX_FLAGS_MINSIZEREL  <span style="color:#e6db74">&#34;-Os -DNDEBUG&#34;</span>)
+SET (CMAKE_CXX_FLAGS_RELEASE  <span style="color:#e6db74">&#34;-O4 -DNDEBUG&#34;</span>)
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO <span style="color:#e6db74">&#34;-O2 -g&#34;</span>)
 
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+SET(EXECUTABLE_OUTPUT_PATH <span style="color:#960050;background-color:#1e0010">$</span>{PROJECT_SOURCE_DIR}<span style="color:#f92672">/</span>bin)
 
-include_directories(${LLVM_INCLUDE_DIRS})
-add_definitions(${LLVM_DEFINITIONS})
+include_directories(<span style="color:#960050;background-color:#1e0010">$</span>{LLVM_INCLUDE_DIRS})
+add_definitions(<span style="color:#960050;background-color:#1e0010">$</span>{LLVM_DEFINITIONS})
 
-file(GLOB_RECURSE source_files &quot;${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp&quot;)
-add_executable(llvm_test ${source_files})
+file(GLOB_RECURSE source_files <span style="color:#e6db74">&#34;${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp&#34;</span>)
+add_executable(llvm_test <span style="color:#960050;background-color:#1e0010">$</span>{source_files})
 install(TARGETS llvm_test RUNTIME DESTINATION bin)
 
-# Find the libraries that correspond to the LLVM components
-# that we wish to use
-llvm_map_components_to_libnames(llvm_libs 
+<span style="color:#75715e"># Find the libraries that correspond to the LLVM components
+</span><span style="color:#75715e"># that we wish to use
+</span><span style="color:#75715e"></span>llvm_map_components_to_libnames(llvm_libs 
     Core
     ExecutionEngine
     Interpreter
@@ -327,9 +327,9 @@ llvm_map_components_to_libnames(llvm_libs
     Support
     nativecodegen)
 
-# Link against LLVM libraries
-target_link_libraries(llvm_test ${llvm_libs})
-</code></pre><p>如果编译通过说明LLVM开发环境搭建成功，如果报一些库文件缺失的错误有可能是因为默认LLVM文件夹的文件名为<code>llvm</code>而安装LLVM后自带的文件名为<code>llvm-3.8</code>可以根据报错内容对<code>/usr/share/llvm-3.8</code>或<code>usr/lib/llvm-3.8</code>的文件名进行修改</p>
+<span style="color:#75715e"># Link against LLVM libraries
+</span><span style="color:#75715e"></span>target_link_libraries(llvm_test <span style="color:#960050;background-color:#1e0010">$</span>{llvm_libs})
+</code></pre></div><p>如果编译通过说明LLVM开发环境搭建成功，如果报一些库文件缺失的错误有可能是因为默认LLVM文件夹的文件名为<code>llvm</code>而安装LLVM后自带的文件名为<code>llvm-3.8</code>可以根据报错内容对<code>/usr/share/llvm-3.8</code>或<code>usr/lib/llvm-3.8</code>的文件名进行修改</p>
 
     </div>
 

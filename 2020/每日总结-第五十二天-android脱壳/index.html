@@ -55,7 +55,7 @@
     "datePublished": "2020-06-15 15:22:45 \u002b0800 CST",
     "dateModified" : "2020-06-15 15:22:45 \u002b0800 CST",
     "url" : "https:\/\/linkleyping.top\/2020\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3\/",
-    "wordCount" : "993",
+    "wordCount" : "989",
     "keywords" : [  "EP`s Blog"]
 }
 </script>
@@ -156,7 +156,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">993 words</span>
+                <span class="post-word-count">989 words</span>
         </div>
     </header>
 
@@ -187,8 +187,8 @@
 
         
         <h2 id="参考链接">参考链接</h2>
-<p><a href="https://www.jianshu.com/p/ed64212ccd38">ApkShelling脱壳和FART脱壳</a>
-<a href="https://bbs.pediy.com/thread-226846.htm">Frida从入门到入门—安卓逆向菜鸟的frida食用说明</a>
+<p><a href="https://www.jianshu.com/p/ed64212ccd38">ApkShelling脱壳和FART脱壳</a><br>
+<a href="https://bbs.pediy.com/thread-226846.htm">Frida从入门到入门—安卓逆向菜鸟的frida食用说明</a><br>
 <a href="https://bbs.pediy.com/thread-226846.htm">初识Frida&ndash;Android逆向之Java层hook</a></p>
 <h2 id="apkshelling">ApkShelling</h2>
 <p><a href="https://github.com/OakChen/ApkShelling">https://github.com/OakChen/ApkShelling</a></p>
@@ -226,19 +226,19 @@ frida-ps -U
 </code></pre></div><p>frida自带的Messages机制与进程交互</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> frida<span style="color:#f92672">,</span> sys
  
-<span style="color:#f92672">//</span>hook代码<span style="color:#960050;background-color:#1e0010">，采用</span>javascript编写
+<span style="color:#75715e"># hook代码，采用javascript编写</span>
 jscode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">//javascript代码，重点
+</span><span style="color:#e6db74">javascript代码，重点
 </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
  
-<span style="color:#f92672">//</span><span style="color:#960050;background-color:#1e0010">自定义回调函数</span>
+<span style="color:#75715e"># 自定义回调函数</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(message, data):
     <span style="color:#66d9ef">if</span> message[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;send&#39;</span>:
         <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;[*] {0}&#34;</span><span style="color:#f92672">.</span>format(message[<span style="color:#e6db74">&#39;payload&#39;</span>]))
     <span style="color:#66d9ef">else</span>:
         <span style="color:#66d9ef">print</span>(message)
  
-<span style="color:#75715e">#重点的4行代码</span>
+<span style="color:#75715e"># 重点的4行代码</span>
 <span style="color:#75715e"># 获取手机设备并附加到进程</span>
 process <span style="color:#f92672">=</span> frida<span style="color:#f92672">.</span>get_usb_device()<span style="color:#f92672">.</span>attach(<span style="color:#e6db74">&#39;应用完整包名&#39;</span>)
 script <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>create_script(jscode)
