@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="ubuntu下LLVM开发环境的配置 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,16 +177,16 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h3"><li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85clang%e5%92%8ccmake" class="toc-link">安装clang和cmake</a></li>
-                        <li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85llvm" class="toc-link">安装llvm</a></li>
-                        <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmconfigcmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMConfig.cmake文件</a></li>
-                        <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmexports-relwithdebinfocmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMExports-relwithdebinfo.cmake文件</a></li>
-                        <li><a href="/2019/llvm/#%e4%bd%bf%e7%94%a8llvm%e8%bf%9b%e8%a1%8c%e5%bc%80%e5%8f%91" class="toc-link">使用LLVM进行开发</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h3"><li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85clang%e5%92%8ccmake" class="toc-link">安装clang和cmake</a></li>
+                          <li><a href="/2019/llvm/#%e5%ae%89%e8%a3%85llvm" class="toc-link">安装llvm</a></li>
+                          <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmconfigcmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMConfig.cmake文件</a></li>
+                          <li><a href="/2019/llvm/#%e4%bf%ae%e6%94%b9llvmexports-relwithdebinfocmake%e6%96%87%e4%bb%b6" class="toc-link">修改LLVMExports-relwithdebinfo.cmake文件</a></li>
+                          <li><a href="/2019/llvm/#%e4%bd%bf%e7%94%a8llvm%e8%bf%9b%e8%a1%8c%e5%bc%80%e5%8f%91" class="toc-link">使用LLVM进行开发</a></li>
+                          </div>
+  </div>
+  
         
         <h3 id="安装clang和cmake">安装clang和cmake</h3>
 <p><code>sudo apt-get install clang cmake</code></p>
@@ -238,10 +238,10 @@ set<span style="color:#f92672">(</span>_IMPORT_PREFIX <span style="color:#e6db74
 <p>新建文件夹: <code>HowToUseJIT</code><br>
 目录结构如下:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">HowToUseJIT  
-    -- src
-        +  -- HowToUseJIT.cpp
-    -- CMakeLists.txt
-    -- build
+  -- src
+      +  -- HowToUseJIT.cpp
+  -- CMakeLists.txt
+  -- build
 </code></pre></div><p>在<code>HowToUseJIT</code>文件夹下进行如下操作:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd build
 cmake ..
@@ -259,32 +259,32 @@ make
 </span><span style="color:#75715e"></span> 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  llvm<span style="color:#f92672">::</span>LLVMContext <span style="color:#f92672">&amp;</span> context <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>getGlobalContext();
-  llvm<span style="color:#f92672">::</span>Module <span style="color:#f92672">*</span>module <span style="color:#f92672">=</span> new llvm<span style="color:#f92672">::</span>Module(<span style="color:#e6db74">&#34;asdf&#34;</span>, context);
-  llvm<span style="color:#f92672">::</span>IRBuilder<span style="color:#f92672">&lt;&gt;</span> builder(context);
+llvm<span style="color:#f92672">::</span>LLVMContext <span style="color:#f92672">&amp;</span> context <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>getGlobalContext();
+llvm<span style="color:#f92672">::</span>Module <span style="color:#f92672">*</span>module <span style="color:#f92672">=</span> new llvm<span style="color:#f92672">::</span>Module(<span style="color:#e6db74">&#34;asdf&#34;</span>, context);
+llvm<span style="color:#f92672">::</span>IRBuilder<span style="color:#f92672">&lt;&gt;</span> builder(context);
  
-  llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>funcType <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getVoidTy(), false);
-  llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>mainFunc <span style="color:#f92672">=</span> 
-    llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(funcType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;main&#34;</span>, module);
-  llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>entry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, mainFunc);
-  builder.SetInsertPoint(entry);
+llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>funcType <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getVoidTy(), false);
+llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>mainFunc <span style="color:#f92672">=</span> 
+  llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(funcType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;main&#34;</span>, module);
+llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>entry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, mainFunc);
+builder.SetInsertPoint(entry);
  
-  llvm<span style="color:#f92672">::</span>Value <span style="color:#f92672">*</span>helloWorld <span style="color:#f92672">=</span> builder.CreateGlobalStringPtr(<span style="color:#e6db74">&#34;hello world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+llvm<span style="color:#f92672">::</span>Value <span style="color:#f92672">*</span>helloWorld <span style="color:#f92672">=</span> builder.CreateGlobalStringPtr(<span style="color:#e6db74">&#34;hello world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
  
-  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type <span style="color:#f92672">*&gt;</span> putsArgs;
-  putsArgs.push_back(builder.getInt8Ty()<span style="color:#f92672">-&gt;</span>getPointerTo());
-  llvm<span style="color:#f92672">::</span>ArrayRef<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type<span style="color:#f92672">*&gt;</span>  argsRef(putsArgs);
+std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type <span style="color:#f92672">*&gt;</span> putsArgs;
+putsArgs.push_back(builder.getInt8Ty()<span style="color:#f92672">-&gt;</span>getPointerTo());
+llvm<span style="color:#f92672">::</span>ArrayRef<span style="color:#f92672">&lt;</span>llvm<span style="color:#f92672">::</span>Type<span style="color:#f92672">*&gt;</span>  argsRef(putsArgs);
  
-  llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>putsType <span style="color:#f92672">=</span> 
-    llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getInt32Ty(), argsRef, false);
-  <span style="color:#75715e">//llvm::Constant *putsFunc = module-&gt;getOrInsertFunction(&#34;puts&#34;, putsType);
-</span><span style="color:#75715e"></span>  llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>putsFunc <span style="color:#f92672">=</span> 
-    llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(putsType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;puts&#34;</span>, module);
-  llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>putsentry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, putsFunc);
-  builder.SetInsertPoint(putsentry);
-  builder.CreateCall(putsFunc, helloWorld);
-  builder.CreateRetVoid();
-  module<span style="color:#f92672">-&gt;</span>dump();
+llvm<span style="color:#f92672">::</span>FunctionType <span style="color:#f92672">*</span>putsType <span style="color:#f92672">=</span> 
+  llvm<span style="color:#f92672">::</span>FunctionType<span style="color:#f92672">::</span>get(builder.getInt32Ty(), argsRef, false);
+<span style="color:#75715e">//llvm::Constant *putsFunc = module-&gt;getOrInsertFunction(&#34;puts&#34;, putsType);
+</span><span style="color:#75715e"></span>llvm<span style="color:#f92672">::</span>Function <span style="color:#f92672">*</span>putsFunc <span style="color:#f92672">=</span> 
+  llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>Create(putsType, llvm<span style="color:#f92672">::</span>Function<span style="color:#f92672">::</span>ExternalLinkage, <span style="color:#e6db74">&#34;puts&#34;</span>, module);
+llvm<span style="color:#f92672">::</span>BasicBlock <span style="color:#f92672">*</span>putsentry <span style="color:#f92672">=</span> llvm<span style="color:#f92672">::</span>BasicBlock<span style="color:#f92672">::</span>Create(context, <span style="color:#e6db74">&#34;entrypoint&#34;</span>, putsFunc);
+builder.SetInsertPoint(putsentry);
+builder.CreateCall(putsFunc, helloWorld);
+builder.CreateRetVoid();
+module<span style="color:#f92672">-&gt;</span>dump();
 }
 </code></pre></div><p>CMakeLists.txt</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">cmake_minimum_required(VERSION <span style="color:#ae81ff">2.8</span>)
@@ -320,12 +320,12 @@ install(TARGETS llvm_test RUNTIME DESTINATION bin)
 <span style="color:#75715e"># Find the libraries that correspond to the LLVM components
 </span><span style="color:#75715e"># that we wish to use
 </span><span style="color:#75715e"></span>llvm_map_components_to_libnames(llvm_libs 
-    Core
-    ExecutionEngine
-    Interpreter
-    MC
-    Support
-    nativecodegen)
+  Core
+  ExecutionEngine
+  Interpreter
+  MC
+  Support
+  nativecodegen)
 
 <span style="color:#75715e"># Link against LLVM libraries
 </span><span style="color:#75715e"></span>target_link_libraries(llvm_test <span style="color:#960050;background-color:#1e0010">$</span>{llvm_libs})

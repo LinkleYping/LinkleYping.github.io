@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="gcc详解 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -179,13 +179,13 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/#%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" class="toc-link">编译流程</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/#%e5%8f%82%e6%95%b0%e8%af%a6%e8%a7%a3" class="toc-link">参数详解</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/#%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" class="toc-link">编译流程</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/#%e5%8f%82%e6%95%b0%e8%af%a6%e8%a7%a3" class="toc-link">参数详解</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="编译流程">编译流程</h2>
 <p>gcc、g++分别是gnu的c、c++编译器，gcc/g++在执行编译工作的时候，总共需要4步:</p>
@@ -216,9 +216,9 @@ eg: <code>gcc -c test.c</code>只生成.obj文件</li>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-  <span style="color:#75715e">// Print the string
-</span><span style="color:#75715e"></span>   printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> The Geek Stuff</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#75715e">// Print the string
+</span><span style="color:#75715e"></span> printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> The Geek Stuff</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+ <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><p>使用-ansi参数编译上面的代码会出错，因为ISO C89不支持C++风格的注释。</p>
 <ul>
@@ -284,12 +284,12 @@ $ gcc -shared -o libCfile.so Cfile.o
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
 <span style="color:#75715e">#ifdef MY_MACRO
-</span><span style="color:#75715e"></span>  printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> Macro defined </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span><span style="color:#75715e"></span>printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> Macro defined </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>;
-  <span style="color:#75715e">// Print the string
-</span><span style="color:#75715e"></span>   printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> The Geek Stuff [%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, c);
-   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>;
+<span style="color:#75715e">// Print the string
+</span><span style="color:#75715e"></span> printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> The Geek Stuff [%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, c);
+ <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><p>-D可以用作从命令行定义宏MY_MACRO。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gcc -Wall -DMY_MACRO main.c -o main

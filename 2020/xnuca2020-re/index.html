@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="XNUCA2020-re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,14 +177,14 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/xnuca2020-re/#unravelmfc" class="toc-link">unravelmfc</a></li>
-                        <li><a href="/2020/xnuca2020-re/#hellowasm" class="toc-link">hellowasm</a></li>
-                        <li><a href="/2020/xnuca2020-re/#babyarm" class="toc-link">babyarm</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/xnuca2020-re/#unravelmfc" class="toc-link">unravelmfc</a></li>
+                          <li><a href="/2020/xnuca2020-re/#hellowasm" class="toc-link">hellowasm</a></li>
+                          <li><a href="/2020/xnuca2020-re/#babyarm" class="toc-link">babyarm</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="unravelmfc">unravelmfc</h2>
 <p>(主要是学弟出的，我就打个下手
@@ -207,35 +207,35 @@ flag长度66（输入66长度字符才能点击确定）点确定没反应，只
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">enc_real <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B=.NI;&amp;3JBZ;$;?(I72&#39;0&amp;4GLZDS2V6&amp;%AF.!5#+J[F^&#34;</span>
 <span style="color:#f92672">import</span> base64
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decoder</span>(local_base64):
-    <span style="color:#f92672">import</span> string
-    real_base64_charset <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_uppercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>ascii_lowercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>digits <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+/&#39;</span>
-    tmp_charset <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ab&#34;</span>
-    b64_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> local_base64:
-        t <span style="color:#f92672">=</span> real_base64_charset[tmp_charset<span style="color:#f92672">.</span>find(i)]
-        b64_str <span style="color:#f92672">+=</span> t
-    <span style="color:#66d9ef">return</span> (base64<span style="color:#f92672">.</span>decodebytes(b64_str<span style="color:#f92672">.</span>encode()))
+<span style="color:#f92672">import</span> string
+real_base64_charset <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_uppercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>ascii_lowercase <span style="color:#f92672">+</span> string<span style="color:#f92672">.</span>digits <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+/&#39;</span>
+tmp_charset <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ab&#34;</span>
+b64_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> local_base64:
+    t <span style="color:#f92672">=</span> real_base64_charset[tmp_charset<span style="color:#f92672">.</span>find(i)]
+    b64_str <span style="color:#f92672">+=</span> t
+<span style="color:#66d9ef">return</span> (base64<span style="color:#f92672">.</span>decodebytes(b64_str<span style="color:#f92672">.</span>encode()))
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test1</span>():
-    orig <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&amp;D</span><span style="color:#ae81ff">\xd7</span><span style="color:#e6db74">;</span><span style="color:#ae81ff">\xa8\xe0</span><span style="color:#e6db74">/~</span><span style="color:#ae81ff">\x81</span><span style="color:#e6db74">~</span><span style="color:#ae81ff">\x9c</span><span style="color:#e6db74">L9</span><span style="color:#ae81ff">\xa8\x97\xc8</span><span style="color:#e6db74">Y5&#39;</span><span style="color:#ae81ff">\xe6\x1e\xcd</span><span style="color:#e6db74">8</span><span style="color:#ae81ff">\x87\x80</span><span style="color:#e6db74">,</span><span style="color:#ae81ff">\x99\xc1\xdd</span><span style="color:#e6db74">]</span><span style="color:#ae81ff">\x1f\xb0\x9a</span><span style="color:#e6db74">&#34;</span>
-    encoded <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,G6:1]FC.Z]$BLT/1=E:U(GX,a;AV6E*C%U&lt;S@X@*^%=&#34;</span>
-    <span style="color:#66d9ef">assert</span> decoder(encoded) <span style="color:#f92672">==</span> orig
+orig <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;&amp;D</span><span style="color:#ae81ff">\xd7</span><span style="color:#e6db74">;</span><span style="color:#ae81ff">\xa8\xe0</span><span style="color:#e6db74">/~</span><span style="color:#ae81ff">\x81</span><span style="color:#e6db74">~</span><span style="color:#ae81ff">\x9c</span><span style="color:#e6db74">L9</span><span style="color:#ae81ff">\xa8\x97\xc8</span><span style="color:#e6db74">Y5&#39;</span><span style="color:#ae81ff">\xe6\x1e\xcd</span><span style="color:#e6db74">8</span><span style="color:#ae81ff">\x87\x80</span><span style="color:#e6db74">,</span><span style="color:#ae81ff">\x99\xc1\xdd</span><span style="color:#e6db74">]</span><span style="color:#ae81ff">\x1f\xb0\x9a</span><span style="color:#e6db74">&#34;</span>
+encoded <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,G6:1]FC.Z]$BLT/1=E:U(GX,a;AV6E*C%U&lt;S@X@*^%=&#34;</span>
+<span style="color:#66d9ef">assert</span> decoder(encoded) <span style="color:#f92672">==</span> orig
 
 test1()
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">derc4</span>(inp):
-    moder_b <span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;@(</span><span style="color:#ae81ff">\xb6\\\xd3\x84\\\x1a\xe0\x18\xfd</span><span style="color:#e6db74">?]</span><span style="color:#ae81ff">\xce\xf6\xbb</span><span style="color:#e6db74">=FC</span><span style="color:#ae81ff">\x82</span><span style="color:#e6db74">z</span><span style="color:#ae81ff">\xa9\\\xe3\xe4</span><span style="color:#e6db74">H</span><span style="color:#ae81ff">\xfd\xa5\xb9</span><span style="color:#e6db74">9{</span><span style="color:#ae81ff">\xd4\xfe</span><span style="color:#e6db74">&#39;</span>
-    res <span style="color:#f92672">=</span> []
-    <span style="color:#66d9ef">for</span> i,j <span style="color:#f92672">in</span> zip(inp, moder_b):
-        res<span style="color:#f92672">.</span>append(i<span style="color:#f92672">^</span>j)
-    <span style="color:#66d9ef">return</span> bytes(res)
+moder_b <span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;@(</span><span style="color:#ae81ff">\xb6\\\xd3\x84\\\x1a\xe0\x18\xfd</span><span style="color:#e6db74">?]</span><span style="color:#ae81ff">\xce\xf6\xbb</span><span style="color:#e6db74">=FC</span><span style="color:#ae81ff">\x82</span><span style="color:#e6db74">z</span><span style="color:#ae81ff">\xa9\\\xe3\xe4</span><span style="color:#e6db74">H</span><span style="color:#ae81ff">\xfd\xa5\xb9</span><span style="color:#e6db74">9{</span><span style="color:#ae81ff">\xd4\xfe</span><span style="color:#e6db74">&#39;</span>
+res <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i,j <span style="color:#f92672">in</span> zip(inp, moder_b):
+    res<span style="color:#f92672">.</span>append(i<span style="color:#f92672">^</span>j)
+<span style="color:#66d9ef">return</span> bytes(res)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test2</span>():
-    orig <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag{dsdafasdfasdsddddddddddddddd&#39;</span>
+orig <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;flag{dsdafasdfasdsddddddddddddddd&#39;</span>
 
-    out <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x26\x44\xD7\x3B\xA8\xE0\x2F\x7E\x81\x7E\x9C\x4C\x39\xA8\x97\xC8\x59\x35\x27\xE6\x1E\xCD\x38\x87\x80\x2C\x99\xC1\xDD\x5D\x1F\xB0\x9A</span><span style="color:#e6db74">&#34;</span>
+out <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x26\x44\xD7\x3B\xA8\xE0\x2F\x7E\x81\x7E\x9C\x4C\x39\xA8\x97\xC8\x59\x35\x27\xE6\x1E\xCD\x38\x87\x80\x2C\x99\xC1\xDD\x5D\x1F\xB0\x9A</span><span style="color:#e6db74">&#34;</span>
 
-    <span style="color:#66d9ef">assert</span> derc4(out) <span style="color:#f92672">==</span> orig
+<span style="color:#66d9ef">assert</span> derc4(out) <span style="color:#f92672">==</span> orig
 
 test2()
 </code></pre></div><p>前半部分flag就出来了。。。</p>
@@ -244,38 +244,38 @@ test2()
 需要解一个方程解出来是[0x2d46347f5e79f6f4, 0xDF3634AE2F9970FF, 0x6cacebd512c2fc6d, 0xe8e95dc6c558d3ec]</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> ctypes
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encipher</span>(v, k):
-    y, z <span style="color:#f92672">=</span> [ctypes<span style="color:#f92672">.</span>c_uint32(x)
-            <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> v]
-    sum <span style="color:#f92672">=</span> ctypes<span style="color:#f92672">.</span>c_uint32(<span style="color:#ae81ff">0</span>)
-    <span style="color:#75715e"># delta = 0x9E3779B9</span>
-    delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x2433b95a</span>
+y, z <span style="color:#f92672">=</span> [ctypes<span style="color:#f92672">.</span>c_uint32(x)
+        <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> v]
+sum <span style="color:#f92672">=</span> ctypes<span style="color:#f92672">.</span>c_uint32(<span style="color:#ae81ff">0</span>)
+<span style="color:#75715e"># delta = 0x9E3779B9</span>
+delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x2433b95a</span>
 
-    <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
-        sum<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> delta
-        <span style="color:#75715e"># z -- v8</span>
-        <span style="color:#75715e"># y -- v6</span>
-        <span style="color:#75715e"># y.value += ((z.value &lt;&lt; 4) + k[0]) ^ (z.value + sum.value) ^ ((z.value &gt;&gt; 5) + k[1])</span>
-        <span style="color:#75715e"># z.value += ((y.value &lt;&lt; 4)) + k[2] ^ y.value + sum.value ^ (y.value &gt;&gt; 5) + k[3]</span>
-        y<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">^</span> z<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">1</span>]
-        z<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> y<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">3</span>]
-    <span style="color:#75715e"># print(hex(sum.value))</span>
-    <span style="color:#66d9ef">return</span> [y<span style="color:#f92672">.</span>value, z<span style="color:#f92672">.</span>value]
+<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+    sum<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> delta
+    <span style="color:#75715e"># z -- v8</span>
+    <span style="color:#75715e"># y -- v6</span>
+    <span style="color:#75715e"># y.value += ((z.value &lt;&lt; 4) + k[0]) ^ (z.value + sum.value) ^ ((z.value &gt;&gt; 5) + k[1])</span>
+    <span style="color:#75715e"># z.value += ((y.value &lt;&lt; 4)) + k[2] ^ y.value + sum.value ^ (y.value &gt;&gt; 5) + k[3]</span>
+    y<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">^</span> z<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">1</span>]
+    z<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> y<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">3</span>]
+<span style="color:#75715e"># print(hex(sum.value))</span>
+<span style="color:#66d9ef">return</span> [y<span style="color:#f92672">.</span>value, z<span style="color:#f92672">.</span>value]
 
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decipher</span>(v, k):
-    y, z <span style="color:#f92672">=</span> [ctypes<span style="color:#f92672">.</span>c_uint32(x)
-            <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> v]
-    <span style="color:#75715e"># sum = ctypes.c_uint32(0xC6EF3720)</span>
-    sum <span style="color:#f92672">=</span> ctypes<span style="color:#f92672">.</span>c_uint32(<span style="color:#ae81ff">0x86772b40</span>)
-    <span style="color:#75715e"># delta = 0x9E3779B9</span>
-    delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x2433b95a</span>
+y, z <span style="color:#f92672">=</span> [ctypes<span style="color:#f92672">.</span>c_uint32(x)
+        <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> v]
+<span style="color:#75715e"># sum = ctypes.c_uint32(0xC6EF3720)</span>
+sum <span style="color:#f92672">=</span> ctypes<span style="color:#f92672">.</span>c_uint32(<span style="color:#ae81ff">0x86772b40</span>)
+<span style="color:#75715e"># delta = 0x9E3779B9</span>
+delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x2433b95a</span>
 
-    <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
-        z<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> y<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">3</span>]
-        y<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">^</span> z<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">1</span>]
-        sum<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> delta
+<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+    z<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> y<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (y<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">3</span>]
+    y<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">^</span> z<span style="color:#f92672">.</span>value <span style="color:#f92672">+</span> sum<span style="color:#f92672">.</span>value <span style="color:#f92672">^</span> (z<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> k[<span style="color:#ae81ff">1</span>]
+    sum<span style="color:#f92672">.</span>value <span style="color:#f92672">-=</span> delta
 
-    <span style="color:#66d9ef">return</span> [y<span style="color:#f92672">.</span>value, z<span style="color:#f92672">.</span>value]
+<span style="color:#66d9ef">return</span> [y<span style="color:#f92672">.</span>value, z<span style="color:#f92672">.</span>value]
 
 keys <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3647016194</span>, <span style="color:#ae81ff">716023165</span>, <span style="color:#ae81ff">2742368241</span>, <span style="color:#ae81ff">3265149203</span>, <span style="color:#ae81ff">3583257832</span>, <span style="color:#ae81ff">1619840614</span>, <span style="color:#ae81ff">1834562594</span>, <span style="color:#ae81ff">568710898</span>, <span style="color:#ae81ff">3980038709</span>, <span style="color:#ae81ff">2645385924</span>, <span style="color:#ae81ff">945185819</span>, <span style="color:#ae81ff">1912036253</span>, <span style="color:#ae81ff">3705592552</span>, <span style="color:#ae81ff">3939684768</span>, <span style="color:#ae81ff">3133470052</span>, <span style="color:#ae81ff">3662115500</span>]
 
@@ -283,16 +283,16 @@ vv <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0x5e79f6f4<
 
 data <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
-    v <span style="color:#f92672">=</span> vv[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i: <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]
-    v <span style="color:#f92672">=</span> v[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-    k <span style="color:#f92672">=</span> keys[<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>i:<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]
-    enc <span style="color:#f92672">=</span> decipher(v, k)
-    data<span style="color:#f92672">.</span>append(enc[<span style="color:#ae81ff">0</span>])
-    data<span style="color:#f92672">.</span>append(enc[<span style="color:#ae81ff">1</span>])
+v <span style="color:#f92672">=</span> vv[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i: <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]
+v <span style="color:#f92672">=</span> v[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+k <span style="color:#f92672">=</span> keys[<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>i:<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]
+enc <span style="color:#f92672">=</span> decipher(v, k)
+data<span style="color:#f92672">.</span>append(enc[<span style="color:#ae81ff">0</span>])
+data<span style="color:#f92672">.</span>append(enc[<span style="color:#ae81ff">1</span>])
 
 flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> data:
-    flag <span style="color:#f92672">=</span> flag <span style="color:#f92672">+</span> (hex(d)<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;0x&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>)[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+flag <span style="color:#f92672">=</span> flag <span style="color:#f92672">+</span> (hex(d)<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;0x&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>)[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;f&#39;</span><span style="color:#f92672">+</span>flag)
 </code></pre></div><h2 id="hellowasm">hellowasm</h2>
 <p>需要用node起一下直接点开不行</p>
@@ -342,15 +342,15 @@ result <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2160</s
 flag <span style="color:#f92672">=</span> []
 li <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]
 <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> result<span style="color:#f92672">.</span>keys():
-    li<span style="color:#f92672">.</span>append(result[k])
+li<span style="color:#f92672">.</span>append(result[k])
 
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(li)):
-    flag<span style="color:#f92672">.</span>append(li[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">^</span> li[i] <span style="color:#f92672">^</span> <span style="color:#ae81ff">238</span>)
+flag<span style="color:#f92672">.</span>append(li[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">^</span> li[i] <span style="color:#f92672">^</span> <span style="color:#ae81ff">238</span>)
 ti <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0xa</span>, <span style="color:#ae81ff">0xb</span>, <span style="color:#ae81ff">0xc</span>, <span style="color:#ae81ff">0xd</span>]
 tar <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(flag)<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>):
-    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
-        tar <span style="color:#f92672">=</span> tar <span style="color:#f92672">+</span> chr(ti[j] <span style="color:#f92672">^</span> flag[i<span style="color:#f92672">+</span>j])
+<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
+    tar <span style="color:#f92672">=</span> tar <span style="color:#f92672">+</span> chr(ti[j] <span style="color:#f92672">^</span> flag[i<span style="color:#f92672">+</span>j])
 <span style="color:#66d9ef">print</span>(base64<span style="color:#f92672">.</span>decodestring(tar))
 </code></pre></div><h2 id="babyarm">babyarm</h2>
 <p>主要验证部分在<code>sub_114D8</code>, xxtea稍微改了一点，一次加密了16轮&hellip;长度也是16</p>
@@ -358,66 +358,66 @@ tar <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;<
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;  </span><span style="color:#75715e">
 </span><span style="color:#75715e">#define DELTA 0x9e3779b9  
 </span><span style="color:#75715e">#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))  
-</span><span style="color:#75715e"></span>  
+</span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">btea</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>v, <span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">uint32_t</span> <span style="color:#66d9ef">const</span> key[<span style="color:#ae81ff">4</span>])  
 {  
-    <span style="color:#66d9ef">uint32_t</span> y, z, sum;  
-    <span style="color:#66d9ef">unsigned</span> p, rounds, e;  
-    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)            <span style="color:#75715e">/* Coding Part */</span>  
+<span style="color:#66d9ef">uint32_t</span> y, z, sum;  
+<span style="color:#66d9ef">unsigned</span> p, rounds, e;  
+<span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)            <span style="color:#75715e">/* Coding Part */</span>  
+{  
+    rounds <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">52</span><span style="color:#f92672">/</span>n;  
+    sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
+    <span style="color:#66d9ef">do</span>  
     {  
+        sum <span style="color:#f92672">+=</span> DELTA;  
+        e <span style="color:#f92672">=</span> (sum <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>;  
+        <span style="color:#66d9ef">for</span> (p<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; p<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; p<span style="color:#f92672">++</span>)  
+        {  
+            y <span style="color:#f92672">=</span> v[p<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];  
+            z <span style="color:#f92672">=</span> v[p] <span style="color:#f92672">+=</span> MX;  
+        }  
+        y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>];  
+        z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> MX;  
+    }  
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>rounds);  
+}  
+<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)      <span style="color:#75715e">/* Decoding Part */</span>  
+{  
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)
+    {
+        n <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;  
         rounds <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">52</span><span style="color:#f92672">/</span>n;  
-        sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
-        z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
+        sum <span style="color:#f92672">=</span> rounds<span style="color:#f92672">*</span>DELTA;  
+        y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>];
         <span style="color:#66d9ef">do</span>  
         {  
-            sum <span style="color:#f92672">+=</span> DELTA;  
             e <span style="color:#f92672">=</span> (sum <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>;  
-            <span style="color:#66d9ef">for</span> (p<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; p<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; p<span style="color:#f92672">++</span>)  
+            <span style="color:#66d9ef">for</span> (p<span style="color:#f92672">=</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; p<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>; p<span style="color:#f92672">--</span>)  
             {  
-                y <span style="color:#f92672">=</span> v[p<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];  
-                z <span style="color:#f92672">=</span> v[p] <span style="color:#f92672">+=</span> MX;  
+                z <span style="color:#f92672">=</span> v[p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
+                y <span style="color:#f92672">=</span> v[p] <span style="color:#f92672">-=</span> MX;  
             }  
-            y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>];  
-            z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> MX;  
+            z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
+            y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-=</span> MX;  
+            sum <span style="color:#f92672">-=</span> DELTA;  
         }  
         <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>rounds);  
-    }  
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)      <span style="color:#75715e">/* Decoding Part */</span>  
-    {  
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)
-        {
-            n <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;  
-            rounds <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">52</span><span style="color:#f92672">/</span>n;  
-            sum <span style="color:#f92672">=</span> rounds<span style="color:#f92672">*</span>DELTA;  
-            y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>];
-            <span style="color:#66d9ef">do</span>  
-            {  
-                e <span style="color:#f92672">=</span> (sum <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>;  
-                <span style="color:#66d9ef">for</span> (p<span style="color:#f92672">=</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; p<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>; p<span style="color:#f92672">--</span>)  
-                {  
-                    z <span style="color:#f92672">=</span> v[p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
-                    y <span style="color:#f92672">=</span> v[p] <span style="color:#f92672">-=</span> MX;  
-                }  
-                z <span style="color:#f92672">=</span> v[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];  
-                y <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-=</span> MX;  
-                sum <span style="color:#f92672">-=</span> DELTA;  
-            }  
-            <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>rounds);  
-        }
-    }  
+    }
 }  
-  
-  
+}  
+
+
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
 {  
-    <span style="color:#66d9ef">uint32_t</span> v[<span style="color:#ae81ff">16</span>]<span style="color:#f92672">=</span> {<span style="color:#ae81ff">0xB061F013</span>, <span style="color:#ae81ff">0xB3C8567E</span>, <span style="color:#ae81ff">0x9952A3C7</span>, <span style="color:#ae81ff">0x451C2D3F</span>, <span style="color:#ae81ff">0x3EE32267</span>, <span style="color:#ae81ff">0xE3E22B3E</span>, <span style="color:#ae81ff">0x43E5A250</span>, <span style="color:#ae81ff">0x59B28ED0</span>, <span style="color:#ae81ff">0x0F8649DC</span>, <span style="color:#ae81ff">0x9BF4D083</span>, <span style="color:#ae81ff">0x8A578110</span>, <span style="color:#ae81ff">0x8604EC4F</span>, <span style="color:#ae81ff">0x2EB5A27F</span>, <span style="color:#ae81ff">0x1217DDF3</span>, <span style="color:#ae81ff">0x93C9B253</span>, <span style="color:#ae81ff">0xDC7F8E43</span>};  
-    <span style="color:#66d9ef">uint32_t</span> <span style="color:#66d9ef">const</span> k[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};  
-    <span style="color:#66d9ef">int</span> n<span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-    <span style="color:#75715e">// for(int i = 0; i &lt; 16; i++)
-</span><span style="color:#75715e"></span>    btea(v, <span style="color:#f92672">-</span>n, k);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)
-        printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">, &#34;</span>, v[i]);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+<span style="color:#66d9ef">uint32_t</span> v[<span style="color:#ae81ff">16</span>]<span style="color:#f92672">=</span> {<span style="color:#ae81ff">0xB061F013</span>, <span style="color:#ae81ff">0xB3C8567E</span>, <span style="color:#ae81ff">0x9952A3C7</span>, <span style="color:#ae81ff">0x451C2D3F</span>, <span style="color:#ae81ff">0x3EE32267</span>, <span style="color:#ae81ff">0xE3E22B3E</span>, <span style="color:#ae81ff">0x43E5A250</span>, <span style="color:#ae81ff">0x59B28ED0</span>, <span style="color:#ae81ff">0x0F8649DC</span>, <span style="color:#ae81ff">0x9BF4D083</span>, <span style="color:#ae81ff">0x8A578110</span>, <span style="color:#ae81ff">0x8604EC4F</span>, <span style="color:#ae81ff">0x2EB5A27F</span>, <span style="color:#ae81ff">0x1217DDF3</span>, <span style="color:#ae81ff">0x93C9B253</span>, <span style="color:#ae81ff">0xDC7F8E43</span>};  
+<span style="color:#66d9ef">uint32_t</span> <span style="color:#66d9ef">const</span> k[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};  
+<span style="color:#66d9ef">int</span> n<span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
+<span style="color:#75715e">// for(int i = 0; i &lt; 16; i++)
+</span><span style="color:#75715e"></span>btea(v, <span style="color:#f92672">-</span>n, k);
+<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)
+    printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">, &#34;</span>, v[i]);
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
 }
 
 <span style="color:#f92672">&gt;&gt;&gt;</span> s <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;67616c66&#34;</span>, <span style="color:#e6db74">&#34;6330447b&#34;</span>, <span style="color:#e6db74">&#34;37306261&#34;</span>, <span style="color:#e6db74">&#34;35346146&#34;</span>, <span style="color:#e6db74">&#34;36623241&#34;</span>, <span style="color:#e6db74">&#34;62376646&#34;</span>, <span style="color:#e6db74">&#34;41364541&#34;</span>, <span style="color:#e6db74">&#34;41624261&#34;</span>, <span style="color:#e6db74">&#34;64354635&#34;</span>, <span style="color:#e6db74">&#34;43336263&#34;</span>, <span style="color:#e6db74">&#34;43446639&#34;</span>, <span style="color:#e6db74">&#34;66613545&#34;</span>, <span style="color:#e6db74">&#34;34354665&#34;</span>, <span style="color:#e6db74">&#34;38434144&#34;</span>, <span style="color:#e6db74">&#34;30354138&#34;</span>, <span style="color:#e6db74">&#34;7d413339&#34;</span>]

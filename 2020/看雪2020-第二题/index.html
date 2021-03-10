@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="看雪2020-第二题 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,75 +177,75 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e7%ac%ac%e4%ba%8c%e9%a2%98-%e5%ad%90%e9%bc%a0%e5%bc%80%e5%a4%a9" class="toc-link">第二题 子鼠开天</a></li>
-                        
-                                <ul class="toc-h3"><li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e7%ae%97%e6%b3%95%e8%af%86%e5%88%ab" class="toc-link">算法识别</a></li>
-                        <li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e5%8a%a0%e5%af%86%e8%bf%87%e7%a8%8b" class="toc-link">加密过程</a></li>
-                        <li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#solve" class="toc-link">solve</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e7%ac%ac%e4%ba%8c%e9%a2%98-%e5%ad%90%e9%bc%a0%e5%bc%80%e5%a4%a9" class="toc-link">第二题 子鼠开天</a></li>
+                          
+                                  <ul class="toc-h3"><li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e7%ae%97%e6%b3%95%e8%af%86%e5%88%ab" class="toc-link">算法识别</a></li>
+                          <li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#%e5%8a%a0%e5%af%86%e8%bf%87%e7%a8%8b" class="toc-link">加密过程</a></li>
+                          <li><a href="/2020/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/#solve" class="toc-link">solve</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="第二题-子鼠开天">第二题 子鼠开天</h2>
 <h3 id="算法识别">算法识别</h3>
-<p>从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码
-<a href="https://github.com/push0ebp/sig-database/blob/master/windows/openssl_0.9.8.sig">openssl_0.9.8.sig</a>
-其他没有识别出来的函数可以通过固定参数或者对比openssl源码识别
-sub_4019B0 -&gt; sha512   (0xF3BCC908, 0x6A09E667&hellip;)
-sub_401560 -&gt; md5   (0x67452301, 0xEFCDAB89&hellip;)
-sub_404FE0 -&gt; AES_set_encrypt_key
-sub_4053A0 -&gt; AES_set_decrypt_key
-sub_sub_4010F0 -&gt; 最后一个参数为1是是AES加密，为0时是AES解密
+<p>从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码<br>
+<a href="https://github.com/push0ebp/sig-database/blob/master/windows/openssl_0.9.8.sig">openssl_0.9.8.sig</a><br>
+其他没有识别出来的函数可以通过固定参数或者对比openssl源码识别<br>
+sub_4019B0 -&gt; sha512   (0xF3BCC908, 0x6A09E667&hellip;)<br>
+sub_401560 -&gt; md5   (0x67452301, 0xEFCDAB89&hellip;)<br>
+sub_404FE0 -&gt; AES_set_encrypt_key<br>
+sub_4053A0 -&gt; AES_set_decrypt_key<br>
+sub_sub_4010F0 -&gt; 最后一个参数为1是是AES加密，为0时是AES解密<br>
 sub_401210 -&gt; rsa</p>
 <h3 id="加密过程">加密过程</h3>
-<p>sn：AES<strong>解密</strong> -&gt; RSA加密
-name: sha512 -&gt; md5 -&gt; sha512 -&gt; md5
+<p>sn：AES<strong>解密</strong> -&gt; RSA加密<br>
+name: sha512 -&gt; md5 -&gt; sha512 -&gt; md5<br>
 sn加密结果的后16字节与nams计算hash后的16字节相等且sn的前两个字节为0002，第16个字节为0</p>
 <h3 id="solve">solve</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8</span>
-<span style="color:#f92672">import</span> gmpy2
-<span style="color:#f92672">import</span> hashlib
-<span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
-<span style="color:#f92672">import</span> base64
-<span style="color:#f92672">import</span> math
-<span style="color:#f92672">from</span> binascii <span style="color:#f92672">import</span> b2a_hex, a2b_hex
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">prpcrypt</span>():
-    <span style="color:#66d9ef">def</span> __init__(self):
-        s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;480b62c3acd6c8a36b18d9e906cd90d2&#34;</span>
-        self<span style="color:#f92672">.</span>key <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>)
-        self<span style="color:#f92672">.</span>mode <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>MODE_ECB
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encrypt</span>(self, text):
-        cryptor <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(self<span style="color:#f92672">.</span>key, self<span style="color:#f92672">.</span>mode)
-        length <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
-        count <span style="color:#f92672">=</span> len(text)
-        <span style="color:#66d9ef">if</span> count <span style="color:#f92672">%</span> length <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
-                add <span style="color:#f92672">=</span> length <span style="color:#f92672">-</span> (count <span style="color:#f92672">%</span> length)
-        <span style="color:#66d9ef">else</span>:
-            add <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-            text <span style="color:#f92672">=</span> text <span style="color:#f92672">+</span> (<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> add)
-            self<span style="color:#f92672">.</span>ciphertext <span style="color:#f92672">=</span> cryptor<span style="color:#f92672">.</span>encrypt(text)
-            <span style="color:#66d9ef">return</span> b2a_hex(self<span style="color:#f92672">.</span>ciphertext)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8  </span>
+<span style="color:#f92672">import</span> gmpy2  
+<span style="color:#f92672">import</span> hashlib  
+<span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES  
+<span style="color:#f92672">import</span> base64  
+<span style="color:#f92672">import</span> math  
+<span style="color:#f92672">from</span> binascii <span style="color:#f92672">import</span> b2a_hex, a2b_hex  
+  
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">prpcrypt</span>():  
+  <span style="color:#66d9ef">def</span> __init__(self):  
+      s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;480b62c3acd6c8a36b18d9e906cd90d2&#34;</span>  
+      self<span style="color:#f92672">.</span>key <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>)  
+      self<span style="color:#f92672">.</span>mode <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>MODE_ECB  
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encrypt</span>(self, text):  
+      cryptor <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(self<span style="color:#f92672">.</span>key, self<span style="color:#f92672">.</span>mode)  
+      length <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>  
+      count <span style="color:#f92672">=</span> len(text)  
+      <span style="color:#66d9ef">if</span> count <span style="color:#f92672">%</span> length <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:  
+              add <span style="color:#f92672">=</span> length <span style="color:#f92672">-</span> (count <span style="color:#f92672">%</span> length)  
+      <span style="color:#66d9ef">else</span>:  
+          add <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+          text <span style="color:#f92672">=</span> text <span style="color:#f92672">+</span> (<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">*</span> add)  
+          self<span style="color:#f92672">.</span>ciphertext <span style="color:#f92672">=</span> cryptor<span style="color:#f92672">.</span>encrypt(text)  
+          <span style="color:#66d9ef">return</span> b2a_hex(self<span style="color:#f92672">.</span>ciphertext)  
      
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decrypt</span>(self, text):
-        cryptor <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(self<span style="color:#f92672">.</span>key, self<span style="color:#f92672">.</span>mode)
-        plain_text <span style="color:#f92672">=</span> cryptor<span style="color:#f92672">.</span>decrypt(a2b_hex(text))
-        <span style="color:#66d9ef">return</span> plain_text<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">&#39;</span>)
-
-n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69823028577465ab3991df045146f91d556dee8870845d8ee1cd3cf77e4a0c39</span>
-p <span style="color:#f92672">=</span> <span style="color:#ae81ff">201522792635114097998567775554303915819</span>
-q <span style="color:#f92672">=</span> <span style="color:#ae81ff">236811285547763449711675622888914229291</span>
-phi <span style="color:#f92672">=</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (q <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>
-d <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>invert(e, phi)
-x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x02000000000000000000000000000014af58ad4d76d59d8d2171ffb4ca2231</span>
-msg <span style="color:#f92672">=</span> hex(pow(x,d,n))<span style="color:#f92672">.</span>strip(<span style="color:#e6db74">&#39;L&#39;</span>)[<span style="color:#ae81ff">2</span>:]
-pr <span style="color:#f92672">=</span> prpcrypt()
-c1 <span style="color:#f92672">=</span> pr<span style="color:#f92672">.</span>encrypt(msg[:<span style="color:#ae81ff">32</span>]<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>))
-c2 <span style="color:#f92672">=</span> pr<span style="color:#f92672">.</span>encrypt(msg[<span style="color:#ae81ff">32</span>:<span style="color:#ae81ff">64</span>]<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>))
-<span style="color:#66d9ef">print</span> c1<span style="color:#f92672">+</span>c2
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decrypt</span>(self, text):  
+      cryptor <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(self<span style="color:#f92672">.</span>key, self<span style="color:#f92672">.</span>mode)  
+      plain_text <span style="color:#f92672">=</span> cryptor<span style="color:#f92672">.</span>decrypt(a2b_hex(text))  
+      <span style="color:#66d9ef">return</span> plain_text<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">&#39;</span>)  
+  
+n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69823028577465ab3991df045146f91d556dee8870845d8ee1cd3cf77e4a0c39</span>  
+p <span style="color:#f92672">=</span> <span style="color:#ae81ff">201522792635114097998567775554303915819</span>  
+q <span style="color:#f92672">=</span> <span style="color:#ae81ff">236811285547763449711675622888914229291</span>  
+phi <span style="color:#f92672">=</span> (p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (q <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)  
+e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>  
+d <span style="color:#f92672">=</span> gmpy2<span style="color:#f92672">.</span>invert(e, phi)  
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x02000000000000000000000000000014af58ad4d76d59d8d2171ffb4ca2231</span>  
+msg <span style="color:#f92672">=</span> hex(pow(x,d,n))<span style="color:#f92672">.</span>strip(<span style="color:#e6db74">&#39;L&#39;</span>)[<span style="color:#ae81ff">2</span>:]  
+pr <span style="color:#f92672">=</span> prpcrypt()  
+c1 <span style="color:#f92672">=</span> pr<span style="color:#f92672">.</span>encrypt(msg[:<span style="color:#ae81ff">32</span>]<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>))  
+c2 <span style="color:#f92672">=</span> pr<span style="color:#f92672">.</span>encrypt(msg[<span style="color:#ae81ff">32</span>:<span style="color:#ae81ff">64</span>]<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;hex&#39;</span>))  
+<span style="color:#66d9ef">print</span> c1<span style="color:#f92672">+</span>c2  
 </code></pre></div>
     </div>
 

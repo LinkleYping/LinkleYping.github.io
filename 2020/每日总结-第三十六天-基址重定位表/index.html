@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="基址重定位表 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -179,20 +179,20 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              </div>
+  </div>
+  
         
         <p>基址重定位表中罗列了硬编码地址的偏移，读取这张表就能获得准确的硬编码地址偏移，基址重定位表就是IMAGE_BASE_RELOCATION的结构体数组。
 结构体定义如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _IMAGE_BASE_RELOCATION {
-      DWORD VirtualAddress;  <span style="color:#75715e">// 基准地址
-</span><span style="color:#75715e"></span>      DWORD SizeOfBlock;  <span style="color:#75715e">// 重定位块的大小
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _IMAGE_BASE_RELOCATION {
+  DWORD VirtualAddress;  <span style="color:#75715e">// 基准地址
+</span><span style="color:#75715e"></span>  DWORD SizeOfBlock;  <span style="color:#75715e">// 重定位块的大小
 </span><span style="color:#75715e">//    WORD TypeOffset[1];
-</span><span style="color:#75715e"></span>    } IMAGE_BASE_RELOCATION; <span style="color:#75715e">// 
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">typedef</span> IMAGE_BASE_RELOCATION UNALIGNED <span style="color:#f92672">*</span>PIMAGE_BASE_RELOCATION;
+</span><span style="color:#75715e"></span>} IMAGE_BASE_RELOCATION; <span style="color:#75715e">// 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> IMAGE_BASE_RELOCATION UNALIGNED <span style="color:#f92672">*</span>PIMAGE_BASE_RELOCATION;
 
 <span style="color:#75715e">#define IMAGE_SIZEOF_BASE_RELOCATION 8
 </span><span style="color:#75715e"></span>

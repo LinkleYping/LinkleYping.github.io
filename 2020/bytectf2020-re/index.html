@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="ByteCTF2020-re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -55,7 +55,7 @@
     "datePublished": "2020-10-27 15:22:45 \u002b0800 CST",
     "dateModified" : "2020-10-27 15:22:45 \u002b0800 CST",
     "url" : "https:\/\/linkleyping.top\/2020\/bytectf2020-re\/",
-    "wordCount" : "2994",
+    "wordCount" : "3005",
     "keywords" : [  "EP`s Blog"]
 }
 </script>
@@ -156,7 +156,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">2994 words</span>
+                <span class="post-word-count">3005 words</span>
         </div>
     </header>
 
@@ -179,516 +179,516 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/bytectf2020-re/#%e7%a2%8e%e7%a2%8e%e5%bf%b5" class="toc-link">碎碎念</a></li>
-                        <li><a href="/2020/bytectf2020-re/#dashen-decode-aes" class="toc-link">DaShen Decode AES</a></li>
-                        <li><a href="/2020/bytectf2020-re/#qiao" class="toc-link">QIAO</a></li>
-                        <li><a href="/2020/bytectf2020-re/#crackme" class="toc-link">CrackMe</a></li>
-                        <li><a href="/2020/bytectf2020-re/#app1c" class="toc-link">App1c</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/bytectf2020-re/#%e7%a2%8e%e7%a2%8e%e5%bf%b5" class="toc-link">碎碎念</a></li>
+                          <li><a href="/2020/bytectf2020-re/#dashen-decode-aes" class="toc-link">DaShen Decode AES</a></li>
+                          <li><a href="/2020/bytectf2020-re/#qiao" class="toc-link">QIAO</a></li>
+                          <li><a href="/2020/bytectf2020-re/#crackme" class="toc-link">CrackMe</a></li>
+                          <li><a href="/2020/bytectf2020-re/#app1c" class="toc-link">App1c</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="碎碎念">碎碎念</h2>
 <p>这次比赛让我知道了AES密钥长度除了可以等于16还可以等于32&hellip;不要看到<code>AES256</code>的时候脑子里只有AES没有256==</p>
 <h2 id="dashen-decode-aes">DaShen Decode AES</h2>
 <p>白给题，sqlite直接查询出来<code>iv</code>和<code>key</code>然后<code>AES</code>解密即可</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
-<span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-<span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
-<span style="color:#f92672">import</span> sqlite3
-
-fileName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;db.db&#34;</span>
-conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(fileName)
-c <span style="color:#f92672">=</span>conn<span style="color:#f92672">.</span>cursor()
-ret <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;SELECT  * FROM  config1 WHERE a=1&#34;</span>)
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> ret:
-    <span style="color:#66d9ef">print</span>(i)
-
-enc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;db6427960a6622ffac27ef5437acf1459a592d1a96b73e75490c8badb0ed294c1e9232213e63461dd2d9f6d327e51641&#34;</span>
-iv <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;a5efdbd57b84ca88&#34;</span>
-key <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;37eaae0141f1a3adf8a1dee655853766&#34;</span>
-key <span style="color:#f92672">=</span> long_to_bytes(int(key,<span style="color:#ae81ff">16</span>))
-
-cipher <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
-enc <span style="color:#f92672">=</span> long_to_bytes(int(enc,<span style="color:#ae81ff">16</span>))
-
-dec <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span>decrypt(enc)
-<span style="color:#66d9ef">print</span>(dec)
-<span style="color:#75715e"># ByteCTF{fl-ag-IS-to-ng-xu-el-ih-ai}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python  </span>
+<span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>  
+<span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES  
+<span style="color:#f92672">import</span> sqlite3  
+  
+fileName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;db.db&#34;</span>  
+conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(fileName)  
+c <span style="color:#f92672">=</span>conn<span style="color:#f92672">.</span>cursor()  
+ret <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;SELECT  * FROM  config1 WHERE a=1&#34;</span>)  
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> ret:  
+  <span style="color:#66d9ef">print</span>(i)  
+  
+enc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;db6427960a6622ffac27ef5437acf1459a592d1a96b73e75490c8badb0ed294c1e9232213e63461dd2d9f6d327e51641&#34;</span>  
+iv <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;a5efdbd57b84ca88&#34;</span>  
+key <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;37eaae0141f1a3adf8a1dee655853766&#34;</span>  
+key <span style="color:#f92672">=</span> long_to_bytes(int(key,<span style="color:#ae81ff">16</span>))  
+  
+cipher <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)  
+enc <span style="color:#f92672">=</span> long_to_bytes(int(enc,<span style="color:#ae81ff">16</span>))  
+  
+dec <span style="color:#f92672">=</span> cipher<span style="color:#f92672">.</span>decrypt(enc)  
+<span style="color:#66d9ef">print</span>(dec)  
+<span style="color:#75715e"># ByteCTF{fl-ag-IS-to-ng-xu-el-ih-ai}  </span>
 </code></pre></div><h2 id="qiao">QIAO</h2>
 <p>main函数的ollvm去掉以后可以看到大致逻辑</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_int64 <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> a1, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a2, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a3, <span style="color:#66d9ef">__m128i</span> a4)
-{
-  <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>v5; <span style="color:#75715e">// [rsp+60h] [rbp-30h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// [rsp+78h] [rbp-18h]
-</span><span style="color:#75715e"></span>
-  <span style="color:#66d9ef">if</span> ( a1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> strlen(a2[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">&amp;&amp;</span> (v5 <span style="color:#f92672">=</span> sub_401180(a2[<span style="color:#ae81ff">1</span>]), (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_4018C0((<span style="color:#66d9ef">__int64</span>)v5, a4)) )
-  {
-    printf(<span style="color:#e6db74">&#34;[*]ByteCTF{%s}.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a2[<span style="color:#ae81ff">1</span>]);
-    v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  }
-  <span style="color:#66d9ef">else</span>
-  {
-    v6 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    printf(<span style="color:#e6db74">&#34;[*]ByteCTF{d2h5IG5vdCBnbyBob21l}.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-  }
-  <span style="color:#66d9ef">return</span> v6;
-}
-</code></pre></div><p><code>sub_401180</code>将输入转16进制数，<code>sub_4018C0</code>调用了<code>sub_401E90</code>是个很大的vm，调试了一会儿发现没啥用，最后面动态调用了一个函数<code>((void (__fastcall *)(_QWORD, _QWORD))v149)(*inputStr, *v136);</code>,在这个地方下断点然后对输入下读写断点以后，断了几次发现了下面这个：
-<img src="/images/bb4bbf109c9ae05d6224b2cf2981c9c9/11884068-b32450d80c805252.png" alt="image" loading="lazy" >
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_int64 <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> a1, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a2, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a3, <span style="color:#66d9ef">__m128i</span> a4)  
+{  
+<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>v5; <span style="color:#75715e">// [rsp+60h] [rbp-30h]  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// [rsp+78h] [rbp-18h]  
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">if</span> ( a1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> strlen(a2[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">&amp;&amp;</span> (v5 <span style="color:#f92672">=</span> sub_401180(a2[<span style="color:#ae81ff">1</span>]), (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>)sub_4018C0((<span style="color:#66d9ef">__int64</span>)v5, a4)) )  
+{  
+  printf(<span style="color:#e6db74">&#34;[*]ByteCTF{%s}.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a2[<span style="color:#ae81ff">1</span>]);  
+  v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+}  
+<span style="color:#66d9ef">else</span>  
+{  
+  v6 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;  
+  printf(<span style="color:#e6db74">&#34;[*]ByteCTF{d2h5IG5vdCBnbyBob21l}.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);  
+}  
+<span style="color:#66d9ef">return</span> v6;  
+}  
+</code></pre></div><p><code>sub_401180</code>将输入转16进制数，<code>sub_4018C0</code>调用了<code>sub_401E90</code>是个很大的vm，调试了一会儿发现没啥用，最后面动态调用了一个函数<code>((void (__fastcall *)(_QWORD, _QWORD))v149)(*inputStr, *v136);</code>,在这个地方下断点然后对输入下读写断点以后，断了几次发现了下面这个：<br>
+<img src="/images/bb4bbf109c9ae05d6224b2cf2981c9c9/11884068-b32450d80c805252.png" alt="image" loading="lazy" ><br>
 尝试输入了一下发现真的就是flag&hellip;</p>
 <h2 id="crackme">CrackMe</h2>
-<p>sha256算法经过了更改，在输入长度超过32个字节的时候只有前四个字节参与了运算，直接爆破前四个字节
+<p>sha256算法经过了更改，在输入长度超过32个字节的时候只有前四个字节参与了运算，直接爆破前四个字节<br>
 sha256我在github上找了一个很相似的项目改了一下：https://github.com/monkeyDemon/Blockchain-programming-exercises/blob/master/1.Blockchain%20basic%20exercises/2.Cryptography%20and%20security%20technology/SHA256/C%20Code/sha256.c</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sha256.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define BLOCKSIZE 16
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
-    <span style="color:#66d9ef">uint32_t</span> eK[<span style="color:#ae81ff">44</span>],dK[<span style="color:#ae81ff">44</span>];
-    <span style="color:#66d9ef">int</span> rounds;
-} AESKEY;
-
-<span style="color:#75715e">#define ROF32(x,n) ((x &lt;&lt; n) | (x &gt;&gt; (32-n)))
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define ROR32(x,n) ((x &gt;&gt; n) | (x &lt;&lt; (32-n)))
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define BYTE(x,n) (((x)&gt;&gt;((n)*8)) &amp; 0xff)
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define MIX(x)  (((S[BYTE((x),2)] &lt;&lt; 24) &amp; 0xff000000) ^ \
-</span><span style="color:#75715e">                 ((S[BYTE((x),1)] &lt;&lt; 16) &amp; 0xff0000) ^ \
-</span><span style="color:#75715e">                 ((S[BYTE((x),0)] &lt;&lt; 8) &amp; 0xff00) ^ \
-</span><span style="color:#75715e">                 ((S[BYTE((x),3)]) &amp; 0xff))
-</span><span style="color:#75715e"></span>                
-
-<span style="color:#75715e">#define LOAD32(x,y) do{ (x) = \
-</span><span style="color:#75715e">    ((uint32_t)((y)[0]&amp;0xff)&lt;&lt;24) |\
-</span><span style="color:#75715e">    ((uint32_t)((y)[1]&amp;0xff)&lt;&lt;16) |\
-</span><span style="color:#75715e">    ((uint32_t)((y)[2]&amp;0xff)&lt;&lt;8 ) |\
-</span><span style="color:#75715e">    ((uint32_t)((y)[3]&amp;0xff));\
-</span><span style="color:#75715e">}while(0)
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define  STORE32(x,y) do{ \
-</span><span style="color:#75715e">    (y)[0] = (uint8_t)(((x)&gt;&gt;24) &amp; 0xff) ; \
-</span><span style="color:#75715e">    (y)[1] = (uint8_t)(((x)&gt;&gt;16) &amp; 0xff) ; \
-</span><span style="color:#75715e">    (y)[2] = (uint8_t)(((x)&gt;&gt;8) &amp; 0xff) ; \
-</span><span style="color:#75715e">    (y)[3] = (uint8_t)((x) &amp; 0xff) ; \
-</span><span style="color:#75715e">}while(0)
-</span><span style="color:#75715e"></span>
- 
-<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> S[<span style="color:#ae81ff">256</span>] <span style="color:#f92672">=</span> {
-    <span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x77</span>, <span style="color:#ae81ff">0x7B</span>, <span style="color:#ae81ff">0xF2</span>, <span style="color:#ae81ff">0x6B</span>, <span style="color:#ae81ff">0x6F</span>, <span style="color:#ae81ff">0xC5</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x67</span>, <span style="color:#ae81ff">0x2B</span>, <span style="color:#ae81ff">0xFE</span>, <span style="color:#ae81ff">0xD7</span>, <span style="color:#ae81ff">0xAB</span>, <span style="color:#ae81ff">0x76</span>,
-    <span style="color:#ae81ff">0xCA</span>, <span style="color:#ae81ff">0x82</span>, <span style="color:#ae81ff">0xC9</span>, <span style="color:#ae81ff">0x7D</span>, <span style="color:#ae81ff">0xFA</span>, <span style="color:#ae81ff">0x59</span>, <span style="color:#ae81ff">0x47</span>, <span style="color:#ae81ff">0xF0</span>, <span style="color:#ae81ff">0xAD</span>, <span style="color:#ae81ff">0xD4</span>, <span style="color:#ae81ff">0xA2</span>, <span style="color:#ae81ff">0xAF</span>, <span style="color:#ae81ff">0x9C</span>, <span style="color:#ae81ff">0xA4</span>, <span style="color:#ae81ff">0x72</span>, <span style="color:#ae81ff">0xC0</span>,
-    <span style="color:#ae81ff">0xB7</span>, <span style="color:#ae81ff">0xFD</span>, <span style="color:#ae81ff">0x93</span>, <span style="color:#ae81ff">0x26</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0xF7</span>, <span style="color:#ae81ff">0xCC</span>, <span style="color:#ae81ff">0x34</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0xE5</span>, <span style="color:#ae81ff">0xF1</span>, <span style="color:#ae81ff">0x71</span>, <span style="color:#ae81ff">0xD8</span>, <span style="color:#ae81ff">0x31</span>, <span style="color:#ae81ff">0x15</span>,
-    <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0xC7</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0xC3</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x96</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0xE2</span>, <span style="color:#ae81ff">0xEB</span>, <span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">0xB2</span>, <span style="color:#ae81ff">0x75</span>,
-    <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x83</span>, <span style="color:#ae81ff">0x2C</span>, <span style="color:#ae81ff">0x1A</span>, <span style="color:#ae81ff">0x1B</span>, <span style="color:#ae81ff">0x6E</span>, <span style="color:#ae81ff">0x5A</span>, <span style="color:#ae81ff">0xA0</span>, <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x3B</span>, <span style="color:#ae81ff">0xD6</span>, <span style="color:#ae81ff">0xB3</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0xE3</span>, <span style="color:#ae81ff">0x2F</span>, <span style="color:#ae81ff">0x84</span>,
-    <span style="color:#ae81ff">0x53</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0xED</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0xFC</span>, <span style="color:#ae81ff">0xB1</span>, <span style="color:#ae81ff">0x5B</span>, <span style="color:#ae81ff">0x6A</span>, <span style="color:#ae81ff">0xCB</span>, <span style="color:#ae81ff">0xBE</span>, <span style="color:#ae81ff">0x39</span>, <span style="color:#ae81ff">0x4A</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0x58</span>, <span style="color:#ae81ff">0xCF</span>,
-    <span style="color:#ae81ff">0xD0</span>, <span style="color:#ae81ff">0xEF</span>, <span style="color:#ae81ff">0xAA</span>, <span style="color:#ae81ff">0xFB</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x4D</span>, <span style="color:#ae81ff">0x33</span>, <span style="color:#ae81ff">0x85</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0xF9</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x9F</span>, <span style="color:#ae81ff">0xA8</span>,
-    <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0xA3</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x8F</span>, <span style="color:#ae81ff">0x92</span>, <span style="color:#ae81ff">0x9D</span>, <span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0xF5</span>, <span style="color:#ae81ff">0xBC</span>, <span style="color:#ae81ff">0xB6</span>, <span style="color:#ae81ff">0xDA</span>, <span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0xFF</span>, <span style="color:#ae81ff">0xF3</span>, <span style="color:#ae81ff">0xD2</span>,
-    <span style="color:#ae81ff">0xCD</span>, <span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x13</span>, <span style="color:#ae81ff">0xEC</span>, <span style="color:#ae81ff">0x5F</span>, <span style="color:#ae81ff">0x97</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x17</span>, <span style="color:#ae81ff">0xC4</span>, <span style="color:#ae81ff">0xA7</span>, <span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0x3D</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x5D</span>, <span style="color:#ae81ff">0x19</span>, <span style="color:#ae81ff">0x73</span>,
-    <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x81</span>, <span style="color:#ae81ff">0x4F</span>, <span style="color:#ae81ff">0xDC</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0x90</span>, <span style="color:#ae81ff">0x88</span>, <span style="color:#ae81ff">0x46</span>, <span style="color:#ae81ff">0xEE</span>, <span style="color:#ae81ff">0xB8</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0x5E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0xDB</span>,
-    <span style="color:#ae81ff">0xE0</span>, <span style="color:#ae81ff">0x32</span>, <span style="color:#ae81ff">0x3A</span>, <span style="color:#ae81ff">0x0A</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x06</span>, <span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0x5C</span>, <span style="color:#ae81ff">0xC2</span>, <span style="color:#ae81ff">0xD3</span>, <span style="color:#ae81ff">0xAC</span>, <span style="color:#ae81ff">0x62</span>, <span style="color:#ae81ff">0x91</span>, <span style="color:#ae81ff">0x95</span>, <span style="color:#ae81ff">0xE4</span>, <span style="color:#ae81ff">0x79</span>,
-    <span style="color:#ae81ff">0xE7</span>, <span style="color:#ae81ff">0xC8</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x6D</span>, <span style="color:#ae81ff">0x8D</span>, <span style="color:#ae81ff">0xD5</span>, <span style="color:#ae81ff">0x4E</span>, <span style="color:#ae81ff">0xA9</span>, <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x56</span>, <span style="color:#ae81ff">0xF4</span>, <span style="color:#ae81ff">0xEA</span>, <span style="color:#ae81ff">0x65</span>, <span style="color:#ae81ff">0x7A</span>, <span style="color:#ae81ff">0xAE</span>, <span style="color:#ae81ff">0x08</span>,
-    <span style="color:#ae81ff">0xBA</span>, <span style="color:#ae81ff">0x78</span>, <span style="color:#ae81ff">0x25</span>, <span style="color:#ae81ff">0x2E</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0xA6</span>, <span style="color:#ae81ff">0xB4</span>, <span style="color:#ae81ff">0xC6</span>, <span style="color:#ae81ff">0xE8</span>, <span style="color:#ae81ff">0xDD</span>, <span style="color:#ae81ff">0x74</span>, <span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0x4B</span>, <span style="color:#ae81ff">0xBD</span>, <span style="color:#ae81ff">0x8B</span>, <span style="color:#ae81ff">0x8A</span>,
-    <span style="color:#ae81ff">0x70</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0xB5</span>, <span style="color:#ae81ff">0x66</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0xF6</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x61</span>, <span style="color:#ae81ff">0x35</span>, <span style="color:#ae81ff">0x57</span>, <span style="color:#ae81ff">0xB9</span>, <span style="color:#ae81ff">0x86</span>, <span style="color:#ae81ff">0xC1</span>, <span style="color:#ae81ff">0x1D</span>, <span style="color:#ae81ff">0x9E</span>,
-    <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0xF8</span>, <span style="color:#ae81ff">0x98</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0xD9</span>, <span style="color:#ae81ff">0x8E</span>, <span style="color:#ae81ff">0x94</span>, <span style="color:#ae81ff">0x9B</span>, <span style="color:#ae81ff">0x1E</span>, <span style="color:#ae81ff">0x87</span>, <span style="color:#ae81ff">0xE9</span>, <span style="color:#ae81ff">0xCE</span>, <span style="color:#ae81ff">0x55</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0xDF</span>,
-    <span style="color:#ae81ff">0x8C</span>, <span style="color:#ae81ff">0xA1</span>, <span style="color:#ae81ff">0x89</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0xBF</span>, <span style="color:#ae81ff">0xE6</span>, <span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0x68</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x99</span>, <span style="color:#ae81ff">0x2D</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0xB0</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0xBB</span>, <span style="color:#ae81ff">0x16</span>};
-
-<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> inv_S[<span style="color:#ae81ff">256</span>] <span style="color:#f92672">=</span> {
-    <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x6A</span>, <span style="color:#ae81ff">0xD5</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0xBF</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0xA3</span>, <span style="color:#ae81ff">0x9E</span>, <span style="color:#ae81ff">0x81</span>, <span style="color:#ae81ff">0xF3</span>, <span style="color:#ae81ff">0xD7</span>, <span style="color:#ae81ff">0xFB</span>,
-    <span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0xE3</span>, <span style="color:#ae81ff">0x39</span>, <span style="color:#ae81ff">0x82</span>, <span style="color:#ae81ff">0x9B</span>, <span style="color:#ae81ff">0x2F</span>, <span style="color:#ae81ff">0xFF</span>, <span style="color:#ae81ff">0x87</span>, <span style="color:#ae81ff">0x34</span>, <span style="color:#ae81ff">0x8E</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0xC4</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0xE9</span>, <span style="color:#ae81ff">0xCB</span>,
-    <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x7B</span>, <span style="color:#ae81ff">0x94</span>, <span style="color:#ae81ff">0x32</span>, <span style="color:#ae81ff">0xA6</span>, <span style="color:#ae81ff">0xC2</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0x3D</span>, <span style="color:#ae81ff">0xEE</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0x95</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0xFA</span>, <span style="color:#ae81ff">0xC3</span>, <span style="color:#ae81ff">0x4E</span>,
-    <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x2E</span>, <span style="color:#ae81ff">0xA1</span>, <span style="color:#ae81ff">0x66</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0xD9</span>, <span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0xB2</span>, <span style="color:#ae81ff">0x76</span>, <span style="color:#ae81ff">0x5B</span>, <span style="color:#ae81ff">0xA2</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x6D</span>, <span style="color:#ae81ff">0x8B</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x25</span>,
-    <span style="color:#ae81ff">0x72</span>, <span style="color:#ae81ff">0xF8</span>, <span style="color:#ae81ff">0xF6</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x86</span>, <span style="color:#ae81ff">0x68</span>, <span style="color:#ae81ff">0x98</span>, <span style="color:#ae81ff">0x16</span>, <span style="color:#ae81ff">0xD4</span>, <span style="color:#ae81ff">0xA4</span>, <span style="color:#ae81ff">0x5C</span>, <span style="color:#ae81ff">0xCC</span>, <span style="color:#ae81ff">0x5D</span>, <span style="color:#ae81ff">0x65</span>, <span style="color:#ae81ff">0xB6</span>, <span style="color:#ae81ff">0x92</span>,
-    <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x70</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0xFD</span>, <span style="color:#ae81ff">0xED</span>, <span style="color:#ae81ff">0xB9</span>, <span style="color:#ae81ff">0xDA</span>, <span style="color:#ae81ff">0x5E</span>, <span style="color:#ae81ff">0x15</span>, <span style="color:#ae81ff">0x46</span>, <span style="color:#ae81ff">0x57</span>, <span style="color:#ae81ff">0xA7</span>, <span style="color:#ae81ff">0x8D</span>, <span style="color:#ae81ff">0x9D</span>, <span style="color:#ae81ff">0x84</span>,
-    <span style="color:#ae81ff">0x90</span>, <span style="color:#ae81ff">0xD8</span>, <span style="color:#ae81ff">0xAB</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x8C</span>, <span style="color:#ae81ff">0xBC</span>, <span style="color:#ae81ff">0xD3</span>, <span style="color:#ae81ff">0x0A</span>, <span style="color:#ae81ff">0xF7</span>, <span style="color:#ae81ff">0xE4</span>, <span style="color:#ae81ff">0x58</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0xB8</span>, <span style="color:#ae81ff">0xB3</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x06</span>,
-    <span style="color:#ae81ff">0xD0</span>, <span style="color:#ae81ff">0x2C</span>, <span style="color:#ae81ff">0x1E</span>, <span style="color:#ae81ff">0x8F</span>, <span style="color:#ae81ff">0xCA</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0xC1</span>, <span style="color:#ae81ff">0xAF</span>, <span style="color:#ae81ff">0xBD</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x13</span>, <span style="color:#ae81ff">0x8A</span>, <span style="color:#ae81ff">0x6B</span>,
-    <span style="color:#ae81ff">0x3A</span>, <span style="color:#ae81ff">0x91</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x4F</span>, <span style="color:#ae81ff">0x67</span>, <span style="color:#ae81ff">0xDC</span>, <span style="color:#ae81ff">0xEA</span>, <span style="color:#ae81ff">0x97</span>, <span style="color:#ae81ff">0xF2</span>, <span style="color:#ae81ff">0xCF</span>, <span style="color:#ae81ff">0xCE</span>, <span style="color:#ae81ff">0xF0</span>, <span style="color:#ae81ff">0xB4</span>, <span style="color:#ae81ff">0xE6</span>, <span style="color:#ae81ff">0x73</span>,
-    <span style="color:#ae81ff">0x96</span>, <span style="color:#ae81ff">0xAC</span>, <span style="color:#ae81ff">0x74</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0xE7</span>, <span style="color:#ae81ff">0xAD</span>, <span style="color:#ae81ff">0x35</span>, <span style="color:#ae81ff">0x85</span>, <span style="color:#ae81ff">0xE2</span>, <span style="color:#ae81ff">0xF9</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0xE8</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0x75</span>, <span style="color:#ae81ff">0xDF</span>, <span style="color:#ae81ff">0x6E</span>,
-    <span style="color:#ae81ff">0x47</span>, <span style="color:#ae81ff">0xF1</span>, <span style="color:#ae81ff">0x1A</span>, <span style="color:#ae81ff">0x71</span>, <span style="color:#ae81ff">0x1D</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0xC5</span>, <span style="color:#ae81ff">0x89</span>, <span style="color:#ae81ff">0x6F</span>, <span style="color:#ae81ff">0xB7</span>, <span style="color:#ae81ff">0x62</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0xAA</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0xBE</span>, <span style="color:#ae81ff">0x1B</span>,
-    <span style="color:#ae81ff">0xFC</span>, <span style="color:#ae81ff">0x56</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x4B</span>, <span style="color:#ae81ff">0xC6</span>, <span style="color:#ae81ff">0xD2</span>, <span style="color:#ae81ff">0x79</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0xDB</span>, <span style="color:#ae81ff">0xC0</span>, <span style="color:#ae81ff">0xFE</span>, <span style="color:#ae81ff">0x78</span>, <span style="color:#ae81ff">0xCD</span>, <span style="color:#ae81ff">0x5A</span>, <span style="color:#ae81ff">0xF4</span>,
-    <span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0xDD</span>, <span style="color:#ae81ff">0xA8</span>, <span style="color:#ae81ff">0x33</span>, <span style="color:#ae81ff">0x88</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0xC7</span>, <span style="color:#ae81ff">0x31</span>, <span style="color:#ae81ff">0xB1</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x59</span>, <span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0xEC</span>, <span style="color:#ae81ff">0x5F</span>,
-    <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0xA9</span>, <span style="color:#ae81ff">0x19</span>, <span style="color:#ae81ff">0xB5</span>, <span style="color:#ae81ff">0x4A</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x2D</span>, <span style="color:#ae81ff">0xE5</span>, <span style="color:#ae81ff">0x7A</span>, <span style="color:#ae81ff">0x9F</span>, <span style="color:#ae81ff">0x93</span>, <span style="color:#ae81ff">0xC9</span>, <span style="color:#ae81ff">0x9C</span>, <span style="color:#ae81ff">0xEF</span>,
-    <span style="color:#ae81ff">0xA0</span>, <span style="color:#ae81ff">0xE0</span>, <span style="color:#ae81ff">0x3B</span>, <span style="color:#ae81ff">0x4D</span>, <span style="color:#ae81ff">0xAE</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0xF5</span>, <span style="color:#ae81ff">0xB0</span>, <span style="color:#ae81ff">0xC8</span>, <span style="color:#ae81ff">0xEB</span>, <span style="color:#ae81ff">0xBB</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x83</span>, <span style="color:#ae81ff">0x53</span>, <span style="color:#ae81ff">0x99</span>, <span style="color:#ae81ff">0x61</span>,
-    <span style="color:#ae81ff">0x17</span>, <span style="color:#ae81ff">0x2B</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0xBA</span>, <span style="color:#ae81ff">0x77</span>, <span style="color:#ae81ff">0xD6</span>, <span style="color:#ae81ff">0x26</span>, <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0x55</span>, <span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x7D</span>};
-
-<span style="color:#66d9ef">uint8_t</span> M[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {
-    {<span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>},
-    {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>},
-    {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>},
-    {<span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>}
-};
-
-<span style="color:#66d9ef">uint8_t</span> inv_M[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {
-    {<span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>},
-    {<span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>},
-    {<span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>},
-    {<span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>}
-};
-
-
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint32_t</span> rcon[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {
-    <span style="color:#ae81ff">0x01000000UL</span>, <span style="color:#ae81ff">0x02000000UL</span>, <span style="color:#ae81ff">0x04000000UL</span>, <span style="color:#ae81ff">0x08000000UL</span>, <span style="color:#ae81ff">0x10000000UL</span>,
-    <span style="color:#ae81ff">0x20000000UL</span>, <span style="color:#ae81ff">0x40000000UL</span>, <span style="color:#ae81ff">0x80000000UL</span>, <span style="color:#ae81ff">0x1B000000UL</span>, <span style="color:#ae81ff">0x36000000UL</span>
-};
-
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">KeyExpansion</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,AESKEY <span style="color:#f92672">*</span> aeskey){
-    <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> w <span style="color:#f92672">=</span> aeskey <span style="color:#f92672">-&gt;</span>eK;
-    <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> v <span style="color:#f92672">=</span> aeskey <span style="color:#f92672">-&gt;</span>dK;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span> ; i<span style="color:#f92672">++</span> ){
-        LOAD32(w[i], key<span style="color:#f92672">+</span>i<span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>);
-    }
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){
-        w[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">^</span>MIX(w[<span style="color:#ae81ff">3</span>])<span style="color:#f92672">^</span>rcon[i];
-        w[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">4</span>];
-        w[<span style="color:#ae81ff">6</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">5</span>];
-        w[<span style="color:#ae81ff">7</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">6</span>];
-        w<span style="color:#f92672">+=</span><span style="color:#ae81ff">4</span>;
-    }
-    w <span style="color:#f92672">=</span> (aeskey <span style="color:#f92672">-&gt;</span> eK) <span style="color:#f92672">+</span> <span style="color:#ae81ff">40</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">11</span>;j<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){
-            v[i]<span style="color:#f92672">=</span>w[i];
-        }
-        v<span style="color:#f92672">+=</span><span style="color:#ae81ff">4</span>;
-        w<span style="color:#f92672">-=</span><span style="color:#ae81ff">4</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadStateArray</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>],<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>in){
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;j<span style="color:#f92672">++</span>){
-            state[j][i]<span style="color:#f92672">=*</span>in<span style="color:#f92672">++</span>;
-        }
-    }
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">storeStateArray</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>],<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>out){
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;j<span style="color:#f92672">++</span>){
-            <span style="color:#f92672">*</span>out<span style="color:#f92672">++=</span>state[j][i];
-        }
-    }
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shiftRows</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){
-    <span style="color:#66d9ef">uint32_t</span> temp[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){
-        LOAD32(temp[i], state[i]);
-        temp[i]<span style="color:#f92672">=</span>ROF32(temp[i], i<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
-        STORE32(temp[i], state[i]);
-    }
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invShiftRows</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {
-    <span style="color:#66d9ef">uint32_t</span> temp[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; i<span style="color:#f92672">++</span>) {
-        LOAD32(temp[i], state[i]);
-        temp[i] <span style="color:#f92672">=</span> ROR32(temp[i], i<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
-        STORE32(temp[i], state[i]);
-    }
-}
-
-<span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">GMul</span>(<span style="color:#66d9ef">uint8_t</span> u, <span style="color:#66d9ef">uint8_t</span> v) {
-    <span style="color:#66d9ef">uint8_t</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x01</span>) {    <span style="color:#75715e">//
-</span><span style="color:#75715e"></span>            p <span style="color:#f92672">^=</span> v;
-        }
-        <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> (v <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x80</span>);
-        v <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> (flag) {
-            v <span style="color:#f92672">^=</span> <span style="color:#ae81ff">0x1B</span>;
-        }
-        u <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">return</span> p;
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mixColumns</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){
-    <span style="color:#66d9ef">uint8_t</span> tmp[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sha256.h&#34;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#define BLOCKSIZE 16  
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{  
+  <span style="color:#66d9ef">uint32_t</span> eK[<span style="color:#ae81ff">44</span>],dK[<span style="color:#ae81ff">44</span>];  
+  <span style="color:#66d9ef">int</span> rounds;  
+} AESKEY;  
+  
+<span style="color:#75715e">#define ROF32(x,n) ((x &lt;&lt; n) | (x &gt;&gt; (32-n)))  
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#define ROR32(x,n) ((x &gt;&gt; n) | (x &lt;&lt; (32-n)))  
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#define BYTE(x,n) (((x)&gt;&gt;((n)*8)) &amp; 0xff)  
+</span><span style="color:#75715e"></span>  
+<span style="color:#75715e">#define MIX(x)  (((S[BYTE((x),2)] &lt;&lt; 24) &amp; 0xff000000) ^ \  
+</span><span style="color:#75715e"></span>               ((S[BYTE((x),<span style="color:#ae81ff">1</span>)] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff0000</span>) <span style="color:#f92672">^</span> <span style="color:#960050;background-color:#1e0010">\</span>  
+               ((S[BYTE((x),<span style="color:#ae81ff">0</span>)] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff00</span>) <span style="color:#f92672">^</span> <span style="color:#960050;background-color:#1e0010">\</span>  
+               ((S[BYTE((x),<span style="color:#ae81ff">3</span>)]) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>))  
+                
+  
+<span style="color:#75715e">#define LOAD32(x,y) do{ (x) = \  
+</span><span style="color:#75715e"></span>  ((<span style="color:#66d9ef">uint32_t</span>)((y)[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">24</span>) <span style="color:#f92672">|</span><span style="color:#960050;background-color:#1e0010">\</span>  
+  ((<span style="color:#66d9ef">uint32_t</span>)((y)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">16</span>) <span style="color:#f92672">|</span><span style="color:#960050;background-color:#1e0010">\</span>  
+  ((<span style="color:#66d9ef">uint32_t</span>)((y)[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">8</span> ) <span style="color:#f92672">|</span><span style="color:#960050;background-color:#1e0010">\</span>  
+  ((<span style="color:#66d9ef">uint32_t</span>)((y)[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>));<span style="color:#960050;background-color:#1e0010">\</span>  
+}<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">0</span>)  
+  
+<span style="color:#75715e">#define  STORE32(x,y) do{ \  
+</span><span style="color:#75715e"></span>  (y)[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>)(((x)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">24</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>) ; <span style="color:#960050;background-color:#1e0010">\</span>  
+  (y)[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>)(((x)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">16</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>) ; <span style="color:#960050;background-color:#1e0010">\</span>  
+  (y)[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>)(((x)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">8</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>) ; <span style="color:#960050;background-color:#1e0010">\</span>  
+  (y)[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>)((x) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>) ; <span style="color:#960050;background-color:#1e0010">\</span>  
+}<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">0</span>)  
+  
+   
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> S[<span style="color:#ae81ff">256</span>] <span style="color:#f92672">=</span> {  
+  <span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x77</span>, <span style="color:#ae81ff">0x7B</span>, <span style="color:#ae81ff">0xF2</span>, <span style="color:#ae81ff">0x6B</span>, <span style="color:#ae81ff">0x6F</span>, <span style="color:#ae81ff">0xC5</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x67</span>, <span style="color:#ae81ff">0x2B</span>, <span style="color:#ae81ff">0xFE</span>, <span style="color:#ae81ff">0xD7</span>, <span style="color:#ae81ff">0xAB</span>, <span style="color:#ae81ff">0x76</span>,  
+  <span style="color:#ae81ff">0xCA</span>, <span style="color:#ae81ff">0x82</span>, <span style="color:#ae81ff">0xC9</span>, <span style="color:#ae81ff">0x7D</span>, <span style="color:#ae81ff">0xFA</span>, <span style="color:#ae81ff">0x59</span>, <span style="color:#ae81ff">0x47</span>, <span style="color:#ae81ff">0xF0</span>, <span style="color:#ae81ff">0xAD</span>, <span style="color:#ae81ff">0xD4</span>, <span style="color:#ae81ff">0xA2</span>, <span style="color:#ae81ff">0xAF</span>, <span style="color:#ae81ff">0x9C</span>, <span style="color:#ae81ff">0xA4</span>, <span style="color:#ae81ff">0x72</span>, <span style="color:#ae81ff">0xC0</span>,  
+  <span style="color:#ae81ff">0xB7</span>, <span style="color:#ae81ff">0xFD</span>, <span style="color:#ae81ff">0x93</span>, <span style="color:#ae81ff">0x26</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0xF7</span>, <span style="color:#ae81ff">0xCC</span>, <span style="color:#ae81ff">0x34</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0xE5</span>, <span style="color:#ae81ff">0xF1</span>, <span style="color:#ae81ff">0x71</span>, <span style="color:#ae81ff">0xD8</span>, <span style="color:#ae81ff">0x31</span>, <span style="color:#ae81ff">0x15</span>,  
+  <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0xC7</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0xC3</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0x96</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0xE2</span>, <span style="color:#ae81ff">0xEB</span>, <span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">0xB2</span>, <span style="color:#ae81ff">0x75</span>,  
+  <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x83</span>, <span style="color:#ae81ff">0x2C</span>, <span style="color:#ae81ff">0x1A</span>, <span style="color:#ae81ff">0x1B</span>, <span style="color:#ae81ff">0x6E</span>, <span style="color:#ae81ff">0x5A</span>, <span style="color:#ae81ff">0xA0</span>, <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x3B</span>, <span style="color:#ae81ff">0xD6</span>, <span style="color:#ae81ff">0xB3</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0xE3</span>, <span style="color:#ae81ff">0x2F</span>, <span style="color:#ae81ff">0x84</span>,  
+  <span style="color:#ae81ff">0x53</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0xED</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0xFC</span>, <span style="color:#ae81ff">0xB1</span>, <span style="color:#ae81ff">0x5B</span>, <span style="color:#ae81ff">0x6A</span>, <span style="color:#ae81ff">0xCB</span>, <span style="color:#ae81ff">0xBE</span>, <span style="color:#ae81ff">0x39</span>, <span style="color:#ae81ff">0x4A</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0x58</span>, <span style="color:#ae81ff">0xCF</span>,  
+  <span style="color:#ae81ff">0xD0</span>, <span style="color:#ae81ff">0xEF</span>, <span style="color:#ae81ff">0xAA</span>, <span style="color:#ae81ff">0xFB</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x4D</span>, <span style="color:#ae81ff">0x33</span>, <span style="color:#ae81ff">0x85</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0xF9</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x9F</span>, <span style="color:#ae81ff">0xA8</span>,  
+  <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0xA3</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x8F</span>, <span style="color:#ae81ff">0x92</span>, <span style="color:#ae81ff">0x9D</span>, <span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0xF5</span>, <span style="color:#ae81ff">0xBC</span>, <span style="color:#ae81ff">0xB6</span>, <span style="color:#ae81ff">0xDA</span>, <span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0xFF</span>, <span style="color:#ae81ff">0xF3</span>, <span style="color:#ae81ff">0xD2</span>,  
+  <span style="color:#ae81ff">0xCD</span>, <span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x13</span>, <span style="color:#ae81ff">0xEC</span>, <span style="color:#ae81ff">0x5F</span>, <span style="color:#ae81ff">0x97</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x17</span>, <span style="color:#ae81ff">0xC4</span>, <span style="color:#ae81ff">0xA7</span>, <span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0x3D</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x5D</span>, <span style="color:#ae81ff">0x19</span>, <span style="color:#ae81ff">0x73</span>,  
+  <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x81</span>, <span style="color:#ae81ff">0x4F</span>, <span style="color:#ae81ff">0xDC</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0x90</span>, <span style="color:#ae81ff">0x88</span>, <span style="color:#ae81ff">0x46</span>, <span style="color:#ae81ff">0xEE</span>, <span style="color:#ae81ff">0xB8</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0x5E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0xDB</span>,  
+  <span style="color:#ae81ff">0xE0</span>, <span style="color:#ae81ff">0x32</span>, <span style="color:#ae81ff">0x3A</span>, <span style="color:#ae81ff">0x0A</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x06</span>, <span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0x5C</span>, <span style="color:#ae81ff">0xC2</span>, <span style="color:#ae81ff">0xD3</span>, <span style="color:#ae81ff">0xAC</span>, <span style="color:#ae81ff">0x62</span>, <span style="color:#ae81ff">0x91</span>, <span style="color:#ae81ff">0x95</span>, <span style="color:#ae81ff">0xE4</span>, <span style="color:#ae81ff">0x79</span>,  
+  <span style="color:#ae81ff">0xE7</span>, <span style="color:#ae81ff">0xC8</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x6D</span>, <span style="color:#ae81ff">0x8D</span>, <span style="color:#ae81ff">0xD5</span>, <span style="color:#ae81ff">0x4E</span>, <span style="color:#ae81ff">0xA9</span>, <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x56</span>, <span style="color:#ae81ff">0xF4</span>, <span style="color:#ae81ff">0xEA</span>, <span style="color:#ae81ff">0x65</span>, <span style="color:#ae81ff">0x7A</span>, <span style="color:#ae81ff">0xAE</span>, <span style="color:#ae81ff">0x08</span>,  
+  <span style="color:#ae81ff">0xBA</span>, <span style="color:#ae81ff">0x78</span>, <span style="color:#ae81ff">0x25</span>, <span style="color:#ae81ff">0x2E</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0xA6</span>, <span style="color:#ae81ff">0xB4</span>, <span style="color:#ae81ff">0xC6</span>, <span style="color:#ae81ff">0xE8</span>, <span style="color:#ae81ff">0xDD</span>, <span style="color:#ae81ff">0x74</span>, <span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0x4B</span>, <span style="color:#ae81ff">0xBD</span>, <span style="color:#ae81ff">0x8B</span>, <span style="color:#ae81ff">0x8A</span>,  
+  <span style="color:#ae81ff">0x70</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0xB5</span>, <span style="color:#ae81ff">0x66</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0xF6</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x61</span>, <span style="color:#ae81ff">0x35</span>, <span style="color:#ae81ff">0x57</span>, <span style="color:#ae81ff">0xB9</span>, <span style="color:#ae81ff">0x86</span>, <span style="color:#ae81ff">0xC1</span>, <span style="color:#ae81ff">0x1D</span>, <span style="color:#ae81ff">0x9E</span>,  
+  <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0xF8</span>, <span style="color:#ae81ff">0x98</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0xD9</span>, <span style="color:#ae81ff">0x8E</span>, <span style="color:#ae81ff">0x94</span>, <span style="color:#ae81ff">0x9B</span>, <span style="color:#ae81ff">0x1E</span>, <span style="color:#ae81ff">0x87</span>, <span style="color:#ae81ff">0xE9</span>, <span style="color:#ae81ff">0xCE</span>, <span style="color:#ae81ff">0x55</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0xDF</span>,  
+  <span style="color:#ae81ff">0x8C</span>, <span style="color:#ae81ff">0xA1</span>, <span style="color:#ae81ff">0x89</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0xBF</span>, <span style="color:#ae81ff">0xE6</span>, <span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0x68</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x99</span>, <span style="color:#ae81ff">0x2D</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0xB0</span>, <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0xBB</span>, <span style="color:#ae81ff">0x16</span>};  
+  
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> inv_S[<span style="color:#ae81ff">256</span>] <span style="color:#f92672">=</span> {  
+  <span style="color:#ae81ff">0x52</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x6A</span>, <span style="color:#ae81ff">0xD5</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x36</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0x38</span>, <span style="color:#ae81ff">0xBF</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0xA3</span>, <span style="color:#ae81ff">0x9E</span>, <span style="color:#ae81ff">0x81</span>, <span style="color:#ae81ff">0xF3</span>, <span style="color:#ae81ff">0xD7</span>, <span style="color:#ae81ff">0xFB</span>,  
+  <span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0xE3</span>, <span style="color:#ae81ff">0x39</span>, <span style="color:#ae81ff">0x82</span>, <span style="color:#ae81ff">0x9B</span>, <span style="color:#ae81ff">0x2F</span>, <span style="color:#ae81ff">0xFF</span>, <span style="color:#ae81ff">0x87</span>, <span style="color:#ae81ff">0x34</span>, <span style="color:#ae81ff">0x8E</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0xC4</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0xE9</span>, <span style="color:#ae81ff">0xCB</span>,  
+  <span style="color:#ae81ff">0x54</span>, <span style="color:#ae81ff">0x7B</span>, <span style="color:#ae81ff">0x94</span>, <span style="color:#ae81ff">0x32</span>, <span style="color:#ae81ff">0xA6</span>, <span style="color:#ae81ff">0xC2</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0x3D</span>, <span style="color:#ae81ff">0xEE</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0x95</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x42</span>, <span style="color:#ae81ff">0xFA</span>, <span style="color:#ae81ff">0xC3</span>, <span style="color:#ae81ff">0x4E</span>,  
+  <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x2E</span>, <span style="color:#ae81ff">0xA1</span>, <span style="color:#ae81ff">0x66</span>, <span style="color:#ae81ff">0x28</span>, <span style="color:#ae81ff">0xD9</span>, <span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0xB2</span>, <span style="color:#ae81ff">0x76</span>, <span style="color:#ae81ff">0x5B</span>, <span style="color:#ae81ff">0xA2</span>, <span style="color:#ae81ff">0x49</span>, <span style="color:#ae81ff">0x6D</span>, <span style="color:#ae81ff">0x8B</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x25</span>,  
+  <span style="color:#ae81ff">0x72</span>, <span style="color:#ae81ff">0xF8</span>, <span style="color:#ae81ff">0xF6</span>, <span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x86</span>, <span style="color:#ae81ff">0x68</span>, <span style="color:#ae81ff">0x98</span>, <span style="color:#ae81ff">0x16</span>, <span style="color:#ae81ff">0xD4</span>, <span style="color:#ae81ff">0xA4</span>, <span style="color:#ae81ff">0x5C</span>, <span style="color:#ae81ff">0xCC</span>, <span style="color:#ae81ff">0x5D</span>, <span style="color:#ae81ff">0x65</span>, <span style="color:#ae81ff">0xB6</span>, <span style="color:#ae81ff">0x92</span>,  
+  <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x70</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x50</span>, <span style="color:#ae81ff">0xFD</span>, <span style="color:#ae81ff">0xED</span>, <span style="color:#ae81ff">0xB9</span>, <span style="color:#ae81ff">0xDA</span>, <span style="color:#ae81ff">0x5E</span>, <span style="color:#ae81ff">0x15</span>, <span style="color:#ae81ff">0x46</span>, <span style="color:#ae81ff">0x57</span>, <span style="color:#ae81ff">0xA7</span>, <span style="color:#ae81ff">0x8D</span>, <span style="color:#ae81ff">0x9D</span>, <span style="color:#ae81ff">0x84</span>,  
+  <span style="color:#ae81ff">0x90</span>, <span style="color:#ae81ff">0xD8</span>, <span style="color:#ae81ff">0xAB</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x8C</span>, <span style="color:#ae81ff">0xBC</span>, <span style="color:#ae81ff">0xD3</span>, <span style="color:#ae81ff">0x0A</span>, <span style="color:#ae81ff">0xF7</span>, <span style="color:#ae81ff">0xE4</span>, <span style="color:#ae81ff">0x58</span>, <span style="color:#ae81ff">0x05</span>, <span style="color:#ae81ff">0xB8</span>, <span style="color:#ae81ff">0xB3</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x06</span>,  
+  <span style="color:#ae81ff">0xD0</span>, <span style="color:#ae81ff">0x2C</span>, <span style="color:#ae81ff">0x1E</span>, <span style="color:#ae81ff">0x8F</span>, <span style="color:#ae81ff">0xCA</span>, <span style="color:#ae81ff">0x3F</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0xC1</span>, <span style="color:#ae81ff">0xAF</span>, <span style="color:#ae81ff">0xBD</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x13</span>, <span style="color:#ae81ff">0x8A</span>, <span style="color:#ae81ff">0x6B</span>,  
+  <span style="color:#ae81ff">0x3A</span>, <span style="color:#ae81ff">0x91</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0x4F</span>, <span style="color:#ae81ff">0x67</span>, <span style="color:#ae81ff">0xDC</span>, <span style="color:#ae81ff">0xEA</span>, <span style="color:#ae81ff">0x97</span>, <span style="color:#ae81ff">0xF2</span>, <span style="color:#ae81ff">0xCF</span>, <span style="color:#ae81ff">0xCE</span>, <span style="color:#ae81ff">0xF0</span>, <span style="color:#ae81ff">0xB4</span>, <span style="color:#ae81ff">0xE6</span>, <span style="color:#ae81ff">0x73</span>,  
+  <span style="color:#ae81ff">0x96</span>, <span style="color:#ae81ff">0xAC</span>, <span style="color:#ae81ff">0x74</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0xE7</span>, <span style="color:#ae81ff">0xAD</span>, <span style="color:#ae81ff">0x35</span>, <span style="color:#ae81ff">0x85</span>, <span style="color:#ae81ff">0xE2</span>, <span style="color:#ae81ff">0xF9</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0xE8</span>, <span style="color:#ae81ff">0x1C</span>, <span style="color:#ae81ff">0x75</span>, <span style="color:#ae81ff">0xDF</span>, <span style="color:#ae81ff">0x6E</span>,  
+  <span style="color:#ae81ff">0x47</span>, <span style="color:#ae81ff">0xF1</span>, <span style="color:#ae81ff">0x1A</span>, <span style="color:#ae81ff">0x71</span>, <span style="color:#ae81ff">0x1D</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0xC5</span>, <span style="color:#ae81ff">0x89</span>, <span style="color:#ae81ff">0x6F</span>, <span style="color:#ae81ff">0xB7</span>, <span style="color:#ae81ff">0x62</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0xAA</span>, <span style="color:#ae81ff">0x18</span>, <span style="color:#ae81ff">0xBE</span>, <span style="color:#ae81ff">0x1B</span>,  
+  <span style="color:#ae81ff">0xFC</span>, <span style="color:#ae81ff">0x56</span>, <span style="color:#ae81ff">0x3E</span>, <span style="color:#ae81ff">0x4B</span>, <span style="color:#ae81ff">0xC6</span>, <span style="color:#ae81ff">0xD2</span>, <span style="color:#ae81ff">0x79</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0xDB</span>, <span style="color:#ae81ff">0xC0</span>, <span style="color:#ae81ff">0xFE</span>, <span style="color:#ae81ff">0x78</span>, <span style="color:#ae81ff">0xCD</span>, <span style="color:#ae81ff">0x5A</span>, <span style="color:#ae81ff">0xF4</span>,  
+  <span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0xDD</span>, <span style="color:#ae81ff">0xA8</span>, <span style="color:#ae81ff">0x33</span>, <span style="color:#ae81ff">0x88</span>, <span style="color:#ae81ff">0x07</span>, <span style="color:#ae81ff">0xC7</span>, <span style="color:#ae81ff">0x31</span>, <span style="color:#ae81ff">0xB1</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x59</span>, <span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0xEC</span>, <span style="color:#ae81ff">0x5F</span>,  
+  <span style="color:#ae81ff">0x60</span>, <span style="color:#ae81ff">0x51</span>, <span style="color:#ae81ff">0x7F</span>, <span style="color:#ae81ff">0xA9</span>, <span style="color:#ae81ff">0x19</span>, <span style="color:#ae81ff">0xB5</span>, <span style="color:#ae81ff">0x4A</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x2D</span>, <span style="color:#ae81ff">0xE5</span>, <span style="color:#ae81ff">0x7A</span>, <span style="color:#ae81ff">0x9F</span>, <span style="color:#ae81ff">0x93</span>, <span style="color:#ae81ff">0xC9</span>, <span style="color:#ae81ff">0x9C</span>, <span style="color:#ae81ff">0xEF</span>,  
+  <span style="color:#ae81ff">0xA0</span>, <span style="color:#ae81ff">0xE0</span>, <span style="color:#ae81ff">0x3B</span>, <span style="color:#ae81ff">0x4D</span>, <span style="color:#ae81ff">0xAE</span>, <span style="color:#ae81ff">0x2A</span>, <span style="color:#ae81ff">0xF5</span>, <span style="color:#ae81ff">0xB0</span>, <span style="color:#ae81ff">0xC8</span>, <span style="color:#ae81ff">0xEB</span>, <span style="color:#ae81ff">0xBB</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0x83</span>, <span style="color:#ae81ff">0x53</span>, <span style="color:#ae81ff">0x99</span>, <span style="color:#ae81ff">0x61</span>,  
+  <span style="color:#ae81ff">0x17</span>, <span style="color:#ae81ff">0x2B</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x7E</span>, <span style="color:#ae81ff">0xBA</span>, <span style="color:#ae81ff">0x77</span>, <span style="color:#ae81ff">0xD6</span>, <span style="color:#ae81ff">0x26</span>, <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0x14</span>, <span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0x55</span>, <span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x0C</span>, <span style="color:#ae81ff">0x7D</span>};  
+  
+<span style="color:#66d9ef">uint8_t</span> M[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {  
+  {<span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>},  
+  {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>},  
+  {<span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x03</span>},  
+  {<span style="color:#ae81ff">0x03</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>}  
+};  
+  
+<span style="color:#66d9ef">uint8_t</span> inv_M[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {  
+  {<span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>},  
+  {<span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>},  
+  {<span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x0B</span>},  
+  {<span style="color:#ae81ff">0x0B</span>, <span style="color:#ae81ff">0x0D</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x0E</span>}  
+};  
+  
+  
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint32_t</span> rcon[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> {  
+  <span style="color:#ae81ff">0x01000000UL</span>, <span style="color:#ae81ff">0x02000000UL</span>, <span style="color:#ae81ff">0x04000000UL</span>, <span style="color:#ae81ff">0x08000000UL</span>, <span style="color:#ae81ff">0x10000000UL</span>,  
+  <span style="color:#ae81ff">0x20000000UL</span>, <span style="color:#ae81ff">0x40000000UL</span>, <span style="color:#ae81ff">0x80000000UL</span>, <span style="color:#ae81ff">0x1B000000UL</span>, <span style="color:#ae81ff">0x36000000UL</span>  
+};  
+  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">KeyExpansion</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,AESKEY <span style="color:#f92672">*</span> aeskey){  
+  <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> w <span style="color:#f92672">=</span> aeskey <span style="color:#f92672">-&gt;</span>eK;  
+  <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> v <span style="color:#f92672">=</span> aeskey <span style="color:#f92672">-&gt;</span>dK;  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span> ; i<span style="color:#f92672">++</span> ){  
+      LOAD32(w[i], key<span style="color:#f92672">+</span>i<span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>);  
+  }  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){  
+      w[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">^</span>MIX(w[<span style="color:#ae81ff">3</span>])<span style="color:#f92672">^</span>rcon[i];  
+      w[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">4</span>];  
+      w[<span style="color:#ae81ff">6</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">5</span>];  
+      w[<span style="color:#ae81ff">7</span>]<span style="color:#f92672">=</span>w[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">^</span>w[<span style="color:#ae81ff">6</span>];  
+      w<span style="color:#f92672">+=</span><span style="color:#ae81ff">4</span>;  
+  }  
+  w <span style="color:#f92672">=</span> (aeskey <span style="color:#f92672">-&gt;</span> eK) <span style="color:#f92672">+</span> <span style="color:#ae81ff">40</span>;  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">11</span>;j<span style="color:#f92672">++</span>){  
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){  
+          v[i]<span style="color:#f92672">=</span>w[i];  
+      }  
+      v<span style="color:#f92672">+=</span><span style="color:#ae81ff">4</span>;  
+      w<span style="color:#f92672">-=</span><span style="color:#ae81ff">4</span>;  
+  }  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadStateArray</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>],<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>in){  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){  
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;j<span style="color:#f92672">++</span>){  
+          state[j][i]<span style="color:#f92672">=*</span>in<span style="color:#f92672">++</span>;  
+      }  
+  }  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">storeStateArray</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>],<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>out){  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){  
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;j<span style="color:#f92672">++</span>){  
+          <span style="color:#f92672">*</span>out<span style="color:#f92672">++=</span>state[j][i];  
+      }  
+  }  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shiftRows</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){  
+  <span style="color:#66d9ef">uint32_t</span> temp[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>){  
+      LOAD32(temp[i], state[i]);  
+      temp[i]<span style="color:#f92672">=</span>ROF32(temp[i], i<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);  
+      STORE32(temp[i], state[i]);  
+  }  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invShiftRows</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {  
+  <span style="color:#66d9ef">uint32_t</span> temp[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; i<span style="color:#f92672">++</span>) {  
+      LOAD32(temp[i], state[i]);  
+      temp[i] <span style="color:#f92672">=</span> ROR32(temp[i], i<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);  
+      STORE32(temp[i], state[i]);  
+  }  
+}  
+  
+<span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">GMul</span>(<span style="color:#66d9ef">uint8_t</span> u, <span style="color:#66d9ef">uint8_t</span> v) {  
+  <span style="color:#66d9ef">uint8_t</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x01</span>) {    <span style="color:#75715e">//  
+</span><span style="color:#75715e"></span>          p <span style="color:#f92672">^=</span> v;  
+      }  
+      <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> (v <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x80</span>);  
+      v <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>;  
+      <span style="color:#66d9ef">if</span> (flag) {  
+          v <span style="color:#f92672">^=</span> <span style="color:#ae81ff">0x1B</span>;  
+      }  
+      u <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;  
+  }  
+  <span style="color:#66d9ef">return</span> p;  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mixColumns</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){  
+  <span style="color:#66d9ef">uint8_t</span> tmp[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];  
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j){
-            tmp[i][j] <span style="color:#f92672">=</span> state[i][j];
-        }
-    }
-
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {
-            state[i][j] <span style="color:#f92672">=</span> GMul(M[i][<span style="color:#ae81ff">0</span>], tmp[<span style="color:#ae81ff">0</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(M[i][<span style="color:#ae81ff">1</span>], tmp[<span style="color:#ae81ff">1</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(M[i][<span style="color:#ae81ff">2</span>], tmp[<span style="color:#ae81ff">2</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(M[i][<span style="color:#ae81ff">3</span>], tmp[<span style="color:#ae81ff">3</span>][j]) ;
-        }
-    }
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j){  
+          tmp[i][j] <span style="color:#f92672">=</span> state[i][j];  
+      }  
+  }  
+  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {  
+          state[i][j] <span style="color:#f92672">=</span> GMul(M[i][<span style="color:#ae81ff">0</span>], tmp[<span style="color:#ae81ff">0</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(M[i][<span style="color:#ae81ff">1</span>], tmp[<span style="color:#ae81ff">1</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(M[i][<span style="color:#ae81ff">2</span>], tmp[<span style="color:#ae81ff">2</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(M[i][<span style="color:#ae81ff">3</span>], tmp[<span style="color:#ae81ff">3</span>][j]) ;  
+      }  
+  }  
     
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invMixColumns</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){
-    <span style="color:#66d9ef">uint8_t</span> tmp[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invMixColumns</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]){  
+  <span style="color:#66d9ef">uint8_t</span> tmp[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];  
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j){
-            tmp[i][j] <span style="color:#f92672">=</span> state[i][j];
-        }
-    }
-
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {
-            state[i][j] <span style="color:#f92672">=</span> GMul(inv_M[i][<span style="color:#ae81ff">0</span>], tmp[<span style="color:#ae81ff">0</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(inv_M[i][<span style="color:#ae81ff">1</span>], tmp[<span style="color:#ae81ff">1</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(inv_M[i][<span style="color:#ae81ff">2</span>], tmp[<span style="color:#ae81ff">2</span>][j]) <span style="color:#f92672">^</span>
-                          GMul(inv_M[i][<span style="color:#ae81ff">3</span>], tmp[<span style="color:#ae81ff">3</span>][j]) ;
-        }
-    }
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j){  
+          tmp[i][j] <span style="color:#f92672">=</span> state[i][j];  
+      }  
+  }  
+  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {  
+          state[i][j] <span style="color:#f92672">=</span> GMul(inv_M[i][<span style="color:#ae81ff">0</span>], tmp[<span style="color:#ae81ff">0</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(inv_M[i][<span style="color:#ae81ff">1</span>], tmp[<span style="color:#ae81ff">1</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(inv_M[i][<span style="color:#ae81ff">2</span>], tmp[<span style="color:#ae81ff">2</span>][j]) <span style="color:#f92672">^</span>  
+                        GMul(inv_M[i][<span style="color:#ae81ff">3</span>], tmp[<span style="color:#ae81ff">3</span>][j]) ;  
+      }  
+  }  
     
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">addRoundKey</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>], <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>key) {
-    <span style="color:#66d9ef">uint8_t</span> k[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {
-            k[j][i] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>) BYTE(key[i], <span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> j); <span style="color:#75715e">//按列异或秘钥
-</span><span style="color:#75715e"></span>            state[j][i] <span style="color:#f92672">^=</span> k[j][i];
-        }
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">subBytes</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {
-            state[i][j] <span style="color:#f92672">=</span> S[state[i][j]];
-        }
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">invSubBytes</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {
-            state[i][j] <span style="color:#f92672">=</span> inv_S[state[i][j]];
-        }
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesEncryptBlock</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> mblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> cblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key){
-    AESKEY aeskey;
-    <span style="color:#66d9ef">uint8_t</span> state[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};
-    KeyExpansion(key, <span style="color:#f92672">&amp;</span>aeskey);
-    loadStateArray(state, mblock);
-    <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> ekPointer <span style="color:#f92672">=</span> aeskey.eK;
-    addRoundKey(state, ekPointer);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){
-        ekPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
-        subBytes(state);
-        shiftRows(state);
-        mixColumns(state);
-        addRoundKey(state, ekPointer);
-    }
-    ekPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
-    subBytes(state);
-    shiftRows(state);
-    addRoundKey(state, ekPointer);
-    storeStateArray(state, cblock);
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesDecryptBlock</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> mblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> cblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key){
-    AESKEY aeskey;
-    <span style="color:#66d9ef">uint8_t</span> state[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};
-    KeyExpansion(key, <span style="color:#f92672">&amp;</span>aeskey);
-    loadStateArray(state, cblock);
-    <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> dkPointer <span style="color:#f92672">=</span> aeskey.dK;
-    addRoundKey(state, dkPointer);
+}  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">addRoundKey</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>], <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>key) {  
+  <span style="color:#66d9ef">uint8_t</span> k[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>];  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {  
+          k[j][i] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span>) BYTE(key[i], <span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> j); <span style="color:#75715e">//按列异或秘钥  
+</span><span style="color:#75715e"></span>          state[j][i] <span style="color:#f92672">^=</span> k[j][i];  
+      }  
+  }  
+  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">subBytes</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {  
+          state[i][j] <span style="color:#f92672">=</span> S[state[i][j]];  
+      }  
+  }  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">invSubBytes</span>(<span style="color:#66d9ef">uint8_t</span> (<span style="color:#f92672">*</span>state)[<span style="color:#ae81ff">4</span>]) {  
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>i) {  
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; <span style="color:#f92672">++</span>j) {  
+          state[i][j] <span style="color:#f92672">=</span> inv_S[state[i][j]];  
+      }  
+  }  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
+  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesEncryptBlock</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> mblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> cblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key){  
+  AESKEY aeskey;  
+  <span style="color:#66d9ef">uint8_t</span> state[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};  
+  KeyExpansion(key, <span style="color:#f92672">&amp;</span>aeskey);  
+  loadStateArray(state, mblock);  
+  <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> ekPointer <span style="color:#f92672">=</span> aeskey.eK;  
+  addRoundKey(state, ekPointer);  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){  
+      ekPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;  
+      subBytes(state);  
+      shiftRows(state);  
+      mixColumns(state);  
+      addRoundKey(state, ekPointer);  
+  }  
+  ekPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;  
+  subBytes(state);  
+  shiftRows(state);  
+  addRoundKey(state, ekPointer);  
+  storeStateArray(state, cblock);  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesDecryptBlock</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> mblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> cblock,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key){  
+  AESKEY aeskey;  
+  <span style="color:#66d9ef">uint8_t</span> state[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};  
+  KeyExpansion(key, <span style="color:#f92672">&amp;</span>aeskey);  
+  loadStateArray(state, cblock);  
+  <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span> dkPointer <span style="color:#f92672">=</span> aeskey.dK;  
+  addRoundKey(state, dkPointer);  
     
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){
-        dkPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
-        invShiftRows(state);
-        invSubBytes(state);
-        addRoundKey(state, dkPointer);
-        invMixColumns(state);
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){  
+      dkPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;  
+      invShiftRows(state);  
+      invSubBytes(state);  
+      addRoundKey(state, dkPointer);  
+      invMixColumns(state);  
         
-    }
-    dkPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
-    invSubBytes(state);
-    invShiftRows(state);
-    addRoundKey(state, dkPointer);
-    storeStateArray(state, mblock);
-}
-
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">splitBlock</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> message,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">**</span> blocks){
-    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span>)strlen(message);
-    <span style="color:#66d9ef">int</span> block_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-    <span style="color:#f92672">*</span>blocks <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>)malloc(block_num<span style="color:#f92672">*</span><span style="color:#ae81ff">16</span>);
-    memcpy(<span style="color:#f92672">*</span>blocks, message, len);
-    <span style="color:#75715e">//memset(*blocks+len,0,16-mod);
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> block_num;
-}
-
-<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">aesEncryptCBC</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,<span style="color:#66d9ef">int</span> block_num,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> iv){
-    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> tmp <span style="color:#f92672">=</span> iv;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>block_num;i<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;j<span style="color:#f92672">++</span>){
-            blocks[<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j] <span style="color:#f92672">^=</span> tmp[j];
-        }
-        aesEncryptBlock(blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, key);
-        tmp <span style="color:#f92672">=</span> blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i;
-    }
-    <span style="color:#66d9ef">return</span> blocks;
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesDecryptCBC</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,<span style="color:#66d9ef">int</span> block_num,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> iv){
-    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> tmp <span style="color:#f92672">=</span> blocks<span style="color:#f92672">+</span>(<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>(block_num<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>));
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> block_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">--</span>){
-        aesDecryptBlock(blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, key);
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;j<span style="color:#f92672">++</span>){
-            blocks[<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j] <span style="color:#f92672">^=</span> tmp[j];
-        }
-        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){
-            tmp <span style="color:#f92672">=</span> iv;
-        }<span style="color:#66d9ef">else</span>{
-            tmp <span style="color:#f92672">-=</span> <span style="color:#ae81ff">16</span>;
-        }
-    }
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>(BYTE <span style="color:#f92672">*</span>s, <span style="color:#66d9ef">int</span> n)
-{
-	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
-		printf(<span style="color:#e6db74">&#34;0x%x, &#34;</span>, s[i]);
-	printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-	<span style="color:#66d9ef">char</span> message[]<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x2d\x18\x6a\x3e\x17\x2a\x14\x67\x37\x89\xf4\x99\xcd\x6c\xfb\xcd\x29\xb6\xc7\x3f\x4b\x4a\x27\xc2\x34\x64\x77\x68\x25\xaf\x90\xb2</span><span style="color:#e6db74">&#34;</span>;
-	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; a<span style="color:#f92672">++</span>){
-		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; b<span style="color:#f92672">++</span>){
-			<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; c<span style="color:#f92672">++</span>){
-				<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> d <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; d <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; d<span style="color:#f92672">++</span>){
-					BYTE text1[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {a,b,c,d};
-					BYTE buf[SHA256_BLOCK_SIZE];
-					SHA256_CTX ctx;
-					sha256_init(<span style="color:#f92672">&amp;</span>ctx);
-					sha256_update(<span style="color:#f92672">&amp;</span>ctx, text1, strlen(text1));
-					sha256_final(<span style="color:#f92672">&amp;</span>ctx, buf);					
-					<span style="color:#66d9ef">char</span> key[<span style="color:#ae81ff">16</span>];
-					<span style="color:#66d9ef">char</span> iv[<span style="color:#ae81ff">16</span>];
-					<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)
-						key[i] <span style="color:#f92672">=</span> buf[i];
-					<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>)
-						iv[i<span style="color:#f92672">-</span><span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> buf[i];
-					<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks <span style="color:#f92672">=</span> NULL;
-					<span style="color:#66d9ef">int</span> block_num <span style="color:#f92672">=</span> splitBlock(message,<span style="color:#f92672">&amp;</span>blocks);
-					aesDecryptCBC(blocks,key,block_num,iv);
-					<span style="color:#66d9ef">if</span>(strstr(blocks, <span style="color:#e6db74">&#34;ByteCTF&#34;</span>) <span style="color:#f92672">!=</span> NULL){
-						printf(<span style="color:#e6db74">&#34;flag: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, blocks);
-                        print(text1, <span style="color:#ae81ff">4</span>);
-					    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-					}
-				}
-			}
-		}
-		printf(<span style="color:#e6db74">&#34;%c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a);
-	}
-	<span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);
-}
+  }  
+  dkPointer <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;  
+  invSubBytes(state);  
+  invShiftRows(state);  
+  addRoundKey(state, dkPointer);  
+  storeStateArray(state, mblock);  
+}  
+  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">splitBlock</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> message,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">**</span> blocks){  
+  <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span>)strlen(message);  
+  <span style="color:#66d9ef">int</span> block_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;  
+  <span style="color:#f92672">*</span>blocks <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>)malloc(block_num<span style="color:#f92672">*</span><span style="color:#ae81ff">16</span>);  
+  memcpy(<span style="color:#f92672">*</span>blocks, message, len);  
+  <span style="color:#75715e">//memset(*blocks+len,0,16-mod);  
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> block_num;  
+}  
+  
+<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">aesEncryptCBC</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,<span style="color:#66d9ef">int</span> block_num,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> iv){  
+  <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> tmp <span style="color:#f92672">=</span> iv;  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>block_num;i<span style="color:#f92672">++</span>){  
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;j<span style="color:#f92672">++</span>){  
+          blocks[<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j] <span style="color:#f92672">^=</span> tmp[j];  
+      }  
+      aesEncryptBlock(blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, key);  
+      tmp <span style="color:#f92672">=</span> blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i;  
+  }  
+  <span style="color:#66d9ef">return</span> blocks;  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">aesDecryptCBC</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> key,<span style="color:#66d9ef">int</span> block_num,<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> iv){  
+  <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> tmp <span style="color:#f92672">=</span> blocks<span style="color:#f92672">+</span>(<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>(block_num<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>));  
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> block_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">--</span>){  
+      aesDecryptBlock(blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, blocks<span style="color:#f92672">+</span><span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i, key);  
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;j<span style="color:#f92672">++</span>){  
+          blocks[<span style="color:#ae81ff">16</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j] <span style="color:#f92672">^=</span> tmp[j];  
+      }  
+      <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){  
+          tmp <span style="color:#f92672">=</span> iv;  
+      }<span style="color:#66d9ef">else</span>{  
+          tmp <span style="color:#f92672">-=</span> <span style="color:#ae81ff">16</span>;  
+      }  
+  }  
+}  
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>(BYTE <span style="color:#f92672">*</span>s, <span style="color:#66d9ef">int</span> n)  
+{  
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)  
+		printf(<span style="color:#e6db74">&#34;0x%x, &#34;</span>, s[i]);  
+	printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);  
+}  
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
+{  
+	<span style="color:#66d9ef">char</span> message[]<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x2d\x18\x6a\x3e\x17\x2a\x14\x67\x37\x89\xf4\x99\xcd\x6c\xfb\xcd\x29\xb6\xc7\x3f\x4b\x4a\x27\xc2\x34\x64\x77\x68\x25\xaf\x90\xb2</span><span style="color:#e6db74">&#34;</span>;  
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; a<span style="color:#f92672">++</span>){  
+		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; b<span style="color:#f92672">++</span>){  
+			<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; c<span style="color:#f92672">++</span>){  
+				<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">char</span> d <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x20</span>; d <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>; d<span style="color:#f92672">++</span>){  
+					BYTE text1[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {a,b,c,d};  
+					BYTE buf[SHA256_BLOCK_SIZE];  
+					SHA256_CTX ctx;  
+					sha256_init(<span style="color:#f92672">&amp;</span>ctx);  
+					sha256_update(<span style="color:#f92672">&amp;</span>ctx, text1, strlen(text1));  
+					sha256_final(<span style="color:#f92672">&amp;</span>ctx, buf);					  
+					<span style="color:#66d9ef">char</span> key[<span style="color:#ae81ff">16</span>];  
+					<span style="color:#66d9ef">char</span> iv[<span style="color:#ae81ff">16</span>];  
+					<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>; i<span style="color:#f92672">++</span>)  
+						key[i] <span style="color:#f92672">=</span> buf[i];  
+					<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>)  
+						iv[i<span style="color:#f92672">-</span><span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> buf[i];  
+					<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> blocks <span style="color:#f92672">=</span> NULL;  
+					<span style="color:#66d9ef">int</span> block_num <span style="color:#f92672">=</span> splitBlock(message,<span style="color:#f92672">&amp;</span>blocks);  
+					aesDecryptCBC(blocks,key,block_num,iv);  
+					<span style="color:#66d9ef">if</span>(strstr(blocks, <span style="color:#e6db74">&#34;ByteCTF&#34;</span>) <span style="color:#f92672">!=</span> NULL){  
+						printf(<span style="color:#e6db74">&#34;flag: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, blocks);  
+                      print(text1, <span style="color:#ae81ff">4</span>);  
+					    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+					}  
+				}  
+			}  
+		}  
+		printf(<span style="color:#e6db74">&#34;%c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a);  
+	}  
+	<span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);  
+}  
 </code></pre></div><p>求出来输入<code>good</code>(填充到32+)可以获取flag</p>
 <h2 id="app1c">App1c</h2>
 <p>解压出来的二进制文件中有一个<code>check</code>函数，显示需要读取<code>sandbox/secret</code>文件，读取出来的字符串做<code>md5</code>后<code>Aes256ECB</code>解密<code>MnRC6I9E0BbJ7LxLfrKhP6Xv5+c41AORjmG66eQxQks=</code>即可获取<code>flag</code>。在<code>run</code>函数中可以看到调用了<code>lua</code>脚本，解压出来存在一个叫<code>AppIcon.lua</code>的脚本，可以直接编辑模式打开看到上面一段可读的脚本内容：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">input <span style="color:#f92672">=</span> tostring(arg[<span style="color:#ae81ff">1</span>])
-sanboxPath <span style="color:#f92672">=</span> tostring(arg[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;/secret&#34;</span>
-debase64 <span style="color:#f92672">=</span> from_base64(input)
-secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span>
-<span style="color:#66d9ef">if</span> debase64 <span style="color:#f92672">~=</span> nil then
-    secret <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>app1c(debase64)
-end
-file <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>open(sanboxPath, <span style="color:#e6db74">&#34;w&#34;</span>)
-io<span style="color:#f92672">.</span>output(file)
-io<span style="color:#f92672">.</span>write(tostring(secret))
-io<span style="color:#f92672">.</span>close(file)
-</code></pre></div><p>本来我没注意到<code>string.app1c</code>这个函数的时候我觉得下面不可读的内容也是有用的，但是没办法反编译，我用这个反汇编了一下发现其实就是base64的包，我码一下用到的几个lua相关的链接
-基本知识与010Editor解析脚本：https://github.com/feicong/lua_re
-luadec: <a href="https://github.com/viruscamp/luadec">https://github.com/viruscamp/luadec</a>
-还有个工具是unlua
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">input <span style="color:#f92672">=</span> tostring(arg[<span style="color:#ae81ff">1</span>])  
+sanboxPath <span style="color:#f92672">=</span> tostring(arg[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">..</span><span style="color:#e6db74">&#34;/secret&#34;</span>  
+debase64 <span style="color:#f92672">=</span> from_base64(input)  
+secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span>  
+<span style="color:#66d9ef">if</span> debase64 <span style="color:#f92672">~=</span> nil then  
+  secret <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>app1c(debase64)  
+end  
+file <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>open(sanboxPath, <span style="color:#e6db74">&#34;w&#34;</span>)  
+io<span style="color:#f92672">.</span>output(file)  
+io<span style="color:#f92672">.</span>write(tostring(secret))  
+io<span style="color:#f92672">.</span>close(file)  
+</code></pre></div><p>本来我没注意到<code>string.app1c</code>这个函数的时候我觉得下面不可读的内容也是有用的，但是没办法反编译，我用这个反汇编了一下发现其实就是base64的包，我码一下用到的几个lua相关的链接<br>
+基本知识与010Editor解析脚本：https://github.com/feicong/lua_re<br>
+luadec: <a href="https://github.com/viruscamp/luadec">https://github.com/viruscamp/luadec</a><br>
+还有个工具是unlua<br>
 调用时<code>arg[1]</code>是用户输入的字符串，<code>arg[2]</code>是sandbox的路径。将输入解base64后经过<code>string.app1c</code>的处理写入<code>sandbox/secret</code>文件。这个<code>string.app1c</code>猜测是对lua的string包做了扩展，然后找到了下面这个例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lua.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lualib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lauxlib.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#import &lt;objc/runtime.h&gt;
-</span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
-</span><span style="color:#75715e">#import &lt;UIKit/UIDevice.h&gt;
-</span><span style="color:#75715e"></span><span style="color:#75715e">/*  库 open 函数的前置声明   */</span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">luaopen_mt</span>(lua_State <span style="color:#f92672">*</span>L);
-<span style="color:#75715e">/* Function mt_get_device_name
-</span><span style="color:#75715e"> * @return string device name
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">mt_get_device_name</span>(lua_State <span style="color:#f92672">*</span>L)
-{
-    NSString <span style="color:#f92672">*</span>name <span style="color:#f92672">=</span> [[UIDevice currentDevice] name];
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> name_str <span style="color:#f92672">=</span> [name UTF8String];
-    lua_pushstring(L, name_str);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-}
-<span style="color:#75715e">//注册函数库
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> luaL_Reg mt_lib[] <span style="color:#f92672">=</span> {
-    {<span style="color:#e6db74">&#34;device_name&#34;</span>, mt_get_device_name},    <span style="color:#75715e">//获取设备名称
-</span><span style="color:#75715e"></span>    {NULL, NULL}
-};
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">luaopen_mt</span>(lua_State <span style="color:#f92672">*</span>L)<span style="color:#75715e">//注意, mt为扩展库的文件名
-</span><span style="color:#75715e"></span>{
-    luaL_newlib(L, mt_lib);<span style="color:#75715e">//暴露给lua脚本的接口
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-}
-
-<span style="color:#75715e">// PWNlua层里的调用方法为:
-</span><span style="color:#75715e"></span>
-local mt <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;mt&#34;</span>
-print(mt.device_name())
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lua.h&#34;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lualib.h&#34;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;lauxlib.h&#34;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#import &lt;objc/runtime.h&gt;  
+</span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;  
+</span><span style="color:#75715e">#import &lt;UIKit/UIDevice.h&gt;  
+</span><span style="color:#75715e"></span><span style="color:#75715e">/*  库 open 函数的前置声明   */</span>  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">luaopen_mt</span>(lua_State <span style="color:#f92672">*</span>L);  
+<span style="color:#75715e">/* Function mt_get_device_name  
+</span><span style="color:#75715e"> * @return string device name  
+</span><span style="color:#75715e"> */</span>  
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">mt_get_device_name</span>(lua_State <span style="color:#f92672">*</span>L)  
+{  
+  NSString <span style="color:#f92672">*</span>name <span style="color:#f92672">=</span> [[UIDevice currentDevice] name];  
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> name_str <span style="color:#f92672">=</span> [name UTF8String];  
+  lua_pushstring(L, name_str);  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;  
+}  
+<span style="color:#75715e">//注册函数库  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> luaL_Reg mt_lib[] <span style="color:#f92672">=</span> {  
+  {<span style="color:#e6db74">&#34;device_name&#34;</span>, mt_get_device_name},    <span style="color:#75715e">//获取设备名称  
+</span><span style="color:#75715e"></span>  {NULL, NULL}  
+};  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">luaopen_mt</span>(lua_State <span style="color:#f92672">*</span>L)<span style="color:#75715e">//注意, mt为扩展库的文件名  
+</span><span style="color:#75715e"></span>{  
+  luaL_newlib(L, mt_lib);<span style="color:#75715e">//暴露给lua脚本的接口  
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;  
+}  
+  
+<span style="color:#75715e">// PWNlua层里的调用方法为:  
+</span><span style="color:#75715e"></span>  
+local mt <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;mt&#34;</span>  
+print(mt.device_name())  
 </code></pre></div><p>所以需要找一下<code>app1c</code>这个字符串指向的函数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">__const:<span style="color:#ae81ff">000246F</span>C                 DCD aReverse            ; <span style="color:#e6db74">&#34;reverse&#34;</span>
-__const:<span style="color:#ae81ff">00024700</span>                 DCD sub_19146<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-__const:<span style="color:#ae81ff">00024704</span>                 DCD aSub_1              ; <span style="color:#e6db74">&#34;sub&#34;</span>
-__const:<span style="color:#ae81ff">0002470</span><span style="color:#ae81ff">8</span>                 DCD sub_191BA<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-__const:<span style="color:#ae81ff">0002470</span>C                 DCD aUpper              ; <span style="color:#e6db74">&#34;upper&#34;</span>
-__const:<span style="color:#ae81ff">00024710</span>                 DCD sub_1923E<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-__const:<span style="color:#ae81ff">00024714</span>                 DCD aApp1c_0            ; <span style="color:#e6db74">&#34;app1c&#34;</span>
-__const:<span style="color:#ae81ff">0002471</span><span style="color:#ae81ff">8</span>                 DCD sub_192B4<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">__const:<span style="color:#ae81ff">000246F</span>C                 DCD aReverse            ; <span style="color:#e6db74">&#34;reverse&#34;</span>  
+__const:<span style="color:#ae81ff">00024700</span>                 DCD sub_19146<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>  
+__const:<span style="color:#ae81ff">00024704</span>                 DCD aSub_1              ; <span style="color:#e6db74">&#34;sub&#34;</span>  
+__const:<span style="color:#ae81ff">0002470</span><span style="color:#ae81ff">8</span>                 DCD sub_191BA<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>  
+__const:<span style="color:#ae81ff">0002470</span>C                 DCD aUpper              ; <span style="color:#e6db74">&#34;upper&#34;</span>  
+__const:<span style="color:#ae81ff">00024710</span>                 DCD sub_1923E<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>  
+__const:<span style="color:#ae81ff">00024714</span>                 DCD aApp1c_0            ; <span style="color:#e6db74">&#34;app1c&#34;</span>  
+__const:<span style="color:#ae81ff">0002471</span><span style="color:#ae81ff">8</span>                 DCD sub_192B4<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>  
 </code></pre></div><p><code>sub_192B4</code>这个函数要求输入字符串长度是4，且可转10进制数。所以直接爆破4位的十进制数。注意是AES256&hellip;不是128</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    <span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
-    s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MnRC6I9E0BbJ7LxLfrKhP6Xv5+c41AORjmG66eQxQks=&#34;</span>
-    <span style="color:#f92672">import</span> base64<span style="color:#f92672">,</span> hashlib
-    enc <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>decodestring(s)
-    <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):
-        <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):
-            <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):
-                <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):
-                    ss <span style="color:#f92672">=</span> chr(a)<span style="color:#f92672">+</span>chr(b)<span style="color:#f92672">+</span>chr(c)<span style="color:#f92672">+</span>chr(d)
-                    key <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>md5(ss)<span style="color:#f92672">.</span>hexdigest() <span style="color:#75715e"># 就是这里，我还decode了一下所以一直不对，气死我了</span>
-                    ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_ECB)
-                    strs <span style="color:#f92672">=</span> ci<span style="color:#f92672">.</span>decrypt(enc)
-                    <span style="color:#66d9ef">if</span> strs<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#34;ByteCTF&#34;</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
-                        <span style="color:#66d9ef">print</span> strs
-                        <span style="color:#66d9ef">print</span> chr(a)<span style="color:#f92672">+</span>chr(b)<span style="color:#f92672">+</span>chr(c)<span style="color:#f92672">+</span>chr(d)
-                        exit(<span style="color:#ae81ff">0</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:  
+  <span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES  
+  s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MnRC6I9E0BbJ7LxLfrKhP6Xv5+c41AORjmG66eQxQks=&#34;</span>  
+  <span style="color:#f92672">import</span> base64<span style="color:#f92672">,</span> hashlib  
+  enc <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>decodestring(s)  
+  <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):  
+      <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):  
+          <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):  
+              <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> range(ord(<span style="color:#e6db74">&#39;0&#39;</span>), ord(<span style="color:#e6db74">&#39;9&#39;</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>):  
+                  ss <span style="color:#f92672">=</span> chr(a)<span style="color:#f92672">+</span>chr(b)<span style="color:#f92672">+</span>chr(c)<span style="color:#f92672">+</span>chr(d)  
+                  key <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>md5(ss)<span style="color:#f92672">.</span>hexdigest() <span style="color:#75715e"># 就是这里，我还decode了一下所以一直不对，气死我了  </span>
+                  ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_ECB)  
+                  strs <span style="color:#f92672">=</span> ci<span style="color:#f92672">.</span>decrypt(enc)  
+                  <span style="color:#66d9ef">if</span> strs<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#34;ByteCTF&#34;</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:  
+                      <span style="color:#66d9ef">print</span> strs  
+                      <span style="color:#66d9ef">print</span> chr(a)<span style="color:#f92672">+</span>chr(b)<span style="color:#f92672">+</span>chr(c)<span style="color:#f92672">+</span>chr(d)  
+                      exit(<span style="color:#ae81ff">0</span>)  
 </code></pre></div>
     </div>
 

@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="De1CTF2019-signal-vm | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -179,21 +179,21 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/de1ctf2019-signal-vm/#%e9%a2%98%e5%a4%96" class="toc-link">题外</a></li>
-                        <li><a href="/2020/de1ctf2019-signal-vm/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
-                        <li><a href="/2020/de1ctf2019-signal-vm/#signal-vm" class="toc-link">signal vm</a></li>
-                        
-                                <ul class="toc-h3"><li><a href="/2020/de1ctf2019-signal-vm/#%e6%81%a2%e5%a4%8d%e7%ac%a6%e5%8f%b7%e8%a1%a8" class="toc-link">恢复符号表</a></li>
-                        <li><a href="/2020/de1ctf2019-signal-vm/#%e7%a8%8b%e5%ba%8f%e5%88%86%e6%9e%90" class="toc-link">程序分析</a></li>
-                        <li><a href="/2020/de1ctf2019-signal-vm/#%e6%81%a2%e5%a4%8d%e7%b3%bb%e7%bb%9f%e5%87%bd%e6%95%b0%e7%9a%84%e5%b8%b8%e6%95%b0%e5%8f%82%e6%95%b0" class="toc-link">恢复系统函数的常数参数</a></li>
-                        <li><a href="/2020/de1ctf2019-signal-vm/#solve" class="toc-link">solve</a></li>
-                        
-                                </ul><li><a href="/2020/de1ctf2019-signal-vm/#signal-vm-delta" class="toc-link">signal vm delta</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/de1ctf2019-signal-vm/#%e9%a2%98%e5%a4%96" class="toc-link">题外</a></li>
+                          <li><a href="/2020/de1ctf2019-signal-vm/#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="toc-link">参考链接</a></li>
+                          <li><a href="/2020/de1ctf2019-signal-vm/#signal-vm" class="toc-link">signal vm</a></li>
+                          
+                                  <ul class="toc-h3"><li><a href="/2020/de1ctf2019-signal-vm/#%e6%81%a2%e5%a4%8d%e7%ac%a6%e5%8f%b7%e8%a1%a8" class="toc-link">恢复符号表</a></li>
+                          <li><a href="/2020/de1ctf2019-signal-vm/#%e7%a8%8b%e5%ba%8f%e5%88%86%e6%9e%90" class="toc-link">程序分析</a></li>
+                          <li><a href="/2020/de1ctf2019-signal-vm/#%e6%81%a2%e5%a4%8d%e7%b3%bb%e7%bb%9f%e5%87%bd%e6%95%b0%e7%9a%84%e5%b8%b8%e6%95%b0%e5%8f%82%e6%95%b0" class="toc-link">恢复系统函数的常数参数</a></li>
+                          <li><a href="/2020/de1ctf2019-signal-vm/#solve" class="toc-link">solve</a></li>
+                          
+                                  </ul><li><a href="/2020/de1ctf2019-signal-vm/#signal-vm-delta" class="toc-link">signal vm delta</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="题外">题外</h2>
 <p>De1CTF2019这两道vm的题都是与signal通信相关，记录一下。</p>
@@ -209,24 +209,24 @@ GCC: <span style="color:#f92672">(</span>Ubuntu 7.4.0-1ubuntu1~18.04<span style=
 <h3 id="程序分析">程序分析</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">__int64</span> <span style="color:#a6e22e">sub_40172D</span>()
 {
-  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v1; <span style="color:#75715e">// [rsp+Ch] [rbp-4h]
+<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v1; <span style="color:#75715e">// [rsp+Ch] [rbp-4h]
 </span><span style="color:#75715e"></span>
-  sub_4102B0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;Check up: &#34;</span>);
-  sub_410430((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;%s&#34;</span>);
-  v1 <span style="color:#f92672">=</span> _libc_fork(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#f92672">&amp;</span>unk_6D5132);
-  <span style="color:#66d9ef">if</span> ( v1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> )
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFFFLL</span>;
-  <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>v1 )
-  {
-    ((<span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>)(<span style="color:#66d9ef">void</span>))loc_4014CA)();
-    exit(<span style="color:#ae81ff">0LL</span>);
-  }
-  sub_400B6D(v1);
-  <span style="color:#66d9ef">if</span> ( dword_6D74E0[<span style="color:#ae81ff">0</span>] )
-    IO_puts(<span style="color:#e6db74">&#34;Ture.&#34;</span>);
-  <span style="color:#66d9ef">else</span>
-    IO_puts(<span style="color:#e6db74">&#34;False.&#34;</span>);
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0LL</span>;
+sub_4102B0((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;Check up: &#34;</span>);
+sub_410430((<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span>)<span style="color:#e6db74">&#34;%s&#34;</span>);
+v1 <span style="color:#f92672">=</span> _libc_fork(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#f92672">&amp;</span>unk_6D5132);
+<span style="color:#66d9ef">if</span> ( v1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> )
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFFFLL</span>;
+<span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>v1 )
+{
+  ((<span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>)(<span style="color:#66d9ef">void</span>))loc_4014CA)();
+  exit(<span style="color:#ae81ff">0LL</span>);
+}
+sub_400B6D(v1);
+<span style="color:#66d9ef">if</span> ( dword_6D74E0[<span style="color:#ae81ff">0</span>] )
+  IO_puts(<span style="color:#e6db74">&#34;Ture.&#34;</span>);
+<span style="color:#66d9ef">else</span>
+  IO_puts(<span style="color:#e6db74">&#34;False.&#34;</span>);
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0LL</span>;
 }
 </code></pre></div><p>输入之后子进程执行<code>loc_4014ca</code>父进程进入<code>sub_400B6D</code>，子进程的程序如下：
 <img src="/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png" alt="">
@@ -234,191 +234,191 @@ GCC: <span style="color:#f92672">(</span>Ubuntu 7.4.0-1ubuntu1~18.04<span style=
 父进程的程序如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">__int64</span> <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">sub_400B6D</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> a1)
 {
-  <span style="color:#66d9ef">__int64</span> v1; <span style="color:#75715e">// r8
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v2; <span style="color:#75715e">// r9
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v3; <span style="color:#75715e">// r8
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v4; <span style="color:#75715e">// r9
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v5; <span style="color:#75715e">// ST00_1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v6; <span style="color:#75715e">// r8
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v7; <span style="color:#75715e">// r9
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v8; <span style="color:#75715e">// r8
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v9; <span style="color:#75715e">// r9
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v10; <span style="color:#75715e">// ST00_1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v12; <span style="color:#75715e">// [rsp+0h] [rbp-160h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v13; <span style="color:#75715e">// [rsp+0h] [rbp-160h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v14; <span style="color:#75715e">// [rsp+1Ch] [rbp-144h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v15; <span style="color:#75715e">// [rsp+30h] [rbp-130h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span> v16; <span style="color:#75715e">// [rsp+B0h] [rbp-B0h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> stat_addr[<span style="color:#ae81ff">2</span>]; <span style="color:#75715e">// [rsp+110h] [rbp-50h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v18; <span style="color:#75715e">// [rsp+118h] [rbp-48h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v19; <span style="color:#75715e">// [rsp+120h] [rbp-40h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v20; <span style="color:#75715e">// [rsp+128h] [rbp-38h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v21; <span style="color:#75715e">// [rsp+130h] [rbp-30h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">__int64</span> v22; <span style="color:#75715e">// [rsp+138h] [rbp-28h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span> v23; <span style="color:#75715e">// [rsp+148h] [rbp-18h]
+<span style="color:#66d9ef">__int64</span> v1; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v2; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v3; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v4; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v5; <span style="color:#75715e">// ST00_1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v6; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v7; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v8; <span style="color:#75715e">// r8
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v9; <span style="color:#75715e">// r9
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v10; <span style="color:#75715e">// ST00_1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v12; <span style="color:#75715e">// [rsp+0h] [rbp-160h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v13; <span style="color:#75715e">// [rsp+0h] [rbp-160h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> v14; <span style="color:#75715e">// [rsp+1Ch] [rbp-144h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v15; <span style="color:#75715e">// [rsp+30h] [rbp-130h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span> v16; <span style="color:#75715e">// [rsp+B0h] [rbp-B0h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> stat_addr[<span style="color:#ae81ff">2</span>]; <span style="color:#75715e">// [rsp+110h] [rbp-50h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v18; <span style="color:#75715e">// [rsp+118h] [rbp-48h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v19; <span style="color:#75715e">// [rsp+120h] [rbp-40h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v20; <span style="color:#75715e">// [rsp+128h] [rbp-38h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v21; <span style="color:#75715e">// [rsp+130h] [rbp-30h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">__int64</span> v22; <span style="color:#75715e">// [rsp+138h] [rbp-28h]
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int64</span> v23; <span style="color:#75715e">// [rsp+148h] [rbp-18h]
 </span><span style="color:#75715e"></span>
-  v23 <span style="color:#f92672">=</span> __readfsqword(<span style="color:#ae81ff">0x28u</span>);
-  <span style="color:#f92672">*</span>(_QWORD <span style="color:#f92672">*</span>)stat_addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v19 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
-  v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  memset(<span style="color:#f92672">&amp;</span>v15, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0xD8uLL</span>);
-  _libc_wait(stat_addr);                        <span style="color:#75715e">// 等待子进程发来信号或者子进程退出
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span> ( LOBYTE(stat_addr[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">127</span> )
+v23 <span style="color:#f92672">=</span> __readfsqword(<span style="color:#ae81ff">0x28u</span>);
+<span style="color:#f92672">*</span>(_QWORD <span style="color:#f92672">*</span>)stat_addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v19 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0LL</span>;
+v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+memset(<span style="color:#f92672">&amp;</span>v15, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0xD8uLL</span>);
+_libc_wait(stat_addr);                        <span style="color:#75715e">// 等待子进程发来信号或者子进程退出
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> ( LOBYTE(stat_addr[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">127</span> )
+{
+  ptrace(<span style="color:#ae81ff">12LL</span>, a1, <span style="color:#ae81ff">0LL</span>, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, v1, v2, v12);  <span style="color:#75715e">//PTRACE_GETREGS 获取寄存器的状态
+</span><span style="color:#75715e"></span>  v19 <span style="color:#f92672">=</span> ptrace(<span style="color:#ae81ff">1LL</span>, a1, v16, <span style="color:#ae81ff">0LL</span>, v3, v4, v5);  <span style="color:#75715e">//PTRACE_PEEKTEXT从进程中读取v16处的值
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">switch</span> ( BYTE1(stat_addr[<span style="color:#ae81ff">0</span>]) )
   {
-    ptrace(<span style="color:#ae81ff">12LL</span>, a1, <span style="color:#ae81ff">0LL</span>, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, v1, v2, v12);  <span style="color:#75715e">//PTRACE_GETREGS 获取寄存器的状态
-</span><span style="color:#75715e"></span>    v19 <span style="color:#f92672">=</span> ptrace(<span style="color:#ae81ff">1LL</span>, a1, v16, <span style="color:#ae81ff">0LL</span>, v3, v4, v5);  <span style="color:#75715e">//PTRACE_PEEKTEXT从进程中读取v16处的值
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">switch</span> ( BYTE1(stat_addr[<span style="color:#ae81ff">0</span>]) )
-    {
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span>
+      <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+      {
+        v14 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+      }
+      <span style="color:#66d9ef">else</span>
+      {
+        v14 <span style="color:#f92672">=</span> BYTE3(v19);
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4LL</span>;
+      }
+      <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+      {
+        dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> v14;
+      }
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( (<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>)BYTE1(v19) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
+      {
+        <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> )
         {
-          v14 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)aAlmostHeavenWe[dword_6D74E0[v14]];
         }
-        <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span> )
         {
-          v14 <span style="color:#f92672">=</span> BYTE3(v19);
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4LL</span>;
+          aAlmostHeavenWe[dword_6D74E0[BYTE2(v19)]] <span style="color:#f92672">=</span> dword_6D74E0[v14];
         }
-        <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
-        {
-          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> v14;
-        }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( (<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>)BYTE1(v19) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
-        {
-          <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> )
-          {
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)aAlmostHeavenWe[dword_6D74E0[v14]];
-          }
-          <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span> )
-          {
-            aAlmostHeavenWe[dword_6D74E0[BYTE2(v19)]] <span style="color:#f92672">=</span> dword_6D74E0[v14];
-          }
-        }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE1(v19) )
-        {
-          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> dword_6D74E0[v14];
-        }
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
-        {
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-          v14 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-        }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE1(v19) )
-        {
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4LL</span>;
-          v14 <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)];
-        }
-        <span style="color:#66d9ef">switch</span> ( (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v19 )
-        {
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">+=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">-=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">*=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">/=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">%=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">|=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&amp;=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">7u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">^=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">8u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&lt;&lt;=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">9u</span><span style="color:#f92672">:</span>
-            dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&gt;&gt;=</span> v14;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">goto</span> LABEL_59;
-        }
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">if</span> ( BYTE2(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
-        {
-          v14 <span style="color:#f92672">=</span> HIDWORD(v19);
-          dword_6D74FC <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)] <span style="color:#f92672">-</span> HIDWORD(v19);
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">8LL</span>;
-        }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE2(v19) )
-        {
-          v14 <span style="color:#f92672">=</span> BYTE4(v19);
-          dword_6D74FC <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)] <span style="color:#f92672">-</span> dword_6D74E0[BYTE4(v19)];
-          v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">5LL</span>;
-        }
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0xB</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">switch</span> ( BYTE2(v19) )
-        {
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0u</span><span style="color:#f92672">:</span>
+      }
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE1(v19) )
+      {
+        dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">=</span> dword_6D74E0[v14];
+      }
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">:</span>
+      <span style="color:#66d9ef">if</span> ( BYTE1(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+      {
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+        v14 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(_DWORD <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+      }
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE1(v19) )
+      {
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4LL</span>;
+        v14 <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)];
+      }
+      <span style="color:#66d9ef">switch</span> ( (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">__int8</span>)v19 )
+      {
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">+=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">-=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">*=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">/=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">%=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">|=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&amp;=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">7u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">^=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">8u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&lt;&lt;=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">9u</span><span style="color:#f92672">:</span>
+          dword_6D74E0[BYTE2(v19)] <span style="color:#f92672">&gt;&gt;=</span> v14;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">goto</span> LABEL_59;
+      }
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">:</span>
+      <span style="color:#66d9ef">if</span> ( BYTE2(v19) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+      {
+        v14 <span style="color:#f92672">=</span> HIDWORD(v19);
+        dword_6D74FC <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)] <span style="color:#f92672">-</span> HIDWORD(v19);
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">8LL</span>;
+      }
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>BYTE2(v19) )
+      {
+        v14 <span style="color:#f92672">=</span> BYTE4(v19);
+        dword_6D74FC <span style="color:#f92672">=</span> dword_6D74E0[BYTE3(v19)] <span style="color:#f92672">-</span> dword_6D74E0[BYTE4(v19)];
+        v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">5LL</span>;
+      }
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0xB</span><span style="color:#f92672">:</span>
+      <span style="color:#66d9ef">switch</span> ( BYTE2(v19) )
+      {
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0u</span><span style="color:#f92672">:</span>
+          v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">else</span>
             v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6u</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> )
-              v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
-            <span style="color:#66d9ef">else</span>
-              v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
-            <span style="color:#66d9ef">break</span>;
-          <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">goto</span> LABEL_59;
-        }
-        <span style="color:#66d9ef">break</span>;
-    }
-LABEL_59:
-    ptrace(<span style="color:#ae81ff">13LL</span>, a1, <span style="color:#ae81ff">0LL</span>, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, v6, v7, v13);<span style="color:#75715e">// PTRACE_SETREGS 设置寄存器的值
-</span><span style="color:#75715e"></span>    ptrace(<span style="color:#ae81ff">7LL</span>, a1, <span style="color:#ae81ff">0LL</span>, <span style="color:#ae81ff">0LL</span>, v8, v9, v10);     <span style="color:#75715e">// PTRACE_CONT 相当于gdb中的continue
-</span><span style="color:#75715e"></span>    _libc_wait(stat_addr);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">else</span>
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">else</span>
+            v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">else</span>
+            v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">else</span>
+            v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6u</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">if</span> ( dword_6D74FC <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> )
+            v16 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7LL</span>;
+          <span style="color:#66d9ef">else</span>
+            v16 <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>)((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>v19 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+          <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">goto</span> LABEL_59;
+      }
+      <span style="color:#66d9ef">break</span>;
   }
-  ptrace(<span style="color:#ae81ff">8LL</span>, a1, <span style="color:#ae81ff">0LL</span>, <span style="color:#ae81ff">0LL</span>, v1, v2, v12);  <span style="color:#75715e">//PTRACE_KILL
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0LL</span>;
+LABEL_59:
+  ptrace(<span style="color:#ae81ff">13LL</span>, a1, <span style="color:#ae81ff">0LL</span>, (<span style="color:#66d9ef">__int64</span>)<span style="color:#f92672">&amp;</span>v15, v6, v7, v13);<span style="color:#75715e">// PTRACE_SETREGS 设置寄存器的值
+</span><span style="color:#75715e"></span>  ptrace(<span style="color:#ae81ff">7LL</span>, a1, <span style="color:#ae81ff">0LL</span>, <span style="color:#ae81ff">0LL</span>, v8, v9, v10);     <span style="color:#75715e">// PTRACE_CONT 相当于gdb中的continue
+</span><span style="color:#75715e"></span>  _libc_wait(stat_addr);
+}
+ptrace(<span style="color:#ae81ff">8LL</span>, a1, <span style="color:#ae81ff">0LL</span>, <span style="color:#ae81ff">0LL</span>, v1, v2, v12);  <span style="color:#75715e">//PTRACE_KILL
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0LL</span>;
 }
 </code></pre></div><p>父进程的执行控制主要依靠<code>stat_addr[1]</code>和<code>v19</code>，<code>wait()</code>函数的参数是子进程的返回状态,第一个字节如果是0x7f则表示子进程异常返回，第二个字节是返回值，<code>eg: exit(2)</code>则第二个字节为02，子进程出现异常的时候第二个字节是linux的异常信号码</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">SIGHUP       <span style="color:#ae81ff">1</span>          /* Hangup <span style="color:#f92672">(</span>POSIX<span style="color:#f92672">)</span>.  */                          终止进程     终端线路挂断
@@ -502,32 +502,32 @@ SIGFPE    | <span style="color:#ae81ff">30</span> C0 F6 F8  | cmp
 <span style="color:#f92672">import</span> struct
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Opcode</span>:  <span style="color:#75715e">#opcode结构</span>
-    opcode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
-    val1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    const <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    src <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    dest <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    final <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    final2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  opcode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+  val1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  const <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  src <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  dest <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  final <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  final2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 
-    <span style="color:#66d9ef">def</span> __init__(self, opcode):
-        self<span style="color:#f92672">.</span>opcode <span style="color:#f92672">=</span> opcode
-        test <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;Q&#34;</span>, int(opcode, <span style="color:#ae81ff">16</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">8</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]
-        self<span style="color:#f92672">.</span>val1 <span style="color:#f92672">=</span> test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">56</span>
-        self<span style="color:#f92672">.</span>const <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">48</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
-        self<span style="color:#f92672">.</span>src <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">40</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
-        self<span style="color:#f92672">.</span>dest <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">32</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
-        self<span style="color:#f92672">.</span>final <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;I&#34;</span>, ((test <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff00</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">4</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]      
-        self<span style="color:#f92672">.</span>final2 <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;I&#34;</span>, (test <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">4</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]
+  <span style="color:#66d9ef">def</span> __init__(self, opcode):
+      self<span style="color:#f92672">.</span>opcode <span style="color:#f92672">=</span> opcode
+      test <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;Q&#34;</span>, int(opcode, <span style="color:#ae81ff">16</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">8</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]
+      self<span style="color:#f92672">.</span>val1 <span style="color:#f92672">=</span> test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">56</span>
+      self<span style="color:#f92672">.</span>const <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">48</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
+      self<span style="color:#f92672">.</span>src <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">40</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
+      self<span style="color:#f92672">.</span>dest <span style="color:#f92672">=</span> (test <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">32</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>
+      self<span style="color:#f92672">.</span>final <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;I&#34;</span>, ((test <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff00</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">4</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]      
+      self<span style="color:#f92672">.</span>final2 <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#34;&lt;I&#34;</span>, (test <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff</span>)<span style="color:#f92672">.</span>to_bytes(<span style="color:#ae81ff">4</span>, byteorder<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;big&#39;</span>))[<span style="color:#ae81ff">0</span>]
 
-    <span style="color:#66d9ef">def</span> __repr__(self):
-        str_out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-------------------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-        str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;OPCODE : </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">  |  </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>opcode, int(self<span style="color:#f92672">.</span>opcode, <span style="color:#ae81ff">16</span>) ) 
-        str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;val1 = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | const = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | src = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | dest = </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>val1, self<span style="color:#f92672">.</span>const, self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest)
-        str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;val1 = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | const = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | src = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | dest = </span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (hex(self<span style="color:#f92672">.</span>val1), hex(self<span style="color:#f92672">.</span>const), hex(self<span style="color:#f92672">.</span>src), hex(self<span style="color:#f92672">.</span>dest))
-        str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;final = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">    |   final2 =  </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>final, self<span style="color:#f92672">.</span>final2)
-        str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;-------------------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-        <span style="color:#66d9ef">return</span> str_out
+  <span style="color:#66d9ef">def</span> __repr__(self):
+      str_out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-------------------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+      str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;OPCODE : </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">  |  </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>opcode, int(self<span style="color:#f92672">.</span>opcode, <span style="color:#ae81ff">16</span>) ) 
+      str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;val1 = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | const = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | src = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> | dest = </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>val1, self<span style="color:#f92672">.</span>const, self<span style="color:#f92672">.</span>src, self<span style="color:#f92672">.</span>dest)
+      str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;val1 = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | const = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | src = </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> | dest = </span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (hex(self<span style="color:#f92672">.</span>val1), hex(self<span style="color:#f92672">.</span>const), hex(self<span style="color:#f92672">.</span>src), hex(self<span style="color:#f92672">.</span>dest))
+      str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;final = </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">    |   final2 =  </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>final, self<span style="color:#f92672">.</span>final2)
+      str_out <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;-------------------</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+      <span style="color:#66d9ef">return</span> str_out
 
 
 sign <span style="color:#f92672">=</span> {<span style="color:#ae81ff">4</span>: <span style="color:#e6db74">&#34;SIGILL&#34;</span>, <span style="color:#ae81ff">5</span> : <span style="color:#e6db74">&#34;SIGTRAP&#34;</span>, <span style="color:#ae81ff">8</span>: <span style="color:#e6db74">&#34;SIGFPE&#34;</span>, <span style="color:#ae81ff">0xb</span>: <span style="color:#e6db74">&#34;SIGSEGV&#34;</span> }
@@ -550,53 +550,53 @@ gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;
 
 i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 <span style="color:#66d9ef">while</span> True:
-    <span style="color:#66d9ef">try</span>:
-        i <span style="color:#f92672">=</span> int(gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $rdx&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip(),<span style="color:#ae81ff">16</span>)
-        <span style="color:#66d9ef">if</span> a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-            a <span style="color:#f92672">=</span> i
-        i <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> a
-        gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;ni&#34;</span>) <span style="color:#75715e"># 执行call ptrace后获取rax中的返回值</span>
-    <span style="color:#66d9ef">except</span> gdb<span style="color:#f92672">.</span>error:
-        <span style="color:#66d9ef">break</span>
-    opcode <span style="color:#f92672">=</span> gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $rax&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip()
-    gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
+  <span style="color:#66d9ef">try</span>:
+      i <span style="color:#f92672">=</span> int(gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $rdx&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip(),<span style="color:#ae81ff">16</span>)
+      <span style="color:#66d9ef">if</span> a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+          a <span style="color:#f92672">=</span> i
+      i <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> a
+      gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;ni&#34;</span>) <span style="color:#75715e"># 执行call ptrace后获取rax中的返回值</span>
+  <span style="color:#66d9ef">except</span> gdb<span style="color:#f92672">.</span>error:
+      <span style="color:#66d9ef">break</span>
+  opcode <span style="color:#f92672">=</span> gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $rax&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip()
+  gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
 
-    <span style="color:#75715e"># 将BYTE1(stat_addr[0])保存在al中来控制跳转的，直接获取al的值</span>
-    sig <span style="color:#f92672">=</span> gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $al&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip()
-    gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
+  <span style="color:#75715e"># 将BYTE1(stat_addr[0])保存在al中来控制跳转的，直接获取al的值</span>
+  sig <span style="color:#f92672">=</span> gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;p/x $al&#34;</span>, to_string<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>strip()
+  gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
 
-    <span style="color:#66d9ef">print</span>(sign[int(sig, <span style="color:#ae81ff">16</span>)])
-    op <span style="color:#f92672">=</span> Opcode(opcode)    
-    <span style="color:#66d9ef">print</span>(op)
+  <span style="color:#66d9ef">print</span>(sign[int(sig, <span style="color:#ae81ff">16</span>)])
+  op <span style="color:#f92672">=</span> Opcode(opcode)    
+  <span style="color:#66d9ef">print</span>(op)
 
-    <span style="color:#75715e"># 根据sig和opcode进行翻译</span>
-    <span style="color:#66d9ef">if</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:
-        <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>const <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-            f<span style="color:#f92672">.</span>write(mov_ins[op<span style="color:#f92672">.</span>const] <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>final))
-        <span style="color:#66d9ef">else</span>:
-            f<span style="color:#f92672">.</span>write(mov_ins[op<span style="color:#f92672">.</span>const] <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>dest))
+  <span style="color:#75715e"># 根据sig和opcode进行翻译</span>
+  <span style="color:#66d9ef">if</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:
+      <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>const <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+          f<span style="color:#f92672">.</span>write(mov_ins[op<span style="color:#f92672">.</span>const] <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>final))
+      <span style="color:#66d9ef">else</span>:
+          f<span style="color:#f92672">.</span>write(mov_ins[op<span style="color:#f92672">.</span>const] <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>dest))
 
-    <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
+  <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
 
-        <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>const <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-            f<span style="color:#f92672">.</span>write(str_ops[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">%</span> (i, ops[op<span style="color:#f92672">.</span>val1], op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>final))      
-        <span style="color:#66d9ef">else</span>:
-            f<span style="color:#f92672">.</span>write(str_ops[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">%</span> (i, ops[op<span style="color:#f92672">.</span>val1], op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>dest))      
+      <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>const <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+          f<span style="color:#f92672">.</span>write(str_ops[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">%</span> (i, ops[op<span style="color:#f92672">.</span>val1], op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>final))      
+      <span style="color:#66d9ef">else</span>:
+          f<span style="color:#f92672">.</span>write(str_ops[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">%</span> (i, ops[op<span style="color:#f92672">.</span>val1], op<span style="color:#f92672">.</span>src, op<span style="color:#f92672">.</span>dest))      
 
-    <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>: 
-        <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>src <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: cmp r</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> 0x</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>dest, op<span style="color:#f92672">.</span>final2))
-        <span style="color:#66d9ef">else</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: cmp r</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> r</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>dest, op<span style="color:#f92672">.</span>final2 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>))
+  <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>: 
+      <span style="color:#66d9ef">if</span> op<span style="color:#f92672">.</span>src <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: cmp r</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> 0x</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>dest, op<span style="color:#f92672">.</span>final2))
+      <span style="color:#66d9ef">else</span>:
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: cmp r</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> r</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, op<span style="color:#f92672">.</span>dest, op<span style="color:#f92672">.</span>final2 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xff</span>))
 
-    <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xb</span>:
-        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: jmp </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> 0x</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, jmp[op<span style="color:#f92672">.</span>src], op<span style="color:#f92672">.</span>dest))
+  <span style="color:#66d9ef">elif</span> int(sig, <span style="color:#ae81ff">16</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xb</span>:
+      f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">: jmp </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> 0x</span><span style="color:#e6db74">%x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, jmp[op<span style="color:#f92672">.</span>src], op<span style="color:#f92672">.</span>dest))
 
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Error&#34;</span>)
+  <span style="color:#66d9ef">else</span>:
+      <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Error&#34;</span>)
 
-    gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
-    i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+  gdb<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;c&#34;</span>)
+  i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
 f<span style="color:#f92672">.</span>close()
 </code></pre></div><p>在2.5.60版Linux内核及以后，GDB对使用fork/vfork创建子进程的程序提供了follow-fork-mode选项来支持多进程调试。
 follow-fork-mode的用法为：<code>set follow-fork-mode [parent|child]</code>

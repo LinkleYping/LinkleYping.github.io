@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="RCTF2020-部分re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -55,7 +55,7 @@
     "datePublished": "2020-06-06 15:22:45 \u002b0800 CST",
     "dateModified" : "2020-06-06 15:22:45 \u002b0800 CST",
     "url" : "https:\/\/linkleyping.top\/2020\/rctf2020-%E9%83%A8%E5%88%86re\/",
-    "wordCount" : "2547",
+    "wordCount" : "2550",
     "keywords" : [  "EP`s Blog"]
 }
 </script>
@@ -156,7 +156,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">2547 words</span>
+                <span class="post-word-count">2550 words</span>
         </div>
     </header>
 
@@ -179,510 +179,510 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#%e7%a2%8e%e7%a2%8e%e5%bf%b5" class="toc-link">碎碎念</a></li>
-                        <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#go-flag" class="toc-link">go-flag</a></li>
-                        <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#cipher" class="toc-link">cipher</a></li>
-                        <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#play_the_game" class="toc-link">play_the_game</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#%e7%a2%8e%e7%a2%8e%e5%bf%b5" class="toc-link">碎碎念</a></li>
+                          <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#go-flag" class="toc-link">go-flag</a></li>
+                          <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#cipher" class="toc-link">cipher</a></li>
+                          <li><a href="/2020/rctf2020-%E9%83%A8%E5%88%86re/#play_the_game" class="toc-link">play_the_game</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="碎碎念">碎碎念</h2>
 <p>上周末的RCTF，自闭依旧，不过比De1CTF好一点，一共做了三道，跟学弟一起，依旧是wtclwtclwtcl。浪了两天，补上writeup，这次只写了做出来的三道题。剩下的除了rust-flag，看起来都超过了能力范畴&hellip;慢慢补上知识点。</p>
 <h2 id="go-flag">go-flag</h2>
-<p>首先用IDAGolangHelper恢复符号
-恢复符号以后可以看到一共生成了3k多个goroutine，main_main_func1用来获取输入，每次读入一个字符，然后通过chan传给其他的rountine，发送字符到chan使用了<code>runtime_chansend1</code>, 从chan读取字符使用的是<code>runtime_chanrecv1</code>函数，x查找一下调用了<code>runtime_chanrecv1</code>函数的地方，这些函数的个数差不多就是flag的长度。
-选择一个调用<code>runtime_chanrecv1</code>的函数进行调试，发现距离这个函数不远的地方有字符判断操作
-<img src="/images/722dcfa9ed65509134320f2e9d7612e0/11884068-01d215c3222e7e78.png" alt="">
+<p>首先用IDAGolangHelper恢复符号<br>
+恢复符号以后可以看到一共生成了3k多个goroutine，main_main_func1用来获取输入，每次读入一个字符，然后通过chan传给其他的rountine，发送字符到chan使用了<code>runtime_chansend1</code>, 从chan读取字符使用的是<code>runtime_chanrecv1</code>函数，x查找一下调用了<code>runtime_chanrecv1</code>函数的地方，这些函数的个数差不多就是flag的长度。<br>
+选择一个调用<code>runtime_chanrecv1</code>的函数进行调试，发现距离这个函数不远的地方有字符判断操作<br>
+<img src="/images/722dcfa9ed65509134320f2e9d7612e0/11884068-01d215c3222e7e78.png" alt=""><br>
 然后调试到这个地方发现前几次出现的字符分别为<code>RCF</code>猜测就是正确flag，然后找到所有这种比较的函数把字符抄下来就行了。</p>
 <h2 id="cipher">cipher</h2>
 <p>MIPS的程序用<code>ghidra</code>反编译可以看到加密逻辑，逆一下就可以了，注意端序和结束符问题。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#define ulonglong unsigned long long 
-</span><span style="color:#75715e">#define longlong long long
-</span><span style="color:#75715e"></span>using namespace std;
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ciphertext,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>plain)
-{
-  ulonglong p1,p2;
-  ulonglong <span style="color:#f92672">*</span>in_a2;
-  <span style="color:#66d9ef">int</span> cycle;
-  ulonglong t1,t2,c1,c2;
-  p1 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)plain;
-  p2 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(plain <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>);
-  <span style="color:#75715e">//printf(&#34;P1 %llX P2 %llX\n&#34;,p1,p2);
-</span><span style="color:#75715e"></span>  t2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  t1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  c2 <span style="color:#f92672">=</span> ((p2<span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (p2<span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> p1) <span style="color:#f92672">^</span> t2;
-  c1 <span style="color:#f92672">=</span> ((p1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (p1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> c2;
-  cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x1f</span>) {
-    t1 <span style="color:#f92672">=</span> ((t1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (t1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> t2) <span style="color:#f92672">^</span> (longlong)cycle;
-    t2 <span style="color:#f92672">=</span> ((t2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (t2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> t1;
-    <span style="color:#75715e">//printf(&#34;%llX %llX %llX\n&#34;,c1,c2,t2);
-</span><span style="color:#75715e"></span>    c2 <span style="color:#f92672">=</span> ((c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> c1) <span style="color:#f92672">^</span> t2;
-    c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> c2;
-    cycle <span style="color:#f92672">=</span> cycle <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-  }
-  printf(<span style="color:#e6db74">&#34;%llX %llX %llX %llX</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,c1,c2,t1,t2);
-  <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)ciphertext <span style="color:#f92672">=</span> c1;
-  <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(ciphertext <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> c2;
-
-  <span style="color:#66d9ef">return</span>;
-}
-ulonglong t1s[<span style="color:#ae81ff">40</span>],t2s[<span style="color:#ae81ff">40</span>];
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">genFlows</span>(ulonglong k1,ulonglong k2)
-{
-	ulonglong t2 <span style="color:#f92672">=</span> k2,t1 <span style="color:#f92672">=</span> k1,cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  	<span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x1f</span>) {
-    	t1 <span style="color:#f92672">=</span> (t1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (t1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> t2 <span style="color:#f92672">^</span> (longlong)cycle;
-    	t2 <span style="color:#f92672">=</span> ((t2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (t2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> t1;
-    	t1s[cycle]<span style="color:#f92672">=</span>t1;
-    	t2s[cycle]<span style="color:#f92672">=</span>t2;
-    	cycle<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>;
-    	<span style="color:#75715e">//printf(&#34;%d\n&#34;,cycle);
-</span><span style="color:#75715e"></span>	}
-<span style="color:#75715e">//	printf(&#34;Get Key Flows\n&#34;);
-</span><span style="color:#75715e"></span>}
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">decrypt</span>(ulonglong k1,ulonglong k2,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ciphertext,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>plain)
-{
-	genFlows(k1,k2);
-	ulonglong c1,c2;
-	c1 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)ciphertext;
-    c2 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(ciphertext <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>);
-  	longlong cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1f</span>;
-  	<span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-    	<span style="color:#75715e">/*c2 = (c2 &gt;&gt; 8) + (c2 &lt;&lt; 0x38) + c1 ^ t2s[cycle];
-</span><span style="color:#75715e">    	c1 = ((c1 &gt;&gt; 0x3d) + (c1 &lt;&lt; 3)) ^ c2;*/</span>
-    	cycle <span style="color:#f92672">=</span> cycle <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    	c1 <span style="color:#f92672">^=</span> c2;
-    	c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">3</span>));
-    	c2 <span style="color:#f92672">^=</span> t2s[cycle];
-    	c2 <span style="color:#f92672">-=</span> c1;
-    	c2 <span style="color:#f92672">=</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x38</span>);
-    	<span style="color:#75715e">/*t1 = ((t1 &gt;&gt; 8) + (t1 &lt;&lt; 0x38) + t2) ^ (longlong)cycle;
-</span><span style="color:#75715e">    	t2 = ((t2 &gt;&gt; 0x3d) + (t2 &lt;&lt; 3)) ^ t1;*/</span>
-    	
-    	
-    	
-  	}
-  	<span style="color:#75715e">//c2 = (p2&gt;&gt; 8) + (p2&lt;&lt; 0x38) + p1 ^ t2;
-</span><span style="color:#75715e"></span>  	<span style="color:#75715e">//c1 = (p1 &gt;&gt; 0x3d) + (p1 &lt;&lt; 3) ^ c2;
-</span><span style="color:#75715e"></span>  	c1 <span style="color:#f92672">^=</span> c2;
-  	c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">3</span>));
-  	c2 <span style="color:#f92672">^=</span> k2;
-  	c2 <span style="color:#f92672">-=</span> c1;
-    c2 <span style="color:#f92672">=</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x38</span>);
-    <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)plain <span style="color:#f92672">=</span> c1;
-    <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(plain <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> c2;
-}
-
-<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> cipherText[<span style="color:#ae81ff">100</span>]{
-<span style="color:#ae81ff">0xc1</span>,<span style="color:#ae81ff">0x77</span>,<span style="color:#ae81ff">0x1d</span>,<span style="color:#ae81ff">0xe1</span>,<span style="color:#ae81ff">0x2b</span>,<span style="color:#ae81ff">0xf8</span>,<span style="color:#ae81ff">0x00</span>,<span style="color:#ae81ff">0x2a</span>,<span style="color:#ae81ff">0xf4</span>,<span style="color:#ae81ff">0x91</span>,<span style="color:#ae81ff">0xd5</span>,<span style="color:#ae81ff">0x23</span>,<span style="color:#ae81ff">0xfc</span>,<span style="color:#ae81ff">0x71</span>,<span style="color:#ae81ff">0xb1</span>,<span style="color:#ae81ff">0xc3</span>,
-<span style="color:#75715e">//0x57,0x59,0x88,0xc2,0x8b,0x1e,0xf1,0x30,0x75,0xeb,0x2f,0x42,0x77,0xab,0x94,0xd5
-</span><span style="color:#75715e">//0xb9,0x98,0x6e,0x46,0xf0,0x76,0x5d,0xe1,0xf2,0x36,0x77,0x5d,0xb5,0xfd,0x51,0xb6
-</span><span style="color:#75715e"></span>};
-
-<span style="color:#66d9ef">char</span> dePlain[<span style="color:#ae81ff">100</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{	
-	<span style="color:#66d9ef">for</span>(ulonglong i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0xFFFF</span>;i<span style="color:#f92672">++</span>)
-	{
-		ulonglong k1<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,k2<span style="color:#f92672">=</span>(i<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">48</span>);
-		decrypt(k1,k2,(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cipherText,dePlain);
-		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;i<span style="color:#f92672">++</span>)
-		{
-			printf(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,dePlain);
-		}
-			
-	}
-	
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#define ulonglong unsigned long long   
+</span><span style="color:#75715e">#define longlong long long  
+</span><span style="color:#75715e"></span>using namespace std;  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ciphertext,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>plain)  
+{  
+ulonglong p1,p2;  
+ulonglong <span style="color:#f92672">*</span>in_a2;  
+<span style="color:#66d9ef">int</span> cycle;  
+ulonglong t1,t2,c1,c2;  
+p1 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)plain;  
+p2 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(plain <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>);  
+<span style="color:#75715e">//printf(&#34;P1 %llX P2 %llX\n&#34;,p1,p2);  
+</span><span style="color:#75715e"></span>t2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+t1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+c2 <span style="color:#f92672">=</span> ((p2<span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (p2<span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> p1) <span style="color:#f92672">^</span> t2;  
+c1 <span style="color:#f92672">=</span> ((p1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (p1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> c2;  
+cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+<span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x1f</span>) {  
+t1 <span style="color:#f92672">=</span> ((t1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (t1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> t2) <span style="color:#f92672">^</span> (longlong)cycle;  
+t2 <span style="color:#f92672">=</span> ((t2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (t2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> t1;  
+<span style="color:#75715e">//printf(&#34;%llX %llX %llX\n&#34;,c1,c2,t2);  
+</span><span style="color:#75715e"></span>c2 <span style="color:#f92672">=</span> ((c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> c1) <span style="color:#f92672">^</span> t2;  
+c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> c2;  
+cycle <span style="color:#f92672">=</span> cycle <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;  
+}  
+printf(<span style="color:#e6db74">&#34;%llX %llX %llX %llX</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,c1,c2,t1,t2);  
+<span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)ciphertext <span style="color:#f92672">=</span> c1;  
+<span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(ciphertext <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> c2;  
+  
+<span style="color:#66d9ef">return</span>;  
+}  
+ulonglong t1s[<span style="color:#ae81ff">40</span>],t2s[<span style="color:#ae81ff">40</span>];  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">genFlows</span>(ulonglong k1,ulonglong k2)  
+{  
+	ulonglong t2 <span style="color:#f92672">=</span> k2,t1 <span style="color:#f92672">=</span> k1,cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+	<span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x1f</span>) {  
+	t1 <span style="color:#f92672">=</span> (t1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (t1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x38</span>) <span style="color:#f92672">+</span> t2 <span style="color:#f92672">^</span> (longlong)cycle;  
+	t2 <span style="color:#f92672">=</span> ((t2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (t2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">^</span> t1;  
+	t1s[cycle]<span style="color:#f92672">=</span>t1;  
+	t2s[cycle]<span style="color:#f92672">=</span>t2;  
+	cycle<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>;  
+	<span style="color:#75715e">//printf(&#34;%d\n&#34;,cycle);  
+</span><span style="color:#75715e"></span>	}  
+<span style="color:#75715e">//	printf(&#34;Get Key Flows\n&#34;);  
+</span><span style="color:#75715e"></span>}  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">decrypt</span>(ulonglong k1,ulonglong k2,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ciphertext,<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>plain)  
+{  
+	genFlows(k1,k2);  
+	ulonglong c1,c2;  
+	c1 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)ciphertext;  
+c2 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(ciphertext <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>);  
+	longlong cycle <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1f</span>;  
+	<span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {  
+	<span style="color:#75715e">/*c2 = (c2 &gt;&gt; 8) + (c2 &lt;&lt; 0x38) + c1 ^ t2s[cycle];  
+</span><span style="color:#75715e">	c1 = ((c1 &gt;&gt; 0x3d) + (c1 &lt;&lt; 3)) ^ c2;*/</span>  
+	cycle <span style="color:#f92672">=</span> cycle <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;  
+	c1 <span style="color:#f92672">^=</span> c2;  
+	c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">3</span>));  
+	c2 <span style="color:#f92672">^=</span> t2s[cycle];  
+	c2 <span style="color:#f92672">-=</span> c1;  
+	c2 <span style="color:#f92672">=</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x38</span>);  
+	<span style="color:#75715e">/*t1 = ((t1 &gt;&gt; 8) + (t1 &lt;&lt; 0x38) + t2) ^ (longlong)cycle;  
+</span><span style="color:#75715e">	t2 = ((t2 &gt;&gt; 0x3d) + (t2 &lt;&lt; 3)) ^ t1;*/</span>  
+	  
+	  
+	  
+	}  
+	<span style="color:#75715e">//c2 = (p2&gt;&gt; 8) + (p2&lt;&lt; 0x38) + p1 ^ t2;  
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//c1 = (p1 &gt;&gt; 0x3d) + (p1 &lt;&lt; 3) ^ c2;  
+</span><span style="color:#75715e"></span>	c1 <span style="color:#f92672">^=</span> c2;  
+	c1 <span style="color:#f92672">=</span> ((c1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0x3d</span>) <span style="color:#f92672">+</span> (c1 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">3</span>));  
+	c2 <span style="color:#f92672">^=</span> k2;  
+	c2 <span style="color:#f92672">-=</span> c1;  
+c2 <span style="color:#f92672">=</span> (c2 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">+</span> (c2 <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0x38</span>);  
+<span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)plain <span style="color:#f92672">=</span> c1;  
+<span style="color:#f92672">*</span>(ulonglong <span style="color:#f92672">*</span>)(plain <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> c2;  
+}  
+  
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> cipherText[<span style="color:#ae81ff">100</span>]{  
+<span style="color:#ae81ff">0xc1</span>,<span style="color:#ae81ff">0x77</span>,<span style="color:#ae81ff">0x1d</span>,<span style="color:#ae81ff">0xe1</span>,<span style="color:#ae81ff">0x2b</span>,<span style="color:#ae81ff">0xf8</span>,<span style="color:#ae81ff">0x00</span>,<span style="color:#ae81ff">0x2a</span>,<span style="color:#ae81ff">0xf4</span>,<span style="color:#ae81ff">0x91</span>,<span style="color:#ae81ff">0xd5</span>,<span style="color:#ae81ff">0x23</span>,<span style="color:#ae81ff">0xfc</span>,<span style="color:#ae81ff">0x71</span>,<span style="color:#ae81ff">0xb1</span>,<span style="color:#ae81ff">0xc3</span>,  
+<span style="color:#75715e">//0x57,0x59,0x88,0xc2,0x8b,0x1e,0xf1,0x30,0x75,0xeb,0x2f,0x42,0x77,0xab,0x94,0xd5  
+</span><span style="color:#75715e">//0xb9,0x98,0x6e,0x46,0xf0,0x76,0x5d,0xe1,0xf2,0x36,0x77,0x5d,0xb5,0xfd,0x51,0xb6  
+</span><span style="color:#75715e"></span>};  
+  
+<span style="color:#66d9ef">char</span> dePlain[<span style="color:#ae81ff">100</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
+{	  
+	<span style="color:#66d9ef">for</span>(ulonglong i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0xFFFF</span>;i<span style="color:#f92672">++</span>)  
+	{  
+		ulonglong k1<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,k2<span style="color:#f92672">=</span>(i<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">48</span>);  
+		decrypt(k1,k2,(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cipherText,dePlain);  
+		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;i<span style="color:#f92672">++</span>)  
+		{  
+			printf(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,dePlain);  
+		}  
+			  
+	}  
+	  
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
 </code></pre></div><h2 id="play_the_game">play_the_game</h2>
-<p>get flag的部分在libcalculate.so里面，so文件被平坦化了，本来想用angr去一下平坦化看看，但是发现好像不行。
+<p>get flag的部分在libcalculate.so里面，so文件被平坦化了，本来想用angr去一下平坦化看看，但是发现好像不行。<br>
 flag是dword_2B00C的md5值，这个值只在sub_76B0中被修改过，调试起来发现只有下棋赢了的时候这个值才会改变，然后只有当dword_2B008的值大于等于0x13f4f9f9的时候才会printlog出flag，因为这两个值只在sub76B0中被修改过了，所以直接dump出这个函数输出dword_2B008输出大于等于0x13f4f9f9时dword_2B00C的值即可。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;math.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dword_2B008 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x13F4E6A3</span>;
-<span style="color:#66d9ef">int</span> dword_2B00C <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xDEF984B1</span>;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sub_76B0</span>()
-{
-  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v1; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v2; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v3; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v4; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v5; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v7; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v8; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v9; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v10; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v11; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v12; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v13; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v14; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v15; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v16; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v17; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v18; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v19; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v20; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v21; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v22; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v23; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v24; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v25; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v26; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v27; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v28; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v29; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v30; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v31; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v32; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v33; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v34; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v35; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v36; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v37; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v38; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v39; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v40; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v41; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v42; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v43; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v44; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v45; <span style="color:#75715e">// r12
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v46; <span style="color:#75715e">// lr
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v47; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v48; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v49; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v50; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v51; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v52; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v53; <span style="color:#75715e">// r1
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v54; <span style="color:#75715e">// r2
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v55; <span style="color:#75715e">// r3
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v57; <span style="color:#75715e">// [sp+14h] [bp-7Ch]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v58; <span style="color:#75715e">// [sp+18h] [bp-78h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v59; <span style="color:#75715e">// [sp+6Ch] [bp-24h]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v60; <span style="color:#75715e">// [sp+76h] [bp-1Ah]
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> v61; <span style="color:#75715e">// [sp+77h] [bp-19h]
-</span><span style="color:#75715e"></span>
-  v59 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>)((sqrt((<span style="color:#66d9ef">double</span>)(<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> (dword_2B008 <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x13F4E6A3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1.0</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.0</span>);
-  dword_2B008 <span style="color:#f92672">+=</span> v59;
-  v58 <span style="color:#f92672">=</span> dword_2B008 <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>;
-  v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">329878480</span>;
-  <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-  {
-    <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-    {
-      <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-      {
-        <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-        {
-          <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-          {
-            <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-            {
-              <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-              {
-                <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                {
-                  <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                  {
-                    <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                    {
-                      <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                      {
-                        <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                        {
-                          <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                          {
-                            <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
-                            {
-                              <span style="color:#66d9ef">while</span> ( v57 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1902481392</span> )
-                              {
-                                v2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">982494985</span>;
-                                v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                                v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                                v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                                v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                                <span style="color:#66d9ef">if</span> ( (v3 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v4 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v3 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v4) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-                                  v2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">631845012</span>;
-                                v57 <span style="color:#f92672">=</span> v2;
-                              }
-                              <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1839432635</span> )
-                                <span style="color:#66d9ef">break</span>;
-                              v31 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span>;
-                              <span style="color:#66d9ef">if</span> ( v61 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-                                v31 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">356495000</span>;
-                              v57 <span style="color:#f92672">=</span> v31;
-                            }
-                            <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span> )
-                              <span style="color:#66d9ef">break</span>;
-                            v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">972960622</span>;
-                          }
-                          <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span> )
-                            <span style="color:#66d9ef">break</span>;
-                          v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1037163223</span>;
-                        }
-                        <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1492608071</span> )
-                          <span style="color:#66d9ef">break</span>;
-                        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">973492237</span>;
-                      }
-                      <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1424285714</span> )
-                        <span style="color:#66d9ef">break</span>;
-                      v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span>;
-                    }
-                    <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span> )
-                      <span style="color:#66d9ef">break</span>;
-                    v38 <span style="color:#f92672">=</span> <span style="color:#ae81ff">834798273</span>;
-                    v39 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                    v39 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                    v40 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                    v40 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                    <span style="color:#66d9ef">if</span> ( (v39 <span style="color:#f92672">&amp;</span> v40 <span style="color:#f92672">|</span> v39 <span style="color:#f92672">^</span> v40) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-                      v38 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1385700430</span>;
-                    v57 <span style="color:#f92672">=</span> v38;
-                  }
-                  <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span> )
-                    <span style="color:#66d9ef">break</span>;
-                  v13 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1181698316</span>;
-                  dword_2B00C <span style="color:#f92672">*=</span> v59;
-                  v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                  v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                  v15 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-                  v15 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-                  <span style="color:#66d9ef">if</span> ( (v14 <span style="color:#f92672">&amp;</span> v15 <span style="color:#f92672">|</span> v14 <span style="color:#f92672">^</span> v15) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-                    v13 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">854969644</span>;
-                  v57 <span style="color:#f92672">=</span> v13;
-                }
-                <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">981935185</span> )
-                  <span style="color:#66d9ef">break</span>;
-                dword_2B00C <span style="color:#f92672">&lt;&lt;=</span> v59 <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;
-                v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span>;
-              }
-              <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">854969644</span> )
-                <span style="color:#66d9ef">break</span>;
-              v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2074254629</span>;
-            }
-            <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span> )
-              <span style="color:#66d9ef">break</span>;
-            v35 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span>;
-            dword_2B00C <span style="color:#f92672">+=</span> dword_2B008;
-            v36 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            v36 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-            v37 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            v37 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">if</span> ( (v36 <span style="color:#f92672">&amp;</span> v37 <span style="color:#f92672">|</span> v36 <span style="color:#f92672">^</span> v37) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-              v35 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1424285714</span>;
-            v57 <span style="color:#f92672">=</span> v35;
-          }
-          <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span> )
-            <span style="color:#66d9ef">break</span>;
-          v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span>;
-        }
-        <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span> )
-          <span style="color:#66d9ef">break</span>;
-        dword_2B00C <span style="color:#f92672">+=</span> dword_2B008;
-        v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span>;
-      }
-      <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">356495000</span> )
-        <span style="color:#66d9ef">break</span>;
-      v32 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span>;
-      v33 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      v33 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-      v34 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      v34 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-      <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v33 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v34 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v33 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v34) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-        v32 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span>;
-      v57 <span style="color:#f92672">=</span> v32;
-    }
-    <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">7797833</span> )
-      <span style="color:#66d9ef">break</span>;
-    <span style="color:#66d9ef">switch</span> ( v57 )
-    {
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">187395956</span><span style="color:#f92672">:</span>
-        v10 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1181698316</span>;
-        v11 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v11 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v12 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v12 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v11 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v12 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v11 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v12) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v10 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span>;
-        v57 <span style="color:#f92672">=</span> v10;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">329878480</span><span style="color:#f92672">:</span>
-        v0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">564872742</span>;
-        v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>(dword_2B008 <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>) )
-          v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( v1 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v0 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1902481392</span>;
-        v57 <span style="color:#f92672">=</span> v0;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">413793462</span><span style="color:#f92672">:</span>
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">973492237</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">475330195</span><span style="color:#f92672">:</span>
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1549997554</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">564872742</span><span style="color:#f92672">:</span>
-        v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">963397217</span>;
-        v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
-          v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( v9 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">187395956</span>;
-        v57 <span style="color:#f92672">=</span> v8;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">631845012</span><span style="color:#f92672">:</span>
-        v5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">982494985</span>;
-        dword_2B00C <span style="color:#f92672">=</span> (<span style="color:#f92672">~</span>dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x384FD424</span> <span style="color:#f92672">|</span> dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xC7B02BDB</span>) <span style="color:#f92672">^</span> (<span style="color:#f92672">~</span>dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x384FD424</span> <span style="color:#f92672">|</span> dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xC7B02BDB</span>);
-        v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v6 <span style="color:#f92672">&amp;</span> v7 <span style="color:#f92672">|</span> v6 <span style="color:#f92672">^</span> v7) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">413793462</span>;
-        v57 <span style="color:#f92672">=</span> v5;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">792701847</span><span style="color:#f92672">:</span>
-        v23 <span style="color:#f92672">=</span> <span style="color:#ae81ff">851733706</span>;
-        <span style="color:#66d9ef">if</span> ( v60 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v23 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">981935185</span>;
-        v57 <span style="color:#f92672">=</span> v23;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">834798273</span><span style="color:#f92672">:</span>
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1385700430</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">851733706</span><span style="color:#f92672">:</span>
-        v24 <span style="color:#f92672">=</span> <span style="color:#ae81ff">475330195</span>;
-        v25 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v25 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v26 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v26 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v25 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v26 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v25 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v26) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v24 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1549997554</span>;
-        v57 <span style="color:#f92672">=</span> v24;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">963397217</span><span style="color:#f92672">:</span>
-        v16 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span>;
-        v17 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v17 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v17 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v18 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v17 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v18) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v16 <span style="color:#f92672">=</span> <span style="color:#ae81ff">972960622</span>;
-        v57 <span style="color:#f92672">=</span> v16;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">972960622</span><span style="color:#f92672">:</span>
-        v19 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span>;
-        v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> )
-          v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v60 <span style="color:#f92672">=</span> v20 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-        v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v21 <span style="color:#f92672">&amp;</span> v22 <span style="color:#f92672">|</span> v21 <span style="color:#f92672">^</span> v22) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v19 <span style="color:#f92672">=</span> <span style="color:#ae81ff">792701847</span>;
-        v57 <span style="color:#f92672">=</span> v19;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">973492237</span><span style="color:#f92672">:</span>
-        v50 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1946369812</span>;
-        v51 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v51 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v52 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v52 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v51 <span style="color:#f92672">&amp;</span> v52 <span style="color:#f92672">|</span> v51 <span style="color:#f92672">^</span> v52) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v50 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2087024114</span>;
-        v57 <span style="color:#f92672">=</span> v50;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">982494985</span><span style="color:#f92672">:</span>
-        dword_2B00C <span style="color:#f92672">=</span> dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>dword_2B00C <span style="color:#f92672">|</span> dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>dword_2B008;
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">631845012</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1037163223</span><span style="color:#f92672">:</span>
-        v47 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span>;
-        v48 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v48 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v49 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v49 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v48 <span style="color:#f92672">&amp;</span> v49 <span style="color:#f92672">|</span> v48 <span style="color:#f92672">^</span> v49) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v47 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1492608071</span>;
-        v57 <span style="color:#f92672">=</span> v47;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1181698316</span><span style="color:#f92672">:</span>
-        dword_2B00C <span style="color:#f92672">*=</span> v59;
-        v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1385700430</span><span style="color:#f92672">:</span>
-        v41 <span style="color:#f92672">=</span> <span style="color:#ae81ff">834798273</span>;
-        v42 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v42 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v43 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v43 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v42 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v43 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v42 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v43) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v41 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1848868637</span>;
-        v57 <span style="color:#f92672">=</span> v41;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1549997554</span><span style="color:#f92672">:</span>
-        v27 <span style="color:#f92672">=</span> <span style="color:#ae81ff">475330195</span>;
-        v28 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> )
-          v28 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v61 <span style="color:#f92672">=</span> v28 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
-        v29 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v29 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v30 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v30 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v29 <span style="color:#f92672">&amp;</span> v30 <span style="color:#f92672">|</span> v29 <span style="color:#f92672">^</span> v30) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v27 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1839432635</span>;
-        v57 <span style="color:#f92672">=</span> v27;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1848868637</span><span style="color:#f92672">:</span>
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2074254629</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1946369812</span><span style="color:#f92672">:</span>
-        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2087024114</span>;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2074254629</span><span style="color:#f92672">:</span>
-        v44 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span>;
-        v45 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v45 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v46 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v46 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v45 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v46 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v45 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v46) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v44 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1037163223</span>;
-        v57 <span style="color:#f92672">=</span> v44;
-        <span style="color:#66d9ef">break</span>;
-      <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2087024114</span><span style="color:#f92672">:</span>
-        v53 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1946369812</span>;
-        v54 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v54 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        v55 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        v55 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">if</span> ( (v54 <span style="color:#f92672">&amp;</span> v55 <span style="color:#f92672">|</span> v54 <span style="color:#f92672">^</span> v55) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )
-          v53 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">7797833</span>;
-        v57 <span style="color:#f92672">=</span> v53;
-        <span style="color:#66d9ef">break</span>;
-    }
-  }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#66d9ef">while</span>(dword_2B008 <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x13f4f9f8</span>)
-        sub_76B0();
-    printf(<span style="color:#e6db74">&#34;%x %x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dword_2B008, dword_2B00C);
-    <span style="color:#75715e">// 13f4f9f9 38fa7a28
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;math.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dword_2B008 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x13F4E6A3</span>;  
+<span style="color:#66d9ef">int</span> dword_2B00C <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xDEF984B1</span>;  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sub_76B0</span>()  
+{  
+<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v0; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v1; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v2; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v3; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v4; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v5; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v6; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v7; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v8; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v9; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v10; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v11; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v12; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v13; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v14; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v15; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v16; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v17; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v18; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v19; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v20; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v21; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v22; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v23; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v24; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v25; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v26; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v27; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v28; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v29; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v30; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v31; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v32; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v33; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v34; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v35; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v36; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v37; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v38; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v39; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v40; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v41; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v42; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v43; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v44; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v45; <span style="color:#75715e">// r12  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v46; <span style="color:#75715e">// lr  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v47; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v48; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v49; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v50; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v51; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v52; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v53; <span style="color:#75715e">// r1  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v54; <span style="color:#75715e">// r2  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v55; <span style="color:#75715e">// r3  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v57; <span style="color:#75715e">// [sp+14h] [bp-7Ch]  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> v58; <span style="color:#75715e">// [sp+18h] [bp-78h]  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span> v59; <span style="color:#75715e">// [sp+6Ch] [bp-24h]  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v60; <span style="color:#75715e">// [sp+76h] [bp-1Ah]  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> v61; <span style="color:#75715e">// [sp+77h] [bp-19h]  
+</span><span style="color:#75715e"></span>  
+v59 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">int</span>)((sqrt((<span style="color:#66d9ef">double</span>)(<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> (dword_2B008 <span style="color:#f92672">-</span> <span style="color:#ae81ff">0x13F4E6A3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1.0</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.0</span>);  
+dword_2B008 <span style="color:#f92672">+=</span> v59;  
+v58 <span style="color:#f92672">=</span> dword_2B008 <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>;  
+v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">329878480</span>;  
+<span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+{  
+<span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+{  
+  <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+  {  
+    <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+    {  
+      <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+      {  
+        <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+        {  
+          <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+          {  
+            <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+            {  
+              <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+              {  
+                <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+                {  
+                  <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+                  {  
+                    <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+                    {  
+                      <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+                      {  
+                        <span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )  
+                        {  
+                          <span style="color:#66d9ef">while</span> ( v57 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1902481392</span> )  
+                          {  
+                            v2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">982494985</span>;  
+                            v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+                            v3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+                            v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+                            v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+                            <span style="color:#66d9ef">if</span> ( (v3 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v4 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v3 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v4) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+                              v2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">631845012</span>;  
+                            v57 <span style="color:#f92672">=</span> v2;  
+                          }  
+                          <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1839432635</span> )  
+                            <span style="color:#66d9ef">break</span>;  
+                          v31 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span>;  
+                          <span style="color:#66d9ef">if</span> ( v61 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+                            v31 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">356495000</span>;  
+                          v57 <span style="color:#f92672">=</span> v31;  
+                        }  
+                        <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span> )  
+                          <span style="color:#66d9ef">break</span>;  
+                        v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">972960622</span>;  
+                      }  
+                      <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span> )  
+                        <span style="color:#66d9ef">break</span>;  
+                      v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1037163223</span>;  
+                    }  
+                    <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1492608071</span> )  
+                      <span style="color:#66d9ef">break</span>;  
+                    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">973492237</span>;  
+                  }  
+                  <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1424285714</span> )  
+                    <span style="color:#66d9ef">break</span>;  
+                  v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span>;  
+                }  
+                <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span> )  
+                  <span style="color:#66d9ef">break</span>;  
+                v38 <span style="color:#f92672">=</span> <span style="color:#ae81ff">834798273</span>;  
+                v39 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+                v39 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+                v40 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+                v40 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+                <span style="color:#66d9ef">if</span> ( (v39 <span style="color:#f92672">&amp;</span> v40 <span style="color:#f92672">|</span> v39 <span style="color:#f92672">^</span> v40) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+                  v38 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1385700430</span>;  
+                v57 <span style="color:#f92672">=</span> v38;  
+              }  
+              <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span> )  
+                <span style="color:#66d9ef">break</span>;  
+              v13 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1181698316</span>;  
+              dword_2B00C <span style="color:#f92672">*=</span> v59;  
+              v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+              v14 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+              v15 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+              v15 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+              <span style="color:#66d9ef">if</span> ( (v14 <span style="color:#f92672">&amp;</span> v15 <span style="color:#f92672">|</span> v14 <span style="color:#f92672">^</span> v15) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+                v13 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">854969644</span>;  
+              v57 <span style="color:#f92672">=</span> v13;  
+            }  
+            <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">981935185</span> )  
+              <span style="color:#66d9ef">break</span>;  
+            dword_2B00C <span style="color:#f92672">&lt;&lt;=</span> v59 <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;  
+            v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span>;  
+          }  
+          <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">854969644</span> )  
+            <span style="color:#66d9ef">break</span>;  
+          v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2074254629</span>;  
+        }  
+        <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span> )  
+          <span style="color:#66d9ef">break</span>;  
+        v35 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span>;  
+        dword_2B00C <span style="color:#f92672">+=</span> dword_2B008;  
+        v36 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+        v36 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+        v37 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+        v37 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+        <span style="color:#66d9ef">if</span> ( (v36 <span style="color:#f92672">&amp;</span> v37 <span style="color:#f92672">|</span> v36 <span style="color:#f92672">^</span> v37) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+          v35 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1424285714</span>;  
+        v57 <span style="color:#f92672">=</span> v35;  
+      }  
+      <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">662380450</span> )  
+        <span style="color:#66d9ef">break</span>;  
+      v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1252652544</span>;  
+    }  
+    <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span> )  
+      <span style="color:#66d9ef">break</span>;  
+    dword_2B00C <span style="color:#f92672">+=</span> dword_2B008;  
+    v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span>;  
+  }  
+  <span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">356495000</span> )  
+    <span style="color:#66d9ef">break</span>;  
+  v32 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">435027630</span>;  
+  v33 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+  v33 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+  v34 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+  v34 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+  <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v33 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v34 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v33 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v34) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+    v32 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">744507517</span>;  
+  v57 <span style="color:#f92672">=</span> v32;  
+}  
+<span style="color:#66d9ef">if</span> ( v57 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">7797833</span> )  
+  <span style="color:#66d9ef">break</span>;  
+<span style="color:#66d9ef">switch</span> ( v57 )  
+{  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">187395956</span><span style="color:#f92672">:</span>  
+    v10 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1181698316</span>;  
+    v11 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v11 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v12 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v12 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v11 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v12 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v11 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v12) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v10 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span>;  
+    v57 <span style="color:#f92672">=</span> v10;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">329878480</span><span style="color:#f92672">:</span>  
+    v0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">564872742</span>;  
+    v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>(dword_2B008 <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>) )  
+      v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( v1 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v0 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1902481392</span>;  
+    v57 <span style="color:#f92672">=</span> v0;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">413793462</span><span style="color:#f92672">:</span>  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">973492237</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">475330195</span><span style="color:#f92672">:</span>  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1549997554</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">564872742</span><span style="color:#f92672">:</span>  
+    v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">963397217</span>;  
+    v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )  
+      v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( v9 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">187395956</span>;  
+    v57 <span style="color:#f92672">=</span> v8;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">631845012</span><span style="color:#f92672">:</span>  
+    v5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">982494985</span>;  
+    dword_2B00C <span style="color:#f92672">=</span> (<span style="color:#f92672">~</span>dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x384FD424</span> <span style="color:#f92672">|</span> dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xC7B02BDB</span>) <span style="color:#f92672">^</span> (<span style="color:#f92672">~</span>dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x384FD424</span> <span style="color:#f92672">|</span> dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xC7B02BDB</span>);  
+    v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v6 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v7 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v6 <span style="color:#f92672">&amp;</span> v7 <span style="color:#f92672">|</span> v6 <span style="color:#f92672">^</span> v7) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">413793462</span>;  
+    v57 <span style="color:#f92672">=</span> v5;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">792701847</span><span style="color:#f92672">:</span>  
+    v23 <span style="color:#f92672">=</span> <span style="color:#ae81ff">851733706</span>;  
+    <span style="color:#66d9ef">if</span> ( v60 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v23 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">981935185</span>;  
+    v57 <span style="color:#f92672">=</span> v23;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">834798273</span><span style="color:#f92672">:</span>  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1385700430</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">851733706</span><span style="color:#f92672">:</span>  
+    v24 <span style="color:#f92672">=</span> <span style="color:#ae81ff">475330195</span>;  
+    v25 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v25 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v26 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v26 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v25 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v26 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v25 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v26) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v24 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1549997554</span>;  
+    v57 <span style="color:#f92672">=</span> v24;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">963397217</span><span style="color:#f92672">:</span>  
+    v16 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span>;  
+    v17 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v17 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v18 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v17 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v18 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v17 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v18) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v16 <span style="color:#f92672">=</span> <span style="color:#ae81ff">972960622</span>;  
+    v57 <span style="color:#f92672">=</span> v16;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">972960622</span><span style="color:#f92672">:</span>  
+    v19 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1690025818</span>;  
+    v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> )  
+      v20 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v60 <span style="color:#f92672">=</span> v20 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;  
+    v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v21 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v22 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v21 <span style="color:#f92672">&amp;</span> v22 <span style="color:#f92672">|</span> v21 <span style="color:#f92672">^</span> v22) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v19 <span style="color:#f92672">=</span> <span style="color:#ae81ff">792701847</span>;  
+    v57 <span style="color:#f92672">=</span> v19;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">973492237</span><span style="color:#f92672">:</span>  
+    v50 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1946369812</span>;  
+    v51 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v51 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v52 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v52 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v51 <span style="color:#f92672">&amp;</span> v52 <span style="color:#f92672">|</span> v51 <span style="color:#f92672">^</span> v52) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v50 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2087024114</span>;  
+    v57 <span style="color:#f92672">=</span> v50;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">982494985</span><span style="color:#f92672">:</span>  
+    dword_2B00C <span style="color:#f92672">=</span> dword_2B008 <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>dword_2B00C <span style="color:#f92672">|</span> dword_2B00C <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>dword_2B008;  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">631845012</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1037163223</span><span style="color:#f92672">:</span>  
+    v47 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span>;  
+    v48 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v48 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v49 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v49 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v48 <span style="color:#f92672">&amp;</span> v49 <span style="color:#f92672">|</span> v48 <span style="color:#f92672">^</span> v49) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v47 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1492608071</span>;  
+    v57 <span style="color:#f92672">=</span> v47;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1181698316</span><span style="color:#f92672">:</span>  
+    dword_2B00C <span style="color:#f92672">*=</span> v59;  
+    v57 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1086664836</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1385700430</span><span style="color:#f92672">:</span>  
+    v41 <span style="color:#f92672">=</span> <span style="color:#ae81ff">834798273</span>;  
+    v42 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v42 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v43 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v43 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">~</span>v42 <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>v43 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v42 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v43) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v41 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1848868637</span>;  
+    v57 <span style="color:#f92672">=</span> v41;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1549997554</span><span style="color:#f92672">:</span>  
+    v27 <span style="color:#f92672">=</span> <span style="color:#ae81ff">475330195</span>;  
+    v28 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    <span style="color:#66d9ef">if</span> ( v58 <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> )  
+      v28 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v61 <span style="color:#f92672">=</span> v28 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;  
+    v29 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v29 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v30 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v30 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v29 <span style="color:#f92672">&amp;</span> v30 <span style="color:#f92672">|</span> v29 <span style="color:#f92672">^</span> v30) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v27 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1839432635</span>;  
+    v57 <span style="color:#f92672">=</span> v27;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1848868637</span><span style="color:#f92672">:</span>  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2074254629</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1946369812</span><span style="color:#f92672">:</span>  
+    v57 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2087024114</span>;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2074254629</span><span style="color:#f92672">:</span>  
+    v44 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1673856231</span>;  
+    v45 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v45 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v46 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v46 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v45 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> v46 <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(<span style="color:#f92672">~</span>v45 <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>v46) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v44 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1037163223</span>;  
+    v57 <span style="color:#f92672">=</span> v44;  
+    <span style="color:#66d9ef">break</span>;  
+  <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2087024114</span><span style="color:#f92672">:</span>  
+    v53 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1946369812</span>;  
+    v54 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v54 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    v55 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  
+    v55 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  
+    <span style="color:#66d9ef">if</span> ( (v54 <span style="color:#f92672">&amp;</span> v55 <span style="color:#f92672">|</span> v54 <span style="color:#f92672">^</span> v55) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> )  
+      v53 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">7797833</span>;  
+    v57 <span style="color:#f92672">=</span> v53;  
+    <span style="color:#66d9ef">break</span>;  
+}  
+}  
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()  
+{  
+<span style="color:#66d9ef">while</span>(dword_2B008 <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x13f4f9f8</span>)  
+    sub_76B0();  
+printf(<span style="color:#e6db74">&#34;%x %x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dword_2B008, dword_2B00C);  
+<span style="color:#75715e">// 13f4f9f9 38fa7a28  
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
 </code></pre></div>
     </div>
 

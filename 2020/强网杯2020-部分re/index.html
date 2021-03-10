@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="强网杯2020-部分re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,13 +177,13 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h3"><li><a href="/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/#xx_warmup_obf" class="toc-link">xx_warmup_obf</a></li>
-                        <li><a href="/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/#imitation_game" class="toc-link">imitation_game</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h3"><li><a href="/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/#xx_warmup_obf" class="toc-link">xx_warmup_obf</a></li>
+                          <li><a href="/2020/%E5%BC%BA%E7%BD%91%E6%9D%AF2020-%E9%83%A8%E5%88%86re/#imitation_game" class="toc-link">imitation_game</a></li>
+                          </div>
+  </div>
+  
         
         <p>wtclwtclwtcl拖后腿一级选手哭</p>
 <h3 id="xx_warmup_obf">xx_warmup_obf</h3>
@@ -591,7 +591,7 @@ solver<span style="color:#f92672">.</span>add(<span style="color:#ae81ff">264405
 res <span style="color:#f92672">=</span> solver<span style="color:#f92672">.</span>model()
 flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> s:
-    flag <span style="color:#f92672">=</span> flag <span style="color:#f92672">+</span> chr(int(str(res[a])))
+flag <span style="color:#f92672">=</span> flag <span style="color:#f92672">+</span> chr(int(str(res[a])))
 <span style="color:#66d9ef">print</span>(flag) 
 </code></pre></div><h3 id="imitation_game">imitation_game</h3>
 <p>first part:
@@ -600,27 +600,27 @@ AES加密，CBC模式</p>
 <span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
 <span style="color:#f92672">import</span> binascii
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">padding</span>(s,n):
-    len1 <span style="color:#f92672">=</span> len(s)
-    n1 <span style="color:#f92672">=</span> len1 <span style="color:#f92672">%</span> n
-    s <span style="color:#f92672">+=</span> chr(<span style="color:#ae81ff">0x1a</span>)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">49</span><span style="color:#f92672">-</span>n1)
-    s <span style="color:#f92672">+=</span> chr(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">0x40</span><span style="color:#f92672">-</span>len(s))
-    <span style="color:#66d9ef">return</span> s
+len1 <span style="color:#f92672">=</span> len(s)
+n1 <span style="color:#f92672">=</span> len1 <span style="color:#f92672">%</span> n
+s <span style="color:#f92672">+=</span> chr(<span style="color:#ae81ff">0x1a</span>)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">49</span><span style="color:#f92672">-</span>n1)
+s <span style="color:#f92672">+=</span> chr(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">0x40</span><span style="color:#f92672">-</span>len(s))
+<span style="color:#66d9ef">return</span> s
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">de_aes_cbc</span>(s,k):
-    <span style="color:#66d9ef">if</span> len(s) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
-        s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">16</span>)
-    key <span style="color:#f92672">=</span> k
-    iv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; !</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./&#34;</span>
-    ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
-    <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>decrypt(s)
+<span style="color:#66d9ef">if</span> len(s) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+    s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">16</span>)
+key <span style="color:#f92672">=</span> k
+iv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; !</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./&#34;</span>
+ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
+<span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>decrypt(s)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">en_aes_cbc</span>(s,k):
-    s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">0x40</span>)
-    key <span style="color:#f92672">=</span> k
-    iv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; !</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./&#34;</span>
-    <span style="color:#66d9ef">print</span>(len(k), len(iv))
-    ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
-    <span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>encrypt(s)
+s <span style="color:#f92672">=</span> padding(s,<span style="color:#ae81ff">0x40</span>)
+key <span style="color:#f92672">=</span> k
+iv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; !</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./&#34;</span>
+<span style="color:#66d9ef">print</span>(len(k), len(iv))
+ci <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key,AES<span style="color:#f92672">.</span>MODE_CBC,iv)
+<span style="color:#66d9ef">return</span> ci<span style="color:#f92672">.</span>encrypt(s)
 
 target <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0x9D</span>, <span style="color:#ae81ff">0x7B</span>, <span style="color:#ae81ff">0xA2</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0xB1</span>, <span style="color:#ae81ff">0x09</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0x41</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x66</span>, <span style="color:#ae81ff">0x63</span>, <span style="color:#ae81ff">0xD6</span>, <span style="color:#ae81ff">0xAE</span>, <span style="color:#ae81ff">0x3C</span>, <span style="color:#ae81ff">0xAB</span>, <span style="color:#ae81ff">0x1F</span>, <span style="color:#ae81ff">0x44</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x33</span>, <span style="color:#ae81ff">0xFB</span>, <span style="color:#ae81ff">0xB5</span>, <span style="color:#ae81ff">0xB8</span>, <span style="color:#ae81ff">0xA9</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x65</span>, <span style="color:#ae81ff">0x83</span>, <span style="color:#ae81ff">0xD9</span>, <span style="color:#ae81ff">0x47</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x6D</span>, <span style="color:#ae81ff">0x24</span>, <span style="color:#ae81ff">0xB0</span>, <span style="color:#ae81ff">0x75</span>, <span style="color:#ae81ff">0x79</span>, <span style="color:#ae81ff">0xD5</span>, <span style="color:#ae81ff">0xCC</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0x67</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x62</span>, <span style="color:#ae81ff">0x4C</span>, <span style="color:#ae81ff">0xF1</span>, <span style="color:#ae81ff">0xF5</span>, <span style="color:#ae81ff">0xAF</span>, <span style="color:#ae81ff">0x9E</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0x93</span>, <span style="color:#ae81ff">0x69</span>, <span style="color:#ae81ff">0x7C</span>, <span style="color:#ae81ff">0x48</span>, <span style="color:#ae81ff">0xAD</span>, <span style="color:#ae81ff">0xD3</span>, <span style="color:#ae81ff">0x45</span>, <span style="color:#ae81ff">0x29</span>, <span style="color:#ae81ff">0x68</span>, <span style="color:#ae81ff">0xBA</span>, <span style="color:#ae81ff">0xED</span>, <span style="color:#ae81ff">0x9A</span>, <span style="color:#ae81ff">0x70</span>, <span style="color:#ae81ff">0xA0</span>, <span style="color:#ae81ff">0xD1</span>, <span style="color:#ae81ff">0x0D</span>]
 strs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(chr(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> target)
@@ -636,42 +636,42 @@ strs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;
 首先获得10个输入，输出到屏幕上，输入存储在v0-v9寄存器上；之后首先对10个输入逐个做加法或者异或操作，再三个一组的做乘法求和；最后校验乘法和是否和固定值相等。写脚本爆破就能获得后半段flag。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cmp_list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0x21</span>, <span style="color:#ae81ff">0x2a</span>, <span style="color:#ae81ff">0x30</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x3b</span>, <span style="color:#ae81ff">0x1f</span>, <span style="color:#ae81ff">0x16</span>, <span style="color:#ae81ff">0x20</span>, ]
 multi_list <span style="color:#f92672">=</span> [
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>],
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>],
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
-    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>]
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>],
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>],
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>]
 ]
 
 flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;6c8f1d78770fe672122478c6f9a150e0&#34;</span>
 
 <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">3</span>):
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
-        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
-            <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
-                <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-                    x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-                    y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-                    z <span style="color:#f92672">=</span> (k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">^</span> <span style="color:#ae81ff">1</span>
-                <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-                    x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>
-                    y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-                    z <span style="color:#f92672">=</span> (k<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-                <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
-                    x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> i
-                    y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-                    z <span style="color:#f92672">=</span> (k<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
+        <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> xrange(<span style="color:#ae81ff">32</span>):
+            <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+                y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                z <span style="color:#f92672">=</span> (k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">^</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+                x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>
+                y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+                z <span style="color:#f92672">=</span> (k<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+                x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> i
+                y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                z <span style="color:#f92672">=</span> (k<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
 
-                <span style="color:#66d9ef">if</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">2</span>] \
-                <span style="color:#f92672">and</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">2</span>] \
-                <span style="color:#f92672">and</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">2</span>] :
-                    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%x%x%x</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, j, k)
-                    flag <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%x%x%x</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, j, k)
-                
+            <span style="color:#66d9ef">if</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n][<span style="color:#ae81ff">2</span>] \
+            <span style="color:#f92672">and</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">2</span>] \
+            <span style="color:#f92672">and</span> cmp_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> x <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> multi_list[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">2</span>] :
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%x%x%x</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, j, k)
+                flag <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%x%x%x</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i, j, k)
+            
 flag <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;3&#34;</span>
 <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;flag{</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">}&#34;</span> <span style="color:#f92672">%</span> flag
 </code></pre></div>

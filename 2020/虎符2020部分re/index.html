@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="虎符2020部分re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,13 +177,13 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/#game" class="toc-link">game</a></li>
-                        <li><a href="/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/#vm" class="toc-link">vm</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/#game" class="toc-link">game</a></li>
+                          <li><a href="/2020/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/#vm" class="toc-link">vm</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="game">game</h2>
 <p>根据python的反汇编代码可以得到下面的逻辑：</p>
@@ -191,386 +191,386 @@
 <li>check0 每个字符为32 - 128</li>
 <li>check1(s): len(s) &lt; 100 &amp;&amp; (len * len % 777) ^ 233 == 513  &gt; len(s) = 39</li>
 <li>check2(s): ((s[0]*128 + s[1])) * 128) + s[2]&hellip;s[5]=3533889469877 -&gt; s[5]=&lsquo;5&rsquo;</li>
-<li>check3:
-arr = map(ord(s))
-a = arr[slice(6, 30, 3)]
-for i in range(len(a))
-(a[i]*17684 + 372511)% 257 == arr0[i]
-b = arr[slice(-2, 33, -1)] * 5
-c = map(lambda x[0] ^ x[1], zip(b, arr[slice(7, 27)]))
-if c != arr1:
-p = 0
-for i in range(28, 34):
-(arr[i] + 107) / 16 + 77 == arr2[p]
-(arr[i] + 117) % 16 + 99 == arr2[p + 1]
+<li>check3:<br>
+arr = map(ord(s))<br>
+a = arr[slice(6, 30, 3)]<br>
+for i in range(len(a))<br>
+(a[i]*17684 + 372511)% 257 == arr0[i]<br>
+b = arr[slice(-2, 33, -1)] * 5<br>
+c = map(lambda x[0] ^ x[1], zip(b, arr[slice(7, 27)]))<br>
+if c != arr1:<br>
+p = 0<br>
+for i in range(28, 34):<br>
+(arr[i] + 107) / 16 + 77 == arr2[p]<br>
+(arr[i] + 117) % 16 + 99 == arr2[p + 1]<br>
 p = p + 2</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">arr0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">41</span>]
-arr1 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">60</span>]
-arr2 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">102</span>]
-flag6_30_3 <span style="color:#f92672">=</span> []
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(arr0)):
-    <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">128</span>):
-        <span style="color:#66d9ef">if</span> (t<span style="color:#f92672">*</span><span style="color:#ae81ff">17684</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">372511</span>)<span style="color:#f92672">%</span> <span style="color:#ae81ff">257</span> <span style="color:#f92672">==</span> arr0[i]:
-            flag6_30_3<span style="color:#f92672">.</span>append(chr(t))
-            <span style="color:#66d9ef">continue</span>
-flag_35 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">1</span>]))
-flag_36 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">2</span>]))
-flag_37 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">3</span>]))
-flag_34 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">4</span>]))
-b <span style="color:#f92672">=</span> [ord(flag_37), ord(flag_36), ord(flag_35), ord(flag_34)] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>
-flag_7_27 <span style="color:#f92672">=</span> []
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(arr1)):
-    flag_7_27<span style="color:#f92672">.</span>append(chr(b[i] <span style="color:#f92672">^</span> arr1[i]))
-flag_28_34 <span style="color:#f92672">=</span> []
-p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">34</span>):
-    <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">128</span>):
-        <span style="color:#66d9ef">if</span> (t <span style="color:#f92672">+</span> <span style="color:#ae81ff">107</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">77</span> <span style="color:#f92672">==</span> arr2[p] <span style="color:#f92672">and</span> (t <span style="color:#f92672">+</span> <span style="color:#ae81ff">117</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">99</span> <span style="color:#f92672">==</span> arr2[p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:
-            flag_28_34<span style="color:#f92672">.</span>append(chr(t))
-            <span style="color:#66d9ef">continue</span>
-    p <span style="color:#f92672">=</span> p <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-s1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> flag_7_27)
-s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> flag_28_34)
-s3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join([flag_34, flag_35,flag_36,flag_37])
-flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;flag{5&#39;</span><span style="color:#f92672">+</span>flag6_30_3[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>s1<span style="color:#f92672">+</span>flag6_30_3[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">+</span>s2<span style="color:#f92672">+</span>s3<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;}&#39;</span>
-<span style="color:#66d9ef">print</span> flag
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">arr0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">249</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">149</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">91</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">41</span>]  
+arr1 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">69</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">62</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">113</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">60</span>]  
+arr2 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">109</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">86</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">102</span>]  
+flag6_30_3 <span style="color:#f92672">=</span> []  
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(arr0)):  
+  <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">128</span>):  
+      <span style="color:#66d9ef">if</span> (t<span style="color:#f92672">*</span><span style="color:#ae81ff">17684</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">372511</span>)<span style="color:#f92672">%</span> <span style="color:#ae81ff">257</span> <span style="color:#f92672">==</span> arr0[i]:  
+          flag6_30_3<span style="color:#f92672">.</span>append(chr(t))  
+          <span style="color:#66d9ef">continue</span>  
+flag_35 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">1</span>]))  
+flag_36 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">2</span>]))  
+flag_37 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">3</span>]))  
+flag_34 <span style="color:#f92672">=</span> chr(arr1[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">^</span> ord(flag6_30_3[<span style="color:#ae81ff">4</span>]))  
+b <span style="color:#f92672">=</span> [ord(flag_37), ord(flag_36), ord(flag_35), ord(flag_34)] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>  
+flag_7_27 <span style="color:#f92672">=</span> []  
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(arr1)):  
+  flag_7_27<span style="color:#f92672">.</span>append(chr(b[i] <span style="color:#f92672">^</span> arr1[i]))  
+flag_28_34 <span style="color:#f92672">=</span> []  
+p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">34</span>):  
+  <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">128</span>):  
+      <span style="color:#66d9ef">if</span> (t <span style="color:#f92672">+</span> <span style="color:#ae81ff">107</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">77</span> <span style="color:#f92672">==</span> arr2[p] <span style="color:#f92672">and</span> (t <span style="color:#f92672">+</span> <span style="color:#ae81ff">117</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">99</span> <span style="color:#f92672">==</span> arr2[p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]:  
+          flag_28_34<span style="color:#f92672">.</span>append(chr(t))  
+          <span style="color:#66d9ef">continue</span>  
+  p <span style="color:#f92672">=</span> p <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+s1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> flag_7_27)  
+s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> flag_28_34)  
+s3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join([flag_34, flag_35,flag_36,flag_37])  
+flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;flag{5&#39;</span><span style="color:#f92672">+</span>flag6_30_3[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>s1<span style="color:#f92672">+</span>flag6_30_3[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">+</span>s2<span style="color:#f92672">+</span>s3<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;}&#39;</span>  
+<span style="color:#66d9ef">print</span> flag  
 </code></pre></div><h2 id="vm">vm</h2>
 <p>是个逻辑很清楚的vm，但是wtcl比赛时间对我来说有点短不够我翻译的&hellip;后面才做出来的，根据逻辑写出parser</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parser</span>(code):
-    f <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;opcode.txt&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>)
-    pc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-    ins <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span>
-    stack <span style="color:#f92672">=</span> []
-    reg <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>
-    store <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">300</span>
-    <span style="color:#66d9ef">while</span> pc <span style="color:#f92672">&lt;</span> len(code):
-        c <span style="color:#f92672">=</span> code[pc]
-        <span style="color:#66d9ef">if</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push inputc &#34;</span>)
-            stack<span style="color:#f92672">.</span>append(ins)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop --&gt; &#34;</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;outputc </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#34;</span><span style="color:#f92672">%</span>stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            <span style="color:#66d9ef">print</span> store
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;nop&#34;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#34;</span><span style="color:#f92672">%</span>code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
-            stack<span style="color:#f92672">.</span>append(code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] &#34;</span><span style="color:#f92672">%</span>code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
-            stack<span style="color:#f92672">.</span>append(reg[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]])
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] &#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))
-            reg[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))
-            stack<span style="color:#f92672">.</span>append(store[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]])
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))
-            store[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;add&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((a<span style="color:#f92672">+</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xa</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;sub&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((b<span style="color:#f92672">-</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xb</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;mul&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((a<span style="color:#f92672">*</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xc</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;div&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((b<span style="color:#f92672">/</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xd</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;mod&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(b<span style="color:#f92672">%</span>a)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xe</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;xor&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(b <span style="color:#f92672">^</span> a)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xf</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;and&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(b<span style="color:#f92672">&amp;</span>a)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x10</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;or&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(b <span style="color:#f92672">|</span> a)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x11</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;-&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((<span style="color:#f92672">-</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x12</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;~&#34;</span>)
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x13</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a <span style="color:#f92672">!=</span> b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not equal, go on&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;equal, jmp&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x14</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a <span style="color:#f92672">==</span> b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;equal, go on&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not equal, jump&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x15</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a<span style="color:#f92672">&lt;=</span>b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;less or equal, go on&#34;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not less or equal, jump&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x16</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&lt;</span> b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;less, go on&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not less, jump&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x17</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;=</span> b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;great or equal, go on&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not great or equal, jump&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x18</span>:
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)
-            <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> b:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;greate, go on&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-            <span style="color:#66d9ef">else</span>:
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not greate, jump&#34;</span>)
-                f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-                <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-                <span style="color:#66d9ef">else</span>:
-                    pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x19</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
-            a <span style="color:#f92672">=</span> store[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(a)
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1a</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
-            store[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1b</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
-            a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            stack<span style="color:#f92672">.</span>append(reg[a])
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1c</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
-            reg[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
-            pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> <span style="color:#ae81ff">0x1d</span>:
-            <span style="color:#66d9ef">if</span> pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;=</span> len(code):
-                <span style="color:#66d9ef">print</span> hex(pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
-                <span style="color:#66d9ef">break</span>
-            <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:
-                pc_t <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
-            <span style="color:#66d9ef">else</span>:
-                pc_t <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
-            pc <span style="color:#f92672">=</span> pc_t
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;jmp </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">%</span>pc_t)
-        <span style="color:#66d9ef">else</span>:
-            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Error&#34;</span>)
-            <span style="color:#66d9ef">break</span>
-
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;code&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
-    code <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
-    c <span style="color:#f92672">=</span> []
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> code:
-        c<span style="color:#f92672">.</span>append(ord(i))
-    parser(c)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parser</span>(code):  
+  f <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;opcode.txt&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>)  
+  pc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+  ins <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span>  
+  stack <span style="color:#f92672">=</span> []  
+  reg <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>  
+  store <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">300</span>  
+  <span style="color:#66d9ef">while</span> pc <span style="color:#f92672">&lt;</span> len(code):  
+      c <span style="color:#f92672">=</span> code[pc]  
+      <span style="color:#66d9ef">if</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push inputc &#34;</span>)  
+          stack<span style="color:#f92672">.</span>append(ins)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop --&gt; &#34;</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;outputc </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#34;</span><span style="color:#f92672">%</span>stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          <span style="color:#66d9ef">print</span> store  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;nop&#34;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> &#34;</span><span style="color:#f92672">%</span>code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])  
+          stack<span style="color:#f92672">.</span>append(code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] &#34;</span><span style="color:#f92672">%</span>code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])  
+          stack<span style="color:#f92672">.</span>append(reg[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]])  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] &#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))  
+          reg[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))  
+          stack<span style="color:#f92672">.</span>append(store[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]])  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]))  
+          store[code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;add&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((a<span style="color:#f92672">+</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xa</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;sub&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((b<span style="color:#f92672">-</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xb</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;mul&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((a<span style="color:#f92672">*</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xc</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;div&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((b<span style="color:#f92672">/</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xd</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;mod&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(b<span style="color:#f92672">%</span>a)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xe</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;xor&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(b <span style="color:#f92672">^</span> a)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0xf</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;and&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(b<span style="color:#f92672">&amp;</span>a)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x10</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;or&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(b <span style="color:#f92672">|</span> a)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x11</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;-&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((<span style="color:#f92672">-</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x12</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;~&#34;</span>)  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x13</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a <span style="color:#f92672">!=</span> b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not equal, go on&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;equal, jmp&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x14</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a <span style="color:#f92672">==</span> b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;equal, go on&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not equal, jump&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x15</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a<span style="color:#f92672">&lt;=</span>b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;less or equal, go on&#34;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not less or equal, jump&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x16</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&lt;</span> b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;less, go on&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not less, jump&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x17</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;=</span> b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;great or equal, go on&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not great or equal, jump&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x18</span>:  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          b <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;cmp&#34;</span>)  
+          <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> b:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;greate, go on&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+          <span style="color:#66d9ef">else</span>:  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;not greate, jump&#34;</span>)  
+              f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+              <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+              <span style="color:#66d9ef">else</span>:  
+                  pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x19</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))  
+          a <span style="color:#f92672">=</span> store[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(a)  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1a</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop store[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))  
+          store[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1b</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;push reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))  
+          a <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          stack<span style="color:#f92672">.</span>append(reg[a])  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x1c</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pop reg[</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">]&#34;</span><span style="color:#f92672">%</span>(stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))  
+          reg[stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">del</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;--&gt; now stack:&#34;</span> <span style="color:#f92672">+</span> str(stack)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+          pc <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      <span style="color:#66d9ef">elif</span> <span style="color:#ae81ff">0x1d</span>:  
+          <span style="color:#66d9ef">if</span> pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;=</span> len(code):  
+              <span style="color:#66d9ef">print</span> hex(pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)  
+              <span style="color:#66d9ef">break</span>  
+          <span style="color:#66d9ef">if</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0x7f</span>:  
+              pc_t <span style="color:#f92672">=</span> pc <span style="color:#f92672">+</span> code[pc<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]  
+          <span style="color:#66d9ef">else</span>:  
+              pc_t <span style="color:#f92672">=</span> pc <span style="color:#f92672">-</span> (<span style="color:#ae81ff">256</span> <span style="color:#f92672">-</span> code[pc <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])  
+          pc <span style="color:#f92672">=</span> pc_t  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;jmp </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">%</span>pc_t)  
+      <span style="color:#66d9ef">else</span>:  
+          f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;Error&#34;</span>)  
+          <span style="color:#66d9ef">break</span>  
+  
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;code&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
+  code <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()  
+  c <span style="color:#f92672">=</span> []  
+  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> code:  
+      c<span style="color:#f92672">.</span>append(ord(i))  
+  parser(c)  
 </code></pre></div><p>根据parser解析的结果分析加密逻辑就能写出解密的代码</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">enc</span>(s):
-    s1 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">42</span>
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):
-        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">6</span>):
-            a <span style="color:#f92672">=</span> s[i<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span><span style="color:#f92672">+</span>j]
-            b <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>i
-            k <span style="color:#f92672">=</span> ((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>) <span style="color:#f92672">&amp;</span> b
-            m <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> ((<span style="color:#f92672">~</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-            n <span style="color:#f92672">=</span> k <span style="color:#f92672">^</span> m
-            s1[j<span style="color:#f92672">*</span><span style="color:#ae81ff">7</span><span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> n
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">42</span>):
-        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
-            a <span style="color:#f92672">=</span> s1[i]
-            s1[i] <span style="color:#f92672">=</span> (a <span style="color:#f92672">*</span> <span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>
-        <span style="color:#66d9ef">else</span>:
-            s1[i] <span style="color:#f92672">=</span> (s1[i] <span style="color:#f92672">+</span> s1[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>
-    <span style="color:#66d9ef">return</span> s1
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dec</span>(c):
-    message <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">42</span>
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,len(c)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>):
-        c[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> (c[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> c[i])<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>
-        <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">255</span>):
-            <span style="color:#66d9ef">if</span> (h<span style="color:#f92672">*</span><span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span> <span style="color:#f92672">==</span> c[i]:
-                c[i] <span style="color:#f92672">=</span> h
-                <span style="color:#66d9ef">break</span>
-    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">41</span>
-    <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">255</span>):
-        <span style="color:#66d9ef">if</span> (h<span style="color:#f92672">*</span><span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span> <span style="color:#f92672">==</span> c[i]:
-            c[i] <span style="color:#f92672">=</span> h
-            <span style="color:#66d9ef">break</span>
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):
-        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">6</span>):
-            e <span style="color:#f92672">=</span> c[j<span style="color:#f92672">*</span><span style="color:#ae81ff">7</span><span style="color:#f92672">+</span>i]
-            b <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>i
-            <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">127</span>):
-                k <span style="color:#f92672">=</span> ((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>) <span style="color:#f92672">&amp;</span> b
-                m <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> ((<span style="color:#f92672">~</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)
-                n <span style="color:#f92672">=</span> k <span style="color:#f92672">^</span> m
-                <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> e:
-                    message[i<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span><span style="color:#f92672">+</span>j] <span style="color:#f92672">=</span> a
-                    <span style="color:#66d9ef">break</span>
-    <span style="color:#66d9ef">return</span> message
-data <span style="color:#f92672">=</span> [<span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">177</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">93</span>]
-flag <span style="color:#f92672">=</span> dec(data)
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(chr(f) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> flag)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">enc</span>(s):  
+  s1 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">42</span>  
+  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):  
+      <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">6</span>):  
+          a <span style="color:#f92672">=</span> s[i<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span><span style="color:#f92672">+</span>j]  
+          b <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>i  
+          k <span style="color:#f92672">=</span> ((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>) <span style="color:#f92672">&amp;</span> b  
+          m <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> ((<span style="color:#f92672">~</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+          n <span style="color:#f92672">=</span> k <span style="color:#f92672">^</span> m  
+          s1[j<span style="color:#f92672">*</span><span style="color:#ae81ff">7</span><span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> n  
+  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">42</span>):  
+      <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:  
+          a <span style="color:#f92672">=</span> s1[i]  
+          s1[i] <span style="color:#f92672">=</span> (a <span style="color:#f92672">*</span> <span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>  
+      <span style="color:#66d9ef">else</span>:  
+          s1[i] <span style="color:#f92672">=</span> (s1[i] <span style="color:#f92672">+</span> s1[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>  
+  <span style="color:#66d9ef">return</span> s1  
+  
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dec</span>(c):  
+  message <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">42</span>  
+  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,len(c)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>):  
+      c[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> (c[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> c[i])<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>  
+      <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">255</span>):  
+          <span style="color:#66d9ef">if</span> (h<span style="color:#f92672">*</span><span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span> <span style="color:#f92672">==</span> c[i]:  
+              c[i] <span style="color:#f92672">=</span> h  
+              <span style="color:#66d9ef">break</span>  
+  i <span style="color:#f92672">=</span> <span style="color:#ae81ff">41</span>  
+  <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">255</span>):  
+      <span style="color:#66d9ef">if</span> (h<span style="color:#f92672">*</span><span style="color:#ae81ff">107</span>)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span> <span style="color:#f92672">==</span> c[i]:  
+          c[i] <span style="color:#f92672">=</span> h  
+          <span style="color:#66d9ef">break</span>  
+  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):  
+      <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">6</span>):  
+          e <span style="color:#f92672">=</span> c[j<span style="color:#f92672">*</span><span style="color:#ae81ff">7</span><span style="color:#f92672">+</span>i]  
+          b <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>i  
+          <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">127</span>):  
+              k <span style="color:#f92672">=</span> ((<span style="color:#f92672">~</span>a)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>) <span style="color:#f92672">&amp;</span> b  
+              m <span style="color:#f92672">=</span> a <span style="color:#f92672">&amp;</span> ((<span style="color:#f92672">~</span>b)<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">0xff</span>)  
+              n <span style="color:#f92672">=</span> k <span style="color:#f92672">^</span> m  
+              <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> e:  
+                  message[i<span style="color:#f92672">*</span><span style="color:#ae81ff">6</span><span style="color:#f92672">+</span>j] <span style="color:#f92672">=</span> a  
+                  <span style="color:#66d9ef">break</span>  
+  <span style="color:#66d9ef">return</span> message  
+data <span style="color:#f92672">=</span> [<span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">78</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">85</span>, <span style="color:#ae81ff">144</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">87</span>, <span style="color:#ae81ff">246</span>, <span style="color:#ae81ff">93</span>, <span style="color:#ae81ff">177</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">129</span>, <span style="color:#ae81ff">253</span>, <span style="color:#ae81ff">54</span>, <span style="color:#ae81ff">169</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">161</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">143</span>, <span style="color:#ae81ff">206</span>, <span style="color:#ae81ff">119</span>, <span style="color:#ae81ff">232</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">158</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">165</span>, <span style="color:#ae81ff">207</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">189</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">219</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">164</span>, <span style="color:#ae81ff">93</span>]  
+flag <span style="color:#f92672">=</span> dec(data)  
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(chr(f) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> flag)  
 </code></pre></div>
     </div>
 

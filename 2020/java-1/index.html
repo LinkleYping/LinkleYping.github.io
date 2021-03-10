@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="Java 泛型与回调 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,14 +177,14 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e7%b1%bb" class="toc-link">泛型类</a></li>
-                        <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%8e%a5%e5%8f%a3" class="toc-link">泛型接口</a></li>
-                        <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%96%b9%e6%b3%95" class="toc-link">泛型方法</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e7%b1%bb" class="toc-link">泛型类</a></li>
+                          <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%8e%a5%e5%8f%a3" class="toc-link">泛型接口</a></li>
+                          <li><a href="/2020/java-1/#%e6%b3%9b%e5%9e%8b%e6%96%b9%e6%b3%95" class="toc-link">泛型方法</a></li>
+                          </div>
+  </div>
+  
         
         <h1 id="java泛型">Java泛型</h1>
 <p>一个最基础的例子</p>
@@ -196,28 +196,28 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
 </span><span style="color:#75715e">//在实例化泛型类时，必须指定T的具体类型
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span> 
-    <span style="color:#75715e">//key这个成员变量的类型为T,T的类型由外部指定  
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
+  <span style="color:#75715e">//key这个成员变量的类型为T,T的类型由外部指定  
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">//泛型构造方法形参key的类型也为T，T的类型由外部指定
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">//泛型构造方法形参key的类型也为T，T的类型由外部指定
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
 
-    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span> <span style="color:#75715e">//泛型方法getKey的返回值类型为T，T的类型由外部指定
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span> <span style="color:#75715e">//泛型方法getKey的返回值类型为T，T的类型由外部指定
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
 <span style="color:#f92672">{</span>
-    <span style="color:#75715e">//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型:eg:不能用int只能用Integer
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为Integer.
-</span><span style="color:#75715e"></span>    Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> genericInteger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;(</span>123456<span style="color:#f92672">);</span>
+  <span style="color:#75715e">//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型:eg:不能用int只能用Integer
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为Integer.
+</span><span style="color:#75715e"></span>  Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> genericInteger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;(</span>123456<span style="color:#f92672">);</span>
 
-    <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为String.
-</span><span style="color:#75715e"></span>    Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> genericString <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;key_vlaue&#34;</span><span style="color:#f92672">);</span>
-    Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
-    Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericString<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+  <span style="color:#75715e">//传入的实参类型需与泛型的类型参数类型相同，即为String.
+</span><span style="color:#75715e"></span>  Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> genericString <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Generic<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;key_vlaue&#34;</span><span style="color:#f92672">);</span>
+  Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericInteger<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+  Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key is &#34;</span> <span style="color:#f92672">+</span> genericString<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p><strong>泛型的类型参数只能是类类型（包括自定义类），不能是简单类型</strong><br>
 在定义泛型类的时候并不一定要传输参数类型，在使用泛型的时候如果传入泛型实参，则会根据传入的泛型实参做相应的限制，此时泛型才会起到本应起到的限制作用。如果不传入泛型类型实参的话，在泛型类中使用泛型的方法或成员变量定义的类型可以为任何的类型。</p>
@@ -228,7 +228,7 @@ Generic generic1 <span style="color:#f92672">=</span> <span style="color:#66d9ef
 <p>泛型接口与泛型类的定义及使用基本相同</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//定义一个泛型接口
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Generator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+  <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>当实现泛型接口的类，未传入泛型实参时：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
@@ -237,10 +237,10 @@ Generic generic1 <span style="color:#f92672">=</span> <span style="color:#66d9ef
 </span><span style="color:#75715e"> * 如果不声明泛型，如：class FruitGenerator implements Generator&lt;T&gt;，编译器会报错：&#34;Unknown class&#34;
 </span><span style="color:#75715e"> */</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FruitGenerator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Generator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>当实现泛型接口的类，传入泛型实参时：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
@@ -252,66 +252,66 @@ Generic generic1 <span style="color:#f92672">=</span> <span style="color:#66d9ef
 </span><span style="color:#75715e"> */</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FruitGenerator</span> <span style="color:#66d9ef">implements</span> Generator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 
-    <span style="color:#66d9ef">private</span> String<span style="color:#f92672">[]</span> fruits <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;Apple&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Banana&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pear&#34;</span><span style="color:#f92672">};</span>
+  <span style="color:#66d9ef">private</span> String<span style="color:#f92672">[]</span> fruits <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;Apple&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Banana&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pear&#34;</span><span style="color:#f92672">};</span>
 
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        Random rand <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random<span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">return</span> fruits<span style="color:#f92672">[</span>rand<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>3<span style="color:#f92672">)];</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      Random rand <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random<span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">return</span> fruits<span style="color:#f92672">[</span>rand<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>3<span style="color:#f92672">)];</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><h2 id="泛型方法">泛型方法</h2>
 <p>泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GenericTest</span> <span style="color:#f92672">{</span>
-   <span style="color:#75715e">//这个类是个泛型类，在上面已经介绍过
-</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>     
-        <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
+ <span style="color:#75715e">//这个类是个泛型类，在上面已经介绍过
+</span><span style="color:#75715e"></span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>     
+      <span style="color:#66d9ef">private</span> T key<span style="color:#f92672">;</span>
 
-        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Generic</span><span style="color:#f92672">(</span>T key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key<span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
 
-        <span style="color:#75715e">//我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//所以在这个方法中才可以继续使用 T 这个泛型。
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span>
-            <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+      <span style="color:#75715e">//我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">//这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">//所以在这个方法中才可以继续使用 T 这个泛型。
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(){</span>
+          <span style="color:#66d9ef">return</span> key<span style="color:#f92672">;</span>
+      <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
 
-    <span style="color:#75715e">/** 
-</span><span style="color:#75715e">     * 这才是一个真正的泛型方法。
-</span><span style="color:#75715e">     * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T
-</span><span style="color:#75715e">     * 这个T可以出现在这个泛型方法的任意位置.
-</span><span style="color:#75715e">     * 泛型的数量也可以为任意多个 
-</span><span style="color:#75715e">     *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container){
-</span><span style="color:#75715e">     *        ...
-</span><span style="color:#75715e">     *        }
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">showKeyName</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> container<span style="color:#f92672">){</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;container key :&#34;</span> <span style="color:#f92672">+</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
-        <span style="color:#75715e">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。
-</span><span style="color:#75715e"></span>        T test <span style="color:#f92672">=</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">return</span> test<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#75715e">/** 
+</span><span style="color:#75715e">   * 这才是一个真正的泛型方法。
+</span><span style="color:#75715e">   * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T
+</span><span style="color:#75715e">   * 这个T可以出现在这个泛型方法的任意位置.
+</span><span style="color:#75715e">   * 泛型的数量也可以为任意多个 
+</span><span style="color:#75715e">   *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container){
+</span><span style="color:#75715e">   *        ...
+</span><span style="color:#75715e">   *        }
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">showKeyName</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> container<span style="color:#f92672">){</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;container key :&#34;</span> <span style="color:#f92672">+</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+      <span style="color:#75715e">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。
+</span><span style="color:#75715e"></span>      T test <span style="color:#f92672">=</span> container<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">return</span> test<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
 
-    <span style="color:#75715e">//这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic&lt;Number&gt;这个泛型类做形参而已。
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue1</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>Number<span style="color:#f92672">&gt;</span> obj<span style="color:#f92672">){</span>
-        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#75715e">//这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic&lt;Number&gt;这个泛型类做形参而已。
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue1</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;</span>Number<span style="color:#f92672">&gt;</span> obj<span style="color:#f92672">){</span>
+      Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
 
-    <span style="color:#75715e">//这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue2</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;?&gt;</span> obj<span style="color:#f92672">){</span>
-        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#75715e">//这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showKeyValue2</span><span style="color:#f92672">(</span>Generic<span style="color:#f92672">&lt;?&gt;</span> obj<span style="color:#f92672">){</span>
+      Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;key value is &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>在泛型类中使用泛型方法的时候，泛型方法的参数类型不需要与泛型类的类型相同
 泛型方法与可变参数</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printMsg</span><span style="color:#f92672">(</span> T<span style="color:#f92672">...</span> args<span style="color:#f92672">){</span>
-    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>T t <span style="color:#f92672">:</span> args<span style="color:#f92672">){</span>
-        Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;t is &#34;</span> <span style="color:#f92672">+</span> t<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>T t <span style="color:#f92672">:</span> args<span style="color:#f92672">){</span>
+      Log<span style="color:#f92672">.</span><span style="color:#a6e22e">d</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;泛型测试&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;t is &#34;</span> <span style="color:#f92672">+</span> t<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 printMsg<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">,</span>222<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;aaaa&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;2323.4&#34;</span><span style="color:#f92672">,</span>55<span style="color:#f92672">.</span><span style="color:#a6e22e">55</span><span style="color:#f92672">);</span>
 </code></pre></div><h1 id="java回调">Java回调</h1>
@@ -321,21 +321,21 @@ printMsg<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;111
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Callback<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Callback</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
 
 Printer<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Printer</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;正在打印 . . . &#34;</span><span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">();</span>
-            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>3000<span style="color:#f92672">);</span><span style="color:#75715e">// 毫秒
-</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#f92672">}</span>
-        callback<span style="color:#f92672">.</span><span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印完成&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;正在打印 . . . &#34;</span><span style="color:#f92672">);</span>
+      <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+          Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">();</span>
+          Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>3000<span style="color:#f92672">);</span><span style="color:#75715e">// 毫秒
+</span><span style="color:#75715e"></span>      <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#f92672">}</span>
+      callback<span style="color:#f92672">.</span><span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印完成&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 
 
@@ -343,72 +343,72 @@ People<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">People</span> <span style="color:#f92672">{</span>
 
-    Printer printer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Printer<span style="color:#f92672">();</span>
+  Printer printer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Printer<span style="color:#f92672">();</span>
 
-    <span style="color:#75715e">/*
-</span><span style="color:#75715e">     * 同步回调
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#75715e">/*
+</span><span style="color:#75715e">   * 同步回调
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 
-    <span style="color:#75715e">/*
-</span><span style="color:#75715e">     * 异步回调
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-                printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
+  <span style="color:#75715e">/*
+</span><span style="color:#75715e">   * 异步回调
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>Callback callback<span style="color:#f92672">,</span> String text<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+              printer<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> text<span style="color:#f92672">);</span>
+          <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 
 Main<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span><span style="color:#75715e">//测试类，同步回调
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
-        Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#a6e22e">@Override</span>
-            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">};</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
-        people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
+      Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
+          <span style="color:#f92672">}</span>
+      <span style="color:#f92672">};</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+      people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintSyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 
 Main<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span><span style="color:#75715e">//异步回调
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
-        Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#a6e22e">@Override</span>
-            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">};</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
-        people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      People people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> People<span style="color:#f92672">();</span>
+      Callback callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFinished</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+              System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;打印机告诉我的消息是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
+          <span style="color:#f92672">}</span>
+      <span style="color:#f92672">};</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;需要打印的内容是 ---&gt; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+      people<span style="color:#f92672">.</span><span style="color:#a6e22e">goToPrintASyn</span><span style="color:#f92672">(</span>callback<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;打印一份简历&#34;</span><span style="color:#f92672">);</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我在等待 打印机 给我反馈&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>android中实现回调</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span>  OnCampaignClickListener mListener<span style="color:#f92672">;</span>
 <span style="color:#75715e">//定义接口，不考虑方法实现，方法实现由调用者去考虑
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">OnCampaignClickListener</span><span style="color:#f92672">{</span>
 
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">,</span>Campaign campaign<span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">,</span>Campaign campaign<span style="color:#f92672">);</span>
 
 <span style="color:#f92672">}</span>
 
 <span style="color:#75715e">//暴露一个方法给调用者来注册接口回调，通过接口来获得回调者对接口方法的实现
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setOnCampaignClickListener</span><span style="color:#f92672">(</span>OnCampaignClickListener listener<span style="color:#f92672">){</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mListener</span> <span style="color:#f92672">=</span> listener<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mListener</span> <span style="color:#f92672">=</span> listener<span style="color:#f92672">;</span>
 <span style="color:#f92672">}</span>
 
 
@@ -416,73 +416,73 @@ Main<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span>
  imageViewSmallTop<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
  imageViewSmallBottom<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>  
 
-      <span style="color:#75715e">//对这些组件的点击事件设置点击效果
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span> View v<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        anim<span style="color:#f92672">(</span>v<span style="color:#f92672">);</span>
+    <span style="color:#75715e">//对这些组件的点击事件设置点击效果
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">@Override</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span> View v<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      anim<span style="color:#f92672">(</span>v<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+
+      <span style="color:#75715e">//**为三个组件添加点击事件，调用接口中的方法，待需要回调时，会有具体的实现**
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anim</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span>  View v<span style="color:#f92672">){</span>
+
+        <span style="color:#75715e">//通过ObjectAnimator设置动画属性
+</span><span style="color:#75715e"></span>        ObjectAnimator animator <span style="color:#f92672">=</span> ObjectAnimator<span style="color:#f92672">.</span><span style="color:#a6e22e">ofFloat</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;rotationX&#34;</span><span style="color:#f92672">,</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0F</span><span style="color:#f92672">,</span>360<span style="color:#f92672">.</span><span style="color:#a6e22e">0F</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">setDuration</span><span style="color:#f92672">(</span>200<span style="color:#f92672">);</span>
+
+        animator<span style="color:#f92672">.</span><span style="color:#a6e22e">addListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> AnimatorListenerAdapter<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">//动画效果结束后回调
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onAnimationEnd</span><span style="color:#f92672">(</span>Animator animation<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onAnimationEnd</span><span style="color:#f92672">(</span>animation<span style="color:#f92672">);</span>
+
+
+                HomeCampaign homeCampaign <span style="color:#f92672">=</span> mDatas<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>getLayoutPosition<span style="color:#f92672">());</span>
+                <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>mListener <span style="color:#f92672">!=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+
+                    <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>v<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">()){</span>
+
+                        <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_big</span><span style="color:#f92672">:</span>
+                            mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpOne</span><span style="color:#f92672">());</span>
+                            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+
+                        <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_small_top</span><span style="color:#f92672">:</span>
+                            mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpTwo</span><span style="color:#f92672">());</span>
+                            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+
+                        <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_small_bottom</span><span style="color:#f92672">:</span>
+                            mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpThree</span><span style="color:#f92672">());</span>
+                            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+
+
+
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">}</span>
+
+
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+        animator<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+
     <span style="color:#f92672">}</span>
-
-        <span style="color:#75715e">//**为三个组件添加点击事件，调用接口中的方法，待需要回调时，会有具体的实现**
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">anim</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span>  View v<span style="color:#f92672">){</span>
-
-          <span style="color:#75715e">//通过ObjectAnimator设置动画属性
-</span><span style="color:#75715e"></span>          ObjectAnimator animator <span style="color:#f92672">=</span> ObjectAnimator<span style="color:#f92672">.</span><span style="color:#a6e22e">ofFloat</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;rotationX&#34;</span><span style="color:#f92672">,</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0F</span><span style="color:#f92672">,</span>360<span style="color:#f92672">.</span><span style="color:#a6e22e">0F</span><span style="color:#f92672">)</span>
-                  <span style="color:#f92672">.</span><span style="color:#a6e22e">setDuration</span><span style="color:#f92672">(</span>200<span style="color:#f92672">);</span>
-
-          animator<span style="color:#f92672">.</span><span style="color:#a6e22e">addListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> AnimatorListenerAdapter<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-              <span style="color:#75715e">//动画效果结束后回调
-</span><span style="color:#75715e"></span>              <span style="color:#a6e22e">@Override</span>
-              <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onAnimationEnd</span><span style="color:#f92672">(</span>Animator animation<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                  <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onAnimationEnd</span><span style="color:#f92672">(</span>animation<span style="color:#f92672">);</span>
-
-
-                  HomeCampaign homeCampaign <span style="color:#f92672">=</span> mDatas<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>getLayoutPosition<span style="color:#f92672">());</span>
-                  <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>mListener <span style="color:#f92672">!=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
-
-                      <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>v<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">()){</span>
-
-                          <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_big</span><span style="color:#f92672">:</span>
-                              mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpOne</span><span style="color:#f92672">());</span>
-                              <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-
-                          <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_small_top</span><span style="color:#f92672">:</span>
-                              mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpTwo</span><span style="color:#f92672">());</span>
-                              <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-
-                          <span style="color:#66d9ef">case</span>  R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">imgview_small_bottom</span><span style="color:#f92672">:</span>
-                              mListener<span style="color:#f92672">.</span><span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>v<span style="color:#f92672">,</span>homeCampaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getCpThree</span><span style="color:#f92672">());</span>
-                              <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-
-
-
-                      <span style="color:#f92672">}</span>
-                  <span style="color:#f92672">}</span>
-
-
-              <span style="color:#f92672">}</span>
-          <span style="color:#f92672">});</span>
-          animator<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-
-      <span style="color:#f92672">}</span>
 
 <span style="color:#f92672">}</span>
 <span style="color:#f92672">**</span>实现接口回调<span style="color:#f92672">**</span>
 <span style="color:#f92672">**</span>调用者需要实现接口<span style="color:#960050;background-color:#1e0010">，</span>完成接口的方法<span style="color:#960050;background-color:#1e0010">，</span>将接口对象传入到被调用者暴露出来的注册方法中<span style="color:#960050;background-color:#1e0010">，</span>从而完成回调<span style="color:#f92672">**</span>
  <span style="color:#75715e">//对商品拥有点击事件,跳转到WareListActivity
-</span><span style="color:#75715e"></span>    mAdatper<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnCampaignClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> HomeCatgoryAdapter<span style="color:#f92672">.</span><span style="color:#a6e22e">OnCampaignClickListener</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#a6e22e">@Override</span>
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">,</span> Campaign campaign<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span><span style="color:#75715e"></span>  mAdatper<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnCampaignClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> HomeCatgoryAdapter<span style="color:#f92672">.</span><span style="color:#a6e22e">OnCampaignClickListener</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">,</span> Campaign campaign<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 
-            Intent intent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">(</span>getContext<span style="color:#f92672">(),</span> WareListActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-            <span style="color:#75715e">//把value值传入intent，key需要用常量来标记
-</span><span style="color:#75715e"></span>            intent<span style="color:#f92672">.</span><span style="color:#a6e22e">putExtra</span><span style="color:#f92672">(</span>Constants<span style="color:#f92672">.</span><span style="color:#a6e22e">COMPAINGAIN_ID</span><span style="color:#f92672">,</span>campaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
+          Intent intent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">(</span>getContext<span style="color:#f92672">(),</span> WareListActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+          <span style="color:#75715e">//把value值传入intent，key需要用常量来标记
+</span><span style="color:#75715e"></span>          intent<span style="color:#f92672">.</span><span style="color:#a6e22e">putExtra</span><span style="color:#f92672">(</span>Constants<span style="color:#f92672">.</span><span style="color:#a6e22e">COMPAINGAIN_ID</span><span style="color:#f92672">,</span>campaign<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">());</span>
 
-            startActivity<span style="color:#f92672">(</span>intent<span style="color:#f92672">);</span>
+          startActivity<span style="color:#f92672">(</span>intent<span style="color:#f92672">);</span>
 
 
 
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">});</span>
+      <span style="color:#f92672">}</span>
+  <span style="color:#f92672">});</span>
 </code></pre></div>
     </div>
 

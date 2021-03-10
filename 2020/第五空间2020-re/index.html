@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="第五空间2020-re | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -177,177 +177,177 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#nop" class="toc-link">nop</a></li>
-                        <li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#managecode" class="toc-link">ManageCode</a></li>
-                        <li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#rev" class="toc-link">rev</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#nop" class="toc-link">nop</a></li>
+                          <li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#managecode" class="toc-link">ManageCode</a></li>
+                          <li><a href="/2020/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/#rev" class="toc-link">rev</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="nop">nop</h2>
 <p>去掉花指令后的main函数如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">__cdecl</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> a1, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a2)
-{
-  _BYTE <span style="color:#f92672">*</span>v2; <span style="color:#75715e">// eax
-</span><span style="color:#75715e"></span>
-  sub_804865B(<span style="color:#f92672">*</span>a2);
-  puts(<span style="color:#e6db74">&#34;input your flag&#34;</span>);
-  __isoc99_scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>dword_804A038);
-  <span style="color:#f92672">++</span>dword_804A038;
-  sub_804857B();
-  <span style="color:#f92672">++</span>dword_804A038;
-  sub_80485C4();
-  dword_804A038 <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0x33333334</span>;
-  sub_80485C4();
-  <span style="color:#f92672">++</span>dword_804A038;
-  sub_80485C4();
-  v2 <span style="color:#f92672">=</span> sub_8048691((_BYTE <span style="color:#f92672">*</span>)dword_804A038);
-  sub_8048691(v2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-  puts(<span style="color:#e6db74">&#34;Wrong!&#34;</span>);
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">__cdecl</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> a1, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>a2)  
+{  
+_BYTE <span style="color:#f92672">*</span>v2; <span style="color:#75715e">// eax  
+</span><span style="color:#75715e"></span>  
+sub_804865B(<span style="color:#f92672">*</span>a2);  
+puts(<span style="color:#e6db74">&#34;input your flag&#34;</span>);  
+__isoc99_scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>dword_804A038);  
+<span style="color:#f92672">++</span>dword_804A038;  
+sub_804857B();  
+<span style="color:#f92672">++</span>dword_804A038;  
+sub_80485C4();  
+dword_804A038 <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0x33333334</span>;  
+sub_80485C4();  
+<span style="color:#f92672">++</span>dword_804A038;  
+sub_80485C4();  
+v2 <span style="color:#f92672">=</span> sub_8048691((_BYTE <span style="color:#f92672">*</span>)dword_804A038);  
+sub_8048691(v2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);  
+puts(<span style="color:#e6db74">&#34;Wrong!&#34;</span>);  
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;  
+}  
 </code></pre></div><p>输入是一个数字，<code>sub_804857B</code>和<code>sub_80485C4</code>都是反调试，sub_8048691会把参数处地址的值改为0x90，就是nop，调用了两次可以nop两个字节，所以可以把下面:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">.text:<span style="color:#ae81ff">08048763</span> EB <span style="color:#ae81ff">00</span>                                   jmp     <span style="color:#66d9ef">short</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>
-.text:<span style="color:#ae81ff">08048765</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>
-.text:<span style="color:#ae81ff">08048765</span>
-.text:<span style="color:#ae81ff">08048765</span>                         loc_8048765:                            ; CODE XREF: main<span style="color:#f92672">+</span>C7<span style="color:#960050;background-color:#1e0010">↑</span>j
-.text:<span style="color:#ae81ff">08048765</span> EB <span style="color:#ae81ff">12</span>                                   jmp     <span style="color:#66d9ef">short</span> loc_8048779
-.text:<span style="color:#ae81ff">08048767</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>
-.text:<span style="color:#ae81ff">08048767</span> <span style="color:#ae81ff">83</span> EC <span style="color:#ae81ff">0</span>C                                sub     esp, <span style="color:#ae81ff">0</span>Ch
-.text:<span style="color:#ae81ff">0804876</span>A <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">88</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">08</span>                          push    offset format   ; <span style="color:#e6db74">&#34;Right&#34;</span>
-.text:<span style="color:#ae81ff">0804876F</span> E8 <span style="color:#ae81ff">8</span>C FC FF FF                          call    _printf
-.text:<span style="color:#ae81ff">08048774</span> <span style="color:#ae81ff">83</span> C4 <span style="color:#ae81ff">10</span>                                add     esp, <span style="color:#ae81ff">10</span>h
-.text:<span style="color:#ae81ff">08048777</span> EB <span style="color:#ae81ff">10</span>                                   jmp     <span style="color:#66d9ef">short</span> loc_8048789
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">.text:<span style="color:#ae81ff">08048763</span> EB <span style="color:#ae81ff">00</span>                                   jmp     <span style="color:#66d9ef">short</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>  
+.text:<span style="color:#ae81ff">08048765</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>  
+.text:<span style="color:#ae81ff">08048765</span>  
+.text:<span style="color:#ae81ff">08048765</span>                         loc_8048765:                            ; CODE XREF: main<span style="color:#f92672">+</span>C7<span style="color:#960050;background-color:#1e0010">↑</span>j  
+.text:<span style="color:#ae81ff">08048765</span> EB <span style="color:#ae81ff">12</span>                                   jmp     <span style="color:#66d9ef">short</span> loc_8048779  
+.text:<span style="color:#ae81ff">08048767</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>  
+.text:<span style="color:#ae81ff">08048767</span> <span style="color:#ae81ff">83</span> EC <span style="color:#ae81ff">0</span>C                                sub     esp, <span style="color:#ae81ff">0</span>Ch  
+.text:<span style="color:#ae81ff">0804876</span>A <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">88</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">08</span>                          push    offset format   ; <span style="color:#e6db74">&#34;Right&#34;</span>  
+.text:<span style="color:#ae81ff">0804876F</span> E8 <span style="color:#ae81ff">8</span>C FC FF FF                          call    _printf  
+.text:<span style="color:#ae81ff">08048774</span> <span style="color:#ae81ff">83</span> C4 <span style="color:#ae81ff">10</span>                                add     esp, <span style="color:#ae81ff">10</span>h  
+.text:<span style="color:#ae81ff">08048777</span> EB <span style="color:#ae81ff">10</span>                                   jmp     <span style="color:#66d9ef">short</span> loc_8048789  
 </code></pre></div><p><code>8048765</code>处的两字节nop掉，可以输出Right</p>
 <h2 id="managecode">ManageCode</h2>
-<p>应该用了c#和cpp联合编译，用dnspy在c#中只能找到flag的格式是111111-111111-111111-11111111111111，但是没看到检测流程
+<p>应该用了c#和cpp联合编译，用dnspy在c#中只能找到flag的格式是111111-111111-111111-11111111111111，但是没看到检测流程<br>
 用ida打开可以看到检测的流程，首先将输入转16进制，然后对这个16进制数下访问断点可以到检测的函数，直接解方程。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> z3 <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-
-solver <span style="color:#f92672">=</span> Solver()
-
-a1 <span style="color:#f92672">=</span> [Int(<span style="color:#e6db74">&#39;s</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">16</span>)]
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-v2 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">0</span>]
-v3 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">2</span>]
-v32 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">0</span>]
-v29 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">2</span>]
-v31 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">1</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">401736</span> <span style="color:#f92672">*</span> v2 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">4419096</span> )
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">191967</span> <span style="color:#f92672">*</span> a1[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">473999</span> <span style="color:#f92672">*</span> v2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">23642821</span> )
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">57125</span> <span style="color:#f92672">*</span> v2
-v5 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">3</span>]
-v6 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">4</span>]
-v30 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">3</span>]
-v28 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">4</span>]
-solver<span style="color:#f92672">.</span>add( v4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">465507</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">207145</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">42831307</span> )
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">149773</span> <span style="color:#f92672">*</span> v5 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">488633</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">-</span> <span style="color:#ae81ff">5245</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">280749</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">560637</span> )
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">381790</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">59135</span> <span style="color:#f92672">*</span> v6 <span style="color:#f92672">+</span> <span style="color:#ae81ff">130415</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">+</span> <span style="color:#ae81ff">174205</span> <span style="color:#f92672">*</span> v5 <span style="color:#f92672">-</span> <span style="color:#ae81ff">83562</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">==</span> <span style="color:#ae81ff">27764403</span> )
-v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v7 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">5</span>]
-v27 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">5</span>]
-v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">500139</span> <span style="color:#f92672">*</span> v6
-v9 <span style="color:#f92672">=</span> v1
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">386908</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">+</span> <span style="color:#ae81ff">465831</span> <span style="color:#f92672">*</span> v30 <span style="color:#f92672">+</span> v8 <span style="color:#f92672">+</span> <span style="color:#ae81ff">500998</span> <span style="color:#f92672">*</span> v7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">474240</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">-</span> <span style="color:#ae81ff">4838</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">==</span> <span style="color:#ae81ff">119143813</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v10 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">6</span>]
-v26 <span style="color:#f92672">=</span> v10
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">182991</span> <span style="color:#f92672">*</span> v30 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">200009</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">497601</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">-</span> <span style="color:#ae81ff">153099</span> <span style="color:#f92672">*</span> v10 <span style="color:#f92672">+</span> <span style="color:#ae81ff">269682</span> <span style="color:#f92672">*</span> v28 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">269523</span> <span style="color:#f92672">*</span> v7 <span style="color:#f92672">-</span> <span style="color:#ae81ff">441164</span> <span style="color:#f92672">*</span> v29 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">52489521</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v11 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">7</span>]
-v23 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">7</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">14894</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">-</span> <span style="color:#ae81ff">162386</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">522547</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">260922</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#ae81ff">428523</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">508037</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">-</span> <span style="color:#ae81ff">144626</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">99507</span> <span style="color:#f92672">*</span> v10 <span style="color:#f92672">==</span> <span style="color:#ae81ff">67497415</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v12 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">8</span>]
-v25 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">8</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">51126</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">145838</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">+</span> <span style="color:#ae81ff">362957</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">43500</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#ae81ff">308294</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">375461</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">174341</span> <span style="color:#f92672">*</span> v12<span style="color:#f92672">-</span> <span style="color:#ae81ff">394061</span> <span style="color:#f92672">*</span> v10<span style="color:#f92672">-</span> <span style="color:#ae81ff">65395</span> <span style="color:#f92672">*</span> v27 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">43306962</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v13 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">9</span>]
-v24 <span style="color:#f92672">=</span> v13
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">350654</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">495127</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">434878</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">-</span> <span style="color:#ae81ff">75418</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">-</span> <span style="color:#ae81ff">43467</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">521005</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">226910</span> <span style="color:#f92672">*</span> v12<span style="color:#f92672">-</span> <span style="color:#ae81ff">215985</span> <span style="color:#f92672">*</span> v13<span style="color:#f92672">-</span> <span style="color:#ae81ff">121973</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">446107</span> <span style="color:#f92672">*</span> v29 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">137046349</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v14 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">10</span>]
-v22 <span style="color:#f92672">=</span> v14
-solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">318934</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">25936</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">341583</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">320416</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">339525</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">81574</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">-</span> <span style="color:#ae81ff">502348</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">-</span> <span style="color:#ae81ff">294177</span> <span style="color:#f92672">*</span> v14<span style="color:#f92672">-</span> <span style="color:#ae81ff">363326</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">391486</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">248464</span> <span style="color:#f92672">*</span> v13 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">244744603</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v15 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">11</span>]
-v21 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">11</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">81654</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">432919</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">110106</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">-</span> <span style="color:#ae81ff">507164</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">-</span> <span style="color:#ae81ff">467060</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">384845</span> <span style="color:#f92672">*</span> v15<span style="color:#f92672">-</span> <span style="color:#ae81ff">197253</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">354555</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">16893</span> <span style="color:#f92672">*</span> v14<span style="color:#f92672">-</span> <span style="color:#ae81ff">254110</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">479559</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">50999</span> <span style="color:#f92672">*</span> v28 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">214023755</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v16 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">12</span>]
-v20 <span style="color:#f92672">=</span> v16
-solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">117388</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">227694</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">457647</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">293306</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">101385</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">293124</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">92941</span> <span style="color:#f92672">*</span> v16<span style="color:#f92672">+</span> <span style="color:#ae81ff">496679</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">79854</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">81913</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">507308</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">3285</span> <span style="color:#f92672">*</span> v15<span style="color:#f92672">-</span> <span style="color:#ae81ff">71736</span> <span style="color:#f92672">*</span> v26 <span style="color:#f92672">==</span> <span style="color:#ae81ff">50059304</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v17 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">13</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">281406</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">314118</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">480916</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">124091</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">-</span> <span style="color:#ae81ff">442447</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">-</span> <span style="color:#ae81ff">25649</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">389372</span> <span style="color:#f92672">*</span> v16<span style="color:#f92672">+</span> <span style="color:#ae81ff">15089</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">210603</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (v25 <span style="color:#f92672">+</span> <span style="color:#ae81ff">17363</span> <span style="color:#f92672">*</span> v27 <span style="color:#f92672">-</span> <span style="color:#ae81ff">91574</span> <span style="color:#f92672">*</span> v21)<span style="color:#f92672">-</span> <span style="color:#ae81ff">469378</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">117744</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">176657564</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-v18 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">14</span>]
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">180059</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">350603</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">439557</span> <span style="color:#f92672">*</span> v21<span style="color:#f92672">-</span> <span style="color:#ae81ff">485708</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">52520</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">+</span> <span style="color:#ae81ff">303697</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">395976</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">406658</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">354103</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">-</span> <span style="color:#ae81ff">61339</span> <span style="color:#f92672">*</span> v20<span style="color:#f92672">-</span> <span style="color:#ae81ff">495692</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">198340</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">28153</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">-</span> <span style="color:#ae81ff">113385</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">492085</span> <span style="color:#f92672">*</span> v18 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">48802225</span> )
-v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-result <span style="color:#f92672">=</span> v9
-solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">473763</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">249640</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">450341</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">273347</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">+</span> <span style="color:#ae81ff">386739</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#ae81ff">24246</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#ae81ff">20430</span> <span style="color:#f92672">*</span> v21<span style="color:#f92672">+</span> <span style="color:#ae81ff">69055</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">391476</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">100872</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">458039</span> <span style="color:#f92672">*</span> v20<span style="color:#f92672">+</span> <span style="color:#ae81ff">71004</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">277369</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">-</span> <span style="color:#ae81ff">482854</span> <span style="color:#f92672">*</span> a1[<span style="color:#ae81ff">15</span>]<span style="color:#f92672">-</span> <span style="color:#ae81ff">468152</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">409044</span> <span style="color:#f92672">*</span> v18 <span style="color:#f92672">==</span> <span style="color:#ae81ff">224749784</span> )
-<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()
-<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>model()
-<span style="color:#75715e"># 111111-111111-111111-11111111111111</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> z3 <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>  
+  
+solver <span style="color:#f92672">=</span> Solver()  
+  
+a1 <span style="color:#f92672">=</span> [Int(<span style="color:#e6db74">&#39;s</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">16</span>)]  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  
+v2 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">0</span>]  
+v3 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">2</span>]  
+v32 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">0</span>]  
+v29 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">2</span>]  
+v31 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">1</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">401736</span> <span style="color:#f92672">*</span> v2 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">4419096</span> )  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">191967</span> <span style="color:#f92672">*</span> a1[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">473999</span> <span style="color:#f92672">*</span> v2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">23642821</span> )  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">57125</span> <span style="color:#f92672">*</span> v2  
+v5 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">3</span>]  
+v6 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">4</span>]  
+v30 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">3</span>]  
+v28 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">4</span>]  
+solver<span style="color:#f92672">.</span>add( v4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">465507</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">207145</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">42831307</span> )  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">149773</span> <span style="color:#f92672">*</span> v5 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">488633</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">-</span> <span style="color:#ae81ff">5245</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">280749</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">560637</span> )  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">381790</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">+</span> <span style="color:#ae81ff">59135</span> <span style="color:#f92672">*</span> v6 <span style="color:#f92672">+</span> <span style="color:#ae81ff">130415</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">+</span> <span style="color:#ae81ff">174205</span> <span style="color:#f92672">*</span> v5 <span style="color:#f92672">-</span> <span style="color:#ae81ff">83562</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">==</span> <span style="color:#ae81ff">27764403</span> )  
+v1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v7 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">5</span>]  
+v27 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">5</span>]  
+v8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">500139</span> <span style="color:#f92672">*</span> v6  
+v9 <span style="color:#f92672">=</span> v1  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">386908</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">+</span> <span style="color:#ae81ff">465831</span> <span style="color:#f92672">*</span> v30 <span style="color:#f92672">+</span> v8 <span style="color:#f92672">+</span> <span style="color:#ae81ff">500998</span> <span style="color:#f92672">*</span> v7 <span style="color:#f92672">+</span> <span style="color:#ae81ff">474240</span> <span style="color:#f92672">*</span> v3 <span style="color:#f92672">-</span> <span style="color:#ae81ff">4838</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">==</span> <span style="color:#ae81ff">119143813</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v10 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">6</span>]  
+v26 <span style="color:#f92672">=</span> v10  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">182991</span> <span style="color:#f92672">*</span> v30 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">200009</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">-</span> <span style="color:#ae81ff">497601</span> <span style="color:#f92672">*</span> v32 <span style="color:#f92672">-</span> <span style="color:#ae81ff">153099</span> <span style="color:#f92672">*</span> v10 <span style="color:#f92672">+</span> <span style="color:#ae81ff">269682</span> <span style="color:#f92672">*</span> v28 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">269523</span> <span style="color:#f92672">*</span> v7 <span style="color:#f92672">-</span> <span style="color:#ae81ff">441164</span> <span style="color:#f92672">*</span> v29 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">52489521</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v11 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">7</span>]  
+v23 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">7</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">14894</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">-</span> <span style="color:#ae81ff">162386</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">522547</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">260922</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#ae81ff">428523</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">508037</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">-</span> <span style="color:#ae81ff">144626</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">99507</span> <span style="color:#f92672">*</span> v10 <span style="color:#f92672">==</span> <span style="color:#ae81ff">67497415</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v12 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">8</span>]  
+v25 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">8</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">51126</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">145838</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">+</span> <span style="color:#ae81ff">362957</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">43500</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#ae81ff">308294</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">375461</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">174341</span> <span style="color:#f92672">*</span> v12<span style="color:#f92672">-</span> <span style="color:#ae81ff">394061</span> <span style="color:#f92672">*</span> v10<span style="color:#f92672">-</span> <span style="color:#ae81ff">65395</span> <span style="color:#f92672">*</span> v27 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">43306962</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v13 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">9</span>]  
+v24 <span style="color:#f92672">=</span> v13  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">350654</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">495127</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">434878</span> <span style="color:#f92672">*</span> v11<span style="color:#f92672">-</span> <span style="color:#ae81ff">75418</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">-</span> <span style="color:#ae81ff">43467</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">521005</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">226910</span> <span style="color:#f92672">*</span> v12<span style="color:#f92672">-</span> <span style="color:#ae81ff">215985</span> <span style="color:#f92672">*</span> v13<span style="color:#f92672">-</span> <span style="color:#ae81ff">121973</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">446107</span> <span style="color:#f92672">*</span> v29 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">137046349</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v14 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">10</span>]  
+v22 <span style="color:#f92672">=</span> v14  
+solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">318934</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">25936</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">341583</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">320416</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">339525</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">81574</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">-</span> <span style="color:#ae81ff">502348</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">-</span> <span style="color:#ae81ff">294177</span> <span style="color:#f92672">*</span> v14<span style="color:#f92672">-</span> <span style="color:#ae81ff">363326</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">391486</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">248464</span> <span style="color:#f92672">*</span> v13 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">244744603</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v15 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">11</span>]  
+v21 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">11</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">81654</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">432919</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">110106</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">-</span> <span style="color:#ae81ff">507164</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">-</span> <span style="color:#ae81ff">467060</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">384845</span> <span style="color:#f92672">*</span> v15<span style="color:#f92672">-</span> <span style="color:#ae81ff">197253</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">354555</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">16893</span> <span style="color:#f92672">*</span> v14<span style="color:#f92672">-</span> <span style="color:#ae81ff">254110</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">479559</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">50999</span> <span style="color:#f92672">*</span> v28 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">214023755</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v16 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">12</span>]  
+v20 <span style="color:#f92672">=</span> v16  
+solver<span style="color:#f92672">.</span>add( <span style="color:#f92672">-</span><span style="color:#ae81ff">117388</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">227694</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">457647</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">293306</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">101385</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">293124</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">92941</span> <span style="color:#f92672">*</span> v16<span style="color:#f92672">+</span> <span style="color:#ae81ff">496679</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">79854</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">81913</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">507308</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">-</span> <span style="color:#ae81ff">3285</span> <span style="color:#f92672">*</span> v15<span style="color:#f92672">-</span> <span style="color:#ae81ff">71736</span> <span style="color:#f92672">*</span> v26 <span style="color:#f92672">==</span> <span style="color:#ae81ff">50059304</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v17 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">13</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">281406</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">314118</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">480916</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">124091</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">-</span> <span style="color:#ae81ff">442447</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">-</span> <span style="color:#ae81ff">25649</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#ae81ff">389372</span> <span style="color:#f92672">*</span> v16<span style="color:#f92672">+</span> <span style="color:#ae81ff">15089</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">210603</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (v25 <span style="color:#f92672">+</span> <span style="color:#ae81ff">17363</span> <span style="color:#f92672">*</span> v27 <span style="color:#f92672">-</span> <span style="color:#ae81ff">91574</span> <span style="color:#f92672">*</span> v21)<span style="color:#f92672">-</span> <span style="color:#ae81ff">469378</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">-</span> <span style="color:#ae81ff">117744</span> <span style="color:#f92672">*</span> v31 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">176657564</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+v18 <span style="color:#f92672">=</span> a1[<span style="color:#ae81ff">14</span>]  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">180059</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">350603</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">439557</span> <span style="color:#f92672">*</span> v21<span style="color:#f92672">-</span> <span style="color:#ae81ff">485708</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">+</span> <span style="color:#ae81ff">52520</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">+</span> <span style="color:#ae81ff">303697</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">395976</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">406658</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">354103</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">-</span> <span style="color:#ae81ff">61339</span> <span style="color:#f92672">*</span> v20<span style="color:#f92672">-</span> <span style="color:#ae81ff">495692</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">-</span> <span style="color:#ae81ff">198340</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">-</span> <span style="color:#ae81ff">28153</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">-</span> <span style="color:#ae81ff">113385</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">-</span> <span style="color:#ae81ff">492085</span> <span style="color:#f92672">*</span> v18 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">48802225</span> )  
+v9 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+result <span style="color:#f92672">=</span> v9  
+solver<span style="color:#f92672">.</span>add( <span style="color:#ae81ff">473763</span> <span style="color:#f92672">*</span> v25<span style="color:#f92672">+</span> <span style="color:#ae81ff">249640</span> <span style="color:#f92672">*</span> v26<span style="color:#f92672">+</span> <span style="color:#ae81ff">450341</span> <span style="color:#f92672">*</span> v30<span style="color:#f92672">+</span> <span style="color:#ae81ff">273347</span> <span style="color:#f92672">*</span> v17<span style="color:#f92672">+</span> <span style="color:#ae81ff">386739</span> <span style="color:#f92672">*</span> v31<span style="color:#f92672">+</span> <span style="color:#ae81ff">24246</span> <span style="color:#f92672">*</span> v27<span style="color:#f92672">+</span> <span style="color:#ae81ff">20430</span> <span style="color:#f92672">*</span> v21<span style="color:#f92672">+</span> <span style="color:#ae81ff">69055</span> <span style="color:#f92672">*</span> v28<span style="color:#f92672">+</span> <span style="color:#ae81ff">391476</span> <span style="color:#f92672">*</span> v22<span style="color:#f92672">+</span> <span style="color:#ae81ff">100872</span> <span style="color:#f92672">*</span> v23<span style="color:#f92672">+</span> <span style="color:#ae81ff">458039</span> <span style="color:#f92672">*</span> v20<span style="color:#f92672">+</span> <span style="color:#ae81ff">71004</span> <span style="color:#f92672">*</span> v24<span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">277369</span> <span style="color:#f92672">*</span> v29<span style="color:#f92672">-</span> <span style="color:#ae81ff">482854</span> <span style="color:#f92672">*</span> a1[<span style="color:#ae81ff">15</span>]<span style="color:#f92672">-</span> <span style="color:#ae81ff">468152</span> <span style="color:#f92672">*</span> v32<span style="color:#f92672">-</span> <span style="color:#ae81ff">409044</span> <span style="color:#f92672">*</span> v18 <span style="color:#f92672">==</span> <span style="color:#ae81ff">224749784</span> )  
+<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()  
+<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>model()  
+<span style="color:#75715e"># 111111-111111-111111-11111111111111  </span>
 </code></pre></div><h2 id="rev">rev</h2>
 <p>rop控制指令的跳转，调试可以看大具体处理流程，用z3解一下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8</span>
-<span style="color:#f92672">from</span> z3 <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-
-solver <span style="color:#f92672">=</span> Solver()
-
-a1 <span style="color:#f92672">=</span> [BitVec(<span style="color:#e6db74">&#39;s</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i, <span style="color:#ae81ff">8</span>) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">16</span>)]
-res <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x25</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0x8A</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x53</span>]
-<span style="color:#75715e"># s = [ord(&#39;1&#39;), ord(&#39;5&#39;), ord(&#39;9&#39;), ord(&#39;d&#39;)]</span>
-rt <span style="color:#f92672">=</span> []
-<span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
-    s <span style="color:#f92672">=</span> []
-    <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
-        s<span style="color:#f92672">.</span>append([a1[t <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>u]])
-    <span style="color:#66d9ef">for</span> edx <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>):
-        eax <span style="color:#f92672">=</span> s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> edx]
-        esi <span style="color:#f92672">=</span> eax <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>
-        ecx <span style="color:#f92672">=</span> esi
-        ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x1b</span>
-        eax <span style="color:#f92672">=</span> edx
-        eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>
-        ecx <span style="color:#f92672">=</span> s[eax]
-        eax <span style="color:#f92672">=</span> ecx <span style="color:#f92672">+</span> ecx
-        ebx <span style="color:#f92672">=</span> ecx
-        ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x1b</span>
-        ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">^</span> eax
-        eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">^</span> ecx
-        ecx <span style="color:#f92672">=</span> edx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-        ebx <span style="color:#f92672">=</span> edx <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-        ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>
-        ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>
-        ecx <span style="color:#f92672">=</span> s[ecx]
-        ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> s[ebx]
-        ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> esi
-        eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">^</span> ecx
-        rt<span style="color:#f92672">.</span>append(eax <span style="color:#f92672">^</span> (<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>t <span style="color:#f92672">+</span> edx <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(rt)):
-    solver<span style="color:#f92672">.</span>add(rt[i] <span style="color:#f92672">==</span> res[i])
-<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()
-<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>model()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#coding=utf-8  </span>
+<span style="color:#f92672">from</span> z3 <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>  
+  
+solver <span style="color:#f92672">=</span> Solver()  
+  
+a1 <span style="color:#f92672">=</span> [BitVec(<span style="color:#e6db74">&#39;s</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i, <span style="color:#ae81ff">8</span>) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">16</span>)]  
+res <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0x64</span>, <span style="color:#ae81ff">0x25</span>, <span style="color:#ae81ff">0x0F</span>, <span style="color:#ae81ff">0x6C</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x23</span>, <span style="color:#ae81ff">0x8A</span>, <span style="color:#ae81ff">0xDE</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x0E</span>, <span style="color:#ae81ff">0xA5</span>, <span style="color:#ae81ff">0xE1</span>, <span style="color:#ae81ff">0x43</span>, <span style="color:#ae81ff">0x37</span>, <span style="color:#ae81ff">0x11</span>, <span style="color:#ae81ff">0x53</span>]  
+<span style="color:#75715e"># s = [ord(&#39;1&#39;), ord(&#39;5&#39;), ord(&#39;9&#39;), ord(&#39;d&#39;)]  </span>
+rt <span style="color:#f92672">=</span> []  
+<span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):  
+  s <span style="color:#f92672">=</span> []  
+  <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):  
+      s<span style="color:#f92672">.</span>append([a1[t <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>u]])  
+  <span style="color:#66d9ef">for</span> edx <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>):  
+      eax <span style="color:#f92672">=</span> s[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> edx]  
+      esi <span style="color:#f92672">=</span> eax <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>  
+      ecx <span style="color:#f92672">=</span> esi  
+      ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x1b</span>  
+      eax <span style="color:#f92672">=</span> edx  
+      eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>  
+      ecx <span style="color:#f92672">=</span> s[eax]  
+      eax <span style="color:#f92672">=</span> ecx <span style="color:#f92672">+</span> ecx  
+      ebx <span style="color:#f92672">=</span> ecx  
+      ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x1b</span>  
+      ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">^</span> eax  
+      eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">^</span> ecx  
+      ecx <span style="color:#f92672">=</span> edx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+      ebx <span style="color:#f92672">=</span> edx <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>  
+      ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>  
+      ebx <span style="color:#f92672">=</span> ebx <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">3</span>  
+      ecx <span style="color:#f92672">=</span> s[ecx]  
+      ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> s[ebx]  
+      ecx <span style="color:#f92672">=</span> ecx <span style="color:#f92672">^</span> esi  
+      eax <span style="color:#f92672">=</span> eax <span style="color:#f92672">^</span> ecx  
+      rt<span style="color:#f92672">.</span>append(eax <span style="color:#f92672">^</span> (<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>t <span style="color:#f92672">+</span> edx <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))  
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(rt)):  
+  solver<span style="color:#f92672">.</span>add(rt[i] <span style="color:#f92672">==</span> res[i])  
+<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()  
+<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>model()  
 </code></pre></div><p>Nu1L的wp中用到了angr直接解题，当时我想着用但是不知道怎么输入参数(还是tcl)记录一下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> angr<span style="color:#f92672">,</span>claripy
-project <span style="color:#f92672">=</span> angr<span style="color:#f92672">.</span>Project(<span style="color:#e6db74">&#34;rev_v2&#34;</span>)
-argv1 <span style="color:#f92672">=</span> claripy<span style="color:#f92672">.</span>BVS(<span style="color:#e6db74">&#34;argv1&#34;</span>,<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>)
-initial_state <span style="color:#f92672">=</span> project<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>entry_state(args<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;./rev_v2&#34;</span>,argv1])
-simulation <span style="color:#f92672">=</span> project<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>simgr(initial_state)
-simulation<span style="color:#f92672">.</span>explore(find<span style="color:#f92672">=</span><span style="color:#ae81ff">0x400481</span>)
-found <span style="color:#f92672">=</span> simulation<span style="color:#f92672">.</span>found[<span style="color:#ae81ff">0</span>]
-solution <span style="color:#f92672">=</span> found<span style="color:#f92672">.</span>solver<span style="color:#f92672">.</span>eval(argv1, cast_to<span style="color:#f92672">=</span>bytes)
-<span style="color:#66d9ef">print</span>(repr(solution))
-solution <span style="color:#f92672">=</span> solution[:solution<span style="color:#f92672">.</span>find(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span>)]
-<span style="color:#66d9ef">print</span>(solution)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> angr<span style="color:#f92672">,</span>claripy  
+project <span style="color:#f92672">=</span> angr<span style="color:#f92672">.</span>Project(<span style="color:#e6db74">&#34;rev_v2&#34;</span>)  
+argv1 <span style="color:#f92672">=</span> claripy<span style="color:#f92672">.</span>BVS(<span style="color:#e6db74">&#34;argv1&#34;</span>,<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>)  
+initial_state <span style="color:#f92672">=</span> project<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>entry_state(args<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;./rev_v2&#34;</span>,argv1])  
+simulation <span style="color:#f92672">=</span> project<span style="color:#f92672">.</span>factory<span style="color:#f92672">.</span>simgr(initial_state)  
+simulation<span style="color:#f92672">.</span>explore(find<span style="color:#f92672">=</span><span style="color:#ae81ff">0x400481</span>)  
+found <span style="color:#f92672">=</span> simulation<span style="color:#f92672">.</span>found[<span style="color:#ae81ff">0</span>]  
+solution <span style="color:#f92672">=</span> found<span style="color:#f92672">.</span>solver<span style="color:#f92672">.</span>eval(argv1, cast_to<span style="color:#f92672">=</span>bytes)  
+<span style="color:#66d9ef">print</span>(repr(solution))  
+solution <span style="color:#f92672">=</span> solution[:solution<span style="color:#f92672">.</span>find(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#34;</span>)]  
+<span style="color:#66d9ef">print</span>(solution)  
 </code></pre></div>
     </div>
 

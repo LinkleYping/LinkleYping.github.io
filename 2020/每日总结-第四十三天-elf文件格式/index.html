@@ -26,9 +26,9 @@
     </title>
     <meta name="title" content="ELF文件组成 | EP`s Blog">
     
-<link rel="stylesheet" href="/css/main.min.css">
-
-
+  <link rel="stylesheet" href="/css/main.min.css">
+  
+  
     
     
  
@@ -179,30 +179,30 @@
         
         
         <div class="post-toc">
-    <div class="toc-header">TOC</div>
-        <div class="toc-content">
-            <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%8f%82%e8%80%83" class="toc-link">参考</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e6%96%87%e4%bb%b6%e7%bb%84%e6%88%90" class="toc-link">ELF文件组成</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e5%a4%b4" class="toc-link">ELF头</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%a8%8b%e5%ba%8f%e5%a4%b4" class="toc-link">程序头</a></li>
-                        
-                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_load" class="toc-link">PT_LOAD</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_dynamic%e5%8a%a8%e6%80%81%e6%ae%b5%e7%9a%84phdr" class="toc-link">PT_DYNAMIC——动态段的Phdr</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_interp" class="toc-link">PT_INTERP</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_phdr" class="toc-link">PT_PHDR</a></li>
-                        
-                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e8%8a%82%e5%a4%b4" class="toc-link">ELF节头</a></li>
-                        
-                                <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e8%8a%82%e4%b8%8e%e6%ae%b5" class="toc-link">节与段</a></li>
-                        
-                                </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%a1%a8string-table" class="toc-link">字符串表（String Table）</a></li>
-                        <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%ac%a6%e5%8f%b7%e8%a1%a8symbol-table" class="toc-link">符号表（Symbol Table）</a></li>
-                        </div>
-</div>
-
+      <div class="toc-header">TOC</div>
+          <div class="toc-content">
+              <ul class="toc-h2"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%8f%82%e8%80%83" class="toc-link">参考</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e6%96%87%e4%bb%b6%e7%bb%84%e6%88%90" class="toc-link">ELF文件组成</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e5%a4%b4" class="toc-link">ELF头</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%a8%8b%e5%ba%8f%e5%a4%b4" class="toc-link">程序头</a></li>
+                          
+                                  <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_load" class="toc-link">PT_LOAD</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_dynamic%e5%8a%a8%e6%80%81%e6%ae%b5%e7%9a%84phdr" class="toc-link">PT_DYNAMIC——动态段的Phdr</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_interp" class="toc-link">PT_INTERP</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#pt_phdr" class="toc-link">PT_PHDR</a></li>
+                          
+                                  </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#elf%e8%8a%82%e5%a4%b4" class="toc-link">ELF节头</a></li>
+                          
+                                  <ul class="toc-h3"><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e8%8a%82%e4%b8%8e%e6%ae%b5" class="toc-link">节与段</a></li>
+                          
+                                  </ul><li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%a1%a8string-table" class="toc-link">字符串表（String Table）</a></li>
+                          <li><a href="/2020/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/#%e7%ac%a6%e5%8f%b7%e8%a1%a8symbol-table" class="toc-link">符号表（Symbol Table）</a></li>
+                          </div>
+  </div>
+  
         
         <h2 id="参考">参考</h2>
-<p><a href="https://blog.csdn.net/xuehuafeiwu123/article/details/72963229">https://blog.csdn.net/xuehuafeiwu123/article/details/72963229</a>
+<p><a href="https://blog.csdn.net/xuehuafeiwu123/article/details/72963229">https://blog.csdn.net/xuehuafeiwu123/article/details/72963229</a><br>
 <a href="https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/">https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/</a></p>
 <h2 id="elf文件组成">ELF文件组成</h2>
 <p>ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件的组织,如: 版本信息,入口信息,偏移信息等。程序执行也必须依靠其提供的信息。</p>
@@ -214,60 +214,60 @@
 <h2 id="elf头">ELF头</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ readelf -h main
 ELF Header:
-  Magic:   7f <span style="color:#ae81ff">45</span> 4c <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>
-  Class:                             ELF64
-  Data:                              2<span style="color:#960050;background-color:#1e0010">&#39;</span>s complement, little endian
-  Version:                           <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>current<span style="color:#f92672">)</span>
-  OS/ABI:                            UNIX - System V
-  ABI Version:                       <span style="color:#ae81ff">0</span>
-  Type:                              DYN <span style="color:#f92672">(</span>Shared object file<span style="color:#f92672">)</span>
-  Machine:                           Advanced Micro Devices X86-64
-  Version:                           0x1
-  Entry point address:               0x660
-  Start of program headers:          <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
-  Start of section headers:          <span style="color:#ae81ff">6616</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
-  Flags:                             0x0
-  Size of this header:               <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
-  Size of program headers:           <span style="color:#ae81ff">56</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
-  Number of program headers:         <span style="color:#ae81ff">9</span>
-  Size of section headers:           <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
-  Number of section headers:         <span style="color:#ae81ff">29</span>
-  Section header string table index: <span style="color:#ae81ff">28</span>
+Magic:   7f <span style="color:#ae81ff">45</span> 4c <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>
+Class:                             ELF64
+Data:                              2<span style="color:#960050;background-color:#1e0010">&#39;</span>s complement, little endian
+Version:                           <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>current<span style="color:#f92672">)</span>
+OS/ABI:                            UNIX - System V
+ABI Version:                       <span style="color:#ae81ff">0</span>
+Type:                              DYN <span style="color:#f92672">(</span>Shared object file<span style="color:#f92672">)</span>
+Machine:                           Advanced Micro Devices X86-64
+Version:                           0x1
+Entry point address:               0x660
+Start of program headers:          <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
+Start of section headers:          <span style="color:#ae81ff">6616</span> <span style="color:#f92672">(</span>bytes into file<span style="color:#f92672">)</span>
+Flags:                             0x0
+Size of this header:               <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+Size of program headers:           <span style="color:#ae81ff">56</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+Number of program headers:         <span style="color:#ae81ff">9</span>
+Size of section headers:           <span style="color:#ae81ff">64</span> <span style="color:#f92672">(</span>bytes<span style="color:#f92672">)</span>
+Number of section headers:         <span style="color:#ae81ff">29</span>
+Section header string table index: <span style="color:#ae81ff">28</span>
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* ELF Header */</span>
 <span style="color:#75715e">#define EI_NIDENT 16
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> elfhdr {
-    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT]; <span style="color:#75715e">/* ELF Identification */</span>
-    Elf32_Half    e_type;        <span style="color:#75715e">/* object file type */</span>
-    Elf32_Half    e_machine;    <span style="color:#75715e">/* machine */</span>
-    Elf32_Word    e_version;    <span style="color:#75715e">/* object file version */</span>
-    Elf32_Addr    e_entry;      <span style="color:#75715e">/* virtual entry point */</span>
-    Elf32_Off     e_phoff;      <span style="color:#75715e">/* program header table offset */</span>
-    Elf32_Off     e_shoff;      <span style="color:#75715e">/* section header table offset */</span>
-    Elf32_Word    e_flags;      <span style="color:#75715e">/* processor-specific flags */</span>
-    Elf32_Half    e_ehsize;     <span style="color:#75715e">/* ELF header size */</span>
-    Elf32_Half    e_phentsize;    <span style="color:#75715e">/* program header entry size */</span>
-    Elf32_Half    e_phnum;      <span style="color:#75715e">/* number of program header entries */</span>
-    Elf32_Half    e_shentsize;    <span style="color:#75715e">/* section header entry size */</span>
-    Elf32_Half    e_shnum;      <span style="color:#75715e">/* number of section header entries */</span>
-    Elf32_Half    e_shstrndx;    <span style="color:#75715e">/* section header table&#39;s &#34;section 
-</span><span style="color:#75715e">                       header string table&#34; entry offset */</span>
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT]; <span style="color:#75715e">/* ELF Identification */</span>
+Elf32_Half    e_type;        <span style="color:#75715e">/* object file type */</span>
+Elf32_Half    e_machine;    <span style="color:#75715e">/* machine */</span>
+Elf32_Word    e_version;    <span style="color:#75715e">/* object file version */</span>
+Elf32_Addr    e_entry;      <span style="color:#75715e">/* virtual entry point */</span>
+Elf32_Off     e_phoff;      <span style="color:#75715e">/* program header table offset */</span>
+Elf32_Off     e_shoff;      <span style="color:#75715e">/* section header table offset */</span>
+Elf32_Word    e_flags;      <span style="color:#75715e">/* processor-specific flags */</span>
+Elf32_Half    e_ehsize;     <span style="color:#75715e">/* ELF header size */</span>
+Elf32_Half    e_phentsize;    <span style="color:#75715e">/* program header entry size */</span>
+Elf32_Half    e_phnum;      <span style="color:#75715e">/* number of program header entries */</span>
+Elf32_Half    e_shentsize;    <span style="color:#75715e">/* section header entry size */</span>
+Elf32_Half    e_shnum;      <span style="color:#75715e">/* number of section header entries */</span>
+Elf32_Half    e_shstrndx;    <span style="color:#75715e">/* section header table&#39;s &#34;section 
+</span><span style="color:#75715e">                   header string table&#34; entry offset */</span>
 } Elf32_Ehdr;
 
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT];    <span style="color:#75715e">/* Id bytes */</span>
-    Elf64_Quarter    e_type;            <span style="color:#75715e">/* file type */</span>
-    Elf64_Quarter    e_machine;        <span style="color:#75715e">/* machine type */</span>
-    Elf64_Half       e_version;        <span style="color:#75715e">/* version number */</span>
-    Elf64_Addr       e_entry;         <span style="color:#75715e">/* entry point */</span>
-    Elf64_Off        e_phoff;         <span style="color:#75715e">/* Program hdr offset */</span>
-    Elf64_Off        e_shoff;         <span style="color:#75715e">/* Section hdr offset */</span>
-    Elf64_Half       e_flags;         <span style="color:#75715e">/* Processor flags */</span>
-    Elf64_Quarter    e_ehsize;        <span style="color:#75715e">/* sizeof ehdr */</span>
-    Elf64_Quarter    e_phentsize;     <span style="color:#75715e">/* Program header entry size */</span>
-    Elf64_Quarter    e_phnum;         <span style="color:#75715e">/* Number of program headers */</span>
-    Elf64_Quarter    e_shentsize;     <span style="color:#75715e">/* Section header entry size */</span>
-    Elf64_Quarter    e_shnum;         <span style="color:#75715e">/* Number of section headers */</span>
-    Elf64_Quarter    e_shstrndx;      <span style="color:#75715e">/* String table index */</span>
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    e_ident[EI_NIDENT];    <span style="color:#75715e">/* Id bytes */</span>
+Elf64_Quarter    e_type;            <span style="color:#75715e">/* file type */</span>
+Elf64_Quarter    e_machine;        <span style="color:#75715e">/* machine type */</span>
+Elf64_Half       e_version;        <span style="color:#75715e">/* version number */</span>
+Elf64_Addr       e_entry;         <span style="color:#75715e">/* entry point */</span>
+Elf64_Off        e_phoff;         <span style="color:#75715e">/* Program hdr offset */</span>
+Elf64_Off        e_shoff;         <span style="color:#75715e">/* Section hdr offset */</span>
+Elf64_Half       e_flags;         <span style="color:#75715e">/* Processor flags */</span>
+Elf64_Quarter    e_ehsize;        <span style="color:#75715e">/* sizeof ehdr */</span>
+Elf64_Quarter    e_phentsize;     <span style="color:#75715e">/* Program header entry size */</span>
+Elf64_Quarter    e_phnum;         <span style="color:#75715e">/* Number of program headers */</span>
+Elf64_Quarter    e_shentsize;     <span style="color:#75715e">/* Section header entry size */</span>
+Elf64_Quarter    e_shnum;         <span style="color:#75715e">/* Number of section headers */</span>
+Elf64_Quarter    e_shstrndx;      <span style="color:#75715e">/* String table index */</span>
 } Elf64_Ehdr;
 </code></pre></div><p>e_ident字段含义
 <img src="https://upload-images.jianshu.io/upload_images/11884068-dec3fc1f6df50ce3?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
@@ -281,61 +281,61 @@ Entry point 0x660
 There are <span style="color:#ae81ff">9</span> program headers, starting at offset <span style="color:#ae81ff">64</span>
 
 Program Headers:
-  Type           Offset             VirtAddr           PhysAddr
-                 FileSiz            MemSiz              Flags  Align
-  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
-                 0x00000000000001f8 0x00000000000001f8  R      0x8
-  INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238
-                 0x000000000000001c 0x000000000000001c  R      0x1
-      <span style="color:#f92672">[</span>Requesting program interpreter: /lib64/ld-linux-x86-64.so.2<span style="color:#f92672">]</span>
-  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
-                 0x00000000000009e8 0x00000000000009e8  R E    0x200000
-  LOAD           0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
-                 0x0000000000000278 0x0000000000000280  RW     0x200000
-  DYNAMIC        0x0000000000000da8 0x0000000000200da8 0x0000000000200da8
-                 0x00000000000001f0 0x00000000000001f0  RW     0x8
-  NOTE           0x0000000000000254 0x0000000000000254 0x0000000000000254
-                 0x0000000000000044 0x0000000000000044  R      0x4
-  GNU_EH_FRAME   0x00000000000008a4 0x00000000000008a4 0x00000000000008a4
-                 0x000000000000003c 0x000000000000003c  R      0x4
-  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
-                 0x0000000000000000 0x0000000000000000  RW     0x10
-  GNU_RELRO      0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
-                 0x0000000000000268 0x0000000000000268  R      0x1
+Type           Offset             VirtAddr           PhysAddr
+             FileSiz            MemSiz              Flags  Align
+PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+             0x00000000000001f8 0x00000000000001f8  R      0x8
+INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238
+             0x000000000000001c 0x000000000000001c  R      0x1
+  <span style="color:#f92672">[</span>Requesting program interpreter: /lib64/ld-linux-x86-64.so.2<span style="color:#f92672">]</span>
+LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+             0x00000000000009e8 0x00000000000009e8  R E    0x200000
+LOAD           0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
+             0x0000000000000278 0x0000000000000280  RW     0x200000
+DYNAMIC        0x0000000000000da8 0x0000000000200da8 0x0000000000200da8
+             0x00000000000001f0 0x00000000000001f0  RW     0x8
+NOTE           0x0000000000000254 0x0000000000000254 0x0000000000000254
+             0x0000000000000044 0x0000000000000044  R      0x4
+GNU_EH_FRAME   0x00000000000008a4 0x00000000000008a4 0x00000000000008a4
+             0x000000000000003c 0x000000000000003c  R      0x4
+GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+             0x0000000000000000 0x0000000000000000  RW     0x10
+GNU_RELRO      0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
+             0x0000000000000268 0x0000000000000268  R      0x1
 
  Section to Segment mapping:
-  Segment Sections...
-   <span style="color:#ae81ff">00</span>
-   <span style="color:#ae81ff">01</span>     .interp
-   <span style="color:#ae81ff">02</span>     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame
-   <span style="color:#ae81ff">03</span>     .init_array .fini_array .dynamic .got .data .bss
-   <span style="color:#ae81ff">04</span>     .dynamic
-   <span style="color:#ae81ff">05</span>     .note.ABI-tag .note.gnu.build-id
-   <span style="color:#ae81ff">06</span>     .eh_frame_hdr
-   <span style="color:#ae81ff">07</span>
-   <span style="color:#ae81ff">08</span>     .init_array .fini_array .dynamic .got
+Segment Sections...
+ <span style="color:#ae81ff">00</span>
+ <span style="color:#ae81ff">01</span>     .interp
+ <span style="color:#ae81ff">02</span>     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame
+ <span style="color:#ae81ff">03</span>     .init_array .fini_array .dynamic .got .data .bss
+ <span style="color:#ae81ff">04</span>     .dynamic
+ <span style="color:#ae81ff">05</span>     .note.ABI-tag .note.gnu.build-id
+ <span style="color:#ae81ff">06</span>     .eh_frame_hdr
+ <span style="color:#ae81ff">07</span>
+ <span style="color:#ae81ff">08</span>     .init_array .fini_array .dynamic .got
 </code></pre></div><p>可执行文件或者共享目标文件的程序头部是一个结构数组，每个结构描述了一个段 或者系统准备程序执行所必需的其它信息。目标文件的“段”包含一个或者多个“节区”， 也就是“段内容(Segment Contents)”。程序头部仅对于可执行文件和共享目标文件 有意义。 可执行目标文件在 ELF 头部的 e_phentsize和e_phnum 成员中给出其自身程序头部 的大小。程序头部的数据结构:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Program Header */</span>
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    Elf32_Word    p_type;        <span style="color:#75715e">/* segment type */</span>
-    Elf32_Off    p_offset;    <span style="color:#75715e">/* segment offset */</span>
-    Elf32_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address of segment */</span>
-    Elf32_Addr    p_paddr;    <span style="color:#75715e">/* physical address - ignored? */</span>
-    Elf32_Word    p_filesz;    <span style="color:#75715e">/* number of bytes in file for seg. */</span>
-    Elf32_Word    p_memsz;    <span style="color:#75715e">/* number of bytes in mem. for seg. */</span>
-    Elf32_Word    p_flags;    <span style="color:#75715e">/* flags */</span>
-    Elf32_Word    p_align;    <span style="color:#75715e">/* memory alignment */</span>
+Elf32_Word    p_type;        <span style="color:#75715e">/* segment type */</span>
+Elf32_Off    p_offset;    <span style="color:#75715e">/* segment offset */</span>
+Elf32_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address of segment */</span>
+Elf32_Addr    p_paddr;    <span style="color:#75715e">/* physical address - ignored? */</span>
+Elf32_Word    p_filesz;    <span style="color:#75715e">/* number of bytes in file for seg. */</span>
+Elf32_Word    p_memsz;    <span style="color:#75715e">/* number of bytes in mem. for seg. */</span>
+Elf32_Word    p_flags;    <span style="color:#75715e">/* flags */</span>
+Elf32_Word    p_align;    <span style="color:#75715e">/* memory alignment */</span>
 } Elf32_Phdr;
 
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    Elf64_Half    p_type;        <span style="color:#75715e">/* entry type */</span>
-    Elf64_Half    p_flags;    <span style="color:#75715e">/* flags */</span>
-    Elf64_Off    p_offset;    <span style="color:#75715e">/* offset */</span>
-    Elf64_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address */</span>
-    Elf64_Addr    p_paddr;    <span style="color:#75715e">/* physical address */</span>
-    Elf64_Xword    p_filesz;    <span style="color:#75715e">/* file size */</span>
-    Elf64_Xword    p_memsz;    <span style="color:#75715e">/* memory size */</span>
-    Elf64_Xword    p_align;    <span style="color:#75715e">/* memory &amp; file alignment */</span>
+Elf64_Half    p_type;        <span style="color:#75715e">/* entry type */</span>
+Elf64_Half    p_flags;    <span style="color:#75715e">/* flags */</span>
+Elf64_Off    p_offset;    <span style="color:#75715e">/* offset */</span>
+Elf64_Addr    p_vaddr;    <span style="color:#75715e">/* virtual address */</span>
+Elf64_Addr    p_paddr;    <span style="color:#75715e">/* physical address */</span>
+Elf64_Xword    p_filesz;    <span style="color:#75715e">/* file size */</span>
+Elf64_Xword    p_memsz;    <span style="color:#75715e">/* memory size */</span>
+Elf64_Xword    p_align;    <span style="color:#75715e">/* memory &amp; file alignment */</span>
 } Elf64_Phdr;
 </code></pre></div><p>其中各个字段说明：</p>
 <ul>
@@ -371,49 +371,49 @@ Program Headers:
 There are <span style="color:#ae81ff">29</span> section headers, starting at offset <span style="color:#ae81ff">0x19d8</span><span style="color:#f92672">:</span>
 
 Section Headers:
-  [Nr] Name              Type             Address           Offset
-       Size              EntSize          Flags  Link  Info  Align
-  [ <span style="color:#ae81ff">0</span>]                   NULL             <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">00000000</span>
-       <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">0000000000000000</span>           <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>
-  [ <span style="color:#ae81ff">1</span>] .interp           PROGBITS         <span style="color:#ae81ff">000000000000023</span><span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">0000023</span><span style="color:#ae81ff">8</span>
-       <span style="color:#ae81ff">000000000000001</span>c  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1</span>
-  [ <span style="color:#ae81ff">2</span>] .note.ABI<span style="color:#f92672">-</span>tag     NOTE             <span style="color:#ae81ff">0000000000000254</span>  <span style="color:#ae81ff">00000254</span>
-       <span style="color:#ae81ff">0000000000000020</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
-  [ <span style="color:#ae81ff">3</span>] .note.gnu.build<span style="color:#f92672">-</span>i NOTE             <span style="color:#ae81ff">0000000000000274</span>  <span style="color:#ae81ff">00000274</span>
-       <span style="color:#ae81ff">0000000000000024</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
+[Nr] Name              Type             Address           Offset
+   Size              EntSize          Flags  Link  Info  Align
+[ <span style="color:#ae81ff">0</span>]                   NULL             <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">00000000</span>
+   <span style="color:#ae81ff">0000000000000000</span>  <span style="color:#ae81ff">0000000000000000</span>           <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>
+[ <span style="color:#ae81ff">1</span>] .interp           PROGBITS         <span style="color:#ae81ff">000000000000023</span><span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">0000023</span><span style="color:#ae81ff">8</span>
+   <span style="color:#ae81ff">000000000000001</span>c  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1</span>
+[ <span style="color:#ae81ff">2</span>] .note.ABI<span style="color:#f92672">-</span>tag     NOTE             <span style="color:#ae81ff">0000000000000254</span>  <span style="color:#ae81ff">00000254</span>
+   <span style="color:#ae81ff">0000000000000020</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
+[ <span style="color:#ae81ff">3</span>] .note.gnu.build<span style="color:#f92672">-</span>i NOTE             <span style="color:#ae81ff">0000000000000274</span>  <span style="color:#ae81ff">00000274</span>
+   <span style="color:#ae81ff">0000000000000024</span>  <span style="color:#ae81ff">0000000000000000</span>   A       <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">4</span>
 ......
 Key to Flags:
-  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
-  L (link order), O (extra OS processing required), G (group), T (TLS),
-  C (compressed), x (unknown), o (OS specific), E (exclude),
-  l (large), p (processor specific)
+W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+L (link order), O (extra OS processing required), G (group), T (TLS),
+C (compressed), x (unknown), o (OS specific), E (exclude),
+l (large), p (processor specific)
 </code></pre></div><p>节头的数据结构：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Section Header */</span>
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    Elf32_Word    sh_name;    <span style="color:#75715e">/* name - index into section header
-</span><span style="color:#75715e">                       string table section */</span>
-    Elf32_Word    sh_type;    <span style="color:#75715e">/* type */</span>
-    Elf32_Word    sh_flags;    <span style="color:#75715e">/* flags */</span>
-    Elf32_Addr    sh_addr;    <span style="color:#75715e">/* address */</span>
-    Elf32_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
-    Elf32_Word    sh_size;    <span style="color:#75715e">/* section size */</span>
-    Elf32_Word    sh_link;    <span style="color:#75715e">/* section header table index link */</span>
-    Elf32_Word    sh_info;    <span style="color:#75715e">/* extra information */</span>
-    Elf32_Word    sh_addralign;    <span style="color:#75715e">/* address alignment */</span>
-    Elf32_Word    sh_entsize;    <span style="color:#75715e">/* section entry size */</span>
+Elf32_Word    sh_name;    <span style="color:#75715e">/* name - index into section header
+</span><span style="color:#75715e">                   string table section */</span>
+Elf32_Word    sh_type;    <span style="color:#75715e">/* type */</span>
+Elf32_Word    sh_flags;    <span style="color:#75715e">/* flags */</span>
+Elf32_Addr    sh_addr;    <span style="color:#75715e">/* address */</span>
+Elf32_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
+Elf32_Word    sh_size;    <span style="color:#75715e">/* section size */</span>
+Elf32_Word    sh_link;    <span style="color:#75715e">/* section header table index link */</span>
+Elf32_Word    sh_info;    <span style="color:#75715e">/* extra information */</span>
+Elf32_Word    sh_addralign;    <span style="color:#75715e">/* address alignment */</span>
+Elf32_Word    sh_entsize;    <span style="color:#75715e">/* section entry size */</span>
 } Elf32_Shdr;
 
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    Elf64_Half    sh_name;    <span style="color:#75715e">/* section name */</span>
-    Elf64_Half    sh_type;    <span style="color:#75715e">/* section type */</span>
-    Elf64_Xword   sh_flags;    <span style="color:#75715e">/* section flags */</span>
-    Elf64_Addr    sh_addr;    <span style="color:#75715e">/* virtual address */</span>
-    Elf64_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
-    Elf64_Xword   sh_size;    <span style="color:#75715e">/* section size */</span>
-    Elf64_Half    sh_link;    <span style="color:#75715e">/* link to another */</span>
-    Elf64_Half    sh_info;    <span style="color:#75715e">/* misc info */</span>
-    Elf64_Xword   sh_addralign;    <span style="color:#75715e">/* memory alignment */</span>
-    Elf64_Xword   sh_entsize;    <span style="color:#75715e">/* table entry size */</span>
+Elf64_Half    sh_name;    <span style="color:#75715e">/* section name */</span>
+Elf64_Half    sh_type;    <span style="color:#75715e">/* section type */</span>
+Elf64_Xword   sh_flags;    <span style="color:#75715e">/* section flags */</span>
+Elf64_Addr    sh_addr;    <span style="color:#75715e">/* virtual address */</span>
+Elf64_Off     sh_offset;    <span style="color:#75715e">/* file offset */</span>
+Elf64_Xword   sh_size;    <span style="color:#75715e">/* section size */</span>
+Elf64_Half    sh_link;    <span style="color:#75715e">/* link to another */</span>
+Elf64_Half    sh_info;    <span style="color:#75715e">/* misc info */</span>
+Elf64_Xword   sh_addralign;    <span style="color:#75715e">/* memory alignment */</span>
+Elf64_Xword   sh_entsize;    <span style="color:#75715e">/* table entry size */</span>
 } Elf64_Shdr;
 </code></pre></div><p>各个字段的解释如下:
 <img src="https://upload-images.jianshu.io/upload_images/11884068-2ac7a0afb44b51f9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
@@ -444,21 +444,21 @@ sh_type 字段 节区类型定义：
 <p>目标文件的符号表中包含用来定位、重定位程序中符号定义和引用的信息。符号表 索引是对此数组的索引。索引 0 表示表中的第一表项，同时也作为 定义符号的索引。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Symbol Table Entry */</span>
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> elf32_sym {
-    Elf32_Word    st_name;    <span style="color:#75715e">/* name - index into string table */</span>
-    Elf32_Addr    st_value;    <span style="color:#75715e">/* symbol value */</span>
-    Elf32_Word    st_size;    <span style="color:#75715e">/* symbol size */</span>
-    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_info;    <span style="color:#75715e">/* type and binding */</span>
-    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_other;    <span style="color:#75715e">/* 0 - no defined meaning */</span>
-    Elf32_Half    st_shndx;    <span style="color:#75715e">/* section header index */</span>
+Elf32_Word    st_name;    <span style="color:#75715e">/* name - index into string table */</span>
+Elf32_Addr    st_value;    <span style="color:#75715e">/* symbol value */</span>
+Elf32_Word    st_size;    <span style="color:#75715e">/* symbol size */</span>
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_info;    <span style="color:#75715e">/* type and binding */</span>
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>    st_other;    <span style="color:#75715e">/* 0 - no defined meaning */</span>
+Elf32_Half    st_shndx;    <span style="color:#75715e">/* section header index */</span>
 } Elf32_Sym;
 
 <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
-    Elf64_Half    st_name;    <span style="color:#75715e">/* Symbol name index in str table */</span>
-    Elf_Byte    st_info;    <span style="color:#75715e">/* type / binding attrs */</span>
-    Elf_Byte    st_other;    <span style="color:#75715e">/* unused */</span>
-    Elf64_Quarter    st_shndx;    <span style="color:#75715e">/* section index of symbol */</span>
-    Elf64_Xword    st_value;    <span style="color:#75715e">/* value of symbol */</span>
-    Elf64_Xword    st_size;    <span style="color:#75715e">/* size of symbol */</span>
+Elf64_Half    st_name;    <span style="color:#75715e">/* Symbol name index in str table */</span>
+Elf_Byte    st_info;    <span style="color:#75715e">/* type / binding attrs */</span>
+Elf_Byte    st_other;    <span style="color:#75715e">/* unused */</span>
+Elf64_Quarter    st_shndx;    <span style="color:#75715e">/* section index of symbol */</span>
+Elf64_Xword    st_value;    <span style="color:#75715e">/* value of symbol */</span>
+Elf64_Xword    st_size;    <span style="color:#75715e">/* size of symbol */</span>
 } Elf64_Sym;
 </code></pre></div><p>各个字段的含义如下:
 <img src="https://upload-images.jianshu.io/upload_images/11884068-d56d236da5e8104e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
@@ -469,88 +469,88 @@ ALLOC 表示有该标记的节会在运行时分配并装载进入内存，而<c
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ep@EP:/mnt/d/code/linux$ readelf -s main
 
 Symbol table <span style="color:#e6db74">&#39;.dynsym&#39;</span> contains <span style="color:#ae81ff">11</span> entries:
-   Num:    Value          Size Type    Bind   Vis      Ndx Name
-     0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
-     1: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
-     2: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-     3: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-     4: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-     5: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-     6: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
-     7: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-     8: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
-     9: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
-    10: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ Num:    Value          Size Type    Bind   Vis      Ndx Name
+ 0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
+ 1: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
+ 2: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ 3: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ 4: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ 5: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ 6: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+ 7: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+ 8: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+ 9: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+10: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
 
 Symbol table <span style="color:#e6db74">&#39;.symtab&#39;</span> contains <span style="color:#ae81ff">67</span> entries:
-   Num:    Value          Size Type    Bind   Vis      Ndx Name
-     0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
-     1: <span style="color:#ae81ff">0000000000000238</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">1</span>
-     2: <span style="color:#ae81ff">0000000000000254</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">2</span>
-     3: <span style="color:#ae81ff">0000000000000274</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">3</span>
-     4: <span style="color:#ae81ff">0000000000000298</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">4</span>
-     5: 00000000000002b8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">5</span>
-     6: 00000000000003c0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">6</span>
-     7: 000000000000045c     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">7</span>
-     8: <span style="color:#ae81ff">0000000000000478</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">8</span>
-     9: <span style="color:#ae81ff">0000000000000498</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">9</span>
-    10: <span style="color:#ae81ff">0000000000000558</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">10</span>
-    11: 00000000000005d0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">11</span>
-    12: 00000000000005f0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">12</span>
-    13: <span style="color:#ae81ff">0000000000000650</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">13</span>
-    14: <span style="color:#ae81ff">0000000000000660</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">14</span>
-    15: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">15</span>
-    16: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">16</span>
-    17: 00000000000008a4     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">17</span>
-    18: 00000000000008e0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">18</span>
-    19: 0000000000200d98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">19</span>
-    20: 0000000000200da0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">20</span>
-    21: 0000000000200da8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">21</span>
-    22: 0000000000200f98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">22</span>
-    23: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">23</span>
-    24: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">24</span>
-    25: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">25</span>
-    26: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
-    27: <span style="color:#ae81ff">0000000000000690</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> deregister_tm_clones
-    28: 00000000000006d0     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> register_tm_clones
-    29: <span style="color:#ae81ff">0000000000000720</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> __do_global_dtors_aux
-    30: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">1</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">24</span> completed.7698
-    31: 0000000000200da0     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">20</span> __do_global_dtors_aux_fin
-    32: <span style="color:#ae81ff">0000000000000760</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> frame_dummy
-    33: 0000000000200d98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __frame_dummy_init_array_
-    34: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS main.c
-    35: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
-    36: 00000000000009e4     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">18</span> __FRAME_END__
-    37: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS
-    38: 0000000000200da0     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_end
-    39: 0000000000200da8     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">21</span> _DYNAMIC
-    40: 0000000000200d98     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_start
-    41: 00000000000008a4     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">17</span> __GNU_EH_FRAME_HDR
-    42: 0000000000200f98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">22</span> _GLOBAL_OFFSET_TABLE_
-    43: <span style="color:#ae81ff">0000000000000860</span>     <span style="color:#ae81ff">2</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_fini
-    44: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
-    45: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT   <span style="color:#ae81ff">23</span> data_start
-    46: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5
-    47: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> _edata
-    48: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">15</span> _fini
-    49: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@@GLIBC_2.2.5
-    50: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@@GLIBC_2.2.5
-    51: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
-    52: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> __data_start
-    53: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
-    54: <span style="color:#ae81ff">0000000000201008</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __dso_handle
-    55: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">4</span> OBJECT  GLOBAL DEFAULT   <span style="color:#ae81ff">16</span> _IO_stdin_used
-    56: 00000000000007f0   <span style="color:#ae81ff">101</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_init
-    57: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@@GLIBC_2.2.5
-    58: <span style="color:#ae81ff">0000000000201018</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> _end
-    59: <span style="color:#ae81ff">0000000000000660</span>    <span style="color:#ae81ff">43</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> _start
-    60: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> __bss_start
-    61: 000000000000076a   <span style="color:#ae81ff">126</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> main
-    62: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __TMC_END__
-    63: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
-    64: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@@GLIBC_2.2.5
-    65: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2
-    66: 00000000000005d0     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">11</span> _init
+ Num:    Value          Size Type    Bind   Vis      Ndx Name
+ 0: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT  UND
+ 1: <span style="color:#ae81ff">0000000000000238</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">1</span>
+ 2: <span style="color:#ae81ff">0000000000000254</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">2</span>
+ 3: <span style="color:#ae81ff">0000000000000274</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">3</span>
+ 4: <span style="color:#ae81ff">0000000000000298</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">4</span>
+ 5: 00000000000002b8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">5</span>
+ 6: 00000000000003c0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">6</span>
+ 7: 000000000000045c     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">7</span>
+ 8: <span style="color:#ae81ff">0000000000000478</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">8</span>
+ 9: <span style="color:#ae81ff">0000000000000498</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT    <span style="color:#ae81ff">9</span>
+10: <span style="color:#ae81ff">0000000000000558</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">10</span>
+11: 00000000000005d0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">11</span>
+12: 00000000000005f0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">12</span>
+13: <span style="color:#ae81ff">0000000000000650</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">13</span>
+14: <span style="color:#ae81ff">0000000000000660</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">14</span>
+15: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">15</span>
+16: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">16</span>
+17: 00000000000008a4     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">17</span>
+18: 00000000000008e0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">18</span>
+19: 0000000000200d98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">19</span>
+20: 0000000000200da0     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">20</span>
+21: 0000000000200da8     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">21</span>
+22: 0000000000200f98     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">22</span>
+23: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">23</span>
+24: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">24</span>
+25: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> SECTION LOCAL  DEFAULT   <span style="color:#ae81ff">25</span>
+26: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
+27: <span style="color:#ae81ff">0000000000000690</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> deregister_tm_clones
+28: 00000000000006d0     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> register_tm_clones
+29: <span style="color:#ae81ff">0000000000000720</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> __do_global_dtors_aux
+30: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">1</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">24</span> completed.7698
+31: 0000000000200da0     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">20</span> __do_global_dtors_aux_fin
+32: <span style="color:#ae81ff">0000000000000760</span>     <span style="color:#ae81ff">0</span> FUNC    LOCAL  DEFAULT   <span style="color:#ae81ff">14</span> frame_dummy
+33: 0000000000200d98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __frame_dummy_init_array_
+34: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS main.c
+35: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c
+36: 00000000000009e4     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">18</span> __FRAME_END__
+37: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FILE    LOCAL  DEFAULT  ABS
+38: 0000000000200da0     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_end
+39: 0000000000200da8     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">21</span> _DYNAMIC
+40: 0000000000200d98     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">19</span> __init_array_start
+41: 00000000000008a4     <span style="color:#ae81ff">0</span> NOTYPE  LOCAL  DEFAULT   <span style="color:#ae81ff">17</span> __GNU_EH_FRAME_HDR
+42: 0000000000200f98     <span style="color:#ae81ff">0</span> OBJECT  LOCAL  DEFAULT   <span style="color:#ae81ff">22</span> _GLOBAL_OFFSET_TABLE_
+43: <span style="color:#ae81ff">0000000000000860</span>     <span style="color:#ae81ff">2</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_fini
+44: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
+45: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT   <span style="color:#ae81ff">23</span> data_start
+46: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5
+47: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> _edata
+48: <span style="color:#ae81ff">0000000000000864</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">15</span> _fini
+49: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND printf@@GLIBC_2.2.5
+50: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND read@@GLIBC_2.2.5
+51: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
+52: <span style="color:#ae81ff">0000000000201000</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">23</span> __data_start
+53: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+54: <span style="color:#ae81ff">0000000000201008</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __dso_handle
+55: <span style="color:#ae81ff">0000000000000870</span>     <span style="color:#ae81ff">4</span> OBJECT  GLOBAL DEFAULT   <span style="color:#ae81ff">16</span> _IO_stdin_used
+56: 00000000000007f0   <span style="color:#ae81ff">101</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> __libc_csu_init
+57: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND malloc@@GLIBC_2.2.5
+58: <span style="color:#ae81ff">0000000000201018</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> _end
+59: <span style="color:#ae81ff">0000000000000660</span>    <span style="color:#ae81ff">43</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> _start
+60: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> NOTYPE  GLOBAL DEFAULT   <span style="color:#ae81ff">24</span> __bss_start
+61: 000000000000076a   <span style="color:#ae81ff">126</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">14</span> main
+62: <span style="color:#ae81ff">0000000000201010</span>     <span style="color:#ae81ff">0</span> OBJECT  GLOBAL HIDDEN    <span style="color:#ae81ff">23</span> __TMC_END__
+63: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+64: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT  UND sleep@@GLIBC_2.2.5
+65: <span style="color:#ae81ff">0000000000000000</span>     <span style="color:#ae81ff">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2
+66: 00000000000005d0     <span style="color:#ae81ff">0</span> FUNC    GLOBAL DEFAULT   <span style="color:#ae81ff">11</span> _init
 </code></pre></div>
     </div>
 
