@@ -589,7 +589,7 @@ result <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">int</s
 }
 <span style="color:#66d9ef">return</span> result;
 }
-</code></pre></div><p>NtQueryInformationProcess，等于7检测ProcessDebugPort。
+</code></pre></div><p>NtQueryInformationProcess，等于7检测ProcessDebugPort。<br>
 2. NtGlobalFalg(PEB+0x68)</p>
 <p>调试进程时，PEB.NtGlobalFalg成员(+0x68)的值会被设置为0x70</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">__int64</span> <span style="color:#a6e22e">sub_402740</span>()

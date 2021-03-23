@@ -614,31 +614,31 @@ r <span style="color:#f92672">=</span> [<span style="color:#ae81ff">208</span>, 
 cmd <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;./main&#39;</span>]  
   
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getret</span>():  
-rets <span style="color:#f92672">=</span> []  
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;blob&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
-    <span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
-        data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
-        p <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen(cmd, stdin<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)  
-        p<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>write(data)  
-        p<span style="color:#f92672">.</span>communicate()  
-        rets<span style="color:#f92672">.</span>append(p<span style="color:#f92672">.</span>returncode)  
-<span style="color:#66d9ef">return</span> rets  
+	rets <span style="color:#f92672">=</span> []  
+	<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;blob&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
+		<span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
+			data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
+			p <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen(cmd, stdin<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)  
+			p<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>write(data)  
+			p<span style="color:#f92672">.</span>communicate()  
+			rets<span style="color:#f92672">.</span>append(p<span style="color:#f92672">.</span>returncode)  
+	<span style="color:#66d9ef">return</span> rets  
   
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:  
-r <span style="color:#f92672">=</span> getret()  
-dic <span style="color:#f92672">=</span> {}  
-  
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">24</span>):  
-    flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hackim20{&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">23</span> <span style="color:#f92672">-</span> i) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;}&#34;</span>  
-    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;flag&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:  
-        f<span style="color:#f92672">.</span>write(flag)  
-    ret <span style="color:#f92672">=</span> getret()  
-    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(ret)):  
-        <span style="color:#66d9ef">if</span> ret[j] <span style="color:#f92672">!=</span> r[j]:  
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> dic<span style="color:#f92672">.</span>has_key(j):  
-                dic[j] <span style="color:#f92672">=</span> {}  
-            dic[j][i] <span style="color:#f92672">=</span> ret[j] <span style="color:#f92672">-</span> r[j]  
-<span style="color:#66d9ef">print</span> dic  
+	r <span style="color:#f92672">=</span> getret()  
+	dic <span style="color:#f92672">=</span> {}  
+	
+	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">24</span>):  
+		flag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hackim20{&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">*</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">23</span> <span style="color:#f92672">-</span> i) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;}&#34;</span>  
+		<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;flag&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:  
+			f<span style="color:#f92672">.</span>write(flag)  
+		ret <span style="color:#f92672">=</span> getret()  
+		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(ret)):  
+			<span style="color:#66d9ef">if</span> ret[j] <span style="color:#f92672">!=</span> r[j]:  
+				<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> dic<span style="color:#f92672">.</span>has_key(j):  
+					dic[j] <span style="color:#f92672">=</span> {}  
+				dic[j][i] <span style="color:#f92672">=</span> ret[j] <span style="color:#f92672">-</span> r[j]  
+	<span style="color:#66d9ef">print</span> dic  
 </code></pre></div><p>最后打印的dic中是flag中哪些字符串能够影响第i个输出的returncode. <br>
 下面的脚本用于使用z3的求解, 其中flag文件中填入的字符串依然是: hackim20{00000000000000000000000}</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> subprocess  
@@ -651,38 +651,38 @@ r <span style="color:#f92672">=</span> [<span style="color:#ae81ff">208</span>, 
 cmd <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;./main&#39;</span>]  
   
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getret</span>():  
-rets <span style="color:#f92672">=</span> []  
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;blob&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
-    <span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
-        data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
-        p <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen(cmd, stdin<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)  
-        p<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>write(data)  
-        p<span style="color:#f92672">.</span>communicate()  
-        rets<span style="color:#f92672">.</span>append(p<span style="color:#f92672">.</span>returncode)  
-<span style="color:#66d9ef">return</span> rets  
+	rets <span style="color:#f92672">=</span> []  
+	<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;blob&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
+		<span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
+			data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
+			p <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen(cmd, stdin<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)  
+			p<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>write(data)  
+			p<span style="color:#f92672">.</span>communicate()  
+			rets<span style="color:#f92672">.</span>append(p<span style="color:#f92672">.</span>returncode)  
+	<span style="color:#66d9ef">return</span> rets  
   
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:  
-ret <span style="color:#f92672">=</span> getret()  
-dic <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: {<span style="color:#ae81ff">1</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">2</span>: {<span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">3</span>: {<span style="color:#ae81ff">9</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">21</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">4</span>: {<span style="color:#ae81ff">13</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">5</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">6</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">7</span>: {<span style="color:#ae81ff">10</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">18</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">8</span>: {<span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">2</span>}, <span style="color:#ae81ff">9</span>: {<span style="color:#ae81ff">16</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">10</span>: {<span style="color:#ae81ff">21</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">11</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">21</span>: {<span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">22</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">23</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">24</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">25</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">26</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">27</span>: {<span style="color:#ae81ff">18</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">28</span>: {<span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">15</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">29</span>: {<span style="color:#ae81ff">17</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">30</span>: {<span style="color:#ae81ff">10</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">31</span>: {<span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">32</span>: {<span style="color:#ae81ff">11</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">1</span>}}  
-solver <span style="color:#f92672">=</span> Solver()  
-val <span style="color:#f92672">=</span> [Int(<span style="color:#e6db74">&#39;x</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">23</span>)]  
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">23</span>):  
-    solver<span style="color:#f92672">.</span>add(val[i] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span>)  
-    solver<span style="color:#f92672">.</span>add(val[i] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>)  
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">33</span>):  
-    <span style="color:#66d9ef">if</span> dic<span style="color:#f92672">.</span>has_key(i):  
-        keys <span style="color:#f92672">=</span> dic[i]<span style="color:#f92672">.</span>keys()  
-        a <span style="color:#f92672">=</span> r[i] <span style="color:#f92672">-</span> ret[i]  
-        b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
-        <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> keys:  
-            b <span style="color:#f92672">=</span> b <span style="color:#f92672">+</span> (val[k] <span style="color:#f92672">-</span> ord(<span style="color:#e6db74">&#39;0&#39;</span>)) <span style="color:#f92672">*</span> dic[i][k]  
-        solver<span style="color:#f92672">.</span>add(a <span style="color:#f92672">==</span> b)  
-<span style="color:#75715e"># print solver  </span>
-<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()  
-answer<span style="color:#f92672">=</span>solver<span style="color:#f92672">.</span>model()  
-<span style="color:#66d9ef">print</span> answer  
-tidy_answer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join([chr(answer[each]<span style="color:#f92672">.</span>as_long()) <span style="color:#66d9ef">for</span> each <span style="color:#f92672">in</span> val])  
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;hackim20{&#34;</span> <span style="color:#f92672">+</span> tidy_answer  
+	ret <span style="color:#f92672">=</span> getret()  
+	dic <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>: {<span style="color:#ae81ff">1</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">2</span>: {<span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">3</span>: {<span style="color:#ae81ff">9</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">21</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">4</span>: {<span style="color:#ae81ff">13</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">5</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">6</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">7</span>: {<span style="color:#ae81ff">10</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">18</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">8</span>: {<span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">2</span>}, <span style="color:#ae81ff">9</span>: {<span style="color:#ae81ff">16</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">10</span>: {<span style="color:#ae81ff">21</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">11</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">21</span>: {<span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">22</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">23</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">24</span>: {<span style="color:#ae81ff">20</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">25</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">26</span>: {<span style="color:#ae81ff">19</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">27</span>: {<span style="color:#ae81ff">18</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">28</span>: {<span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">15</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">29</span>: {<span style="color:#ae81ff">17</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">30</span>: {<span style="color:#ae81ff">10</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">31</span>: {<span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">1</span>}, <span style="color:#ae81ff">32</span>: {<span style="color:#ae81ff">11</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">1</span>}}  
+	solver <span style="color:#f92672">=</span> Solver()  
+	val <span style="color:#f92672">=</span> [Int(<span style="color:#e6db74">&#39;x</span><span style="color:#e6db74">%i</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">23</span>)]  
+	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">23</span>):  
+		solver<span style="color:#f92672">.</span>add(val[i] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span>)  
+		solver<span style="color:#f92672">.</span>add(val[i] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0x7f</span>)  
+	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">33</span>):  
+		<span style="color:#66d9ef">if</span> dic<span style="color:#f92672">.</span>has_key(i):  
+			keys <span style="color:#f92672">=</span> dic[i]<span style="color:#f92672">.</span>keys()  
+			a <span style="color:#f92672">=</span> r[i] <span style="color:#f92672">-</span> ret[i]  
+			b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+			<span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> keys:  
+				b <span style="color:#f92672">=</span> b <span style="color:#f92672">+</span> (val[k] <span style="color:#f92672">-</span> ord(<span style="color:#e6db74">&#39;0&#39;</span>)) <span style="color:#f92672">*</span> dic[i][k]  
+			solver<span style="color:#f92672">.</span>add(a <span style="color:#f92672">==</span> b)  
+	<span style="color:#75715e"># print solver  </span>
+	<span style="color:#66d9ef">print</span> solver<span style="color:#f92672">.</span>check()  
+	answer<span style="color:#f92672">=</span>solver<span style="color:#f92672">.</span>model()  
+	<span style="color:#66d9ef">print</span> answer  
+	tidy_answer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join([chr(answer[each]<span style="color:#f92672">.</span>as_long()) <span style="color:#66d9ef">for</span> each <span style="color:#f92672">in</span> val])  
+	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;hackim20{&#34;</span> <span style="color:#f92672">+</span> tidy_answer  
 </code></pre></div><p><img src="/images/2f353d576803642b0dfe02fd315664d3/11884068-93908b4f8a133afe.png" alt=""></p>
 <p>hackim20{B4byR0pDo0dOod00duDoo}</p>
 <h2 id="官方解法">官方解法</h2>
@@ -696,23 +696,23 @@ bufs <span style="color:#f92672">=</span> []
 gadgets <span style="color:#f92672">=</span> set()  
   
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;blob&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:  
-<span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
-    data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
-    bufs<span style="color:#f92672">.</span>append(data)  
+	<span style="color:#66d9ef">for</span> offset <span style="color:#f92672">in</span> o:  
+		data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read(offset)  
+		bufs<span style="color:#f92672">.</span>append(data)  
   
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode</span>(buf):  
-na <span style="color:#f92672">=</span> <span style="color:#ae81ff">56</span>  
-data_l <span style="color:#f92672">=</span> []  
-data <span style="color:#f92672">=</span> None  
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(na, len(buf), <span style="color:#ae81ff">8</span>):  
-    data <span style="color:#f92672">=</span> buf[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">8</span>]  
-    <span style="color:#66d9ef">print</span> data  
-    data <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;&lt;Q&#39;</span>, data)[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#unpack成8字节的小端序数据  </span>
-    <span style="color:#66d9ef">print</span> data  
-    data_l<span style="color:#f92672">.</span>append(data)  
-    <span style="color:#66d9ef">if</span> data <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0x400000</span>:  
-        gadgets<span style="color:#f92672">.</span>add(data)  
-<span style="color:#66d9ef">return</span> data_l  
+	na <span style="color:#f92672">=</span> <span style="color:#ae81ff">56</span>  
+	data_l <span style="color:#f92672">=</span> []  
+	data <span style="color:#f92672">=</span> None  
+	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(na, len(buf), <span style="color:#ae81ff">8</span>):  
+		data <span style="color:#f92672">=</span> buf[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">8</span>]  
+		<span style="color:#66d9ef">print</span> data  
+		data <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;&lt;Q&#39;</span>, data)[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#unpack成8字节的小端序数据  </span>
+		<span style="color:#66d9ef">print</span> data  
+		data_l<span style="color:#f92672">.</span>append(data)  
+		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0x400000</span>:  
+			gadgets<span style="color:#f92672">.</span>add(data)  
+	<span style="color:#66d9ef">return</span> data_l  
   
 <span style="color:#75715e"># for buf in bufs:  </span>
 <span style="color:#75715e">#     addrs = decode(buf)  </span>
@@ -752,12 +752,12 @@ dis[<span style="color:#ae81ff">0x4011f6</span>] <span style="color:#f92672">=</
 dis[<span style="color:#ae81ff">0x4011ff</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;call exit@plt&#39;</span>  
   
 <span style="color:#66d9ef">for</span> buf <span style="color:#f92672">in</span> bufs:  
-addrs <span style="color:#f92672">=</span> decode(buf)  
-<span style="color:#66d9ef">for</span> addr <span style="color:#f92672">in</span> addrs:  
-    <span style="color:#66d9ef">try</span>:  
-        <span style="color:#66d9ef">print</span>(dis[addr])  
-    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyError</span>:  
-        <span style="color:#66d9ef">print</span>(hex(addr))  
+	addrs <span style="color:#f92672">=</span> decode(buf)  
+	<span style="color:#66d9ef">for</span> addr <span style="color:#f92672">in</span> addrs:  
+		<span style="color:#66d9ef">try</span>:  
+			<span style="color:#66d9ef">print</span>(dis[addr])  
+		<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyError</span>:  
+			<span style="color:#66d9ef">print</span>(hex(addr))  
   
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;---------------------------&#39;</span>)  
 </code></pre></div><p>翻译出来的字节码如下: <br>
@@ -773,47 +773,47 @@ n <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>
   
 bv <span style="color:#f92672">=</span> []  
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n):  
-bv<span style="color:#f92672">.</span>append(BitVec(<span style="color:#e6db74">&#39;bv_{}&#39;</span><span style="color:#f92672">.</span>format(i), <span style="color:#ae81ff">32</span>))  
+	bv<span style="color:#f92672">.</span>append(BitVec(<span style="color:#e6db74">&#39;bv_{}&#39;</span><span style="color:#f92672">.</span>format(i), <span style="color:#ae81ff">32</span>))  
   
 alphabet <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}&#39;</span>  
   
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n):  
-s<span style="color:#f92672">.</span>add(bv[i] <span style="color:#f92672">&gt;=</span> min(alphabet))  
-s<span style="color:#f92672">.</span>add(bv[i] <span style="color:#f92672">&lt;=</span> max(alphabet))  
-  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">208</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">225</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">237</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">18</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">30</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">20</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">214</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">183</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">79</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">27</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">105</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">23</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">24</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">207</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">25</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">26</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">217</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">30</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">125</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">66</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">123</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">104</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">97</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">99</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">107</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">105</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">109</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">50</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">48</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">202</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">111</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">111</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">29</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">63</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">223</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">27</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">36</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">23</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">24</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">26</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">124</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">219</span>)  
-s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span>)  
+	s<span style="color:#f92672">.</span>add(bv[i] <span style="color:#f92672">&gt;=</span> min(alphabet))  
+	s<span style="color:#f92672">.</span>add(bv[i] <span style="color:#f92672">&lt;=</span> max(alphabet))  
+	
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">208</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">225</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">16</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">237</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">18</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">30</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">20</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">22</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">214</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">183</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">17</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">79</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">27</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">105</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">23</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">24</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">207</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">25</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">26</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">217</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">30</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">125</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">66</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">123</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">104</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">97</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">99</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">107</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">105</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">109</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">50</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">48</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">202</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">111</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">111</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">29</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">29</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">14</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">63</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">15</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">223</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">27</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">36</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">23</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">24</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">26</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">124</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">19</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">+</span> bv[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">219</span>)  
+	s<span style="color:#f92672">.</span>add(bv[<span style="color:#ae81ff">21</span>] <span style="color:#f92672">-</span> bv[<span style="color:#ae81ff">20</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">32</span>)  
   
 s<span style="color:#f92672">.</span>check()  
 m <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>model()  
