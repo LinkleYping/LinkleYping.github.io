@@ -516,7 +516,7 @@ AddRoundKey(state, w[<span style="color:#ae81ff">10</span>]);
 <span style="color:#66d9ef">void</span> AES<span style="color:#f92672">::</span>KeyExpansion(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> key, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> w[][<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>])  
 {  
 <span style="color:#66d9ef">int</span> i, j, r, c;  
-<span style="color:#75715e">//----------------------------------------------------  
+<span style="color:#75715e">//----------------------------------------------------
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> rc[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x04</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x10</span>, <span style="color:#ae81ff">0x20</span>, <span style="color:#ae81ff">0x40</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0x1b</span>, <span style="color:#ae81ff">0x36</span> };  
 <span style="color:#66d9ef">for</span> (r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; r <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; r<span style="color:#f92672">++</span>)  
 {  

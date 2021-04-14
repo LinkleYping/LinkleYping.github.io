@@ -210,11 +210,11 @@
 }  
 </code></pre></div><p>输入是一个数字，<code>sub_804857B</code>和<code>sub_80485C4</code>都是反调试，sub_8048691会把参数处地址的值改为0x90，就是nop，调用了两次可以nop两个字节，所以可以把下面:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">.text:<span style="color:#ae81ff">08048763</span> EB <span style="color:#ae81ff">00</span>                                   jmp     <span style="color:#66d9ef">short</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>  
-.text:<span style="color:#ae81ff">08048765</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>  
+.text:<span style="color:#ae81ff">08048765</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>
 .text:<span style="color:#ae81ff">08048765</span>  
 .text:<span style="color:#ae81ff">08048765</span>                         loc_8048765:                            ; CODE XREF: main<span style="color:#f92672">+</span>C7<span style="color:#960050;background-color:#1e0010">↑</span>j  
 .text:<span style="color:#ae81ff">08048765</span> EB <span style="color:#ae81ff">12</span>                                   jmp     <span style="color:#66d9ef">short</span> loc_8048779  
-.text:<span style="color:#ae81ff">08048767</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>  
+.text:<span style="color:#ae81ff">08048767</span>                         ; <span style="color:#f92672">---------------------------------------------------------------------------</span>
 .text:<span style="color:#ae81ff">08048767</span> <span style="color:#ae81ff">83</span> EC <span style="color:#ae81ff">0</span>C                                sub     esp, <span style="color:#ae81ff">0</span>Ch  
 .text:<span style="color:#ae81ff">0804876</span>A <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">88</span> <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">08</span>                          push    offset format   ; <span style="color:#e6db74">&#34;Right&#34;</span>  
 .text:<span style="color:#ae81ff">0804876F</span> E8 <span style="color:#ae81ff">8</span>C FC FF FF                          call    _printf  
