@@ -1,366 +1,167 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>ELF文件组成 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="ELF文件组成" />
-<meta property="og:description" content="ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-05-25T15:22:45+08:00" />
-<meta property="article:modified_time" content="2020-05-25T15:22:45+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="ELF文件组成"/>
-<meta name="twitter:description" content="ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" /><link rel="next" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "ELF文件组成",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  4628 ,
-        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F\/","datePublished": "2020-05-25T15:22:45+08:00","dateModified": "2020-05-25T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">ELF文件组成</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-25">2020-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4628 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#elf文件组成">ELF文件组成</a></li>
-    <li><a href="#elf头">ELF头</a></li>
-    <li><a href="#程序头">程序头</a>
-      <ul>
-        <li><a href="#pt_load">PT_LOAD</a></li>
-        <li><a href="#pt_dynamic动态段的phdr">PT_DYNAMIC——动态段的Phdr</a></li>
-        <li><a href="#pt_interp">PT_INTERP</a></li>
-        <li><a href="#pt_phdr">PT_PHDR</a></li>
-      </ul>
-    </li>
-    <li><a href="#elf节头">ELF节头</a>
-      <ul>
-        <li><a href="#节与段">节与段</a></li>
-      </ul>
-    </li>
-    <li><a href="#字符串表string-table">字符串表（String Table）</a></li>
-    <li><a href="#符号表symbol-table">符号表（Symbol Table）</a></li>
-    <li><a href="#参考">参考</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="elf文件组成">ELF文件组成</h2>
-<p>ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件的组织,如: 版本信息,入口信息,偏移信息等。程序执行也必须依靠其提供的信息。</p>
-<p>程序头部表(Program_Header_Table): 可选的一个表，用于告诉系统如何在内存中创建映像,在图中也可以看出来,有程序头部表才有段,有段就必须有程序头部表。其中存放各个段的基本信息(包括地址指针)。</p>
-<p>节区头部表(Section_Header_Table): 类似与Program_Header_Table,但与其相对应的是节区(Section)。</p>
-<p>节区(Section): 将文件分成一个个节区，每个节区都有其对应的功能，如符号表，哈希表等。</p>
-<p>段(Segment): 将文件分成一段一段映射到内存中。段中通常包括一个或多个节区。<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg" alt="image"  />
-        </a>
-    </div>
-</p>
-<h2 id="elf头">ELF头</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ readelf -h main  
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>ELF文件组成 - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="ELF文件组成"><meta property="og:description" content="ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-05-25T15:22:45+08:00"><meta property="article:modified_time" content="2020-05-25T15:22:45+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="ELF文件组成"><meta name=twitter:description content="ELF文件组成 ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/><link rel=prev href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/><link rel=next href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ELF文件组成","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":4628,"url":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F\/","datePublished":"2020-05-25T15:22:45+08:00","dateModified":"2020-05-25T15:22:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">ELF文件组成</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/notes/><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-25>2020-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4628 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#elf文件组成>ELF文件组成</a></li><li><a href=#elf头>ELF头</a></li><li><a href=#程序头>程序头</a><ul><li><a href=#pt_load>PT_LOAD</a></li><li><a href=#pt_dynamic动态段的phdr>PT_DYNAMIC——动态段的Phdr</a></li><li><a href=#pt_interp>PT_INTERP</a></li><li><a href=#pt_phdr>PT_PHDR</a></li></ul></li><li><a href=#elf节头>ELF节头</a><ul><li><a href=#节与段>节与段</a></li></ul></li><li><a href=#字符串表string-table>字符串表（String Table）</a></li><li><a href=#符号表symbol-table>符号表（Symbol Table）</a></li><li><a href=#参考>参考</a></li></ul></nav></div></div><div class=content id=content><h2 id=elf文件组成>ELF文件组成</h2><p>ELF头部(ELF_Header): 每个ELF文件都必须存在一个ELF_Header,这里存放了很多重要的信息用来描述整个文件的组织,如: 版本信息,入口信息,偏移信息等。程序执行也必须依靠其提供的信息。</p><p>程序头部表(Program_Header_Table): 可选的一个表，用于告诉系统如何在内存中创建映像,在图中也可以看出来,有程序头部表才有段,有段就必须有程序头部表。其中存放各个段的基本信息(包括地址指针)。</p><p>节区头部表(Section_Header_Table): 类似与Program_Header_Table,但与其相对应的是节区(Section)。</p><p>节区(Section): 将文件分成一个个节区，每个节区都有其对应的功能，如符号表，哈希表等。</p><p>段(Segment): 将文件分成一段一段映射到内存中。段中通常包括一个或多个节区。<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-662fa3223869aa0b.jpg title=image></p><h2 id=elf头>ELF头</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>$ readelf -h main  
 ELF Header:  
-Magic:   7f <span class="m">45</span> 4c <span class="m">46</span> <span class="m">02</span> <span class="m">01</span> <span class="m">01</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>  
+Magic:   7f <span class=m>45</span> 4c <span class=m>46</span> <span class=m>02</span> <span class=m>01</span> <span class=m>01</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span> <span class=m>00</span>  
 Class:                             ELF64  
-Data:                              2<span class="err">&#39;</span>s complement, little endian  
-Version:                           <span class="m">1</span> <span class="o">(</span>current<span class="o">)</span>  
+Data:                              2<span class=err>&#39;</span>s complement, little endian  
+Version:                           <span class=m>1</span> <span class=o>(</span>current<span class=o>)</span>  
 OS/ABI:                            UNIX - System V  
-ABI Version:                       <span class="m">0</span>  
-Type:                              DYN <span class="o">(</span>Shared object file<span class="o">)</span>  
+ABI Version:                       <span class=m>0</span>  
+Type:                              DYN <span class=o>(</span>Shared object file<span class=o>)</span>  
 Machine:                           Advanced Micro Devices X86-64  
 Version:                           0x1  
 Entry point address:               0x660  
-Start of program headers:          <span class="m">64</span> <span class="o">(</span>bytes into file<span class="o">)</span>  
-Start of section headers:          <span class="m">6616</span> <span class="o">(</span>bytes into file<span class="o">)</span>  
+Start of program headers:          <span class=m>64</span> <span class=o>(</span>bytes into file<span class=o>)</span>  
+Start of section headers:          <span class=m>6616</span> <span class=o>(</span>bytes into file<span class=o>)</span>  
 Flags:                             0x0  
-Size of this header:               <span class="m">64</span> <span class="o">(</span>bytes<span class="o">)</span>  
-Size of program headers:           <span class="m">56</span> <span class="o">(</span>bytes<span class="o">)</span>  
-Number of program headers:         <span class="m">9</span>  
-Size of section headers:           <span class="m">64</span> <span class="o">(</span>bytes<span class="o">)</span>  
-Number of section headers:         <span class="m">29</span>  
-Section header string table index: <span class="m">28</span>  
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* ELF Header */</span>  
-<span class="cp">#define EI_NIDENT 16  
-</span><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">elfhdr</span> <span class="p">{</span>  
-<span class="kt">unsigned</span> <span class="kt">char</span>    <span class="n">e_ident</span><span class="p">[</span><span class="n">EI_NIDENT</span><span class="p">];</span> <span class="cm">/* ELF Identification */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_type</span><span class="p">;</span>        <span class="cm">/* object file type */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_machine</span><span class="p">;</span>    <span class="cm">/* machine */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">e_version</span><span class="p">;</span>    <span class="cm">/* object file version */</span>  
-<span class="n">Elf32_Addr</span>    <span class="n">e_entry</span><span class="p">;</span>      <span class="cm">/* virtual entry point */</span>  
-<span class="n">Elf32_Off</span>     <span class="n">e_phoff</span><span class="p">;</span>      <span class="cm">/* program header table offset */</span>  
-<span class="n">Elf32_Off</span>     <span class="n">e_shoff</span><span class="p">;</span>      <span class="cm">/* section header table offset */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">e_flags</span><span class="p">;</span>      <span class="cm">/* processor-specific flags */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_ehsize</span><span class="p">;</span>     <span class="cm">/* ELF header size */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_phentsize</span><span class="p">;</span>    <span class="cm">/* program header entry size */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_phnum</span><span class="p">;</span>      <span class="cm">/* number of program header entries */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_shentsize</span><span class="p">;</span>    <span class="cm">/* section header entry size */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_shnum</span><span class="p">;</span>      <span class="cm">/* number of section header entries */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">e_shstrndx</span><span class="p">;</span>    <span class="cm">/* section header table&#39;s &#34;section   
-</span><span class="cm">                   header string table&#34; entry offset */</span>  
-<span class="p">}</span> <span class="n">Elf32_Ehdr</span><span class="p">;</span>  
+Size of this header:               <span class=m>64</span> <span class=o>(</span>bytes<span class=o>)</span>  
+Size of program headers:           <span class=m>56</span> <span class=o>(</span>bytes<span class=o>)</span>  
+Number of program headers:         <span class=m>9</span>  
+Size of section headers:           <span class=m>64</span> <span class=o>(</span>bytes<span class=o>)</span>  
+Number of section headers:         <span class=m>29</span>  
+Section header string table index: <span class=m>28</span>  
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cm>/* ELF Header */</span>  
+<span class=cp>#define EI_NIDENT 16  
+</span><span class=cp></span><span class=k>typedef</span> <span class=k>struct</span> <span class=n>elfhdr</span> <span class=p>{</span>  
+<span class=kt>unsigned</span> <span class=kt>char</span>    <span class=n>e_ident</span><span class=p>[</span><span class=n>EI_NIDENT</span><span class=p>];</span> <span class=cm>/* ELF Identification */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_type</span><span class=p>;</span>        <span class=cm>/* object file type */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_machine</span><span class=p>;</span>    <span class=cm>/* machine */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>e_version</span><span class=p>;</span>    <span class=cm>/* object file version */</span>  
+<span class=n>Elf32_Addr</span>    <span class=n>e_entry</span><span class=p>;</span>      <span class=cm>/* virtual entry point */</span>  
+<span class=n>Elf32_Off</span>     <span class=n>e_phoff</span><span class=p>;</span>      <span class=cm>/* program header table offset */</span>  
+<span class=n>Elf32_Off</span>     <span class=n>e_shoff</span><span class=p>;</span>      <span class=cm>/* section header table offset */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>e_flags</span><span class=p>;</span>      <span class=cm>/* processor-specific flags */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_ehsize</span><span class=p>;</span>     <span class=cm>/* ELF header size */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_phentsize</span><span class=p>;</span>    <span class=cm>/* program header entry size */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_phnum</span><span class=p>;</span>      <span class=cm>/* number of program header entries */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_shentsize</span><span class=p>;</span>    <span class=cm>/* section header entry size */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_shnum</span><span class=p>;</span>      <span class=cm>/* number of section header entries */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>e_shstrndx</span><span class=p>;</span>    <span class=cm>/* section header table&#39;s &#34;section   
+</span><span class=cm>                   header string table&#34; entry offset */</span>  
+<span class=p>}</span> <span class=n>Elf32_Ehdr</span><span class=p>;</span>  
   
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="kt">unsigned</span> <span class="kt">char</span>    <span class="n">e_ident</span><span class="p">[</span><span class="n">EI_NIDENT</span><span class="p">];</span>    <span class="cm">/* Id bytes */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_type</span><span class="p">;</span>            <span class="cm">/* file type */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_machine</span><span class="p">;</span>        <span class="cm">/* machine type */</span>  
-<span class="n">Elf64_Half</span>       <span class="n">e_version</span><span class="p">;</span>        <span class="cm">/* version number */</span>  
-<span class="n">Elf64_Addr</span>       <span class="n">e_entry</span><span class="p">;</span>         <span class="cm">/* entry point */</span>  
-<span class="n">Elf64_Off</span>        <span class="n">e_phoff</span><span class="p">;</span>         <span class="cm">/* Program hdr offset */</span>  
-<span class="n">Elf64_Off</span>        <span class="n">e_shoff</span><span class="p">;</span>         <span class="cm">/* Section hdr offset */</span>  
-<span class="n">Elf64_Half</span>       <span class="n">e_flags</span><span class="p">;</span>         <span class="cm">/* Processor flags */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_ehsize</span><span class="p">;</span>        <span class="cm">/* sizeof ehdr */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_phentsize</span><span class="p">;</span>     <span class="cm">/* Program header entry size */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_phnum</span><span class="p">;</span>         <span class="cm">/* Number of program headers */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_shentsize</span><span class="p">;</span>     <span class="cm">/* Section header entry size */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_shnum</span><span class="p">;</span>         <span class="cm">/* Number of section headers */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">e_shstrndx</span><span class="p">;</span>      <span class="cm">/* String table index */</span>  
-<span class="p">}</span> <span class="n">Elf64_Ehdr</span><span class="p">;</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>e_ident字段含义<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png" alt=""  />
-        </a>
-    </div>
-<br>
-ELF Header 中各个字段的说明如表：<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png" alt="image"  />
-        </a>
-    </div>
-</p>
-<h2 id="程序头">程序头</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">ep@EP:/mnt/d/code/linux$ readelf -l main  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=kt>unsigned</span> <span class=kt>char</span>    <span class=n>e_ident</span><span class=p>[</span><span class=n>EI_NIDENT</span><span class=p>];</span>    <span class=cm>/* Id bytes */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_type</span><span class=p>;</span>            <span class=cm>/* file type */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_machine</span><span class=p>;</span>        <span class=cm>/* machine type */</span>  
+<span class=n>Elf64_Half</span>       <span class=n>e_version</span><span class=p>;</span>        <span class=cm>/* version number */</span>  
+<span class=n>Elf64_Addr</span>       <span class=n>e_entry</span><span class=p>;</span>         <span class=cm>/* entry point */</span>  
+<span class=n>Elf64_Off</span>        <span class=n>e_phoff</span><span class=p>;</span>         <span class=cm>/* Program hdr offset */</span>  
+<span class=n>Elf64_Off</span>        <span class=n>e_shoff</span><span class=p>;</span>         <span class=cm>/* Section hdr offset */</span>  
+<span class=n>Elf64_Half</span>       <span class=n>e_flags</span><span class=p>;</span>         <span class=cm>/* Processor flags */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_ehsize</span><span class=p>;</span>        <span class=cm>/* sizeof ehdr */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_phentsize</span><span class=p>;</span>     <span class=cm>/* Program header entry size */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_phnum</span><span class=p>;</span>         <span class=cm>/* Number of program headers */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_shentsize</span><span class=p>;</span>     <span class=cm>/* Section header entry size */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_shnum</span><span class=p>;</span>         <span class=cm>/* Number of section headers */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>e_shstrndx</span><span class=p>;</span>      <span class=cm>/* String table index */</span>  
+<span class=p>}</span> <span class=n>Elf64_Ehdr</span><span class=p>;</span>  
+</code></pre></td></tr></table></div></div><p>e_ident字段含义<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-dec3fc1f6df50ce3.png><br>ELF Header 中各个字段的说明如表：<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-6ecbdf2d01aad98c.png title=image></p><h2 id=程序头>程序头</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>ep@EP:/mnt/d/code/linux$ readelf -l main  
   
-Elf file <span class="nb">type</span> is DYN <span class="o">(</span>Shared object file<span class="o">)</span>  
+Elf file <span class=nb>type</span> is DYN <span class=o>(</span>Shared object file<span class=o>)</span>  
 Entry point 0x660  
-There are <span class="m">9</span> program headers, starting at offset <span class="m">64</span>  
+There are <span class=m>9</span> program headers, starting at offset <span class=m>64</span>  
   
 Program Headers:  
 Type           Offset             VirtAddr           PhysAddr  
@@ -369,7 +170,7 @@ PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
              0x00000000000001f8 0x00000000000001f8  R      0x8  
 INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238  
              0x000000000000001c 0x000000000000001c  R      0x1  
-  <span class="o">[</span>Requesting program interpreter: /lib64/ld-linux-x86-64.so.2<span class="o">]</span>  
+  <span class=o>[</span>Requesting program interpreter: /lib64/ld-linux-x86-64.so.2<span class=o>]</span>  
 LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000  
              0x00000000000009e8 0x00000000000009e8  R E    0x200000  
 LOAD           0x0000000000000d98 0x0000000000200d98 0x0000000000200d98  
@@ -387,560 +188,358 @@ GNU_RELRO      0x0000000000000d98 0x0000000000200d98 0x0000000000200d98
   
  Section to Segment mapping:  
 Segment Sections...  
- <span class="m">00</span>  
- <span class="m">01</span>     .interp  
- <span class="m">02</span>     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame  
- <span class="m">03</span>     .init_array .fini_array .dynamic .got .data .bss  
- <span class="m">04</span>     .dynamic  
- <span class="m">05</span>     .note.ABI-tag .note.gnu.build-id  
- <span class="m">06</span>     .eh_frame_hdr  
- <span class="m">07</span>  
- <span class="m">08</span>     .init_array .fini_array .dynamic .got  
-</code></pre></td></tr></table>
-</div>
-</div><p>可执行文件或者共享目标文件的程序头部是一个结构数组，每个结构描述了一个段 或者系统准备程序执行所必需的其它信息。目标文件的“段”包含一个或者多个“节区”， 也就是“段内容(Segment Contents)”。程序头部仅对于可执行文件和共享目标文件 有意义。 可执行目标文件在 ELF 头部的 e_phentsize和e_phnum 成员中给出其自身程序头部 的大小。程序头部的数据结构:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Program Header */</span>  
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="n">Elf32_Word</span>    <span class="n">p_type</span><span class="p">;</span>        <span class="cm">/* segment type */</span>  
-<span class="n">Elf32_Off</span>    <span class="n">p_offset</span><span class="p">;</span>    <span class="cm">/* segment offset */</span>  
-<span class="n">Elf32_Addr</span>    <span class="n">p_vaddr</span><span class="p">;</span>    <span class="cm">/* virtual address of segment */</span>  
-<span class="n">Elf32_Addr</span>    <span class="n">p_paddr</span><span class="p">;</span>    <span class="cm">/* physical address - ignored? */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">p_filesz</span><span class="p">;</span>    <span class="cm">/* number of bytes in file for seg. */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">p_memsz</span><span class="p">;</span>    <span class="cm">/* number of bytes in mem. for seg. */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">p_flags</span><span class="p">;</span>    <span class="cm">/* flags */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">p_align</span><span class="p">;</span>    <span class="cm">/* memory alignment */</span>  
-<span class="p">}</span> <span class="n">Elf32_Phdr</span><span class="p">;</span>  
+ <span class=m>00</span>  
+ <span class=m>01</span>     .interp  
+ <span class=m>02</span>     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame  
+ <span class=m>03</span>     .init_array .fini_array .dynamic .got .data .bss  
+ <span class=m>04</span>     .dynamic  
+ <span class=m>05</span>     .note.ABI-tag .note.gnu.build-id  
+ <span class=m>06</span>     .eh_frame_hdr  
+ <span class=m>07</span>  
+ <span class=m>08</span>     .init_array .fini_array .dynamic .got  
+</code></pre></td></tr></table></div></div><p>可执行文件或者共享目标文件的程序头部是一个结构数组，每个结构描述了一个段 或者系统准备程序执行所必需的其它信息。目标文件的“段”包含一个或者多个“节区”， 也就是“段内容(Segment Contents)”。程序头部仅对于可执行文件和共享目标文件 有意义。 可执行目标文件在 ELF 头部的 e_phentsize和e_phnum 成员中给出其自身程序头部 的大小。程序头部的数据结构:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cm>/* Program Header */</span>  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=n>Elf32_Word</span>    <span class=n>p_type</span><span class=p>;</span>        <span class=cm>/* segment type */</span>  
+<span class=n>Elf32_Off</span>    <span class=n>p_offset</span><span class=p>;</span>    <span class=cm>/* segment offset */</span>  
+<span class=n>Elf32_Addr</span>    <span class=n>p_vaddr</span><span class=p>;</span>    <span class=cm>/* virtual address of segment */</span>  
+<span class=n>Elf32_Addr</span>    <span class=n>p_paddr</span><span class=p>;</span>    <span class=cm>/* physical address - ignored? */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>p_filesz</span><span class=p>;</span>    <span class=cm>/* number of bytes in file for seg. */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>p_memsz</span><span class=p>;</span>    <span class=cm>/* number of bytes in mem. for seg. */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>p_flags</span><span class=p>;</span>    <span class=cm>/* flags */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>p_align</span><span class=p>;</span>    <span class=cm>/* memory alignment */</span>  
+<span class=p>}</span> <span class=n>Elf32_Phdr</span><span class=p>;</span>  
   
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="n">Elf64_Half</span>    <span class="n">p_type</span><span class="p">;</span>        <span class="cm">/* entry type */</span>  
-<span class="n">Elf64_Half</span>    <span class="n">p_flags</span><span class="p">;</span>    <span class="cm">/* flags */</span>  
-<span class="n">Elf64_Off</span>    <span class="n">p_offset</span><span class="p">;</span>    <span class="cm">/* offset */</span>  
-<span class="n">Elf64_Addr</span>    <span class="n">p_vaddr</span><span class="p">;</span>    <span class="cm">/* virtual address */</span>  
-<span class="n">Elf64_Addr</span>    <span class="n">p_paddr</span><span class="p">;</span>    <span class="cm">/* physical address */</span>  
-<span class="n">Elf64_Xword</span>    <span class="n">p_filesz</span><span class="p">;</span>    <span class="cm">/* file size */</span>  
-<span class="n">Elf64_Xword</span>    <span class="n">p_memsz</span><span class="p">;</span>    <span class="cm">/* memory size */</span>  
-<span class="n">Elf64_Xword</span>    <span class="n">p_align</span><span class="p">;</span>    <span class="cm">/* memory &amp; file alignment */</span>  
-<span class="p">}</span> <span class="n">Elf64_Phdr</span><span class="p">;</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>其中各个字段说明：</p>
-<ul>
-<li>p_offset 此成员给出从文件头到该段第一个字节的偏移。</li>
-<li>p_vaddr 此成员给出段的第一个字节将被放到内存中的虚拟地址。</li>
-<li>p_paddr 此成员仅用于与物理地址相关的系统中。因为 System V 忽略所有应用程序的物理地址信息，此字段对与可执行文件和共享目标文件而言具体内容是指定的。</li>
-<li>p_filesz 此成员给出段在文件映像中所占的字节数。可以为 0。</li>
-<li>p_memsz 此成员给出段在内存映像中占用的字节数。可以为 0。</li>
-<li>p_flags 此成员给出与段相关的标志。</li>
-<li>p_align 可加载的进程段的 p_vaddr 和 p_offset 取值必须合适，相对于对页面大小的取模而言。此成员给出段在文件中和内存中如何 对齐。数值 0 和 1 表示不需要对齐。否则 p_align 应该是个正整数，并且是 2 的幂次数，p_vaddr 和 p_offset 对 p_align 取模后应该相等。</li>
-<li>p_type 此数组元素描述的段的类型，或者如何解释此数组元素的信息。具体如下图。<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png" alt=""  />
-        </a>
-    </div>
-</li>
-</ul>
-<h3 id="pt_load">PT_LOAD</h3>
-<p>一个可执行文件至少有一个PT_LOAD 类型的段。这类程序头描述的是可装载的段，也就是说，这种类型的段将被装载或者映射到内存中。例如，一个需要动态链接的ELF 可执行文件通常包含以下两个可装载的段（类型为PT_LOAD）：</p>
-<ol>
-<li>存放程序代码的text 段；</li>
-<li>存放全局变量和动态链接信息的data 段。</li>
-</ol>
-<h3 id="pt_dynamic动态段的phdr">PT_DYNAMIC——动态段的Phdr</h3>
-<p>动态段是动态链接可执行文件所特有的，包含了动态链接器所必需的一些信息。在动态段中包含了一些标记值和指针，包括但不限于以下内容：</p>
-<ul>
-<li>运行时需要链接的共享库列表；</li>
-<li>全局偏移表（GOT）的地址</li>
-<li>重定位条目的相关信息。</li>
-</ul>
-<h3 id="pt_interp">PT_INTERP</h3>
-<p>PT_INTERP 段只将位置和大小信息存放在一个以null 为终止符的字符串中，是对程序解释器位置的描述。例如，/lib/linux-ld.so.2 一般是指动态链接器的位置，也即程序解释器的位置。</p>
-<h3 id="pt_phdr">PT_PHDR</h3>
-<p>PT_PHDR 段保存了程序头表本身的位置和大小。Phdr 表保存了所有的Phdr 对文件（以及内存镜像）中段的描述信息。</p>
-<h2 id="elf节头">ELF节头</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">ep</span><span class="err">@</span><span class="nl">EP</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">linux</span><span class="err">$</span> <span class="n">readelf</span> <span class="o">-</span><span class="n">S</span> <span class="n">main</span>  
-<span class="n">There</span> <span class="n">are</span> <span class="mi">29</span> <span class="n">section</span> <span class="n">headers</span><span class="p">,</span> <span class="n">starting</span> <span class="n">at</span> <span class="n">offset</span> <span class="mh">0x19d8</span><span class="o">:</span>  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=n>Elf64_Half</span>    <span class=n>p_type</span><span class=p>;</span>        <span class=cm>/* entry type */</span>  
+<span class=n>Elf64_Half</span>    <span class=n>p_flags</span><span class=p>;</span>    <span class=cm>/* flags */</span>  
+<span class=n>Elf64_Off</span>    <span class=n>p_offset</span><span class=p>;</span>    <span class=cm>/* offset */</span>  
+<span class=n>Elf64_Addr</span>    <span class=n>p_vaddr</span><span class=p>;</span>    <span class=cm>/* virtual address */</span>  
+<span class=n>Elf64_Addr</span>    <span class=n>p_paddr</span><span class=p>;</span>    <span class=cm>/* physical address */</span>  
+<span class=n>Elf64_Xword</span>    <span class=n>p_filesz</span><span class=p>;</span>    <span class=cm>/* file size */</span>  
+<span class=n>Elf64_Xword</span>    <span class=n>p_memsz</span><span class=p>;</span>    <span class=cm>/* memory size */</span>  
+<span class=n>Elf64_Xword</span>    <span class=n>p_align</span><span class=p>;</span>    <span class=cm>/* memory &amp; file alignment */</span>  
+<span class=p>}</span> <span class=n>Elf64_Phdr</span><span class=p>;</span>  
+</code></pre></td></tr></table></div></div><p>其中各个字段说明：</p><ul><li>p_offset 此成员给出从文件头到该段第一个字节的偏移。</li><li>p_vaddr 此成员给出段的第一个字节将被放到内存中的虚拟地址。</li><li>p_paddr 此成员仅用于与物理地址相关的系统中。因为 System V 忽略所有应用程序的物理地址信息，此字段对与可执行文件和共享目标文件而言具体内容是指定的。</li><li>p_filesz 此成员给出段在文件映像中所占的字节数。可以为 0。</li><li>p_memsz 此成员给出段在内存映像中占用的字节数。可以为 0。</li><li>p_flags 此成员给出与段相关的标志。</li><li>p_align 可加载的进程段的 p_vaddr 和 p_offset 取值必须合适，相对于对页面大小的取模而言。此成员给出段在文件中和内存中如何 对齐。数值 0 和 1 表示不需要对齐。否则 p_align 应该是个正整数，并且是 2 的幂次数，p_vaddr 和 p_offset 对 p_align 取模后应该相等。</li><li>p_type 此数组元素描述的段的类型，或者如何解释此数组元素的信息。具体如下图。<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-b3945fe549c5c31e.png></li></ul><h3 id=pt_load>PT_LOAD</h3><p>一个可执行文件至少有一个PT_LOAD 类型的段。这类程序头描述的是可装载的段，也就是说，这种类型的段将被装载或者映射到内存中。例如，一个需要动态链接的ELF 可执行文件通常包含以下两个可装载的段（类型为PT_LOAD）：</p><ol><li>存放程序代码的text 段；</li><li>存放全局变量和动态链接信息的data 段。</li></ol><h3 id=pt_dynamic动态段的phdr>PT_DYNAMIC——动态段的Phdr</h3><p>动态段是动态链接可执行文件所特有的，包含了动态链接器所必需的一些信息。在动态段中包含了一些标记值和指针，包括但不限于以下内容：</p><ul><li>运行时需要链接的共享库列表；</li><li>全局偏移表（GOT）的地址</li><li>重定位条目的相关信息。</li></ul><h3 id=pt_interp>PT_INTERP</h3><p>PT_INTERP 段只将位置和大小信息存放在一个以null 为终止符的字符串中，是对程序解释器位置的描述。例如，/lib/linux-ld.so.2 一般是指动态链接器的位置，也即程序解释器的位置。</p><h3 id=pt_phdr>PT_PHDR</h3><p>PT_PHDR 段保存了程序头表本身的位置和大小。Phdr 表保存了所有的Phdr 对文件（以及内存镜像）中段的描述信息。</p><h2 id=elf节头>ELF节头</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=n>ep</span><span class=err>@</span><span class=nl>EP</span><span class=p>:</span><span class=o>/</span><span class=n>mnt</span><span class=o>/</span><span class=n>d</span><span class=o>/</span><span class=n>code</span><span class=o>/</span><span class=n>linux</span><span class=err>$</span> <span class=n>readelf</span> <span class=o>-</span><span class=n>S</span> <span class=n>main</span>  
+<span class=n>There</span> <span class=n>are</span> <span class=mi>29</span> <span class=n>section</span> <span class=n>headers</span><span class=p>,</span> <span class=n>starting</span> <span class=n>at</span> <span class=n>offset</span> <span class=mh>0x19d8</span><span class=o>:</span>  
   
-<span class="n">Section</span> <span class="nl">Headers</span><span class="p">:</span>  
-<span class="p">[</span><span class="n">Nr</span><span class="p">]</span> <span class="n">Name</span>              <span class="n">Type</span>             <span class="n">Address</span>           <span class="n">Offset</span>  
-   <span class="n">Size</span>              <span class="n">EntSize</span>          <span class="n">Flags</span>  <span class="n">Link</span>  <span class="n">Info</span>  <span class="n">Align</span>  
-<span class="p">[</span> <span class="mi">0</span><span class="p">]</span>                   <span class="nb">NULL</span>             <span class="mo">0000000000000000</span>  <span class="mo">00000000</span>  
-   <span class="mo">0000000000000000</span>  <span class="mo">0000000000000000</span>           <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>  
-<span class="p">[</span> <span class="mi">1</span><span class="p">]</span> <span class="p">.</span><span class="n">interp</span>           <span class="n">PROGBITS</span>         <span class="mo">000000000000023</span><span class="mi">8</span>  <span class="mo">0000023</span><span class="mi">8</span>  
-   <span class="mo">000000000000001</span><span class="n">c</span>  <span class="mo">0000000000000000</span>   <span class="n">A</span>       <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">1</span>  
-<span class="p">[</span> <span class="mi">2</span><span class="p">]</span> <span class="p">.</span><span class="n">note</span><span class="p">.</span><span class="n">ABI</span><span class="o">-</span><span class="n">tag</span>     <span class="n">NOTE</span>             <span class="mo">0000000000000254</span>  <span class="mo">00000254</span>  
-   <span class="mo">0000000000000020</span>  <span class="mo">0000000000000000</span>   <span class="n">A</span>       <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">4</span>  
-<span class="p">[</span> <span class="mi">3</span><span class="p">]</span> <span class="p">.</span><span class="n">note</span><span class="p">.</span><span class="n">gnu</span><span class="p">.</span><span class="n">build</span><span class="o">-</span><span class="n">i</span> <span class="n">NOTE</span>             <span class="mo">0000000000000274</span>  <span class="mo">00000274</span>  
-   <span class="mo">0000000000000024</span>  <span class="mo">0000000000000000</span>   <span class="n">A</span>       <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">4</span>  
-<span class="p">......</span>  
-<span class="n">Key</span> <span class="n">to</span> <span class="nl">Flags</span><span class="p">:</span>  
-<span class="n">W</span> <span class="p">(</span><span class="n">write</span><span class="p">),</span> <span class="n">A</span> <span class="p">(</span><span class="n">alloc</span><span class="p">),</span> <span class="n">X</span> <span class="p">(</span><span class="n">execute</span><span class="p">),</span> <span class="n">M</span> <span class="p">(</span><span class="n">merge</span><span class="p">),</span> <span class="n">S</span> <span class="p">(</span><span class="n">strings</span><span class="p">),</span> <span class="n">I</span> <span class="p">(</span><span class="n">info</span><span class="p">),</span>  
-<span class="n">L</span> <span class="p">(</span><span class="n">link</span> <span class="n">order</span><span class="p">),</span> <span class="n">O</span> <span class="p">(</span><span class="n">extra</span> <span class="n">OS</span> <span class="n">processing</span> <span class="n">required</span><span class="p">),</span> <span class="n">G</span> <span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="n">T</span> <span class="p">(</span><span class="n">TLS</span><span class="p">),</span>  
-<span class="n">C</span> <span class="p">(</span><span class="n">compressed</span><span class="p">),</span> <span class="n">x</span> <span class="p">(</span><span class="n">unknown</span><span class="p">),</span> <span class="n">o</span> <span class="p">(</span><span class="n">OS</span> <span class="n">specific</span><span class="p">),</span> <span class="n">E</span> <span class="p">(</span><span class="n">exclude</span><span class="p">),</span>  
-<span class="n">l</span> <span class="p">(</span><span class="n">large</span><span class="p">),</span> <span class="n">p</span> <span class="p">(</span><span class="n">processor</span> <span class="n">specific</span><span class="p">)</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>节头的数据结构：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Section Header */</span>  
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_name</span><span class="p">;</span>    <span class="cm">/* name - index into section header  
-</span><span class="cm">                   string table section */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_type</span><span class="p">;</span>    <span class="cm">/* type */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_flags</span><span class="p">;</span>    <span class="cm">/* flags */</span>  
-<span class="n">Elf32_Addr</span>    <span class="n">sh_addr</span><span class="p">;</span>    <span class="cm">/* address */</span>  
-<span class="n">Elf32_Off</span>     <span class="n">sh_offset</span><span class="p">;</span>    <span class="cm">/* file offset */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_size</span><span class="p">;</span>    <span class="cm">/* section size */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_link</span><span class="p">;</span>    <span class="cm">/* section header table index link */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_info</span><span class="p">;</span>    <span class="cm">/* extra information */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_addralign</span><span class="p">;</span>    <span class="cm">/* address alignment */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">sh_entsize</span><span class="p">;</span>    <span class="cm">/* section entry size */</span>  
-<span class="p">}</span> <span class="n">Elf32_Shdr</span><span class="p">;</span>  
+<span class=n>Section</span> <span class=nl>Headers</span><span class=p>:</span>  
+<span class=p>[</span><span class=n>Nr</span><span class=p>]</span> <span class=n>Name</span>              <span class=n>Type</span>             <span class=n>Address</span>           <span class=n>Offset</span>  
+   <span class=n>Size</span>              <span class=n>EntSize</span>          <span class=n>Flags</span>  <span class=n>Link</span>  <span class=n>Info</span>  <span class=n>Align</span>  
+<span class=p>[</span> <span class=mi>0</span><span class=p>]</span>                   <span class=nb>NULL</span>             <span class=mo>0000000000000000</span>  <span class=mo>00000000</span>  
+   <span class=mo>0000000000000000</span>  <span class=mo>0000000000000000</span>           <span class=mi>0</span>     <span class=mi>0</span>     <span class=mi>0</span>  
+<span class=p>[</span> <span class=mi>1</span><span class=p>]</span> <span class=p>.</span><span class=n>interp</span>           <span class=n>PROGBITS</span>         <span class=mo>000000000000023</span><span class=mi>8</span>  <span class=mo>0000023</span><span class=mi>8</span>  
+   <span class=mo>000000000000001</span><span class=n>c</span>  <span class=mo>0000000000000000</span>   <span class=n>A</span>       <span class=mi>0</span>     <span class=mi>0</span>     <span class=mi>1</span>  
+<span class=p>[</span> <span class=mi>2</span><span class=p>]</span> <span class=p>.</span><span class=n>note</span><span class=p>.</span><span class=n>ABI</span><span class=o>-</span><span class=n>tag</span>     <span class=n>NOTE</span>             <span class=mo>0000000000000254</span>  <span class=mo>00000254</span>  
+   <span class=mo>0000000000000020</span>  <span class=mo>0000000000000000</span>   <span class=n>A</span>       <span class=mi>0</span>     <span class=mi>0</span>     <span class=mi>4</span>  
+<span class=p>[</span> <span class=mi>3</span><span class=p>]</span> <span class=p>.</span><span class=n>note</span><span class=p>.</span><span class=n>gnu</span><span class=p>.</span><span class=n>build</span><span class=o>-</span><span class=n>i</span> <span class=n>NOTE</span>             <span class=mo>0000000000000274</span>  <span class=mo>00000274</span>  
+   <span class=mo>0000000000000024</span>  <span class=mo>0000000000000000</span>   <span class=n>A</span>       <span class=mi>0</span>     <span class=mi>0</span>     <span class=mi>4</span>  
+<span class=p>......</span>  
+<span class=n>Key</span> <span class=n>to</span> <span class=nl>Flags</span><span class=p>:</span>  
+<span class=n>W</span> <span class=p>(</span><span class=n>write</span><span class=p>),</span> <span class=n>A</span> <span class=p>(</span><span class=n>alloc</span><span class=p>),</span> <span class=n>X</span> <span class=p>(</span><span class=n>execute</span><span class=p>),</span> <span class=n>M</span> <span class=p>(</span><span class=n>merge</span><span class=p>),</span> <span class=n>S</span> <span class=p>(</span><span class=n>strings</span><span class=p>),</span> <span class=n>I</span> <span class=p>(</span><span class=n>info</span><span class=p>),</span>  
+<span class=n>L</span> <span class=p>(</span><span class=n>link</span> <span class=n>order</span><span class=p>),</span> <span class=n>O</span> <span class=p>(</span><span class=n>extra</span> <span class=n>OS</span> <span class=n>processing</span> <span class=n>required</span><span class=p>),</span> <span class=n>G</span> <span class=p>(</span><span class=n>group</span><span class=p>),</span> <span class=n>T</span> <span class=p>(</span><span class=n>TLS</span><span class=p>),</span>  
+<span class=n>C</span> <span class=p>(</span><span class=n>compressed</span><span class=p>),</span> <span class=n>x</span> <span class=p>(</span><span class=n>unknown</span><span class=p>),</span> <span class=n>o</span> <span class=p>(</span><span class=n>OS</span> <span class=n>specific</span><span class=p>),</span> <span class=n>E</span> <span class=p>(</span><span class=n>exclude</span><span class=p>),</span>  
+<span class=n>l</span> <span class=p>(</span><span class=n>large</span><span class=p>),</span> <span class=n>p</span> <span class=p>(</span><span class=n>processor</span> <span class=n>specific</span><span class=p>)</span>  
+</code></pre></td></tr></table></div></div><p>节头的数据结构：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cm>/* Section Header */</span>  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_name</span><span class=p>;</span>    <span class=cm>/* name - index into section header  
+</span><span class=cm>                   string table section */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_type</span><span class=p>;</span>    <span class=cm>/* type */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_flags</span><span class=p>;</span>    <span class=cm>/* flags */</span>  
+<span class=n>Elf32_Addr</span>    <span class=n>sh_addr</span><span class=p>;</span>    <span class=cm>/* address */</span>  
+<span class=n>Elf32_Off</span>     <span class=n>sh_offset</span><span class=p>;</span>    <span class=cm>/* file offset */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_size</span><span class=p>;</span>    <span class=cm>/* section size */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_link</span><span class=p>;</span>    <span class=cm>/* section header table index link */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_info</span><span class=p>;</span>    <span class=cm>/* extra information */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_addralign</span><span class=p>;</span>    <span class=cm>/* address alignment */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>sh_entsize</span><span class=p>;</span>    <span class=cm>/* section entry size */</span>  
+<span class=p>}</span> <span class=n>Elf32_Shdr</span><span class=p>;</span>  
   
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="n">Elf64_Half</span>    <span class="n">sh_name</span><span class="p">;</span>    <span class="cm">/* section name */</span>  
-<span class="n">Elf64_Half</span>    <span class="n">sh_type</span><span class="p">;</span>    <span class="cm">/* section type */</span>  
-<span class="n">Elf64_Xword</span>   <span class="n">sh_flags</span><span class="p">;</span>    <span class="cm">/* section flags */</span>  
-<span class="n">Elf64_Addr</span>    <span class="n">sh_addr</span><span class="p">;</span>    <span class="cm">/* virtual address */</span>  
-<span class="n">Elf64_Off</span>     <span class="n">sh_offset</span><span class="p">;</span>    <span class="cm">/* file offset */</span>  
-<span class="n">Elf64_Xword</span>   <span class="n">sh_size</span><span class="p">;</span>    <span class="cm">/* section size */</span>  
-<span class="n">Elf64_Half</span>    <span class="n">sh_link</span><span class="p">;</span>    <span class="cm">/* link to another */</span>  
-<span class="n">Elf64_Half</span>    <span class="n">sh_info</span><span class="p">;</span>    <span class="cm">/* misc info */</span>  
-<span class="n">Elf64_Xword</span>   <span class="n">sh_addralign</span><span class="p">;</span>    <span class="cm">/* memory alignment */</span>  
-<span class="n">Elf64_Xword</span>   <span class="n">sh_entsize</span><span class="p">;</span>    <span class="cm">/* table entry size */</span>  
-<span class="p">}</span> <span class="n">Elf64_Shdr</span><span class="p">;</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>各个字段的解释如下:<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png" alt=""  />
-        </a>
-    </div>
-<br>
-sh_type 字段 节区类型定义：<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png" alt=""  />
-        </a>
-    </div>
-<br>
-常用节区:<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png" alt=""  />
-        </a>
-    </div>
-</p>
-<h3 id="节与段">节与段</h3>
-<p>节，不是段。段是程序执行的必要组成部分，在每个段中，会有代码或者数据被划分为不同的节。节头表是对这些节的位置和大小的描述，主要用于链接和调试。节头对于程序的执行来说不是必需的，没有节头表，程序仍可以正常执行，因为节头表没有对程序的内存布局进行描述，对程序内存布局的描述是程序头表的任务。节头是对程序头的补充。readelf –l 命令可以显示一个段对应有哪些节，可以很直观地看到节和段之间的关系。<br>
-如果二进制文件中缺少节头，并不意味着节就不存在。只是没有办法通过<br>
-节头来引用节，对于调试器或者反编译程序来说，只是可以参考的信息变少了而已。</p>
-<h2 id="字符串表string-table">字符串表（String Table）</h2>
-<p>字符串表节区包含以 NULL(ASCII 码 0)结尾的字符序列，通常称为字符串。ELF 目标文件通常使用字符串来表示符号和节区名称。对字符串的引用通常以字符串在字符串表中的下标给出。<br>
-比如下面这样：<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg" alt=""  />
-        </a>
-    </div>
-<br>
-那么偏移与他们对用的字符串如下表:<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg" alt=""  />
-        </a>
-    </div>
-<br>
-这样在ELF中引用字符串只需要给出一个数组下标即可。字符串表在ELF也以段的形式保存，常见的段名为”.strtab”或”.shstrtab”。这两个字符串表分别为字符串表(String Table)和段表字符串表(Header String Table)，字符串表保存的是普通的字符串，而段表字符串表用来保存段表中用到的字符串，比如段名。</p>
-<p>在使用、分析字符串表时，要注意以下几点:</p>
-<ol>
-<li>字符串表索引可以引用节区中任意字节。</li>
-<li>字符串可以出现多次</li>
-<li>可以存在对子字符串的引用</li>
-<li>同一个字符串可以被引用多次。</li>
-<li>字符串表中也可以存在未引用的字符串。</li>
-</ol>
-<h2 id="符号表symbol-table">符号表（Symbol Table）</h2>
-<p>目标文件的符号表中包含用来定位、重定位程序中符号定义和引用的信息。符号表 索引是对此数组的索引。索引 0 表示表中的第一表项，同时也作为 定义符号的索引。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Symbol Table Entry */</span>  
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">elf32_sym</span> <span class="p">{</span>  
-<span class="n">Elf32_Word</span>    <span class="n">st_name</span><span class="p">;</span>    <span class="cm">/* name - index into string table */</span>  
-<span class="n">Elf32_Addr</span>    <span class="n">st_value</span><span class="p">;</span>    <span class="cm">/* symbol value */</span>  
-<span class="n">Elf32_Word</span>    <span class="n">st_size</span><span class="p">;</span>    <span class="cm">/* symbol size */</span>  
-<span class="kt">unsigned</span> <span class="kt">char</span>    <span class="n">st_info</span><span class="p">;</span>    <span class="cm">/* type and binding */</span>  
-<span class="kt">unsigned</span> <span class="kt">char</span>    <span class="n">st_other</span><span class="p">;</span>    <span class="cm">/* 0 - no defined meaning */</span>  
-<span class="n">Elf32_Half</span>    <span class="n">st_shndx</span><span class="p">;</span>    <span class="cm">/* section header index */</span>  
-<span class="p">}</span> <span class="n">Elf32_Sym</span><span class="p">;</span>  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=n>Elf64_Half</span>    <span class=n>sh_name</span><span class=p>;</span>    <span class=cm>/* section name */</span>  
+<span class=n>Elf64_Half</span>    <span class=n>sh_type</span><span class=p>;</span>    <span class=cm>/* section type */</span>  
+<span class=n>Elf64_Xword</span>   <span class=n>sh_flags</span><span class=p>;</span>    <span class=cm>/* section flags */</span>  
+<span class=n>Elf64_Addr</span>    <span class=n>sh_addr</span><span class=p>;</span>    <span class=cm>/* virtual address */</span>  
+<span class=n>Elf64_Off</span>     <span class=n>sh_offset</span><span class=p>;</span>    <span class=cm>/* file offset */</span>  
+<span class=n>Elf64_Xword</span>   <span class=n>sh_size</span><span class=p>;</span>    <span class=cm>/* section size */</span>  
+<span class=n>Elf64_Half</span>    <span class=n>sh_link</span><span class=p>;</span>    <span class=cm>/* link to another */</span>  
+<span class=n>Elf64_Half</span>    <span class=n>sh_info</span><span class=p>;</span>    <span class=cm>/* misc info */</span>  
+<span class=n>Elf64_Xword</span>   <span class=n>sh_addralign</span><span class=p>;</span>    <span class=cm>/* memory alignment */</span>  
+<span class=n>Elf64_Xword</span>   <span class=n>sh_entsize</span><span class=p>;</span>    <span class=cm>/* table entry size */</span>  
+<span class=p>}</span> <span class=n>Elf64_Shdr</span><span class=p>;</span>  
+</code></pre></td></tr></table></div></div><p>各个字段的解释如下:<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-2ac7a0afb44b51f9.png><br>sh_type 字段 节区类型定义：<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-3a53fe7d050d047f.png><br>常用节区:<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-8e8dfde7128ba932.png></p><h3 id=节与段>节与段</h3><p>节，不是段。段是程序执行的必要组成部分，在每个段中，会有代码或者数据被划分为不同的节。节头表是对这些节的位置和大小的描述，主要用于链接和调试。节头对于程序的执行来说不是必需的，没有节头表，程序仍可以正常执行，因为节头表没有对程序的内存布局进行描述，对程序内存布局的描述是程序头表的任务。节头是对程序头的补充。readelf –l 命令可以显示一个段对应有哪些节，可以很直观地看到节和段之间的关系。<br>如果二进制文件中缺少节头，并不意味着节就不存在。只是没有办法通过<br>节头来引用节，对于调试器或者反编译程序来说，只是可以参考的信息变少了而已。</p><h2 id=字符串表string-table>字符串表（String Table）</h2><p>字符串表节区包含以 NULL(ASCII 码 0)结尾的字符序列，通常称为字符串。ELF 目标文件通常使用字符串来表示符号和节区名称。对字符串的引用通常以字符串在字符串表中的下标给出。<br>比如下面这样：<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-ce74ae0ccb745cd8.jpg><br>那么偏移与他们对用的字符串如下表:<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-f4e855e0a0f35dd7.jpg><br>这样在ELF中引用字符串只需要给出一个数组下标即可。字符串表在ELF也以段的形式保存，常见的段名为”.strtab”或”.shstrtab”。这两个字符串表分别为字符串表(String Table)和段表字符串表(Header String Table)，字符串表保存的是普通的字符串，而段表字符串表用来保存段表中用到的字符串，比如段名。</p><p>在使用、分析字符串表时，要注意以下几点:</p><ol><li>字符串表索引可以引用节区中任意字节。</li><li>字符串可以出现多次</li><li>可以存在对子字符串的引用</li><li>同一个字符串可以被引用多次。</li><li>字符串表中也可以存在未引用的字符串。</li></ol><h2 id=符号表symbol-table>符号表（Symbol Table）</h2><p>目标文件的符号表中包含用来定位、重定位程序中符号定义和引用的信息。符号表 索引是对此数组的索引。索引 0 表示表中的第一表项，同时也作为 定义符号的索引。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cm>/* Symbol Table Entry */</span>  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=n>elf32_sym</span> <span class=p>{</span>  
+<span class=n>Elf32_Word</span>    <span class=n>st_name</span><span class=p>;</span>    <span class=cm>/* name - index into string table */</span>  
+<span class=n>Elf32_Addr</span>    <span class=n>st_value</span><span class=p>;</span>    <span class=cm>/* symbol value */</span>  
+<span class=n>Elf32_Word</span>    <span class=n>st_size</span><span class=p>;</span>    <span class=cm>/* symbol size */</span>  
+<span class=kt>unsigned</span> <span class=kt>char</span>    <span class=n>st_info</span><span class=p>;</span>    <span class=cm>/* type and binding */</span>  
+<span class=kt>unsigned</span> <span class=kt>char</span>    <span class=n>st_other</span><span class=p>;</span>    <span class=cm>/* 0 - no defined meaning */</span>  
+<span class=n>Elf32_Half</span>    <span class=n>st_shndx</span><span class=p>;</span>    <span class=cm>/* section header index */</span>  
+<span class=p>}</span> <span class=n>Elf32_Sym</span><span class=p>;</span>  
   
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>  
-<span class="n">Elf64_Half</span>    <span class="n">st_name</span><span class="p">;</span>    <span class="cm">/* Symbol name index in str table */</span>  
-<span class="n">Elf_Byte</span>    <span class="n">st_info</span><span class="p">;</span>    <span class="cm">/* type / binding attrs */</span>  
-<span class="n">Elf_Byte</span>    <span class="n">st_other</span><span class="p">;</span>    <span class="cm">/* unused */</span>  
-<span class="n">Elf64_Quarter</span>    <span class="n">st_shndx</span><span class="p">;</span>    <span class="cm">/* section index of symbol */</span>  
-<span class="n">Elf64_Xword</span>    <span class="n">st_value</span><span class="p">;</span>    <span class="cm">/* value of symbol */</span>  
-<span class="n">Elf64_Xword</span>    <span class="n">st_size</span><span class="p">;</span>    <span class="cm">/* size of symbol */</span>  
-<span class="p">}</span> <span class="n">Elf64_Sym</span><span class="p">;</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>各个字段的含义如下:<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png">
-            <img src="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png" alt=""  />
-        </a>
-    </div>
-<br>
-符号是对某些类型的数据或者代码（如全局变量或函数）的符号引用。例如，printf()函数会在动态符号表<code>.dynsym</code> 中存有一个指向该函数的符号条目。在大多数共享库和动态链接可执行文件中，存在两个符号表。如前面使用<code>readelf –S</code> 命令输出的内容中，可以看到有两个节：<code>.dynsym</code>和<code>.symtab</code>。<br>
-<code>.dynsym </code>保存了引用来自外部文件符号的全局符号，如printf 这样的库函数，<code>.dynsym</code> 保存的符号是<code>.symtab</code> 所保存符号的子集，<code>.symtab</code> 中还保存了可执行文件的本地符号，如全局变量，或者代码中定义的本地函数等。因此，<code>.symtab</code> 保存了所有的符号，而<code>.dynsym</code> 只保存动态/全局符号。<br>
-因此，就存在这样一个问题：既然<code>.symtab</code> 中保存了<code>.dynsym</code> 中所有的符号，那么为什么还需要两个符号表呢？使用<code>readelf –S</code> 命令查看可执行文件的输出，可以看到一部分节被标记为了A（ALLOC）、WA（WRITE/ALLOC）或者AX（ALLOC/EXEC）。<code>.dynsym</code> 是被标记了ALLOC 的，而<code>.symtab</code>则没有标记。<br>
-ALLOC 表示有该标记的节会在运行时分配并装载进入内存，而<code>.symtab</code>不是在运行时必需的，因此不会被装载到内存中。<code>.dynsym</code> 保存的符号只能在运行时被解析，因此是运行时动态链接器所需要的唯一符号。<code>.dynsym</code> 符号表对于动态链接可执行文件的执行来说是必需的，而<code>.symtab</code> 符号表只是用来进行调试和链接的，有时候为了节省空间，会将<code>.symtab </code>符号表从生产二进制文件中删掉。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">ep@EP:/mnt/d/code/linux$ readelf -s main  
+<span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>  
+<span class=n>Elf64_Half</span>    <span class=n>st_name</span><span class=p>;</span>    <span class=cm>/* Symbol name index in str table */</span>  
+<span class=n>Elf_Byte</span>    <span class=n>st_info</span><span class=p>;</span>    <span class=cm>/* type / binding attrs */</span>  
+<span class=n>Elf_Byte</span>    <span class=n>st_other</span><span class=p>;</span>    <span class=cm>/* unused */</span>  
+<span class=n>Elf64_Quarter</span>    <span class=n>st_shndx</span><span class=p>;</span>    <span class=cm>/* section index of symbol */</span>  
+<span class=n>Elf64_Xword</span>    <span class=n>st_value</span><span class=p>;</span>    <span class=cm>/* value of symbol */</span>  
+<span class=n>Elf64_Xword</span>    <span class=n>st_size</span><span class=p>;</span>    <span class=cm>/* size of symbol */</span>  
+<span class=p>}</span> <span class=n>Elf64_Sym</span><span class=p>;</span>  
+</code></pre></td></tr></table></div></div><p>各个字段的含义如下:<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png data-srcset="/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png 1.5x, /images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png 2x" data-sizes=auto alt=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png title=/images/f3f85f4d8aafeb0510343c3f46f7676a/11884068-d56d236da5e8104e.png><br>符号是对某些类型的数据或者代码（如全局变量或函数）的符号引用。例如，printf()函数会在动态符号表<code>.dynsym</code> 中存有一个指向该函数的符号条目。在大多数共享库和动态链接可执行文件中，存在两个符号表。如前面使用<code>readelf –S</code> 命令输出的内容中，可以看到有两个节：<code>.dynsym</code>和<code>.symtab</code>。<br><code>.dynsym </code>保存了引用来自外部文件符号的全局符号，如printf 这样的库函数，<code>.dynsym</code> 保存的符号是<code>.symtab</code> 所保存符号的子集，<code>.symtab</code> 中还保存了可执行文件的本地符号，如全局变量，或者代码中定义的本地函数等。因此，<code>.symtab</code> 保存了所有的符号，而<code>.dynsym</code> 只保存动态/全局符号。<br>因此，就存在这样一个问题：既然<code>.symtab</code> 中保存了<code>.dynsym</code> 中所有的符号，那么为什么还需要两个符号表呢？使用<code>readelf –S</code> 命令查看可执行文件的输出，可以看到一部分节被标记为了A（ALLOC）、WA（WRITE/ALLOC）或者AX（ALLOC/EXEC）。<code>.dynsym</code> 是被标记了ALLOC 的，而<code>.symtab</code>则没有标记。<br>ALLOC 表示有该标记的节会在运行时分配并装载进入内存，而<code>.symtab</code>不是在运行时必需的，因此不会被装载到内存中。<code>.dynsym</code> 保存的符号只能在运行时被解析，因此是运行时动态链接器所需要的唯一符号。<code>.dynsym</code> 符号表对于动态链接可执行文件的执行来说是必需的，而<code>.symtab</code> 符号表只是用来进行调试和链接的，有时候为了节省空间，会将<code>.symtab </code>符号表从生产二进制文件中删掉。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>ep@EP:/mnt/d/code/linux$ readelf -s main  
   
-Symbol table <span class="s1">&#39;.dynsym&#39;</span> contains <span class="m">11</span> entries:  
+Symbol table <span class=s1>&#39;.dynsym&#39;</span> contains <span class=m>11</span> entries:  
  Num:    Value          Size Type    Bind   Vis      Ndx Name  
- 0: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  LOCAL  DEFAULT  UND  
- 1: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab  
- 2: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
- 3: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
- 4: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
- 5: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
- 6: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__  
- 7: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
- 8: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable  
- 9: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND sleep@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
-10: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 <span class="o">(</span>2<span class="o">)</span>  
+ 0: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  LOCAL  DEFAULT  UND  
+ 1: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab  
+ 2: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+ 3: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+ 4: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+ 5: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+ 6: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__  
+ 7: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+ 8: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable  
+ 9: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND sleep@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
+10: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 <span class=o>(</span>2<span class=o>)</span>  
   
-Symbol table <span class="s1">&#39;.symtab&#39;</span> contains <span class="m">67</span> entries:  
+Symbol table <span class=s1>&#39;.symtab&#39;</span> contains <span class=m>67</span> entries:  
  Num:    Value          Size Type    Bind   Vis      Ndx Name  
- 0: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  LOCAL  DEFAULT  UND  
- 1: <span class="m">0000000000000238</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">1</span>  
- 2: <span class="m">0000000000000254</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">2</span>  
- 3: <span class="m">0000000000000274</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">3</span>  
- 4: <span class="m">0000000000000298</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">4</span>  
- 5: 00000000000002b8     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">5</span>  
- 6: 00000000000003c0     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">6</span>  
- 7: 000000000000045c     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">7</span>  
- 8: <span class="m">0000000000000478</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">8</span>  
- 9: <span class="m">0000000000000498</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT    <span class="m">9</span>  
-10: <span class="m">0000000000000558</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">10</span>  
-11: 00000000000005d0     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">11</span>  
-12: 00000000000005f0     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">12</span>  
-13: <span class="m">0000000000000650</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">13</span>  
-14: <span class="m">0000000000000660</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">14</span>  
-15: <span class="m">0000000000000864</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">15</span>  
-16: <span class="m">0000000000000870</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">16</span>  
-17: 00000000000008a4     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">17</span>  
-18: 00000000000008e0     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">18</span>  
-19: 0000000000200d98     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">19</span>  
-20: 0000000000200da0     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">20</span>  
-21: 0000000000200da8     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">21</span>  
-22: 0000000000200f98     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">22</span>  
-23: <span class="m">0000000000201000</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">23</span>  
-24: <span class="m">0000000000201010</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">24</span>  
-25: <span class="m">0000000000000000</span>     <span class="m">0</span> SECTION LOCAL  DEFAULT   <span class="m">25</span>  
-26: <span class="m">0000000000000000</span>     <span class="m">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c  
-27: <span class="m">0000000000000690</span>     <span class="m">0</span> FUNC    LOCAL  DEFAULT   <span class="m">14</span> deregister_tm_clones  
-28: 00000000000006d0     <span class="m">0</span> FUNC    LOCAL  DEFAULT   <span class="m">14</span> register_tm_clones  
-29: <span class="m">0000000000000720</span>     <span class="m">0</span> FUNC    LOCAL  DEFAULT   <span class="m">14</span> __do_global_dtors_aux  
-30: <span class="m">0000000000201010</span>     <span class="m">1</span> OBJECT  LOCAL  DEFAULT   <span class="m">24</span> completed.7698  
-31: 0000000000200da0     <span class="m">0</span> OBJECT  LOCAL  DEFAULT   <span class="m">20</span> __do_global_dtors_aux_fin  
-32: <span class="m">0000000000000760</span>     <span class="m">0</span> FUNC    LOCAL  DEFAULT   <span class="m">14</span> frame_dummy  
-33: 0000000000200d98     <span class="m">0</span> OBJECT  LOCAL  DEFAULT   <span class="m">19</span> __frame_dummy_init_array_  
-34: <span class="m">0000000000000000</span>     <span class="m">0</span> FILE    LOCAL  DEFAULT  ABS main.c  
-35: <span class="m">0000000000000000</span>     <span class="m">0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c  
-36: 00000000000009e4     <span class="m">0</span> OBJECT  LOCAL  DEFAULT   <span class="m">18</span> __FRAME_END__  
-37: <span class="m">0000000000000000</span>     <span class="m">0</span> FILE    LOCAL  DEFAULT  ABS  
-38: 0000000000200da0     <span class="m">0</span> NOTYPE  LOCAL  DEFAULT   <span class="m">19</span> __init_array_end  
-39: 0000000000200da8     <span class="m">0</span> OBJECT  LOCAL  DEFAULT   <span class="m">21</span> _DYNAMIC  
-40: 0000000000200d98     <span class="m">0</span> NOTYPE  LOCAL  DEFAULT   <span class="m">19</span> __init_array_start  
-41: 00000000000008a4     <span class="m">0</span> NOTYPE  LOCAL  DEFAULT   <span class="m">17</span> __GNU_EH_FRAME_HDR  
-42: 0000000000200f98     <span class="m">0</span> OBJECT  LOCAL  DEFAULT   <span class="m">22</span> _GLOBAL_OFFSET_TABLE_  
-43: <span class="m">0000000000000860</span>     <span class="m">2</span> FUNC    GLOBAL DEFAULT   <span class="m">14</span> __libc_csu_fini  
-44: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab  
-45: <span class="m">0000000000201000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT   <span class="m">23</span> data_start  
-46: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5  
-47: <span class="m">0000000000201010</span>     <span class="m">0</span> NOTYPE  GLOBAL DEFAULT   <span class="m">23</span> _edata  
-48: <span class="m">0000000000000864</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT   <span class="m">15</span> _fini  
-49: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND printf@@GLIBC_2.2.5  
-50: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND read@@GLIBC_2.2.5  
-51: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_  
-52: <span class="m">0000000000201000</span>     <span class="m">0</span> NOTYPE  GLOBAL DEFAULT   <span class="m">23</span> __data_start  
-53: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__  
-54: <span class="m">0000000000201008</span>     <span class="m">0</span> OBJECT  GLOBAL HIDDEN    <span class="m">23</span> __dso_handle  
-55: <span class="m">0000000000000870</span>     <span class="m">4</span> OBJECT  GLOBAL DEFAULT   <span class="m">16</span> _IO_stdin_used  
-56: 00000000000007f0   <span class="m">101</span> FUNC    GLOBAL DEFAULT   <span class="m">14</span> __libc_csu_init  
-57: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND malloc@@GLIBC_2.2.5  
-58: <span class="m">0000000000201018</span>     <span class="m">0</span> NOTYPE  GLOBAL DEFAULT   <span class="m">24</span> _end  
-59: <span class="m">0000000000000660</span>    <span class="m">43</span> FUNC    GLOBAL DEFAULT   <span class="m">14</span> _start  
-60: <span class="m">0000000000201010</span>     <span class="m">0</span> NOTYPE  GLOBAL DEFAULT   <span class="m">24</span> __bss_start  
-61: 000000000000076a   <span class="m">126</span> FUNC    GLOBAL DEFAULT   <span class="m">14</span> main  
-62: <span class="m">0000000000201010</span>     <span class="m">0</span> OBJECT  GLOBAL HIDDEN    <span class="m">23</span> __TMC_END__  
-63: <span class="m">0000000000000000</span>     <span class="m">0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable  
-64: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    GLOBAL DEFAULT  UND sleep@@GLIBC_2.2.5  
-65: <span class="m">0000000000000000</span>     <span class="m">0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2  
-66: 00000000000005d0     <span class="m">0</span> FUNC    GLOBAL DEFAULT   <span class="m">11</span> _init  
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="参考">参考</h2>
-<p><a href="https://blog.csdn.net/xuehuafeiwu123/article/details/72963229">https://blog.csdn.net/xuehuafeiwu123/article/details/72963229</a> <br>
-<a href="https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/">https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/</a></p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2020-05-25</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" data-title="ELF文件组成"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" data-title="ELF文件组成"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" data-title="ELF文件组成"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" data-title="ELF文件组成"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" class="prev" rel="prev" title="密码学"><i class="fas fa-angle-left fa-fw"></i>密码学</a>
-            <a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" class="next" rel="next" title="ELF动态链接">ELF动态链接<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+ 0: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  LOCAL  DEFAULT  UND  
+ 1: <span class=m>0000000000000238</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>1</span>  
+ 2: <span class=m>0000000000000254</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>2</span>  
+ 3: <span class=m>0000000000000274</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>3</span>  
+ 4: <span class=m>0000000000000298</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>4</span>  
+ 5: 00000000000002b8     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>5</span>  
+ 6: 00000000000003c0     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>6</span>  
+ 7: 000000000000045c     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>7</span>  
+ 8: <span class=m>0000000000000478</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>8</span>  
+ 9: <span class=m>0000000000000498</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT    <span class=m>9</span>  
+10: <span class=m>0000000000000558</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>10</span>  
+11: 00000000000005d0     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>11</span>  
+12: 00000000000005f0     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>12</span>  
+13: <span class=m>0000000000000650</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>13</span>  
+14: <span class=m>0000000000000660</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>14</span>  
+15: <span class=m>0000000000000864</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>15</span>  
+16: <span class=m>0000000000000870</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>16</span>  
+17: 00000000000008a4     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>17</span>  
+18: 00000000000008e0     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>18</span>  
+19: 0000000000200d98     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>19</span>  
+20: 0000000000200da0     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>20</span>  
+21: 0000000000200da8     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>21</span>  
+22: 0000000000200f98     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>22</span>  
+23: <span class=m>0000000000201000</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>23</span>  
+24: <span class=m>0000000000201010</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>24</span>  
+25: <span class=m>0000000000000000</span>     <span class=m>0</span> SECTION LOCAL  DEFAULT   <span class=m>25</span>  
+26: <span class=m>0000000000000000</span>     <span class=m>0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c  
+27: <span class=m>0000000000000690</span>     <span class=m>0</span> FUNC    LOCAL  DEFAULT   <span class=m>14</span> deregister_tm_clones  
+28: 00000000000006d0     <span class=m>0</span> FUNC    LOCAL  DEFAULT   <span class=m>14</span> register_tm_clones  
+29: <span class=m>0000000000000720</span>     <span class=m>0</span> FUNC    LOCAL  DEFAULT   <span class=m>14</span> __do_global_dtors_aux  
+30: <span class=m>0000000000201010</span>     <span class=m>1</span> OBJECT  LOCAL  DEFAULT   <span class=m>24</span> completed.7698  
+31: 0000000000200da0     <span class=m>0</span> OBJECT  LOCAL  DEFAULT   <span class=m>20</span> __do_global_dtors_aux_fin  
+32: <span class=m>0000000000000760</span>     <span class=m>0</span> FUNC    LOCAL  DEFAULT   <span class=m>14</span> frame_dummy  
+33: 0000000000200d98     <span class=m>0</span> OBJECT  LOCAL  DEFAULT   <span class=m>19</span> __frame_dummy_init_array_  
+34: <span class=m>0000000000000000</span>     <span class=m>0</span> FILE    LOCAL  DEFAULT  ABS main.c  
+35: <span class=m>0000000000000000</span>     <span class=m>0</span> FILE    LOCAL  DEFAULT  ABS crtstuff.c  
+36: 00000000000009e4     <span class=m>0</span> OBJECT  LOCAL  DEFAULT   <span class=m>18</span> __FRAME_END__  
+37: <span class=m>0000000000000000</span>     <span class=m>0</span> FILE    LOCAL  DEFAULT  ABS  
+38: 0000000000200da0     <span class=m>0</span> NOTYPE  LOCAL  DEFAULT   <span class=m>19</span> __init_array_end  
+39: 0000000000200da8     <span class=m>0</span> OBJECT  LOCAL  DEFAULT   <span class=m>21</span> _DYNAMIC  
+40: 0000000000200d98     <span class=m>0</span> NOTYPE  LOCAL  DEFAULT   <span class=m>19</span> __init_array_start  
+41: 00000000000008a4     <span class=m>0</span> NOTYPE  LOCAL  DEFAULT   <span class=m>17</span> __GNU_EH_FRAME_HDR  
+42: 0000000000200f98     <span class=m>0</span> OBJECT  LOCAL  DEFAULT   <span class=m>22</span> _GLOBAL_OFFSET_TABLE_  
+43: <span class=m>0000000000000860</span>     <span class=m>2</span> FUNC    GLOBAL DEFAULT   <span class=m>14</span> __libc_csu_fini  
+44: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab  
+45: <span class=m>0000000000201000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT   <span class=m>23</span> data_start  
+46: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5  
+47: <span class=m>0000000000201010</span>     <span class=m>0</span> NOTYPE  GLOBAL DEFAULT   <span class=m>23</span> _edata  
+48: <span class=m>0000000000000864</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT   <span class=m>15</span> _fini  
+49: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND printf@@GLIBC_2.2.5  
+50: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND read@@GLIBC_2.2.5  
+51: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_  
+52: <span class=m>0000000000201000</span>     <span class=m>0</span> NOTYPE  GLOBAL DEFAULT   <span class=m>23</span> __data_start  
+53: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND __gmon_start__  
+54: <span class=m>0000000000201008</span>     <span class=m>0</span> OBJECT  GLOBAL HIDDEN    <span class=m>23</span> __dso_handle  
+55: <span class=m>0000000000000870</span>     <span class=m>4</span> OBJECT  GLOBAL DEFAULT   <span class=m>16</span> _IO_stdin_used  
+56: 00000000000007f0   <span class=m>101</span> FUNC    GLOBAL DEFAULT   <span class=m>14</span> __libc_csu_init  
+57: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND malloc@@GLIBC_2.2.5  
+58: <span class=m>0000000000201018</span>     <span class=m>0</span> NOTYPE  GLOBAL DEFAULT   <span class=m>24</span> _end  
+59: <span class=m>0000000000000660</span>    <span class=m>43</span> FUNC    GLOBAL DEFAULT   <span class=m>14</span> _start  
+60: <span class=m>0000000000201010</span>     <span class=m>0</span> NOTYPE  GLOBAL DEFAULT   <span class=m>24</span> __bss_start  
+61: 000000000000076a   <span class=m>126</span> FUNC    GLOBAL DEFAULT   <span class=m>14</span> main  
+62: <span class=m>0000000000201010</span>     <span class=m>0</span> OBJECT  GLOBAL HIDDEN    <span class=m>23</span> __TMC_END__  
+63: <span class=m>0000000000000000</span>     <span class=m>0</span> NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable  
+64: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    GLOBAL DEFAULT  UND sleep@@GLIBC_2.2.5  
+65: <span class=m>0000000000000000</span>     <span class=m>0</span> FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2  
+66: 00000000000005d0     <span class=m>0</span> FUNC    GLOBAL DEFAULT   <span class=m>11</span> _init  
+</code></pre></td></tr></table></div></div><h2 id=参考>参考</h2><p><a href=https://blog.csdn.net/xuehuafeiwu123/article/details/72963229>https://blog.csdn.net/xuehuafeiwu123/article/details/72963229</a><br><a href=https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/>https://felixzhang00.github.io/2016/12/24/2016-12-24-ELF%E6%96%87%E4%BB%B6%E8%A3%85%E8%BD%BD%E9%93%BE%E6%8E%A5%E8%BF%87%E7%A8%8B%E5%8F%8Ahook%E5%8E%9F%E7%90%86/</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-05-25</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/ data-title=ELF文件组成><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/ data-title=ELF文件组成><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/ data-title=ELF文件组成><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%A4%A9-elf%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/ data-title=ELF文件组成><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/ class=prev rel=prev title=密码学><i class="fas fa-angle-left fa-fw"></i>密码学</a>
+<a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%A4%A9-elf%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/ class=next rel=next title=ELF动态链接>ELF动态链接<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

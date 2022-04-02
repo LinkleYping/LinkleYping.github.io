@@ -1,205 +1,37 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Unicorn - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Unicorn" />
-<meta property="og:description" content="介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-06-16T15:22:45+08:00" />
-<meta property="article:modified_time" content="2020-06-16T15:22:45+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="Unicorn"/>
-<meta name="twitter:description" content="介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" /><link rel="next" href="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Unicorn",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1740 ,
-        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn\/","datePublished": "2020-06-16T15:22:45+08:00","dateModified": "2020-06-16T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Unicorn</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-16">2020-06-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1740 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#介绍">介绍</a></li>
-    <li><a href="#备忘">备忘</a></li>
-    <li><a href="#第一个例子-fibonacci">第一个例子: fibonacci</a></li>
-    <li><a href="#第二个例子-分析shellcode">第二个例子: 分析shellcode</a></li>
-    <li><a href="#第三个例子">第三个例子</a></li>
-    <li><a href="#第四个例子">第四个例子</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="介绍">介绍</h2>
-<ul>
-<li>Unocorn引擎是什么?</li>
-</ul>
-<p>简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过手动的方式来映射内存以及数据写入，然后就可以从某个指定的地址开始执行模拟了。</p>
-<ul>
-<li>
-<p>模拟器在什么时候是有用的？</p>
-</li>
-<li>
-<p>你可以执行一些恶意软件中你感兴趣的函数而不必创建整个进程</p>
-</li>
-<li>
-<p>CTF比赛中也很常用</p>
-</li>
-<li>
-<p><a href="https://hackernoon.com/afl-unicorn-fuzzing-arbitrary-binary-code-563ca28936bf" target="_blank" rel="noopener noreffer">Fuzzing</a></p>
-</li>
-<li>
-<p>GDB插件扩充，例如支持长跳转</p>
-</li>
-<li>
-<p>模拟混淆后的代码</p>
-</li>
-</ul>
-<h2 id="备忘">备忘</h2>
-<p><code>from unicorn import *</code> - 加载Unicorn库。包含一些函数和基本的常量。<br>
-<code>from unicorn.x86_const import*</code> - 加载 X86 和X64架构相关的常量</p>
-<p>所有unicorn模块中的常量</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">UC_API_MAJOR                UC_ERR_VERSION              UC_MEM_READ                 UC_PROT_ALL  
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Unicorn - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="Unicorn"><meta property="og:description" content="介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-06-16T15:22:45+08:00"><meta property="article:modified_time" content="2020-06-16T15:22:45+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="Unicorn"><meta name=twitter:description content="介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/><link rel=prev href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/><link rel=next href=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Unicorn","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":1740,"url":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn\/","datePublished":"2020-06-16T15:22:45+08:00","dateModified":"2020-06-16T15:22:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Unicorn</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/notes/><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-16>2020-06-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1740 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#介绍>介绍</a></li><li><a href=#备忘>备忘</a></li><li><a href=#第一个例子-fibonacci>第一个例子: fibonacci</a></li><li><a href=#第二个例子-分析shellcode>第二个例子: 分析shellcode</a></li><li><a href=#第三个例子>第三个例子</a></li><li><a href=#第四个例子>第四个例子</a></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=content id=content><h2 id=介绍>介绍</h2><ul><li>Unocorn引擎是什么?</li></ul><p>简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过手动的方式来映射内存以及数据写入，然后就可以从某个指定的地址开始执行模拟了。</p><ul><li><p>模拟器在什么时候是有用的？</p></li><li><p>你可以执行一些恶意软件中你感兴趣的函数而不必创建整个进程</p></li><li><p>CTF比赛中也很常用</p></li><li><p><a href=https://hackernoon.com/afl-unicorn-fuzzing-arbitrary-binary-code-563ca28936bf target=_blank rel="noopener noreffer">Fuzzing</a></p></li><li><p>GDB插件扩充，例如支持长跳转</p></li><li><p>模拟混淆后的代码</p></li></ul><h2 id=备忘>备忘</h2><p><code>from unicorn import *</code> - 加载Unicorn库。包含一些函数和基本的常量。<br><code>from unicorn.x86_const import*</code> - 加载 X86 和X64架构相关的常量</p><p>所有unicorn模块中的常量</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>UC_API_MAJOR                UC_ERR_VERSION              UC_MEM_READ                 UC_PROT_ALL  
 UC_API_MINOR                UC_ERR_WRITE_PROT           UC_MEM_READ_AFTER           UC_PROT_EXEC  
 UC_ARCH_ARM                 UC_ERR_WRITE_UNALIGNED      UC_MEM_READ_PROT            UC_PROT_NONE  
 UC_ARCH_ARM64               UC_ERR_WRITE_UNMAPPED       UC_MEM_READ_UNMAPPED        UC_PROT_READ  
@@ -227,531 +59,421 @@ UC_ERR_READ_PROT            UC_HOOK_MEM_WRITE_UNMAPPED  UC_MODE_SPARC64         
 UC_ERR_READ_UNALIGNED       UC_MEM_FETCH                UC_MODE_THUMB                
 UC_ERR_READ_UNMAPPED        UC_MEM_FETCH_PROT           UC_MODE_V8                   
 UC_ERR_RESOURCE             UC_MEM_FETCH_UNMAPPED       UC_MODE_V9  
-</code></pre></td></tr></table>
-</div>
-</div><p><code>mu = Uc(arch,mode)</code> - 获取Uc实例。在这里指定目标架构，例如：</p>
-<ul>
-<li><code>mu = Uc(UC_ARCH_X86,UC_MODE_64)</code> - 获取X86-64架构的实例。</li>
-<li><code>mu = Uc(UC_ARCH_X86,UC_MODE_32)</code> - 获取X86-32架构的实例。</li>
-</ul>
-<p><code>mu.mem_map(ADDRESS,4096)</code> - 映射一片内存区域 <br>
-<code>mu.mem_write(ADDRESS,DATA)</code> - 向内存中写入数据 <br>
-<code>tmp = mu.mem_read(ADDRESS,SIZE)</code> - 从内存中读取数据 <br>
-<code>mu.reg_write(UC_X86_REG_ECX,0X0)</code> - 设置ECX值。 <br>
-<code>r_esp = mu.reg_read(UC_X86_REG_ESP)</code> - 读取ESP的值。 <br>
-<code>mu.emu_start(ADDRESS_START,ADDRESS_END)</code> - 开始执行模拟。 <br>
-命令追踪:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">hook_code</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>   
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; Tracing instruction at 0x</span><span class="si">%x</span><span class="s1">, instruction size = 0x</span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>   
+</code></pre></td></tr></table></div></div><p><code>mu = Uc(arch,mode)</code> - 获取Uc实例。在这里指定目标架构，例如：</p><ul><li><code>mu = Uc(UC_ARCH_X86,UC_MODE_64)</code> - 获取X86-64架构的实例。</li><li><code>mu = Uc(UC_ARCH_X86,UC_MODE_32)</code> - 获取X86-32架构的实例。</li></ul><p><code>mu.mem_map(ADDRESS,4096)</code> - 映射一片内存区域<br><code>mu.mem_write(ADDRESS,DATA)</code> - 向内存中写入数据<br><code>tmp = mu.mem_read(ADDRESS,SIZE)</code> - 从内存中读取数据<br><code>mu.reg_write(UC_X86_REG_ECX,0X0)</code> - 设置ECX值。<br><code>r_esp = mu.reg_read(UC_X86_REG_ESP)</code> - 读取ESP的值。<br><code>mu.emu_start(ADDRESS_START,ADDRESS_END)</code> - 开始执行模拟。<br>命令追踪:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>hook_code</span><span class=p>(</span><span class=n>mu</span><span class=p>,</span> <span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>,</span> <span class=n>user_data</span><span class=p>):</span>   
+<span class=k>print</span><span class=p>(</span><span class=s1>&#39;&gt;&gt;&gt; Tracing instruction at 0x</span><span class=si>%x</span><span class=s1>, instruction size = 0x</span><span class=si>%x</span><span class=s1>&#39;</span> <span class=o>%</span><span class=p>(</span><span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>))</span>   
    
-<span class="n">mu</span><span class="o">.</span><span class="n">hook_add</span><span class="p">(</span><span class="n">UC_HOOK_CODE</span><span class="p">,</span> <span class="n">hook_code</span><span class="p">)</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>这段代码添加了一个HOOK（向Unicorn引擎中），我们定义的函数会在执行每一条命令之前被执行。参数含义如下：</p>
-<ul>
-<li>Uc实例</li>
-<li>指令的地址</li>
-<li>指令的长度</li>
-<li>用户定义数据（通过hook_add()函数传递）</li>
-</ul>
-<h2 id="第一个例子-fibonacci">第一个例子: fibonacci</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
-<span class="kn">from</span> <span class="nn">unicorn</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="kn">from</span> <span class="nn">unicorn.x86_const</span> <span class="kn">import</span> <span class="o">*</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>hook_add</span><span class=p>(</span><span class=n>UC_HOOK_CODE</span><span class=p>,</span> <span class=n>hook_code</span><span class=p>)</span>  
+</code></pre></td></tr></table></div></div><p>这段代码添加了一个HOOK（向Unicorn引擎中），我们定义的函数会在执行每一条命令之前被执行。参数含义如下：</p><ul><li>Uc实例</li><li>指令的地址</li><li>指令的长度</li><li>用户定义数据（通过hook_add()函数传递）</li></ul><h2 id=第一个例子-fibonacci>第一个例子: fibonacci</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1>#coding=utf-8  </span>
+<span class=kn>from</span> <span class=nn>unicorn</span> <span class=kn>import</span> <span class=o>*</span>  
+<span class=kn>from</span> <span class=nn>unicorn.x86_const</span> <span class=kn>import</span> <span class=o>*</span>  
   
-<span class="kn">import</span> <span class="nn">struct</span>  
+<span class=kn>import</span> <span class=nn>struct</span>  
   
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>  
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
-        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+<span class=k>def</span> <span class=nf>read</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>  
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+        <span class=k>return</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>  
     
-<span class="k">def</span> <span class="nf">u32</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  
+<span class=k>def</span> <span class=nf>u32</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>  
   
-<span class="k">def</span> <span class="nf">p32</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>  
+<span class=k>def</span> <span class=nf>p32</span><span class=p>(</span><span class=n>num</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>pack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>num</span><span class=p>)</span>  
   
-<span class="c1"># 为x86-64架构初始化一下Unicorn引擎。  </span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Uc</span> <span class="p">(</span><span class="n">UC_ARCH_X86</span><span class="p">,</span> <span class="n">UC_MODE_64</span><span class="p">)</span>  
-<span class="c1"># Uc函数需要一下参数：  </span>
-<span class="c1"># 第一个参数：架构类型。这些常量以UC_ATCH_为前缀  </span>
-<span class="c1"># 第二个参数：架构细节说明。这些常量以UC_MODE_为前缀  </span>
+<span class=c1># 为x86-64架构初始化一下Unicorn引擎。  </span>
+<span class=n>mu</span> <span class=o>=</span> <span class=n>Uc</span> <span class=p>(</span><span class=n>UC_ARCH_X86</span><span class=p>,</span> <span class=n>UC_MODE_64</span><span class=p>)</span>  
+<span class=c1># Uc函数需要一下参数：  </span>
+<span class=c1># 第一个参数：架构类型。这些常量以UC_ATCH_为前缀  </span>
+<span class=c1># 第二个参数：架构细节说明。这些常量以UC_MODE_为前缀  </span>
   
-<span class="n">BASE</span> <span class="o">=</span> <span class="mh">0x400000</span>  
-<span class="n">STACK_ADDR</span> <span class="o">=</span> <span class="mh">0x0</span>  
-<span class="n">STACK_SIZE</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span>  
-<span class="c1"># mem_map: 映射内存  </span>
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span> <span class="c1"># 初始化存储空间  </span>
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">STACK_ADDR</span><span class="p">,</span> <span class="n">STACK_SIZE</span><span class="p">)</span> <span class="c1"># 初始化栈空间  </span>
+<span class=n>BASE</span> <span class=o>=</span> <span class=mh>0x400000</span>  
+<span class=n>STACK_ADDR</span> <span class=o>=</span> <span class=mh>0x0</span>  
+<span class=n>STACK_SIZE</span> <span class=o>=</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span>  
+<span class=c1># mem_map: 映射内存  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span><span class=p>)</span> <span class=c1># 初始化存储空间  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>STACK_ADDR</span><span class=p>,</span> <span class=n>STACK_SIZE</span><span class=p>)</span> <span class=c1># 初始化栈空间  </span>
   
   
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="n">read</span><span class="p">(</span><span class="s2">&#34;./fibonacci&#34;</span><span class="p">))</span> <span class="c1"># 加载程序  </span>
-<span class="c1"># rsp指向栈顶  </span>
-<span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_RSP</span><span class="p">,</span> <span class="n">STACK_ADDR</span> <span class="o">+</span> <span class="n">STACK_SIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  
-<span class="c1"># 因为库函数没有加载，所以调用库函数的地方需要跳过  </span>
-<span class="n">instructions_skip_list</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00000000004004EF</span><span class="p">,</span> <span class="mh">0x00000000004004F6</span><span class="p">,</span> <span class="mh">0x0000000000400502</span><span class="p">,</span> <span class="mh">0x000000000040054F</span><span class="p">]</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=n>read</span><span class=p>(</span><span class=s2>&#34;./fibonacci&#34;</span><span class=p>))</span> <span class=c1># 加载程序  </span>
+<span class=c1># rsp指向栈顶  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_RSP</span><span class=p>,</span> <span class=n>STACK_ADDR</span> <span class=o>+</span> <span class=n>STACK_SIZE</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>  
+<span class=c1># 因为库函数没有加载，所以调用库函数的地方需要跳过  </span>
+<span class=n>instructions_skip_list</span> <span class=o>=</span> <span class=p>[</span><span class=mh>0x00000000004004EF</span><span class=p>,</span> <span class=mh>0x00000000004004F6</span><span class=p>,</span> <span class=mh>0x0000000000400502</span><span class=p>,</span> <span class=mh>0x000000000040054F</span><span class=p>]</span>  
   
-<span class="k">def</span> <span class="nf">hook_code</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>    
-<span class="c1">#print(&#39;&gt;&gt;&gt; Tracing instruction at 0x%x, instruction size = 0x%x&#39; %(address, size))  </span>
+<span class=k>def</span> <span class=nf>hook_code</span><span class=p>(</span><span class=n>mu</span><span class=p>,</span> <span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>,</span> <span class=n>user_data</span><span class=p>):</span>    
+<span class=c1>#print(&#39;&gt;&gt;&gt; Tracing instruction at 0x%x, instruction size = 0x%x&#39; %(address, size))  </span>
   
-<span class="k">if</span> <span class="n">address</span> <span class="ow">in</span> <span class="n">instructions_skip_list</span><span class="p">:</span>  
-    <span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_RIP</span><span class="p">,</span> <span class="n">address</span><span class="o">+</span><span class="n">size</span><span class="p">)</span>  
+<span class=k>if</span> <span class=n>address</span> <span class=ow>in</span> <span class=n>instructions_skip_list</span><span class=p>:</span>  
+    <span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_RIP</span><span class=p>,</span> <span class=n>address</span><span class=o>+</span><span class=n>size</span><span class=p>)</span>  
   
-<span class="k">elif</span> <span class="n">address</span> <span class="o">==</span> <span class="mh">0x400560</span><span class="p">:</span> <span class="c1">#that instruction writes a byte of the flag  </span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_RDI</span><span class="p">)</span>  
-    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>  
-    <span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_RIP</span><span class="p">,</span> <span class="n">address</span><span class="o">+</span><span class="n">size</span><span class="p">)</span>  
+<span class=k>elif</span> <span class=n>address</span> <span class=o>==</span> <span class=mh>0x400560</span><span class=p>:</span> <span class=c1>#that instruction writes a byte of the flag  </span>
+    <span class=n>c</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_RDI</span><span class=p>)</span>  
+    <span class=k>print</span><span class=p>(</span><span class=nb>chr</span><span class=p>(</span><span class=n>c</span><span class=p>))</span>  
+    <span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_RIP</span><span class=p>,</span> <span class=n>address</span><span class=o>+</span><span class=n>size</span><span class=p>)</span>  
   
-<span class="n">mu</span><span class="o">.</span><span class="n">hook_add</span><span class="p">(</span><span class="n">UC_HOOK_CODE</span><span class="p">,</span> <span class="n">hook_code</span><span class="p">)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>hook_add</span><span class=p>(</span><span class=n>UC_HOOK_CODE</span><span class=p>,</span> <span class=n>hook_code</span><span class=p>)</span>  
   
-<span class="n">mu</span><span class="o">.</span><span class="n">emu_start</span><span class="p">(</span><span class="mh">0x00000000004004E0</span><span class="p">,</span> <span class="mh">0x0000000000400575</span><span class="p">)</span>  
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="第二个例子-分析shellcode">第二个例子: 分析shellcode</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">unicorn</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="kn">from</span> <span class="nn">unicorn.x86_const</span> <span class="kn">import</span> <span class="o">*</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>emu_start</span><span class=p>(</span><span class=mh>0x00000000004004E0</span><span class=p>,</span> <span class=mh>0x0000000000400575</span><span class=p>)</span>  
+</code></pre></td></tr></table></div></div><h2 id=第二个例子-分析shellcode>第二个例子: 分析shellcode</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>unicorn</span> <span class=kn>import</span> <span class=o>*</span>  
+<span class=kn>from</span> <span class=nn>unicorn.x86_const</span> <span class=kn>import</span> <span class=o>*</span>  
    
-<span class="n">shellcode</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\xe8\xff\xff\xff\xff\xc0\x5d\x6a\x05\x5b\x29\xdd\x83\xc5\x4e\x89\xe9\x6a\x02\x03\x0c\x24\x5b\x31\xd2\x66\xba\x12\x00\x8b\x39\xc1\xe7\x10\xc1\xef\x10\x81\xe9\xfe\xff\xff\xff\x8b\x45\x00\xc1\xe0\x10\xc1\xe8\x10\x89\xc3\x09\xfb\x21\xf8\xf7\xd0\x21\xd8\x66\x89\x45\x00\x83\xc5\x02\x4a\x85\xd2\x0f\x85\xcf\xff\xff\xff\xec\x37\x75\x5d\x7a\x05\x28\xed\x24\xed\x24\xed\x0b\x88\x7f\xeb\x50\x98\x38\xf9\x5c\x96\x2b\x96\x70\xfe\xc6\xff\xc6\xff\x9f\x32\x1f\x58\x1e\x00\xd3\x80</span><span class="s2">&#34;</span>  
+<span class=n>shellcode</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=se>\xe8\xff\xff\xff\xff\xc0\x5d\x6a\x05\x5b\x29\xdd\x83\xc5\x4e\x89\xe9\x6a\x02\x03\x0c\x24\x5b\x31\xd2\x66\xba\x12\x00\x8b\x39\xc1\xe7\x10\xc1\xef\x10\x81\xe9\xfe\xff\xff\xff\x8b\x45\x00\xc1\xe0\x10\xc1\xe8\x10\x89\xc3\x09\xfb\x21\xf8\xf7\xd0\x21\xd8\x66\x89\x45\x00\x83\xc5\x02\x4a\x85\xd2\x0f\x85\xcf\xff\xff\xff\xec\x37\x75\x5d\x7a\x05\x28\xed\x24\xed\x24\xed\x0b\x88\x7f\xeb\x50\x98\x38\xf9\x5c\x96\x2b\x96\x70\xfe\xc6\xff\xc6\xff\x9f\x32\x1f\x58\x1e\x00\xd3\x80</span><span class=s2>&#34;</span>  
    
    
-<span class="n">BASE</span> <span class="o">=</span> <span class="mh">0x400000</span>  
-<span class="n">STACK_ADDR</span> <span class="o">=</span> <span class="mh">0x0</span>  
-<span class="n">STACK_SIZE</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span>  
+<span class=n>BASE</span> <span class=o>=</span> <span class=mh>0x400000</span>  
+<span class=n>STACK_ADDR</span> <span class=o>=</span> <span class=mh>0x0</span>  
+<span class=n>STACK_SIZE</span> <span class=o>=</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span>  
    
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Uc</span> <span class="p">(</span><span class="n">UC_ARCH_X86</span><span class="p">,</span> <span class="n">UC_MODE_32</span><span class="p">)</span>  
+<span class=n>mu</span> <span class=o>=</span> <span class=n>Uc</span> <span class=p>(</span><span class=n>UC_ARCH_X86</span><span class=p>,</span> <span class=n>UC_MODE_32</span><span class=p>)</span>  
    
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">STACK_ADDR</span><span class="p">,</span> <span class="n">STACK_SIZE</span><span class="p">)</span>  
-   
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="n">shellcode</span><span class="p">)</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_ESP</span><span class="p">,</span> <span class="n">STACK_ADDR</span> <span class="o">+</span> <span class="n">STACK_SIZE</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  
-   
-<span class="k">def</span> <span class="nf">syscall_num_to_name</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>  
-    <span class="n">syscalls</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&#34;sys_exit&#34;</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span> <span class="s2">&#34;sys_chmod&#34;</span><span class="p">}</span>  
-    <span class="k">return</span> <span class="n">syscalls</span><span class="p">[</span><span class="n">num</span><span class="p">]</span>  
-   
-<span class="k">def</span> <span class="nf">hook_code</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>  
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; Tracing instruction at 0x</span><span class="si">%x</span><span class="s1">, instruction size = 0x</span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>   
-   
-<span class="n">machine_code</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mem_read</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>  
-<span class="k">if</span> <span class="n">machine_code</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="se">\xcd\x80</span><span class="s2">&#34;</span><span class="p">:</span> <span class="c1"># int 80   </span>
-    <span class="n">r_eax</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_EAX</span><span class="p">)</span>  
-    <span class="n">r_ebx</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_EBX</span><span class="p">)</span>  
-    <span class="n">r_ecx</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_ECX</span><span class="p">)</span>  
-    <span class="n">r_edx</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_EDX</span><span class="p">)</span>  
-    <span class="n">syscall_name</span> <span class="o">=</span> <span class="n">syscall_num_to_name</span><span class="p">(</span><span class="n">r_eax</span><span class="p">)</span>  
-   
-    <span class="k">print</span> <span class="s2">&#34;--------------&#34;</span>  
-    <span class="k">print</span> <span class="s2">&#34;We intercepted system call: &#34;</span><span class="o">+</span><span class="n">syscall_name</span>  
-   
-    <span class="k">if</span> <span class="n">syscall_name</span> <span class="o">==</span> <span class="s2">&#34;sys_chmod&#34;</span><span class="p">:</span>  
-        <span class="n">s</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mem_read</span><span class="p">(</span><span class="n">r_ebx</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  
-        <span class="k">print</span> <span class="s2">&#34;arg0 = 0x</span><span class="si">%x</span><span class="s2"> -&gt; </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r_ebx</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>  
-        <span class="k">print</span> <span class="s2">&#34;arg1 = &#34;</span> <span class="o">+</span> <span class="nb">oct</span><span class="p">(</span><span class="n">r_ecx</span><span class="p">)</span>  
-    <span class="k">elif</span> <span class="n">syscall_name</span> <span class="o">==</span> <span class="s2">&#34;sys_exit&#34;</span><span class="p">:</span>  
-        <span class="k">print</span> <span class="s2">&#34;arg0 = &#34;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">r_ebx</span><span class="p">)</span>  
-        <span class="nb">exit</span><span class="p">()</span>  
-   
-    <span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_EIP</span><span class="p">,</span> <span class="n">address</span> <span class="o">+</span> <span class="n">size</span><span class="p">)</span>  
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">hook_add</span><span class="p">(</span><span class="n">UC_HOOK_CODE</span><span class="p">,</span> <span class="n">hook_code</span><span class="p">)</span>  
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">emu_start</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="n">BASE</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 根据exit命令退出，直接加载整个shellcode  </span>
-</code></pre></td></tr></table>
-</div>
-</div><p>所以不仅可以直接可执行文件中的一段代码，还可以直接执行shellcode</p>
-<h2 id="第三个例子">第三个例子</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">unicorn</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="kn">from</span> <span class="nn">unicorn.x86_const</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="kn">import</span> <span class="nn">struct</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span><span class=p>)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>STACK_ADDR</span><span class=p>,</span> <span class=n>STACK_SIZE</span><span class=p>)</span>  
    
    
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>  
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
-        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=n>shellcode</span><span class=p>)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_ESP</span><span class=p>,</span> <span class=n>STACK_ADDR</span> <span class=o>+</span> <span class=n>STACK_SIZE</span><span class=o>/</span><span class=mi>2</span><span class=p>)</span>  
    
-<span class="k">def</span> <span class="nf">u32</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  
+<span class=k>def</span> <span class=nf>syscall_num_to_name</span><span class=p>(</span><span class=n>num</span><span class=p>):</span>  
+    <span class=n>syscalls</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>:</span> <span class=s2>&#34;sys_exit&#34;</span><span class=p>,</span> <span class=mi>15</span><span class=p>:</span> <span class=s2>&#34;sys_chmod&#34;</span><span class=p>}</span>  
+    <span class=k>return</span> <span class=n>syscalls</span><span class=p>[</span><span class=n>num</span><span class=p>]</span>  
    
-<span class="k">def</span> <span class="nf">p32</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>  
+<span class=k>def</span> <span class=nf>hook_code</span><span class=p>(</span><span class=n>mu</span><span class=p>,</span> <span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>,</span> <span class=n>user_data</span><span class=p>):</span>  
+    <span class=k>print</span><span class=p>(</span><span class=s1>&#39;&gt;&gt;&gt; Tracing instruction at 0x</span><span class=si>%x</span><span class=s1>, instruction size = 0x</span><span class=si>%x</span><span class=s1>&#39;</span> <span class=o>%</span><span class=p>(</span><span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>))</span>   
    
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Uc</span> <span class="p">(</span><span class="n">UC_ARCH_X86</span><span class="p">,</span> <span class="n">UC_MODE_32</span><span class="p">)</span>  
+<span class=n>machine_code</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>mem_read</span><span class=p>(</span><span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>)</span>  
+<span class=k>if</span> <span class=n>machine_code</span> <span class=o>==</span> <span class=s2>&#34;</span><span class=se>\xcd\x80</span><span class=s2>&#34;</span><span class=p>:</span> <span class=c1># int 80   </span>
+    <span class=n>r_eax</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_EAX</span><span class=p>)</span>  
+    <span class=n>r_ebx</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_EBX</span><span class=p>)</span>  
+    <span class=n>r_ecx</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_ECX</span><span class=p>)</span>  
+    <span class=n>r_edx</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_EDX</span><span class=p>)</span>  
+    <span class=n>syscall_name</span> <span class=o>=</span> <span class=n>syscall_num_to_name</span><span class=p>(</span><span class=n>r_eax</span><span class=p>)</span>  
    
-<span class="n">BASE</span> <span class="o">=</span> <span class="mh">0x08048000</span>  
-<span class="n">STACK_ADDR</span> <span class="o">=</span> <span class="mh">0x0</span>  
-<span class="n">STACK_SIZE</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span>  
+    <span class=k>print</span> <span class=s2>&#34;--------------&#34;</span>  
+    <span class=k>print</span> <span class=s2>&#34;We intercepted system call: &#34;</span><span class=o>+</span><span class=n>syscall_name</span>  
    
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">STACK_ADDR</span><span class="p">,</span> <span class="n">STACK_SIZE</span><span class="p">)</span>  
+    <span class=k>if</span> <span class=n>syscall_name</span> <span class=o>==</span> <span class=s2>&#34;sys_chmod&#34;</span><span class=p>:</span>  
+        <span class=n>s</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>mem_read</span><span class=p>(</span><span class=n>r_ebx</span><span class=p>,</span> <span class=mi>20</span><span class=p>)</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\x00</span><span class=s2>&#34;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>  
+        <span class=k>print</span> <span class=s2>&#34;arg0 = 0x</span><span class=si>%x</span><span class=s2> -&gt; </span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>r_ebx</span><span class=p>,</span> <span class=n>s</span><span class=p>)</span>  
+        <span class=k>print</span> <span class=s2>&#34;arg1 = &#34;</span> <span class=o>+</span> <span class=nb>oct</span><span class=p>(</span><span class=n>r_ecx</span><span class=p>)</span>  
+    <span class=k>elif</span> <span class=n>syscall_name</span> <span class=o>==</span> <span class=s2>&#34;sys_exit&#34;</span><span class=p>:</span>  
+        <span class=k>print</span> <span class=s2>&#34;arg0 = &#34;</span> <span class=o>+</span> <span class=nb>hex</span><span class=p>(</span><span class=n>r_ebx</span><span class=p>)</span>  
+        <span class=nb>exit</span><span class=p>()</span>  
    
+    <span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_EIP</span><span class=p>,</span> <span class=n>address</span> <span class=o>+</span> <span class=n>size</span><span class=p>)</span>  
    
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="n">read</span><span class="p">(</span><span class="s2">&#34;./function&#34;</span><span class="p">))</span>  
-<span class="n">r_esp</span> <span class="o">=</span> <span class="n">STACK_ADDR</span> <span class="o">+</span> <span class="p">(</span><span class="n">STACK_SIZE</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">#ESP points to this address at function call  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>hook_add</span><span class=p>(</span><span class=n>UC_HOOK_CODE</span><span class=p>,</span> <span class=n>hook_code</span><span class=p>)</span>  
    
-<span class="n">STRING_ADDR</span> <span class="o">=</span> <span class="mh">0x0</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">STRING_ADDR</span><span class="p">,</span> <span class="s2">&#34;batman</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1">#write &#34;batman&#34; somewhere. We have choosen an address 0x0 which belongs to the stack.  </span>
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_X86_REG_ESP</span><span class="p">,</span> <span class="n">r_esp</span><span class="p">)</span>     <span class="c1">#set ESP  </span>
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">r_esp</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span> <span class="n">p32</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>           <span class="c1">#set the first argument. It is integer 5  </span>
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">r_esp</span><span class="o">+</span><span class="mi">8</span><span class="p">,</span> <span class="n">p32</span><span class="p">(</span><span class="n">STRING_ADDR</span><span class="p">))</span> <span class="c1">#set the second argument. This is a pointer to the string &#34;batman&#34;  </span>
-   
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">emu_start</span><span class="p">(</span><span class="mh">0x8048464</span><span class="p">,</span> <span class="mh">0x804849A</span><span class="p">)</span>      <span class="c1">#start emulation from the beginning of super_function, end at RET instruction  </span>
-<span class="n">return_value</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_X86_REG_EAX</span><span class="p">)</span>  
-<span class="k">print</span> <span class="s2">&#34;The returned value is: </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">return_value</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>可以通过修改内存来控制函数的调用参数</p>
-<h2 id="第四个例子">第四个例子</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">unicorn</span> <span class="kn">import</span> <span class="o">*</span>  
-<span class="kn">from</span> <span class="nn">unicorn.arm_const</span> <span class="kn">import</span> <span class="o">*</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>emu_start</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=n>BASE</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=c1># 根据exit命令退出，直接加载整个shellcode  </span>
+</code></pre></td></tr></table></div></div><p>所以不仅可以直接可执行文件中的一段代码，还可以直接执行shellcode</p><h2 id=第三个例子>第三个例子</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>unicorn</span> <span class=kn>import</span> <span class=o>*</span>  
+<span class=kn>from</span> <span class=nn>unicorn.x86_const</span> <span class=kn>import</span> <span class=o>*</span>  
+<span class=kn>import</span> <span class=nn>struct</span>  
    
    
-<span class="kn">import</span> <span class="nn">struct</span>  
+<span class=k>def</span> <span class=nf>read</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>  
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>name</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+        <span class=k>return</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>  
    
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>  
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
-        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+<span class=k>def</span> <span class=nf>u32</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>  
    
-<span class="k">def</span> <span class="nf">u32</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  
+<span class=k>def</span> <span class=nf>p32</span><span class=p>(</span><span class=n>num</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>pack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>num</span><span class=p>)</span>  
    
-<span class="k">def</span> <span class="nf">p32</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;I&#34;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>  
+<span class=n>mu</span> <span class=o>=</span> <span class=n>Uc</span> <span class=p>(</span><span class=n>UC_ARCH_X86</span><span class=p>,</span> <span class=n>UC_MODE_32</span><span class=p>)</span>  
    
+<span class=n>BASE</span> <span class=o>=</span> <span class=mh>0x08048000</span>  
+<span class=n>STACK_ADDR</span> <span class=o>=</span> <span class=mh>0x0</span>  
+<span class=n>STACK_SIZE</span> <span class=o>=</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span>  
    
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Uc</span> <span class="p">(</span><span class="n">UC_ARCH_ARM</span><span class="p">,</span> <span class="n">UC_MODE_LITTLE_ENDIAN</span><span class="p">)</span>  
-   
-   
-<span class="n">BASE</span> <span class="o">=</span> <span class="mh">0x10000</span>  
-<span class="n">STACK_ADDR</span> <span class="o">=</span> <span class="mh">0x300000</span>  
-<span class="n">STACK_SIZE</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span>  
-   
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_map</span><span class="p">(</span><span class="n">STACK_ADDR</span><span class="p">,</span> <span class="n">STACK_SIZE</span><span class="p">)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span><span class=p>)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>STACK_ADDR</span><span class=p>,</span> <span class=n>STACK_SIZE</span><span class=p>)</span>  
    
    
-<span class="n">mu</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="n">BASE</span><span class="p">,</span> <span class="n">read</span><span class="p">(</span><span class="s2">&#34;./task4&#34;</span><span class="p">))</span>  
-<span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_ARM_REG_SP</span><span class="p">,</span> <span class="n">STACK_ADDR</span> <span class="o">+</span> <span class="n">STACK_SIZE</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=n>read</span><span class=p>(</span><span class=s2>&#34;./function&#34;</span><span class=p>))</span>  
+<span class=n>r_esp</span> <span class=o>=</span> <span class=n>STACK_ADDR</span> <span class=o>+</span> <span class=p>(</span><span class=n>STACK_SIZE</span><span class=o>/</span><span class=mi>2</span><span class=p>)</span>     <span class=c1>#ESP points to this address at function call  </span>
    
-<span class="n">instructions_skip_list</span> <span class="o">=</span> <span class="p">[]</span>  
+<span class=n>STRING_ADDR</span> <span class=o>=</span> <span class=mh>0x0</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>STRING_ADDR</span><span class=p>,</span> <span class=s2>&#34;batman</span><span class=se>\x00</span><span class=s2>&#34;</span><span class=p>)</span> <span class=c1>#write &#34;batman&#34; somewhere. We have choosen an address 0x0 which belongs to the stack.  </span>
    
-<span class="n">CCC_ENTRY</span> <span class="o">=</span> <span class="mh">0x000104D0</span>  
-<span class="n">CCC_END</span> <span class="o">=</span> <span class="mh">0x00010580</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_X86_REG_ESP</span><span class=p>,</span> <span class=n>r_esp</span><span class=p>)</span>     <span class=c1>#set ESP  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>r_esp</span><span class=o>+</span><span class=mi>4</span><span class=p>,</span> <span class=n>p32</span><span class=p>(</span><span class=mi>5</span><span class=p>))</span>           <span class=c1>#set the first argument. It is integer 5  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>r_esp</span><span class=o>+</span><span class=mi>8</span><span class=p>,</span> <span class=n>p32</span><span class=p>(</span><span class=n>STRING_ADDR</span><span class=p>))</span> <span class=c1>#set the second argument. This is a pointer to the string &#34;batman&#34;  </span>
    
-<span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>                                          <span class="c1"># Stack for storing the arguments  </span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>                                              <span class="c1"># Dictionary that holds return values for given function arguments  </span>
    
-<span class="k">def</span> <span class="nf">hook_code</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>   
-<span class="c1">#print(&#39;&gt;&gt;&gt; Tracing instruction at 0x%x, instruction size = 0x%x&#39; %(address, size))  </span>
+<span class=n>mu</span><span class=o>.</span><span class=n>emu_start</span><span class=p>(</span><span class=mh>0x8048464</span><span class=p>,</span> <span class=mh>0x804849A</span><span class=p>)</span>      <span class=c1>#start emulation from the beginning of super_function, end at RET instruction  </span>
+<span class=n>return_value</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_X86_REG_EAX</span><span class=p>)</span>  
+<span class=k>print</span> <span class=s2>&#34;The returned value is: </span><span class=si>%d</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=n>return_value</span>  
+</code></pre></td></tr></table></div></div><p>可以通过修改内存来控制函数的调用参数</p><h2 id=第四个例子>第四个例子</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>unicorn</span> <span class=kn>import</span> <span class=o>*</span>  
+<span class=kn>from</span> <span class=nn>unicorn.arm_const</span> <span class=kn>import</span> <span class=o>*</span>  
    
-<span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="n">CCC_ENTRY</span><span class="p">:</span>                        <span class="c1"># Are we at the beginning of ccc function?  </span>
-    <span class="n">arg0</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_ARM_REG_R0</span><span class="p">)</span>           <span class="c1"># Read the first argument. it is passed by R0  </span>
    
-    <span class="k">if</span> <span class="n">arg0</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>                               <span class="c1"># Check whether return value for this function is already saved.  </span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">arg0</span><span class="p">]</span>  
-        <span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_ARM_REG_R0</span><span class="p">,</span> <span class="n">ret</span><span class="p">)</span>        <span class="c1"># Set return value in R0  </span>
-        <span class="n">mu</span><span class="o">.</span><span class="n">reg_write</span><span class="p">(</span><span class="n">UC_ARM_REG_PC</span><span class="p">,</span> <span class="mh">0x105BC</span><span class="p">)</span>    <span class="c1"># Set PC to point at &#34;BX LR&#34; instruction. We want to return from fibonacci function  </span>
+<span class=kn>import</span> <span class=nn>struct</span>  
    
-    <span class="k">else</span><span class="p">:</span>  
-        <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg0</span><span class="p">)</span>                      <span class="c1"># If return value is not saved for this argument, add it to stack.  </span>
+<span class=k>def</span> <span class=nf>read</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>  
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>name</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+        <span class=k>return</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>  
    
-<span class="k">elif</span> <span class="n">address</span> <span class="o">==</span> <span class="n">CCC_END</span><span class="p">:</span>  
-    <span class="n">arg0</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>                          <span class="c1"># We know arguments when exiting the function  </span>
+<span class=k>def</span> <span class=nf>u32</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>  
    
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_ARM_REG_R0</span><span class="p">)</span>            <span class="c1"># Read the return value (R0)  </span>
-    <span class="n">d</span><span class="p">[</span><span class="n">arg0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span>                               <span class="c1"># Remember the return value for this argument  </span>
+<span class=k>def</span> <span class=nf>p32</span><span class=p>(</span><span class=n>num</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>struct</span><span class=o>.</span><span class=n>pack</span><span class=p>(</span><span class=s2>&#34;I&#34;</span><span class=p>,</span> <span class=n>num</span><span class=p>)</span>  
    
-<span class="n">mu</span><span class="o">.</span><span class="n">hook_add</span><span class="p">(</span><span class="n">UC_HOOK_CODE</span><span class="p">,</span> <span class="n">hook_code</span><span class="p">)</span>  
    
-<span class="n">mu</span><span class="o">.</span><span class="n">emu_start</span><span class="p">(</span><span class="mh">0x00010584</span><span class="p">,</span> <span class="mh">0x000105A8</span><span class="p">)</span>  
+<span class=n>mu</span> <span class=o>=</span> <span class=n>Uc</span> <span class=p>(</span><span class=n>UC_ARCH_ARM</span><span class=p>,</span> <span class=n>UC_MODE_LITTLE_ENDIAN</span><span class=p>)</span>  
    
-<span class="n">return_value</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">reg_read</span><span class="p">(</span><span class="n">UC_ARM_REG_R1</span><span class="p">)</span>           <span class="c1"># We end the emulation at printf(&#34;%d\n&#34;, ccc(x)).  </span>
-<span class="k">print</span> <span class="s2">&#34;The return value is </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">return_value</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>arm版本</p>
-<h2 id="参考链接">参考链接</h2>
-<p><a href="https://bbs.pediy.com/thread-224330.htm">https://bbs.pediy.com/thread-224330.htm</a> <br>
-<a href="http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet">http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet</a> <br>
-<a href="https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/">https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/</a> <br>
-这里有很多代码示例：<br>
-<a href="https://github.com/unicorn-engine/unicorn/tree/master/bindings/python">https://github.com/unicorn-engine/unicorn/tree/master/bindings/python</a></p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2020-06-16</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" data-title="Unicorn"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" data-title="Unicorn"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" data-title="Unicorn"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" data-title="Unicorn"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" class="prev" rel="prev" title="Android脱壳"><i class="fas fa-angle-left fa-fw"></i>Android脱壳</a>
-            <a href="/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" class="next" rel="next" title="第五空间2020-re">第五空间2020-re<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+   
+<span class=n>BASE</span> <span class=o>=</span> <span class=mh>0x10000</span>  
+<span class=n>STACK_ADDR</span> <span class=o>=</span> <span class=mh>0x300000</span>  
+<span class=n>STACK_SIZE</span> <span class=o>=</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span>  
+   
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=mi>1024</span><span class=o>*</span><span class=mi>1024</span><span class=p>)</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_map</span><span class=p>(</span><span class=n>STACK_ADDR</span><span class=p>,</span> <span class=n>STACK_SIZE</span><span class=p>)</span>  
+   
+   
+<span class=n>mu</span><span class=o>.</span><span class=n>mem_write</span><span class=p>(</span><span class=n>BASE</span><span class=p>,</span> <span class=n>read</span><span class=p>(</span><span class=s2>&#34;./task4&#34;</span><span class=p>))</span>  
+<span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_ARM_REG_SP</span><span class=p>,</span> <span class=n>STACK_ADDR</span> <span class=o>+</span> <span class=n>STACK_SIZE</span><span class=o>/</span><span class=mi>2</span><span class=p>)</span>  
+   
+<span class=n>instructions_skip_list</span> <span class=o>=</span> <span class=p>[]</span>  
+   
+<span class=n>CCC_ENTRY</span> <span class=o>=</span> <span class=mh>0x000104D0</span>  
+<span class=n>CCC_END</span> <span class=o>=</span> <span class=mh>0x00010580</span>  
+   
+<span class=n>stack</span> <span class=o>=</span> <span class=p>[]</span>                                          <span class=c1># Stack for storing the arguments  </span>
+<span class=n>d</span> <span class=o>=</span> <span class=p>{}</span>                                              <span class=c1># Dictionary that holds return values for given function arguments  </span>
+   
+<span class=k>def</span> <span class=nf>hook_code</span><span class=p>(</span><span class=n>mu</span><span class=p>,</span> <span class=n>address</span><span class=p>,</span> <span class=n>size</span><span class=p>,</span> <span class=n>user_data</span><span class=p>):</span>   
+<span class=c1>#print(&#39;&gt;&gt;&gt; Tracing instruction at 0x%x, instruction size = 0x%x&#39; %(address, size))  </span>
+   
+<span class=k>if</span> <span class=n>address</span> <span class=o>==</span> <span class=n>CCC_ENTRY</span><span class=p>:</span>                        <span class=c1># Are we at the beginning of ccc function?  </span>
+    <span class=n>arg0</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_ARM_REG_R0</span><span class=p>)</span>           <span class=c1># Read the first argument. it is passed by R0  </span>
+   
+    <span class=k>if</span> <span class=n>arg0</span> <span class=ow>in</span> <span class=n>d</span><span class=p>:</span>                               <span class=c1># Check whether return value for this function is already saved.  </span>
+        <span class=n>ret</span> <span class=o>=</span> <span class=n>d</span><span class=p>[</span><span class=n>arg0</span><span class=p>]</span>  
+        <span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_ARM_REG_R0</span><span class=p>,</span> <span class=n>ret</span><span class=p>)</span>        <span class=c1># Set return value in R0  </span>
+        <span class=n>mu</span><span class=o>.</span><span class=n>reg_write</span><span class=p>(</span><span class=n>UC_ARM_REG_PC</span><span class=p>,</span> <span class=mh>0x105BC</span><span class=p>)</span>    <span class=c1># Set PC to point at &#34;BX LR&#34; instruction. We want to return from fibonacci function  </span>
+   
+    <span class=k>else</span><span class=p>:</span>  
+        <span class=n>stack</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>arg0</span><span class=p>)</span>                      <span class=c1># If return value is not saved for this argument, add it to stack.  </span>
+   
+<span class=k>elif</span> <span class=n>address</span> <span class=o>==</span> <span class=n>CCC_END</span><span class=p>:</span>  
+    <span class=n>arg0</span> <span class=o>=</span> <span class=n>stack</span><span class=o>.</span><span class=n>pop</span><span class=p>()</span>                          <span class=c1># We know arguments when exiting the function  </span>
+   
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_ARM_REG_R0</span><span class=p>)</span>            <span class=c1># Read the return value (R0)  </span>
+    <span class=n>d</span><span class=p>[</span><span class=n>arg0</span><span class=p>]</span> <span class=o>=</span> <span class=n>ret</span>                               <span class=c1># Remember the return value for this argument  </span>
+   
+<span class=n>mu</span><span class=o>.</span><span class=n>hook_add</span><span class=p>(</span><span class=n>UC_HOOK_CODE</span><span class=p>,</span> <span class=n>hook_code</span><span class=p>)</span>  
+   
+<span class=n>mu</span><span class=o>.</span><span class=n>emu_start</span><span class=p>(</span><span class=mh>0x00010584</span><span class=p>,</span> <span class=mh>0x000105A8</span><span class=p>)</span>  
+   
+<span class=n>return_value</span> <span class=o>=</span> <span class=n>mu</span><span class=o>.</span><span class=n>reg_read</span><span class=p>(</span><span class=n>UC_ARM_REG_R1</span><span class=p>)</span>           <span class=c1># We end the emulation at printf(&#34;%d\n&#34;, ccc(x)).  </span>
+<span class=k>print</span> <span class=s2>&#34;The return value is </span><span class=si>%d</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=n>return_value</span>  
+</code></pre></td></tr></table></div></div><p>arm版本</p><h2 id=参考链接>参考链接</h2><p><a href=https://bbs.pediy.com/thread-224330.htm>https://bbs.pediy.com/thread-224330.htm</a><br><a href=http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet>http://eternal.red/2018/unicorn-engine-tutorial/#cheatsheet</a><br><a href=https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/>https://ctf-wiki.github.io/ctf-wiki/reverse/unicorn/introduction-zh/</a><br>这里有很多代码示例：<br><a href=https://github.com/unicorn-engine/unicorn/tree/master/bindings/python>https://github.com/unicorn-engine/unicorn/tree/master/bindings/python</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-06-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/ data-title=Unicorn><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/ data-title=Unicorn><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/ data-title=Unicorn><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/ data-title=Unicorn><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/ class=prev rel=prev title=Android脱壳><i class="fas fa-angle-left fa-fw"></i>Android脱壳</a>
+<a href=/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/ class=next rel=next title=第五空间2020-re>第五空间2020-re<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

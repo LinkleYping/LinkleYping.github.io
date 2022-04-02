@@ -1,370 +1,112 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Android逆向笔记 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Android逆向笔记" />
-<meta property="og:description" content="如何获取移动设备唯一标识 在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。 对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/stack_unwind/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2021-04-13T09:30:48+08:00" />
-<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="Android逆向笔记"/>
-<meta name="twitter:description" content="如何获取移动设备唯一标识 在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。 对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/stack_unwind/" /><link rel="prev" href="https://linkleyping.top/git%E5%91%BD%E4%BB%A4/" /><link rel="next" href="https://linkleyping.top/init_array/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Android逆向笔记",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/stack_unwind\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2448 ,
-        "url": "https:\/\/linkleyping.top\/stack_unwind\/","datePublished": "2021-04-13T09:30:48+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Android逆向笔记</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-13">2021-04-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2448 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#imeimeid">IMEI/MEID</a></li>
-    <li><a href="#imsi">IMSI</a></li>
-    <li><a href="#android-id">Android ID</a></li>
-    <li><a href="#android-adid">Android AdID</a></li>
-    <li><a href="#oaid">OAID</a></li>
-    <li><a href="#idfaidfv">IDFA/IDFV</a></li>
-    <li><a href="#mac">Mac</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h1 id="如何获取移动设备唯一标识">如何获取移动设备唯一标识</h1>
-<p>在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。</p>
-<p>对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千人千面的精准投放。</p>
-<h2 id="imeimeid">IMEI/MEID</h2>
-<p>IMEI (International Mobile Equipment Identity) 是国际移动设备识别码，即通常所说的手机“串号”，用于在移动电话网络中识别每一部独立的手机等移动通信设备，相当于移动电话的身份证。IMEI 适用于 GSM、WCDMA、LTE 制式的移动设备。</p>
-<p>MEID (Mobile Equipment IDentifier) 是移动设备识别码，它也是一个全球唯一识别移动设备的号码。但它适用于 CDMA 制式手机。</p>
-<p>对于全网通的移动设备 IMEI 和 MEID 标识都存在，对于支持双卡的设备，还会有 2 个 IMEI/MEID。</p>
-<p>因为这两个标识的作用相同，所以对于移动广告行业来说，一般不对 IMEI/MEID 做严格区分，在广告请求中一般作为同一个字段（比如：<code>DeviceID</code> 或缩写成 <code>did</code>）进行传输。</p>
-<p>对于 iOS 设备来说，苹果官方在 iOS 5.0 之后就屏蔽了获取 IMEI/MEID 的接口，因此现在的苹果设备都无法获取到 IMEI/MEID。</p>
-<p>对于 Android 设备来说，可以通过下面的方法来获取 IMEI/MEID：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">String</span> <span class="nf">getDeviceId</span><span class="p">(</span><span class="n">Context</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>  
-    <span class="n">TelephonyManager</span> <span class="n">tm</span> <span class="o">=</span> <span class="p">(</span><span class="n">TelephonyManager</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">TELEPHONY_SERVICE</span><span class="p">);</span>  
-    <span class="k">if</span> <span class="p">(</span><span class="n">tm</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="n">try</span> <span class="p">{</span>  
-            <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">tm</span><span class="p">.</span><span class="n">getDeviceId</span><span class="p">();</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">id</span><span class="p">;</span>  
-        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">SecurityException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="p">}</span>  
-    <span class="p">}</span>  
-    <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>对于非手机设备，如 Android 平板电脑，电视等，这些设备没有通话的硬件功能，系统中也就没有 <code>TELEPHONY_SERVICE</code>，所以这里要判断一下 <code>tm</code> 这个返回值是否为空。</p>
-<p>在 Android 8.0 之后，<code>TelephonyManager</code> 上的这个 <code>getDeviceId</code> 方法尽管被标记为已过时，并提供了 <code>getImei</code> 和 <code>getMeid</code> 来取代它。但 <code>getDeviceId</code> 又不是不能用，而且也不需要区分获取到的究竟是 <code>Imei</code> 还是 <code>Meid</code>，所以这里不需要通过判断版本号的方式来替换这个方法。</p>
-<p>获取 IMEI/MEID 的需要 <code>READ_PHONE_STATE</code> 权限，否则会发生 <code>SecurityException</code> 异常。如果应用以 Android 10 或更高版本为目标平台，在应用没有 <code>READ_PRIVILEGED_PHONE_STATE</code> 权限时，也会发生 <code>SecurityException</code> 异常，而且普通开发者开发的应用是不可能获取到该权限的。所以，调用 <code>tm.getDeviceId()</code> 时，加了 <code>try/catch</code> 语句，避免崩溃。</p>
-<h2 id="imsi">IMSI</h2>
-<p>IMSI (International Mobile Subscriber Identity) 是国际移动用户识别码。通俗的讲，它是相对手机卡而言的唯一识别码。</p>
-<p>在 iOS 设备上，跟 IMEI/MEID 一样，是无法获取到 IMSI 的。</p>
-<p>对于 Android 设备来说，获取 IMSI 的方法跟获取 IMEI/MEID 的方法类似：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">String</span> <span class="nf">getIMSI</span><span class="p">(</span><span class="n">Context</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>  
-    <span class="n">TelephonyManager</span> <span class="n">tm</span> <span class="o">=</span> <span class="p">(</span><span class="n">TelephonyManager</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">TELEPHONY_SERVICE</span><span class="p">);</span>  
-    <span class="k">if</span> <span class="p">(</span><span class="n">tm</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="n">try</span> <span class="p">{</span>  
-            <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">tm</span><span class="p">.</span><span class="n">getSubscriberId</span><span class="p">();</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">id</span><span class="p">;</span>  
-        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">SecurityException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="p">}</span>  
-    <span class="p">}</span>  
-    <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>在 Android 上获取 IMSI 的权限要求跟 IMEI/MEID 一样，这里就不在重复。</p>
-<h2 id="android-id">Android ID</h2>
-<p>Android ID 是 Android 设备里不依赖于硬件的一种「半永久标识符」，在系统生命周期内不会改变，但系统重置或刷机后可能会发生变化，其作用域为一组有关联的应用。</p>
-<p>Android ID 获取的方式很简单：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">String</span> <span class="nf">getAndroidID</span><span class="p">(</span><span class="n">Context</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>  
-    <span class="k">return</span> <span class="n">Secure</span><span class="p">.</span><span class="n">getString</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">getContentResolver</span><span class="p">(),</span> <span class="n">Secure</span><span class="p">.</span><span class="n">ANDROID_ID</span><span class="p">);</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>但是在 Android 8.0 以后，签名不同的 App 所获取的 Android ID 是不一样的，但同一个开发者可以根据自己的数字签名，将所开发的不同 App 进行关联。</p>
-<h2 id="android-adid">Android AdID</h2>
-<p>Android AdID (简称 AAID) 是 Android 平台专为广告跟踪提供的唯一标识。但是 AAID 依赖 Google 服务框架，但国内手机基本上都没有内置 Google 服务框架，这种情况下，就无法获取 AAID。因此，这里就不做讨论了。</p>
-<h2 id="oaid">OAID</h2>
-<p>上面在介绍 IMEI/MEID 时谈到过，在 Android 10 以后，IMEI/MEID、IMSI 这些设备标识都被限制读取了。没有了 IMEI/MEID、IMSI 这些设备唯一标识，对于国内广告行业来说，简直是灭顶之灾。不过正所谓道高一尺魔高一丈，为了拯救国内移动广告市场，<a href="http://msa-alliance.cn/col.jsp?id=120" target="_blank" rel="noopener noreffer">移动安全联盟(MSA)</a> 推出了一套“移动智能终端补充设备标识体系”，并根据这套体系的技术要求，联盟开发并发布了一套支持多厂商的统一的补充设备标识调用 SDK。</p>
-<p>这套体系中包含了四种标识符：UDID（设备唯一标识符）, OAID（匿名设备标识符）, VAID（开发者匿名设备标识符）, AAID（应用匿名设备标识符）。</p>
-<p>这四种标识符中，UDID 相当于 IMEI/MEID，它具有无法重置，始终不变的特性。但是它不是提供给广告业务使用的，并且在统一 SDK v1.0.10 版本之后，这个标识符的获取接口被移除了。</p>
-<p>OAID（匿名设备标识符）是用于广告业务的标识符，它在系统首次启动后立即生成，它虽然允许用户手动重置，在刷机、恢复出厂设置等特殊情况下也会重置，但是对于同一台设备上的不同 App，只要没有被重置的情况下，获取到的值都是一致的。因此，虽然它的跟踪特性跟 IMEI/MEID 相比稍微差了点，但是比 Android ID 还是要好一些的。</p>
-<p>关于如何获取 OAID，在 <a href="http://msa-alliance.cn/col.jsp?id=120" target="_blank" rel="noopener noreffer">移动安全联盟(MSA)</a> 官网的文档里有详细说明，<a href="https://github.com/adtalos/android-xy-sdk-demo" target="_blank" rel="noopener noreffer">广告 SDK 演示实例</a>中也给出了具体的代码实例。</p>
-<p>另外多说一句，如果想要在 Flutter 开发的 Android 应用中获取 OAID 的话，可以使用 <a href="https://pub.dev/packages/flutter_msa_sdk" target="_blank" rel="noopener noreffer">flutter_msa_sdk</a> 这个插件，这个插件只是对<a href="http://msa-alliance.cn/col.jsp?id=120" target="_blank" rel="noopener noreffer">移动安全联盟(MSA)</a> 的统一 SDK 做了一下封装，不过用起来要比 Android 原版容易的多。</p>
-<h2 id="idfaidfv">IDFA/IDFV</h2>
-<p>iOS 设备虽然也有 IMEI、IMSI，但是苹果说要保护用户隐私，于是在 iOS 5.0 之后，就把这些接口取消了，不再允许开发者来获取它们了。</p>
-<p>可是隐私归隐私，广告还是要做的嘛，于是苹果在 iOS 6.0 之后，推出了 IDFA 这样一个专门用于广告的标识符。同时还提供了一个 IDFV，它是同一个组织下的唯一标识符。</p>
-<p>IDFA 允许用户在设置中进行重置，刷机或重置设备时，该标识符也会重置，但是在不同的 App 之间它是同一个值。它相当于上面谈到的 OAID 或 Android AdID。</p>
-<p>IDFV 是给 Vendor 标识用户用的，对于隶属于同一个组织的 App，在同一台设备上获取到的 IDFV 都是同一个值。假设有两个应用，它们的 BundleID 分别是 com.adtalos.demo1 和 com.adtalos.demo2，那么它们的就是同一个 Vendor，这两个应用在同一台设备中获取到的 IDFV 就是相同的。它相当于 Android ID，只是表示组织的方式不同而已。</p>
-<p>IDFA 和 IDFV 的获取方式非常简单：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">NSString</span> <span class="o">*</span><span class="n">idfa</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">ASIdentifierManager</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="n">advertisingIdentifier</span><span class="p">]</span> <span class="n">UUIDString</span><span class="p">];</span>  
-<span class="n">NSString</span> <span class="o">*</span><span class="n">idfv</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">UIDevice</span> <span class="n">currentDevice</span><span class="p">]</span> <span class="n">identifierForVendor</span><span class="p">]</span> <span class="n">UUIDString</span><span class="p">];</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>IDFA 和 IDFV 都可能获取不到值，获取不到时，返回值为 <code>nil</code>。</p>
-<h2 id="mac">Mac</h2>
-<p>除了以上这些 ID 标识符以外，Mac 地址通常也会用于广告追踪。</p>
-<p>但是很不幸，从 iOS 7.0 之后，苹果就禁止开发者获取 Mac 地址了。</p>
-<p>对于 Android 来说，情况稍微好一点，虽然从 Android 6.0 开始，通过 <code>WifiInfo</code> 获取到的 Mac 地址永远是 <code>02:00:00:00:00:00</code> 这样一个固定值。但是通过下面这个方法还是可以在大多数情况下获取到 Mac 地址的：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">String</span> <span class="nf">getMac</span><span class="p">()</span> <span class="p">{</span>  
-    <span class="n">try</span> <span class="p">{</span>  
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">NetworkInterface</span><span class="o">&gt;</span> <span class="n">all</span> <span class="o">=</span> <span class="n">Collections</span><span class="p">.</span><span class="n">list</span><span class="p">(</span><span class="n">NetworkInterface</span><span class="p">.</span><span class="n">getNetworkInterfaces</span><span class="p">());</span>  
-        <span class="k">for</span> <span class="p">(</span><span class="n">NetworkInterface</span> <span class="nl">nif</span> <span class="p">:</span> <span class="n">all</span><span class="p">)</span> <span class="p">{</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">nif</span><span class="p">.</span><span class="n">getName</span><span class="p">().</span><span class="n">equalsIgnoreCase</span><span class="p">(</span><span class="s">&#34;wlan0&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">nif</span><span class="p">.</span><span class="n">getName</span><span class="p">().</span><span class="n">equalsIgnoreCase</span><span class="p">(</span><span class="s">&#34;eth0&#34;</span><span class="p">))</span> <span class="p">{</span>  
-                <span class="k">continue</span><span class="p">;</span>  
-            <span class="p">}</span>  
-            <span class="n">byte</span><span class="p">[]</span> <span class="n">macBytes</span> <span class="o">=</span> <span class="n">nif</span><span class="p">.</span><span class="n">getHardwareAddress</span><span class="p">();</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="n">macBytes</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>  
-                <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">;</span>  
-            <span class="p">}</span>  
-            <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>  
-            <span class="k">for</span> <span class="p">(</span><span class="n">byte</span> <span class="nl">b</span> <span class="p">:</span> <span class="n">macBytes</span><span class="p">)</span> <span class="p">{</span>  
-                <span class="n">sb</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="s">&#34;%02X:&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">));</span>  
-            <span class="p">}</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  
-                <span class="n">sb</span><span class="p">.</span><span class="n">deleteCharAt</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>  
-            <span class="p">}</span>  
-            <span class="k">return</span> <span class="n">sb</span><span class="p">.</span><span class="n">toString</span><span class="p">();</span>  
-        <span class="p">}</span>  
-    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="n">e</span><span class="p">.</span><span class="n">printStackTrace</span><span class="p">();</span>  
-    <span class="p">}</span>  
-    <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>原理是扫描各个网络接口，当网络接口是 <code>wlan0</code> 或者 <code>eth0</code> 时，返回它的 Mac 地址。</p>
-<ul>
-<li>OAID: <a href="https://sspai.com/post/58305">https://sspai.com/post/58305</a></li>
-<li>获取OAID: <a href="https://github.com/haoguibao/OaidDemo">https://github.com/haoguibao/OaidDemo</a></li>
-</ul>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
-                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/stack_unwind/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/stack_unwind/" data-title="Android逆向笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/stack_unwind/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/stack_unwind/" data-title="Android逆向笔记"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/stack_unwind/" data-title="Android逆向笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/stack_unwind/" data-title="Android逆向笔记"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/git%E5%91%BD%E4%BB%A4/" class="prev" rel="prev" title="git使用"><i class="fas fa-angle-left fa-fw"></i>git使用</a>
-            <a href="/init_array/" class="next" rel="next" title="调试android so的.init_array数组">调试android so的.init_array数组<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Android逆向笔记 - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="Android逆向笔记"><meta property="og:description" content="如何获取移动设备唯一标识 在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。 对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/stack_unwind/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2021-04-13T09:30:48+08:00"><meta property="article:modified_time" content="2022-04-02T20:47:48+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="Android逆向笔记"><meta name=twitter:description content="如何获取移动设备唯一标识 在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。 对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/stack_unwind/><link rel=prev href=https://linkleyping.top/git%E5%91%BD%E4%BB%A4/><link rel=next href=https://linkleyping.top/init_array/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Android逆向笔记","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/stack_unwind\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":2448,"url":"https:\/\/linkleyping.top\/stack_unwind\/","datePublished":"2021-04-13T09:30:48+08:00","dateModified":"2022-04-02T20:47:48+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Android逆向笔记</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/notes/><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-13>2021-04-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2448 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#imeimeid>IMEI/MEID</a></li><li><a href=#imsi>IMSI</a></li><li><a href=#android-id>Android ID</a></li><li><a href=#android-adid>Android AdID</a></li><li><a href=#oaid>OAID</a></li><li><a href=#idfaidfv>IDFA/IDFV</a></li><li><a href=#mac>Mac</a></li></ul></nav></div></div><div class=content id=content><h1 id=如何获取移动设备唯一标识>如何获取移动设备唯一标识</h1><p>在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。</p><p>对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千人千面的精准投放。</p><h2 id=imeimeid>IMEI/MEID</h2><p>IMEI (International Mobile Equipment Identity) 是国际移动设备识别码，即通常所说的手机“串号”，用于在移动电话网络中识别每一部独立的手机等移动通信设备，相当于移动电话的身份证。IMEI 适用于 GSM、WCDMA、LTE 制式的移动设备。</p><p>MEID (Mobile Equipment IDentifier) 是移动设备识别码，它也是一个全球唯一识别移动设备的号码。但它适用于 CDMA 制式手机。</p><p>对于全网通的移动设备 IMEI 和 MEID 标识都存在，对于支持双卡的设备，还会有 2 个 IMEI/MEID。</p><p>因为这两个标识的作用相同，所以对于移动广告行业来说，一般不对 IMEI/MEID 做严格区分，在广告请求中一般作为同一个字段（比如：<code>DeviceID</code> 或缩写成 <code>did</code>）进行传输。</p><p>对于 iOS 设备来说，苹果官方在 iOS 5.0 之后就屏蔽了获取 IMEI/MEID 的接口，因此现在的苹果设备都无法获取到 IMEI/MEID。</p><p>对于 Android 设备来说，可以通过下面的方法来获取 IMEI/MEID：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=n>String</span> <span class=nf>getDeviceId</span><span class=p>(</span><span class=n>Context</span> <span class=n>context</span><span class=p>)</span> <span class=p>{</span>  
+    <span class=n>TelephonyManager</span> <span class=n>tm</span> <span class=o>=</span> <span class=p>(</span><span class=n>TelephonyManager</span><span class=p>)</span> <span class=n>context</span><span class=p>.</span><span class=n>getSystemService</span><span class=p>(</span><span class=n>Context</span><span class=p>.</span><span class=n>TELEPHONY_SERVICE</span><span class=p>);</span>  
+    <span class=k>if</span> <span class=p>(</span><span class=n>tm</span> <span class=o>!=</span> <span class=n>null</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=n>try</span> <span class=p>{</span>  
+            <span class=n>String</span> <span class=n>id</span> <span class=o>=</span> <span class=n>tm</span><span class=p>.</span><span class=n>getDeviceId</span><span class=p>();</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=n>id</span> <span class=o>!=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=n>id</span><span class=p>;</span>  
+        <span class=p>}</span> <span class=n>catch</span> <span class=p>(</span><span class=n>SecurityException</span> <span class=n>e</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=p>}</span>  
+    <span class=p>}</span>  
+    <span class=k>return</span> <span class=s>&#34;&#34;</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>对于非手机设备，如 Android 平板电脑，电视等，这些设备没有通话的硬件功能，系统中也就没有 <code>TELEPHONY_SERVICE</code>，所以这里要判断一下 <code>tm</code> 这个返回值是否为空。</p><p>在 Android 8.0 之后，<code>TelephonyManager</code> 上的这个 <code>getDeviceId</code> 方法尽管被标记为已过时，并提供了 <code>getImei</code> 和 <code>getMeid</code> 来取代它。但 <code>getDeviceId</code> 又不是不能用，而且也不需要区分获取到的究竟是 <code>Imei</code> 还是 <code>Meid</code>，所以这里不需要通过判断版本号的方式来替换这个方法。</p><p>获取 IMEI/MEID 的需要 <code>READ_PHONE_STATE</code> 权限，否则会发生 <code>SecurityException</code> 异常。如果应用以 Android 10 或更高版本为目标平台，在应用没有 <code>READ_PRIVILEGED_PHONE_STATE</code> 权限时，也会发生 <code>SecurityException</code> 异常，而且普通开发者开发的应用是不可能获取到该权限的。所以，调用 <code>tm.getDeviceId()</code> 时，加了 <code>try/catch</code> 语句，避免崩溃。</p><h2 id=imsi>IMSI</h2><p>IMSI (International Mobile Subscriber Identity) 是国际移动用户识别码。通俗的讲，它是相对手机卡而言的唯一识别码。</p><p>在 iOS 设备上，跟 IMEI/MEID 一样，是无法获取到 IMSI 的。</p><p>对于 Android 设备来说，获取 IMSI 的方法跟获取 IMEI/MEID 的方法类似：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=n>String</span> <span class=nf>getIMSI</span><span class=p>(</span><span class=n>Context</span> <span class=n>context</span><span class=p>)</span> <span class=p>{</span>  
+    <span class=n>TelephonyManager</span> <span class=n>tm</span> <span class=o>=</span> <span class=p>(</span><span class=n>TelephonyManager</span><span class=p>)</span> <span class=n>context</span><span class=p>.</span><span class=n>getSystemService</span><span class=p>(</span><span class=n>Context</span><span class=p>.</span><span class=n>TELEPHONY_SERVICE</span><span class=p>);</span>  
+    <span class=k>if</span> <span class=p>(</span><span class=n>tm</span> <span class=o>!=</span> <span class=n>null</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=n>try</span> <span class=p>{</span>  
+            <span class=n>String</span> <span class=n>id</span> <span class=o>=</span> <span class=n>tm</span><span class=p>.</span><span class=n>getSubscriberId</span><span class=p>();</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=n>id</span> <span class=o>!=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=n>id</span><span class=p>;</span>  
+        <span class=p>}</span> <span class=n>catch</span> <span class=p>(</span><span class=n>SecurityException</span> <span class=n>e</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=p>}</span>  
+    <span class=p>}</span>  
+    <span class=k>return</span> <span class=s>&#34;&#34;</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>在 Android 上获取 IMSI 的权限要求跟 IMEI/MEID 一样，这里就不在重复。</p><h2 id=android-id>Android ID</h2><p>Android ID 是 Android 设备里不依赖于硬件的一种「半永久标识符」，在系统生命周期内不会改变，但系统重置或刷机后可能会发生变化，其作用域为一组有关联的应用。</p><p>Android ID 获取的方式很简单：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=n>String</span> <span class=nf>getAndroidID</span><span class=p>(</span><span class=n>Context</span> <span class=n>context</span><span class=p>)</span> <span class=p>{</span>  
+    <span class=k>return</span> <span class=n>Secure</span><span class=p>.</span><span class=n>getString</span><span class=p>(</span><span class=n>context</span><span class=p>.</span><span class=n>getContentResolver</span><span class=p>(),</span> <span class=n>Secure</span><span class=p>.</span><span class=n>ANDROID_ID</span><span class=p>);</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>但是在 Android 8.0 以后，签名不同的 App 所获取的 Android ID 是不一样的，但同一个开发者可以根据自己的数字签名，将所开发的不同 App 进行关联。</p><h2 id=android-adid>Android AdID</h2><p>Android AdID (简称 AAID) 是 Android 平台专为广告跟踪提供的唯一标识。但是 AAID 依赖 Google 服务框架，但国内手机基本上都没有内置 Google 服务框架，这种情况下，就无法获取 AAID。因此，这里就不做讨论了。</p><h2 id=oaid>OAID</h2><p>上面在介绍 IMEI/MEID 时谈到过，在 Android 10 以后，IMEI/MEID、IMSI 这些设备标识都被限制读取了。没有了 IMEI/MEID、IMSI 这些设备唯一标识，对于国内广告行业来说，简直是灭顶之灾。不过正所谓道高一尺魔高一丈，为了拯救国内移动广告市场，<a href="http://msa-alliance.cn/col.jsp?id=120" target=_blank rel="noopener noreffer">移动安全联盟(MSA)</a> 推出了一套“移动智能终端补充设备标识体系”，并根据这套体系的技术要求，联盟开发并发布了一套支持多厂商的统一的补充设备标识调用 SDK。</p><p>这套体系中包含了四种标识符：UDID（设备唯一标识符）, OAID（匿名设备标识符）, VAID（开发者匿名设备标识符）, AAID（应用匿名设备标识符）。</p><p>这四种标识符中，UDID 相当于 IMEI/MEID，它具有无法重置，始终不变的特性。但是它不是提供给广告业务使用的，并且在统一 SDK v1.0.10 版本之后，这个标识符的获取接口被移除了。</p><p>OAID（匿名设备标识符）是用于广告业务的标识符，它在系统首次启动后立即生成，它虽然允许用户手动重置，在刷机、恢复出厂设置等特殊情况下也会重置，但是对于同一台设备上的不同 App，只要没有被重置的情况下，获取到的值都是一致的。因此，虽然它的跟踪特性跟 IMEI/MEID 相比稍微差了点，但是比 Android ID 还是要好一些的。</p><p>关于如何获取 OAID，在 <a href="http://msa-alliance.cn/col.jsp?id=120" target=_blank rel="noopener noreffer">移动安全联盟(MSA)</a> 官网的文档里有详细说明，<a href=https://github.com/adtalos/android-xy-sdk-demo target=_blank rel="noopener noreffer">广告 SDK 演示实例</a>中也给出了具体的代码实例。</p><p>另外多说一句，如果想要在 Flutter 开发的 Android 应用中获取 OAID 的话，可以使用 <a href=https://pub.dev/packages/flutter_msa_sdk target=_blank rel="noopener noreffer">flutter_msa_sdk</a> 这个插件，这个插件只是对<a href="http://msa-alliance.cn/col.jsp?id=120" target=_blank rel="noopener noreffer">移动安全联盟(MSA)</a> 的统一 SDK 做了一下封装，不过用起来要比 Android 原版容易的多。</p><h2 id=idfaidfv>IDFA/IDFV</h2><p>iOS 设备虽然也有 IMEI、IMSI，但是苹果说要保护用户隐私，于是在 iOS 5.0 之后，就把这些接口取消了，不再允许开发者来获取它们了。</p><p>可是隐私归隐私，广告还是要做的嘛，于是苹果在 iOS 6.0 之后，推出了 IDFA 这样一个专门用于广告的标识符。同时还提供了一个 IDFV，它是同一个组织下的唯一标识符。</p><p>IDFA 允许用户在设置中进行重置，刷机或重置设备时，该标识符也会重置，但是在不同的 App 之间它是同一个值。它相当于上面谈到的 OAID 或 Android AdID。</p><p>IDFV 是给 Vendor 标识用户用的，对于隶属于同一个组织的 App，在同一台设备上获取到的 IDFV 都是同一个值。假设有两个应用，它们的 BundleID 分别是 com.adtalos.demo1 和 com.adtalos.demo2，那么它们的就是同一个 Vendor，这两个应用在同一台设备中获取到的 IDFV 就是相同的。它相当于 Android ID，只是表示组织的方式不同而已。</p><p>IDFA 和 IDFV 的获取方式非常简单：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=n>NSString</span> <span class=o>*</span><span class=n>idfa</span> <span class=o>=</span> <span class=p>[[[</span><span class=n>ASIdentifierManager</span> <span class=n>sharedManager</span><span class=p>]</span> <span class=n>advertisingIdentifier</span><span class=p>]</span> <span class=n>UUIDString</span><span class=p>];</span>  
+<span class=n>NSString</span> <span class=o>*</span><span class=n>idfv</span> <span class=o>=</span> <span class=p>[[[</span><span class=n>UIDevice</span> <span class=n>currentDevice</span><span class=p>]</span> <span class=n>identifierForVendor</span><span class=p>]</span> <span class=n>UUIDString</span><span class=p>];</span>  
+</code></pre></td></tr></table></div></div><p>IDFA 和 IDFV 都可能获取不到值，获取不到时，返回值为 <code>nil</code>。</p><h2 id=mac>Mac</h2><p>除了以上这些 ID 标识符以外，Mac 地址通常也会用于广告追踪。</p><p>但是很不幸，从 iOS 7.0 之后，苹果就禁止开发者获取 Mac 地址了。</p><p>对于 Android 来说，情况稍微好一点，虽然从 Android 6.0 开始，通过 <code>WifiInfo</code> 获取到的 Mac 地址永远是 <code>02:00:00:00:00:00</code> 这样一个固定值。但是通过下面这个方法还是可以在大多数情况下获取到 Mac 地址的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=n>String</span> <span class=nf>getMac</span><span class=p>()</span> <span class=p>{</span>  
+    <span class=n>try</span> <span class=p>{</span>  
+        <span class=n>List</span><span class=o>&lt;</span><span class=n>NetworkInterface</span><span class=o>&gt;</span> <span class=n>all</span> <span class=o>=</span> <span class=n>Collections</span><span class=p>.</span><span class=n>list</span><span class=p>(</span><span class=n>NetworkInterface</span><span class=p>.</span><span class=n>getNetworkInterfaces</span><span class=p>());</span>  
+        <span class=k>for</span> <span class=p>(</span><span class=n>NetworkInterface</span> <span class=nl>nif</span> <span class=p>:</span> <span class=n>all</span><span class=p>)</span> <span class=p>{</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>nif</span><span class=p>.</span><span class=n>getName</span><span class=p>().</span><span class=n>equalsIgnoreCase</span><span class=p>(</span><span class=s>&#34;wlan0&#34;</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=n>nif</span><span class=p>.</span><span class=n>getName</span><span class=p>().</span><span class=n>equalsIgnoreCase</span><span class=p>(</span><span class=s>&#34;eth0&#34;</span><span class=p>))</span> <span class=p>{</span>  
+                <span class=k>continue</span><span class=p>;</span>  
+            <span class=p>}</span>  
+            <span class=n>byte</span><span class=p>[]</span> <span class=n>macBytes</span> <span class=o>=</span> <span class=n>nif</span><span class=p>.</span><span class=n>getHardwareAddress</span><span class=p>();</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=n>macBytes</span> <span class=o>==</span> <span class=n>null</span><span class=p>)</span> <span class=p>{</span>  
+                <span class=k>return</span> <span class=s>&#34;&#34;</span><span class=p>;</span>  
+            <span class=p>}</span>  
+            <span class=n>StringBuilder</span> <span class=n>sb</span> <span class=o>=</span> <span class=n>new</span> <span class=n>StringBuilder</span><span class=p>();</span>  
+            <span class=k>for</span> <span class=p>(</span><span class=n>byte</span> <span class=nl>b</span> <span class=p>:</span> <span class=n>macBytes</span><span class=p>)</span> <span class=p>{</span>  
+                <span class=n>sb</span><span class=p>.</span><span class=n>append</span><span class=p>(</span><span class=n>String</span><span class=p>.</span><span class=n>format</span><span class=p>(</span><span class=s>&#34;%02X:&#34;</span><span class=p>,</span> <span class=n>b</span><span class=p>));</span>  
+            <span class=p>}</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=n>sb</span><span class=p>.</span><span class=n>length</span><span class=p>()</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>  
+                <span class=n>sb</span><span class=p>.</span><span class=n>deleteCharAt</span><span class=p>(</span><span class=n>sb</span><span class=p>.</span><span class=n>length</span><span class=p>()</span> <span class=o>-</span> <span class=mi>1</span><span class=p>);</span>  
+            <span class=p>}</span>  
+            <span class=k>return</span> <span class=n>sb</span><span class=p>.</span><span class=n>toString</span><span class=p>();</span>  
+        <span class=p>}</span>  
+    <span class=p>}</span> <span class=n>catch</span> <span class=p>(</span><span class=n>Exception</span> <span class=n>e</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=n>e</span><span class=p>.</span><span class=n>printStackTrace</span><span class=p>();</span>  
+    <span class=p>}</span>  
+    <span class=k>return</span> <span class=s>&#34;&#34;</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>原理是扫描各个网络接口，当网络接口是 <code>wlan0</code> 或者 <code>eth0</code> 时，返回它的 Mac 地址。</p><ul><li>OAID: <a href=https://sspai.com/post/58305>https://sspai.com/post/58305</a></li><li>获取OAID: <a href=https://github.com/haoguibao/OaidDemo>https://github.com/haoguibao/OaidDemo</a></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-04-02&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e target=_blank title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+<i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/stack_unwind/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/stack_unwind/ data-title=Android逆向笔记><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/stack_unwind/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/stack_unwind/ data-title=Android逆向笔记><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/stack_unwind/ data-title=Android逆向笔记><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/stack_unwind/ data-title=Android逆向笔记><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/git%E5%91%BD%E4%BB%A4/ class=prev rel=prev title=git使用><i class="fas fa-angle-left fa-fw"></i>git使用</a>
+<a href=/init_array/ class=next rel=next title="调试android so的.init_array数组">调试android so的.init_array数组<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

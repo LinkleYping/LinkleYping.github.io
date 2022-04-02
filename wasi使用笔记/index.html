@@ -1,415 +1,185 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>wasi使用笔记 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="wasi使用笔记" />
-<meta property="og:description" content=".c编译成.wasm 第一个工具: wasmcc 安装 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh https://github.com/wasienv/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 1 2 $ wasirun hello.wasm Hello wasi emscripten https://segmentfault.com/a/1190000014208777 1 2 3" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-10-20T15:22:45+08:00" />
-<meta property="article:modified_time" content="2020-10-20T15:22:45+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="wasi使用笔记"/>
-<meta name="twitter:description" content=".c编译成.wasm 第一个工具: wasmcc 安装 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh https://github.com/wasienv/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 1 2 $ wasirun hello.wasm Hello wasi emscripten https://segmentfault.com/a/1190000014208777 1 2 3"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://linkleyping.top/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/" /><link rel="next" href="https://linkleyping.top/tsctf202-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "wasi使用笔记",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  589 ,
-        "url": "https:\/\/linkleyping.top\/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0\/","datePublished": "2020-10-20T15:22:45+08:00","dateModified": "2020-10-20T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">wasi使用笔记</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-20">2020-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 589 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#c编译成wasm">.c编译成.wasm</a></li>
-    <li><a href="#c代码调用wasm代码">c代码调用wasm代码</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="c编译成wasm">.c编译成.wasm</h2>
-<ol>
-<li>第一个工具: wasmcc <br>
-安装 <br>
-<code>curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh</code> <br>
-<a href="https://github.com/wasienv/wasienv">https://github.com/wasienv/wasienv</a> <br>
-其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ wasirun hello.wasm    
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>wasi使用笔记 - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="wasi使用笔记"><meta property="og:description" content=".c编译成.wasm 第一个工具: wasmcc 安装 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh https://github.com/wasienv/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 1 2 $ wasirun hello.wasm Hello wasi emscripten https://segmentfault.com/a/1190000014208777 1 2 3"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-10-20T15:22:45+08:00"><meta property="article:modified_time" content="2020-10-20T15:22:45+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="wasi使用笔记"><meta name=twitter:description content=".c编译成.wasm 第一个工具: wasmcc 安装 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh https://github.com/wasienv/wasienv 其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码 1 2 $ wasirun hello.wasm Hello wasi emscripten https://segmentfault.com/a/1190000014208777 1 2 3"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/><link rel=prev href=https://linkleyping.top/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/><link rel=next href=https://linkleyping.top/tsctf202-re/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"wasi使用笔记","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":589,"url":"https:\/\/linkleyping.top\/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0\/","datePublished":"2020-10-20T15:22:45+08:00","dateModified":"2020-10-20T15:22:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">wasi使用笔记</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-10-20>2020-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 589 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#c编译成wasm>.c编译成.wasm</a></li><li><a href=#c代码调用wasm代码>c代码调用wasm代码</a></li></ul></nav></div></div><div class=content id=content><h2 id=c编译成wasm>.c编译成.wasm</h2><ol><li>第一个工具: wasmcc<br>安装<br><code>curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh</code><br><a href=https://github.com/wasienv/wasienv>https://github.com/wasienv/wasienv</a><br>其中安装完成之后会包含很多个工具，wasirun可以运行wasm代码</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>$ wasirun hello.wasm    
 Hello wasi    
-</code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>emscripten <br>
-<a href="https://segmentfault.com/a/1190000014208777">https://segmentfault.com/a/1190000014208777</a></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/juj/emsdk.git    
-<span class="nb">cd</span> emsdk    
+</code></pre></td></tr></table></div></div><ol start=2><li>emscripten<br><a href=https://segmentfault.com/a/1190000014208777>https://segmentfault.com/a/1190000014208777</a></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>git clone https://github.com/juj/emsdk.git    
+<span class=nb>cd</span> emsdk    
 emsdk update    
 emsdk install latest    
 emsdk activate latest    
 //如果没有出现emcc命令:    
-<span class="nb">source</span> ./emsdk_env.sh    
-</code></pre></td></tr></table>
-</div>
-</div><p>编译命令：<code>emcc hello.c -s WASM=1 -o hello.wasm</code></p>
-<h2 id="c代码调用wasm代码">c代码调用wasm代码</h2>
-<p><a href="https://docs.wasmer.io/integrations/c/setup">https://docs.wasmer.io/integrations/c/setup</a> <br>
-环境设置:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Extract the contents to a dir    </span>
+<span class=nb>source</span> ./emsdk_env.sh    
+</code></pre></td></tr></table></div></div><p>编译命令：<code>emcc hello.c -s WASM=1 -o hello.wasm</code></p><h2 id=c代码调用wasm代码>c代码调用wasm代码</h2><p><a href=https://docs.wasmer.io/integrations/c/setup>https://docs.wasmer.io/integrations/c/setup</a><br>环境设置:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># Extract the contents to a dir    </span>
 mkdir wasmer-c-api    
 tar -C wasmer-c-api -zxvf wasmer-c-api*.tar.gz    
     
-<span class="nb">export</span> <span class="nv">WASMER_C_API</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/wasmer-c-api    
+<span class=nb>export</span> <span class=nv>WASMER_C_API</span><span class=o>=</span><span class=sb>`</span><span class=nb>pwd</span><span class=sb>`</span>/wasmer-c-api    
     
-<span class="c1"># Update LD_LIBRARY_PATH to link against the libwasmer.so in the examples    </span>
-<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/wasmer-c-api/lib/:<span class="nv">$LD_LIBRARY_PATH</span>    
-</code></pre></td></tr></table>
-</div>
-</div><p>编译命令:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">静态链接：gcc test.c -I<span class="si">${</span><span class="nv">WASMER_C_API</span><span class="si">}</span>/include -L<span class="si">${</span><span class="nv">WASMER_C_API</span><span class="si">}</span>/lib -lwasmer -o <span class="nb">test</span>    
-动态链接：gcc -static main.c -I<span class="si">${</span><span class="nv">WASMER_C_API</span><span class="si">}</span>/include -L<span class="si">${</span><span class="nv">WASMER_C_API</span><span class="si">}</span>/lib -lwasmer -lpthread -lm -ldl -o main    
-</code></pre></td></tr></table>
-</div>
-</div><ol start="3">
-<li>例子 <br>
-在这里有很多wasi使用的例子 <br>
-<a href="https://docs.wasmer.io/integrations/c/setup">https://docs.wasmer.io/integrations/c/setup</a> <br>
-但是没看见直接运行整个wasm代码的(例子是调用wasm函数的)</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// wasm部分    
-</span><span class="c1"></span><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;    </span><span class="cp">
-</span><span class="cp"></span>    
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>    
-<span class="p">{</span>    
-<span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>    
-<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>    
-<span class="n">puts</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>    
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
-<span class="p">}</span>    
-<span class="c1">// c部分    
-</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;    </span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;wasmer.h&#34;    </span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;    </span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;    </span><span class="cp">
-</span><span class="cp"></span>    
-<span class="c1">// Function to print the most recent error string from Wasmer if we have them    
-</span><span class="c1"></span><span class="kt">void</span> <span class="nf">print_wasmer_error</span><span class="p">()</span>    
-<span class="p">{</span>    
-<span class="kt">int</span> <span class="n">error_len</span> <span class="o">=</span> <span class="n">wasmer_last_error_length</span><span class="p">();</span>    
-<span class="kt">char</span> <span class="o">*</span><span class="n">error_str</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">error_len</span><span class="p">);</span>    
-<span class="n">wasmer_last_error_message</span><span class="p">(</span><span class="n">error_str</span><span class="p">,</span> <span class="n">error_len</span><span class="p">);</span>    
-<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Error: `%s`</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">error_str</span><span class="p">);</span>    
-<span class="p">}</span>    
+<span class=c1># Update LD_LIBRARY_PATH to link against the libwasmer.so in the examples    </span>
+<span class=nb>export</span> <span class=nv>LD_LIBRARY_PATH</span><span class=o>=</span><span class=sb>`</span><span class=nb>pwd</span><span class=sb>`</span>/wasmer-c-api/lib/:<span class=nv>$LD_LIBRARY_PATH</span>    
+</code></pre></td></tr></table></div></div><p>编译命令:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>静态链接：gcc test.c -I<span class=si>${</span><span class=nv>WASMER_C_API</span><span class=si>}</span>/include -L<span class=si>${</span><span class=nv>WASMER_C_API</span><span class=si>}</span>/lib -lwasmer -o <span class=nb>test</span>    
+动态链接：gcc -static main.c -I<span class=si>${</span><span class=nv>WASMER_C_API</span><span class=si>}</span>/include -L<span class=si>${</span><span class=nv>WASMER_C_API</span><span class=si>}</span>/lib -lwasmer -lpthread -lm -ldl -o main    
+</code></pre></td></tr></table></div></div><ol start=3><li>例子<br>在这里有很多wasi使用的例子<br><a href=https://docs.wasmer.io/integrations/c/setup>https://docs.wasmer.io/integrations/c/setup</a><br>但是没看见直接运行整个wasm代码的(例子是调用wasm函数的)</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=c1>// wasm部分    
+</span><span class=c1></span><span class=cp>#include</span><span class=cpf>&lt;stdio.h&gt;    </span><span class=cp>
+</span><span class=cp></span>    
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>    
+<span class=p>{</span>    
+<span class=kt>char</span> <span class=n>s</span><span class=p>[</span><span class=mi>20</span><span class=p>]</span> <span class=o>=</span> <span class=p>{</span><span class=mi>0</span><span class=p>};</span>    
+<span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>    
+<span class=n>puts</span><span class=p>(</span><span class=n>s</span><span class=p>);</span>    
+<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>    
+<span class=p>}</span>    
+<span class=c1>// c部分    
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;    </span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&#34;wasmer.h&#34;    </span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;assert.h&gt;    </span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;stdint.h&gt;    </span><span class=cp>
+</span><span class=cp></span>    
+<span class=c1>// Function to print the most recent error string from Wasmer if we have them    
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>print_wasmer_error</span><span class=p>()</span>    
+<span class=p>{</span>    
+<span class=kt>int</span> <span class=n>error_len</span> <span class=o>=</span> <span class=n>wasmer_last_error_length</span><span class=p>();</span>    
+<span class=kt>char</span> <span class=o>*</span><span class=n>error_str</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>error_len</span><span class=p>);</span>    
+<span class=n>wasmer_last_error_message</span><span class=p>(</span><span class=n>error_str</span><span class=p>,</span> <span class=n>error_len</span><span class=p>);</span>    
+<span class=n>printf</span><span class=p>(</span><span class=s>&#34;Error: `%s`</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>error_str</span><span class=p>);</span>    
+<span class=p>}</span>    
     
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>    
-<span class="p">{</span>    
-<span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;hello.wasm&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>    
-<span class="n">assert</span><span class="p">(</span><span class="n">file</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">);</span>    
-<span class="n">fseek</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>    
-<span class="kt">long</span> <span class="n">len</span> <span class="o">=</span> <span class="n">ftell</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>    
-<span class="kt">uint8_t</span> <span class="o">*</span><span class="n">bytes</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>    
-<span class="n">fseek</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>    
-<span class="n">fread</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>    
-<span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>    
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>    
+<span class=p>{</span>    
+<span class=n>FILE</span> <span class=o>*</span><span class=n>file</span> <span class=o>=</span> <span class=n>fopen</span><span class=p>(</span><span class=s>&#34;hello.wasm&#34;</span><span class=p>,</span> <span class=s>&#34;r&#34;</span><span class=p>);</span>    
+<span class=n>assert</span><span class=p>(</span><span class=n>file</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>);</span>    
+<span class=n>fseek</span><span class=p>(</span><span class=n>file</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>SEEK_END</span><span class=p>);</span>    
+<span class=kt>long</span> <span class=n>len</span> <span class=o>=</span> <span class=n>ftell</span><span class=p>(</span><span class=n>file</span><span class=p>);</span>    
+<span class=kt>uint8_t</span> <span class=o>*</span><span class=n>bytes</span> <span class=o>=</span> <span class=p>(</span><span class=kt>uint8_t</span><span class=o>*</span><span class=p>)</span><span class=n>malloc</span><span class=p>(</span><span class=n>len</span><span class=p>);</span>    
+<span class=n>fseek</span><span class=p>(</span><span class=n>file</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>SEEK_SET</span><span class=p>);</span>    
+<span class=n>fread</span><span class=p>(</span><span class=n>bytes</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=n>len</span><span class=p>,</span> <span class=n>file</span><span class=p>);</span>    
+<span class=n>fclose</span><span class=p>(</span><span class=n>file</span><span class=p>);</span>    
     
-<span class="n">wasmer_module_t</span> <span class="o">*</span><span class="n">module</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>    
-<span class="n">wasmer_result_t</span> <span class="n">compile_result</span> <span class="o">=</span> <span class="n">wasmer_compile</span><span class="p">(</span><span class="o">&amp;</span><span class="n">module</span><span class="p">,</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>    
-<span class="k">if</span> <span class="p">(</span><span class="n">compile_result</span> <span class="o">!=</span> <span class="n">WASMER_OK</span><span class="p">)</span>    
-<span class="p">{</span>    
-    <span class="n">print_wasmer_error</span><span class="p">();</span>    
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>    
-<span class="p">}</span>    
-<span class="n">wasmer_import_object_t</span> <span class="o">*</span><span class="n">wasi_import_obj</span> <span class="o">=</span> <span class="n">wasmer_wasi_generate_default_import_object</span><span class="p">();</span>    
+<span class=n>wasmer_module_t</span> <span class=o>*</span><span class=n>module</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>    
+<span class=n>wasmer_result_t</span> <span class=n>compile_result</span> <span class=o>=</span> <span class=n>wasmer_compile</span><span class=p>(</span><span class=o>&amp;</span><span class=n>module</span><span class=p>,</span> <span class=n>bytes</span><span class=p>,</span> <span class=n>len</span><span class=p>);</span>    
+<span class=k>if</span> <span class=p>(</span><span class=n>compile_result</span> <span class=o>!=</span> <span class=n>WASMER_OK</span><span class=p>)</span>    
+<span class=p>{</span>    
+    <span class=n>print_wasmer_error</span><span class=p>();</span>    
+    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span><span class=p>;</span>    
+<span class=p>}</span>    
+<span class=n>wasmer_import_object_t</span> <span class=o>*</span><span class=n>wasi_import_obj</span> <span class=o>=</span> <span class=n>wasmer_wasi_generate_default_import_object</span><span class=p>();</span>    
     
-<span class="c1">// find out what version of WASI the module is    
-</span><span class="c1"></span><span class="n">Version</span> <span class="n">wasi_version</span> <span class="o">=</span> <span class="n">wasmer_wasi_get_version</span><span class="p">(</span><span class="n">module</span><span class="p">);</span>    
-<span class="c1">// char* progname = &#34;ProgramName&#34;;    
-</span><span class="c1">// wasmer_byte_array args[] = { { .bytes = progname; .bytes_len = sizeof(progname); } };    
-</span><span class="c1"></span><span class="n">wasmer_import_object_t</span> <span class="o">*</span> <span class="n">import_object</span> <span class="o">=</span> <span class="n">wasmer_wasi_generate_import_object_for_version</span><span class="p">(</span><span class="n">wasi_version</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>    
+<span class=c1>// find out what version of WASI the module is    
+</span><span class=c1></span><span class=n>Version</span> <span class=n>wasi_version</span> <span class=o>=</span> <span class=n>wasmer_wasi_get_version</span><span class=p>(</span><span class=n>module</span><span class=p>);</span>    
+<span class=c1>// char* progname = &#34;ProgramName&#34;;    
+</span><span class=c1>// wasmer_byte_array args[] = { { .bytes = progname; .bytes_len = sizeof(progname); } };    
+</span><span class=c1></span><span class=n>wasmer_import_object_t</span> <span class=o>*</span> <span class=n>import_object</span> <span class=o>=</span> <span class=n>wasmer_wasi_generate_import_object_for_version</span><span class=p>(</span><span class=n>wasi_version</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>    
     
-<span class="c1">// Instantiate a WebAssembly Instance from Wasm bytes and imports    
-</span><span class="c1"></span><span class="n">wasmer_instance_t</span> <span class="o">*</span><span class="n">instance</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>    
-<span class="c1">// clock_gettime(CLOCK_REALTIME, &amp;start);    
-</span><span class="c1"></span><span class="n">wasmer_result_t</span> <span class="n">instantiate_result</span> <span class="o">=</span> <span class="n">wasmer_module_import_instantiate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">instance</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">import_object</span><span class="p">);</span>    
+<span class=c1>// Instantiate a WebAssembly Instance from Wasm bytes and imports    
+</span><span class=c1></span><span class=n>wasmer_instance_t</span> <span class=o>*</span><span class=n>instance</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>    
+<span class=c1>// clock_gettime(CLOCK_REALTIME, &amp;start);    
+</span><span class=c1></span><span class=n>wasmer_result_t</span> <span class=n>instantiate_result</span> <span class=o>=</span> <span class=n>wasmer_module_import_instantiate</span><span class=p>(</span><span class=o>&amp;</span><span class=n>instance</span><span class=p>,</span> <span class=n>module</span><span class=p>,</span> <span class=n>import_object</span><span class=p>);</span>    
     
-<span class="k">if</span><span class="p">(</span><span class="n">instantiate_result</span> <span class="o">!=</span> <span class="n">WASMER_OK</span><span class="p">)</span>    
-<span class="p">{</span>    
-    <span class="n">print_wasmer_error</span><span class="p">();</span>    
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>    
-<span class="p">}</span>    
-<span class="n">wasmer_value_t</span> <span class="n">arguments</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>    
-<span class="n">wasmer_value_t</span> <span class="n">results</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>    
-<span class="c1">// Call the `sum` function with the prepared arguments and the return value.    
-</span><span class="c1"></span><span class="n">wasmer_result_t</span> <span class="n">call_result</span> <span class="o">=</span> <span class="n">wasmer_instance_call</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="s">&#34;_start&#34;</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>    
-<span class="kt">int</span> <span class="n">response_value</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">value</span><span class="p">.</span><span class="n">I32</span><span class="p">;</span>     
-<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">response_value</span><span class="p">);</span>    
-<span class="n">wasmer_instance_destroy</span><span class="p">(</span><span class="n">instance</span><span class="p">);</span>    
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
-<span class="p">}</span>    
-</code></pre></td></tr></table>
-</div>
-</div><p>调用<code>_start</code>函数相当于运行整个wasm代码</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2020-10-20</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-title="wasi使用笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-title="wasi使用笔记"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-title="wasi使用笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-title="wasi使用笔记"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/" class="prev" rel="prev" title="钓鱼城杯-mobile题解"><i class="fas fa-angle-left fa-fw"></i>钓鱼城杯-mobile题解</a>
-            <a href="/tsctf202-re/" class="next" rel="next" title="TSCTF202-re">TSCTF202-re<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<span class=k>if</span><span class=p>(</span><span class=n>instantiate_result</span> <span class=o>!=</span> <span class=n>WASMER_OK</span><span class=p>)</span>    
+<span class=p>{</span>    
+    <span class=n>print_wasmer_error</span><span class=p>();</span>    
+    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span><span class=p>;</span>    
+<span class=p>}</span>    
+<span class=n>wasmer_value_t</span> <span class=n>arguments</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span><span class=mi>0</span><span class=p>};</span>    
+<span class=n>wasmer_value_t</span> <span class=n>results</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span><span class=mi>0</span><span class=p>};</span>    
+<span class=c1>// Call the `sum` function with the prepared arguments and the return value.    
+</span><span class=c1></span><span class=n>wasmer_result_t</span> <span class=n>call_result</span> <span class=o>=</span> <span class=n>wasmer_instance_call</span><span class=p>(</span><span class=n>instance</span><span class=p>,</span> <span class=s>&#34;_start&#34;</span><span class=p>,</span> <span class=n>arguments</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>results</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>    
+<span class=kt>int</span> <span class=n>response_value</span> <span class=o>=</span> <span class=n>results</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=n>value</span><span class=p>.</span><span class=n>I32</span><span class=p>;</span>     
+<span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>response_value</span><span class=p>);</span>    
+<span class=n>wasmer_instance_destroy</span><span class=p>(</span><span class=n>instance</span><span class=p>);</span>    
+<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>    
+<span class=p>}</span>    
+</code></pre></td></tr></table></div></div><p>调用<code>_start</code>函数相当于运行整个wasm代码</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-10-20</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/ data-title=wasi使用笔记><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/ data-title=wasi使用笔记><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/ data-title=wasi使用笔记><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/wasi%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/ data-title=wasi使用笔记><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF-mobile%E9%A2%98%E8%A7%A3/ class=prev rel=prev title=钓鱼城杯-mobile题解><i class="fas fa-angle-left fa-fw"></i>钓鱼城杯-mobile题解</a>
+<a href=/tsctf202-re/ class=next rel=next title=TSCTF202-re>TSCTF202-re<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

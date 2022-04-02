@@ -1,458 +1,265 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>API勾取 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="API勾取" />
-<meta property="og:description" content="调试钩取 流程如下： 对想钩取的进程进行附加操作，使之成为被调试者 钩子：将API起始地址的第一个字节修改为0xCC 调用相应API时，控制权转移到" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-05-21T15:22:45+08:00" />
-<meta property="article:modified_time" content="2020-05-21T15:22:45+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="API勾取"/>
-<meta name="twitter:description" content="调试钩取 流程如下： 对想钩取的进程进行附加操作，使之成为被调试者 钩子：将API起始地址的第一个字节修改为0xCC 调用相应API时，控制权转移到"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" /><link rel="next" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "API勾取",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  769 ,
-        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96\/","datePublished": "2020-05-21T15:22:45+08:00","dateModified": "2020-05-21T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">API勾取</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-21">2020-05-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 769 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#调试钩取">调试钩取</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="调试钩取">调试钩取</h2>
-<p>流程如下：</p>
-<ol>
-<li>对想钩取的进程进行附加操作，使之成为被调试者</li>
-<li>钩子：将API起始地址的第一个字节修改为0xCC</li>
-<li>调用相应API时，控制权转移到调试器</li>
-<li>执行需要的操作(操作参数、返回值等)</li>
-<li>脱钩：将0xCC恢复为原来的值(正常运行API)</li>
-<li>运行相应API（无0xCC的正常状态）</li>
-<li>钩子：再次修改为0xCC（为了继续钩取）</li>
-<li>控制权返还给被调试者</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp"># include &#34;windows.h&#34;  
-</span><span class="cp"># include &#34;stdio.h&#34;  
-</span><span class="cp"></span>  
-<span class="n">LPVOID</span> <span class="n">g_pfWriteFile</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>  
-<span class="n">CREATE_PROCESS_DEBUG_INFO</span> <span class="n">g_cpdi</span><span class="p">;</span>  
-<span class="n">BYTE</span> <span class="n">g_chINT3</span> <span class="o">=</span> <span class="mh">0xCC</span><span class="p">;</span>  
-<span class="n">BYTE</span> <span class="n">g_ch0rgByte</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>API勾取 - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="API勾取"><meta property="og:description" content="调试钩取 流程如下： 对想钩取的进程进行附加操作，使之成为被调试者 钩子：将API起始地址的第一个字节修改为0xCC 调用相应API时，控制权转移到"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-05-21T15:22:45+08:00"><meta property="article:modified_time" content="2020-05-21T15:22:45+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="API勾取"><meta name=twitter:description content="调试钩取 流程如下： 对想钩取的进程进行附加操作，使之成为被调试者 钩子：将API起始地址的第一个字节修改为0xCC 调用相应API时，控制权转移到"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/><link rel=prev href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/><link rel=next href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"API勾取","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":769,"url":"https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96\/","datePublished":"2020-05-21T15:22:45+08:00","dateModified":"2020-05-21T15:22:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">API勾取</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/notes/><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-21>2020-05-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 769 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#调试钩取>调试钩取</a></li></ul></nav></div></div><div class=content id=content><h2 id=调试钩取>调试钩取</h2><p>流程如下：</p><ol><li>对想钩取的进程进行附加操作，使之成为被调试者</li><li>钩子：将API起始地址的第一个字节修改为0xCC</li><li>调用相应API时，控制权转移到调试器</li><li>执行需要的操作(操作参数、返回值等)</li><li>脱钩：将0xCC恢复为原来的值(正常运行API)</li><li>运行相应API（无0xCC的正常状态）</li><li>钩子：再次修改为0xCC（为了继续钩取）</li><li>控制权返还给被调试者</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cp># include &#34;windows.h&#34;  
+</span><span class=cp># include &#34;stdio.h&#34;  
+</span><span class=cp></span>  
+<span class=n>LPVOID</span> <span class=n>g_pfWriteFile</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>  
+<span class=n>CREATE_PROCESS_DEBUG_INFO</span> <span class=n>g_cpdi</span><span class=p>;</span>  
+<span class=n>BYTE</span> <span class=n>g_chINT3</span> <span class=o>=</span> <span class=mh>0xCC</span><span class=p>;</span>  
+<span class=n>BYTE</span> <span class=n>g_ch0rgByte</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>  
   
-<span class="n">BOOL</span> <span class="nf">OnCreateProcessDebugEvent</span><span class="p">(</span><span class="n">LPDEBUG_EVENT</span> <span class="n">pde</span><span class="p">)</span>  
-<span class="p">{</span>  
-	<span class="c1">// 获取WriteFile() API的地址  
-</span><span class="c1"></span>	<span class="n">g_pfWriteFile</span> <span class="o">=</span> <span class="n">GetProcAddress</span><span class="p">(</span><span class="n">GetModuleHandle</span><span class="p">(</span><span class="s">&#34;kernel32.dll&#34;</span><span class="p">),</span> <span class="s">&#34;WriteFile&#34;</span><span class="p">);</span>  
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;g_pfWriteFile：%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">g_pfWriteFile</span><span class="p">);</span>  
-	<span class="c1">// API钩子 WriteFile()  
-</span><span class="c1"></span>	<span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_cpdi</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pde</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">.</span><span class="n">CreateProcessInfo</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">CREATE_PROCESS_DEBUG_EVENT</span><span class="p">));</span>  
-	<span class="n">ReadProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">g_pfWriteFile</span><span class="p">,</span>  
-		<span class="o">&amp;</span><span class="n">g_ch0rgByte</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BYTE</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
-	<span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">g_pfWriteFile</span><span class="p">,</span>  
-		<span class="o">&amp;</span><span class="n">g_chINT3</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BYTE</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
-	<span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>  
-<span class="p">}</span>  
+<span class=n>BOOL</span> <span class=nf>OnCreateProcessDebugEvent</span><span class=p>(</span><span class=n>LPDEBUG_EVENT</span> <span class=n>pde</span><span class=p>)</span>  
+<span class=p>{</span>  
+	<span class=c1>// 获取WriteFile() API的地址  
+</span><span class=c1></span>	<span class=n>g_pfWriteFile</span> <span class=o>=</span> <span class=n>GetProcAddress</span><span class=p>(</span><span class=n>GetModuleHandle</span><span class=p>(</span><span class=s>&#34;kernel32.dll&#34;</span><span class=p>),</span> <span class=s>&#34;WriteFile&#34;</span><span class=p>);</span>  
+	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;g_pfWriteFile：%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>g_pfWriteFile</span><span class=p>);</span>  
+	<span class=c1>// API钩子 WriteFile()  
+</span><span class=c1></span>	<span class=n>memcpy</span><span class=p>(</span><span class=o>&amp;</span><span class=n>g_cpdi</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>pde</span><span class=o>-&gt;</span><span class=n>u</span><span class=p>.</span><span class=n>CreateProcessInfo</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>CREATE_PROCESS_DEBUG_EVENT</span><span class=p>));</span>  
+	<span class=n>ReadProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=n>g_pfWriteFile</span><span class=p>,</span>  
+		<span class=o>&amp;</span><span class=n>g_ch0rgByte</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>BYTE</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
+	<span class=n>WriteProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=n>g_pfWriteFile</span><span class=p>,</span>  
+		<span class=o>&amp;</span><span class=n>g_chINT3</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>BYTE</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
+	<span class=k>return</span> <span class=n>TRUE</span><span class=p>;</span>  
+<span class=p>}</span>  
   
-<span class="n">BOOL</span> <span class="nf">OnExceptionDebugEvent</span><span class="p">(</span><span class="n">LPDEBUG_EVENT</span> <span class="n">pde</span><span class="p">)</span>  
-<span class="p">{</span>  
-	<span class="n">CONTEXT</span> <span class="n">ctx</span><span class="p">;</span>  
-	<span class="n">PBYTE</span> <span class="n">lpBuffer</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>  
-	<span class="n">DWORD</span> <span class="n">dwNumOfBytesToWrite</span><span class="p">,</span> <span class="n">dwAddrOfBuffer</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>  
-	<span class="n">PEXCEPTION_RECORD</span> <span class="n">per</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">pde</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">.</span><span class="n">Exception</span><span class="p">.</span><span class="n">ExceptionRecord</span><span class="p">;</span>  
+<span class=n>BOOL</span> <span class=nf>OnExceptionDebugEvent</span><span class=p>(</span><span class=n>LPDEBUG_EVENT</span> <span class=n>pde</span><span class=p>)</span>  
+<span class=p>{</span>  
+	<span class=n>CONTEXT</span> <span class=n>ctx</span><span class=p>;</span>  
+	<span class=n>PBYTE</span> <span class=n>lpBuffer</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>  
+	<span class=n>DWORD</span> <span class=n>dwNumOfBytesToWrite</span><span class=p>,</span> <span class=n>dwAddrOfBuffer</span><span class=p>,</span> <span class=n>i</span><span class=p>;</span>  
+	<span class=n>PEXCEPTION_RECORD</span> <span class=n>per</span> <span class=o>=</span> <span class=o>&amp;</span><span class=n>pde</span><span class=o>-&gt;</span><span class=n>u</span><span class=p>.</span><span class=n>Exception</span><span class=p>.</span><span class=n>ExceptionRecord</span><span class=p>;</span>  
   
-	<span class="k">if</span> <span class="p">(</span><span class="n">EXCEPTION_BREAKPOINT</span> <span class="o">==</span> <span class="n">per</span><span class="o">-&gt;</span><span class="n">ExceptionCode</span><span class="p">)</span>  
-	<span class="p">{</span>  
-		<span class="k">if</span> <span class="p">(</span><span class="n">g_pfWriteFile</span> <span class="o">==</span> <span class="n">per</span><span class="o">-&gt;</span><span class="n">ExceptionAddress</span><span class="p">)</span>  
-		<span class="p">{</span>  
-			<span class="c1">// 将0xcc恢复为original byte  
-</span><span class="c1"></span>			<span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">g_pfWriteFile</span><span class="p">,</span>  
-				<span class="o">&amp;</span><span class="n">g_ch0rgByte</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BYTE</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
+	<span class=k>if</span> <span class=p>(</span><span class=n>EXCEPTION_BREAKPOINT</span> <span class=o>==</span> <span class=n>per</span><span class=o>-&gt;</span><span class=n>ExceptionCode</span><span class=p>)</span>  
+	<span class=p>{</span>  
+		<span class=k>if</span> <span class=p>(</span><span class=n>g_pfWriteFile</span> <span class=o>==</span> <span class=n>per</span><span class=o>-&gt;</span><span class=n>ExceptionAddress</span><span class=p>)</span>  
+		<span class=p>{</span>  
+			<span class=c1>// 将0xcc恢复为original byte  
+</span><span class=c1></span>			<span class=n>WriteProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=n>g_pfWriteFile</span><span class=p>,</span>  
+				<span class=o>&amp;</span><span class=n>g_ch0rgByte</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>BYTE</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
   
-			<span class="c1">// 获取线程上下文  
-</span><span class="c1"></span>			<span class="n">ctx</span><span class="p">.</span><span class="n">ContextFlags</span> <span class="o">=</span> <span class="n">CONTEXT_CONTROL</span><span class="p">;</span>  
-			<span class="n">GetThreadContext</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>  
+			<span class=c1>// 获取线程上下文  
+</span><span class=c1></span>			<span class=n>ctx</span><span class=p>.</span><span class=n>ContextFlags</span> <span class=o>=</span> <span class=n>CONTEXT_CONTROL</span><span class=p>;</span>  
+			<span class=n>GetThreadContext</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hThread</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>ctx</span><span class=p>);</span>  
   
-			<span class="c1">// 获取WriteFile的第2，3个参数  
-</span><span class="c1"></span>			<span class="n">ReadProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="p">(</span><span class="n">LPCVOID</span><span class="p">)(</span><span class="n">ctx</span><span class="p">.</span><span class="n">Esp</span> <span class="o">+</span> <span class="mi">8</span><span class="p">),</span>  
-				<span class="o">&amp;</span><span class="n">dwAddrOfBuffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">DWORD</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
-			<span class="n">ReadProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="p">(</span><span class="n">LPCVOID</span><span class="p">)(</span><span class="n">ctx</span><span class="p">.</span><span class="n">Esp</span> <span class="o">+</span> <span class="mh">0xc</span><span class="p">),</span>  
-				<span class="o">&amp;</span><span class="n">dwNumOfBytesToWrite</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">DWORD</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
+			<span class=c1>// 获取WriteFile的第2，3个参数  
+</span><span class=c1></span>			<span class=n>ReadProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=p>(</span><span class=n>LPCVOID</span><span class=p>)(</span><span class=n>ctx</span><span class=p>.</span><span class=n>Esp</span> <span class=o>+</span> <span class=mi>8</span><span class=p>),</span>  
+				<span class=o>&amp;</span><span class=n>dwAddrOfBuffer</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>DWORD</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
+			<span class=n>ReadProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=p>(</span><span class=n>LPCVOID</span><span class=p>)(</span><span class=n>ctx</span><span class=p>.</span><span class=n>Esp</span> <span class=o>+</span> <span class=mh>0xc</span><span class=p>),</span>  
+				<span class=o>&amp;</span><span class=n>dwNumOfBytesToWrite</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>DWORD</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
 			  
-			<span class="cm">/*dwAddrOfBuffer = ctx.Rsi;  
-</span><span class="cm">			dwNumOfBytesToWrite = ctx.Rdx;*/</span>  
+			<span class=cm>/*dwAddrOfBuffer = ctx.Rsi;  
+</span><span class=cm>			dwNumOfBytesToWrite = ctx.Rdx;*/</span>  
   
-			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;size: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">dwNumOfBytesToWrite</span><span class="p">);</span>  
+			<span class=n>printf</span><span class=p>(</span><span class=s>&#34;size: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>dwNumOfBytesToWrite</span><span class=p>);</span>  
   
-			<span class="c1">// 分配临时缓冲区  
-</span><span class="c1"></span>			<span class="n">lpBuffer</span> <span class="o">=</span> <span class="p">(</span><span class="n">PBYTE</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">dwNumOfBytesToWrite</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>  
-			<span class="n">memset</span><span class="p">(</span><span class="n">lpBuffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dwNumOfBytesToWrite</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>  
+			<span class=c1>// 分配临时缓冲区  
+</span><span class=c1></span>			<span class=n>lpBuffer</span> <span class=o>=</span> <span class=p>(</span><span class=n>PBYTE</span><span class=p>)</span><span class=n>malloc</span><span class=p>(</span><span class=n>dwNumOfBytesToWrite</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>  
+			<span class=n>memset</span><span class=p>(</span><span class=n>lpBuffer</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>dwNumOfBytesToWrite</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>  
   
-			<span class="c1">// 复制WriteFile缓冲区到临时缓冲区  
-</span><span class="c1"></span>			<span class="n">ReadProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="p">(</span><span class="n">LPCVOID</span><span class="p">)</span><span class="n">dwAddrOfBuffer</span><span class="p">,</span>  
-				<span class="n">lpBuffer</span><span class="p">,</span> <span class="n">dwNumOfBytesToWrite</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>  
-			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> original string: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">lpBuffer</span><span class="p">);</span>  
+			<span class=c1>// 复制WriteFile缓冲区到临时缓冲区  
+</span><span class=c1></span>			<span class=n>ReadProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=p>(</span><span class=n>LPCVOID</span><span class=p>)</span><span class=n>dwAddrOfBuffer</span><span class=p>,</span>  
+				<span class=n>lpBuffer</span><span class=p>,</span> <span class=n>dwNumOfBytesToWrite</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>  
+			<span class=n>printf</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s> original string: %s</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>lpBuffer</span><span class=p>);</span>  
   
-			<span class="c1">// 小写字母转大写字母  
-</span><span class="c1"></span>			<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dwNumOfBytesToWrite</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>  
-			<span class="p">{</span>  
-				<span class="k">if</span> <span class="p">(</span><span class="mh">0x61</span> <span class="o">&lt;=</span> <span class="n">lpBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">lpBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7A</span><span class="p">)</span>  
-				<span class="p">{</span>  
-					<span class="n">lpBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">lpBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mh">0x20</span><span class="p">;</span>  
-				<span class="p">}</span>  
-			<span class="p">}</span>  
+			<span class=c1>// 小写字母转大写字母  
+</span><span class=c1></span>			<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>dwNumOfBytesToWrite</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>  
+			<span class=p>{</span>  
+				<span class=k>if</span> <span class=p>(</span><span class=mh>0x61</span> <span class=o>&lt;=</span> <span class=n>lpBuffer</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&amp;&amp;</span> <span class=n>lpBuffer</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&lt;=</span> <span class=mh>0x7A</span><span class=p>)</span>  
+				<span class=p>{</span>  
+					<span class=n>lpBuffer</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>lpBuffer</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>-</span> <span class=mh>0x20</span><span class=p>;</span>  
+				<span class=p>}</span>  
+			<span class=p>}</span>  
   
-			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> converted string: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">lpBuffer</span><span class="p">);</span>  
+			<span class=n>printf</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s> converted string: %s</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>lpBuffer</span><span class=p>);</span>  
   
-			<span class="c1">// 将变换后的缓冲区换到WriteFile中  
-</span><span class="c1"></span>			<span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hThread</span><span class="p">,</span> <span class="p">(</span><span class="n">LPVOID</span><span class="p">)</span><span class="n">dwAddrOfBuffer</span><span class="p">,</span>  
-				<span class="n">lpBuffer</span><span class="p">,</span> <span class="n">dwNumOfBytesToWrite</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>  
+			<span class=c1>// 将变换后的缓冲区换到WriteFile中  
+</span><span class=c1></span>			<span class=n>WriteProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hThread</span><span class=p>,</span> <span class=p>(</span><span class=n>LPVOID</span><span class=p>)</span><span class=n>dwAddrOfBuffer</span><span class=p>,</span>  
+				<span class=n>lpBuffer</span><span class=p>,</span> <span class=n>dwNumOfBytesToWrite</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>  
   
-			<span class="n">free</span><span class="p">(</span><span class="n">lpBuffer</span><span class="p">);</span>  
+			<span class=n>free</span><span class=p>(</span><span class=n>lpBuffer</span><span class=p>);</span>  
   
-			<span class="c1">// 将线程上下文的EIP更改为WriteFile的首地址  
-</span><span class="c1"></span>			<span class="n">ctx</span><span class="p">.</span><span class="n">Eip</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">g_pfWriteFile</span><span class="p">;</span>  
-			<span class="n">SetThreadContext</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>  
-			<span class="n">ContinueDebugEvent</span><span class="p">(</span><span class="n">pde</span><span class="o">-&gt;</span><span class="n">dwProcessId</span><span class="p">,</span> <span class="n">pde</span><span class="o">-&gt;</span><span class="n">dwThreadId</span><span class="p">,</span> <span class="n">DBG_CONTINUE</span><span class="p">);</span>  
-			<span class="n">Sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+			<span class=c1>// 将线程上下文的EIP更改为WriteFile的首地址  
+</span><span class=c1></span>			<span class=n>ctx</span><span class=p>.</span><span class=n>Eip</span> <span class=o>=</span> <span class=p>(</span><span class=n>DWORD</span><span class=p>)</span><span class=n>g_pfWriteFile</span><span class=p>;</span>  
+			<span class=n>SetThreadContext</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hThread</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>ctx</span><span class=p>);</span>  
+			<span class=n>ContinueDebugEvent</span><span class=p>(</span><span class=n>pde</span><span class=o>-&gt;</span><span class=n>dwProcessId</span><span class=p>,</span> <span class=n>pde</span><span class=o>-&gt;</span><span class=n>dwThreadId</span><span class=p>,</span> <span class=n>DBG_CONTINUE</span><span class=p>);</span>  
+			<span class=n>Sleep</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>  
   
-			<span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">g_cpdi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">g_pfWriteFile</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">g_chINT3</span><span class="p">,</span>  
-				<span class="k">sizeof</span><span class="p">(</span><span class="n">BYTE</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
-			<span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>  
-		<span class="p">}</span>  
-	<span class="p">}</span>  
-	<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>  
-<span class="p">}</span>  
+			<span class=n>WriteProcessMemory</span><span class=p>(</span><span class=n>g_cpdi</span><span class=p>.</span><span class=n>hProcess</span><span class=p>,</span> <span class=n>g_pfWriteFile</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>g_chINT3</span><span class=p>,</span>  
+				<span class=k>sizeof</span><span class=p>(</span><span class=n>BYTE</span><span class=p>),</span> <span class=nb>NULL</span><span class=p>);</span>  
+			<span class=k>return</span> <span class=n>TRUE</span><span class=p>;</span>  
+		<span class=p>}</span>  
+	<span class=p>}</span>  
+	<span class=k>return</span> <span class=n>FALSE</span><span class=p>;</span>  
+<span class=p>}</span>  
   
-<span class="kt">void</span> <span class="nf">DebugLoop</span><span class="p">()</span>  
-<span class="p">{</span>  
-	<span class="n">DEBUG_EVENT</span> <span class="n">de</span><span class="p">;</span>  
-	<span class="n">DWORD</span> <span class="n">dwContinueStatus</span><span class="p">;</span>  
-	<span class="k">while</span> <span class="p">(</span><span class="n">WaitForDebugEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">de</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">))</span>  
-	<span class="p">{</span>  
-		<span class="n">dwContinueStatus</span> <span class="o">=</span> <span class="n">DBG_CONTINUE</span><span class="p">;</span>  
-		<span class="c1">// 被调试进程生成或附加  
-</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="n">CREATE_PROCESS_DEBUG_EVENT</span> <span class="o">==</span> <span class="n">de</span><span class="p">.</span><span class="n">dwDebugEventCode</span><span class="p">)</span>  
-			<span class="n">OnCreateProcessDebugEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">de</span><span class="p">);</span>  
-		<span class="c1">// 异常  
-</span><span class="c1"></span>		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCEPTION_DEBUG_EVENT</span> <span class="o">==</span> <span class="n">de</span><span class="p">.</span><span class="n">dwDebugEventCode</span><span class="p">)</span>  
-		<span class="p">{</span>  
-			<span class="k">if</span> <span class="p">(</span><span class="n">OnExceptionDebugEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">de</span><span class="p">))</span>  
-				<span class="k">continue</span><span class="p">;</span>  
-		<span class="p">}</span>  
-		<span class="c1">// 中止  
-</span><span class="c1"></span>		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXIT_PROCESS_DEBUG_EVENT</span> <span class="o">==</span> <span class="n">de</span><span class="p">.</span><span class="n">dwDebugEventCode</span><span class="p">)</span>  
-			<span class="k">break</span><span class="p">;</span>  
-		<span class="n">ContinueDebugEvent</span><span class="p">(</span><span class="n">de</span><span class="p">.</span><span class="n">dwProcessId</span><span class="p">,</span> <span class="n">de</span><span class="p">.</span><span class="n">dwThreadId</span><span class="p">,</span> <span class="n">dwContinueStatus</span><span class="p">);</span>  
-	<span class="p">}</span>  
-<span class="p">}</span>  
+<span class=kt>void</span> <span class=nf>DebugLoop</span><span class=p>()</span>  
+<span class=p>{</span>  
+	<span class=n>DEBUG_EVENT</span> <span class=n>de</span><span class=p>;</span>  
+	<span class=n>DWORD</span> <span class=n>dwContinueStatus</span><span class=p>;</span>  
+	<span class=k>while</span> <span class=p>(</span><span class=n>WaitForDebugEvent</span><span class=p>(</span><span class=o>&amp;</span><span class=n>de</span><span class=p>,</span> <span class=n>INFINITE</span><span class=p>))</span>  
+	<span class=p>{</span>  
+		<span class=n>dwContinueStatus</span> <span class=o>=</span> <span class=n>DBG_CONTINUE</span><span class=p>;</span>  
+		<span class=c1>// 被调试进程生成或附加  
+</span><span class=c1></span>		<span class=k>if</span> <span class=p>(</span><span class=n>CREATE_PROCESS_DEBUG_EVENT</span> <span class=o>==</span> <span class=n>de</span><span class=p>.</span><span class=n>dwDebugEventCode</span><span class=p>)</span>  
+			<span class=n>OnCreateProcessDebugEvent</span><span class=p>(</span><span class=o>&amp;</span><span class=n>de</span><span class=p>);</span>  
+		<span class=c1>// 异常  
+</span><span class=c1></span>		<span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>EXCEPTION_DEBUG_EVENT</span> <span class=o>==</span> <span class=n>de</span><span class=p>.</span><span class=n>dwDebugEventCode</span><span class=p>)</span>  
+		<span class=p>{</span>  
+			<span class=k>if</span> <span class=p>(</span><span class=n>OnExceptionDebugEvent</span><span class=p>(</span><span class=o>&amp;</span><span class=n>de</span><span class=p>))</span>  
+				<span class=k>continue</span><span class=p>;</span>  
+		<span class=p>}</span>  
+		<span class=c1>// 中止  
+</span><span class=c1></span>		<span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>EXIT_PROCESS_DEBUG_EVENT</span> <span class=o>==</span> <span class=n>de</span><span class=p>.</span><span class=n>dwDebugEventCode</span><span class=p>)</span>  
+			<span class=k>break</span><span class=p>;</span>  
+		<span class=n>ContinueDebugEvent</span><span class=p>(</span><span class=n>de</span><span class=p>.</span><span class=n>dwProcessId</span><span class=p>,</span> <span class=n>de</span><span class=p>.</span><span class=n>dwThreadId</span><span class=p>,</span> <span class=n>dwContinueStatus</span><span class=p>);</span>  
+	<span class=p>}</span>  
+<span class=p>}</span>  
   
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>  
-<span class="p">{</span>  
-	<span class="n">DWORD</span> <span class="n">dwPID</span><span class="p">;</span>  
-	<span class="n">dwPID</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>  
+<span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span><span class=o>*</span> <span class=n>argv</span><span class=p>[])</span>  
+<span class=p>{</span>  
+	<span class=n>DWORD</span> <span class=n>dwPID</span><span class=p>;</span>  
+	<span class=n>dwPID</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span>  
   
-	<span class="c1">// 使调试器附加到一个活动进程并且调试它  
-</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">DebugActiveProcess</span><span class="p">(</span><span class="n">dwPID</span><span class="p">))</span>  
-	<span class="p">{</span>  
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;DebugActiveProcess failed</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
-		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>  
-	<span class="p">}</span>  
-	<span class="n">DebugLoop</span><span class="p">();</span>  
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2020-05-21</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" data-title="API勾取"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" data-title="API勾取"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" data-title="API勾取"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/" data-title="API勾取"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="信息安全数学基础"><i class="fas fa-angle-left fa-fw"></i>信息安全数学基础</a>
-            <a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/" class="next" rel="next" title="密码学">密码学<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+	<span class=c1>// 使调试器附加到一个活动进程并且调试它  
+</span><span class=c1></span>	<span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>DebugActiveProcess</span><span class=p>(</span><span class=n>dwPID</span><span class=p>))</span>  
+	<span class=p>{</span>  
+		<span class=n>printf</span><span class=p>(</span><span class=s>&#34;DebugActiveProcess failed</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>  
+		<span class=k>return</span> <span class=mi>1</span><span class=p>;</span>  
+	<span class=p>}</span>  
+	<span class=n>DebugLoop</span><span class=p>();</span>  
+	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-05-21</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/ data-title=API勾取><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/ data-title=API勾取><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/ data-title=API勾取><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%A4%A9-api%E9%92%A9%E5%8F%96/ data-title=API勾取><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%A4%A9-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/ class=prev rel=prev title=信息安全数学基础><i class="fas fa-angle-left fa-fw"></i>信息安全数学基础</a>
+<a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%A4%A9-%E5%AF%86%E7%A0%81%E5%AD%A6/ class=next rel=next title=密码学>密码学<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

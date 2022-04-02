@@ -1,14 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>cve - 分类 - EP`s blog</title>
-        <link>https://linkleyping.top/categories/cve/</link>
-        <description>cve - 分类 - EP`s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Nov 2021 15:49:24 &#43;0800</lastBuildDate><atom:link href="https://linkleyping.top/categories/cve/" rel="self" type="application/rss+xml" /><item>
-    <title>CVE-2018-1160分析与复现</title>
-    <link>https://linkleyping.top/cve-2018-1160/</link>
-    <pubDate>Fri, 05 Nov 2021 15:49:24 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://linkleyping.top/cve-2018-1160/</guid>
-    <description><![CDATA[pwnable.tw的第三题，卡住了。基本原理在参考链接里都写了，就记录一下过程然后补充一些我看师傅们博客比较疑惑的点吧。 简介 Netatal]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>cve - 分类 - EP`s blog</title><link>https://linkleyping.top/categories/cve/</link><description>cve - 分类 - EP`s blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Nov 2021 15:49:24 +0800</lastBuildDate><atom:link href="https://linkleyping.top/categories/cve/" rel="self" type="application/rss+xml"/><item><title>CVE-2018-1160分析与复现</title><link>https://linkleyping.top/cve-2018-1160/</link><pubDate>Fri, 05 Nov 2021 15:49:24 +0800</pubDate><author>作者</author><guid>https://linkleyping.top/cve-2018-1160/</guid><description>pwnable.tw的第三题，卡住了。基本原理在参考链接里都写了，就记录一下过程然后补充一些我看师傅们博客比较疑惑的点吧。 简介 Netatal</description></item></channel></rss>

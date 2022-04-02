@@ -1,1065 +1,790 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>De1CTF2019-signal-vm - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="De1CTF2019-signal-vm" />
-<meta property="og:description" content="De1CTF2019这两道vm的题都是与signal通信相关，记录一下。 signal vm 恢复符号表 静态链接去符号表文件，需要恢复符号表 1 2 $ strings signal_vm | grep GCC GCC:" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/de1ctf2019-signal-vm/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-05-01T15:22:45+08:00" />
-<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="De1CTF2019-signal-vm"/>
-<meta name="twitter:description" content="De1CTF2019这两道vm的题都是与signal通信相关，记录一下。 signal vm 恢复符号表 静态链接去符号表文件，需要恢复符号表 1 2 $ strings signal_vm | grep GCC GCC:"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/de1ctf2019-signal-vm/" /><link rel="prev" href="https://linkleyping.top/inshack-2019-papavm/" /><link rel="next" href="https://linkleyping.top/de1ctf-2020-re/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "De1CTF2019-signal-vm",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/de1ctf2019-signal-vm\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3502 ,
-        "url": "https:\/\/linkleyping.top\/de1ctf2019-signal-vm\/","datePublished": "2020-05-01T15:22:45+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">De1CTF2019-signal-vm</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-01">2020-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3502 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#signal-vm">signal vm</a>
-      <ul>
-        <li><a href="#恢复符号表">恢复符号表</a></li>
-        <li><a href="#程序分析">程序分析</a></li>
-        <li><a href="#恢复系统函数的常数参数">恢复系统函数的常数参数</a></li>
-        <li><a href="#solve">solve</a></li>
-      </ul>
-    </li>
-    <li><a href="#signal-vm-delta">signal vm delta</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>De1CTF2019这两道vm的题都是与signal通信相关，记录一下。</p>
-<h2 id="signal-vm">signal vm</h2>
-<h3 id="恢复符号表">恢复符号表</h3>
-<p>静态链接去符号表文件，需要恢复符号表</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$  strings signal_vm <span class="p">|</span> grep GCC  
-GCC: <span class="o">(</span>Ubuntu 7.4.0-1ubuntu1~18.04<span class="o">)</span> 7.4.0  
-</code></pre></td></tr></table>
-</div>
-</div><p>查找sig的链接https://github.com/push0ebp/sig-database</p>
-<h3 id="程序分析">程序分析</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">signed</span> <span class="kr">__int64</span> <span class="nf">sub_40172D</span><span class="p">()</span>  
-<span class="p">{</span>  
-<span class="kt">signed</span> <span class="kt">int</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// [rsp+Ch] [rbp-4h]  
-</span><span class="c1"></span>  
-<span class="n">sub_4102B0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int64</span><span class="p">)</span><span class="s">&#34;Check up: &#34;</span><span class="p">);</span>  
-<span class="n">sub_410430</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int64</span><span class="p">)</span><span class="s">&#34;%s&#34;</span><span class="p">);</span>  
-<span class="n">v1</span> <span class="o">=</span> <span class="n">_libc_fork</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">unk_6D5132</span><span class="p">);</span>  
-<span class="k">if</span> <span class="p">(</span> <span class="n">v1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>  
-  <span class="k">return</span> <span class="mh">0xFFFFFFFFLL</span><span class="p">;</span>  
-<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">v1</span> <span class="p">)</span>  
-<span class="p">{</span>  
-  <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span><span class="n">loc_4014CA</span><span class="p">)();</span>  
-  <span class="n">exit</span><span class="p">(</span><span class="mi">0LL</span><span class="p">);</span>  
-<span class="p">}</span>  
-<span class="n">sub_400B6D</span><span class="p">(</span><span class="n">v1</span><span class="p">);</span>  
-<span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>  
-  <span class="n">IO_puts</span><span class="p">(</span><span class="s">&#34;Ture.&#34;</span><span class="p">);</span>  
-<span class="k">else</span>  
-  <span class="n">IO_puts</span><span class="p">(</span><span class="s">&#34;False.&#34;</span><span class="p">);</span>  
-<span class="k">return</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>输入之后子进程执行<code>loc_4014ca</code>父进程进入<code>sub_400B6D</code>，子进程的程序如下：<br>
-
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png">
-            <img src="/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png" alt=""  />
-        </a>
-    </div>
-<br>
-程序执行ptrace后有一系列的非法指令<br>
-父进程的程序如下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span><span class="lnt">137
-</span><span class="lnt">138
-</span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
-</span><span class="lnt">143
-</span><span class="lnt">144
-</span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
-</span><span class="lnt">158
-</span><span class="lnt">159
-</span><span class="lnt">160
-</span><span class="lnt">161
-</span><span class="lnt">162
-</span><span class="lnt">163
-</span><span class="lnt">164
-</span><span class="lnt">165
-</span><span class="lnt">166
-</span><span class="lnt">167
-</span><span class="lnt">168
-</span><span class="lnt">169
-</span><span class="lnt">170
-</span><span class="lnt">171
-</span><span class="lnt">172
-</span><span class="lnt">173
-</span><span class="lnt">174
-</span><span class="lnt">175
-</span><span class="lnt">176
-</span><span class="lnt">177
-</span><span class="lnt">178
-</span><span class="lnt">179
-</span><span class="lnt">180
-</span><span class="lnt">181
-</span><span class="lnt">182
-</span><span class="lnt">183
-</span><span class="lnt">184
-</span><span class="lnt">185
-</span><span class="lnt">186
-</span><span class="lnt">187
-</span><span class="lnt">188
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kr">__int64</span> <span class="kr">__fastcall</span> <span class="nf">sub_400B6D</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a1</span><span class="p">)</span>  
-<span class="p">{</span>  
-<span class="kr">__int64</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// r8  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// r9  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// r8  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// r9  
-</span><span class="c1"></span><span class="kt">char</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// ST00_1  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v6</span><span class="p">;</span> <span class="c1">// r8  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v7</span><span class="p">;</span> <span class="c1">// r9  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v8</span><span class="p">;</span> <span class="c1">// r8  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v9</span><span class="p">;</span> <span class="c1">// r9  
-</span><span class="c1"></span><span class="kt">char</span> <span class="n">v10</span><span class="p">;</span> <span class="c1">// ST00_1  
-</span><span class="c1"></span><span class="kt">char</span> <span class="n">v12</span><span class="p">;</span> <span class="c1">// [rsp+0h] [rbp-160h]  
-</span><span class="c1"></span><span class="kt">char</span> <span class="n">v13</span><span class="p">;</span> <span class="c1">// [rsp+0h] [rbp-160h]  
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">v14</span><span class="p">;</span> <span class="c1">// [rsp+1Ch] [rbp-144h]  
-</span><span class="c1"></span><span class="kt">char</span> <span class="n">v15</span><span class="p">;</span> <span class="c1">// [rsp+30h] [rbp-130h]  
-</span><span class="c1"></span><span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">v16</span><span class="p">;</span> <span class="c1">// [rsp+B0h] [rbp-B0h]  
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">stat_addr</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// [rsp+110h] [rbp-50h]  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v18</span><span class="p">;</span> <span class="c1">// [rsp+118h] [rbp-48h]  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v19</span><span class="p">;</span> <span class="c1">// [rsp+120h] [rbp-40h]  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v20</span><span class="p">;</span> <span class="c1">// [rsp+128h] [rbp-38h]  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v21</span><span class="p">;</span> <span class="c1">// [rsp+130h] [rbp-30h]  
-</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v22</span><span class="p">;</span> <span class="c1">// [rsp+138h] [rbp-28h]  
-</span><span class="c1"></span><span class="kt">unsigned</span> <span class="kr">__int64</span> <span class="n">v23</span><span class="p">;</span> <span class="c1">// [rsp+148h] [rbp-18h]  
-</span><span class="c1"></span>  
-<span class="n">v23</span> <span class="o">=</span> <span class="n">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>  
-<span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">stat_addr</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v18</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v19</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v20</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v21</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v22</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="n">v14</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
-<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0xD8uLL</span><span class="p">);</span>  
-<span class="n">_libc_wait</span><span class="p">(</span><span class="n">stat_addr</span><span class="p">);</span>                        <span class="c1">// 等待子进程发来信号或者子进程退出  
-</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span> <span class="n">LOBYTE</span><span class="p">(</span><span class="n">stat_addr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">127</span> <span class="p">)</span>  
-<span class="p">{</span>  
-  <span class="n">ptrace</span><span class="p">(</span><span class="mi">12LL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="p">(</span><span class="kr">__int64</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v15</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v12</span><span class="p">);</span>  <span class="c1">//PTRACE_GETREGS 获取寄存器的状态  
-</span><span class="c1"></span>  <span class="n">v19</span> <span class="o">=</span> <span class="n">ptrace</span><span class="p">(</span><span class="mi">1LL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">v16</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">v5</span><span class="p">);</span>  <span class="c1">//PTRACE_PEEKTEXT从进程中读取v16处的值  
-</span><span class="c1"></span>  <span class="k">switch</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">stat_addr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">)</span>  
-  <span class="p">{</span>  
-    <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>  
-      <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">else</span>  
-      <span class="p">{</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="n">BYTE3</span><span class="p">(</span><span class="n">v19</span><span class="p">);</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">4LL</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v14</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span><span class="p">)</span><span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">)</span>  
-        <span class="p">{</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">aAlmostHeavenWe</span><span class="p">[</span><span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">v14</span><span class="p">]];</span>  
-        <span class="p">}</span>  
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">32</span> <span class="p">)</span>  
-        <span class="p">{</span>  
-          <span class="n">aAlmostHeavenWe</span><span class="p">[</span><span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">v14</span><span class="p">];</span>  
-        <span class="p">}</span>  
-      <span class="p">}</span>  
-      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">v14</span><span class="p">];</span>  
-      <span class="p">}</span>  
-      <span class="k">break</span><span class="p">;</span>  
-    <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>  
-      <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-      <span class="p">}</span>  
-      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">BYTE1</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">4LL</span><span class="p">;</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE3</span><span class="p">(</span><span class="n">v19</span><span class="p">)];</span>  
-      <span class="p">}</span>  
-      <span class="k">switch</span> <span class="p">(</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v19</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="k">case</span> <span class="mi">0u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">1u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">-=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">2u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">*=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">3u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">/=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">4u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">%=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">5u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">|=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">6u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">&amp;=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">7u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">^=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">8u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">&lt;&lt;=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">9u</span><span class="o">:</span>  
-          <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">&gt;&gt;=</span> <span class="n">v14</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">default</span><span class="o">:</span>  
-          <span class="k">goto</span> <span class="n">LABEL_59</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">break</span><span class="p">;</span>  
-    <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>  
-      <span class="k">if</span> <span class="p">(</span> <span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="n">HIDWORD</span><span class="p">(</span><span class="n">v19</span><span class="p">);</span>  
-        <span class="n">dword_6D74FC</span> <span class="o">=</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE3</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">-</span> <span class="n">HIDWORD</span><span class="p">(</span><span class="n">v19</span><span class="p">);</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">8LL</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="n">v14</span> <span class="o">=</span> <span class="n">BYTE4</span><span class="p">(</span><span class="n">v19</span><span class="p">);</span>  
-        <span class="n">dword_6D74FC</span> <span class="o">=</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE3</span><span class="p">(</span><span class="n">v19</span><span class="p">)]</span> <span class="o">-</span> <span class="n">dword_6D74E0</span><span class="p">[</span><span class="n">BYTE4</span><span class="p">(</span><span class="n">v19</span><span class="p">)];</span>  
-        <span class="n">v16</span> <span class="o">+=</span> <span class="mi">5LL</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">break</span><span class="p">;</span>  
-    <span class="k">case</span> <span class="mh">0xB</span><span class="o">:</span>  
-      <span class="k">switch</span> <span class="p">(</span> <span class="n">BYTE2</span><span class="p">(</span><span class="n">v19</span><span class="p">)</span> <span class="p">)</span>  
-      <span class="p">{</span>  
-        <span class="k">case</span> <span class="mi">0u</span><span class="o">:</span>  
-          <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">1u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">2u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">3u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">4u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">5u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">case</span> <span class="mi">6u</span><span class="o">:</span>  
-          <span class="k">if</span> <span class="p">(</span> <span class="n">dword_6D74FC</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="mi">7LL</span><span class="p">;</span>  
-          <span class="k">else</span>  
-            <span class="n">v16</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v19</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-          <span class="k">break</span><span class="p">;</span>  
-        <span class="k">default</span><span class="o">:</span>  
-          <span class="k">goto</span> <span class="n">LABEL_59</span><span class="p">;</span>  
-      <span class="p">}</span>  
-      <span class="k">break</span><span class="p">;</span>  
-  <span class="p">}</span>  
-<span class="nl">LABEL_59</span><span class="p">:</span>  
-  <span class="n">ptrace</span><span class="p">(</span><span class="mi">13LL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="p">(</span><span class="kr">__int64</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v15</span><span class="p">,</span> <span class="n">v6</span><span class="p">,</span> <span class="n">v7</span><span class="p">,</span> <span class="n">v13</span><span class="p">);</span><span class="c1">// PTRACE_SETREGS 设置寄存器的值  
-</span><span class="c1"></span>  <span class="n">ptrace</span><span class="p">(</span><span class="mi">7LL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="n">v8</span><span class="p">,</span> <span class="n">v9</span><span class="p">,</span> <span class="n">v10</span><span class="p">);</span>     <span class="c1">// PTRACE_CONT 相当于gdb中的continue  
-</span><span class="c1"></span>  <span class="n">_libc_wait</span><span class="p">(</span><span class="n">stat_addr</span><span class="p">);</span>  
-<span class="p">}</span>  
-<span class="n">ptrace</span><span class="p">(</span><span class="mi">8LL</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v12</span><span class="p">);</span>  <span class="c1">//PTRACE_KILL  
-</span><span class="c1"></span><span class="k">return</span> <span class="mi">0LL</span><span class="p">;</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>父进程的执行控制主要依靠<code>stat_addr[1]</code>和<code>v19</code>，<code>wait()</code>函数的参数是子进程的返回状态,第一个字节如果是0x7f则表示子进程异常返回，第二个字节是返回值，<code>eg: exit(2)</code>则第二个字节为02，子进程出现异常的时候第二个字节是linux的异常信号码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">SIGHUP       <span class="m">1</span>          /* Hangup <span class="o">(</span>POSIX<span class="o">)</span>.  */                          终止进程     终端线路挂断  
-SIGINT       <span class="m">2</span>          /* Interrupt <span class="o">(</span>ANSI<span class="o">)</span>.  */                        终止进程     中断进程 Ctrl+C  
-SIGQUIT      <span class="m">3</span>          /* Quit <span class="o">(</span>POSIX<span class="o">)</span>.  */                            建立CORE文件终止进程，并且生成core文件 Ctrl+<span class="se">\ </span> 
-SIGILL       <span class="m">4</span>          /* Illegal instruction <span class="o">(</span>ANSI<span class="o">)</span>.  */              建立CORE文件,非法指令  
-SIGTRAP      <span class="m">5</span>          /* Trace <span class="nb">trap</span> <span class="o">(</span>POSIX<span class="o">)</span>.  */                      建立CORE文件,跟踪自陷  
-SIGABRT      <span class="m">6</span>          /* Abort <span class="o">(</span>ANSI<span class="o">)</span>.  */  
-SIGIOT       <span class="m">6</span>          /* IOT <span class="nb">trap</span> <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */                      建立CORE文件,执行I/O自陷  
-SIGBUS       <span class="m">7</span>          /* BUS error <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */                     建立CORE文件,总线错误  
-SIGFPE       <span class="m">8</span>          /* Floating-point exception <span class="o">(</span>ANSI<span class="o">)</span>.  */         建立CORE文件,浮点异常  
-SIGKILL      <span class="m">9</span>          /* Kill, unblockable <span class="o">(</span>POSIX<span class="o">)</span>.  */               终止进程     杀死进程  
-SIGUSR1      <span class="m">10</span>         /* User-defined signal <span class="m">1</span> <span class="o">(</span>POSIX<span class="o">)</span>.  */           终止进程     用户定义信号1  
-SIGSEGV      <span class="m">11</span>         /* Segmentation violation <span class="o">(</span>ANSI<span class="o">)</span>.  */           建立CORE文件,段非法错误  
-SIGUSR2      <span class="m">12</span>         /* User-defined signal <span class="m">2</span> <span class="o">(</span>POSIX<span class="o">)</span>.  */           终止进程     用户定义信号2  
-SIGPIPE      <span class="m">13</span>         /* Broken pipe <span class="o">(</span>POSIX<span class="o">)</span>.  */                     终止进程     向一个没有读进程的管道写数据  
-SIGALARM     <span class="m">14</span>         /* Alarm clock <span class="o">(</span>POSIX<span class="o">)</span>.  */                     终止进程     计时器到时  
-SIGTERM      <span class="m">15</span>         /* Termination <span class="o">(</span>ANSI<span class="o">)</span>.  */                      终止进程     软件终止信号  
-SIGSTKFLT    <span class="m">16</span>         /* Stack fault.  */  
-SIGCLD       SIGCHLD    /* Same as SIGCHLD <span class="o">(</span>System V<span class="o">)</span>.  */  
-SIGCHLD      <span class="m">17</span>         /* Child status has changed <span class="o">(</span>POSIX<span class="o">)</span>.  */        忽略信号     当子进程停止或退出时通知父进程  
-SIGCONT      <span class="m">18</span>         /* Continue <span class="o">(</span>POSIX<span class="o">)</span>.  */                        忽略信号     继续执行一个停止的进程  
-SIGSTOP      <span class="m">19</span>         /* Stop, unblockable <span class="o">(</span>POSIX<span class="o">)</span>.  */               停止进程     非终端来的停止信号  
-SIGTSTP      <span class="m">20</span>         /* Keyboard stop <span class="o">(</span>POSIX<span class="o">)</span>.  */                   停止进程     终端来的停止信号 Ctrl+Z  
-SIGTTIN      <span class="m">21</span>         /* Background <span class="nb">read</span> from tty <span class="o">(</span>POSIX<span class="o">)</span>.  */        停止进程     后台进程读终端  
-SIGTTOU      <span class="m">22</span>         /* Background write to tty <span class="o">(</span>POSIX<span class="o">)</span>.  */         停止进程     后台进程写终端  
-SIGURG       <span class="m">23</span>         /* Urgent condition on socket <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */    忽略信号     I/O紧急信号  
-SIGXCPU      <span class="m">24</span>         /* CPU limit exceeded <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */            终止进程     CPU时限超时  
-SIGXFSZ      <span class="m">25</span>         /* File size limit exceeded <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */      终止进程     文件长度过长  
-SIGVTALRM    <span class="m">26</span>         /* Virtual alarm clock <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */           终止进程     虚拟计时器到时  
-SIGPROF      <span class="m">27</span>         /* Profiling alarm clock <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */         终止进程     统计分布图用计时器到时  
-SIGWINCH     <span class="m">28</span>         /* Window size change <span class="o">(</span>4.3 BSD, Sun<span class="o">)</span>.  */       忽略信号     窗口大小发生变化  
-SIGPOLL      SIGIO      /* Pollable event occurred <span class="o">(</span>System V<span class="o">)</span>.  */  
-SIGIO        <span class="m">29</span>         /* I/O now possible <span class="o">(</span>4.2 BSD<span class="o">)</span>.  */              忽略信号     描述符上可以进行I/O  
-SIGPWR       <span class="m">30</span>         /* Power failure restart <span class="o">(</span>System V<span class="o">)</span>.  */  
-SIGSYS       <span class="m">31</span>         /* Bad system call.  */  
-SIGUNUSED    <span class="m">31</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>故<code>stat_addr[1]</code>就是子进程的异常信号码，<code>v19</code>是<code>v16</code>处的值</p>
-<h3 id="恢复系统函数的常数参数">恢复系统函数的常数参数</h3>
-<p>因为是去符号表的程序，所以ptrace函数的参数都用数字的方式显示，一个一个对照着去找有点麻烦，可以用<code>strace</code>直接找出系统调用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">strace ./signal_vm &gt;<span class="p">&amp;</span> a.out  
-execve<span class="o">(</span><span class="s2">&#34;./signal_vm&#34;</span>, <span class="o">[</span><span class="s2">&#34;./signal_vm&#34;</span><span class="o">]</span>, 0x7ffc6205b0f0 /* <span class="m">55</span> vars */<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-brk<span class="o">(</span>NULL<span class="o">)</span>                               <span class="o">=</span> 0xa4e000  
-brk<span class="o">(</span>0xa4f1c0<span class="o">)</span>                           <span class="o">=</span> 0xa4f1c0  
-arch_prctl<span class="o">(</span>ARCH_SET_FS, 0xa4e880<span class="o">)</span>       <span class="o">=</span> <span class="m">0</span>  
-uname<span class="o">({</span><span class="nv">sysname</span><span class="o">=</span><span class="s2">&#34;Linux&#34;</span>, <span class="nv">nodename</span><span class="o">=</span><span class="s2">&#34;ubuntu&#34;</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>  
-readlink<span class="o">(</span><span class="s2">&#34;/proc/self/exe&#34;</span>, <span class="s2">&#34;/home/ep/Desktop/signal_vm&#34;</span>, 4096<span class="o">)</span> <span class="o">=</span> <span class="m">26</span>  
-brk<span class="o">(</span>0xa701c0<span class="o">)</span>                           <span class="o">=</span> 0xa701c0  
-brk<span class="o">(</span>0xa71000<span class="o">)</span>                           <span class="o">=</span> 0xa71000  
-access<span class="o">(</span><span class="s2">&#34;/etc/ld.so.nohwcap&#34;</span>, F_OK<span class="o">)</span>      <span class="o">=</span> -1 ENOENT <span class="o">(</span>No such file or directory<span class="o">)</span>  
-fstat<span class="o">(</span>1, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span>0644, <span class="nv">st_size</span><span class="o">=</span>774, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>  
-fstat<span class="o">(</span>0, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFCHR<span class="p">|</span>0620, <span class="nv">st_rdev</span><span class="o">=</span>makedev<span class="o">(</span>136, 0<span class="o">)</span>, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>  
-read<span class="o">(</span>0, hh  
-<span class="s2">&#34;hh\n&#34;</span>, 1024<span class="o">)</span>                   <span class="o">=</span> <span class="m">3</span>  
-clone<span class="o">(</span><span class="nv">child_stack</span><span class="o">=</span>NULL, <span class="nv">flags</span><span class="o">=</span>CLONE_CHILD_CLEARTID<span class="p">|</span>CLONE_CHILD_SETTID<span class="p">|</span>SIGCHLD, <span class="nv">child_tidptr</span><span class="o">=</span>0xa4eb50<span class="o">)</span> <span class="o">=</span> <span class="m">20978</span>  
-wait4<span class="o">(</span>-1, <span class="o">[{</span>WIFSTOPPED<span class="o">(</span>s<span class="o">)</span> <span class="o">&amp;&amp;</span> WSTOPSIG<span class="o">(</span>s<span class="o">)</span> <span class="o">==</span> SIGILL<span class="o">}]</span>, 0, NULL<span class="o">)</span> <span class="o">=</span> <span class="m">20978</span>  
---- SIGCHLD <span class="o">{</span><span class="nv">si_signo</span><span class="o">=</span>SIGCHLD, <span class="nv">si_code</span><span class="o">=</span>CLD_TRAPPED, <span class="nv">si_pid</span><span class="o">=</span>20978, <span class="nv">si_uid</span><span class="o">=</span>1000, <span class="nv">si_status</span><span class="o">=</span>SIGILL, <span class="nv">si_utime</span><span class="o">=</span>0, <span class="nv">si_stime</span><span class="o">=</span>0<span class="o">}</span> ---
-ptrace<span class="o">(</span>PTRACE_GETREGS, 20978, NULL, 0x7ffda8ef6780<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_PEEKTEXT, 20978, 0x4014ec, <span class="o">[</span>0x600000000060106<span class="o">])</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_SETREGS, 20978, NULL, 0x7ffda8ef6780<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_CONT, 20978, NULL, SIG_0<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-wait4<span class="o">(</span>-1, <span class="o">[{</span>WIFSTOPPED<span class="o">(</span>s<span class="o">)</span> <span class="o">&amp;&amp;</span> WSTOPSIG<span class="o">(</span>s<span class="o">)</span> <span class="o">==</span> SIGILL<span class="o">}]</span>, 0, NULL<span class="o">)</span> <span class="o">=</span> <span class="m">20978</span>  
---- SIGCHLD <span class="o">{</span><span class="nv">si_signo</span><span class="o">=</span>SIGCHLD, <span class="nv">si_code</span><span class="o">=</span>CLD_TRAPPED, <span class="nv">si_pid</span><span class="o">=</span>20978, <span class="nv">si_uid</span><span class="o">=</span>1000, <span class="nv">si_status</span><span class="o">=</span>SIGILL, <span class="nv">si_utime</span><span class="o">=</span>0, <span class="nv">si_stime</span><span class="o">=</span>0<span class="o">}</span> ---
-ptrace<span class="o">(</span>PTRACE_GETREGS, 20978, NULL, 0x7ffda8ef6780<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_PEEKTEXT, 20978, 0x4014f3, <span class="o">[</span>0x30106<span class="o">])</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_SETREGS, 20978, NULL, 0x7ffda8ef6780<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-ptrace<span class="o">(</span>PTRACE_CONT, 20978, NULL, SIG_0<span class="o">)</span> <span class="o">=</span> <span class="m">0</span>  
-wait4<span class="o">(</span>-1, <span class="o">[{</span>WIFSTOPPED<span class="o">(</span>s<span class="o">)</span> <span class="o">&amp;&amp;</span> WSTOPSIG<span class="o">(</span>s<span class="o">)</span> <span class="o">==</span> SIGSEGV<span class="o">}]</span>, 0, NULL<span class="o">)</span> <span class="o">=</span> <span class="m">20978</span>  
---- SIGCHLD <span class="o">{</span><span class="nv">si_signo</span><span class="o">=</span>SIGCHLD, <span class="nv">si_code</span><span class="o">=</span>CLD_TRAPPED, <span class="nv">si_pid</span><span class="o">=</span>20978, <span class="nv">si_uid</span><span class="o">=</span>1000, <span class="nv">si_status</span><span class="o">=</span>SIGSEGV, <span class="nv">si_utime</span><span class="o">=</span>0, <span class="nv">si_stime</span><span class="o">=</span>0<span class="o">}</span> ---
-</code></pre></td></tr></table>
-</div>
-</div><p>如上所示，ptrace函数的参数都可以显示出来不用自己一个一个去找。同时因为父进程是根据子进程的异常signal进行处理，一共有<code>4: &quot;SIGILL&quot;, 5 : &quot;SIGTRAP&quot;, 8: &quot;SIGFPE&quot;, 0xb: &quot;SIGSEGV&quot;</code>四种异常，只依靠子进程执行的非法指令很难知道每一步触发了什么异常，但是从上面的strace结果中的<code>wait4(-1, [{WIFSTOPPED(s) &amp;&amp; WSTOPSIG(s) == SIGSEGV}], 0, NULL) = 20978</code>可以看到具体的信号，也不用自己一个一个记录了。</p>
-<h3 id="solve">solve</h3>
-<p>到这一步基本上只要根据signal去翻译子进程的那一串非法指令即可。但是我找wp的时候看到了一个直接使用gdb python编程解决的，我感觉会方便很多，记录一下。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">signal    <span class="p">|</span> machine code <span class="p">|</span> handler  
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>De1CTF2019-signal-vm - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="De1CTF2019-signal-vm"><meta property="og:description" content="De1CTF2019这两道vm的题都是与signal通信相关，记录一下。 signal vm 恢复符号表 静态链接去符号表文件，需要恢复符号表 1 2 $ strings signal_vm | grep GCC GCC:"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/de1ctf2019-signal-vm/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-05-01T15:22:45+08:00"><meta property="article:modified_time" content="2022-04-02T20:47:48+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="De1CTF2019-signal-vm"><meta name=twitter:description content="De1CTF2019这两道vm的题都是与signal通信相关，记录一下。 signal vm 恢复符号表 静态链接去符号表文件，需要恢复符号表 1 2 $ strings signal_vm | grep GCC GCC:"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/de1ctf2019-signal-vm/><link rel=prev href=https://linkleyping.top/inshack-2019-papavm/><link rel=next href=https://linkleyping.top/de1ctf-2020-re/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"De1CTF2019-signal-vm","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/de1ctf2019-signal-vm\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":3502,"url":"https:\/\/linkleyping.top\/de1ctf2019-signal-vm\/","datePublished":"2020-05-01T15:22:45+08:00","dateModified":"2022-04-02T20:47:48+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">De1CTF2019-signal-vm</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-01>2020-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3502 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#signal-vm>signal vm</a><ul><li><a href=#恢复符号表>恢复符号表</a></li><li><a href=#程序分析>程序分析</a></li><li><a href=#恢复系统函数的常数参数>恢复系统函数的常数参数</a></li><li><a href=#solve>solve</a></li></ul></li><li><a href=#signal-vm-delta>signal vm delta</a></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=content id=content><p>De1CTF2019这两道vm的题都是与signal通信相关，记录一下。</p><h2 id=signal-vm>signal vm</h2><h3 id=恢复符号表>恢复符号表</h3><p>静态链接去符号表文件，需要恢复符号表</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>$  strings signal_vm <span class=p>|</span> grep GCC  
+GCC: <span class=o>(</span>Ubuntu 7.4.0-1ubuntu1~18.04<span class=o>)</span> 7.4.0  
+</code></pre></td></tr></table></div></div><p>查找sig的链接https://github.com/push0ebp/sig-database</p><h3 id=程序分析>程序分析</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kt>signed</span> <span class=kr>__int64</span> <span class=nf>sub_40172D</span><span class=p>()</span>  
+<span class=p>{</span>  
+<span class=kt>signed</span> <span class=kt>int</span> <span class=n>v1</span><span class=p>;</span> <span class=c1>// [rsp+Ch] [rbp-4h]  
+</span><span class=c1></span>  
+<span class=n>sub_4102B0</span><span class=p>((</span><span class=kt>unsigned</span> <span class=kr>__int64</span><span class=p>)</span><span class=s>&#34;Check up: &#34;</span><span class=p>);</span>  
+<span class=n>sub_410430</span><span class=p>((</span><span class=kt>unsigned</span> <span class=kr>__int64</span><span class=p>)</span><span class=s>&#34;%s&#34;</span><span class=p>);</span>  
+<span class=n>v1</span> <span class=o>=</span> <span class=n>_libc_fork</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>unk_6D5132</span><span class=p>);</span>  
+<span class=k>if</span> <span class=p>(</span> <span class=n>v1</span> <span class=o>&lt;</span> <span class=mi>0</span> <span class=p>)</span>  
+  <span class=k>return</span> <span class=mh>0xFFFFFFFFLL</span><span class=p>;</span>  
+<span class=k>if</span> <span class=p>(</span> <span class=o>!</span><span class=n>v1</span> <span class=p>)</span>  
+<span class=p>{</span>  
+  <span class=p>((</span><span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=p>)(</span><span class=kt>void</span><span class=p>))</span><span class=n>loc_4014CA</span><span class=p>)();</span>  
+  <span class=n>exit</span><span class=p>(</span><span class=mi>0LL</span><span class=p>);</span>  
+<span class=p>}</span>  
+<span class=n>sub_400B6D</span><span class=p>(</span><span class=n>v1</span><span class=p>);</span>  
+<span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=p>)</span>  
+  <span class=n>IO_puts</span><span class=p>(</span><span class=s>&#34;Ture.&#34;</span><span class=p>);</span>  
+<span class=k>else</span>  
+  <span class=n>IO_puts</span><span class=p>(</span><span class=s>&#34;False.&#34;</span><span class=p>);</span>  
+<span class=k>return</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>输入之后子进程执行<code>loc_4014ca</code>父进程进入<code>sub_400B6D</code>，子进程的程序如下：<br><img class=lazyload src=/svg/loading.min.svg data-src=/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png data-srcset="/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png, /images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png 1.5x, /images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png 2x" data-sizes=auto alt=/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png title=/images/1da3f493949c4cf5d87c8a8516d33711/11884068-aaffa4064329c20d.png><br>程序执行ptrace后有一系列的非法指令<br>父进程的程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kr>__int64</span> <span class=kr>__fastcall</span> <span class=nf>sub_400B6D</span><span class=p>(</span><span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>a1</span><span class=p>)</span>  
+<span class=p>{</span>  
+<span class=kr>__int64</span> <span class=n>v1</span><span class=p>;</span> <span class=c1>// r8  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v2</span><span class=p>;</span> <span class=c1>// r9  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v3</span><span class=p>;</span> <span class=c1>// r8  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v4</span><span class=p>;</span> <span class=c1>// r9  
+</span><span class=c1></span><span class=kt>char</span> <span class=n>v5</span><span class=p>;</span> <span class=c1>// ST00_1  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v6</span><span class=p>;</span> <span class=c1>// r8  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v7</span><span class=p>;</span> <span class=c1>// r9  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v8</span><span class=p>;</span> <span class=c1>// r8  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v9</span><span class=p>;</span> <span class=c1>// r9  
+</span><span class=c1></span><span class=kt>char</span> <span class=n>v10</span><span class=p>;</span> <span class=c1>// ST00_1  
+</span><span class=c1></span><span class=kt>char</span> <span class=n>v12</span><span class=p>;</span> <span class=c1>// [rsp+0h] [rbp-160h]  
+</span><span class=c1></span><span class=kt>char</span> <span class=n>v13</span><span class=p>;</span> <span class=c1>// [rsp+0h] [rbp-160h]  
+</span><span class=c1></span><span class=kt>int</span> <span class=n>v14</span><span class=p>;</span> <span class=c1>// [rsp+1Ch] [rbp-144h]  
+</span><span class=c1></span><span class=kt>char</span> <span class=n>v15</span><span class=p>;</span> <span class=c1>// [rsp+30h] [rbp-130h]  
+</span><span class=c1></span><span class=kt>unsigned</span> <span class=kr>__int64</span> <span class=n>v16</span><span class=p>;</span> <span class=c1>// [rsp+B0h] [rbp-B0h]  
+</span><span class=c1></span><span class=kt>int</span> <span class=n>stat_addr</span><span class=p>[</span><span class=mi>2</span><span class=p>];</span> <span class=c1>// [rsp+110h] [rbp-50h]  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v18</span><span class=p>;</span> <span class=c1>// [rsp+118h] [rbp-48h]  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v19</span><span class=p>;</span> <span class=c1>// [rsp+120h] [rbp-40h]  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v20</span><span class=p>;</span> <span class=c1>// [rsp+128h] [rbp-38h]  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v21</span><span class=p>;</span> <span class=c1>// [rsp+130h] [rbp-30h]  
+</span><span class=c1></span><span class=kr>__int64</span> <span class=n>v22</span><span class=p>;</span> <span class=c1>// [rsp+138h] [rbp-28h]  
+</span><span class=c1></span><span class=kt>unsigned</span> <span class=kr>__int64</span> <span class=n>v23</span><span class=p>;</span> <span class=c1>// [rsp+148h] [rbp-18h]  
+</span><span class=c1></span>  
+<span class=n>v23</span> <span class=o>=</span> <span class=n>__readfsqword</span><span class=p>(</span><span class=mh>0x28u</span><span class=p>);</span>  
+<span class=o>*</span><span class=p>(</span><span class=n>_QWORD</span> <span class=o>*</span><span class=p>)</span><span class=n>stat_addr</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v18</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v19</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v20</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v21</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v22</span> <span class=o>=</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=n>v14</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>  
+<span class=n>memset</span><span class=p>(</span><span class=o>&amp;</span><span class=n>v15</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mh>0xD8uLL</span><span class=p>);</span>  
+<span class=n>_libc_wait</span><span class=p>(</span><span class=n>stat_addr</span><span class=p>);</span>                        <span class=c1>// 等待子进程发来信号或者子进程退出  
+</span><span class=c1></span><span class=k>while</span> <span class=p>(</span> <span class=n>LOBYTE</span><span class=p>(</span><span class=n>stat_addr</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=o>==</span> <span class=mi>127</span> <span class=p>)</span>  
+<span class=p>{</span>  
+  <span class=n>ptrace</span><span class=p>(</span><span class=mi>12LL</span><span class=p>,</span> <span class=n>a1</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=p>(</span><span class=kr>__int64</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v15</span><span class=p>,</span> <span class=n>v1</span><span class=p>,</span> <span class=n>v2</span><span class=p>,</span> <span class=n>v12</span><span class=p>);</span>  <span class=c1>//PTRACE_GETREGS 获取寄存器的状态  
+</span><span class=c1></span>  <span class=n>v19</span> <span class=o>=</span> <span class=n>ptrace</span><span class=p>(</span><span class=mi>1LL</span><span class=p>,</span> <span class=n>a1</span><span class=p>,</span> <span class=n>v16</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=n>v3</span><span class=p>,</span> <span class=n>v4</span><span class=p>,</span> <span class=n>v5</span><span class=p>);</span>  <span class=c1>//PTRACE_PEEKTEXT从进程中读取v16处的值  
+</span><span class=c1></span>  <span class=k>switch</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>stat_addr</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=p>)</span>  
+  <span class=p>{</span>  
+    <span class=k>case</span> <span class=mi>4</span><span class=o>:</span>  
+      <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=o>*</span><span class=p>(</span><span class=n>_DWORD</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>else</span>  
+      <span class=p>{</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=n>BYTE3</span><span class=p>(</span><span class=n>v19</span><span class=p>);</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>4LL</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>=</span> <span class=n>v14</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span><span class=p>)</span><span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>1</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>2</span> <span class=p>)</span>  
+        <span class=p>{</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>=</span> <span class=p>(</span><span class=kt>unsigned</span> <span class=kr>__int8</span><span class=p>)</span><span class=n>aAlmostHeavenWe</span><span class=p>[</span><span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>v14</span><span class=p>]];</span>  
+        <span class=p>}</span>  
+        <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>32</span> <span class=p>)</span>  
+        <span class=p>{</span>  
+          <span class=n>aAlmostHeavenWe</span><span class=p>[</span><span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]]</span> <span class=o>=</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>v14</span><span class=p>];</span>  
+        <span class=p>}</span>  
+      <span class=p>}</span>  
+      <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=o>!</span><span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>=</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>v14</span><span class=p>];</span>  
+      <span class=p>}</span>  
+      <span class=k>break</span><span class=p>;</span>  
+    <span class=k>case</span> <span class=mi>5</span><span class=o>:</span>  
+      <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=o>*</span><span class=p>(</span><span class=n>_DWORD</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+      <span class=p>}</span>  
+      <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=o>!</span><span class=n>BYTE1</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>4LL</span><span class=p>;</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE3</span><span class=p>(</span><span class=n>v19</span><span class=p>)];</span>  
+      <span class=p>}</span>  
+      <span class=k>switch</span> <span class=p>(</span> <span class=p>(</span><span class=kt>unsigned</span> <span class=kr>__int8</span><span class=p>)</span><span class=n>v19</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=k>case</span> <span class=mi>0u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>+=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>1u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>-=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>2u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>*=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>3u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>/=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>4u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>%=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>5u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>|=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>6u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>&amp;=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>7u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>^=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>8u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>&lt;&lt;=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>9u</span><span class=o>:</span>  
+          <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>&gt;&gt;=</span> <span class=n>v14</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>default</span><span class=o>:</span>  
+          <span class=k>goto</span> <span class=n>LABEL_59</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>break</span><span class=p>;</span>  
+    <span class=k>case</span> <span class=mi>8</span><span class=o>:</span>  
+      <span class=k>if</span> <span class=p>(</span> <span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=n>HIDWORD</span><span class=p>(</span><span class=n>v19</span><span class=p>);</span>  
+        <span class=n>dword_6D74FC</span> <span class=o>=</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE3</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>-</span> <span class=n>HIDWORD</span><span class=p>(</span><span class=n>v19</span><span class=p>);</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>8LL</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=o>!</span><span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=n>v14</span> <span class=o>=</span> <span class=n>BYTE4</span><span class=p>(</span><span class=n>v19</span><span class=p>);</span>  
+        <span class=n>dword_6D74FC</span> <span class=o>=</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE3</span><span class=p>(</span><span class=n>v19</span><span class=p>)]</span> <span class=o>-</span> <span class=n>dword_6D74E0</span><span class=p>[</span><span class=n>BYTE4</span><span class=p>(</span><span class=n>v19</span><span class=p>)];</span>  
+        <span class=n>v16</span> <span class=o>+=</span> <span class=mi>5LL</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>break</span><span class=p>;</span>  
+    <span class=k>case</span> <span class=mh>0xB</span><span class=o>:</span>  
+      <span class=k>switch</span> <span class=p>(</span> <span class=n>BYTE2</span><span class=p>(</span><span class=n>v19</span><span class=p>)</span> <span class=p>)</span>  
+      <span class=p>{</span>  
+        <span class=k>case</span> <span class=mi>0u</span><span class=o>:</span>  
+          <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>1u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>2u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>3u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=o>&lt;=</span> <span class=mi>0</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>4u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=o>&lt;</span> <span class=mi>0</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>5u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=o>&gt;=</span> <span class=mi>0</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>case</span> <span class=mi>6u</span><span class=o>:</span>  
+          <span class=k>if</span> <span class=p>(</span> <span class=n>dword_6D74FC</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=p>)</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=mi>7LL</span><span class=p>;</span>  
+          <span class=k>else</span>  
+            <span class=n>v16</span> <span class=o>+=</span> <span class=o>*</span><span class=p>(</span><span class=kt>signed</span> <span class=kt>int</span> <span class=o>*</span><span class=p>)((</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v19</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+          <span class=k>break</span><span class=p>;</span>  
+        <span class=k>default</span><span class=o>:</span>  
+          <span class=k>goto</span> <span class=n>LABEL_59</span><span class=p>;</span>  
+      <span class=p>}</span>  
+      <span class=k>break</span><span class=p>;</span>  
+  <span class=p>}</span>  
+<span class=nl>LABEL_59</span><span class=p>:</span>  
+  <span class=n>ptrace</span><span class=p>(</span><span class=mi>13LL</span><span class=p>,</span> <span class=n>a1</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=p>(</span><span class=kr>__int64</span><span class=p>)</span><span class=o>&amp;</span><span class=n>v15</span><span class=p>,</span> <span class=n>v6</span><span class=p>,</span> <span class=n>v7</span><span class=p>,</span> <span class=n>v13</span><span class=p>);</span><span class=c1>// PTRACE_SETREGS 设置寄存器的值  
+</span><span class=c1></span>  <span class=n>ptrace</span><span class=p>(</span><span class=mi>7LL</span><span class=p>,</span> <span class=n>a1</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=n>v8</span><span class=p>,</span> <span class=n>v9</span><span class=p>,</span> <span class=n>v10</span><span class=p>);</span>     <span class=c1>// PTRACE_CONT 相当于gdb中的continue  
+</span><span class=c1></span>  <span class=n>_libc_wait</span><span class=p>(</span><span class=n>stat_addr</span><span class=p>);</span>  
+<span class=p>}</span>  
+<span class=n>ptrace</span><span class=p>(</span><span class=mi>8LL</span><span class=p>,</span> <span class=n>a1</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=mi>0LL</span><span class=p>,</span> <span class=n>v1</span><span class=p>,</span> <span class=n>v2</span><span class=p>,</span> <span class=n>v12</span><span class=p>);</span>  <span class=c1>//PTRACE_KILL  
+</span><span class=c1></span><span class=k>return</span> <span class=mi>0LL</span><span class=p>;</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>父进程的执行控制主要依靠<code>stat_addr[1]</code>和<code>v19</code>，<code>wait()</code>函数的参数是子进程的返回状态,第一个字节如果是0x7f则表示子进程异常返回，第二个字节是返回值，<code>eg: exit(2)</code>则第二个字节为02，子进程出现异常的时候第二个字节是linux的异常信号码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>SIGHUP       <span class=m>1</span>          /* Hangup <span class=o>(</span>POSIX<span class=o>)</span>.  */                          终止进程     终端线路挂断  
+SIGINT       <span class=m>2</span>          /* Interrupt <span class=o>(</span>ANSI<span class=o>)</span>.  */                        终止进程     中断进程 Ctrl+C  
+SIGQUIT      <span class=m>3</span>          /* Quit <span class=o>(</span>POSIX<span class=o>)</span>.  */                            建立CORE文件终止进程，并且生成core文件 Ctrl+<span class=se>\ </span> 
+SIGILL       <span class=m>4</span>          /* Illegal instruction <span class=o>(</span>ANSI<span class=o>)</span>.  */              建立CORE文件,非法指令  
+SIGTRAP      <span class=m>5</span>          /* Trace <span class=nb>trap</span> <span class=o>(</span>POSIX<span class=o>)</span>.  */                      建立CORE文件,跟踪自陷  
+SIGABRT      <span class=m>6</span>          /* Abort <span class=o>(</span>ANSI<span class=o>)</span>.  */  
+SIGIOT       <span class=m>6</span>          /* IOT <span class=nb>trap</span> <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */                      建立CORE文件,执行I/O自陷  
+SIGBUS       <span class=m>7</span>          /* BUS error <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */                     建立CORE文件,总线错误  
+SIGFPE       <span class=m>8</span>          /* Floating-point exception <span class=o>(</span>ANSI<span class=o>)</span>.  */         建立CORE文件,浮点异常  
+SIGKILL      <span class=m>9</span>          /* Kill, unblockable <span class=o>(</span>POSIX<span class=o>)</span>.  */               终止进程     杀死进程  
+SIGUSR1      <span class=m>10</span>         /* User-defined signal <span class=m>1</span> <span class=o>(</span>POSIX<span class=o>)</span>.  */           终止进程     用户定义信号1  
+SIGSEGV      <span class=m>11</span>         /* Segmentation violation <span class=o>(</span>ANSI<span class=o>)</span>.  */           建立CORE文件,段非法错误  
+SIGUSR2      <span class=m>12</span>         /* User-defined signal <span class=m>2</span> <span class=o>(</span>POSIX<span class=o>)</span>.  */           终止进程     用户定义信号2  
+SIGPIPE      <span class=m>13</span>         /* Broken pipe <span class=o>(</span>POSIX<span class=o>)</span>.  */                     终止进程     向一个没有读进程的管道写数据  
+SIGALARM     <span class=m>14</span>         /* Alarm clock <span class=o>(</span>POSIX<span class=o>)</span>.  */                     终止进程     计时器到时  
+SIGTERM      <span class=m>15</span>         /* Termination <span class=o>(</span>ANSI<span class=o>)</span>.  */                      终止进程     软件终止信号  
+SIGSTKFLT    <span class=m>16</span>         /* Stack fault.  */  
+SIGCLD       SIGCHLD    /* Same as SIGCHLD <span class=o>(</span>System V<span class=o>)</span>.  */  
+SIGCHLD      <span class=m>17</span>         /* Child status has changed <span class=o>(</span>POSIX<span class=o>)</span>.  */        忽略信号     当子进程停止或退出时通知父进程  
+SIGCONT      <span class=m>18</span>         /* Continue <span class=o>(</span>POSIX<span class=o>)</span>.  */                        忽略信号     继续执行一个停止的进程  
+SIGSTOP      <span class=m>19</span>         /* Stop, unblockable <span class=o>(</span>POSIX<span class=o>)</span>.  */               停止进程     非终端来的停止信号  
+SIGTSTP      <span class=m>20</span>         /* Keyboard stop <span class=o>(</span>POSIX<span class=o>)</span>.  */                   停止进程     终端来的停止信号 Ctrl+Z  
+SIGTTIN      <span class=m>21</span>         /* Background <span class=nb>read</span> from tty <span class=o>(</span>POSIX<span class=o>)</span>.  */        停止进程     后台进程读终端  
+SIGTTOU      <span class=m>22</span>         /* Background write to tty <span class=o>(</span>POSIX<span class=o>)</span>.  */         停止进程     后台进程写终端  
+SIGURG       <span class=m>23</span>         /* Urgent condition on socket <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */    忽略信号     I/O紧急信号  
+SIGXCPU      <span class=m>24</span>         /* CPU limit exceeded <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */            终止进程     CPU时限超时  
+SIGXFSZ      <span class=m>25</span>         /* File size limit exceeded <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */      终止进程     文件长度过长  
+SIGVTALRM    <span class=m>26</span>         /* Virtual alarm clock <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */           终止进程     虚拟计时器到时  
+SIGPROF      <span class=m>27</span>         /* Profiling alarm clock <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */         终止进程     统计分布图用计时器到时  
+SIGWINCH     <span class=m>28</span>         /* Window size change <span class=o>(</span>4.3 BSD, Sun<span class=o>)</span>.  */       忽略信号     窗口大小发生变化  
+SIGPOLL      SIGIO      /* Pollable event occurred <span class=o>(</span>System V<span class=o>)</span>.  */  
+SIGIO        <span class=m>29</span>         /* I/O now possible <span class=o>(</span>4.2 BSD<span class=o>)</span>.  */              忽略信号     描述符上可以进行I/O  
+SIGPWR       <span class=m>30</span>         /* Power failure restart <span class=o>(</span>System V<span class=o>)</span>.  */  
+SIGSYS       <span class=m>31</span>         /* Bad system call.  */  
+SIGUNUSED    <span class=m>31</span>  
+</code></pre></td></tr></table></div></div><p>故<code>stat_addr[1]</code>就是子进程的异常信号码，<code>v19</code>是<code>v16</code>处的值</p><h3 id=恢复系统函数的常数参数>恢复系统函数的常数参数</h3><p>因为是去符号表的程序，所以ptrace函数的参数都用数字的方式显示，一个一个对照着去找有点麻烦，可以用<code>strace</code>直接找出系统调用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>strace ./signal_vm &gt;<span class=p>&amp;</span> a.out  
+execve<span class=o>(</span><span class=s2>&#34;./signal_vm&#34;</span>, <span class=o>[</span><span class=s2>&#34;./signal_vm&#34;</span><span class=o>]</span>, 0x7ffc6205b0f0 /* <span class=m>55</span> vars */<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+brk<span class=o>(</span>NULL<span class=o>)</span>                               <span class=o>=</span> 0xa4e000  
+brk<span class=o>(</span>0xa4f1c0<span class=o>)</span>                           <span class=o>=</span> 0xa4f1c0  
+arch_prctl<span class=o>(</span>ARCH_SET_FS, 0xa4e880<span class=o>)</span>       <span class=o>=</span> <span class=m>0</span>  
+uname<span class=o>({</span><span class=nv>sysname</span><span class=o>=</span><span class=s2>&#34;Linux&#34;</span>, <span class=nv>nodename</span><span class=o>=</span><span class=s2>&#34;ubuntu&#34;</span>, ...<span class=o>})</span> <span class=o>=</span> <span class=m>0</span>  
+readlink<span class=o>(</span><span class=s2>&#34;/proc/self/exe&#34;</span>, <span class=s2>&#34;/home/ep/Desktop/signal_vm&#34;</span>, 4096<span class=o>)</span> <span class=o>=</span> <span class=m>26</span>  
+brk<span class=o>(</span>0xa701c0<span class=o>)</span>                           <span class=o>=</span> 0xa701c0  
+brk<span class=o>(</span>0xa71000<span class=o>)</span>                           <span class=o>=</span> 0xa71000  
+access<span class=o>(</span><span class=s2>&#34;/etc/ld.so.nohwcap&#34;</span>, F_OK<span class=o>)</span>      <span class=o>=</span> -1 ENOENT <span class=o>(</span>No such file or directory<span class=o>)</span>  
+fstat<span class=o>(</span>1, <span class=o>{</span><span class=nv>st_mode</span><span class=o>=</span>S_IFREG<span class=p>|</span>0644, <span class=nv>st_size</span><span class=o>=</span>774, ...<span class=o>})</span> <span class=o>=</span> <span class=m>0</span>  
+fstat<span class=o>(</span>0, <span class=o>{</span><span class=nv>st_mode</span><span class=o>=</span>S_IFCHR<span class=p>|</span>0620, <span class=nv>st_rdev</span><span class=o>=</span>makedev<span class=o>(</span>136, 0<span class=o>)</span>, ...<span class=o>})</span> <span class=o>=</span> <span class=m>0</span>  
+read<span class=o>(</span>0, hh  
+<span class=s2>&#34;hh\n&#34;</span>, 1024<span class=o>)</span>                   <span class=o>=</span> <span class=m>3</span>  
+clone<span class=o>(</span><span class=nv>child_stack</span><span class=o>=</span>NULL, <span class=nv>flags</span><span class=o>=</span>CLONE_CHILD_CLEARTID<span class=p>|</span>CLONE_CHILD_SETTID<span class=p>|</span>SIGCHLD, <span class=nv>child_tidptr</span><span class=o>=</span>0xa4eb50<span class=o>)</span> <span class=o>=</span> <span class=m>20978</span>  
+wait4<span class=o>(</span>-1, <span class=o>[{</span>WIFSTOPPED<span class=o>(</span>s<span class=o>)</span> <span class=o>&amp;&amp;</span> WSTOPSIG<span class=o>(</span>s<span class=o>)</span> <span class=o>==</span> SIGILL<span class=o>}]</span>, 0, NULL<span class=o>)</span> <span class=o>=</span> <span class=m>20978</span>  
+--- SIGCHLD <span class=o>{</span><span class=nv>si_signo</span><span class=o>=</span>SIGCHLD, <span class=nv>si_code</span><span class=o>=</span>CLD_TRAPPED, <span class=nv>si_pid</span><span class=o>=</span>20978, <span class=nv>si_uid</span><span class=o>=</span>1000, <span class=nv>si_status</span><span class=o>=</span>SIGILL, <span class=nv>si_utime</span><span class=o>=</span>0, <span class=nv>si_stime</span><span class=o>=</span>0<span class=o>}</span> ---
+ptrace<span class=o>(</span>PTRACE_GETREGS, 20978, NULL, 0x7ffda8ef6780<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_PEEKTEXT, 20978, 0x4014ec, <span class=o>[</span>0x600000000060106<span class=o>])</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_SETREGS, 20978, NULL, 0x7ffda8ef6780<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_CONT, 20978, NULL, SIG_0<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+wait4<span class=o>(</span>-1, <span class=o>[{</span>WIFSTOPPED<span class=o>(</span>s<span class=o>)</span> <span class=o>&amp;&amp;</span> WSTOPSIG<span class=o>(</span>s<span class=o>)</span> <span class=o>==</span> SIGILL<span class=o>}]</span>, 0, NULL<span class=o>)</span> <span class=o>=</span> <span class=m>20978</span>  
+--- SIGCHLD <span class=o>{</span><span class=nv>si_signo</span><span class=o>=</span>SIGCHLD, <span class=nv>si_code</span><span class=o>=</span>CLD_TRAPPED, <span class=nv>si_pid</span><span class=o>=</span>20978, <span class=nv>si_uid</span><span class=o>=</span>1000, <span class=nv>si_status</span><span class=o>=</span>SIGILL, <span class=nv>si_utime</span><span class=o>=</span>0, <span class=nv>si_stime</span><span class=o>=</span>0<span class=o>}</span> ---
+ptrace<span class=o>(</span>PTRACE_GETREGS, 20978, NULL, 0x7ffda8ef6780<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_PEEKTEXT, 20978, 0x4014f3, <span class=o>[</span>0x30106<span class=o>])</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_SETREGS, 20978, NULL, 0x7ffda8ef6780<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+ptrace<span class=o>(</span>PTRACE_CONT, 20978, NULL, SIG_0<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>  
+wait4<span class=o>(</span>-1, <span class=o>[{</span>WIFSTOPPED<span class=o>(</span>s<span class=o>)</span> <span class=o>&amp;&amp;</span> WSTOPSIG<span class=o>(</span>s<span class=o>)</span> <span class=o>==</span> SIGSEGV<span class=o>}]</span>, 0, NULL<span class=o>)</span> <span class=o>=</span> <span class=m>20978</span>  
+--- SIGCHLD <span class=o>{</span><span class=nv>si_signo</span><span class=o>=</span>SIGCHLD, <span class=nv>si_code</span><span class=o>=</span>CLD_TRAPPED, <span class=nv>si_pid</span><span class=o>=</span>20978, <span class=nv>si_uid</span><span class=o>=</span>1000, <span class=nv>si_status</span><span class=o>=</span>SIGSEGV, <span class=nv>si_utime</span><span class=o>=</span>0, <span class=nv>si_stime</span><span class=o>=</span>0<span class=o>}</span> ---
+</code></pre></td></tr></table></div></div><p>如上所示，ptrace函数的参数都可以显示出来不用自己一个一个去找。同时因为父进程是根据子进程的异常signal进行处理，一共有<code>4: "SIGILL", 5 : "SIGTRAP", 8: "SIGFPE", 0xb: "SIGSEGV"</code>四种异常，只依靠子进程执行的非法指令很难知道每一步触发了什么异常，但是从上面的strace结果中的<code>wait4(-1, [{WIFSTOPPED(s) && WSTOPSIG(s) == SIGSEGV}], 0, NULL) = 20978</code>可以看到具体的信号，也不用自己一个一个记录了。</p><h3 id=solve>solve</h3><p>到这一步基本上只要根据signal去翻译子进程的那一串非法指令即可。但是我找wp的时候看到了一个直接使用gdb python编程解决的，我感觉会方便很多，记录一下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>signal    <span class=p>|</span> machine code <span class=p>|</span> handler  
 -------------------------------------------
-SIGILL    <span class="p">|</span> <span class="m">06</span>           <span class="p">|</span> mov, lea ...  
-SIGTRAP   <span class="p">|</span> CC           <span class="p">|</span> add, sub, mul div ...  
-SIGSEGV   <span class="p">|</span> <span class="m">00</span> <span class="m">00</span>        <span class="p">|</span> jcc  
-SIGFPE    <span class="p">|</span> <span class="m">30</span> C0 F6 F8  <span class="p">|</span> cmp  
-</code></pre></td></tr></table>
-</div>
-</div><p>ps:gdb python必须要在gdb中执行。使用<code>source your-python-file</code>这个命令来执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">gdb</span>  
-<span class="kn">import</span> <span class="nn">struct</span>  
+SIGILL    <span class=p>|</span> <span class=m>06</span>           <span class=p>|</span> mov, lea ...  
+SIGTRAP   <span class=p>|</span> CC           <span class=p>|</span> add, sub, mul div ...  
+SIGSEGV   <span class=p>|</span> <span class=m>00</span> <span class=m>00</span>        <span class=p>|</span> jcc  
+SIGFPE    <span class=p>|</span> <span class=m>30</span> C0 F6 F8  <span class=p>|</span> cmp  
+</code></pre></td></tr></table></div></div><p>ps:gdb python必须要在gdb中执行。使用<code>source your-python-file</code>这个命令来执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>gdb</span>  
+<span class=kn>import</span> <span class=nn>struct</span>  
   
-<span class="k">class</span> <span class="nc">Opcode</span><span class="p">:</span>  <span class="c1">#opcode结构  </span>
-  <span class="n">opcode</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
-  <span class="n">val1</span> <span class="o">=</span> <span class="mi">0</span>  
-  <span class="n">const</span> <span class="o">=</span> <span class="mi">0</span>  
-  <span class="n">src</span> <span class="o">=</span> <span class="mi">0</span>  
-  <span class="n">dest</span> <span class="o">=</span> <span class="mi">0</span>  
-  <span class="n">final</span> <span class="o">=</span> <span class="mi">0</span>  
-  <span class="n">final2</span> <span class="o">=</span> <span class="mi">0</span>  
+<span class=k>class</span> <span class=nc>Opcode</span><span class=p>:</span>  <span class=c1>#opcode结构  </span>
+  <span class=n>opcode</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>  
+  <span class=n>val1</span> <span class=o>=</span> <span class=mi>0</span>  
+  <span class=n>const</span> <span class=o>=</span> <span class=mi>0</span>  
+  <span class=n>src</span> <span class=o>=</span> <span class=mi>0</span>  
+  <span class=n>dest</span> <span class=o>=</span> <span class=mi>0</span>  
+  <span class=n>final</span> <span class=o>=</span> <span class=mi>0</span>  
+  <span class=n>final2</span> <span class=o>=</span> <span class=mi>0</span>  
   
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opcode</span><span class="p">):</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">opcode</span> <span class="o">=</span> <span class="n">opcode</span>  
-      <span class="n">test</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;&lt;Q&#34;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">opcode</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">val1</span> <span class="o">=</span> <span class="n">test</span> <span class="o">&gt;&gt;</span> <span class="mi">56</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">const</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span> <span class="o">&gt;&gt;</span> <span class="mi">48</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span> <span class="o">&gt;&gt;</span> <span class="mi">40</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span> <span class="o">&gt;&gt;</span> <span class="mi">32</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span>  
-      <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;&lt;I&#34;</span><span class="p">,</span> <span class="p">((</span><span class="n">test</span> <span class="o">&amp;</span> <span class="mh">0xffffffff00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>        
-      <span class="bp">self</span><span class="o">.</span><span class="n">final2</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&#34;&lt;I&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">test</span> <span class="o">&amp;</span> <span class="mh">0xffffffff</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>  
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>opcode</span><span class=p>):</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>opcode</span> <span class=o>=</span> <span class=n>opcode</span>  
+      <span class=n>test</span> <span class=o>=</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;&lt;Q&#34;</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=n>opcode</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span><span class=o>.</span><span class=n>to_bytes</span><span class=p>(</span><span class=mi>8</span><span class=p>,</span> <span class=n>byteorder</span><span class=o>=</span><span class=s1>&#39;big&#39;</span><span class=p>))[</span><span class=mi>0</span><span class=p>]</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>val1</span> <span class=o>=</span> <span class=n>test</span> <span class=o>&gt;&gt;</span> <span class=mi>56</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>const</span> <span class=o>=</span> <span class=p>(</span><span class=n>test</span> <span class=o>&gt;&gt;</span> <span class=mi>48</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xff</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>src</span> <span class=o>=</span> <span class=p>(</span><span class=n>test</span> <span class=o>&gt;&gt;</span> <span class=mi>40</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xff</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>dest</span> <span class=o>=</span> <span class=p>(</span><span class=n>test</span> <span class=o>&gt;&gt;</span> <span class=mi>32</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xff</span>  
+      <span class=bp>self</span><span class=o>.</span><span class=n>final</span> <span class=o>=</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;&lt;I&#34;</span><span class=p>,</span> <span class=p>((</span><span class=n>test</span> <span class=o>&amp;</span> <span class=mh>0xffffffff00</span><span class=p>)</span> <span class=o>&gt;&gt;</span> <span class=mi>8</span><span class=p>)</span><span class=o>.</span><span class=n>to_bytes</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=n>byteorder</span><span class=o>=</span><span class=s1>&#39;big&#39;</span><span class=p>))[</span><span class=mi>0</span><span class=p>]</span>        
+      <span class=bp>self</span><span class=o>.</span><span class=n>final2</span> <span class=o>=</span> <span class=n>struct</span><span class=o>.</span><span class=n>unpack</span><span class=p>(</span><span class=s2>&#34;&lt;I&#34;</span><span class=p>,</span> <span class=p>(</span><span class=n>test</span> <span class=o>&amp;</span> <span class=mh>0xffffffff</span><span class=p>)</span><span class=o>.</span><span class=n>to_bytes</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=n>byteorder</span><span class=o>=</span><span class=s1>&#39;big&#39;</span><span class=p>))[</span><span class=mi>0</span><span class=p>]</span>  
   
-  <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
-      <span class="n">str_out</span> <span class="o">=</span> <span class="s2">&#34;-------------------</span><span class="se">\n</span><span class="s2">&#34;</span>  
-      <span class="n">str_out</span> <span class="o">+=</span> <span class="s2">&#34;OPCODE : </span><span class="si">%s</span><span class="s2">  |  </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcode</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opcode</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="p">)</span>   
-      <span class="n">str_out</span> <span class="o">+=</span> <span class="s2">&#34;val1 = </span><span class="si">%d</span><span class="s2"> | const = </span><span class="si">%d</span><span class="s2"> | src = </span><span class="si">%d</span><span class="s2"> | dest = </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">)</span>  
-      <span class="n">str_out</span> <span class="o">+=</span> <span class="s2">&#34;val1 = </span><span class="si">%s</span><span class="s2"> | const = </span><span class="si">%s</span><span class="s2"> | src = </span><span class="si">%s</span><span class="s2"> | dest = </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val1</span><span class="p">),</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">const</span><span class="p">),</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="p">),</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">))</span>  
-      <span class="n">str_out</span> <span class="o">+=</span> <span class="s2">&#34;final = </span><span class="si">%d</span><span class="s2">    |   final2 =  </span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final2</span><span class="p">)</span>  
-      <span class="n">str_out</span> <span class="o">+=</span> <span class="s2">&#34;-------------------</span><span class="se">\n</span><span class="s2">&#34;</span>  
-      <span class="k">return</span> <span class="n">str_out</span>  
+  <span class=k>def</span> <span class=fm>__repr__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>  
+      <span class=n>str_out</span> <span class=o>=</span> <span class=s2>&#34;-------------------</span><span class=se>\n</span><span class=s2>&#34;</span>  
+      <span class=n>str_out</span> <span class=o>+=</span> <span class=s2>&#34;OPCODE : </span><span class=si>%s</span><span class=s2>  |  </span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>opcode</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>opcode</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=p>)</span>   
+      <span class=n>str_out</span> <span class=o>+=</span> <span class=s2>&#34;val1 = </span><span class=si>%d</span><span class=s2> | const = </span><span class=si>%d</span><span class=s2> | src = </span><span class=si>%d</span><span class=s2> | dest = </span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>val1</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>const</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>dest</span><span class=p>)</span>  
+      <span class=n>str_out</span> <span class=o>+=</span> <span class=s2>&#34;val1 = </span><span class=si>%s</span><span class=s2> | const = </span><span class=si>%s</span><span class=s2> | src = </span><span class=si>%s</span><span class=s2> | dest = </span><span class=si>%s</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=nb>hex</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>val1</span><span class=p>),</span> <span class=nb>hex</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>const</span><span class=p>),</span> <span class=nb>hex</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>src</span><span class=p>),</span> <span class=nb>hex</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>dest</span><span class=p>))</span>  
+      <span class=n>str_out</span> <span class=o>+=</span> <span class=s2>&#34;final = </span><span class=si>%d</span><span class=s2>    |   final2 =  </span><span class=si>%d</span><span class=s2> </span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>final</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>final2</span><span class=p>)</span>  
+      <span class=n>str_out</span> <span class=o>+=</span> <span class=s2>&#34;-------------------</span><span class=se>\n</span><span class=s2>&#34;</span>  
+      <span class=k>return</span> <span class=n>str_out</span>  
   
   
-<span class="n">sign</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">:</span> <span class="s2">&#34;SIGILL&#34;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">:</span> <span class="s2">&#34;SIGTRAP&#34;</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="s2">&#34;SIGFPE&#34;</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">:</span> <span class="s2">&#34;SIGSEGV&#34;</span> <span class="p">}</span>  
-<span class="n">mov_ins</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: mov r</span><span class="si">%d</span><span class="s2"> r</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: mov r</span><span class="si">%d</span><span class="s2"> 0x</span><span class="si">%x</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="p">,</span><span class="mi">2</span><span class="p">:</span> <span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: mov r</span><span class="si">%d</span><span class="s2"> [r</span><span class="si">%d</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="mi">32</span><span class="p">:</span> <span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: mov [r</span><span class="si">%d</span><span class="s2">] r</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">}</span>  
-<span class="n">ops</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;add&#34;</span> <span class="p">,</span> <span class="s2">&#34;sub&#34;</span> <span class="p">,</span>  <span class="s2">&#34;mul&#34;</span> <span class="p">,</span> <span class="s2">&#34;div&#34;</span> <span class="p">,</span> <span class="s2">&#34;mod&#34;</span> <span class="p">,</span> <span class="s2">&#34;or&#34;</span> <span class="p">,</span> <span class="s2">&#34;and&#34;</span> <span class="p">,</span> <span class="s2">&#34;xor&#34;</span> <span class="p">,</span> <span class="s2">&#34;lsh&#34;</span> <span class="p">,</span> <span class="s2">&#34;rsh&#34;</span><span class="p">]</span>  
-<span class="n">op_sym</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;+&#34;</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="s2">&#34;%&#34;</span><span class="p">,</span> <span class="s2">&#34;|&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;&#34;</span><span class="p">,</span> <span class="s2">&#34;^&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;&lt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&gt;&gt;&#34;</span><span class="p">]</span>  
-<span class="n">str_ops</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> r</span><span class="si">%d</span><span class="s2"> r</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> r</span><span class="si">%d</span><span class="s2"> 0x</span><span class="si">%x</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">]</span>  
-<span class="n">jmp</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;eq&#34;</span><span class="p">,</span> <span class="s2">&#34;neq&#34;</span><span class="p">,</span> <span class="s2">&#34;le&#34;</span><span class="p">,</span> <span class="s2">&#34;lt&#34;</span><span class="p">,</span> <span class="s2">&#34;ge&#34;</span><span class="p">,</span> <span class="s2">&#34;gt&#34;</span><span class="p">]</span>  
+<span class=n>sign</span> <span class=o>=</span> <span class=p>{</span><span class=mi>4</span><span class=p>:</span> <span class=s2>&#34;SIGILL&#34;</span><span class=p>,</span> <span class=mi>5</span> <span class=p>:</span> <span class=s2>&#34;SIGTRAP&#34;</span><span class=p>,</span> <span class=mi>8</span><span class=p>:</span> <span class=s2>&#34;SIGFPE&#34;</span><span class=p>,</span> <span class=mh>0xb</span><span class=p>:</span> <span class=s2>&#34;SIGSEGV&#34;</span> <span class=p>}</span>  
+<span class=n>mov_ins</span> <span class=o>=</span> <span class=p>{</span><span class=mi>0</span><span class=p>:</span> <span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: mov r</span><span class=si>%d</span><span class=s2> r</span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span><span class=mi>1</span><span class=p>:</span> <span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: mov r</span><span class=si>%d</span><span class=s2> 0x</span><span class=si>%x</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=p>,</span><span class=mi>2</span><span class=p>:</span> <span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: mov r</span><span class=si>%d</span><span class=s2> [r</span><span class=si>%d</span><span class=s2>]</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=mi>32</span><span class=p>:</span> <span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: mov [r</span><span class=si>%d</span><span class=s2>] r</span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>}</span>  
+<span class=n>ops</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;add&#34;</span> <span class=p>,</span> <span class=s2>&#34;sub&#34;</span> <span class=p>,</span>  <span class=s2>&#34;mul&#34;</span> <span class=p>,</span> <span class=s2>&#34;div&#34;</span> <span class=p>,</span> <span class=s2>&#34;mod&#34;</span> <span class=p>,</span> <span class=s2>&#34;or&#34;</span> <span class=p>,</span> <span class=s2>&#34;and&#34;</span> <span class=p>,</span> <span class=s2>&#34;xor&#34;</span> <span class=p>,</span> <span class=s2>&#34;lsh&#34;</span> <span class=p>,</span> <span class=s2>&#34;rsh&#34;</span><span class=p>]</span>  
+<span class=n>op_sym</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;+&#34;</span><span class=p>,</span> <span class=s2>&#34;-&#34;</span><span class=p>,</span> <span class=s2>&#34;*&#34;</span><span class=p>,</span> <span class=s2>&#34;/&#34;</span><span class=p>,</span> <span class=s2>&#34;%&#34;</span><span class=p>,</span> <span class=s2>&#34;|&#34;</span><span class=p>,</span> <span class=s2>&#34;&amp;&#34;</span><span class=p>,</span> <span class=s2>&#34;^&#34;</span><span class=p>,</span> <span class=s2>&#34;&lt;&lt;&#34;</span><span class=p>,</span> <span class=s2>&#34;&gt;&gt;&#34;</span><span class=p>]</span>  
+<span class=n>str_ops</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: </span><span class=si>%s</span><span class=s2> r</span><span class=si>%d</span><span class=s2> r</span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: </span><span class=si>%s</span><span class=s2> r</span><span class=si>%d</span><span class=s2> 0x</span><span class=si>%x</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>]</span>  
+<span class=n>jmp</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;&#34;</span><span class=p>,</span> <span class=s2>&#34;eq&#34;</span><span class=p>,</span> <span class=s2>&#34;neq&#34;</span><span class=p>,</span> <span class=s2>&#34;le&#34;</span><span class=p>,</span> <span class=s2>&#34;lt&#34;</span><span class=p>,</span> <span class=s2>&#34;ge&#34;</span><span class=p>,</span> <span class=s2>&#34;gt&#34;</span><span class=p>]</span>  
   
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;ins.out&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>  
+<span class=n>f</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;ins.out&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>)</span>  
   
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;file signal_vm&#34;</span><span class="p">)</span>  <span class="c1"># 加载被调试的可执行程序文件  </span>
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;set pagination off&#34;</span><span class="p">)</span> <span class="c1">#gdb会全部输出，中间不暂停  </span>
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;set follow-fork-mode parent&#34;</span><span class="p">)</span> <span class="c1">#fork之后继续调试父进程  </span>
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;b * 0x400C5B&#34;</span><span class="p">)</span>  <span class="c1"># 获取子进程内存值的ptrace处  </span>
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;b * 0x400C67&#34;</span><span class="p">)</span>  <span class="c1"># signal控制跳转处  </span>
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;b * 0x401448&#34;</span><span class="p">)</span>  <span class="c1"># 设置寄存器值的ptrace处  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;file signal_vm&#34;</span><span class=p>)</span>  <span class=c1># 加载被调试的可执行程序文件  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;set pagination off&#34;</span><span class=p>)</span> <span class=c1>#gdb会全部输出，中间不暂停  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;set follow-fork-mode parent&#34;</span><span class=p>)</span> <span class=c1>#fork之后继续调试父进程  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;b * 0x400C5B&#34;</span><span class=p>)</span>  <span class=c1># 获取子进程内存值的ptrace处  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;b * 0x400C67&#34;</span><span class=p>)</span>  <span class=c1># signal控制跳转处  </span>
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;b * 0x401448&#34;</span><span class=p>)</span>  <span class=c1># 设置寄存器值的ptrace处  </span>
   
-<span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;r &lt; input&#34;</span><span class="p">)</span>  
+<span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;r &lt; input&#34;</span><span class=p>)</span>  
   
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>  
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>  
-  <span class="k">try</span><span class="p">:</span>  
-      <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;p/x $rdx&#34;</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>  
-      <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
-          <span class="n">a</span> <span class="o">=</span> <span class="n">i</span>  
-      <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">a</span>  
-      <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;ni&#34;</span><span class="p">)</span> <span class="c1"># 执行call ptrace后获取rax中的返回值  </span>
-  <span class="k">except</span> <span class="n">gdb</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>  
-      <span class="k">break</span>  
-  <span class="n">opcode</span> <span class="o">=</span> <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;p/x $rax&#34;</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  
-  <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>  
+<span class=n>i</span> <span class=o>=</span> <span class=mi>0</span>  
+<span class=k>while</span> <span class=bp>True</span><span class=p>:</span>  
+  <span class=k>try</span><span class=p>:</span>  
+      <span class=n>i</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;p/x $rdx&#34;</span><span class=p>,</span> <span class=n>to_string</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;=&#34;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>(),</span><span class=mi>16</span><span class=p>)</span>  
+      <span class=k>if</span> <span class=n>a</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>  
+          <span class=n>a</span> <span class=o>=</span> <span class=n>i</span>  
+      <span class=n>i</span> <span class=o>=</span> <span class=n>i</span> <span class=o>%</span> <span class=n>a</span>  
+      <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;ni&#34;</span><span class=p>)</span> <span class=c1># 执行call ptrace后获取rax中的返回值  </span>
+  <span class=k>except</span> <span class=n>gdb</span><span class=o>.</span><span class=n>error</span><span class=p>:</span>  
+      <span class=k>break</span>  
+  <span class=n>opcode</span> <span class=o>=</span> <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;p/x $rax&#34;</span><span class=p>,</span> <span class=n>to_string</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;=&#34;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>  
+  <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;c&#34;</span><span class=p>)</span>  
   
-  <span class="c1"># 将BYTE1(stat_addr[0])保存在al中来控制跳转的，直接获取al的值  </span>
-  <span class="n">sig</span> <span class="o">=</span> <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;p/x $al&#34;</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  
-  <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>  
+  <span class=c1># 将BYTE1(stat_addr[0])保存在al中来控制跳转的，直接获取al的值  </span>
+  <span class=n>sig</span> <span class=o>=</span> <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;p/x $al&#34;</span><span class=p>,</span> <span class=n>to_string</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;=&#34;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>  
+  <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;c&#34;</span><span class=p>)</span>  
   
-  <span class="k">print</span><span class="p">(</span><span class="n">sign</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">16</span><span class="p">)])</span>  
-  <span class="n">op</span> <span class="o">=</span> <span class="n">Opcode</span><span class="p">(</span><span class="n">opcode</span><span class="p">)</span>      
-  <span class="k">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>  
+  <span class=k>print</span><span class=p>(</span><span class=n>sign</span><span class=p>[</span><span class=nb>int</span><span class=p>(</span><span class=n>sig</span><span class=p>,</span> <span class=mi>16</span><span class=p>)])</span>  
+  <span class=n>op</span> <span class=o>=</span> <span class=n>Opcode</span><span class=p>(</span><span class=n>opcode</span><span class=p>)</span>      
+  <span class=k>print</span><span class=p>(</span><span class=n>op</span><span class=p>)</span>  
   
-  <span class="c1"># 根据sig和opcode进行翻译  </span>
-  <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>  
-      <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">const</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mov_ins</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">const</span><span class="p">]</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">final</span><span class="p">))</span>  
-      <span class="k">else</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mov_ins</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">const</span><span class="p">]</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">dest</span><span class="p">))</span>  
+  <span class=c1># 根据sig和opcode进行翻译  </span>
+  <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>sig</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>==</span> <span class=mi>4</span><span class=p>:</span>  
+      <span class=k>if</span> <span class=n>op</span><span class=o>.</span><span class=n>const</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>mov_ins</span><span class=p>[</span><span class=n>op</span><span class=o>.</span><span class=n>const</span><span class=p>]</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>final</span><span class=p>))</span>  
+      <span class=k>else</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>mov_ins</span><span class=p>[</span><span class=n>op</span><span class=o>.</span><span class=n>const</span><span class=p>]</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>dest</span><span class=p>))</span>  
   
-  <span class="k">elif</span> <span class="nb">int</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  
+  <span class=k>elif</span> <span class=nb>int</span><span class=p>(</span><span class=n>sig</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>==</span> <span class=mi>5</span><span class=p>:</span>  
   
-      <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">const</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">str_ops</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ops</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">val1</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">final</span><span class="p">))</span>        
-      <span class="k">else</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">str_ops</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ops</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">val1</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">dest</span><span class="p">))</span>        
+      <span class=k>if</span> <span class=n>op</span><span class=o>.</span><span class=n>const</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>str_ops</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>ops</span><span class=p>[</span><span class=n>op</span><span class=o>.</span><span class=n>val1</span><span class=p>],</span> <span class=n>op</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>final</span><span class=p>))</span>        
+      <span class=k>else</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>str_ops</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>ops</span><span class=p>[</span><span class=n>op</span><span class=o>.</span><span class=n>val1</span><span class=p>],</span> <span class=n>op</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>dest</span><span class=p>))</span>        
   
-  <span class="k">elif</span> <span class="nb">int</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>   
-      <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">src</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: cmp r</span><span class="si">%d</span><span class="s2"> 0x</span><span class="si">%x</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">dest</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">final2</span><span class="p">))</span>  
-      <span class="k">else</span><span class="p">:</span>  
-          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: cmp r</span><span class="si">%d</span><span class="s2"> r</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">dest</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">final2</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">))</span>  
+  <span class=k>elif</span> <span class=nb>int</span><span class=p>(</span><span class=n>sig</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>==</span> <span class=mi>8</span><span class=p>:</span>   
+      <span class=k>if</span> <span class=n>op</span><span class=o>.</span><span class=n>src</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: cmp r</span><span class=si>%d</span><span class=s2> 0x</span><span class=si>%x</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>dest</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>final2</span><span class=p>))</span>  
+      <span class=k>else</span><span class=p>:</span>  
+          <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: cmp r</span><span class=si>%d</span><span class=s2> r</span><span class=si>%d</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>dest</span><span class=p>,</span> <span class=n>op</span><span class=o>.</span><span class=n>final2</span> <span class=o>&amp;</span> <span class=mh>0xff</span><span class=p>))</span>  
   
-  <span class="k">elif</span> <span class="nb">int</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0xb</span><span class="p">:</span>  
-      <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2">: jmp </span><span class="si">%s</span><span class="s2"> 0x</span><span class="si">%x</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">jmp</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">src</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">dest</span><span class="p">))</span>  
+  <span class=k>elif</span> <span class=nb>int</span><span class=p>(</span><span class=n>sig</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>==</span> <span class=mh>0xb</span><span class=p>:</span>  
+      <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%d</span><span class=s2>: jmp </span><span class=si>%s</span><span class=s2> 0x</span><span class=si>%x</span><span class=se>\n</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>jmp</span><span class=p>[</span><span class=n>op</span><span class=o>.</span><span class=n>src</span><span class=p>],</span> <span class=n>op</span><span class=o>.</span><span class=n>dest</span><span class=p>))</span>  
   
-  <span class="k">else</span><span class="p">:</span>  
-      <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Error&#34;</span><span class="p">)</span>  
+  <span class=k>else</span><span class=p>:</span>  
+      <span class=k>print</span><span class=p>(</span><span class=s2>&#34;Error&#34;</span><span class=p>)</span>  
   
-  <span class="n">gdb</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>  
-  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  
-<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>在2.5.60版Linux内核及以后，GDB对使用fork/vfork创建子进程的程序提供了follow-fork-mode选项来支持多进程调试。<br>
-follow-fork-mode的用法为：<code>set follow-fork-mode [parent|child]</code><br>
-parent: fork之后继续调试父进程，子进程不受影响。<br>
-child: fork之后调试子进程，父进程不受影响。<br>
-因此如果需要调试子进程，在启动gdb后：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> follow-fork-mode child  
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="signal-vm-delta">signal vm delta</h2>
-<p>delta版本除了加入写子进程的内存之外，算法也更加复杂。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;sys/ptrace.h&gt;  </span><span class="cp">
-</span><span class="cp"></span><span class="kt">long</span> <span class="kt">int</span> <span class="n">ptrace</span><span class="p">(</span><span class="k">enum</span> <span class="nc">__ptrace_request</span> <span class="n">request</span><span class="p">,</span> <span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">addr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">data</span><span class="p">)</span>  
-<span class="n">PTRACE_PEEKTEXT</span> <span class="mi">1</span>  
-<span class="n">PTRACE_POKETEXT</span> <span class="mi">4</span>  
-<span class="n">PTRACE_SETREGS</span> <span class="mi">13</span>  
-<span class="n">PTRACE_CONT</span> <span class="mi">7</span>  
-<span class="n">PTRACE_KILL</span> <span class="mi">8</span>  
-<span class="n">PTRACE_GETREGS</span> <span class="mi">12</span>  
-<span class="n">PTRACE_TRACEME</span> <span class="mi">0</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>每个request的详细信息文档: <a href="http://godorz.info/2011/02/process-tracing-using-ptrace/">http://godorz.info/2011/02/process-tracing-using-ptrace/</a></p>
-<h2 id="参考链接">参考链接</h2>
-<p><a href="https://blog.bi0s.in/2019/08/08/RE/Linux/de1ctf19-signal-vm/">https://blog.bi0s.in/2019/08/08/RE/Linux/de1ctf19-signal-vm/</a><br>
-<a href="https://blog.bi0s.in/2019/08/09/RE/Linux/de1ctf19-signal-vm-de1ta/">https://blog.bi0s.in/2019/08/09/RE/Linux/de1ctf19-signal-vm-de1ta/</a></p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
-                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/de1ctf2019-signal-vm/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/de1ctf2019-signal-vm/" data-title="De1CTF2019-signal-vm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/de1ctf2019-signal-vm/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/de1ctf2019-signal-vm/" data-title="De1CTF2019-signal-vm"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/de1ctf2019-signal-vm/" data-title="De1CTF2019-signal-vm"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/de1ctf2019-signal-vm/" data-title="De1CTF2019-signal-vm"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/inshack-2019-papavm/" class="prev" rel="prev" title="InsHack-2019-papavm"><i class="fas fa-angle-left fa-fw"></i>InsHack-2019-papavm</a>
-            <a href="/de1ctf-2020-re/" class="next" rel="next" title="De1CTF-2020--re">De1CTF-2020--re<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+  <span class=n>gdb</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s2>&#34;c&#34;</span><span class=p>)</span>  
+  <span class=n>i</span> <span class=o>=</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span>  
+<span class=n>f</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>  
+</code></pre></td></tr></table></div></div><p>在2.5.60版Linux内核及以后，GDB对使用fork/vfork创建子进程的程序提供了follow-fork-mode选项来支持多进程调试。<br>follow-fork-mode的用法为：<code>set follow-fork-mode [parent|child]</code><br>parent: fork之后继续调试父进程，子进程不受影响。<br>child: fork之后调试子进程，父进程不受影响。<br>因此如果需要调试子进程，在启动gdb后：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=o>(</span>gdb<span class=o>)</span> <span class=nb>set</span> follow-fork-mode child  
+</code></pre></td></tr></table></div></div><h2 id=signal-vm-delta>signal vm delta</h2><p>delta版本除了加入写子进程的内存之外，算法也更加复杂。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;sys/ptrace.h&gt;  </span><span class=cp>
+</span><span class=cp></span><span class=kt>long</span> <span class=kt>int</span> <span class=n>ptrace</span><span class=p>(</span><span class=k>enum</span> <span class=nc>__ptrace_request</span> <span class=n>request</span><span class=p>,</span> <span class=n>pid_t</span> <span class=n>pid</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span> <span class=n>addr</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span> <span class=n>data</span><span class=p>)</span>  
+<span class=n>PTRACE_PEEKTEXT</span> <span class=mi>1</span>  
+<span class=n>PTRACE_POKETEXT</span> <span class=mi>4</span>  
+<span class=n>PTRACE_SETREGS</span> <span class=mi>13</span>  
+<span class=n>PTRACE_CONT</span> <span class=mi>7</span>  
+<span class=n>PTRACE_KILL</span> <span class=mi>8</span>  
+<span class=n>PTRACE_GETREGS</span> <span class=mi>12</span>  
+<span class=n>PTRACE_TRACEME</span> <span class=mi>0</span>  
+</code></pre></td></tr></table></div></div><p>每个request的详细信息文档: <a href=http://godorz.info/2011/02/process-tracing-using-ptrace/>http://godorz.info/2011/02/process-tracing-using-ptrace/</a></p><h2 id=参考链接>参考链接</h2><p><a href=https://blog.bi0s.in/2019/08/08/RE/Linux/de1ctf19-signal-vm/>https://blog.bi0s.in/2019/08/08/RE/Linux/de1ctf19-signal-vm/</a><br><a href=https://blog.bi0s.in/2019/08/09/RE/Linux/de1ctf19-signal-vm-de1ta/>https://blog.bi0s.in/2019/08/09/RE/Linux/de1ctf19-signal-vm-de1ta/</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-04-02&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e target=_blank title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+<i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/de1ctf2019-signal-vm/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/de1ctf2019-signal-vm/ data-title=De1CTF2019-signal-vm><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/de1ctf2019-signal-vm/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/de1ctf2019-signal-vm/ data-title=De1CTF2019-signal-vm><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/de1ctf2019-signal-vm/ data-title=De1CTF2019-signal-vm><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/de1ctf2019-signal-vm/ data-title=De1CTF2019-signal-vm><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/inshack-2019-papavm/ class=prev rel=prev title=InsHack-2019-papavm><i class="fas fa-angle-left fa-fw"></i>InsHack-2019-papavm</a>
+<a href=/de1ctf-2020-re/ class=next rel=next title=De1CTF-2020--re>De1CTF-2020--re<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

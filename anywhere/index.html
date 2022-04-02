@@ -1,766 +1,394 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>LaunchAnywhere 和 BroadcastAnywhere - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="LaunchAnywhere 和 BroadcastAnywhere" />
-<meta property="og:description" content="看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。 LaunchAnywhere Intend Based提取漏洞，可以突破应用间的权限" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/anywhere/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2021-10-22T14:13:32+08:00" />
-<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="LaunchAnywhere 和 BroadcastAnywhere"/>
-<meta name="twitter:description" content="看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。 LaunchAnywhere Intend Based提取漏洞，可以突破应用间的权限"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/anywhere/" /><link rel="prev" href="https://linkleyping.top/url-bypass/" /><link rel="next" href="https://linkleyping.top/pwnable_kr_1/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "LaunchAnywhere 和 BroadcastAnywhere",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/anywhere\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  4520 ,
-        "url": "https:\/\/linkleyping.top\/anywhere\/","datePublished": "2021-10-22T14:13:32+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">LaunchAnywhere 和 BroadcastAnywhere</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-22">2021-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4520 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#launchanywhere">LaunchAnywhere</a>
-      <ul>
-        <li><a href="#accountmanager">AccountManager</a></li>
-        <li><a href="#漏洞原理">漏洞原理</a></li>
-        <li><a href="#利用">利用</a></li>
-        <li><a href="#修复">修复</a></li>
-      </ul>
-    </li>
-    <li><a href="#broadcastanywhere">BroadcastAnywhere</a>
-      <ul>
-        <li><a href="#漏洞原理-1">漏洞原理</a></li>
-        <li><a href="#利用-1">利用</a></li>
-        <li><a href="#修复-1">修复</a></li>
-      </ul>
-    </li>
-    <li><a href="#参考链接">参考链接</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。</p>
-<h2 id="launchanywhere">LaunchAnywhere</h2>
-<p>Intend Based提取漏洞，可以突破应用间的权限隔离，达到调用任意私有Activity(exported=false)的目的。</p>
-<h3 id="accountmanager">AccountManager</h3>
-<p>帐号管理器，集中管理apps注册的不同类型的帐号。<br>
-不同类型的帐号服务会使用不同的帐号登录和鉴权方式，所以<code>AccountManager</code>为不同类型的帐号提供一个插件式<code>authenticator</code>模块，<code>authenticators</code>自己处理帐号登录/认证的具体细节，也可以自己存储帐号信息。</p>
-<p><code>AccountManager</code>是一个面向应用程序开发的组件，它提供了一套对应于<code>IAccountManager</code>协议的应用程序接口；这组接口通过Binder机制与系统服务<code>AccountManagerService</code>进行通信，协作完成帐号相关的操作。同时，<code>AccountManager</code>接收<code>authenticators</code>提供的回调，以便在帐号操作完成之后向调用此帐号服务的业务返回对应的接口，同时触发这个业务对结果的处理。</p>
-<ul>
-<li><code>authenticators</code>即注册帐号服务的app；</li>
-<li>业务调用方 即使用<code>authenticators</code>提供的帐号服务的第三方，也可以是<code>authenticator</code>自己</li>
-</ul>
-<p>具体过程：</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/1.png">
-            <img src="/images/anywhere/1.png" alt=""  />
-        </a>
-    </div>
-</p>
-<h3 id="漏洞原理">漏洞原理</h3>
-<p>AccountManager.addAccount:</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/addAccount.png">
-            <img src="/images/anywhere/addAccount.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>最后执行一个<code>AmsTask</code>的异步任务。<code>mRespone</code>是一个Binder对象，当<code>AuthenticationService</code>指定Intent后，就是把Intent保存到这个respone对象里。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/mResponse.png">
-            <img src="/images/anywhere/mResponse.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>然后在Response中直接startActivity</p>
-<p>对于有系统权限的用户可以不管组件是否是<code>exported=true</code>都可以直接调用:</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/permission.png">
-            <img src="/images/anywhere/permission.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>如图，System用户直接返回<code>PERMISSION_GRANTED</code></p>
-<p>根据以上分析可知，理论上<code>AuthenticationService</code>可以随意指定Intent。如果可以让系统Setting(uid是system进程)调用<code>addAccount</code>方法，<code>EvilAuthenService</code>就可以指定任何Intent。</p>
-<h3 id="利用">利用</h3>
-<blockquote>
-<ol>
-<li>AppA请求添加一个特定类型的网络账号</li>
-<li>系统查询到AppB可以提供一个该类型的网络账号服务，系统向AppB发起请求</li>
-<li>AppB返回了一个intent给系统，系统把intent转发给appA</li>
-<li>AccountManagerResponse在AppA的进程空间内调用 startActivity(intent)调起一个Activity，AccountManagerResponse是FrameWork中的代码， AppA对这一调用毫不知情。</li>
-</ol>
-</blockquote>
-<p>如果AppA是一个system权限应用，比如Settings，那么AppA能够调用起任意AppB指定的未导出Activity.</p>
-<p>Settings提供调用addAccount的接口。只要调用com.android.settings.accounts.AddAccountSettings，并给Intent带上特定的参数，即可让Settings触发launchAnyWhere：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Intent</span> <span class="n">intent1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
-<span class="n">intent1</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span>
-        <span class="s">&#34;com.android.settings&#34;</span><span class="o">,</span>
-        <span class="s">&#34;com.android.settings.accounts.AddAccountSettings&#34;</span><span class="o">));</span>
-<span class="n">intent1</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_RUN</span><span class="o">);</span>
-<span class="n">intent1</span><span class="o">.</span><span class="na">setFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_ACTIVITY_NEW_TASK</span><span class="o">);</span>
-<span class="n">String</span> <span class="n">authTypes</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span><span class="n">Constants</span><span class="o">.</span><span class="na">ACCOUNT_TYPE</span><span class="o">};</span>
-<span class="n">intent1</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;account_types&#34;</span><span class="o">,</span> <span class="n">authTypes</span><span class="o">);</span>
-<span class="n">AuthenticatorActivity</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">startActivity</span><span class="o">(</span><span class="n">intent1</span><span class="o">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>过程：</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/account.png">
-            <img src="/images/anywhere/account.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>因为可以调用任意组件。所以存在以下应用场景：</p>
-<ul>
-<li>重置pin码：直接打开重置pin码的页面绕过pin码认证界面</li>
-<li>调用微信内置浏览器</li>
-<li>调用支付宝钱包内置浏览器</li>
-</ul>
-<h3 id="修复">修复</h3>
-<p>检查<code>AuthenticationService</code>返回的Intent所指向的Activity是否与AppB具有相同的签名。</p>
-<h2 id="broadcastanywhere">BroadcastAnywhere</h2>
-<p>与LaunchAnywhere原理相似，通过这个漏洞，攻击者可以无视BroadcastReceiver组件访问限制，以system用户的身份发送广播。</p>
-<h3 id="漏洞原理-1">漏洞原理</h3>
-<p><code>AddAccountSettings</code>的<code>addAccount</code>方法：</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/AddAccountSetting.png">
-            <img src="/images/anywhere/AddAccountSetting.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p><code>mPendingIntent</code>用来做身份识别，其中intent部分为简单的<code>new Intent()</code>即空的Intent对象。</p>
-<p>PendingIntent对象可以按预先指定的动作进行触发，当这个对象传递（通过Binder）到其他进程（不同uid的用户）,其他进程利用这个PendingIntent对象，可以原进程的身份权限执行指定的触发动作。另外，由于触发的动作是由系统进程执行的，因此哪怕原进程已经不存在了，PendingIntent对象上的触发动作依然有效。</p>
-<p>比如说A进程作为发起端，它可以从系统“获取”一个PendingIntent，然后A进程可以将PendingIntent对象通过binder机制“传递”给B进程，再由B进程在未来某个合适时机，“回调”PendingIntent对象的send()动作，完成激发。</p>
-<p>在Android系统中，最适合做集中性管理的组件就是AMS（Activity Manager Service）, 由它承担起管理所有PendingIntent的职责。具体可见参考链接中的【说说PendingIntent的内部机制】</p>
-<blockquote>
-<p>​	我们先要理解，所谓的“发起端获取PendingIntent”到底指的是什么。难道只是简单new一个PendingIntent对象吗？当然不是。此处的“获取”动作其实还含有向AMS“注册”intent的语义。</p>
-<p>​    在PendingIntent.java文件中，我们可以看到有如下几个比较常见的静态函数：</p>
-<ul>
-<li>public static PendingIntent <strong>getActivity</strong>(Context context, int requestCode, Intent intent, int flags)</li>
-<li>public static PendingIntent <strong>getBroadcast</strong>(Context context, int requestCode, Intent intent, int flags)</li>
-<li>public static PendingIntent <strong>getService</strong>(Context context, int requestCode, Intent intent, int flags)</li>
-<li>public static PendingIntent <strong>getActivities</strong>(Context context, int requestCode, Intent[] intents, int flags)</li>
-<li>public static PendingIntent <strong>getActivities</strong>(Context context, int requestCode, Intent[] intents, int flags, Bundle options)</li>
-</ul>
-<p>它们就是我们常用的获取PendingIntent的动作了。</p>
-<p>上面的getActivity()的意思其实是，获取一个PendingIntent对象，而且该对象日后激发时所做的事情是启动一个新activity。也就是说，当它异步激发时，会执行类似Context.startActivity()那样的动作。相应地，getBroadcast()和getService()所获取的PendingIntent对象在激发时，会分别执行类似Context..sendBroadcast()和Context.startService()这样的动作。至于最后两个getActivities()，用得比较少，激发时可以启动几个activity。</p>
-</blockquote>
-<p>PendingIntent.getBroadcast源码：</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/anywhere/pendingIntent_1.png">
-            <img src="/images/anywhere/pendingIntent_1.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>实际调用了ActivityManagerService中的<code>getIntentSender</code>方法。关键代码如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">IIntentSender</span> <span class="nf">getIntentSender</span><span class="o">(</span><span class="kt">int</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">packageName</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="n">String</span> <span class="n">resultWho</span><span class="o">,</span> <span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">Intent</span><span class="o">[]</span> <span class="n">intents</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">resolvedTypes</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">options</span><span class="o">,</span> <span class="kt">int</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>LaunchAnywhere 和 BroadcastAnywhere - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="LaunchAnywhere 和 BroadcastAnywhere"><meta property="og:description" content="看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。 LaunchAnywhere Intend Based提取漏洞，可以突破应用间的权限"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/anywhere/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2021-10-22T14:13:32+08:00"><meta property="article:modified_time" content="2022-04-02T20:47:48+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="LaunchAnywhere 和 BroadcastAnywhere"><meta name=twitter:description content="看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。 LaunchAnywhere Intend Based提取漏洞，可以突破应用间的权限"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/anywhere/><link rel=prev href=https://linkleyping.top/url-bypass/><link rel=next href=https://linkleyping.top/pwnable_kr_1/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"LaunchAnywhere 和 BroadcastAnywhere","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/anywhere\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":4520,"url":"https:\/\/linkleyping.top\/anywhere\/","datePublished":"2021-10-22T14:13:32+08:00","dateModified":"2022-04-02T20:47:48+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">LaunchAnywhere 和 BroadcastAnywhere</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-10-22>2021-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4520 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#launchanywhere>LaunchAnywhere</a><ul><li><a href=#accountmanager>AccountManager</a></li><li><a href=#漏洞原理>漏洞原理</a></li><li><a href=#利用>利用</a></li><li><a href=#修复>修复</a></li></ul></li><li><a href=#broadcastanywhere>BroadcastAnywhere</a><ul><li><a href=#漏洞原理-1>漏洞原理</a></li><li><a href=#利用-1>利用</a></li><li><a href=#修复-1>修复</a></li></ul></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=content id=content><p>看起来是好久远的两个洞了，Android 5.0上的。因为字节的比赛了解了一下，就写一下具体原理。</p><h2 id=launchanywhere>LaunchAnywhere</h2><p>Intend Based提取漏洞，可以突破应用间的权限隔离，达到调用任意私有Activity(exported=false)的目的。</p><h3 id=accountmanager>AccountManager</h3><p>帐号管理器，集中管理apps注册的不同类型的帐号。<br>不同类型的帐号服务会使用不同的帐号登录和鉴权方式，所以<code>AccountManager</code>为不同类型的帐号提供一个插件式<code>authenticator</code>模块，<code>authenticators</code>自己处理帐号登录/认证的具体细节，也可以自己存储帐号信息。</p><p><code>AccountManager</code>是一个面向应用程序开发的组件，它提供了一套对应于<code>IAccountManager</code>协议的应用程序接口；这组接口通过Binder机制与系统服务<code>AccountManagerService</code>进行通信，协作完成帐号相关的操作。同时，<code>AccountManager</code>接收<code>authenticators</code>提供的回调，以便在帐号操作完成之后向调用此帐号服务的业务返回对应的接口，同时触发这个业务对结果的处理。</p><ul><li><code>authenticators</code>即注册帐号服务的app；</li><li>业务调用方 即使用<code>authenticators</code>提供的帐号服务的第三方，也可以是<code>authenticator</code>自己</li></ul><p>具体过程：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/1.png data-srcset="/images/anywhere/1.png, /images/anywhere/1.png 1.5x, /images/anywhere/1.png 2x" data-sizes=auto alt=/images/anywhere/1.png title=/images/anywhere/1.png></p><h3 id=漏洞原理>漏洞原理</h3><p>AccountManager.addAccount:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/addAccount.png data-srcset="/images/anywhere/addAccount.png, /images/anywhere/addAccount.png 1.5x, /images/anywhere/addAccount.png 2x" data-sizes=auto alt=/images/anywhere/addAccount.png title=/images/anywhere/addAccount.png></p><p>最后执行一个<code>AmsTask</code>的异步任务。<code>mRespone</code>是一个Binder对象，当<code>AuthenticationService</code>指定Intent后，就是把Intent保存到这个respone对象里。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/mResponse.png data-srcset="/images/anywhere/mResponse.png, /images/anywhere/mResponse.png 1.5x, /images/anywhere/mResponse.png 2x" data-sizes=auto alt=/images/anywhere/mResponse.png title=/images/anywhere/mResponse.png></p><p>然后在Response中直接startActivity</p><p>对于有系统权限的用户可以不管组件是否是<code>exported=true</code>都可以直接调用:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/permission.png data-srcset="/images/anywhere/permission.png, /images/anywhere/permission.png 1.5x, /images/anywhere/permission.png 2x" data-sizes=auto alt=/images/anywhere/permission.png title=/images/anywhere/permission.png></p><p>如图，System用户直接返回<code>PERMISSION_GRANTED</code></p><p>根据以上分析可知，理论上<code>AuthenticationService</code>可以随意指定Intent。如果可以让系统Setting(uid是system进程)调用<code>addAccount</code>方法，<code>EvilAuthenService</code>就可以指定任何Intent。</p><h3 id=利用>利用</h3><blockquote><ol><li>AppA请求添加一个特定类型的网络账号</li><li>系统查询到AppB可以提供一个该类型的网络账号服务，系统向AppB发起请求</li><li>AppB返回了一个intent给系统，系统把intent转发给appA</li><li>AccountManagerResponse在AppA的进程空间内调用 startActivity(intent)调起一个Activity，AccountManagerResponse是FrameWork中的代码， AppA对这一调用毫不知情。</li></ol></blockquote><p>如果AppA是一个system权限应用，比如Settings，那么AppA能够调用起任意AppB指定的未导出Activity.</p><p>Settings提供调用addAccount的接口。只要调用com.android.settings.accounts.AddAccountSettings，并给Intent带上特定的参数，即可让Settings触发launchAnyWhere：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>Intent</span> <span class=n>intent1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>();</span>
+<span class=n>intent1</span><span class=o>.</span><span class=na>setComponent</span><span class=o>(</span><span class=k>new</span> <span class=n>ComponentName</span><span class=o>(</span>
+        <span class=s>&#34;com.android.settings&#34;</span><span class=o>,</span>
+        <span class=s>&#34;com.android.settings.accounts.AddAccountSettings&#34;</span><span class=o>));</span>
+<span class=n>intent1</span><span class=o>.</span><span class=na>setAction</span><span class=o>(</span><span class=n>Intent</span><span class=o>.</span><span class=na>ACTION_RUN</span><span class=o>);</span>
+<span class=n>intent1</span><span class=o>.</span><span class=na>setFlags</span><span class=o>(</span><span class=n>Intent</span><span class=o>.</span><span class=na>FLAG_ACTIVITY_NEW_TASK</span><span class=o>);</span>
+<span class=n>String</span> <span class=n>authTypes</span><span class=o>[]</span> <span class=o>=</span> <span class=o>{</span><span class=n>Constants</span><span class=o>.</span><span class=na>ACCOUNT_TYPE</span><span class=o>};</span>
+<span class=n>intent1</span><span class=o>.</span><span class=na>putExtra</span><span class=o>(</span><span class=s>&#34;account_types&#34;</span><span class=o>,</span> <span class=n>authTypes</span><span class=o>);</span>
+<span class=n>AuthenticatorActivity</span><span class=o>.</span><span class=na>this</span><span class=o>.</span><span class=na>startActivity</span><span class=o>(</span><span class=n>intent1</span><span class=o>);</span>
+</code></pre></td></tr></table></div></div><p>过程：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/account.png data-srcset="/images/anywhere/account.png, /images/anywhere/account.png 1.5x, /images/anywhere/account.png 2x" data-sizes=auto alt=/images/anywhere/account.png title=/images/anywhere/account.png></p><p>因为可以调用任意组件。所以存在以下应用场景：</p><ul><li>重置pin码：直接打开重置pin码的页面绕过pin码认证界面</li><li>调用微信内置浏览器</li><li>调用支付宝钱包内置浏览器</li></ul><h3 id=修复>修复</h3><p>检查<code>AuthenticationService</code>返回的Intent所指向的Activity是否与AppB具有相同的签名。</p><h2 id=broadcastanywhere>BroadcastAnywhere</h2><p>与LaunchAnywhere原理相似，通过这个漏洞，攻击者可以无视BroadcastReceiver组件访问限制，以system用户的身份发送广播。</p><h3 id=漏洞原理-1>漏洞原理</h3><p><code>AddAccountSettings</code>的<code>addAccount</code>方法：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/AddAccountSetting.png data-srcset="/images/anywhere/AddAccountSetting.png, /images/anywhere/AddAccountSetting.png 1.5x, /images/anywhere/AddAccountSetting.png 2x" data-sizes=auto alt=/images/anywhere/AddAccountSetting.png title=/images/anywhere/AddAccountSetting.png></p><p><code>mPendingIntent</code>用来做身份识别，其中intent部分为简单的<code>new Intent()</code>即空的Intent对象。</p><p>PendingIntent对象可以按预先指定的动作进行触发，当这个对象传递（通过Binder）到其他进程（不同uid的用户）,其他进程利用这个PendingIntent对象，可以原进程的身份权限执行指定的触发动作。另外，由于触发的动作是由系统进程执行的，因此哪怕原进程已经不存在了，PendingIntent对象上的触发动作依然有效。</p><p>比如说A进程作为发起端，它可以从系统“获取”一个PendingIntent，然后A进程可以将PendingIntent对象通过binder机制“传递”给B进程，再由B进程在未来某个合适时机，“回调”PendingIntent对象的send()动作，完成激发。</p><p>在Android系统中，最适合做集中性管理的组件就是AMS（Activity Manager Service）, 由它承担起管理所有PendingIntent的职责。具体可见参考链接中的【说说PendingIntent的内部机制】</p><blockquote><p>​ 我们先要理解，所谓的“发起端获取PendingIntent”到底指的是什么。难道只是简单new一个PendingIntent对象吗？当然不是。此处的“获取”动作其实还含有向AMS“注册”intent的语义。</p><p>​ 在PendingIntent.java文件中，我们可以看到有如下几个比较常见的静态函数：</p><ul><li>public static PendingIntent <strong>getActivity</strong>(Context context, int requestCode, Intent intent, int flags)</li><li>public static PendingIntent <strong>getBroadcast</strong>(Context context, int requestCode, Intent intent, int flags)</li><li>public static PendingIntent <strong>getService</strong>(Context context, int requestCode, Intent intent, int flags)</li><li>public static PendingIntent <strong>getActivities</strong>(Context context, int requestCode, Intent[] intents, int flags)</li><li>public static PendingIntent <strong>getActivities</strong>(Context context, int requestCode, Intent[] intents, int flags, Bundle options)</li></ul><p>它们就是我们常用的获取PendingIntent的动作了。</p><p>上面的getActivity()的意思其实是，获取一个PendingIntent对象，而且该对象日后激发时所做的事情是启动一个新activity。也就是说，当它异步激发时，会执行类似Context.startActivity()那样的动作。相应地，getBroadcast()和getService()所获取的PendingIntent对象在激发时，会分别执行类似Context..sendBroadcast()和Context.startService()这样的动作。至于最后两个getActivities()，用得比较少，激发时可以启动几个activity。</p></blockquote><p>PendingIntent.getBroadcast源码：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/anywhere/pendingIntent_1.png data-srcset="/images/anywhere/pendingIntent_1.png, /images/anywhere/pendingIntent_1.png 1.5x, /images/anywhere/pendingIntent_1.png 2x" data-sizes=auto alt=/images/anywhere/pendingIntent_1.png title=/images/anywhere/pendingIntent_1.png></p><p>实际调用了ActivityManagerService中的<code>getIntentSender</code>方法。关键代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>IIntentSender</span> <span class=nf>getIntentSender</span><span class=o>(</span><span class=kt>int</span> <span class=n>type</span><span class=o>,</span> <span class=n>String</span> <span class=n>packageName</span><span class=o>,</span> <span class=n>IBinder</span> <span class=n>token</span><span class=o>,</span> <span class=n>String</span> <span class=n>resultWho</span><span class=o>,</span> <span class=kt>int</span> <span class=n>requestCode</span><span class=o>,</span> <span class=n>Intent</span><span class=o>[]</span> <span class=n>intents</span><span class=o>,</span> <span class=n>String</span><span class=o>[]</span> <span class=n>resolvedTypes</span><span class=o>,</span> <span class=kt>int</span> <span class=n>flags</span><span class=o>,</span> <span class=n>Bundle</span> <span class=n>options</span><span class=o>,</span> <span class=kt>int</span> <span class=n>userId</span><span class=o>)</span> <span class=o>{</span>
  
-    <span class="n">enforceNotIsolatedCaller</span><span class="o">(</span><span class="s">&#34;getIntentSender&#34;</span><span class="o">);</span>
-    <span class="o">...</span>
-    <span class="o">...</span>
-    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">callingUid</span> <span class="o">=</span> <span class="n">Binder</span><span class="o">.</span><span class="na">getCallingUid</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">origUserId</span> <span class="o">=</span> <span class="n">userId</span><span class="o">;</span>
-        <span class="n">userId</span> <span class="o">=</span> <span class="n">handleIncomingUser</span><span class="o">(</span><span class="n">Binder</span><span class="o">.</span><span class="na">getCallingPid</span><span class="o">(),</span> <span class="n">callingUid</span><span class="o">,</span> <span class="n">userId</span><span class="o">,</span>
-                    <span class="n">type</span> <span class="o">==</span> <span class="n">ActivityManager</span><span class="o">.</span><span class="na">INTENT_SENDER_BROADCAST</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span>
-                    <span class="s">&#34;getIntentSender&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-        <span class="o">...</span>
-        <span class="o">...</span>
+    <span class=n>enforceNotIsolatedCaller</span><span class=o>(</span><span class=s>&#34;getIntentSender&#34;</span><span class=o>);</span>
+    <span class=o>...</span>
+    <span class=o>...</span>
+    <span class=kd>synchronized</span><span class=o>(</span><span class=k>this</span><span class=o>)</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>callingUid</span> <span class=o>=</span> <span class=n>Binder</span><span class=o>.</span><span class=na>getCallingUid</span><span class=o>();</span>
+        <span class=kt>int</span> <span class=n>origUserId</span> <span class=o>=</span> <span class=n>userId</span><span class=o>;</span>
+        <span class=n>userId</span> <span class=o>=</span> <span class=n>handleIncomingUser</span><span class=o>(</span><span class=n>Binder</span><span class=o>.</span><span class=na>getCallingPid</span><span class=o>(),</span> <span class=n>callingUid</span><span class=o>,</span> <span class=n>userId</span><span class=o>,</span>
+                    <span class=n>type</span> <span class=o>==</span> <span class=n>ActivityManager</span><span class=o>.</span><span class=na>INTENT_SENDER_BROADCAST</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span>
+                    <span class=s>&#34;getIntentSender&#34;</span><span class=o>,</span> <span class=kc>null</span><span class=o>);</span>
+        <span class=o>...</span>
+        <span class=o>...</span>
  
-        <span class="k">return</span> <span class="n">getIntentSenderLocked</span><span class="o">(</span><span class="n">type</span><span class="o">,</span> <span class="n">packageName</span><span class="o">,</span> <span class="n">callingUid</span><span class="o">,</span> <span class="n">userId</span><span class="o">,</span> <span class="n">token</span><span class="o">,</span> <span class="n">resultWho</span><span class="o">,</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">intents</span><span class="o">,</span> <span class="n">resolvedTypes</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+        <span class=k>return</span> <span class=n>getIntentSenderLocked</span><span class=o>(</span><span class=n>type</span><span class=o>,</span> <span class=n>packageName</span><span class=o>,</span> <span class=n>callingUid</span><span class=o>,</span> <span class=n>userId</span><span class=o>,</span> <span class=n>token</span><span class=o>,</span> <span class=n>resultWho</span><span class=o>,</span> <span class=n>requestCode</span><span class=o>,</span> <span class=n>intents</span><span class=o>,</span> <span class=n>resolvedTypes</span><span class=o>,</span> <span class=n>flags</span><span class=o>,</span> <span class=n>options</span><span class=o>);</span>
  
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="n">SecurityException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="n">IIntentSender</span> <span class="nf">getIntentSenderLocked</span><span class="o">(</span><span class="kt">int</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">packageName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">callingUid</span><span class="o">,</span> <span class="kt">int</span> <span class="n">userId</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="n">String</span> <span class="n">resultWho</span><span class="o">,</span> <span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">Intent</span><span class="o">[]</span> <span class="n">intents</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">resolvedTypes</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">options</span><span class="o">)</span> <span class="o">{</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>RemoteException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                <span class=k>throw</span> <span class=k>new</span> <span class=n>SecurityException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+<span class=n>IIntentSender</span> <span class=nf>getIntentSenderLocked</span><span class=o>(</span><span class=kt>int</span> <span class=n>type</span><span class=o>,</span> <span class=n>String</span> <span class=n>packageName</span><span class=o>,</span> <span class=kt>int</span> <span class=n>callingUid</span><span class=o>,</span> <span class=kt>int</span> <span class=n>userId</span><span class=o>,</span> <span class=n>IBinder</span> <span class=n>token</span><span class=o>,</span> <span class=n>String</span> <span class=n>resultWho</span><span class=o>,</span> <span class=kt>int</span> <span class=n>requestCode</span><span class=o>,</span> <span class=n>Intent</span><span class=o>[]</span> <span class=n>intents</span><span class=o>,</span> <span class=n>String</span><span class=o>[]</span> <span class=n>resolvedTypes</span><span class=o>,</span> <span class=kt>int</span> <span class=n>flags</span><span class=o>,</span> <span class=n>Bundle</span> <span class=n>options</span><span class=o>)</span> <span class=o>{</span>
  
-    <span class="k">if</span> <span class="o">(</span><span class="n">DEBUG_MU</span><span class="o">)</span>
-        <span class="n">Slog</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG_MU</span><span class="o">,</span> <span class="s">&#34;getIntentSenderLocked(): uid=&#34;</span> <span class="o">+</span> <span class="n">callingUid</span><span class="o">);</span>
-    <span class="n">ActivityRecord</span> <span class="n">activity</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">...</span>
-    <span class="n">PendingIntentRecord</span><span class="o">.</span><span class="na">Key</span> <span class="n">key</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PendingIntentRecord</span><span class="o">.</span><span class="na">Key</span><span class="o">(</span><span class="n">type</span><span class="o">,</span> <span class="n">packageName</span><span class="o">,</span> <span class="n">activity</span><span class="o">,</span> <span class="n">resultWho</span><span class="o">,</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">intents</span><span class="o">,</span> <span class="n">resolvedTypes</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">options</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span> <span class="c1">//依据调用者的信息，生成PendingIntentRecord.Key对象
-</span><span class="c1"></span>
-    <span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">PendingIntentRecord</span><span class="o">&gt;</span> <span class="n">ref</span><span class="o">;</span>
-    <span class="n">ref</span> <span class="o">=</span> <span class="n">mIntentSenderRecords</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-    <span class="n">PendingIntentRecord</span> <span class="n">rec</span> <span class="o">=</span> <span class="n">ref</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">ref</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">...</span>
-    <span class="n">rec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PendingIntentRecord</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">callingUid</span><span class="o">);</span> <span class="c1">//最后生成PendingIntentRecord对象
-</span><span class="c1"></span>    <span class="n">mIntentSenderRecords</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">rec</span><span class="o">.</span><span class="na">ref</span><span class="o">);</span> <span class="c1">//保存
-</span><span class="c1"></span>    <span class="o">...</span>
-    <span class="k">return</span> <span class="n">rec</span><span class="o">;</span> <span class="c1">//并返回
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>AMS会把生成PenddingIntent的进程（Caller）信息保存到PendingIntentRecord.Key。并为其维护一个PendingIntentRecord对象。</p>
-<p>PendingIntent的send方法最终调用到PendingIntentRecord的sendInner方法。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">sendInner</span><span class="o">(</span><span class="kt">int</span> <span class="n">code</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">,</span> <span class="n">String</span> <span class="n">resolvedType</span><span class="o">,</span>
-        <span class="n">IIntentReceiver</span> <span class="n">finishedReceiver</span><span class="o">,</span> <span class="n">String</span> <span class="n">requiredPermission</span><span class="o">,</span>
-        <span class="n">IBinder</span> <span class="n">resultTo</span><span class="o">,</span> <span class="n">String</span> <span class="n">resultWho</span><span class="o">,</span> <span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span>
-        <span class="kt">int</span> <span class="n">flagsMask</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flagsValues</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">options</span><span class="o">)</span> <span class="o">{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>DEBUG_MU</span><span class=o>)</span>
+        <span class=n>Slog</span><span class=o>.</span><span class=na>v</span><span class=o>(</span><span class=n>TAG_MU</span><span class=o>,</span> <span class=s>&#34;getIntentSenderLocked(): uid=&#34;</span> <span class=o>+</span> <span class=n>callingUid</span><span class=o>);</span>
+    <span class=n>ActivityRecord</span> <span class=n>activity</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=o>...</span>
+    <span class=n>PendingIntentRecord</span><span class=o>.</span><span class=na>Key</span> <span class=n>key</span> <span class=o>=</span> <span class=k>new</span> <span class=n>PendingIntentRecord</span><span class=o>.</span><span class=na>Key</span><span class=o>(</span><span class=n>type</span><span class=o>,</span> <span class=n>packageName</span><span class=o>,</span> <span class=n>activity</span><span class=o>,</span> <span class=n>resultWho</span><span class=o>,</span> <span class=n>requestCode</span><span class=o>,</span> <span class=n>intents</span><span class=o>,</span> <span class=n>resolvedTypes</span><span class=o>,</span> <span class=n>flags</span><span class=o>,</span> <span class=n>options</span><span class=o>,</span> <span class=n>userId</span><span class=o>);</span> <span class=c1>//依据调用者的信息，生成PendingIntentRecord.Key对象
+</span><span class=c1></span>
+    <span class=n>WeakReference</span><span class=o>&lt;</span><span class=n>PendingIntentRecord</span><span class=o>&gt;</span> <span class=n>ref</span><span class=o>;</span>
+    <span class=n>ref</span> <span class=o>=</span> <span class=n>mIntentSenderRecords</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>key</span><span class=o>);</span>
+    <span class=n>PendingIntentRecord</span> <span class=n>rec</span> <span class=o>=</span> <span class=n>ref</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>?</span> <span class=n>ref</span><span class=o>.</span><span class=na>get</span><span class=o>()</span> <span class=o>:</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=o>...</span>
+    <span class=n>rec</span> <span class=o>=</span> <span class=k>new</span> <span class=n>PendingIntentRecord</span><span class=o>(</span><span class=k>this</span><span class=o>,</span> <span class=n>key</span><span class=o>,</span> <span class=n>callingUid</span><span class=o>);</span> <span class=c1>//最后生成PendingIntentRecord对象
+</span><span class=c1></span>    <span class=n>mIntentSenderRecords</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>key</span><span class=o>,</span> <span class=n>rec</span><span class=o>.</span><span class=na>ref</span><span class=o>);</span> <span class=c1>//保存
+</span><span class=c1></span>    <span class=o>...</span>
+    <span class=k>return</span> <span class=n>rec</span><span class=o>;</span> <span class=c1>//并返回
+</span><span class=c1></span><span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>AMS会把生成PenddingIntent的进程（Caller）信息保存到PendingIntentRecord.Key。并为其维护一个PendingIntentRecord对象。</p><p>PendingIntent的send方法最终调用到PendingIntentRecord的sendInner方法。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kt>int</span> <span class=nf>sendInner</span><span class=o>(</span><span class=kt>int</span> <span class=n>code</span><span class=o>,</span> <span class=n>Intent</span> <span class=n>intent</span><span class=o>,</span> <span class=n>String</span> <span class=n>resolvedType</span><span class=o>,</span>
+        <span class=n>IIntentReceiver</span> <span class=n>finishedReceiver</span><span class=o>,</span> <span class=n>String</span> <span class=n>requiredPermission</span><span class=o>,</span>
+        <span class=n>IBinder</span> <span class=n>resultTo</span><span class=o>,</span> <span class=n>String</span> <span class=n>resultWho</span><span class=o>,</span> <span class=kt>int</span> <span class=n>requestCode</span><span class=o>,</span>
+        <span class=kt>int</span> <span class=n>flagsMask</span><span class=o>,</span> <span class=kt>int</span> <span class=n>flagsValues</span><span class=o>,</span> <span class=n>Bundle</span> <span class=n>options</span><span class=o>)</span> <span class=o>{</span>
  
-    <span class="kd">synchronized</span><span class="o">(</span><span class="n">owner</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">canceled</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">sent</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="k">if</span> <span class="o">((</span><span class="n">key</span><span class="o">.</span><span class="na">flags</span><span class="o">&amp;</span><span class="n">PendingIntent</span><span class="o">.</span><span class="na">FLAG_ONE_SHOT</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">owner</span><span class="o">.</span><span class="na">cancelIntentSenderLocked</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-                <span class="n">canceled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">Intent</span> <span class="n">finalIntent</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">requestIntent</span> <span class="o">!=</span> <span class="kc">null</span>
-                    <span class="o">?</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">requestIntent</span><span class="o">)</span> <span class="o">:</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">intent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">changes</span> <span class="o">=</span> <span class="n">finalIntent</span><span class="o">.</span><span class="na">fillIn</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="n">key</span><span class="o">.</span><span class="na">flags</span><span class="o">);</span> <span class="c1">//用传进来的intent进行填充finalIntent
-</span><span class="c1"></span>                <span class="k">if</span> <span class="o">((</span><span class="n">changes</span><span class="o">&amp;</span><span class="n">Intent</span><span class="o">.</span><span class="na">FILL_IN_DATA</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">resolvedType</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">requestResolvedType</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">resolvedType</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">requestResolvedType</span><span class="o">;</span>
-            <span class="o">}</span>
+    <span class=kd>synchronized</span><span class=o>(</span><span class=n>owner</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(!</span><span class=n>canceled</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>sent</span> <span class=o>=</span> <span class=kc>true</span><span class=o>;</span>
+            <span class=k>if</span> <span class=o>((</span><span class=n>key</span><span class=o>.</span><span class=na>flags</span><span class=o>&amp;</span><span class=n>PendingIntent</span><span class=o>.</span><span class=na>FLAG_ONE_SHOT</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>owner</span><span class=o>.</span><span class=na>cancelIntentSenderLocked</span><span class=o>(</span><span class=k>this</span><span class=o>,</span> <span class=kc>true</span><span class=o>);</span>
+                <span class=n>canceled</span> <span class=o>=</span> <span class=kc>true</span><span class=o>;</span>
+            <span class=o>}</span>
+            <span class=n>Intent</span> <span class=n>finalIntent</span> <span class=o>=</span> <span class=n>key</span><span class=o>.</span><span class=na>requestIntent</span> <span class=o>!=</span> <span class=kc>null</span>
+                    <span class=o>?</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>(</span><span class=n>key</span><span class=o>.</span><span class=na>requestIntent</span><span class=o>)</span> <span class=o>:</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>();</span>
+            <span class=k>if</span> <span class=o>(</span><span class=n>intent</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+                <span class=kt>int</span> <span class=n>changes</span> <span class=o>=</span> <span class=n>finalIntent</span><span class=o>.</span><span class=na>fillIn</span><span class=o>(</span><span class=n>intent</span><span class=o>,</span> <span class=n>key</span><span class=o>.</span><span class=na>flags</span><span class=o>);</span> <span class=c1>//用传进来的intent进行填充finalIntent
+</span><span class=c1></span>                <span class=k>if</span> <span class=o>((</span><span class=n>changes</span><span class=o>&amp;</span><span class=n>Intent</span><span class=o>.</span><span class=na>FILL_IN_DATA</span><span class=o>)</span> <span class=o>==</span> <span class=n>0</span><span class=o>)</span> <span class=o>{</span>
+                    <span class=n>resolvedType</span> <span class=o>=</span> <span class=n>key</span><span class=o>.</span><span class=na>requestResolvedType</span><span class=o>;</span>
+                <span class=o>}</span>
+            <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+                <span class=n>resolvedType</span> <span class=o>=</span> <span class=n>key</span><span class=o>.</span><span class=na>requestResolvedType</span><span class=o>;</span>
+            <span class=o>}</span>
  
-            <span class="o">...</span>
-            <span class="o">...</span>
+            <span class=o>...</span>
+            <span class=o>...</span>
  
-            <span class="k">switch</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">type</span><span class="o">)</span> <span class="o">{</span>
-                <span class="o">...</span>
-                <span class="k">case</span> <span class="n">ActivityManager</span><span class="o">.</span><span class="na">INTENT_SENDER_BROADCAST</span><span class="o">:</span>
-                    <span class="k">try</span> <span class="o">{</span>
-                        <span class="c1">// If a completion callback has been requested, require
-</span><span class="c1"></span>                        <span class="c1">// that the broadcast be delivered synchronously
-</span><span class="c1"></span>                        <span class="n">owner</span><span class="o">.</span><span class="na">broadcastIntentInPackage</span><span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">packageName</span><span class="o">,</span> <span class="n">uid</span><span class="o">,</span>
-                                <span class="n">finalIntent</span><span class="o">,</span> <span class="n">resolvedType</span><span class="o">,</span>
-                                <span class="n">finishedReceiver</span><span class="o">,</span> <span class="n">code</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span>
-                            <span class="n">requiredPermission</span><span class="o">,</span> <span class="o">(</span><span class="n">finishedReceiver</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">),</span> <span class="kc">false</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span>
-                        <span class="n">sendFinish</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">Slog</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">ActivityManagerService</span><span class="o">.</span><span class="na">TAG</span><span class="o">,</span>
-                                <span class="s">&#34;Unable to send startActivity intent&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-                    <span class="o">}</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="o">...</span>
-            <span class="o">}</span>
+            <span class=k>switch</span> <span class=o>(</span><span class=n>key</span><span class=o>.</span><span class=na>type</span><span class=o>)</span> <span class=o>{</span>
+                <span class=o>...</span>
+                <span class=k>case</span> <span class=n>ActivityManager</span><span class=o>.</span><span class=na>INTENT_SENDER_BROADCAST</span><span class=o>:</span>
+                    <span class=k>try</span> <span class=o>{</span>
+                        <span class=c1>// If a completion callback has been requested, require
+</span><span class=c1></span>                        <span class=c1>// that the broadcast be delivered synchronously
+</span><span class=c1></span>                        <span class=n>owner</span><span class=o>.</span><span class=na>broadcastIntentInPackage</span><span class=o>(</span><span class=n>key</span><span class=o>.</span><span class=na>packageName</span><span class=o>,</span> <span class=n>uid</span><span class=o>,</span>
+                                <span class=n>finalIntent</span><span class=o>,</span> <span class=n>resolvedType</span><span class=o>,</span>
+                                <span class=n>finishedReceiver</span><span class=o>,</span> <span class=n>code</span><span class=o>,</span> <span class=kc>null</span><span class=o>,</span> <span class=kc>null</span><span class=o>,</span>
+                            <span class=n>requiredPermission</span><span class=o>,</span> <span class=o>(</span><span class=n>finishedReceiver</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>),</span> <span class=kc>false</span><span class=o>,</span> <span class=n>userId</span><span class=o>);</span>
+                        <span class=n>sendFinish</span> <span class=o>=</span> <span class=kc>false</span><span class=o>;</span>
+                    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>RuntimeException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                        <span class=n>Slog</span><span class=o>.</span><span class=na>w</span><span class=o>(</span><span class=n>ActivityManagerService</span><span class=o>.</span><span class=na>TAG</span><span class=o>,</span>
+                                <span class=s>&#34;Unable to send startActivity intent&#34;</span><span class=o>,</span> <span class=n>e</span><span class=o>);</span>
+                    <span class=o>}</span>
+                    <span class=k>break</span><span class=o>;</span>
+                <span class=o>...</span>
+            <span class=o>}</span>
  
-            <span class="o">...</span>     
+            <span class=o>...</span>     
  
-            <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ActivityManager</span><span class="o">.</span><span class="na">START_CANCELED</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>可以看到，如果<code>intent!=null</code>满足的话，就会用传入的intent对finalIntent执行<code>fillIn</code>方法，如果是<code>INTENT_SENDER_BROADCAST</code>类型就会广播出去。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">fillIn</span><span class="o">(</span><span class="n">Intent</span> <span class="n">other</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">changes</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mAction</span> <span class="o">!=</span> <span class="kc">null</span>
-            <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">mAction</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_ACTION</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">mAction</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mAction</span><span class="o">;</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_ACTION</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">((</span><span class="n">other</span><span class="o">.</span><span class="na">mData</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">other</span><span class="o">.</span><span class="na">mType</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">mData</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">mType</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-                    <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_DATA</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">mData</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mData</span><span class="o">;</span>
-        <span class="n">mType</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mType</span><span class="o">;</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_DATA</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mCategories</span> <span class="o">!=</span> <span class="kc">null</span>
-            <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">mCategories</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_CATEGORIES</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mCategories</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mCategories</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArraySet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">other</span><span class="o">.</span><span class="na">mCategories</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_CATEGORIES</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mPackage</span> <span class="o">!=</span> <span class="kc">null</span>
-            <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">mPackage</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_PACKAGE</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="c1">// Only do this if mSelector is not set.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mSelector</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mPackage</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mPackage</span><span class="o">;</span>
-            <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_PACKAGE</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// Selector is special: it can only be set if explicitly allowed,
-</span><span class="c1"></span>    <span class="c1">// for the same reason as the component name.
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mSelector</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_SELECTOR</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mPackage</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mSelector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mSelector</span><span class="o">);</span>
-            <span class="n">mPackage</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_SELECTOR</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mClipData</span> <span class="o">!=</span> <span class="kc">null</span>
-            <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">mClipData</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_CLIP_DATA</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">mClipData</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mClipData</span><span class="o">;</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_CLIP_DATA</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="c1">// Component is special: it can -only- be set if explicitly allowed,
-</span><span class="c1"></span>    <span class="c1">// since otherwise the sender could force the intent somewhere the
-</span><span class="c1"></span>    <span class="c1">// originator didn&#39;t intend.
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mComponent</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_COMPONENT</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mComponent</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">mComponent</span><span class="o">;</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_COMPONENT</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="n">mFlags</span> <span class="o">|=</span> <span class="n">other</span><span class="o">.</span><span class="na">mFlags</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mSourceBounds</span> <span class="o">!=</span> <span class="kc">null</span>
-            <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">mSourceBounds</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">flags</span><span class="o">&amp;</span><span class="n">FILL_IN_SOURCE_BOUNDS</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">mSourceBounds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rect</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mSourceBounds</span><span class="o">);</span>
-        <span class="n">changes</span> <span class="o">|=</span> <span class="n">FILL_IN_SOURCE_BOUNDS</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mExtras</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mExtras</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mExtras</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bundle</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mExtras</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mExtras</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">Bundle</span> <span class="n">newb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bundle</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">mExtras</span><span class="o">);</span>
-            <span class="n">newb</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">mExtras</span><span class="o">);</span>
-            <span class="n">mExtras</span> <span class="o">=</span> <span class="n">newb</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// Modifying the extras can cause us to unparcel the contents
-</span><span class="c1"></span>            <span class="c1">// of the bundle, and if we do this in the system process that
-</span><span class="c1"></span>            <span class="c1">// may fail.  We really should handle this (i.e., the Bundle
-</span><span class="c1"></span>            <span class="c1">// impl shouldn&#39;t be on top of a plain map), but for now just
-</span><span class="c1"></span>            <span class="c1">// ignore it and keep the original contents. :(
-</span><span class="c1"></span>            <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="s">&#34;Intent&#34;</span><span class="o">,</span> <span class="s">&#34;Failure filling in extras&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">changes</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>之前传入的finalIntent为<code>new Intent()</code>，mAction, mData, mType均为null，所以可以被任意指定fillIntent的内容(除了component之外)。</p>
-<p>所以大多数情况下，PendingIntent的安全风险主要发生在下面两个条件同时满足的场景下：</p>
-<ol>
-<li>构造PendingIntent时的原始Intent既没有指定Component，也没有指定action</li>
-<li>将PendingIntent泄露给第三方</li>
-</ol>
-<p>原因是，如果原始Intent的Component与action都为空（“双无”Intent），B就可以通过修改action来将Intent发送向那些声明了intent filter的组件，如果A是一个有高权限的APP（如settings就具有SYSTEM权限），B就可以以A的身份做很多事情。</p>
-<h3 id="利用-1">利用</h3>
-<p>接收pendingIntent并send一个恶意的广播信息</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// the exploit of broadcastAnyWhere
-</span><span class="c1"></span><span class="kd">final</span> <span class="n">String</span> <span class="n">KEY_CALLER_IDENTITY</span> <span class="o">=</span> <span class="s">&#34;pendingIntent&#34;</span><span class="o">;</span>
-<span class="n">PendingIntent</span> <span class="n">pendingintent</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="na">getParcelable</span><span class="o">(</span><span class="n">KEY_CALLER_IDENTITY</span><span class="o">);</span>
-<span class="n">Intent</span> <span class="n">intent_for_broadcast</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="s">&#34;android.intent.action.BOOT_COMPLETED&#34;</span><span class="o">);</span>
-<span class="n">intent_for_broadcast</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;info&#34;</span><span class="o">,</span> <span class="s">&#34;I am bad boy&#34;</span><span class="o">);</span>
+            <span class=k>return</span> <span class=n>0</span><span class=o>;</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+    <span class=k>return</span> <span class=n>ActivityManager</span><span class=o>.</span><span class=na>START_CANCELED</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>可以看到，如果<code>intent!=null</code>满足的话，就会用传入的intent对finalIntent执行<code>fillIn</code>方法，如果是<code>INTENT_SENDER_BROADCAST</code>类型就会广播出去。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kt>int</span> <span class=nf>fillIn</span><span class=o>(</span><span class=n>Intent</span> <span class=n>other</span><span class=o>,</span> <span class=kt>int</span> <span class=n>flags</span><span class=o>)</span> <span class=o>{</span>
+    <span class=kt>int</span> <span class=n>changes</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mAction</span> <span class=o>!=</span> <span class=kc>null</span>
+            <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>mAction</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_ACTION</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=n>mAction</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mAction</span><span class=o>;</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_ACTION</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=k>if</span> <span class=o>((</span><span class=n>other</span><span class=o>.</span><span class=na>mData</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>||</span> <span class=n>other</span><span class=o>.</span><span class=na>mType</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span>
+            <span class=o>&amp;&amp;</span> <span class=o>((</span><span class=n>mData</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>&amp;&amp;</span> <span class=n>mType</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span>
+                    <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_DATA</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=n>mData</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mData</span><span class=o>;</span>
+        <span class=n>mType</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mType</span><span class=o>;</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_DATA</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mCategories</span> <span class=o>!=</span> <span class=kc>null</span>
+            <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>mCategories</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_CATEGORIES</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mCategories</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>mCategories</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArraySet</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;(</span><span class=n>other</span><span class=o>.</span><span class=na>mCategories</span><span class=o>);</span>
+        <span class=o>}</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_CATEGORIES</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mPackage</span> <span class=o>!=</span> <span class=kc>null</span>
+            <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>mPackage</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_PACKAGE</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=c1>// Only do this if mSelector is not set.
+</span><span class=c1></span>        <span class=k>if</span> <span class=o>(</span><span class=n>mSelector</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>mPackage</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mPackage</span><span class=o>;</span>
+            <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_PACKAGE</span><span class=o>;</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+    <span class=c1>// Selector is special: it can only be set if explicitly allowed,
+</span><span class=c1></span>    <span class=c1>// for the same reason as the component name.
+</span><span class=c1></span>    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mSelector</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_SELECTOR</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>mPackage</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>mSelector</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mSelector</span><span class=o>);</span>
+            <span class=n>mPackage</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+            <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_SELECTOR</span><span class=o>;</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mClipData</span> <span class=o>!=</span> <span class=kc>null</span>
+            <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>mClipData</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_CLIP_DATA</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=n>mClipData</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mClipData</span><span class=o>;</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_CLIP_DATA</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=c1>// Component is special: it can -only- be set if explicitly allowed,
+</span><span class=c1></span>    <span class=c1>// since otherwise the sender could force the intent somewhere the
+</span><span class=c1></span>    <span class=c1>// originator didn&#39;t intend.
+</span><span class=c1></span>    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mComponent</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_COMPONENT</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>mComponent</span> <span class=o>=</span> <span class=n>other</span><span class=o>.</span><span class=na>mComponent</span><span class=o>;</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_COMPONENT</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=n>mFlags</span> <span class=o>|=</span> <span class=n>other</span><span class=o>.</span><span class=na>mFlags</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mSourceBounds</span> <span class=o>!=</span> <span class=kc>null</span>
+            <span class=o>&amp;&amp;</span> <span class=o>(</span><span class=n>mSourceBounds</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=o>(</span><span class=n>flags</span><span class=o>&amp;</span><span class=n>FILL_IN_SOURCE_BOUNDS</span><span class=o>)</span> <span class=o>!=</span> <span class=n>0</span><span class=o>))</span> <span class=o>{</span>
+        <span class=n>mSourceBounds</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Rect</span><span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mSourceBounds</span><span class=o>);</span>
+        <span class=n>changes</span> <span class=o>|=</span> <span class=n>FILL_IN_SOURCE_BOUNDS</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>mExtras</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mExtras</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>mExtras</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Bundle</span><span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mExtras</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span> <span class=k>else</span> <span class=k>if</span> <span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mExtras</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Bundle</span> <span class=n>newb</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Bundle</span><span class=o>(</span><span class=n>other</span><span class=o>.</span><span class=na>mExtras</span><span class=o>);</span>
+            <span class=n>newb</span><span class=o>.</span><span class=na>putAll</span><span class=o>(</span><span class=n>mExtras</span><span class=o>);</span>
+            <span class=n>mExtras</span> <span class=o>=</span> <span class=n>newb</span><span class=o>;</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>RuntimeException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=c1>// Modifying the extras can cause us to unparcel the contents
+</span><span class=c1></span>            <span class=c1>// of the bundle, and if we do this in the system process that
+</span><span class=c1></span>            <span class=c1>// may fail.  We really should handle this (i.e., the Bundle
+</span><span class=c1></span>            <span class=c1>// impl shouldn&#39;t be on top of a plain map), but for now just
+</span><span class=c1></span>            <span class=c1>// ignore it and keep the original contents. :(
+</span><span class=c1></span>            <span class=n>Log</span><span class=o>.</span><span class=na>w</span><span class=o>(</span><span class=s>&#34;Intent&#34;</span><span class=o>,</span> <span class=s>&#34;Failure filling in extras&#34;</span><span class=o>,</span> <span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+    <span class=k>return</span> <span class=n>changes</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>之前传入的finalIntent为<code>new Intent()</code>，mAction, mData, mType均为null，所以可以被任意指定fillIntent的内容(除了component之外)。</p><p>所以大多数情况下，PendingIntent的安全风险主要发生在下面两个条件同时满足的场景下：</p><ol><li>构造PendingIntent时的原始Intent既没有指定Component，也没有指定action</li><li>将PendingIntent泄露给第三方</li></ol><p>原因是，如果原始Intent的Component与action都为空（“双无”Intent），B就可以通过修改action来将Intent发送向那些声明了intent filter的组件，如果A是一个有高权限的APP（如settings就具有SYSTEM权限），B就可以以A的身份做很多事情。</p><h3 id=利用-1>利用</h3><p>接收pendingIntent并send一个恶意的广播信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=c1>// the exploit of broadcastAnyWhere
+</span><span class=c1></span><span class=kd>final</span> <span class=n>String</span> <span class=n>KEY_CALLER_IDENTITY</span> <span class=o>=</span> <span class=s>&#34;pendingIntent&#34;</span><span class=o>;</span>
+<span class=n>PendingIntent</span> <span class=n>pendingintent</span> <span class=o>=</span> <span class=n>options</span><span class=o>.</span><span class=na>getParcelable</span><span class=o>(</span><span class=n>KEY_CALLER_IDENTITY</span><span class=o>);</span>
+<span class=n>Intent</span> <span class=n>intent_for_broadcast</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>(</span><span class=s>&#34;android.intent.action.BOOT_COMPLETED&#34;</span><span class=o>);</span>
+<span class=n>intent_for_broadcast</span><span class=o>.</span><span class=na>putExtra</span><span class=o>(</span><span class=s>&#34;info&#34;</span><span class=o>,</span> <span class=s>&#34;I am bad boy&#34;</span><span class=o>);</span>
  
-<span class="k">try</span> <span class="o">{</span>
-    <span class="n">pendingintent</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">intent_for_broadcast</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CanceledException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>尽管普通APP无法访问其他APP的notification，但利用AccessiblyService或者 NotificationListenerService，一个APP可能可以获取其他notification中的pendingintent，导致权限泄露(例子就是bytectf2021中mediumdroid)。</p>
-<h3 id="修复-1">修复</h3>
-<p>用填充的identityIntent代替双无Intent</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Intent</span> <span class="n">identityIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
-<span class="n">identityIntent</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span><span class="n">SHOULD_NOT_RESOLVE</span><span class="o">,</span> <span class="n">SHOULD_NOT_RESOLVE</span><span class="o">));</span>
-<span class="n">identityIntent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">SHOULD_NOT_RESOLVE</span><span class="o">);</span>
-<span class="n">identityIntent</span><span class="o">.</span><span class="na">addCategory</span><span class="o">(</span><span class="n">SHOULD_NOT_RESOLVE</span><span class="o">);</span>
+<span class=k>try</span> <span class=o>{</span>
+    <span class=n>pendingintent</span><span class=o>.</span><span class=na>send</span><span class=o>(</span><span class=n>mContext</span><span class=o>,</span> <span class=n>0</span><span class=o>,</span> <span class=n>intent_for_broadcast</span><span class=o>);</span>
+<span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>CanceledException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>尽管普通APP无法访问其他APP的notification，但利用AccessiblyService或者 NotificationListenerService，一个APP可能可以获取其他notification中的pendingintent，导致权限泄露(例子就是bytectf2021中mediumdroid)。</p><h3 id=修复-1>修复</h3><p>用填充的identityIntent代替双无Intent</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>Intent</span> <span class=n>identityIntent</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Intent</span><span class=o>();</span>
+<span class=n>identityIntent</span><span class=o>.</span><span class=na>setComponent</span><span class=o>(</span><span class=k>new</span> <span class=n>ComponentName</span><span class=o>(</span><span class=n>SHOULD_NOT_RESOLVE</span><span class=o>,</span> <span class=n>SHOULD_NOT_RESOLVE</span><span class=o>));</span>
+<span class=n>identityIntent</span><span class=o>.</span><span class=na>setAction</span><span class=o>(</span><span class=n>SHOULD_NOT_RESOLVE</span><span class=o>);</span>
+<span class=n>identityIntent</span><span class=o>.</span><span class=na>addCategory</span><span class=o>(</span><span class=n>SHOULD_NOT_RESOLVE</span><span class=o>);</span>
 
-<span class="n">mPendingIntent</span> <span class="o">=</span> <span class="n">PendingIntent</span><span class="o">.</span><span class="na">getBroadcast</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">identityIntent</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="参考链接">参考链接</h2>
-<p><a href="https://blogs.360.cn/post/launchanywhere-google-bug-7699048.html" target="_blank" rel="noopener noreffer">launchAnyWhere: Activity组件权限绕过漏洞解析(Google Bug 7699048 )</a></p>
-<p><a href="https://blog.csdn.net/l173864930/article/details/38755621" target="_blank" rel="noopener noreffer">Android LaunchAnyWhere (Google Bug 7699048)漏洞详解及防御措施</a></p>
-<p><a href="https://www.bbsmax.com/A/ZOJPp2oaJv/" target="_blank" rel="noopener noreffer">Android BroadcastAnyWhere(Google Bug 17356824)漏洞具体分析</a></p>
-<p><a href="https://wooyun.js.org/drops/%E5%AE%89%E5%8D%93Bug%2017356824%20BroadcastAnywhere%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90.html" target="_blank" rel="noopener noreffer">BroadcastAnywhere漏洞分析</a></p>
-<p><a href="https://my.oschina.net/youranhongcha/blog/196933" target="_blank" rel="noopener noreffer">说说PendingIntent的内部机制</a></p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
-                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/anywhere/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/anywhere/" data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/anywhere/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/anywhere/" data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/anywhere/" data-title="LaunchAnywhere 和 BroadcastAnywhere"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/anywhere/" data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/url-bypass/" class="prev" rel="prev" title="Webview白名单绕过"><i class="fas fa-angle-left fa-fw"></i>Webview白名单绕过</a>
-            <a href="/pwnable_kr_1/" class="next" rel="next" title="pwnable.kr first part">pwnable.kr first part<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<span class=n>mPendingIntent</span> <span class=o>=</span> <span class=n>PendingIntent</span><span class=o>.</span><span class=na>getBroadcast</span><span class=o>(</span><span class=k>this</span><span class=o>,</span> <span class=n>0</span><span class=o>,</span> <span class=n>identityIntent</span><span class=o>,</span> <span class=n>0</span><span class=o>);</span>
+</code></pre></td></tr></table></div></div><h2 id=参考链接>参考链接</h2><p><a href=https://blogs.360.cn/post/launchanywhere-google-bug-7699048.html target=_blank rel="noopener noreffer">launchAnyWhere: Activity组件权限绕过漏洞解析(Google Bug 7699048 )</a></p><p><a href=https://blog.csdn.net/l173864930/article/details/38755621 target=_blank rel="noopener noreffer">Android LaunchAnyWhere (Google Bug 7699048)漏洞详解及防御措施</a></p><p><a href=https://www.bbsmax.com/A/ZOJPp2oaJv/ target=_blank rel="noopener noreffer">Android BroadcastAnyWhere(Google Bug 17356824)漏洞具体分析</a></p><p><a href=https://wooyun.js.org/drops/%E5%AE%89%E5%8D%93Bug%2017356824%20BroadcastAnywhere%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90.html target=_blank rel="noopener noreffer">BroadcastAnywhere漏洞分析</a></p><p><a href=https://my.oschina.net/youranhongcha/blog/196933 target=_blank rel="noopener noreffer">说说PendingIntent的内部机制</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-04-02&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e target=_blank title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+<i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/anywhere/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/anywhere/ data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/anywhere/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/anywhere/ data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/anywhere/ data-title="LaunchAnywhere 和 BroadcastAnywhere"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/anywhere/ data-title="LaunchAnywhere 和 BroadcastAnywhere"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/url-bypass/ class=prev rel=prev title=Webview白名单绕过><i class="fas fa-angle-left fa-fw"></i>Webview白名单绕过</a>
+<a href=/pwnable_kr_1/ class=next rel=next title="pwnable.kr first part">pwnable.kr first part<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

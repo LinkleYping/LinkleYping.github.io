@@ -1,687 +1,438 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>XNUCA2020-re - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="XNUCA2020-re" />
-<meta property="og:description" content="unravelmfc flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框 首先使用下面的mfc的sig文件： http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig 在CCmdTar" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/xnuca2020-re/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-11-02T15:22:45+08:00" />
-<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="XNUCA2020-re"/>
-<meta name="twitter:description" content="unravelmfc flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框 首先使用下面的mfc的sig文件： http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig 在CCmdTar"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/xnuca2020-re/" /><link rel="prev" href="https://linkleyping.top/bytectf2020-re/" /><link rel="next" href="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "XNUCA2020-re",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/xnuca2020-re\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1760 ,
-        "url": "https:\/\/linkleyping.top\/xnuca2020-re\/","datePublished": "2020-11-02T15:22:45+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">XNUCA2020-re</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-02">2020-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1760 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#unravelmfc">unravelmfc</a></li>
-    <li><a href="#hellowasm">hellowasm</a></li>
-    <li><a href="#babyarm">babyarm</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="unravelmfc">unravelmfc</h2>
-<p>flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框<br>
-首先使用下面的mfc的sig文件：<br>
-<a href="http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig">http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig</a><br>
-在<code>CCmdTarget::OnCmdMsg</code>函数内部， 调用<code>_AfxDispatchCmdMsg</code>的call指令下断点，再点确定，即可在栈参数中找到对应的处理函数指针<br>
-<a href="https://blog.csdn.net/zy_strive_2012/article/details/54311124" target="_blank" rel="noopener noreffer">MFC逆向</a><br>
-0x00CB1080 点确定后的处理函数 (程序基址我rebase到了0x00b10000)<br>
-00CB127C 是flag正确</p>
-<p>直接看最下面的if，里面调用的两个函数。前33字符和后33字符分开判断检测。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">j_check1</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">v14</span><span class="p">,</span> <span class="n">v13</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">j_check2</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">v14</span> <span class="o">+</span> <span class="n">v13</span><span class="p">,</span> <span class="n">v13</span><span class="p">)</span> <span class="p">)</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>前33字节首先RC4，再base64</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">flag<span class="o">{</span>dsdafasdfasdsddddddddddddddddddddddddddddddddddddddddddddddd<span class="o">}</span>  
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>XNUCA2020-re - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="XNUCA2020-re"><meta property="og:description" content="unravelmfc flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框 首先使用下面的mfc的sig文件： http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig 在CCmdTar"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/xnuca2020-re/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-11-02T15:22:45+08:00"><meta property="article:modified_time" content="2022-04-02T20:47:48+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="XNUCA2020-re"><meta name=twitter:description content="unravelmfc flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框 首先使用下面的mfc的sig文件： http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig 在CCmdTar"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/xnuca2020-re/><link rel=prev href=https://linkleyping.top/bytectf2020-re/><link rel=next href=https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"XNUCA2020-re","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/xnuca2020-re\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":1760,"url":"https:\/\/linkleyping.top\/xnuca2020-re\/","datePublished":"2020-11-02T15:22:45+08:00","dateModified":"2022-04-02T20:47:48+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">XNUCA2020-re</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-11-02>2020-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1760 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#unravelmfc>unravelmfc</a></li><li><a href=#hellowasm>hellowasm</a></li><li><a href=#babyarm>babyarm</a></li></ul></nav></div></div><div class=content id=content><h2 id=unravelmfc>unravelmfc</h2><p>flag长度66（输入66长度字符才能点击确定）点确定没反应，只有flag正确才会弹框<br>首先使用下面的mfc的sig文件：<br><a href=http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig>http://s.wjk.moe/bt/tmp/unravelmfc/afx140d.sig</a><br>在<code>CCmdTarget::OnCmdMsg</code>函数内部， 调用<code>_AfxDispatchCmdMsg</code>的call指令下断点，再点确定，即可在栈参数中找到对应的处理函数指针<br><a href=https://blog.csdn.net/zy_strive_2012/article/details/54311124 target=_blank rel="noopener noreffer">MFC逆向</a><br>0x00CB1080 点确定后的处理函数 (程序基址我rebase到了0x00b10000)<br>00CB127C 是flag正确</p><p>直接看最下面的if，里面调用的两个函数。前33字符和后33字符分开判断检测。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=k>if</span> <span class=p>(</span> <span class=p>(</span><span class=kt>unsigned</span> <span class=kr>__int8</span><span class=p>)</span><span class=n>j_check1</span><span class=p>((</span><span class=kt>int</span><span class=p>)</span><span class=n>v14</span><span class=p>,</span> <span class=n>v13</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=p>(</span><span class=kt>unsigned</span> <span class=kr>__int8</span><span class=p>)</span><span class=n>j_check2</span><span class=p>((</span><span class=kt>int</span><span class=p>)</span><span class=n>v14</span> <span class=o>+</span> <span class=n>v13</span><span class=p>,</span> <span class=n>v13</span><span class=p>)</span> <span class=p>)</span>  
+</code></pre></td></tr></table></div></div><p>前33字节首先RC4，再base64</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>flag<span class=o>{</span>dsdafasdfasdsddddddddddddddddddddddddddddddddddddddddddddddd<span class=o>}</span>  
 异或后：  
-00ACE9F4  <span class="m">26</span> <span class="m">44</span> D7 3B A8 E0 2F 7E <span class="m">81</span> 7E 9C 4C <span class="m">39</span> A8 <span class="m">97</span> C8  <span class="p">&amp;</span>D×<span class="p">;</span>¨à/~.~.L9¨.È    
-00ACEA04  <span class="m">59</span> <span class="m">35</span> <span class="m">27</span> E6 1E CD <span class="m">38</span> <span class="m">87</span> <span class="m">80</span> 2C <span class="m">99</span> C1 DD 5D 1F B0  Y5<span class="err">&#39;</span>æ.Í8..,.ÁÝ<span class="o">]</span>.°    
-00ACEA14  9A <span class="m">00</span>   
-</code></pre></td></tr></table>
-</div>
-</div><p>base64是改了字符表的，在一个rc4加密的代码段里，x64dbg里将内存dump出来放到ida里用f5还勉强能看吧</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">enc_real</span> <span class="o">=</span> <span class="s2">&#34;B=.NI;&amp;3JBZ;$;?(I72&#39;0&amp;4GLZDS2V6&amp;%AF.!5#+J[F^&#34;</span>  
-<span class="kn">import</span> <span class="nn">base64</span>  
-<span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="n">local_base64</span><span class="p">):</span>  
-    <span class="kn">import</span> <span class="nn">string</span>  
-    <span class="n">real_base64_charset</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s1">&#39;+/&#39;</span>  
-    <span class="n">tmp_charset</span> <span class="o">=</span> <span class="s2">&#34;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ab&#34;</span>  
-    <span class="n">b64_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">local_base64</span><span class="p">:</span>  
-        <span class="n">t</span> <span class="o">=</span> <span class="n">real_base64_charset</span><span class="p">[</span><span class="n">tmp_charset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>  
-        <span class="n">b64_str</span> <span class="o">+=</span> <span class="n">t</span>  
-    <span class="k">return</span> <span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">decodebytes</span><span class="p">(</span><span class="n">b64_str</span><span class="o">.</span><span class="n">encode</span><span class="p">()))</span>  
+00ACE9F4  <span class=m>26</span> <span class=m>44</span> D7 3B A8 E0 2F 7E <span class=m>81</span> 7E 9C 4C <span class=m>39</span> A8 <span class=m>97</span> C8  <span class=p>&amp;</span>D×<span class=p>;</span>¨à/~.~.L9¨.È    
+00ACEA04  <span class=m>59</span> <span class=m>35</span> <span class=m>27</span> E6 1E CD <span class=m>38</span> <span class=m>87</span> <span class=m>80</span> 2C <span class=m>99</span> C1 DD 5D 1F B0  Y5<span class=err>&#39;</span>æ.Í8..,.ÁÝ<span class=o>]</span>.°    
+00ACEA14  9A <span class=m>00</span>   
+</code></pre></td></tr></table></div></div><p>base64是改了字符表的，在一个rc4加密的代码段里，x64dbg里将内存dump出来放到ida里用f5还勉强能看吧</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>enc_real</span> <span class=o>=</span> <span class=s2>&#34;B=.NI;&amp;3JBZ;$;?(I72&#39;0&amp;4GLZDS2V6&amp;%AF.!5#+J[F^&#34;</span>  
+<span class=kn>import</span> <span class=nn>base64</span>  
+<span class=k>def</span> <span class=nf>decoder</span><span class=p>(</span><span class=n>local_base64</span><span class=p>):</span>  
+    <span class=kn>import</span> <span class=nn>string</span>  
+    <span class=n>real_base64_charset</span> <span class=o>=</span> <span class=n>string</span><span class=o>.</span><span class=n>ascii_uppercase</span> <span class=o>+</span> <span class=n>string</span><span class=o>.</span><span class=n>ascii_lowercase</span> <span class=o>+</span> <span class=n>string</span><span class=o>.</span><span class=n>digits</span> <span class=o>+</span> <span class=s1>&#39;+/&#39;</span>  
+    <span class=n>tmp_charset</span> <span class=o>=</span> <span class=s2>&#34;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ab&#34;</span>  
+    <span class=n>b64_str</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>  
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>local_base64</span><span class=p>:</span>  
+        <span class=n>t</span> <span class=o>=</span> <span class=n>real_base64_charset</span><span class=p>[</span><span class=n>tmp_charset</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=n>i</span><span class=p>)]</span>  
+        <span class=n>b64_str</span> <span class=o>+=</span> <span class=n>t</span>  
+    <span class=k>return</span> <span class=p>(</span><span class=n>base64</span><span class=o>.</span><span class=n>decodebytes</span><span class=p>(</span><span class=n>b64_str</span><span class=o>.</span><span class=n>encode</span><span class=p>()))</span>  
   
-<span class="k">def</span> <span class="nf">test1</span><span class="p">():</span>  
-    <span class="n">orig</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;&amp;D</span><span class="se">\xd7</span><span class="s2">;</span><span class="se">\xa8\xe0</span><span class="s2">/~</span><span class="se">\x81</span><span class="s2">~</span><span class="se">\x9c</span><span class="s2">L9</span><span class="se">\xa8\x97\xc8</span><span class="s2">Y5&#39;</span><span class="se">\xe6\x1e\xcd</span><span class="s2">8</span><span class="se">\x87\x80</span><span class="s2">,</span><span class="se">\x99\xc1\xdd</span><span class="s2">]</span><span class="se">\x1f\xb0\x9a</span><span class="s2">&#34;</span>  
-    <span class="n">encoded</span> <span class="o">=</span> <span class="s2">&#34;,G6:1]FC.Z]$BLT/1=E:U(GX,a;AV6E*C%U&lt;S@X@*^%=&#34;</span>  
-    <span class="k">assert</span> <span class="n">decoder</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span> <span class="o">==</span> <span class="n">orig</span>  
+<span class=k>def</span> <span class=nf>test1</span><span class=p>():</span>  
+    <span class=n>orig</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;&amp;D</span><span class=se>\xd7</span><span class=s2>;</span><span class=se>\xa8\xe0</span><span class=s2>/~</span><span class=se>\x81</span><span class=s2>~</span><span class=se>\x9c</span><span class=s2>L9</span><span class=se>\xa8\x97\xc8</span><span class=s2>Y5&#39;</span><span class=se>\xe6\x1e\xcd</span><span class=s2>8</span><span class=se>\x87\x80</span><span class=s2>,</span><span class=se>\x99\xc1\xdd</span><span class=s2>]</span><span class=se>\x1f\xb0\x9a</span><span class=s2>&#34;</span>  
+    <span class=n>encoded</span> <span class=o>=</span> <span class=s2>&#34;,G6:1]FC.Z]$BLT/1=E:U(GX,a;AV6E*C%U&lt;S@X@*^%=&#34;</span>  
+    <span class=k>assert</span> <span class=n>decoder</span><span class=p>(</span><span class=n>encoded</span><span class=p>)</span> <span class=o>==</span> <span class=n>orig</span>  
   
-<span class="n">test1</span><span class="p">()</span>  
+<span class=n>test1</span><span class=p>()</span>  
   
-<span class="k">def</span> <span class="nf">derc4</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span>  
-    <span class="n">moder_b</span> <span class="o">=</span><span class="sa">b</span><span class="s1">&#39;@(</span><span class="se">\xb6\\\xd3\x84\\\x1a\xe0\x18\xfd</span><span class="s1">?]</span><span class="se">\xce\xf6\xbb</span><span class="s1">=FC</span><span class="se">\x82</span><span class="s1">z</span><span class="se">\xa9\\\xe3\xe4</span><span class="s1">H</span><span class="se">\xfd\xa5\xb9</span><span class="s1">9{</span><span class="se">\xd4\xfe</span><span class="s1">&#39;</span>  
-    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>  
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">moder_b</span><span class="p">):</span>  
-        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">^</span><span class="n">j</span><span class="p">)</span>  
-    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>  
+<span class=k>def</span> <span class=nf>derc4</span><span class=p>(</span><span class=n>inp</span><span class=p>):</span>  
+    <span class=n>moder_b</span> <span class=o>=</span><span class=sa>b</span><span class=s1>&#39;@(</span><span class=se>\xb6\\\xd3\x84\\\x1a\xe0\x18\xfd</span><span class=s1>?]</span><span class=se>\xce\xf6\xbb</span><span class=s1>=FC</span><span class=se>\x82</span><span class=s1>z</span><span class=se>\xa9\\\xe3\xe4</span><span class=s1>H</span><span class=se>\xfd\xa5\xb9</span><span class=s1>9{</span><span class=se>\xd4\xfe</span><span class=s1>&#39;</span>  
+    <span class=n>res</span> <span class=o>=</span> <span class=p>[]</span>  
+    <span class=k>for</span> <span class=n>i</span><span class=p>,</span><span class=n>j</span> <span class=ow>in</span> <span class=nb>zip</span><span class=p>(</span><span class=n>inp</span><span class=p>,</span> <span class=n>moder_b</span><span class=p>):</span>  
+        <span class=n>res</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>i</span><span class=o>^</span><span class=n>j</span><span class=p>)</span>  
+    <span class=k>return</span> <span class=nb>bytes</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>  
   
-<span class="k">def</span> <span class="nf">test2</span><span class="p">():</span>  
-    <span class="n">orig</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;flag{dsdafasdfasdsddddddddddddddd&#39;</span>  
+<span class=k>def</span> <span class=nf>test2</span><span class=p>():</span>  
+    <span class=n>orig</span> <span class=o>=</span> <span class=sa>b</span><span class=s1>&#39;flag{dsdafasdfasdsddddddddddddddd&#39;</span>  
   
-    <span class="n">out</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x26\x44\xD7\x3B\xA8\xE0\x2F\x7E\x81\x7E\x9C\x4C\x39\xA8\x97\xC8\x59\x35\x27\xE6\x1E\xCD\x38\x87\x80\x2C\x99\xC1\xDD\x5D\x1F\xB0\x9A</span><span class="s2">&#34;</span>  
+    <span class=n>out</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;</span><span class=se>\x26\x44\xD7\x3B\xA8\xE0\x2F\x7E\x81\x7E\x9C\x4C\x39\xA8\x97\xC8\x59\x35\x27\xE6\x1E\xCD\x38\x87\x80\x2C\x99\xC1\xDD\x5D\x1F\xB0\x9A</span><span class=s2>&#34;</span>  
   
-    <span class="k">assert</span> <span class="n">derc4</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="n">orig</span>  
+    <span class=k>assert</span> <span class=n>derc4</span><span class=p>(</span><span class=n>out</span><span class=p>)</span> <span class=o>==</span> <span class=n>orig</span>  
   
-<span class="n">test2</span><span class="p">()</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>前半部分flag就出来了。。。</p>
-<p>后33字符：第一个字符是f，后面三十二个字符单独加密<br>
-是tea算法，只改了delta。<br>
-需要解一个方程解出来是[0x2d46347f5e79f6f4, 0xDF3634AE2F9970FF, 0x6cacebd512c2fc6d, 0xe8e95dc6c558d3ec]</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>  
-<span class="k">def</span> <span class="nf">encipher</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>  
-    <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint32</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>  
-    <span class="nb">sum</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint32</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  
-    <span class="c1"># delta = 0x9E3779B9  </span>
-    <span class="n">delta</span> <span class="o">=</span> <span class="mh">0x2433b95a</span>  
+<span class=n>test2</span><span class=p>()</span>  
+</code></pre></td></tr></table></div></div><p>前半部分flag就出来了。。。</p><p>后33字符：第一个字符是f，后面三十二个字符单独加密<br>是tea算法，只改了delta。<br>需要解一个方程解出来是[0x2d46347f5e79f6f4, 0xDF3634AE2F9970FF, 0x6cacebd512c2fc6d, 0xe8e95dc6c558d3ec]</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>ctypes</span>  
+<span class=k>def</span> <span class=nf>encipher</span><span class=p>(</span><span class=n>v</span><span class=p>,</span> <span class=n>k</span><span class=p>):</span>  
+    <span class=n>y</span><span class=p>,</span> <span class=n>z</span> <span class=o>=</span> <span class=p>[</span><span class=n>ctypes</span><span class=o>.</span><span class=n>c_uint32</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>  
+            <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=n>v</span><span class=p>]</span>  
+    <span class=nb>sum</span> <span class=o>=</span> <span class=n>ctypes</span><span class=o>.</span><span class=n>c_uint32</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>  
+    <span class=c1># delta = 0x9E3779B9  </span>
+    <span class=n>delta</span> <span class=o>=</span> <span class=mh>0x2433b95a</span>  
   
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  
-        <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">delta</span>  
-        <span class="c1"># z -- v8  </span>
-        <span class="c1"># y -- v6  </span>
-        <span class="c1"># y.value += ((z.value &lt;&lt; 4) + k[0]) ^ (z.value + sum.value) ^ ((z.value &gt;&gt; 5) + k[1])  </span>
-        <span class="c1"># z.value += ((y.value &lt;&lt; 4)) + k[2] ^ y.value + sum.value ^ (y.value &gt;&gt; 5) + k[3]  </span>
-        <span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">^</span> <span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
-        <span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">^</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  
-    <span class="c1"># print(hex(sum.value))  </span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>  
+    <span class=k>for</span> <span class=n>n</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>32</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>):</span>  
+        <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>+=</span> <span class=n>delta</span>  
+        <span class=c1># z -- v8  </span>
+        <span class=c1># y -- v6  </span>
+        <span class=c1># y.value += ((z.value &lt;&lt; 4) + k[0]) ^ (z.value + sum.value) ^ ((z.value &gt;&gt; 5) + k[1])  </span>
+        <span class=c1># z.value += ((y.value &lt;&lt; 4)) + k[2] ^ y.value + sum.value ^ (y.value &gt;&gt; 5) + k[3]  </span>
+        <span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>+=</span> <span class=p>(</span><span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>&lt;&lt;</span> <span class=mi>4</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>^</span> <span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>+</span> <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>^</span> <span class=p>(</span><span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>&gt;&gt;</span> <span class=mi>5</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>  
+        <span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>+=</span> <span class=p>(</span><span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>&lt;&lt;</span> <span class=mi>4</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=o>^</span> <span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>+</span> <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>^</span> <span class=p>(</span><span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>&gt;&gt;</span> <span class=mi>5</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span>  
+    <span class=c1># print(hex(sum.value))  </span>
+    <span class=k>return</span> <span class=p>[</span><span class=n>y</span><span class=o>.</span><span class=n>value</span><span class=p>,</span> <span class=n>z</span><span class=o>.</span><span class=n>value</span><span class=p>]</span>  
   
   
-<span class="k">def</span> <span class="nf">decipher</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>  
-    <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint32</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>  
-    <span class="c1"># sum = ctypes.c_uint32(0xC6EF3720)  </span>
-    <span class="nb">sum</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint32</span><span class="p">(</span><span class="mh">0x86772b40</span><span class="p">)</span>  
-    <span class="c1"># delta = 0x9E3779B9  </span>
-    <span class="n">delta</span> <span class="o">=</span> <span class="mh">0x2433b95a</span>  
+<span class=k>def</span> <span class=nf>decipher</span><span class=p>(</span><span class=n>v</span><span class=p>,</span> <span class=n>k</span><span class=p>):</span>  
+    <span class=n>y</span><span class=p>,</span> <span class=n>z</span> <span class=o>=</span> <span class=p>[</span><span class=n>ctypes</span><span class=o>.</span><span class=n>c_uint32</span><span class=p>(</span><span class=n>x</span><span class=p>)</span> <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=n>v</span><span class=p>]</span>  
+    <span class=c1># sum = ctypes.c_uint32(0xC6EF3720)  </span>
+    <span class=nb>sum</span> <span class=o>=</span> <span class=n>ctypes</span><span class=o>.</span><span class=n>c_uint32</span><span class=p>(</span><span class=mh>0x86772b40</span><span class=p>)</span>  
+    <span class=c1># delta = 0x9E3779B9  </span>
+    <span class=n>delta</span> <span class=o>=</span> <span class=mh>0x2433b95a</span>  
   
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  
-        <span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">^</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  
-        <span class="n">y</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">^</span> <span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
-        <span class="nb">sum</span><span class="o">.</span><span class="n">value</span> <span class="o">-=</span> <span class="n">delta</span>  
+    <span class=k>for</span> <span class=n>n</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>32</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>):</span>  
+        <span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>-=</span> <span class=p>(</span><span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>&lt;&lt;</span> <span class=mi>4</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=o>^</span> <span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>+</span> <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>^</span> <span class=p>(</span><span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>&gt;&gt;</span> <span class=mi>5</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span>  
+        <span class=n>y</span><span class=o>.</span><span class=n>value</span> <span class=o>-=</span> <span class=p>(</span><span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>&lt;&lt;</span> <span class=mi>4</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>^</span> <span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>+</span> <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>^</span> <span class=p>(</span><span class=n>z</span><span class=o>.</span><span class=n>value</span> <span class=o>&gt;&gt;</span> <span class=mi>5</span><span class=p>)</span> <span class=o>+</span> <span class=n>k</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>  
+        <span class=nb>sum</span><span class=o>.</span><span class=n>value</span> <span class=o>-=</span> <span class=n>delta</span>  
   
-    <span class="k">return</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>  
+    <span class=k>return</span> <span class=p>[</span><span class=n>y</span><span class=o>.</span><span class=n>value</span><span class=p>,</span> <span class=n>z</span><span class=o>.</span><span class=n>value</span><span class=p>]</span>  
   
-<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3647016194</span><span class="p">,</span> <span class="mi">716023165</span><span class="p">,</span> <span class="mi">2742368241</span><span class="p">,</span> <span class="mi">3265149203</span><span class="p">,</span> <span class="mi">3583257832</span><span class="p">,</span> <span class="mi">1619840614</span><span class="p">,</span> <span class="mi">1834562594</span><span class="p">,</span> <span class="mi">568710898</span><span class="p">,</span> <span class="mi">3980038709</span><span class="p">,</span> <span class="mi">2645385924</span><span class="p">,</span> <span class="mi">945185819</span><span class="p">,</span> <span class="mi">1912036253</span><span class="p">,</span> <span class="mi">3705592552</span><span class="p">,</span> <span class="mi">3939684768</span><span class="p">,</span> <span class="mi">3133470052</span><span class="p">,</span> <span class="mi">3662115500</span><span class="p">]</span>  
+<span class=n>keys</span> <span class=o>=</span> <span class=p>[</span><span class=mi>3647016194</span><span class=p>,</span> <span class=mi>716023165</span><span class=p>,</span> <span class=mi>2742368241</span><span class=p>,</span> <span class=mi>3265149203</span><span class=p>,</span> <span class=mi>3583257832</span><span class=p>,</span> <span class=mi>1619840614</span><span class=p>,</span> <span class=mi>1834562594</span><span class=p>,</span> <span class=mi>568710898</span><span class=p>,</span> <span class=mi>3980038709</span><span class=p>,</span> <span class=mi>2645385924</span><span class=p>,</span> <span class=mi>945185819</span><span class=p>,</span> <span class=mi>1912036253</span><span class=p>,</span> <span class=mi>3705592552</span><span class=p>,</span> <span class=mi>3939684768</span><span class=p>,</span> <span class=mi>3133470052</span><span class=p>,</span> <span class=mi>3662115500</span><span class=p>]</span>  
   
-<span class="n">vv</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x5e79f6f4</span><span class="p">,</span> <span class="mh">0x2d46347f</span><span class="p">,</span> <span class="mh">0x2F9970FF</span><span class="p">,</span> <span class="mh">0xDF3634AE</span> <span class="p">,</span> <span class="mh">0x12c2fc6d</span><span class="p">,</span> <span class="mh">0x6cacebd5</span><span class="p">,</span> <span class="mh">0xc558d3ec</span><span class="p">,</span> <span class="mh">0xe8e95dc6</span><span class="p">]</span>  
+<span class=n>vv</span> <span class=o>=</span> <span class=p>[</span><span class=mh>0x5e79f6f4</span><span class=p>,</span> <span class=mh>0x2d46347f</span><span class=p>,</span> <span class=mh>0x2F9970FF</span><span class=p>,</span> <span class=mh>0xDF3634AE</span> <span class=p>,</span> <span class=mh>0x12c2fc6d</span><span class=p>,</span> <span class=mh>0x6cacebd5</span><span class=p>,</span> <span class=mh>0xc558d3ec</span><span class=p>,</span> <span class=mh>0xe8e95dc6</span><span class=p>]</span>  
   
-<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>  
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>  
-    <span class="n">v</span> <span class="o">=</span> <span class="n">vv</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>  
-    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  
-    <span class="n">k</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>  
-    <span class="n">enc</span> <span class="o">=</span> <span class="n">decipher</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>  
-    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  
-    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  
+<span class=n>data</span> <span class=o>=</span> <span class=p>[]</span>  
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>  
+    <span class=n>v</span> <span class=o>=</span> <span class=n>vv</span><span class=p>[</span><span class=mi>2</span><span class=o>*</span><span class=n>i</span><span class=p>:</span> <span class=mi>2</span><span class=o>*</span><span class=p>(</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)]</span>  
+    <span class=n>v</span> <span class=o>=</span> <span class=n>v</span><span class=p>[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>  
+    <span class=n>k</span> <span class=o>=</span> <span class=n>keys</span><span class=p>[</span><span class=mi>4</span><span class=o>*</span><span class=n>i</span><span class=p>:</span><span class=mi>4</span><span class=o>*</span><span class=p>(</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)]</span>  
+    <span class=n>enc</span> <span class=o>=</span> <span class=n>decipher</span><span class=p>(</span><span class=n>v</span><span class=p>,</span> <span class=n>k</span><span class=p>)</span>  
+    <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>enc</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span>  
+    <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>enc</span><span class=p>[</span><span class=mi>1</span><span class=p>])</span>  
   
-<span class="n">flag</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>  
-    <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">+</span> <span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;0x&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="o">+</span><span class="n">flag</span><span class="p">)</span>  
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="hellowasm">hellowasm</h2>
-<p>需要用node起一下直接点开不行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">npm install http-server -g  
-http-server -p <span class="m">8080</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>长度是42<br>
-这里可以直接用浏览器调试，还比较方便。<br>
-然后做了个base64, 每四个字符一组，异或[0xa, 0xb, 0xc, 0xd]<br>
-最后check的部分是个vm，算法是简单异或。<br>
-一点点分析的过程，分析了一点以后直接在异或和比较的函数下了断点发现算法其实比较简单。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">+4<span class="p">;</span> -&gt; IP  
-+32 -&gt; <span class="nb">source</span>  
+<span class=n>flag</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>  
+<span class=k>for</span> <span class=n>d</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>  
+    <span class=n>flag</span> <span class=o>=</span> <span class=n>flag</span> <span class=o>+</span> <span class=p>(</span><span class=nb>hex</span><span class=p>(</span><span class=n>d</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)[:</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>)[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>  
+<span class=k>print</span><span class=p>(</span><span class=s1>&#39;f&#39;</span><span class=o>+</span><span class=n>flag</span><span class=p>)</span>  
+</code></pre></td></tr></table></div></div><h2 id=hellowasm>hellowasm</h2><p>需要用node起一下直接点开不行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install http-server -g  
+http-server -p <span class=m>8080</span>  
+</code></pre></td></tr></table></div></div><p>长度是42<br>这里可以直接用浏览器调试，还比较方便。<br>然后做了个base64, 每四个字符一组，异或[0xa, 0xb, 0xc, 0xd]<br>最后check的部分是个vm，算法是简单异或。<br>一点点分析的过程，分析了一点以后直接在异或和比较的函数下了断点发现算法其实比较简单。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>+4<span class=p>;</span> -&gt; IP  
++32 -&gt; <span class=nb>source</span>  
 +16 -&gt; str_index  
-+8 -&gt; source<span class="o">[</span>str_index<span class="o">]</span>  
++8 -&gt; source<span class=o>[</span>str_index<span class=o>]</span>  
 +24 -&gt;   
   
-初始IP: <span class="m">2128</span>  
-<span class="m">202</span> -&gt; IP + <span class="m">5</span>  
-<span class="m">203</span> -&gt; IP + <span class="m">5</span>  
-<span class="m">204</span> -&gt; IP + 1, load <span class="nb">source</span>  
-<span class="m">207</span> -&gt; ^ +12  save in 12, IP + <span class="m">1</span>  
-<span class="m">201</span> -&gt; next IP, save in 8, IP + <span class="m">5</span>  
+初始IP: <span class=m>2128</span>  
+<span class=m>202</span> -&gt; IP + <span class=m>5</span>  
+<span class=m>203</span> -&gt; IP + <span class=m>5</span>  
+<span class=m>204</span> -&gt; IP + 1, load <span class=nb>source</span>  
+<span class=m>207</span> -&gt; ^ +12  save in 12, IP + <span class=m>1</span>  
+<span class=m>201</span> -&gt; next IP, save in 8, IP + <span class=m>5</span>  
   
 opcode  
-2128: <span class="m">202</span>  
-2129: <span class="m">0</span>  
-2130: <span class="m">0</span>  
-2131: <span class="m">0</span>  
-2132: <span class="m">0</span>  
-2133: <span class="m">203</span>  
-2134: <span class="m">0</span>  
-2135: <span class="m">0</span>  
-2136: <span class="m">0</span>  
-2137: <span class="m">0</span>  
-2138: <span class="m">204</span>  
-2139: <span class="m">207</span>  
-2140: <span class="m">201</span>  
-2141: <span class="m">238</span>  
-2142: <span class="m">0</span>  
-2143: <span class="m">0</span>  
-2144: <span class="m">0</span>  
-2145: <span class="m">207</span> -&gt; // source<span class="o">[</span>0<span class="o">]</span> ^ <span class="m">238</span>  
-2146: <span class="m">209</span> -&gt; 2160<span class="o">[</span>index<span class="o">]</span> <span class="o">==</span> source<span class="o">[</span>0<span class="o">]</span> ^ <span class="m">238</span>  
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">base64</span>  
-<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2160</span><span class="p">:</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">2161</span><span class="p">:</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">2162</span><span class="p">:</span> <span class="mi">172</span><span class="p">,</span> <span class="mi">2163</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">2164</span><span class="p">:</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">2165</span><span class="p">:</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">2166</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">2167</span><span class="p">:</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">2168</span><span class="p">:</span> <span class="mi">238</span><span class="p">,</span> <span class="mi">2169</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">2170</span><span class="p">:</span> <span class="mi">218</span><span class="p">,</span> <span class="mi">2171</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2172</span><span class="p">:</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">2173</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">2174</span><span class="p">:</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">2175</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">2176</span><span class="p">:</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">2177</span><span class="p">:</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2178</span><span class="p">:</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">2179</span><span class="p">:</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">2180</span><span class="p">:</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">2181</span><span class="p">:</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">2182</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">2183</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">2184</span><span class="p">:</span> <span class="mi">138</span><span class="p">,</span> <span class="mi">2185</span><span class="p">:</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">2186</span><span class="p">:</span> <span class="mi">136</span><span class="p">,</span> <span class="mi">2187</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">2188</span><span class="p">:</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">2189</span><span class="p">:</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">2190</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">2191</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">2192</span><span class="p">:</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">2193</span><span class="p">:</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">2194</span><span class="p">:</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">2195</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2196</span><span class="p">:</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">2197</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2198</span><span class="p">:</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">2199</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">2200</span><span class="p">:</span> <span class="mi">249</span><span class="p">,</span> <span class="mi">2201</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">2202</span><span class="p">:</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">2203</span><span class="p">:</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">2204</span><span class="p">:</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">2205</span><span class="p">:</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">2206</span><span class="p">:</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">2207</span><span class="p">:</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">2208</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">2209</span><span class="p">:</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">2210</span><span class="p">:</span> <span class="mi">133</span><span class="p">,</span> <span class="mi">2211</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">2212</span><span class="p">:</span> <span class="mi">251</span><span class="p">,</span> <span class="mi">2213</span><span class="p">:</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">2214</span><span class="p">:</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">2215</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2216</span><span class="p">:</span> <span class="mi">227</span><span class="p">}</span>  
+2128: <span class=m>202</span>  
+2129: <span class=m>0</span>  
+2130: <span class=m>0</span>  
+2131: <span class=m>0</span>  
+2132: <span class=m>0</span>  
+2133: <span class=m>203</span>  
+2134: <span class=m>0</span>  
+2135: <span class=m>0</span>  
+2136: <span class=m>0</span>  
+2137: <span class=m>0</span>  
+2138: <span class=m>204</span>  
+2139: <span class=m>207</span>  
+2140: <span class=m>201</span>  
+2141: <span class=m>238</span>  
+2142: <span class=m>0</span>  
+2143: <span class=m>0</span>  
+2144: <span class=m>0</span>  
+2145: <span class=m>207</span> -&gt; // source<span class=o>[</span>0<span class=o>]</span> ^ <span class=m>238</span>  
+2146: <span class=m>209</span> -&gt; 2160<span class=o>[</span>index<span class=o>]</span> <span class=o>==</span> source<span class=o>[</span>0<span class=o>]</span> ^ <span class=m>238</span>  
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>base64</span>  
+<span class=n>result</span> <span class=o>=</span> <span class=p>{</span><span class=mi>2160</span><span class=p>:</span> <span class=mi>190</span><span class=p>,</span> <span class=mi>2161</span><span class=p>:</span> <span class=mi>54</span><span class=p>,</span> <span class=mi>2162</span><span class=p>:</span> <span class=mi>172</span><span class=p>,</span> <span class=mi>2163</span><span class=p>:</span> <span class=mi>39</span><span class=p>,</span> <span class=mi>2164</span><span class=p>:</span> <span class=mi>153</span><span class=p>,</span> <span class=mi>2165</span><span class=p>:</span> <span class=mi>79</span><span class=p>,</span> <span class=mi>2166</span><span class=p>:</span> <span class=mi>222</span><span class=p>,</span> <span class=mi>2167</span><span class=p>:</span> <span class=mi>68</span><span class=p>,</span> <span class=mi>2168</span><span class=p>:</span> <span class=mi>238</span><span class=p>,</span> <span class=mi>2169</span><span class=p>:</span> <span class=mi>95</span><span class=p>,</span> <span class=mi>2170</span><span class=p>:</span> <span class=mi>218</span><span class=p>,</span> <span class=mi>2171</span><span class=p>:</span> <span class=mi>11</span><span class=p>,</span> <span class=mi>2172</span><span class=p>:</span> <span class=mi>181</span><span class=p>,</span> <span class=mi>2173</span><span class=p>:</span> <span class=mi>23</span><span class=p>,</span> <span class=mi>2174</span><span class=p>:</span> <span class=mi>184</span><span class=p>,</span> <span class=mi>2175</span><span class=p>:</span> <span class=mi>104</span><span class=p>,</span> <span class=mi>2176</span><span class=p>:</span> <span class=mi>194</span><span class=p>,</span> <span class=mi>2177</span><span class=p>:</span> <span class=mi>78</span><span class=p>,</span> <span class=mi>2178</span><span class=p>:</span> <span class=mi>156</span><span class=p>,</span> <span class=mi>2179</span><span class=p>:</span> <span class=mi>74</span><span class=p>,</span> <span class=mi>2180</span><span class=p>:</span> <span class=mi>225</span><span class=p>,</span> <span class=mi>2181</span><span class=p>:</span> <span class=mi>67</span><span class=p>,</span> <span class=mi>2182</span><span class=p>:</span> <span class=mi>240</span><span class=p>,</span> <span class=mi>2183</span><span class=p>:</span> <span class=mi>34</span><span class=p>,</span> <span class=mi>2184</span><span class=p>:</span> <span class=mi>138</span><span class=p>,</span> <span class=mi>2185</span><span class=p>:</span> <span class=mi>59</span><span class=p>,</span> <span class=mi>2186</span><span class=p>:</span> <span class=mi>136</span><span class=p>,</span> <span class=mi>2187</span><span class=p>:</span> <span class=mi>91</span><span class=p>,</span> <span class=mi>2188</span><span class=p>:</span> <span class=mi>229</span><span class=p>,</span> <span class=mi>2189</span><span class=p>:</span> <span class=mi>84</span><span class=p>,</span> <span class=mi>2190</span><span class=p>:</span> <span class=mi>255</span><span class=p>,</span> <span class=mi>2191</span><span class=p>:</span> <span class=mi>104</span><span class=p>,</span> <span class=mi>2192</span><span class=p>:</span> <span class=mi>213</span><span class=p>,</span> <span class=mi>2193</span><span class=p>:</span> <span class=mi>103</span><span class=p>,</span> <span class=mi>2194</span><span class=p>:</span> <span class=mi>212</span><span class=p>,</span> <span class=mi>2195</span><span class=p>:</span> <span class=mi>6</span><span class=p>,</span> <span class=mi>2196</span><span class=p>:</span> <span class=mi>173</span><span class=p>,</span> <span class=mi>2197</span><span class=p>:</span> <span class=mi>11</span><span class=p>,</span> <span class=mi>2198</span><span class=p>:</span> <span class=mi>216</span><span class=p>,</span> <span class=mi>2199</span><span class=p>:</span> <span class=mi>80</span><span class=p>,</span> <span class=mi>2200</span><span class=p>:</span> <span class=mi>249</span><span class=p>,</span> <span class=mi>2201</span><span class=p>:</span> <span class=mi>88</span><span class=p>,</span> <span class=mi>2202</span><span class=p>:</span> <span class=mi>224</span><span class=p>,</span> <span class=mi>2203</span><span class=p>:</span> <span class=mi>111</span><span class=p>,</span> <span class=mi>2204</span><span class=p>:</span> <span class=mi>197</span><span class=p>,</span> <span class=mi>2205</span><span class=p>:</span> <span class=mi>74</span><span class=p>,</span> <span class=mi>2206</span><span class=p>:</span> <span class=mi>253</span><span class=p>,</span> <span class=mi>2207</span><span class=p>:</span> <span class=mi>47</span><span class=p>,</span> <span class=mi>2208</span><span class=p>:</span> <span class=mi>132</span><span class=p>,</span> <span class=mi>2209</span><span class=p>:</span> <span class=mi>54</span><span class=p>,</span> <span class=mi>2210</span><span class=p>:</span> <span class=mi>133</span><span class=p>,</span> <span class=mi>2211</span><span class=p>:</span> <span class=mi>82</span><span class=p>,</span> <span class=mi>2212</span><span class=p>:</span> <span class=mi>251</span><span class=p>,</span> <span class=mi>2213</span><span class=p>:</span> <span class=mi>115</span><span class=p>,</span> <span class=mi>2214</span><span class=p>:</span> <span class=mi>215</span><span class=p>,</span> <span class=mi>2215</span><span class=p>:</span> <span class=mi>13</span><span class=p>,</span> <span class=mi>2216</span><span class=p>:</span> <span class=mi>227</span><span class=p>}</span>  
   
-<span class="n">flag</span> <span class="o">=</span> <span class="p">[]</span>  
-<span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  
-    <span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>  
+<span class=n>flag</span> <span class=o>=</span> <span class=p>[]</span>  
+<span class=n>li</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>]</span>  
+<span class=k>for</span> <span class=n>k</span> <span class=ow>in</span> <span class=n>result</span><span class=o>.</span><span class=n>keys</span><span class=p>():</span>  
+    <span class=n>li</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>result</span><span class=p>[</span><span class=n>k</span><span class=p>])</span>  
   
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">li</span><span class="p">)):</span>  
-    <span class="n">flag</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">li</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">^</span> <span class="n">li</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mi">238</span><span class="p">)</span>  
-<span class="n">ti</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xa</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">,</span> <span class="mh">0xc</span><span class="p">,</span> <span class="mh">0xd</span><span class="p">]</span>  
-<span class="n">tar</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>  
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>  
-        <span class="n">tar</span> <span class="o">=</span> <span class="n">tar</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">^</span> <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">])</span>  
-<span class="k">print</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">decodestring</span><span class="p">(</span><span class="n">tar</span><span class="p">))</span>  
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="babyarm">babyarm</h2>
-<p>主要验证部分在<code>sub_114D8</code>, xxtea稍微改了一点，一次加密了16轮&hellip;长度也是16</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;    </span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;    </span><span class="cp">
-</span><span class="cp">#define DELTA 0x9e3779b9    
-</span><span class="cp">#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))    
-</span><span class="cp"></span>  
-<span class="kt">void</span> <span class="nf">btea</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="k">const</span> <span class="n">key</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>    
-<span class="p">{</span>    
-<span class="kt">uint32_t</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">sum</span><span class="p">;</span>    
-<span class="kt">unsigned</span> <span class="n">p</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">e</span><span class="p">;</span>    
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>            <span class="cm">/* Coding Part */</span>    
-<span class="p">{</span>    
-    <span class="n">rounds</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">52</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>    
-    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
-    <span class="n">z</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>    
-    <span class="k">do</span>    
-    <span class="p">{</span>    
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">DELTA</span><span class="p">;</span>    
-        <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">3</span><span class="p">;</span>    
-        <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span>    
-        <span class="p">{</span>    
-            <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>    
-            <span class="n">z</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">MX</span><span class="p">;</span>    
-        <span class="p">}</span>    
-        <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>    
-        <span class="n">z</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">MX</span><span class="p">;</span>    
-    <span class="p">}</span>    
-    <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">rounds</span><span class="p">);</span>    
-<span class="p">}</span>    
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>      <span class="cm">/* Decoding Part */</span>    
-<span class="p">{</span>    
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>  
-    <span class="p">{</span>  
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>    
-        <span class="n">rounds</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">52</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>    
-        <span class="n">sum</span> <span class="o">=</span> <span class="n">rounds</span><span class="o">*</span><span class="n">DELTA</span><span class="p">;</span>    
-        <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  
-        <span class="k">do</span>    
-        <span class="p">{</span>    
-            <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">3</span><span class="p">;</span>    
-            <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">p</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="o">--</span><span class="p">)</span>    
-            <span class="p">{</span>    
-                <span class="n">z</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>    
-                <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-=</span> <span class="n">MX</span><span class="p">;</span>    
-            <span class="p">}</span>    
-            <span class="n">z</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>    
-            <span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">MX</span><span class="p">;</span>    
-            <span class="n">sum</span> <span class="o">-=</span> <span class="n">DELTA</span><span class="p">;</span>    
-        <span class="p">}</span>    
-        <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">rounds</span><span class="p">);</span>    
-    <span class="p">}</span>  
-<span class="p">}</span>    
-<span class="p">}</span>    
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>li</span><span class=p>)):</span>  
+    <span class=n>flag</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>li</span><span class=p>[</span><span class=n>i</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>^</span> <span class=n>li</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>^</span> <span class=mi>238</span><span class=p>)</span>  
+<span class=n>ti</span> <span class=o>=</span> <span class=p>[</span><span class=mh>0xa</span><span class=p>,</span> <span class=mh>0xb</span><span class=p>,</span> <span class=mh>0xc</span><span class=p>,</span> <span class=mh>0xd</span><span class=p>]</span>  
+<span class=n>tar</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>  
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>flag</span><span class=p>)</span><span class=o>-</span><span class=mi>4</span><span class=p>,</span> <span class=mi>4</span><span class=p>):</span>  
+    <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>  
+        <span class=n>tar</span> <span class=o>=</span> <span class=n>tar</span> <span class=o>+</span> <span class=nb>chr</span><span class=p>(</span><span class=n>ti</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>^</span> <span class=n>flag</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=n>j</span><span class=p>])</span>  
+<span class=k>print</span><span class=p>(</span><span class=n>base64</span><span class=o>.</span><span class=n>decodestring</span><span class=p>(</span><span class=n>tar</span><span class=p>))</span>  
+</code></pre></td></tr></table></div></div><h2 id=babyarm>babyarm</h2><p>主要验证部分在<code>sub_114D8</code>, xxtea稍微改了一点，一次加密了16轮&mldr;长度也是16</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;    </span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;stdint.h&gt;    </span><span class=cp>
+</span><span class=cp>#define DELTA 0x9e3779b9    
+</span><span class=cp>#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y) + (key[(p&amp;3)^e] ^ z)))    
+</span><span class=cp></span>  
+<span class=kt>void</span> <span class=nf>btea</span><span class=p>(</span><span class=kt>uint32_t</span> <span class=o>*</span><span class=n>v</span><span class=p>,</span> <span class=kt>int</span> <span class=n>n</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=k>const</span> <span class=n>key</span><span class=p>[</span><span class=mi>4</span><span class=p>])</span>    
+<span class=p>{</span>    
+<span class=kt>uint32_t</span> <span class=n>y</span><span class=p>,</span> <span class=n>z</span><span class=p>,</span> <span class=n>sum</span><span class=p>;</span>    
+<span class=kt>unsigned</span> <span class=n>p</span><span class=p>,</span> <span class=n>rounds</span><span class=p>,</span> <span class=n>e</span><span class=p>;</span>    
+<span class=k>if</span> <span class=p>(</span><span class=n>n</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span>            <span class=cm>/* Coding Part */</span>    
+<span class=p>{</span>    
+    <span class=n>rounds</span> <span class=o>=</span> <span class=mi>6</span> <span class=o>+</span> <span class=mi>52</span><span class=o>/</span><span class=n>n</span><span class=p>;</span>    
+    <span class=n>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>    
+    <span class=n>z</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>n</span><span class=o>-</span><span class=mi>1</span><span class=p>];</span>    
+    <span class=k>do</span>    
+    <span class=p>{</span>    
+        <span class=n>sum</span> <span class=o>+=</span> <span class=n>DELTA</span><span class=p>;</span>    
+        <span class=n>e</span> <span class=o>=</span> <span class=p>(</span><span class=n>sum</span> <span class=o>&gt;&gt;</span> <span class=mi>2</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mi>3</span><span class=p>;</span>    
+        <span class=k>for</span> <span class=p>(</span><span class=n>p</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>p</span><span class=o>&lt;</span><span class=n>n</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=n>p</span><span class=o>++</span><span class=p>)</span>    
+        <span class=p>{</span>    
+            <span class=n>y</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>p</span><span class=o>+</span><span class=mi>1</span><span class=p>];</span>    
+            <span class=n>z</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>p</span><span class=p>]</span> <span class=o>+=</span> <span class=n>MX</span><span class=p>;</span>    
+        <span class=p>}</span>    
+        <span class=n>y</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>    
+        <span class=n>z</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>n</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>+=</span> <span class=n>MX</span><span class=p>;</span>    
+    <span class=p>}</span>    
+    <span class=k>while</span> <span class=p>(</span><span class=o>--</span><span class=n>rounds</span><span class=p>);</span>    
+<span class=p>}</span>    
+<span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>      <span class=cm>/* Decoding Part */</span>    
+<span class=p>{</span>    
+    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>16</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>  
+    <span class=p>{</span>  
+        <span class=n>n</span> <span class=o>=</span> <span class=mi>16</span><span class=p>;</span>    
+        <span class=n>rounds</span> <span class=o>=</span> <span class=mi>6</span> <span class=o>+</span> <span class=mi>52</span><span class=o>/</span><span class=n>n</span><span class=p>;</span>    
+        <span class=n>sum</span> <span class=o>=</span> <span class=n>rounds</span><span class=o>*</span><span class=n>DELTA</span><span class=p>;</span>    
+        <span class=n>y</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>  
+        <span class=k>do</span>    
+        <span class=p>{</span>    
+            <span class=n>e</span> <span class=o>=</span> <span class=p>(</span><span class=n>sum</span> <span class=o>&gt;&gt;</span> <span class=mi>2</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mi>3</span><span class=p>;</span>    
+            <span class=k>for</span> <span class=p>(</span><span class=n>p</span><span class=o>=</span><span class=n>n</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=n>p</span><span class=o>&gt;</span><span class=mi>0</span><span class=p>;</span> <span class=n>p</span><span class=o>--</span><span class=p>)</span>    
+            <span class=p>{</span>    
+                <span class=n>z</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>p</span><span class=o>-</span><span class=mi>1</span><span class=p>];</span>    
+                <span class=n>y</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>p</span><span class=p>]</span> <span class=o>-=</span> <span class=n>MX</span><span class=p>;</span>    
+            <span class=p>}</span>    
+            <span class=n>z</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=n>n</span><span class=o>-</span><span class=mi>1</span><span class=p>];</span>    
+            <span class=n>y</span> <span class=o>=</span> <span class=n>v</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>-=</span> <span class=n>MX</span><span class=p>;</span>    
+            <span class=n>sum</span> <span class=o>-=</span> <span class=n>DELTA</span><span class=p>;</span>    
+        <span class=p>}</span>    
+        <span class=k>while</span> <span class=p>(</span><span class=o>--</span><span class=n>rounds</span><span class=p>);</span>    
+    <span class=p>}</span>  
+<span class=p>}</span>    
+<span class=p>}</span>    
   
   
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>    
-<span class="p">{</span>    
-<span class="kt">uint32_t</span> <span class="n">v</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mh">0xB061F013</span><span class="p">,</span> <span class="mh">0xB3C8567E</span><span class="p">,</span> <span class="mh">0x9952A3C7</span><span class="p">,</span> <span class="mh">0x451C2D3F</span><span class="p">,</span> <span class="mh">0x3EE32267</span><span class="p">,</span> <span class="mh">0xE3E22B3E</span><span class="p">,</span> <span class="mh">0x43E5A250</span><span class="p">,</span> <span class="mh">0x59B28ED0</span><span class="p">,</span> <span class="mh">0x0F8649DC</span><span class="p">,</span> <span class="mh">0x9BF4D083</span><span class="p">,</span> <span class="mh">0x8A578110</span><span class="p">,</span> <span class="mh">0x8604EC4F</span><span class="p">,</span> <span class="mh">0x2EB5A27F</span><span class="p">,</span> <span class="mh">0x1217DDF3</span><span class="p">,</span> <span class="mh">0x93C9B253</span><span class="p">,</span> <span class="mh">0xDC7F8E43</span><span class="p">};</span>    
-<span class="kt">uint32_t</span> <span class="k">const</span> <span class="n">k</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>    
-<span class="kt">int</span> <span class="n">n</span><span class="o">=</span> <span class="mi">16</span><span class="p">;</span>  
-<span class="c1">// for(int i = 0; i &lt; 16; i++)  
-</span><span class="c1"></span><span class="n">btea</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>  
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>  
-    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\&#34;</span><span class="s">%x</span><span class="se">\&#34;</span><span class="s">, &#34;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
-<span class="p">}</span>  
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>    
+<span class=p>{</span>    
+<span class=kt>uint32_t</span> <span class=n>v</span><span class=p>[</span><span class=mi>16</span><span class=p>]</span><span class=o>=</span> <span class=p>{</span><span class=mh>0xB061F013</span><span class=p>,</span> <span class=mh>0xB3C8567E</span><span class=p>,</span> <span class=mh>0x9952A3C7</span><span class=p>,</span> <span class=mh>0x451C2D3F</span><span class=p>,</span> <span class=mh>0x3EE32267</span><span class=p>,</span> <span class=mh>0xE3E22B3E</span><span class=p>,</span> <span class=mh>0x43E5A250</span><span class=p>,</span> <span class=mh>0x59B28ED0</span><span class=p>,</span> <span class=mh>0x0F8649DC</span><span class=p>,</span> <span class=mh>0x9BF4D083</span><span class=p>,</span> <span class=mh>0x8A578110</span><span class=p>,</span> <span class=mh>0x8604EC4F</span><span class=p>,</span> <span class=mh>0x2EB5A27F</span><span class=p>,</span> <span class=mh>0x1217DDF3</span><span class=p>,</span> <span class=mh>0x93C9B253</span><span class=p>,</span> <span class=mh>0xDC7F8E43</span><span class=p>};</span>    
+<span class=kt>uint32_t</span> <span class=k>const</span> <span class=n>k</span><span class=p>[</span><span class=mi>4</span><span class=p>]</span><span class=o>=</span> <span class=p>{</span><span class=mi>2</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>4</span><span class=p>};</span>    
+<span class=kt>int</span> <span class=n>n</span><span class=o>=</span> <span class=mi>16</span><span class=p>;</span>  
+<span class=c1>// for(int i = 0; i &lt; 16; i++)  
+</span><span class=c1></span><span class=n>btea</span><span class=p>(</span><span class=n>v</span><span class=p>,</span> <span class=o>-</span><span class=n>n</span><span class=p>,</span> <span class=n>k</span><span class=p>);</span>  
+<span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>16</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>  
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\&#34;</span><span class=s>%x</span><span class=se>\&#34;</span><span class=s>, &#34;</span><span class=p>,</span> <span class=n>v</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>  
+<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>    
+<span class=p>}</span>  
   
-<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#34;67616c66&#34;</span><span class="p">,</span> <span class="s">&#34;6330447b&#34;</span><span class="p">,</span> <span class="s">&#34;37306261&#34;</span><span class="p">,</span> <span class="s">&#34;35346146&#34;</span><span class="p">,</span> <span class="s">&#34;36623241&#34;</span><span class="p">,</span> <span class="s">&#34;62376646&#34;</span><span class="p">,</span> <span class="s">&#34;41364541&#34;</span><span class="p">,</span> <span class="s">&#34;41624261&#34;</span><span class="p">,</span> <span class="s">&#34;64354635&#34;</span><span class="p">,</span> <span class="s">&#34;43336263&#34;</span><span class="p">,</span> <span class="s">&#34;43446639&#34;</span><span class="p">,</span> <span class="s">&#34;66613545&#34;</span><span class="p">,</span> <span class="s">&#34;34354665&#34;</span><span class="p">,</span> <span class="s">&#34;38434144&#34;</span><span class="p">,</span> <span class="s">&#34;30354138&#34;</span><span class="p">,</span> <span class="s">&#34;7d413339&#34;</span><span class="p">]</span>  
-<span class="o">&gt;&gt;&gt;</span> <span class="n">flag</span> <span class="o">=</span> <span class="s">&#34;&#34;</span>  
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nl">s</span><span class="p">:</span>  
-<span class="p">...</span>     <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">+</span> <span class="n">i</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="err">&#39;</span><span class="n">hex</span><span class="err">&#39;</span><span class="p">)[</span><span class="o">::-</span><span class="mi">1</span><span class="p">]</span>  
-<span class="p">...</span>  
-<span class="o">&gt;&gt;&gt;</span> <span class="n">flag</span>  
-<span class="err">&#39;</span><span class="n">flag</span><span class="p">{</span><span class="n">D0cab07Fa45A2b6Ff7bAE6AaBbA5F5dcb3C9fDCE5afeF54DAC88A5093A</span><span class="p">}</span><span class="err">&#39;</span>  
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
-                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/xnuca2020-re/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/xnuca2020-re/" data-title="XNUCA2020-re"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/xnuca2020-re/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/xnuca2020-re/" data-title="XNUCA2020-re"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/xnuca2020-re/" data-title="XNUCA2020-re"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/xnuca2020-re/" data-title="XNUCA2020-re"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/bytectf2020-re/" class="prev" rel="prev" title="ByteCTF2020-re"><i class="fas fa-angle-left fa-fw"></i>ByteCTF2020-re</a>
-            <a href="/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" class="next" rel="next" title="IISC2020-线下赛re">IISC2020-线下赛re<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>s</span> <span class=o>=</span> <span class=p>[</span><span class=s>&#34;67616c66&#34;</span><span class=p>,</span> <span class=s>&#34;6330447b&#34;</span><span class=p>,</span> <span class=s>&#34;37306261&#34;</span><span class=p>,</span> <span class=s>&#34;35346146&#34;</span><span class=p>,</span> <span class=s>&#34;36623241&#34;</span><span class=p>,</span> <span class=s>&#34;62376646&#34;</span><span class=p>,</span> <span class=s>&#34;41364541&#34;</span><span class=p>,</span> <span class=s>&#34;41624261&#34;</span><span class=p>,</span> <span class=s>&#34;64354635&#34;</span><span class=p>,</span> <span class=s>&#34;43336263&#34;</span><span class=p>,</span> <span class=s>&#34;43446639&#34;</span><span class=p>,</span> <span class=s>&#34;66613545&#34;</span><span class=p>,</span> <span class=s>&#34;34354665&#34;</span><span class=p>,</span> <span class=s>&#34;38434144&#34;</span><span class=p>,</span> <span class=s>&#34;30354138&#34;</span><span class=p>,</span> <span class=s>&#34;7d413339&#34;</span><span class=p>]</span>  
+<span class=o>&gt;&gt;&gt;</span> <span class=n>flag</span> <span class=o>=</span> <span class=s>&#34;&#34;</span>  
+<span class=o>&gt;&gt;&gt;</span> <span class=k>for</span> <span class=n>i</span> <span class=n>in</span> <span class=nl>s</span><span class=p>:</span>  
+<span class=p>...</span>     <span class=n>flag</span> <span class=o>=</span> <span class=n>flag</span> <span class=o>+</span> <span class=n>i</span><span class=p>.</span><span class=n>decode</span><span class=p>(</span><span class=err>&#39;</span><span class=n>hex</span><span class=err>&#39;</span><span class=p>)[</span><span class=o>::-</span><span class=mi>1</span><span class=p>]</span>  
+<span class=p>...</span>  
+<span class=o>&gt;&gt;&gt;</span> <span class=n>flag</span>  
+<span class=err>&#39;</span><span class=n>flag</span><span class=p>{</span><span class=n>D0cab07Fa45A2b6Ff7bAE6AaBbA5F5dcb3C9fDCE5afeF54DAC88A5093A</span><span class=p>}</span><span class=err>&#39;</span>  
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-04-02&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e target=_blank title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+<i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/xnuca2020-re/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/xnuca2020-re/ data-title=XNUCA2020-re><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/xnuca2020-re/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/xnuca2020-re/ data-title=XNUCA2020-re><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/xnuca2020-re/ data-title=XNUCA2020-re><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/xnuca2020-re/ data-title=XNUCA2020-re><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/bytectf2020-re/ class=prev rel=prev title=ByteCTF2020-re><i class="fas fa-angle-left fa-fw"></i>ByteCTF2020-re</a>
+<a href=/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/ class=next rel=next title=IISC2020-线下赛re>IISC2020-线下赛re<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

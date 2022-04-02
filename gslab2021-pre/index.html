@@ -1,865 +1,478 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>2021腾讯游戏安全大赛安卓方向初赛题解 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="2021腾讯游戏安全大赛安卓方向初赛题解" />
-<meta property="og:description" content="App分析 引擎 lib文件夹下有libmono.so和libunity.so，assets\bin\Data\Managed下存在Assemb" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/gslab2021-pre/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2021-09-02T15:22:45+08:00" />
-<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="2021腾讯游戏安全大赛安卓方向初赛题解"/>
-<meta name="twitter:description" content="App分析 引擎 lib文件夹下有libmono.so和libunity.so，assets\bin\Data\Managed下存在Assemb"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/gslab2021-pre/" /><link rel="prev" href="https://linkleyping.top/init_array/" /><link rel="next" href="https://linkleyping.top/gslab2021-final/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "2021腾讯游戏安全大赛安卓方向初赛题解",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/gslab2021-pre\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3049 ,
-        "url": "https:\/\/linkleyping.top\/gslab2021-pre\/","datePublished": "2021-09-02T15:22:45+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">2021腾讯游戏安全大赛安卓方向初赛题解</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-02">2021-09-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3049 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#app分析">App分析</a>
-      <ul>
-        <li><a href="#引擎">引擎</a></li>
-        <li><a href="#检测绕过">检测绕过</a></li>
-        <li><a href="#关键逻辑获取">关键逻辑获取</a></li>
-        <li><a href="#修改">修改</a></li>
-      </ul>
-    </li>
-    <li><a href="#其他思路">其他思路</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="app分析">App分析</h2>
-<h3 id="引擎">引擎</h3>
-<p><code>lib</code>文件夹下有<code>libmono.so</code>和<code>libunity.so</code>，<code>assets\bin\Data\Managed</code>下存在<code>Assembly-CSharp.dll</code>说明是mono引擎的unity3d游戏。</p>
-<p><code>Assembly-CSharp.dll</code>经过加密处理，加密方式是异或0xaf，异或还原补上PE头之后可以拖进dnspy中分析，但是发现这个<code>Assembly-CSharp.dll</code>中并没有包含实际的游戏逻辑，应该是隐藏进了其他地方。</p>
-<h3 id="检测绕过">检测绕过</h3>
-<p>frida spawn模式启动app，ida附加调试，在调试<code>JNI_OnLoad</code>函数的过程中发现<code>sub_1F120</code>用于获取apk的关键字符串信息，还原这个函数并将实际字符串写入调用的注释中。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">idc</span>  
-<span class="n">origin_str</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="c1"># byte_372A8  </span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>2021腾讯游戏安全大赛安卓方向初赛题解 - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="2021腾讯游戏安全大赛安卓方向初赛题解"><meta property="og:description" content="App分析 引擎 lib文件夹下有libmono.so和libunity.so，assets\bin\Data\Managed下存在Assemb"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/gslab2021-pre/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2021-09-02T15:22:45+08:00"><meta property="article:modified_time" content="2022-04-02T20:47:48+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="2021腾讯游戏安全大赛安卓方向初赛题解"><meta name=twitter:description content="App分析 引擎 lib文件夹下有libmono.so和libunity.so，assets\bin\Data\Managed下存在Assemb"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/gslab2021-pre/><link rel=prev href=https://linkleyping.top/init_array/><link rel=next href=https://linkleyping.top/gslab2021-final/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2021腾讯游戏安全大赛安卓方向初赛题解","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/gslab2021-pre\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":3049,"url":"https:\/\/linkleyping.top\/gslab2021-pre\/","datePublished":"2021-09-02T15:22:45+08:00","dateModified":"2022-04-02T20:47:48+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">2021腾讯游戏安全大赛安卓方向初赛题解</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-02>2021-09-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3049 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#app分析>App分析</a><ul><li><a href=#引擎>引擎</a></li><li><a href=#检测绕过>检测绕过</a></li><li><a href=#关键逻辑获取>关键逻辑获取</a></li><li><a href=#修改>修改</a></li></ul></li><li><a href=#其他思路>其他思路</a></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=content id=content><h2 id=app分析>App分析</h2><h3 id=引擎>引擎</h3><p><code>lib</code>文件夹下有<code>libmono.so</code>和<code>libunity.so</code>，<code>assets\bin\Data\Managed</code>下存在<code>Assembly-CSharp.dll</code>说明是mono引擎的unity3d游戏。</p><p><code>Assembly-CSharp.dll</code>经过加密处理，加密方式是异或0xaf，异或还原补上PE头之后可以拖进dnspy中分析，但是发现这个<code>Assembly-CSharp.dll</code>中并没有包含实际的游戏逻辑，应该是隐藏进了其他地方。</p><h3 id=检测绕过>检测绕过</h3><p>frida spawn模式启动app，ida附加调试，在调试<code>JNI_OnLoad</code>函数的过程中发现<code>sub_1F120</code>用于获取apk的关键字符串信息，还原这个函数并将实际字符串写入调用的注释中。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>idc</span>  
+<span class=n>origin_str</span> <span class=o>=</span> <span class=p>[</span><span class=o>...</span><span class=p>]</span> <span class=c1># byte_372A8  </span>
   
-<span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xD1</span><span class="p">,</span> <span class="mh">0x19</span><span class="p">,</span> <span class="mh">0x0F</span><span class="p">,</span> <span class="mh">0xD3</span><span class="p">,</span> <span class="mh">0x57</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0x75</span><span class="p">,</span> <span class="mh">0xED</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0x17</span><span class="p">,</span> <span class="mh">0xE9</span><span class="p">,</span> <span class="mh">0x25</span><span class="p">,</span> <span class="mh">0xB9</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0x1D</span><span class="p">,</span> <span class="mh">0x5</span><span class="p">]</span>  
+<span class=n>key</span> <span class=o>=</span> <span class=p>[</span><span class=mh>0xD1</span><span class=p>,</span> <span class=mh>0x19</span><span class=p>,</span> <span class=mh>0x0F</span><span class=p>,</span> <span class=mh>0xD3</span><span class=p>,</span> <span class=mh>0x57</span><span class=p>,</span> <span class=mh>0x49</span><span class=p>,</span> <span class=mh>0xF7</span><span class=p>,</span> <span class=mh>0x75</span><span class=p>,</span> <span class=mh>0xED</span><span class=p>,</span> <span class=mh>0xC5</span><span class=p>,</span> <span class=mh>0x17</span><span class=p>,</span> <span class=mh>0xE9</span><span class=p>,</span> <span class=mh>0x25</span><span class=p>,</span> <span class=mh>0xB9</span><span class=p>,</span> <span class=mh>0xC1</span><span class=p>,</span> <span class=mh>0x1D</span><span class=p>,</span> <span class=mh>0x5</span><span class=p>]</span>  
   
-<span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>  
-<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>  
-<span class="k">def</span> <span class="nf">fetch</span><span class="p">():</span>  
-    <span class="k">global</span> <span class="n">idx</span>  
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">origin_str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>  
-    <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>  
-    <span class="k">return</span> <span class="n">ret</span>  
-<span class="k">while</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">origin_str</span><span class="p">):</span>  
-    <span class="n">start</span> <span class="o">=</span> <span class="n">idx</span>  
-    <span class="n">curr_key</span> <span class="o">=</span> <span class="n">fetch</span><span class="p">()</span>  
-    <span class="n">str_len</span> <span class="o">=</span> <span class="n">fetch</span><span class="p">()</span> <span class="o">^</span> <span class="n">curr_key</span>  
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">str_len</span><span class="p">):</span>  
-        <span class="n">s</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">fetch</span><span class="p">()</span><span class="o">^</span><span class="n">curr_key</span><span class="o">^</span><span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mh">0x11</span><span class="p">])</span>  
-    <span class="n">out</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>  
-    <span class="n">fetch</span><span class="p">()</span>  
-    <span class="n">fetch</span><span class="p">()</span>  
+<span class=n>out</span> <span class=o>=</span> <span class=p>{}</span>  
+<span class=n>idx</span> <span class=o>=</span> <span class=mi>0</span>  
+<span class=k>def</span> <span class=nf>fetch</span><span class=p>():</span>  
+    <span class=k>global</span> <span class=n>idx</span>  
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>origin_str</span><span class=p>[</span><span class=n>idx</span><span class=p>]</span>  
+    <span class=n>idx</span> <span class=o>+=</span> <span class=mi>1</span>  
+    <span class=k>return</span> <span class=n>ret</span>  
+<span class=k>while</span> <span class=n>idx</span> <span class=o>&lt;</span> <span class=nb>len</span><span class=p>(</span><span class=n>origin_str</span><span class=p>):</span>  
+    <span class=n>start</span> <span class=o>=</span> <span class=n>idx</span>  
+    <span class=n>curr_key</span> <span class=o>=</span> <span class=n>fetch</span><span class=p>()</span>  
+    <span class=n>str_len</span> <span class=o>=</span> <span class=n>fetch</span><span class=p>()</span> <span class=o>^</span> <span class=n>curr_key</span>  
+    <span class=n>s</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>  
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>str_len</span><span class=p>):</span>  
+        <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=n>fetch</span><span class=p>()</span><span class=o>^</span><span class=n>curr_key</span><span class=o>^</span><span class=n>key</span><span class=p>[</span><span class=n>i</span><span class=o>%</span><span class=mh>0x11</span><span class=p>])</span>  
+    <span class=n>out</span><span class=p>[</span><span class=n>start</span><span class=p>]</span> <span class=o>=</span> <span class=n>s</span>  
+    <span class=n>fetch</span><span class=p>()</span>  
+    <span class=n>fetch</span><span class=p>()</span>  
   
-<span class="k">def</span> <span class="nf">getStr</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>  
-    <span class="k">return</span> <span class="n">out</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>  
+<span class=k>def</span> <span class=nf>getStr</span><span class=p>(</span><span class=n>index</span><span class=p>):</span>  
+    <span class=k>return</span> <span class=n>out</span><span class=p>[</span><span class=n>index</span><span class=p>]</span>  
   
-<span class="n">ea</span> <span class="o">=</span> <span class="mi">0</span>  
-<span class="n">end</span> <span class="o">=</span> <span class="mh">0x30474</span>  
-<span class="n">ea</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">next_head</span><span class="p">(</span><span class="n">ea</span><span class="p">)</span>  
-<span class="k">while</span> <span class="n">ea</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>  
-    <span class="n">ins</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">generate_disasm_line</span><span class="p">(</span><span class="n">ea</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
-    <span class="k">if</span> <span class="n">ins</span> <span class="o">==</span> <span class="s2">&#34;BL              getStr&#34;</span><span class="p">:</span>  
-        <span class="n">addr</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">prev_head</span><span class="p">(</span><span class="n">ea</span><span class="p">)</span>  
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>  
-            <span class="n">insPre</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">generate_disasm_line</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
-            <span class="k">if</span> <span class="n">insPre</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;MOV&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">insPre</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;R0&#34;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  
-                <span class="n">argc</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">print_operand</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  
-                <span class="k">print</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">argc</span><span class="p">)</span>  
-                <span class="n">argc</span> <span class="o">=</span> <span class="n">argc</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>  
-                <span class="n">argcI</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>  
-                <span class="n">comment</span> <span class="o">=</span> <span class="n">getStr</span><span class="p">(</span><span class="n">argcI</span><span class="p">)</span>  
-                <span class="k">print</span><span class="p">(</span><span class="n">ea</span><span class="p">,</span> <span class="n">comment</span><span class="p">)</span>  
-                <span class="n">idc</span><span class="o">.</span><span class="n">set_cmt</span><span class="p">(</span><span class="n">ea</span><span class="p">,</span> <span class="n">comment</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
-                <span class="k">break</span>  
-            <span class="k">else</span><span class="p">:</span>  
-                <span class="n">addr</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">prev_head</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>  
-    <span class="n">ea</span> <span class="o">=</span> <span class="n">idc</span><span class="o">.</span><span class="n">next_head</span><span class="p">(</span><span class="n">ea</span><span class="p">)</span>  
+<span class=n>ea</span> <span class=o>=</span> <span class=mi>0</span>  
+<span class=n>end</span> <span class=o>=</span> <span class=mh>0x30474</span>  
+<span class=n>ea</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>next_head</span><span class=p>(</span><span class=n>ea</span><span class=p>)</span>  
+<span class=k>while</span> <span class=n>ea</span> <span class=o>&lt;</span> <span class=n>end</span><span class=p>:</span>  
+    <span class=n>ins</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>generate_disasm_line</span><span class=p>(</span><span class=n>ea</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>  
+    <span class=k>if</span> <span class=n>ins</span> <span class=o>==</span> <span class=s2>&#34;BL              getStr&#34;</span><span class=p>:</span>  
+        <span class=n>addr</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>prev_head</span><span class=p>(</span><span class=n>ea</span><span class=p>)</span>  
+        <span class=k>while</span> <span class=bp>True</span><span class=p>:</span>  
+            <span class=n>insPre</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>generate_disasm_line</span><span class=p>(</span><span class=n>addr</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>  
+            <span class=k>if</span> <span class=n>insPre</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s2>&#34;MOV&#34;</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=ow>and</span> <span class=n>insPre</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s2>&#34;R0&#34;</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>  
+                <span class=n>argc</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>print_operand</span><span class=p>(</span><span class=n>addr</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>  
+                <span class=k>print</span><span class=p>(</span><span class=n>addr</span><span class=p>,</span> <span class=n>argc</span><span class=p>)</span>  
+                <span class=n>argc</span> <span class=o>=</span> <span class=n>argc</span><span class=o>.</span><span class=n>lstrip</span><span class=p>(</span><span class=s1>&#39;#&#39;</span><span class=p>)</span>  
+                <span class=n>argcI</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>argc</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span>  
+                <span class=n>comment</span> <span class=o>=</span> <span class=n>getStr</span><span class=p>(</span><span class=n>argcI</span><span class=p>)</span>  
+                <span class=k>print</span><span class=p>(</span><span class=n>ea</span><span class=p>,</span> <span class=n>comment</span><span class=p>)</span>  
+                <span class=n>idc</span><span class=o>.</span><span class=n>set_cmt</span><span class=p>(</span><span class=n>ea</span><span class=p>,</span> <span class=n>comment</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>  
+                <span class=k>break</span>  
+            <span class=k>else</span><span class=p>:</span>  
+                <span class=n>addr</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>prev_head</span><span class=p>(</span><span class=n>addr</span><span class=p>)</span>  
+    <span class=n>ea</span> <span class=o>=</span> <span class=n>idc</span><span class=o>.</span><span class=n>next_head</span><span class=p>(</span><span class=n>ea</span><span class=p>)</span>  
   
-</code></pre></td></tr></table>
-</div>
-</div><p>还原出来的字符串如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">28</span>      Author: saitexie walterjxli  
-<span class="m">59</span>      Do you know how unity mono works?  
-<span class="m">96</span>      res/drawable-xhdpi-v4/ -&gt; assets/bin/Data/Managed/  
-<span class="m">150</span>     initialize  
-<span class="m">164</span>     <span class="o">()</span>I  
-<span class="m">171</span>     com/tencent/games/sec2021/Sec2021Application  
-<span class="m">219</span>     com/tencent/games/sec2021/Sec2021IPC  
-<span class="m">259</span>     hack detected, risk score:%d  
-<span class="m">291</span>     getApplicationInfo  
-<span class="m">313</span>     <span class="o">()</span>Landroid/content/pm/ApplicationInfo<span class="p">;</span>  
-<span class="m">355</span>     getFilesDir  
-<span class="m">370</span>     <span class="o">()</span>Ljava/io/File<span class="p">;</span>  
-<span class="m">390</span>     sourceDir  
-<span class="m">403</span>     packageName  
-<span class="m">418</span>     nativeLibraryDir  
-<span class="m">438</span>     getAbsolutePath  
-<span class="m">457</span>     /proc/self/status  
-<span class="m">478</span>     TracerPid:  
-<span class="m">492</span>     diediedie  
-<span class="m">505</span>     /proc/self/maps  
-<span class="m">524</span>     rb  
-<span class="m">530</span>     delete  
-<span class="m">540</span>     %zx-%zx %c%c%c%c %x %x:%x %u %s  
-<span class="m">575</span>     android/os/Debug  
-<span class="m">595</span>     isDebuggerConnected  
-<span class="m">618</span>     sec2021  
-<span class="m">629</span>     getClass  
-<span class="m">641</span>     getName  
-<span class="m">652</span>     getSuperclass  
-<span class="m">669</span>     android/app/Application  
-<span class="m">696</span>     java/lang/Class  
-<span class="m">715</span>     <span class="o">()</span>Ljava/lang/Class<span class="p">;</span>  
-<span class="m">738</span>     <span class="o">()</span>Landroid/content/pm/ApplicationInfo<span class="p">;</span>  
-<span class="m">780</span>     <span class="o">()</span>Ljava/io/File<span class="p">;</span>  
-<span class="m">800</span>     <span class="o">()</span>Ljava/lang/String<span class="p">;</span>  
-<span class="m">824</span>     Assembly-CSharp.dll  
-<span class="m">847</span>     Mono.Security.dll  
-<span class="m">868</span>     mscorlib.dll  
-<span class="m">884</span>     System.Core.dll  
-<span class="m">903</span>     System.dll  
-<span class="m">917</span>     UnityEngine.dll  
-<span class="m">936</span>     UnityEngine.Networking.dll  
-<span class="m">966</span>     UnityEngine.PlaymodeTestsRunner.dll  
-<span class="m">1005</span>    UnityEngine.UI.dll  
-<span class="m">1027</span>    base.apk  
-<span class="m">1039</span>    android/content/Context  
-<span class="m">1066</span>    <span class="o">()</span>Ljava/lang/ClassLoader<span class="p">;</span>  
-<span class="m">1095</span>    <span class="o">()</span>Ljava/lang/String<span class="p">;</span>  
-<span class="m">1119</span>    zip file  
-<span class="m">1131</span>    libsec2021.so  
-<span class="m">1148</span>    %s/%s  
-<span class="m">1157</span>    dalvik.system.PathClassLoader  
-<span class="m">1190</span>    toString  
-<span class="m">1202</span>    getClassLoader  
-<span class="m">1220</span>    Ljava/lang/String<span class="p">;</span>  
-<span class="m">1242</span>    %s%s  
-<span class="m">1250</span>    /app/data/libbugly/crash.info  
-<span class="m">1283</span>    can you crack me?  
-<span class="m">1304</span>    __optional__  
-<span class="m">1320</span>    cc/binmt/signature/PmsHookApplication  
-<span class="m">1361</span>    com/cloudinject/feature/App  
-<span class="m">1392</span>    np/manager/FuckSign  
-<span class="m">1415</span>    java/lang/ClassLoader  
-<span class="m">1440</span>    findClass  
-<span class="m">1453</span>    <span class="o">(</span>Ljava/lang/String<span class="p">;</span><span class="o">)</span>Ljava/lang/Class<span class="p">;</span>  
-<span class="m">1494</span>    getPackageManager  
-<span class="m">1515</span>    <span class="o">()</span>Landroid/content/pm/PackageManager<span class="p">;</span>  
-<span class="m">1556</span>    getPackageName  
-<span class="m">1574</span>    getPackageInfo  
-<span class="m">1592</span>    <span class="o">(</span>Ljava/lang/String<span class="p">;</span>I<span class="o">)</span>Landroid/content/pm/PackageInfo<span class="p">;</span>  
-<span class="m">1649</span>    signatures  
-<span class="m">1663</span>    <span class="o">[</span>Landroid/content/pm/Signature<span class="p">;</span>  
-<span class="m">1698</span>    toByteArray  
-<span class="m">1713</span>    <span class="o">()[</span>B  
-<span class="m">1721</span>    java/io/ByteArrayInputStream  
-<span class="m">1753</span>    &lt;init&gt;  
-<span class="m">1763</span>    <span class="o">([</span>B<span class="o">)</span>V  
-<span class="m">1772</span>    java/security/cert/CertificateFactory  
-<span class="m">1813</span>    getInstance  
-<span class="m">1828</span>    <span class="o">(</span>Ljava/lang/String<span class="p">;</span><span class="o">)</span>Ljava/security/cert/CertificateFactory<span class="p">;</span>  
-<span class="m">1891</span>    X.509  
-<span class="m">1900</span>    generateCertificate  
-<span class="m">1923</span>    <span class="o">(</span>Ljava/io/InputStream<span class="p">;</span><span class="o">)</span>Ljava/security/cert/Certificate<span class="p">;</span>  
-<span class="m">1982</span>    getEncoded  
-<span class="m">1996</span>    java/security/MessageDigest  
-<span class="m">2027</span>    <span class="o">(</span>Ljava/lang/String<span class="p">;</span><span class="o">)</span>Ljava/security/MessageDigest<span class="p">;</span>  
-<span class="m">2080</span>    SHA1  
-<span class="m">2088</span>    digest  
-<span class="m">2098</span>    <span class="o">([</span>B<span class="o">)[</span>B  
-<span class="m">2108</span>    %s/libsec2021.so  
-<span class="m">2128</span>    .text  
-<span class="m">2137</span>    res/drawable-xhdpi-v4/sec2021.png  
-<span class="m">2174</span>    assets/filelist  
-<span class="m">2193</span>    endoffile  
-<span class="m">2206</span>    State  
-<span class="m">2215</span>    stop  
-<span class="m">2223</span>    substrate  
-<span class="m">2236</span>    /proc/%u/status  
-<span class="m">2255</span>    %s/libmono.so  
-<span class="m">2272</span>    rtld_db_dlactivity  
-<span class="m">2294</span>    /system/bin/linker  
-<span class="m">2316</span>    libjdwp.so  
-<span class="m">2330</span>    assets/sig.dat  
-<span class="m">2348</span>    opcode crack  
-<span class="m">2364</span>    debugger  
-<span class="m">2376</span>    bad apk  
-<span class="m">2387</span>    bad files  
-<span class="m">2400</span>    bad cert  
-<span class="m">2412</span>    ida  
-<span class="m">2419</span>    frida  
-<span class="m">2428</span>    shellcode  
-<span class="m">2441</span>    bad dll  
-<span class="m">2452</span>    hack detected, type:%s  
-<span class="m">2478</span>    0x%08x  
-<span class="m">2488</span>    libmono.so  
-<span class="m">2502</span>    libunity.so  
-<span class="m">2517</span>    libmain.so  
-<span class="m">2531</span>    META-INF/TEST.SF  
-<span class="m">2551</span>    META-INF/TEST.RSA  
-<span class="m">2572</span>    META-INF/MANIFEST.MF  
-<span class="m">2596</span>    .so  
-<span class="m">2603</span>    simulator  
-<span class="m">2616</span>    /system/  
-<span class="m">2628</span>    no heart beat.  
-<span class="m">2646</span>    <span class="o">(</span>ILjava/lang/String<span class="p">;</span><span class="o">)</span>V  
-<span class="m">2672</span>    onNativeEngineResponse  
-<span class="m">2698</span>    /proc/net/tcp  
-</code></pre></td></tr></table>
-</div>
-</div><p>游戏在检测出来<code>frida</code>,<code>ida</code>等工具时会显示&quot;hack detected, type xxx&quot;。查看字符串的生成位置：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">/armeabi-v7a$ aarch64-none-linux-gnu-objdump -d libsec2021.so <span class="p">|</span> grep <span class="s1">&#39;\#2452&#39;</span>  
-   1f988:       e3000994        movw    r0, <span class="c1">#2452       ; 0x994  </span>
-</code></pre></td></tr></table>
-</div>
-</div><p>调用位置在<code>sub_1F788</code>，其中还调用了<code>kill</code>,<code>sleep</code>等函数并生成<code>diediedie</code>字符串，猜测是进行弹框并退出的函数。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">kill</span><span class="p">(</span><span class="n">v11</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>  
-<span class="n">sleep</span><span class="p">(</span><span class="mi">5u</span><span class="p">);</span>  
-<span class="n">v12</span> <span class="o">=</span> <span class="n">getStr</span><span class="p">(</span><span class="mi">492</span><span class="p">);</span>  
-<span class="n">sub_13EC4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v12</span><span class="p">);</span> <span class="c1">// diediedie  
-</span></code></pre></td></tr></table>
-</div>
-</div><p><code>sub_13EC4</code>用于将生成的diediedie字符串写入地址0导致程序崩溃。</p>
-<p>在xhyeax大佬的博客里看见替换native函数的代码，记录一下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">hook_sec2021</span><span class="p">()</span> <span class="p">{</span>  
-    <span class="kd">var</span> <span class="nx">libbase</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">findBaseAddress</span><span class="p">(</span><span class="s2">&#34;libsec2021.so&#34;</span><span class="p">);</span>  
-    <span class="kd">var</span> <span class="nx">addr</span> <span class="o">=</span> <span class="nx">libbase</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mh">0x13EC4</span><span class="p">);</span>  
-    <span class="kd">var</span> <span class="nx">memcpy_ori</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NativeFunction</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;pointer&#39;</span><span class="p">]);</span>  
-    <span class="nx">Interceptor</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="k">new</span> <span class="nx">NativeCallback</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">dst</span><span class="p">,</span> <span class="nx">src</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="k">if</span> <span class="p">(</span><span class="nx">dst</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  
-            <span class="kd">var</span> <span class="nx">zero_replace_ptr</span> <span class="o">=</span> <span class="nx">Memory</span><span class="p">.</span><span class="nx">alloc</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  
-            <span class="nx">dst</span> <span class="o">=</span> <span class="nx">zero_replace_ptr</span><span class="p">;</span>  
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readByteArray</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">));</span>  
-            <span class="k">return</span> <span class="nx">dst</span><span class="p">;</span>  
-        <span class="p">}</span>  
-        <span class="k">return</span> <span class="nx">memcpy_ori</span><span class="p">(</span><span class="nx">dst</span><span class="p">,</span> <span class="nx">src</span><span class="p">);</span>  
-    <span class="p">},</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;pointer&#39;</span><span class="p">]));</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>该函数被<code>sub_1F6F0</code>函数调用，<code>sub_1F6F0</code>又被<code>sub_1FAA8</code>函数调用。调试发现此处确实为退出函数。查看函数的调用情况:</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/2.png">
-            <img src="/images/gslab2021-pre/2.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>把调用退出函数之前的<code>beq</code>改成<code>b</code></p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/3.png">
-            <img src="/images/gslab2021-pre/3.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>patch完之后重打包(apktool不行，直接压缩以后签名就行)就可以调试和Hook了。</p>
-<h3 id="关键逻辑获取">关键逻辑获取</h3>
-<p>mono中dll是从<code>mono_image_open_from_data_with_name</code>函数处加载，打开libmono.so发现<code>mono_image_open_from_data_with_name</code>被加密了。使用GG修改器从内存中dump出来mono.so,发现<code>mono_image_open_from_data_with_name</code>函数被Hook转入调用<code>libsec2021.so</code>导出表中的函数</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/4.png">
-            <img src="/images/gslab2021-pre/4.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/5.png">
-            <img src="/images/gslab2021-pre/5.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>最终调用可以追溯到<code>libsec2021.so</code>中的<code>sub_1CEDC</code>函数</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/6.png">
-            <img src="/images/gslab2021-pre/6.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>在这里解密<code>sec2021.png</code>的后半段获取真正的<code>Assembly-CSharp.dll</code>。(其实从解密获取的字符串，参数等于96的地方有提示<code>res/drawable-xhdpi-v4/ -&gt; assets/bin/Data/Managed/</code>)</p>
-<p>可以hook<code>mono_image_open_from_data_with_name</code>的下一条指令，当读取到真正的<code>Assembly-CSharp.dll</code>时（通过大小判断），将其dump出来。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">dump_memory</span><span class="p">(</span><span class="nx">base</span><span class="p">,</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>  
-    <span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>  
-        <span class="kd">var</span> <span class="nx">currentApplication</span> <span class="o">=</span> <span class="nx">Java</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&#34;android.app.ActivityThread&#34;</span><span class="p">).</span><span class="nx">currentApplication</span><span class="p">();</span>  
-        <span class="kd">var</span> <span class="nx">dir</span> <span class="o">=</span> <span class="nx">currentApplication</span><span class="p">.</span><span class="nx">getApplicationContext</span><span class="p">().</span><span class="nx">getFilesDir</span><span class="p">().</span><span class="nx">getPath</span><span class="p">();</span>  
-        <span class="kd">var</span> <span class="nx">file_path</span> <span class="o">=</span> <span class="nx">dir</span> <span class="o">+</span> <span class="s2">&#34;/dumpmemory.bin&#34;</span><span class="p">;</span>  
-        <span class="kd">var</span> <span class="nx">file_handle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="nx">file_path</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">);</span>  
-        <span class="k">if</span> <span class="p">(</span><span class="nx">file_handle</span> <span class="o">&amp;&amp;</span> <span class="nx">file_handle</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>  
-            <span class="nx">Memory</span><span class="p">.</span><span class="nx">protect</span><span class="p">(</span><span class="nx">ptr</span><span class="p">(</span><span class="nx">base</span><span class="p">),</span><span class="nx">size</span><span class="p">,</span> <span class="s1">&#39;rwx&#39;</span><span class="p">);</span>  
-            <span class="kd">var</span> <span class="nx">libso_buffer</span> <span class="o">=</span> <span class="nx">ptr</span><span class="p">(</span><span class="nx">base</span><span class="p">).</span><span class="nx">readByteArray</span><span class="p">(</span><span class="nx">size</span><span class="p">);</span>  
-            <span class="nx">file_handle</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">libso_buffer</span><span class="p">);</span>  
-            <span class="nx">file_handle</span><span class="p">.</span><span class="nx">flush</span><span class="p">();</span>  
-            <span class="nx">file_handle</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>  
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[dump]:&#34;</span><span class="p">,</span> <span class="nx">file_path</span><span class="p">);</span>  
-        <span class="p">}</span>  
-    <span class="p">});</span>  
-<span class="p">}</span>  
-<span class="kd">function</span> <span class="nx">hook_mono</span><span class="p">()</span> <span class="p">{</span>  
-    <span class="kd">var</span> <span class="nx">libbase</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">findBaseAddress</span><span class="p">(</span><span class="s2">&#34;libmono.so&#34;</span><span class="p">);</span>  
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;libbase&#34;</span><span class="p">,</span> <span class="nx">libbase</span><span class="p">);</span>  
-    <span class="kd">var</span> <span class="nx">addr</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="s2">&#34;libmono.so&#34;</span><span class="p">,</span> <span class="s2">&#34;mono_image_open_from_data_with_name&#34;</span><span class="p">);</span>  
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;mono_image_open_from_data_with_name&#34;</span><span class="p">,</span> <span class="nx">addr</span><span class="p">);</span>  
+</code></pre></td></tr></table></div></div><p>还原出来的字符串如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>28</span>      Author: saitexie walterjxli  
+<span class=m>59</span>      Do you know how unity mono works?  
+<span class=m>96</span>      res/drawable-xhdpi-v4/ -&gt; assets/bin/Data/Managed/  
+<span class=m>150</span>     initialize  
+<span class=m>164</span>     <span class=o>()</span>I  
+<span class=m>171</span>     com/tencent/games/sec2021/Sec2021Application  
+<span class=m>219</span>     com/tencent/games/sec2021/Sec2021IPC  
+<span class=m>259</span>     hack detected, risk score:%d  
+<span class=m>291</span>     getApplicationInfo  
+<span class=m>313</span>     <span class=o>()</span>Landroid/content/pm/ApplicationInfo<span class=p>;</span>  
+<span class=m>355</span>     getFilesDir  
+<span class=m>370</span>     <span class=o>()</span>Ljava/io/File<span class=p>;</span>  
+<span class=m>390</span>     sourceDir  
+<span class=m>403</span>     packageName  
+<span class=m>418</span>     nativeLibraryDir  
+<span class=m>438</span>     getAbsolutePath  
+<span class=m>457</span>     /proc/self/status  
+<span class=m>478</span>     TracerPid:  
+<span class=m>492</span>     diediedie  
+<span class=m>505</span>     /proc/self/maps  
+<span class=m>524</span>     rb  
+<span class=m>530</span>     delete  
+<span class=m>540</span>     %zx-%zx %c%c%c%c %x %x:%x %u %s  
+<span class=m>575</span>     android/os/Debug  
+<span class=m>595</span>     isDebuggerConnected  
+<span class=m>618</span>     sec2021  
+<span class=m>629</span>     getClass  
+<span class=m>641</span>     getName  
+<span class=m>652</span>     getSuperclass  
+<span class=m>669</span>     android/app/Application  
+<span class=m>696</span>     java/lang/Class  
+<span class=m>715</span>     <span class=o>()</span>Ljava/lang/Class<span class=p>;</span>  
+<span class=m>738</span>     <span class=o>()</span>Landroid/content/pm/ApplicationInfo<span class=p>;</span>  
+<span class=m>780</span>     <span class=o>()</span>Ljava/io/File<span class=p>;</span>  
+<span class=m>800</span>     <span class=o>()</span>Ljava/lang/String<span class=p>;</span>  
+<span class=m>824</span>     Assembly-CSharp.dll  
+<span class=m>847</span>     Mono.Security.dll  
+<span class=m>868</span>     mscorlib.dll  
+<span class=m>884</span>     System.Core.dll  
+<span class=m>903</span>     System.dll  
+<span class=m>917</span>     UnityEngine.dll  
+<span class=m>936</span>     UnityEngine.Networking.dll  
+<span class=m>966</span>     UnityEngine.PlaymodeTestsRunner.dll  
+<span class=m>1005</span>    UnityEngine.UI.dll  
+<span class=m>1027</span>    base.apk  
+<span class=m>1039</span>    android/content/Context  
+<span class=m>1066</span>    <span class=o>()</span>Ljava/lang/ClassLoader<span class=p>;</span>  
+<span class=m>1095</span>    <span class=o>()</span>Ljava/lang/String<span class=p>;</span>  
+<span class=m>1119</span>    zip file  
+<span class=m>1131</span>    libsec2021.so  
+<span class=m>1148</span>    %s/%s  
+<span class=m>1157</span>    dalvik.system.PathClassLoader  
+<span class=m>1190</span>    toString  
+<span class=m>1202</span>    getClassLoader  
+<span class=m>1220</span>    Ljava/lang/String<span class=p>;</span>  
+<span class=m>1242</span>    %s%s  
+<span class=m>1250</span>    /app/data/libbugly/crash.info  
+<span class=m>1283</span>    can you crack me?  
+<span class=m>1304</span>    __optional__  
+<span class=m>1320</span>    cc/binmt/signature/PmsHookApplication  
+<span class=m>1361</span>    com/cloudinject/feature/App  
+<span class=m>1392</span>    np/manager/FuckSign  
+<span class=m>1415</span>    java/lang/ClassLoader  
+<span class=m>1440</span>    findClass  
+<span class=m>1453</span>    <span class=o>(</span>Ljava/lang/String<span class=p>;</span><span class=o>)</span>Ljava/lang/Class<span class=p>;</span>  
+<span class=m>1494</span>    getPackageManager  
+<span class=m>1515</span>    <span class=o>()</span>Landroid/content/pm/PackageManager<span class=p>;</span>  
+<span class=m>1556</span>    getPackageName  
+<span class=m>1574</span>    getPackageInfo  
+<span class=m>1592</span>    <span class=o>(</span>Ljava/lang/String<span class=p>;</span>I<span class=o>)</span>Landroid/content/pm/PackageInfo<span class=p>;</span>  
+<span class=m>1649</span>    signatures  
+<span class=m>1663</span>    <span class=o>[</span>Landroid/content/pm/Signature<span class=p>;</span>  
+<span class=m>1698</span>    toByteArray  
+<span class=m>1713</span>    <span class=o>()[</span>B  
+<span class=m>1721</span>    java/io/ByteArrayInputStream  
+<span class=m>1753</span>    &lt;init&gt;  
+<span class=m>1763</span>    <span class=o>([</span>B<span class=o>)</span>V  
+<span class=m>1772</span>    java/security/cert/CertificateFactory  
+<span class=m>1813</span>    getInstance  
+<span class=m>1828</span>    <span class=o>(</span>Ljava/lang/String<span class=p>;</span><span class=o>)</span>Ljava/security/cert/CertificateFactory<span class=p>;</span>  
+<span class=m>1891</span>    X.509  
+<span class=m>1900</span>    generateCertificate  
+<span class=m>1923</span>    <span class=o>(</span>Ljava/io/InputStream<span class=p>;</span><span class=o>)</span>Ljava/security/cert/Certificate<span class=p>;</span>  
+<span class=m>1982</span>    getEncoded  
+<span class=m>1996</span>    java/security/MessageDigest  
+<span class=m>2027</span>    <span class=o>(</span>Ljava/lang/String<span class=p>;</span><span class=o>)</span>Ljava/security/MessageDigest<span class=p>;</span>  
+<span class=m>2080</span>    SHA1  
+<span class=m>2088</span>    digest  
+<span class=m>2098</span>    <span class=o>([</span>B<span class=o>)[</span>B  
+<span class=m>2108</span>    %s/libsec2021.so  
+<span class=m>2128</span>    .text  
+<span class=m>2137</span>    res/drawable-xhdpi-v4/sec2021.png  
+<span class=m>2174</span>    assets/filelist  
+<span class=m>2193</span>    endoffile  
+<span class=m>2206</span>    State  
+<span class=m>2215</span>    stop  
+<span class=m>2223</span>    substrate  
+<span class=m>2236</span>    /proc/%u/status  
+<span class=m>2255</span>    %s/libmono.so  
+<span class=m>2272</span>    rtld_db_dlactivity  
+<span class=m>2294</span>    /system/bin/linker  
+<span class=m>2316</span>    libjdwp.so  
+<span class=m>2330</span>    assets/sig.dat  
+<span class=m>2348</span>    opcode crack  
+<span class=m>2364</span>    debugger  
+<span class=m>2376</span>    bad apk  
+<span class=m>2387</span>    bad files  
+<span class=m>2400</span>    bad cert  
+<span class=m>2412</span>    ida  
+<span class=m>2419</span>    frida  
+<span class=m>2428</span>    shellcode  
+<span class=m>2441</span>    bad dll  
+<span class=m>2452</span>    hack detected, type:%s  
+<span class=m>2478</span>    0x%08x  
+<span class=m>2488</span>    libmono.so  
+<span class=m>2502</span>    libunity.so  
+<span class=m>2517</span>    libmain.so  
+<span class=m>2531</span>    META-INF/TEST.SF  
+<span class=m>2551</span>    META-INF/TEST.RSA  
+<span class=m>2572</span>    META-INF/MANIFEST.MF  
+<span class=m>2596</span>    .so  
+<span class=m>2603</span>    simulator  
+<span class=m>2616</span>    /system/  
+<span class=m>2628</span>    no heart beat.  
+<span class=m>2646</span>    <span class=o>(</span>ILjava/lang/String<span class=p>;</span><span class=o>)</span>V  
+<span class=m>2672</span>    onNativeEngineResponse  
+<span class=m>2698</span>    /proc/net/tcp  
+</code></pre></td></tr></table></div></div><p>游戏在检测出来<code>frida</code>,<code>ida</code>等工具时会显示"hack detected, type xxx"。查看字符串的生成位置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>/armeabi-v7a$ aarch64-none-linux-gnu-objdump -d libsec2021.so <span class=p>|</span> grep <span class=s1>&#39;\#2452&#39;</span>  
+   1f988:       e3000994        movw    r0, <span class=c1>#2452       ; 0x994  </span>
+</code></pre></td></tr></table></div></div><p>调用位置在<code>sub_1F788</code>，其中还调用了<code>kill</code>,<code>sleep</code>等函数并生成<code>diediedie</code>字符串，猜测是进行弹框并退出的函数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=n>kill</span><span class=p>(</span><span class=n>v11</span><span class=p>,</span> <span class=mi>9</span><span class=p>);</span>  
+<span class=n>sleep</span><span class=p>(</span><span class=mi>5u</span><span class=p>);</span>  
+<span class=n>v12</span> <span class=o>=</span> <span class=n>getStr</span><span class=p>(</span><span class=mi>492</span><span class=p>);</span>  
+<span class=n>sub_13EC4</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>v12</span><span class=p>);</span> <span class=c1>// diediedie  
+</span></code></pre></td></tr></table></div></div><p><code>sub_13EC4</code>用于将生成的diediedie字符串写入地址0导致程序崩溃。</p><p>在xhyeax大佬的博客里看见替换native函数的代码，记录一下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>hook_sec2021</span><span class=p>()</span> <span class=p>{</span>  
+    <span class=kd>var</span> <span class=nx>libbase</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libsec2021.so&#34;</span><span class=p>);</span>  
+    <span class=kd>var</span> <span class=nx>addr</span> <span class=o>=</span> <span class=nx>libbase</span><span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x13EC4</span><span class=p>);</span>  
+    <span class=kd>var</span> <span class=nx>memcpy_ori</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>NativeFunction</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=s1>&#39;pointer&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;int&#39;</span><span class=p>,</span> <span class=s1>&#39;pointer&#39;</span><span class=p>]);</span>  
+    <span class=nx>Interceptor</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=k>new</span> <span class=nx>NativeCallback</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=nx>dst</span><span class=p>,</span> <span class=nx>src</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=k>if</span> <span class=p>(</span><span class=nx>dst</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>  
+            <span class=kd>var</span> <span class=nx>zero_replace_ptr</span> <span class=o>=</span> <span class=nx>Memory</span><span class=p>.</span><span class=nx>alloc</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>  
+            <span class=nx>dst</span> <span class=o>=</span> <span class=nx>zero_replace_ptr</span><span class=p>;</span>  
+            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>Memory</span><span class=p>.</span><span class=nx>readByteArray</span><span class=p>(</span><span class=nx>src</span><span class=p>,</span> <span class=mh>0x10</span><span class=p>));</span>  
+            <span class=k>return</span> <span class=nx>dst</span><span class=p>;</span>  
+        <span class=p>}</span>  
+        <span class=k>return</span> <span class=nx>memcpy_ori</span><span class=p>(</span><span class=nx>dst</span><span class=p>,</span> <span class=nx>src</span><span class=p>);</span>  
+    <span class=p>},</span> <span class=s1>&#39;pointer&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;int&#39;</span><span class=p>,</span> <span class=s1>&#39;pointer&#39;</span><span class=p>]));</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>该函数被<code>sub_1F6F0</code>函数调用，<code>sub_1F6F0</code>又被<code>sub_1FAA8</code>函数调用。调试发现此处确实为退出函数。查看函数的调用情况:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/2.png data-srcset="/images/gslab2021-pre/2.png, /images/gslab2021-pre/2.png 1.5x, /images/gslab2021-pre/2.png 2x" data-sizes=auto alt=/images/gslab2021-pre/2.png title=/images/gslab2021-pre/2.png></p><p>把调用退出函数之前的<code>beq</code>改成<code>b</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/3.png data-srcset="/images/gslab2021-pre/3.png, /images/gslab2021-pre/3.png 1.5x, /images/gslab2021-pre/3.png 2x" data-sizes=auto alt=/images/gslab2021-pre/3.png title=/images/gslab2021-pre/3.png></p><p>patch完之后重打包(apktool不行，直接压缩以后签名就行)就可以调试和Hook了。</p><h3 id=关键逻辑获取>关键逻辑获取</h3><p>mono中dll是从<code>mono_image_open_from_data_with_name</code>函数处加载，打开libmono.so发现<code>mono_image_open_from_data_with_name</code>被加密了。使用GG修改器从内存中dump出来mono.so,发现<code>mono_image_open_from_data_with_name</code>函数被Hook转入调用<code>libsec2021.so</code>导出表中的函数</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/4.png data-srcset="/images/gslab2021-pre/4.png, /images/gslab2021-pre/4.png 1.5x, /images/gslab2021-pre/4.png 2x" data-sizes=auto alt=/images/gslab2021-pre/4.png title=/images/gslab2021-pre/4.png></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/5.png data-srcset="/images/gslab2021-pre/5.png, /images/gslab2021-pre/5.png 1.5x, /images/gslab2021-pre/5.png 2x" data-sizes=auto alt=/images/gslab2021-pre/5.png title=/images/gslab2021-pre/5.png></p><p>最终调用可以追溯到<code>libsec2021.so</code>中的<code>sub_1CEDC</code>函数</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/6.png data-srcset="/images/gslab2021-pre/6.png, /images/gslab2021-pre/6.png 1.5x, /images/gslab2021-pre/6.png 2x" data-sizes=auto alt=/images/gslab2021-pre/6.png title=/images/gslab2021-pre/6.png></p><p>在这里解密<code>sec2021.png</code>的后半段获取真正的<code>Assembly-CSharp.dll</code>。(其实从解密获取的字符串，参数等于96的地方有提示<code>res/drawable-xhdpi-v4/ -> assets/bin/Data/Managed/</code>)</p><p>可以hook<code>mono_image_open_from_data_with_name</code>的下一条指令，当读取到真正的<code>Assembly-CSharp.dll</code>时（通过大小判断），将其dump出来。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>dump_memory</span><span class=p>(</span><span class=nx>base</span><span class=p>,</span><span class=nx>size</span><span class=p>)</span> <span class=p>{</span>  
+    <span class=nx>Java</span><span class=p>.</span><span class=nx>perform</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>  
+        <span class=kd>var</span> <span class=nx>currentApplication</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;android.app.ActivityThread&#34;</span><span class=p>).</span><span class=nx>currentApplication</span><span class=p>();</span>  
+        <span class=kd>var</span> <span class=nx>dir</span> <span class=o>=</span> <span class=nx>currentApplication</span><span class=p>.</span><span class=nx>getApplicationContext</span><span class=p>().</span><span class=nx>getFilesDir</span><span class=p>().</span><span class=nx>getPath</span><span class=p>();</span>  
+        <span class=kd>var</span> <span class=nx>file_path</span> <span class=o>=</span> <span class=nx>dir</span> <span class=o>+</span> <span class=s2>&#34;/dumpmemory.bin&#34;</span><span class=p>;</span>  
+        <span class=kd>var</span> <span class=nx>file_handle</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>File</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=s2>&#34;wb&#34;</span><span class=p>);</span>  
+        <span class=k>if</span> <span class=p>(</span><span class=nx>file_handle</span> <span class=o>&amp;&amp;</span> <span class=nx>file_handle</span> <span class=o>!=</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>  
+            <span class=nx>Memory</span><span class=p>.</span><span class=nx>protect</span><span class=p>(</span><span class=nx>ptr</span><span class=p>(</span><span class=nx>base</span><span class=p>),</span><span class=nx>size</span><span class=p>,</span> <span class=s1>&#39;rwx&#39;</span><span class=p>);</span>  
+            <span class=kd>var</span> <span class=nx>libso_buffer</span> <span class=o>=</span> <span class=nx>ptr</span><span class=p>(</span><span class=nx>base</span><span class=p>).</span><span class=nx>readByteArray</span><span class=p>(</span><span class=nx>size</span><span class=p>);</span>  
+            <span class=nx>file_handle</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=nx>libso_buffer</span><span class=p>);</span>  
+            <span class=nx>file_handle</span><span class=p>.</span><span class=nx>flush</span><span class=p>();</span>  
+            <span class=nx>file_handle</span><span class=p>.</span><span class=nx>close</span><span class=p>();</span>  
+            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;[dump]:&#34;</span><span class=p>,</span> <span class=nx>file_path</span><span class=p>);</span>  
+        <span class=p>}</span>  
+    <span class=p>});</span>  
+<span class=p>}</span>  
+<span class=kd>function</span> <span class=nx>hook_mono</span><span class=p>()</span> <span class=p>{</span>  
+    <span class=kd>var</span> <span class=nx>libbase</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libmono.so&#34;</span><span class=p>);</span>  
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;libbase&#34;</span><span class=p>,</span> <span class=nx>libbase</span><span class=p>);</span>  
+    <span class=kd>var</span> <span class=nx>addr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findExportByName</span><span class=p>(</span><span class=s2>&#34;libmono.so&#34;</span><span class=p>,</span> <span class=s2>&#34;mono_image_open_from_data_with_name&#34;</span><span class=p>);</span>  
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;mono_image_open_from_data_with_name&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>);</span>  
   
-    <span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="s2">&#34;libmono.so&#34;</span><span class="p">,</span> <span class="s2">&#34;mono_image_open_from_data_with_name&#34;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="p">{</span>  
-        <span class="nx">onEnter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>  
-            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  
-            <span class="kd">var</span> <span class="nx">data_len</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>  
-            <span class="k">if</span> <span class="p">(</span><span class="nx">data_len</span> <span class="o">==</span> <span class="mh">0x2800</span><span class="p">)</span> <span class="p">{</span>  
-               <span class="nx">dump_memory</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">data_len</span><span class="p">);</span>  
-            <span class="p">}</span>  
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;mono_image_open_from_data_with_name_ori() called!&#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">data_len</span><span class="p">);</span>  
-        <span class="p">},</span>  
-        <span class="nx">onLeave</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">retval</span><span class="p">)</span> <span class="p">{</span>  
-        <span class="p">}</span>  
-    <span class="p">});</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>也可以直接从sec2021.png中解密，解密函数在<code>sub_1D2A0</code>。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/10.png">
-            <img src="/images/gslab2021-pre/10.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>其中key从<code>sub_6320</code>处使用<code>sem_init</code>,<code>sem_wait</code>相关的函数收到的，与<code>PostMessage/PeekMessage</code>相似，需要找到信号发送函数，即<code>sem_post</code>函数。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__fastcall</span> <span class="nf">sub_16108</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a1</span><span class="p">)</span>  
-<span class="p">{</span>  
-  <span class="o">*</span><span class="n">a1</span> <span class="o">=</span> <span class="n">sub_16128</span><span class="p">();</span>  
-  <span class="k">return</span> <span class="n">sem_post</span><span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
-<span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><p>如图，初始密钥是从<code>classes.dex</code>文件的crc和<code>sec2021</code>,<code>com/tencent/games/sec2021/Sec2021Application</code>两个字符串的crc异或得到的。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/11.png">
-            <img src="/images/gslab2021-pre/11.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>直接还原函数得到异或的密钥后解密。png中的偏移是16651开始。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/7.png">
-            <img src="/images/gslab2021-pre/7.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>解密完成以后可以得到真正的<code>Assembly-CSharp.dll</code>文件。</p>
-<h3 id="修改">修改</h3>
-<p>放到dnspy中查看，看到<code>MouseController</code>碰撞检测函数<code>OnTriggerEnter2D</code>中对碰撞物体进行了判断，如果不是金币则调用<code>HitByLaser</code>函数。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/8.png">
-            <img src="/images/gslab2021-pre/8.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>做出如下修改即可达到撞杆不死的效果</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/9.png">
-            <img src="/images/gslab2021-pre/9.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>修改完成之后替换原本的<code>Assembly-CSharp.dll</code>文件，修改<code>libsec2021.so</code>使其不从<code>sec2021.png</code>中解密获取<code>Assembly-CSharp.dll</code></p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/12.png">
-            <img src="/images/gslab2021-pre/12.png" alt=""  />
-        </a>
-    </div>
-</p>
-<p>因为替换后的文件确实以<code>MZ</code>开头，所以不进行解密替换，修改完成后重打包就可以达到撞杆不死的效果了。</p>
-<p>
-
-
-    <div class="post-img-view">
-        <a data-fancybox="gallery" href="/images/gslab2021-pre/13.jpg">
-            <img src="/images/gslab2021-pre/13.jpg" alt=""  />
-        </a>
-    </div>
-</p>
-<h2 id="其他思路">其他思路</h2>
-<p>看到师傅们的题解大概还有一些可行性思路，总结一下</p>
-<ol>
-<li>
-<p>模拟<code>libsec2021.so</code>因为mono.so和unity.so经过加密，且需要调用<code>g_sec2021_p_array</code>中的函数进行解密，<code>libsec2021.so</code>中又存在诸多完整性校验，所以可以自己写一个libsec模拟这些函数直接去掉原始的壳文件。</p>
-</li>
-<li>
-<p>frida-gadget</p>
-<p>我的理解是这个方法类似把frida脚本直接写进了apk里面，之前没用过，具体细节可以看<code>xhyeax</code>师傅的博客。</p>
-</li>
-<li>
-<p>将UnityEngine.dll和Assembly-CSharp.dll作为引用，编写一个注入dll，从而拦截HitByLaser方法(<a href="https://github.com/Misaka-Mikoto-Tech/MonoHook" target="_blank" rel="noopener noreffer">GitHub - Misaka-Mikoto-Tech/MonoHook: hook C# method at runtime without modify dll file (such as UnityEditor.dll)</a>)。</p>
-<p>在native层hook dlopen函数，过掉libsec2021.so的检测，并获取libmono句柄，然后导出mono的api，在Assembly-CShar p.dll加载后，调用api加载注入dll（使用Cydia Substrate框架）</p>
-</li>
-<li>
-<p>后面patch dll之后不修改so而是将修改后的dll加密以后再写回sec2021.png，由于会校验CRC所以可以爆破最后四个字节使CRC不变。<code>assets/filelist</code>存放了apk所有文件列表及其CRC值，因此还要在这里修改libsec2021.so的CRC(但是好像过了检测绕过以后就不用修改这个了)。</p>
-</li>
-</ol>
-<h2 id="参考链接">参考链接</h2>
-<p><a href="https://blog.xhyeax.com/2021/04/04/gslab2021-pre-android/">https://blog.xhyeax.com/2021/04/04/gslab2021-pre-android/</a></p>
-<p><a href="https://www.52pojie.cn/thread-1420775-1-1.html">https://www.52pojie.cn/thread-1420775-1-1.html</a></p>
-<p><a href="https://bbs.pediy.com/thread-226135.htm">https://bbs.pediy.com/thread-226135.htm</a></p>
-<p><a href="https://bbs.pediy.com/thread-226208.htm">https://bbs.pediy.com/thread-226208.htm</a></p>
-<p><a href="https://bbs.pediy.com/thread-226261.htm">https://bbs.pediy.com/thread-226261.htm</a></p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
-                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/gslab2021-pre/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/gslab2021-pre/" data-title="2021腾讯游戏安全大赛安卓方向初赛题解"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/gslab2021-pre/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/gslab2021-pre/" data-title="2021腾讯游戏安全大赛安卓方向初赛题解"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/gslab2021-pre/" data-title="2021腾讯游戏安全大赛安卓方向初赛题解"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/gslab2021-pre/" data-title="2021腾讯游戏安全大赛安卓方向初赛题解"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/init_array/" class="prev" rel="prev" title="调试android so的.init_array数组"><i class="fas fa-angle-left fa-fw"></i>调试android so的.init_array数组</a>
-            <a href="/gslab2021-final/" class="next" rel="next" title="2021腾讯游戏安全大赛安卓方向决赛题解">2021腾讯游戏安全大赛安卓方向决赛题解<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+    <span class=nx>Interceptor</span><span class=p>.</span><span class=nx>attach</span><span class=p>(</span><span class=nx>Module</span><span class=p>.</span><span class=nx>findExportByName</span><span class=p>(</span><span class=s2>&#34;libmono.so&#34;</span><span class=p>,</span> <span class=s2>&#34;mono_image_open_from_data_with_name&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mi>4</span><span class=p>),</span> <span class=p>{</span>  
+        <span class=nx>onEnter</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>args</span><span class=p>)</span> <span class=p>{</span>  
+            <span class=kd>var</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>args</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>  
+            <span class=kd>var</span> <span class=nx>data_len</span> <span class=o>=</span> <span class=nx>args</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>  
+            <span class=k>if</span> <span class=p>(</span><span class=nx>data_len</span> <span class=o>==</span> <span class=mh>0x2800</span><span class=p>)</span> <span class=p>{</span>  
+               <span class=nx>dump_memory</span><span class=p>(</span><span class=nx>data</span><span class=p>,</span> <span class=nx>data_len</span><span class=p>);</span>  
+            <span class=p>}</span>  
+            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;mono_image_open_from_data_with_name_ori() called!&#34;</span><span class=p>,</span> <span class=nx>data</span><span class=p>,</span> <span class=nx>data_len</span><span class=p>);</span>  
+        <span class=p>},</span>  
+        <span class=nx>onLeave</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>retval</span><span class=p>)</span> <span class=p>{</span>  
+        <span class=p>}</span>  
+    <span class=p>});</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>也可以直接从sec2021.png中解密，解密函数在<code>sub_1D2A0</code>。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/10.png data-srcset="/images/gslab2021-pre/10.png, /images/gslab2021-pre/10.png 1.5x, /images/gslab2021-pre/10.png 2x" data-sizes=auto alt=/images/gslab2021-pre/10.png title=/images/gslab2021-pre/10.png></p><p>其中key从<code>sub_6320</code>处使用<code>sem_init</code>,<code>sem_wait</code>相关的函数收到的，与<code>PostMessage/PeekMessage</code>相似，需要找到信号发送函数，即<code>sem_post</code>函数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=kr>__fastcall</span> <span class=nf>sub_16108</span><span class=p>(</span><span class=kt>int</span> <span class=o>*</span><span class=n>a1</span><span class=p>)</span>  
+<span class=p>{</span>  
+  <span class=o>*</span><span class=n>a1</span> <span class=o>=</span> <span class=n>sub_16128</span><span class=p>();</span>  
+  <span class=k>return</span> <span class=n>sem_post</span><span class=p>(</span><span class=n>a1</span> <span class=o>+</span> <span class=mi>3</span><span class=p>);</span>  
+<span class=p>}</span>  
+</code></pre></td></tr></table></div></div><p>如图，初始密钥是从<code>classes.dex</code>文件的crc和<code>sec2021</code>,<code>com/tencent/games/sec2021/Sec2021Application</code>两个字符串的crc异或得到的。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/11.png data-srcset="/images/gslab2021-pre/11.png, /images/gslab2021-pre/11.png 1.5x, /images/gslab2021-pre/11.png 2x" data-sizes=auto alt=/images/gslab2021-pre/11.png title=/images/gslab2021-pre/11.png></p><p>直接还原函数得到异或的密钥后解密。png中的偏移是16651开始。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/7.png data-srcset="/images/gslab2021-pre/7.png, /images/gslab2021-pre/7.png 1.5x, /images/gslab2021-pre/7.png 2x" data-sizes=auto alt=/images/gslab2021-pre/7.png title=/images/gslab2021-pre/7.png></p><p>解密完成以后可以得到真正的<code>Assembly-CSharp.dll</code>文件。</p><h3 id=修改>修改</h3><p>放到dnspy中查看，看到<code>MouseController</code>碰撞检测函数<code>OnTriggerEnter2D</code>中对碰撞物体进行了判断，如果不是金币则调用<code>HitByLaser</code>函数。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/8.png data-srcset="/images/gslab2021-pre/8.png, /images/gslab2021-pre/8.png 1.5x, /images/gslab2021-pre/8.png 2x" data-sizes=auto alt=/images/gslab2021-pre/8.png title=/images/gslab2021-pre/8.png></p><p>做出如下修改即可达到撞杆不死的效果</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/9.png data-srcset="/images/gslab2021-pre/9.png, /images/gslab2021-pre/9.png 1.5x, /images/gslab2021-pre/9.png 2x" data-sizes=auto alt=/images/gslab2021-pre/9.png title=/images/gslab2021-pre/9.png></p><p>修改完成之后替换原本的<code>Assembly-CSharp.dll</code>文件，修改<code>libsec2021.so</code>使其不从<code>sec2021.png</code>中解密获取<code>Assembly-CSharp.dll</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/12.png data-srcset="/images/gslab2021-pre/12.png, /images/gslab2021-pre/12.png 1.5x, /images/gslab2021-pre/12.png 2x" data-sizes=auto alt=/images/gslab2021-pre/12.png title=/images/gslab2021-pre/12.png></p><p>因为替换后的文件确实以<code>MZ</code>开头，所以不进行解密替换，修改完成后重打包就可以达到撞杆不死的效果了。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/gslab2021-pre/13.jpg data-srcset="/images/gslab2021-pre/13.jpg, /images/gslab2021-pre/13.jpg 1.5x, /images/gslab2021-pre/13.jpg 2x" data-sizes=auto alt=/images/gslab2021-pre/13.jpg title=/images/gslab2021-pre/13.jpg></p><h2 id=其他思路>其他思路</h2><p>看到师傅们的题解大概还有一些可行性思路，总结一下</p><ol><li><p>模拟<code>libsec2021.so</code>因为mono.so和unity.so经过加密，且需要调用<code>g_sec2021_p_array</code>中的函数进行解密，<code>libsec2021.so</code>中又存在诸多完整性校验，所以可以自己写一个libsec模拟这些函数直接去掉原始的壳文件。</p></li><li><p>frida-gadget</p><p>我的理解是这个方法类似把frida脚本直接写进了apk里面，之前没用过，具体细节可以看<code>xhyeax</code>师傅的博客。</p></li><li><p>将UnityEngine.dll和Assembly-CSharp.dll作为引用，编写一个注入dll，从而拦截HitByLaser方法(<a href=https://github.com/Misaka-Mikoto-Tech/MonoHook target=_blank rel="noopener noreffer">GitHub - Misaka-Mikoto-Tech/MonoHook: hook C# method at runtime without modify dll file (such as UnityEditor.dll)</a>)。</p><p>在native层hook dlopen函数，过掉libsec2021.so的检测，并获取libmono句柄，然后导出mono的api，在Assembly-CShar p.dll加载后，调用api加载注入dll（使用Cydia Substrate框架）</p></li><li><p>后面patch dll之后不修改so而是将修改后的dll加密以后再写回sec2021.png，由于会校验CRC所以可以爆破最后四个字节使CRC不变。<code>assets/filelist</code>存放了apk所有文件列表及其CRC值，因此还要在这里修改libsec2021.so的CRC(但是好像过了检测绕过以后就不用修改这个了)。</p></li></ol><h2 id=参考链接>参考链接</h2><p><a href=https://blog.xhyeax.com/2021/04/04/gslab2021-pre-android/>https://blog.xhyeax.com/2021/04/04/gslab2021-pre-android/</a></p><p><a href=https://www.52pojie.cn/thread-1420775-1-1.html>https://www.52pojie.cn/thread-1420775-1-1.html</a></p><p><a href=https://bbs.pediy.com/thread-226135.htm>https://bbs.pediy.com/thread-226135.htm</a></p><p><a href=https://bbs.pediy.com/thread-226208.htm>https://bbs.pediy.com/thread-226208.htm</a></p><p><a href=https://bbs.pediy.com/thread-226261.htm>https://bbs.pediy.com/thread-226261.htm</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-04-02&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e target=_blank title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+<i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/gslab2021-pre/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/gslab2021-pre/ data-title=2021腾讯游戏安全大赛安卓方向初赛题解><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/gslab2021-pre/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/gslab2021-pre/ data-title=2021腾讯游戏安全大赛安卓方向初赛题解><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/gslab2021-pre/ data-title=2021腾讯游戏安全大赛安卓方向初赛题解><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/gslab2021-pre/ data-title=2021腾讯游戏安全大赛安卓方向初赛题解><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/init_array/ class=prev rel=prev title="调试android so的.init_array数组"><i class="fas fa-angle-left fa-fw"></i>调试android so的.init_array数组</a>
+<a href=/gslab2021-final/ class=next rel=next title=2021腾讯游戏安全大赛安卓方向决赛题解>2021腾讯游戏安全大赛安卓方向决赛题解<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

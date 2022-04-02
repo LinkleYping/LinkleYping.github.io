@@ -1,528 +1,311 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>第五空间2020-re - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="第五空间2020-re" />
-<meta property="og:description" content="nop 去掉花指令后的main函数如下: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int __cdecl main(int a1, char **a2) { _BYTE *v2; // eax sub_804865B(*a2); puts(&#34;input your flag&#34;); __isoc99_scanf(&#34;%d&#34;, &amp;dword_804A038); &#43;&#43;dword_804A038; sub_804857B(); &#43;&#43;dword_804A038; sub_80485C4(); dword_804A038 -= 0x33333334; sub_80485C4(); &#43;&#43;dword_804A038; sub_80485C4(); v2 = sub_8048691((_BYTE *)dword_804A038); sub_8048691(v2 &#43;" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" />
-<meta property="og:image" content="https://linkleyping.top/logo.png"/>
-<meta property="article:published_time" content="2020-06-26T15:22:45+08:00" />
-<meta property="article:modified_time" content="2020-06-26T15:22:45+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
-
-<meta name="twitter:title" content="第五空间2020-re"/>
-<meta name="twitter:description" content="nop 去掉花指令后的main函数如下: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int __cdecl main(int a1, char **a2) { _BYTE *v2; // eax sub_804865B(*a2); puts(&#34;input your flag&#34;); __isoc99_scanf(&#34;%d&#34;, &amp;dword_804A038); &#43;&#43;dword_804A038; sub_804857B(); &#43;&#43;dword_804A038; sub_80485C4(); dword_804A038 -= 0x33333334; sub_80485C4(); &#43;&#43;dword_804A038; sub_80485C4(); v2 = sub_8048691((_BYTE *)dword_804A038); sub_8048691(v2 &#43;"/>
-<meta name="application-name" content="EP`s blog">
-<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" /><link rel="next" href="https://linkleyping.top/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "第五空间2020-re",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/linkleyping.top\/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re\/"
-        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1475 ,
-        "url": "https:\/\/linkleyping.top\/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re\/","datePublished": "2020-06-26T15:22:45+08:00","dateModified": "2020-06-26T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-            "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
-                "@type": "Person",
-                "name": "EP"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
-    <div class="header-wrapper">  
-        <div class="header-title">  
-            <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-        </div>  
-        <div class="menu">  
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-desktop">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                    <i class="fas fa-adjust fa-fw"></i>  
-                </a>  
-            </div>  
-        </div>  
-    </div>  
-</header><header class="mobile" id="header-mobile">  
-    <div class="header-container">  
-        <div class="header-wrapper">  
-            <div class="header-title">  
-                <a href="/" title="EP`s blog"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/icon.png"
-        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
-        data-sizes="auto"
-        alt="/images/icon.png"
-        title="/images/icon.png" />EP`s blog</a>  
-            </div>  
-            <div class="menu-toggle" id="menu-toggle-mobile">  
-                <span></span><span></span><span></span>  
-            </div>  
-        </div>  
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
-                    <div class="search mobile" id="search-mobile">  
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
-                            <i class="fas fa-search fa-fw"></i>  
-                        </a>  
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
-                            <i class="fas fa-times-circle fa-fw"></i>  
-                        </a>  
-                        <span class="search-button search-loading" id="search-loading-mobile">  
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
-                        </span>  
-                    </div>  
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
-                        取消  
-                    </a>  
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
-                <i class="fas fa-adjust fa-fw"></i>  
-            </a></div>  
-    </div>  
-</header>  
-<div class="search-dropdown desktop">  
-    <div id="search-dropdown-desktop"></div>  
-</div>  
-<div class="search-dropdown mobile">  
-    <div id="search-dropdown-mobile"></div>  
-</div>  
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">第五空间2020-re</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-26">2020-06-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1475 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#nop">nop</a></li>
-    <li><a href="#managecode">ManageCode</a></li>
-    <li><a href="#rev">rev</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="nop">nop</h2>
-<p>去掉花指令后的main函数如下:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">a2</span><span class="p">)</span>    
-<span class="p">{</span>    
-  <span class="n">_BYTE</span> <span class="o">*</span><span class="n">v2</span><span class="p">;</span> <span class="c1">// eax    
-</span><span class="c1"></span>      
-  <span class="n">sub_804865B</span><span class="p">(</span><span class="o">*</span><span class="n">a2</span><span class="p">);</span>    
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;input your flag&#34;</span><span class="p">);</span>    
-  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dword_804A038</span><span class="p">);</span>    
-  <span class="o">++</span><span class="n">dword_804A038</span><span class="p">;</span>    
-  <span class="n">sub_804857B</span><span class="p">();</span>    
-  <span class="o">++</span><span class="n">dword_804A038</span><span class="p">;</span>    
-  <span class="n">sub_80485C4</span><span class="p">();</span>    
-  <span class="n">dword_804A038</span> <span class="o">-=</span> <span class="mh">0x33333334</span><span class="p">;</span>    
-  <span class="n">sub_80485C4</span><span class="p">();</span>    
-  <span class="o">++</span><span class="n">dword_804A038</span><span class="p">;</span>    
-  <span class="n">sub_80485C4</span><span class="p">();</span>    
-  <span class="n">v2</span> <span class="o">=</span> <span class="n">sub_8048691</span><span class="p">((</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_804A038</span><span class="p">);</span>    
-  <span class="n">sub_8048691</span><span class="p">(</span><span class="n">v2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>    
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wrong!&#34;</span><span class="p">);</span>    
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
-<span class="p">}</span>    
-</code></pre></td></tr></table>
-</div>
-</div><p>输入是一个数字，<code>sub_804857B</code>和<code>sub_80485C4</code>都是反调试，sub_8048691会把参数处地址的值改为0x90，就是nop，调用了两次可以nop两个字节，所以可以把下面:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048763</span> <span class="n">EB</span> <span class="mo">00</span>                                   <span class="n">jmp</span>     <span class="kt">short</span> <span class="err">$</span><span class="o">+</span><span class="mi">2</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048765</span>                         <span class="p">;</span> <span class="o">---------------------------------------------------------------------------</span>
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048765</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048765</span>                         <span class="nl">loc_8048765</span><span class="p">:</span>                            <span class="p">;</span> <span class="n">CODE</span> <span class="nl">XREF</span><span class="p">:</span> <span class="n">main</span><span class="o">+</span><span class="n">C7</span><span class="err">↑</span><span class="n">j</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048765</span> <span class="n">EB</span> <span class="mi">12</span>                                   <span class="n">jmp</span>     <span class="kt">short</span> <span class="n">loc_8048779</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048767</span>                         <span class="p">;</span> <span class="o">---------------------------------------------------------------------------</span>
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048767</span> <span class="mi">83</span> <span class="n">EC</span> <span class="mi">0</span><span class="n">C</span>                                <span class="n">sub</span>     <span class="n">esp</span><span class="p">,</span> <span class="mi">0</span><span class="n">Ch</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">0804876</span><span class="n">A</span> <span class="mi">68</span> <span class="mi">35</span> <span class="mi">88</span> <span class="mo">04</span> <span class="mi">08</span>                          <span class="n">push</span>    <span class="n">offset</span> <span class="n">format</span>   <span class="p">;</span> <span class="s">&#34;Right&#34;</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mf">0804876F</span> <span class="n">E8</span> <span class="mi">8</span><span class="n">C</span> <span class="n">FC</span> <span class="n">FF</span> <span class="n">FF</span>                          <span class="n">call</span>    <span class="n">_printf</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048774</span> <span class="mi">83</span> <span class="n">C4</span> <span class="mi">10</span>                                <span class="n">add</span>     <span class="n">esp</span><span class="p">,</span> <span class="mi">10</span><span class="n">h</span>    
-<span class="p">.</span><span class="nl">text</span><span class="p">:</span><span class="mi">08048777</span> <span class="n">EB</span> <span class="mi">10</span>                                   <span class="n">jmp</span>     <span class="kt">short</span> <span class="n">loc_8048789</span>    
-</code></pre></td></tr></table>
-</div>
-</div><p><code>8048765</code>处的两字节nop掉，可以输出Right</p>
-<h2 id="managecode">ManageCode</h2>
-<p>应该用了c#和cpp联合编译，用dnspy在c#中只能找到flag的格式是111111-111111-111111-11111111111111，但是没看到检测流程 <br>
-用ida打开可以看到检测的流程，首先将输入转16进制，然后对这个16进制数下访问断点可以到检测的函数，直接解方程。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>    
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>第五空间2020-re - EP`s blog</title><meta name=Description content="关于 LoveIt 主题"><meta property="og:title" content="第五空间2020-re"><meta property="og:description" content="nop 去掉花指令后的main函数如下: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int __cdecl main(int a1, char **a2) { _BYTE *v2; // eax sub_804865B(*a2); puts(&#34;input your flag&#34;); __isoc99_scanf(&#34;%d&#34;, &dword_804A038); ++dword_804A038; sub_804857B(); ++dword_804A038; sub_80485C4(); dword_804A038 -= 0x33333334; sub_80485C4(); ++dword_804A038; sub_80485C4(); v2 = sub_8048691((_BYTE *)dword_804A038); sub_8048691(v2 +"><meta property="og:type" content="article"><meta property="og:url" content="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/"><meta property="og:image" content="https://linkleyping.top/logo.png"><meta property="article:published_time" content="2020-06-26T15:22:45+08:00"><meta property="article:modified_time" content="2020-06-26T15:22:45+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://linkleyping.top/logo.png"><meta name=twitter:title content="第五空间2020-re"><meta name=twitter:description content="nop 去掉花指令后的main函数如下: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int __cdecl main(int a1, char **a2) { _BYTE *v2; // eax sub_804865B(*a2); puts(&#34;input your flag&#34;); __isoc99_scanf(&#34;%d&#34;, &dword_804A038); ++dword_804A038; sub_804857B(); ++dword_804A038; sub_80485C4(); dword_804A038 -= 0x33333334; sub_80485C4(); ++dword_804A038; sub_80485C4(); v2 = sub_8048691((_BYTE *)dword_804A038); sub_8048691(v2 +"><meta name=application-name content="EP`s blog"><meta name=apple-mobile-web-app-title content="EP`s blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/><link rel=prev href=https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/><link rel=next href=https://linkleyping.top/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"第五空间2020-re","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/linkleyping.top\/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re\/"},"image":["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":1475,"url":"https:\/\/linkleyping.top\/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re\/","datePublished":"2020-06-26T15:22:45+08:00","dateModified":"2020-06-26T15:22:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/linkleyping.top\/images\/avatar.png"},"author":{"@type":"Person","name":"EP"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="EP`s blog"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/icon.png data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x" data-sizes=auto alt=/images/icon.png title=/images/icon.png><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>EP`s blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/LinkleYping title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">第五空间2020-re</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://linkleyping.top title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/writeup/><i class="far fa-folder fa-fw"></i>writeup</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-26>2020-06-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1475 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#nop>nop</a></li><li><a href=#managecode>ManageCode</a></li><li><a href=#rev>rev</a></li></ul></nav></div></div><div class=content id=content><h2 id=nop>nop</h2><p>去掉花指令后的main函数如下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=kr>__cdecl</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>a1</span><span class=p>,</span> <span class=kt>char</span> <span class=o>**</span><span class=n>a2</span><span class=p>)</span>    
+<span class=p>{</span>    
+  <span class=n>_BYTE</span> <span class=o>*</span><span class=n>v2</span><span class=p>;</span> <span class=c1>// eax    
+</span><span class=c1></span>      
+  <span class=n>sub_804865B</span><span class=p>(</span><span class=o>*</span><span class=n>a2</span><span class=p>);</span>    
+  <span class=n>puts</span><span class=p>(</span><span class=s>&#34;input your flag&#34;</span><span class=p>);</span>    
+  <span class=n>__isoc99_scanf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>dword_804A038</span><span class=p>);</span>    
+  <span class=o>++</span><span class=n>dword_804A038</span><span class=p>;</span>    
+  <span class=n>sub_804857B</span><span class=p>();</span>    
+  <span class=o>++</span><span class=n>dword_804A038</span><span class=p>;</span>    
+  <span class=n>sub_80485C4</span><span class=p>();</span>    
+  <span class=n>dword_804A038</span> <span class=o>-=</span> <span class=mh>0x33333334</span><span class=p>;</span>    
+  <span class=n>sub_80485C4</span><span class=p>();</span>    
+  <span class=o>++</span><span class=n>dword_804A038</span><span class=p>;</span>    
+  <span class=n>sub_80485C4</span><span class=p>();</span>    
+  <span class=n>v2</span> <span class=o>=</span> <span class=n>sub_8048691</span><span class=p>((</span><span class=n>_BYTE</span> <span class=o>*</span><span class=p>)</span><span class=n>dword_804A038</span><span class=p>);</span>    
+  <span class=n>sub_8048691</span><span class=p>(</span><span class=n>v2</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>    
+  <span class=n>puts</span><span class=p>(</span><span class=s>&#34;Wrong!&#34;</span><span class=p>);</span>    
+  <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>    
+<span class=p>}</span>    
+</code></pre></td></tr></table></div></div><p>输入是一个数字，<code>sub_804857B</code>和<code>sub_80485C4</code>都是反调试，sub_8048691会把参数处地址的值改为0x90，就是nop，调用了两次可以nop两个字节，所以可以把下面:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048763</span> <span class=n>EB</span> <span class=mo>00</span>                                   <span class=n>jmp</span>     <span class=kt>short</span> <span class=err>$</span><span class=o>+</span><span class=mi>2</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048765</span>                         <span class=p>;</span> <span class=o>---------------------------------------------------------------------------</span>
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048765</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048765</span>                         <span class=nl>loc_8048765</span><span class=p>:</span>                            <span class=p>;</span> <span class=n>CODE</span> <span class=nl>XREF</span><span class=p>:</span> <span class=n>main</span><span class=o>+</span><span class=n>C7</span><span class=err>↑</span><span class=n>j</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048765</span> <span class=n>EB</span> <span class=mi>12</span>                                   <span class=n>jmp</span>     <span class=kt>short</span> <span class=n>loc_8048779</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048767</span>                         <span class=p>;</span> <span class=o>---------------------------------------------------------------------------</span>
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048767</span> <span class=mi>83</span> <span class=n>EC</span> <span class=mi>0</span><span class=n>C</span>                                <span class=n>sub</span>     <span class=n>esp</span><span class=p>,</span> <span class=mi>0</span><span class=n>Ch</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>0804876</span><span class=n>A</span> <span class=mi>68</span> <span class=mi>35</span> <span class=mi>88</span> <span class=mo>04</span> <span class=mi>08</span>                          <span class=n>push</span>    <span class=n>offset</span> <span class=n>format</span>   <span class=p>;</span> <span class=s>&#34;Right&#34;</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mf>0804876F</span> <span class=n>E8</span> <span class=mi>8</span><span class=n>C</span> <span class=n>FC</span> <span class=n>FF</span> <span class=n>FF</span>                          <span class=n>call</span>    <span class=n>_printf</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048774</span> <span class=mi>83</span> <span class=n>C4</span> <span class=mi>10</span>                                <span class=n>add</span>     <span class=n>esp</span><span class=p>,</span> <span class=mi>10</span><span class=n>h</span>    
+<span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mi>08048777</span> <span class=n>EB</span> <span class=mi>10</span>                                   <span class=n>jmp</span>     <span class=kt>short</span> <span class=n>loc_8048789</span>    
+</code></pre></td></tr></table></div></div><p><code>8048765</code>处的两字节nop掉，可以输出Right</p><h2 id=managecode>ManageCode</h2><p>应该用了c#和cpp联合编译，用dnspy在c#中只能找到flag的格式是111111-111111-111111-11111111111111，但是没看到检测流程<br>用ida打开可以看到检测的流程，首先将输入转16进制，然后对这个16进制数下访问断点可以到检测的函数，直接解方程。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>z3</span> <span class=kn>import</span> <span class=o>*</span>    
     
-<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>    
+<span class=n>solver</span> <span class=o>=</span> <span class=n>Solver</span><span class=p>()</span>    
     
-<span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="n">Int</span><span class="p">(</span><span class="s1">&#39;s</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">1</span>    
-<span class="n">v2</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>    
-<span class="n">v3</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>    
-<span class="n">v32</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>    
-<span class="n">v29</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>    
-<span class="n">v31</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="o">-</span><span class="mi">401736</span> <span class="o">*</span> <span class="n">v2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">4419096</span> <span class="p">)</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">191967</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">473999</span> <span class="o">*</span> <span class="n">v2</span> <span class="o">==</span> <span class="mi">23642821</span> <span class="p">)</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v4</span> <span class="o">=</span> <span class="mi">57125</span> <span class="o">*</span> <span class="n">v2</span>    
-<span class="n">v5</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>    
-<span class="n">v6</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>    
-<span class="n">v30</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>    
-<span class="n">v28</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">v4</span> <span class="o">+</span> <span class="mi">465507</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">-</span> <span class="mi">207145</span> <span class="o">*</span> <span class="n">v3</span> <span class="o">==</span> <span class="mi">42831307</span> <span class="p">)</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">149773</span> <span class="o">*</span> <span class="n">v5</span> <span class="o">+</span> <span class="o">-</span><span class="mi">488633</span> <span class="o">*</span> <span class="n">v32</span> <span class="o">-</span> <span class="mi">5245</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">-</span> <span class="mi">280749</span> <span class="o">*</span> <span class="n">v3</span> <span class="o">==</span> <span class="o">-</span><span class="mi">560637</span> <span class="p">)</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">381790</span> <span class="o">*</span> <span class="n">v3</span> <span class="o">+</span> <span class="mi">59135</span> <span class="o">*</span> <span class="n">v6</span> <span class="o">+</span> <span class="mi">130415</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">+</span> <span class="mi">174205</span> <span class="o">*</span> <span class="n">v5</span> <span class="o">-</span> <span class="mi">83562</span> <span class="o">*</span> <span class="n">v32</span> <span class="o">==</span> <span class="mi">27764403</span> <span class="p">)</span>    
-<span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v7</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>    
-<span class="n">v27</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>    
-<span class="n">v8</span> <span class="o">=</span> <span class="mi">500139</span> <span class="o">*</span> <span class="n">v6</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="n">v1</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">386908</span> <span class="o">*</span> <span class="n">v32</span> <span class="o">+</span> <span class="mi">465831</span> <span class="o">*</span> <span class="n">v30</span> <span class="o">+</span> <span class="n">v8</span> <span class="o">+</span> <span class="mi">500998</span> <span class="o">*</span> <span class="n">v7</span> <span class="o">+</span> <span class="mi">474240</span> <span class="o">*</span> <span class="n">v3</span> <span class="o">-</span> <span class="mi">4838</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">==</span> <span class="mi">119143813</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v10</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>    
-<span class="n">v26</span> <span class="o">=</span> <span class="n">v10</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">182991</span> <span class="o">*</span> <span class="n">v30</span> <span class="o">+</span> <span class="o">-</span><span class="mi">200009</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">-</span> <span class="mi">497601</span> <span class="o">*</span> <span class="n">v32</span> <span class="o">-</span> <span class="mi">153099</span> <span class="o">*</span> <span class="n">v10</span> <span class="o">+</span> <span class="mi">269682</span> <span class="o">*</span> <span class="n">v28</span> <span class="o">+</span> <span class="o">-</span><span class="mi">269523</span> <span class="o">*</span> <span class="n">v7</span> <span class="o">-</span> <span class="mi">441164</span> <span class="o">*</span> <span class="n">v29</span> <span class="o">==</span> <span class="o">-</span><span class="mi">52489521</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v11</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>    
-<span class="n">v23</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="o">-</span><span class="mi">14894</span> <span class="o">*</span> <span class="n">v11</span><span class="o">-</span> <span class="mi">162386</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="mi">522547</span> <span class="o">*</span> <span class="n">v30</span><span class="o">+</span> <span class="mi">260922</span> <span class="o">*</span> <span class="n">v27</span><span class="o">+</span> <span class="mi">428523</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="mi">508037</span> <span class="o">*</span> <span class="n">v28</span><span class="o">-</span> <span class="mi">144626</span> <span class="o">*</span> <span class="n">v31</span><span class="o">-</span> <span class="mi">99507</span> <span class="o">*</span> <span class="n">v10</span> <span class="o">==</span> <span class="mi">67497415</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v12</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>    
-<span class="n">v25</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">51126</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="mi">145838</span> <span class="o">*</span> <span class="n">v11</span><span class="o">+</span> <span class="mi">362957</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="mi">43500</span> <span class="o">*</span> <span class="n">v31</span><span class="o">+</span> <span class="mi">308294</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="o">-</span><span class="mi">375461</span> <span class="o">*</span> <span class="n">v30</span><span class="o">-</span> <span class="mi">174341</span> <span class="o">*</span> <span class="n">v12</span><span class="o">-</span> <span class="mi">394061</span> <span class="o">*</span> <span class="n">v10</span><span class="o">-</span> <span class="mi">65395</span> <span class="o">*</span> <span class="n">v27</span> <span class="o">==</span> <span class="o">-</span><span class="mi">43306962</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v13</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>    
-<span class="n">v24</span> <span class="o">=</span> <span class="n">v13</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">350654</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="mi">495127</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="mi">434878</span> <span class="o">*</span> <span class="n">v11</span><span class="o">-</span> <span class="mi">75418</span> <span class="o">*</span> <span class="n">v26</span><span class="o">-</span> <span class="mi">43467</span> <span class="o">*</span> <span class="n">v31</span><span class="o">+</span> <span class="o">-</span><span class="mi">521005</span> <span class="o">*</span> <span class="n">v27</span><span class="o">-</span> <span class="mi">226910</span> <span class="o">*</span> <span class="n">v12</span><span class="o">-</span> <span class="mi">215985</span> <span class="o">*</span> <span class="n">v13</span><span class="o">-</span> <span class="mi">121973</span> <span class="o">*</span> <span class="n">v30</span><span class="o">-</span> <span class="mi">446107</span> <span class="o">*</span> <span class="n">v29</span> <span class="o">==</span> <span class="o">-</span><span class="mi">137046349</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v14</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>    
-<span class="n">v22</span> <span class="o">=</span> <span class="n">v14</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="o">-</span><span class="mi">318934</span> <span class="o">*</span> <span class="n">v31</span><span class="o">-</span> <span class="mi">25936</span> <span class="o">*</span> <span class="n">v32</span><span class="o">-</span> <span class="mi">341583</span> <span class="o">*</span> <span class="n">v25</span><span class="o">+</span> <span class="mi">320416</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="mi">339525</span> <span class="o">*</span> <span class="n">v23</span><span class="o">-</span> <span class="mi">81574</span> <span class="o">*</span> <span class="n">v28</span><span class="o">-</span> <span class="mi">502348</span> <span class="o">*</span> <span class="n">v26</span><span class="o">-</span> <span class="mi">294177</span> <span class="o">*</span> <span class="n">v14</span><span class="o">-</span> <span class="mi">363326</span> <span class="o">*</span> <span class="n">v30</span><span class="o">-</span> <span class="mi">391486</span> <span class="o">*</span> <span class="n">v27</span><span class="o">-</span> <span class="mi">248464</span> <span class="o">*</span> <span class="n">v13</span> <span class="o">==</span> <span class="o">-</span><span class="mi">244744603</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v15</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>    
-<span class="n">v21</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">81654</span> <span class="o">*</span> <span class="n">v23</span><span class="o">+</span> <span class="mi">432919</span> <span class="o">*</span> <span class="n">v26</span><span class="o">+</span> <span class="mi">110106</span> <span class="o">*</span> <span class="n">v25</span><span class="o">-</span> <span class="mi">507164</span> <span class="o">*</span> <span class="n">v29</span><span class="o">-</span> <span class="mi">467060</span> <span class="o">*</span> <span class="n">v27</span><span class="o">+</span> <span class="o">-</span><span class="mi">384845</span> <span class="o">*</span> <span class="n">v15</span><span class="o">-</span> <span class="mi">197253</span> <span class="o">*</span> <span class="n">v24</span><span class="o">-</span> <span class="mi">354555</span> <span class="o">*</span> <span class="n">v31</span><span class="o">-</span> <span class="mi">16893</span> <span class="o">*</span> <span class="n">v14</span><span class="o">-</span> <span class="mi">254110</span> <span class="o">*</span> <span class="n">v32</span><span class="o">-</span> <span class="mi">479559</span> <span class="o">*</span> <span class="n">v30</span><span class="o">-</span> <span class="mi">50999</span> <span class="o">*</span> <span class="n">v28</span> <span class="o">==</span> <span class="o">-</span><span class="mi">214023755</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v16</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>    
-<span class="n">v20</span> <span class="o">=</span> <span class="n">v16</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="o">-</span><span class="mi">117388</span> <span class="o">*</span> <span class="n">v24</span><span class="o">-</span> <span class="mi">227694</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="mi">457647</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="mi">293306</span> <span class="o">*</span> <span class="n">v23</span><span class="o">+</span> <span class="mi">101385</span> <span class="o">*</span> <span class="n">v30</span><span class="o">+</span> <span class="mi">293124</span> <span class="o">*</span> <span class="n">v22</span><span class="o">+</span> <span class="mi">92941</span> <span class="o">*</span> <span class="n">v16</span><span class="o">+</span> <span class="mi">496679</span> <span class="o">*</span> <span class="n">v25</span><span class="o">+</span> <span class="mi">79854</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="o">-</span><span class="mi">81913</span> <span class="o">*</span> <span class="n">v31</span><span class="o">-</span> <span class="mi">507308</span> <span class="o">*</span> <span class="n">v27</span><span class="o">-</span> <span class="mi">3285</span> <span class="o">*</span> <span class="n">v15</span><span class="o">-</span> <span class="mi">71736</span> <span class="o">*</span> <span class="n">v26</span> <span class="o">==</span> <span class="mi">50059304</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v17</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">281406</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="mi">314118</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="o">-</span><span class="mi">480916</span> <span class="o">*</span> <span class="n">v23</span><span class="o">-</span> <span class="mi">124091</span> <span class="o">*</span> <span class="n">v17</span><span class="o">-</span> <span class="mi">442447</span> <span class="o">*</span> <span class="n">v22</span><span class="o">-</span> <span class="mi">25649</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="mi">389372</span> <span class="o">*</span> <span class="n">v16</span><span class="o">+</span> <span class="mi">15089</span> <span class="o">*</span> <span class="n">v30</span><span class="o">+</span> <span class="mi">210603</span> <span class="o">*</span> <span class="n">v26</span><span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">v25</span> <span class="o">+</span> <span class="mi">17363</span> <span class="o">*</span> <span class="n">v27</span> <span class="o">-</span> <span class="mi">91574</span> <span class="o">*</span> <span class="n">v21</span><span class="p">)</span><span class="o">-</span> <span class="mi">469378</span> <span class="o">*</span> <span class="n">v24</span><span class="o">-</span> <span class="mi">117744</span> <span class="o">*</span> <span class="n">v31</span> <span class="o">==</span> <span class="o">-</span><span class="mi">176657564</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">v18</span> <span class="o">=</span> <span class="n">a1</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">180059</span> <span class="o">*</span> <span class="n">v26</span><span class="o">+</span> <span class="mi">350603</span> <span class="o">*</span> <span class="n">v32</span><span class="o">+</span> <span class="o">-</span><span class="mi">439557</span> <span class="o">*</span> <span class="n">v21</span><span class="o">-</span> <span class="mi">485708</span> <span class="o">*</span> <span class="n">v29</span><span class="o">+</span> <span class="mi">52520</span> <span class="o">*</span> <span class="n">v24</span><span class="o">+</span> <span class="mi">303697</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="mi">395976</span> <span class="o">*</span> <span class="n">v22</span><span class="o">+</span> <span class="mi">406658</span> <span class="o">*</span> <span class="n">v27</span><span class="o">+</span> <span class="o">-</span><span class="mi">354103</span> <span class="o">*</span> <span class="n">v17</span><span class="o">-</span> <span class="mi">61339</span> <span class="o">*</span> <span class="n">v20</span><span class="o">-</span> <span class="mi">495692</span> <span class="o">*</span> <span class="n">v31</span><span class="o">-</span> <span class="mi">198340</span> <span class="o">*</span> <span class="n">v30</span><span class="o">-</span> <span class="mi">28153</span> <span class="o">*</span> <span class="n">v25</span><span class="o">-</span> <span class="mi">113385</span> <span class="o">*</span> <span class="n">v23</span><span class="o">-</span> <span class="mi">492085</span> <span class="o">*</span> <span class="n">v18</span> <span class="o">==</span> <span class="o">-</span><span class="mi">48802225</span> <span class="p">)</span>    
-<span class="n">v9</span> <span class="o">=</span> <span class="mi">0</span>    
-<span class="n">result</span> <span class="o">=</span> <span class="n">v9</span>    
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="mi">473763</span> <span class="o">*</span> <span class="n">v25</span><span class="o">+</span> <span class="mi">249640</span> <span class="o">*</span> <span class="n">v26</span><span class="o">+</span> <span class="mi">450341</span> <span class="o">*</span> <span class="n">v30</span><span class="o">+</span> <span class="mi">273347</span> <span class="o">*</span> <span class="n">v17</span><span class="o">+</span> <span class="mi">386739</span> <span class="o">*</span> <span class="n">v31</span><span class="o">+</span> <span class="mi">24246</span> <span class="o">*</span> <span class="n">v27</span><span class="o">+</span> <span class="mi">20430</span> <span class="o">*</span> <span class="n">v21</span><span class="o">+</span> <span class="mi">69055</span> <span class="o">*</span> <span class="n">v28</span><span class="o">+</span> <span class="mi">391476</span> <span class="o">*</span> <span class="n">v22</span><span class="o">+</span> <span class="mi">100872</span> <span class="o">*</span> <span class="n">v23</span><span class="o">+</span> <span class="mi">458039</span> <span class="o">*</span> <span class="n">v20</span><span class="o">+</span> <span class="mi">71004</span> <span class="o">*</span> <span class="n">v24</span><span class="o">+</span> <span class="o">-</span><span class="mi">277369</span> <span class="o">*</span> <span class="n">v29</span><span class="o">-</span> <span class="mi">482854</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">-</span> <span class="mi">468152</span> <span class="o">*</span> <span class="n">v32</span><span class="o">-</span> <span class="mi">409044</span> <span class="o">*</span> <span class="n">v18</span> <span class="o">==</span> <span class="mi">224749784</span> <span class="p">)</span>    
-<span class="k">print</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>    
-<span class="k">print</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>    
-<span class="c1"># 111111-111111-111111-11111111111111    </span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="rev">rev</h2>
-<p>rop控制指令的跳转，调试可以看大具体处理流程，用z3解一下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8    </span>
-<span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>    
+<span class=n>a1</span> <span class=o>=</span> <span class=p>[</span><span class=n>Int</span><span class=p>(</span><span class=s1>&#39;s</span><span class=si>%i</span><span class=s1>&#39;</span> <span class=o>%</span> <span class=n>i</span><span class=p>)</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>16</span><span class=p>)]</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>1</span>    
+<span class=n>v2</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>    
+<span class=n>v3</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>    
+<span class=n>v32</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>    
+<span class=n>v29</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>    
+<span class=n>v31</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=o>-</span><span class=mi>401736</span> <span class=o>*</span> <span class=n>v2</span> <span class=o>==</span> <span class=o>-</span><span class=mi>4419096</span> <span class=p>)</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>191967</span> <span class=o>*</span> <span class=n>a1</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=mi>473999</span> <span class=o>*</span> <span class=n>v2</span> <span class=o>==</span> <span class=mi>23642821</span> <span class=p>)</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v4</span> <span class=o>=</span> <span class=mi>57125</span> <span class=o>*</span> <span class=n>v2</span>    
+<span class=n>v5</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span>    
+<span class=n>v6</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>4</span><span class=p>]</span>    
+<span class=n>v30</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span>    
+<span class=n>v28</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>4</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=n>v4</span> <span class=o>+</span> <span class=mi>465507</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>-</span> <span class=mi>207145</span> <span class=o>*</span> <span class=n>v3</span> <span class=o>==</span> <span class=mi>42831307</span> <span class=p>)</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>149773</span> <span class=o>*</span> <span class=n>v5</span> <span class=o>+</span> <span class=o>-</span><span class=mi>488633</span> <span class=o>*</span> <span class=n>v32</span> <span class=o>-</span> <span class=mi>5245</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>-</span> <span class=mi>280749</span> <span class=o>*</span> <span class=n>v3</span> <span class=o>==</span> <span class=o>-</span><span class=mi>560637</span> <span class=p>)</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>381790</span> <span class=o>*</span> <span class=n>v3</span> <span class=o>+</span> <span class=mi>59135</span> <span class=o>*</span> <span class=n>v6</span> <span class=o>+</span> <span class=mi>130415</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>+</span> <span class=mi>174205</span> <span class=o>*</span> <span class=n>v5</span> <span class=o>-</span> <span class=mi>83562</span> <span class=o>*</span> <span class=n>v32</span> <span class=o>==</span> <span class=mi>27764403</span> <span class=p>)</span>    
+<span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v7</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>5</span><span class=p>]</span>    
+<span class=n>v27</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>5</span><span class=p>]</span>    
+<span class=n>v8</span> <span class=o>=</span> <span class=mi>500139</span> <span class=o>*</span> <span class=n>v6</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=n>v1</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>386908</span> <span class=o>*</span> <span class=n>v32</span> <span class=o>+</span> <span class=mi>465831</span> <span class=o>*</span> <span class=n>v30</span> <span class=o>+</span> <span class=n>v8</span> <span class=o>+</span> <span class=mi>500998</span> <span class=o>*</span> <span class=n>v7</span> <span class=o>+</span> <span class=mi>474240</span> <span class=o>*</span> <span class=n>v3</span> <span class=o>-</span> <span class=mi>4838</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>==</span> <span class=mi>119143813</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v10</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>6</span><span class=p>]</span>    
+<span class=n>v26</span> <span class=o>=</span> <span class=n>v10</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>182991</span> <span class=o>*</span> <span class=n>v30</span> <span class=o>+</span> <span class=o>-</span><span class=mi>200009</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>-</span> <span class=mi>497601</span> <span class=o>*</span> <span class=n>v32</span> <span class=o>-</span> <span class=mi>153099</span> <span class=o>*</span> <span class=n>v10</span> <span class=o>+</span> <span class=mi>269682</span> <span class=o>*</span> <span class=n>v28</span> <span class=o>+</span> <span class=o>-</span><span class=mi>269523</span> <span class=o>*</span> <span class=n>v7</span> <span class=o>-</span> <span class=mi>441164</span> <span class=o>*</span> <span class=n>v29</span> <span class=o>==</span> <span class=o>-</span><span class=mi>52489521</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v11</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>7</span><span class=p>]</span>    
+<span class=n>v23</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>7</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=o>-</span><span class=mi>14894</span> <span class=o>*</span> <span class=n>v11</span><span class=o>-</span> <span class=mi>162386</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=mi>522547</span> <span class=o>*</span> <span class=n>v30</span><span class=o>+</span> <span class=mi>260922</span> <span class=o>*</span> <span class=n>v27</span><span class=o>+</span> <span class=mi>428523</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=mi>508037</span> <span class=o>*</span> <span class=n>v28</span><span class=o>-</span> <span class=mi>144626</span> <span class=o>*</span> <span class=n>v31</span><span class=o>-</span> <span class=mi>99507</span> <span class=o>*</span> <span class=n>v10</span> <span class=o>==</span> <span class=mi>67497415</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v12</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>8</span><span class=p>]</span>    
+<span class=n>v25</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>8</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>51126</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=mi>145838</span> <span class=o>*</span> <span class=n>v11</span><span class=o>+</span> <span class=mi>362957</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=mi>43500</span> <span class=o>*</span> <span class=n>v31</span><span class=o>+</span> <span class=mi>308294</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=o>-</span><span class=mi>375461</span> <span class=o>*</span> <span class=n>v30</span><span class=o>-</span> <span class=mi>174341</span> <span class=o>*</span> <span class=n>v12</span><span class=o>-</span> <span class=mi>394061</span> <span class=o>*</span> <span class=n>v10</span><span class=o>-</span> <span class=mi>65395</span> <span class=o>*</span> <span class=n>v27</span> <span class=o>==</span> <span class=o>-</span><span class=mi>43306962</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v13</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>9</span><span class=p>]</span>    
+<span class=n>v24</span> <span class=o>=</span> <span class=n>v13</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>350654</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=mi>495127</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=mi>434878</span> <span class=o>*</span> <span class=n>v11</span><span class=o>-</span> <span class=mi>75418</span> <span class=o>*</span> <span class=n>v26</span><span class=o>-</span> <span class=mi>43467</span> <span class=o>*</span> <span class=n>v31</span><span class=o>+</span> <span class=o>-</span><span class=mi>521005</span> <span class=o>*</span> <span class=n>v27</span><span class=o>-</span> <span class=mi>226910</span> <span class=o>*</span> <span class=n>v12</span><span class=o>-</span> <span class=mi>215985</span> <span class=o>*</span> <span class=n>v13</span><span class=o>-</span> <span class=mi>121973</span> <span class=o>*</span> <span class=n>v30</span><span class=o>-</span> <span class=mi>446107</span> <span class=o>*</span> <span class=n>v29</span> <span class=o>==</span> <span class=o>-</span><span class=mi>137046349</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v14</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>10</span><span class=p>]</span>    
+<span class=n>v22</span> <span class=o>=</span> <span class=n>v14</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=o>-</span><span class=mi>318934</span> <span class=o>*</span> <span class=n>v31</span><span class=o>-</span> <span class=mi>25936</span> <span class=o>*</span> <span class=n>v32</span><span class=o>-</span> <span class=mi>341583</span> <span class=o>*</span> <span class=n>v25</span><span class=o>+</span> <span class=mi>320416</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=mi>339525</span> <span class=o>*</span> <span class=n>v23</span><span class=o>-</span> <span class=mi>81574</span> <span class=o>*</span> <span class=n>v28</span><span class=o>-</span> <span class=mi>502348</span> <span class=o>*</span> <span class=n>v26</span><span class=o>-</span> <span class=mi>294177</span> <span class=o>*</span> <span class=n>v14</span><span class=o>-</span> <span class=mi>363326</span> <span class=o>*</span> <span class=n>v30</span><span class=o>-</span> <span class=mi>391486</span> <span class=o>*</span> <span class=n>v27</span><span class=o>-</span> <span class=mi>248464</span> <span class=o>*</span> <span class=n>v13</span> <span class=o>==</span> <span class=o>-</span><span class=mi>244744603</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v15</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>11</span><span class=p>]</span>    
+<span class=n>v21</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>11</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>81654</span> <span class=o>*</span> <span class=n>v23</span><span class=o>+</span> <span class=mi>432919</span> <span class=o>*</span> <span class=n>v26</span><span class=o>+</span> <span class=mi>110106</span> <span class=o>*</span> <span class=n>v25</span><span class=o>-</span> <span class=mi>507164</span> <span class=o>*</span> <span class=n>v29</span><span class=o>-</span> <span class=mi>467060</span> <span class=o>*</span> <span class=n>v27</span><span class=o>+</span> <span class=o>-</span><span class=mi>384845</span> <span class=o>*</span> <span class=n>v15</span><span class=o>-</span> <span class=mi>197253</span> <span class=o>*</span> <span class=n>v24</span><span class=o>-</span> <span class=mi>354555</span> <span class=o>*</span> <span class=n>v31</span><span class=o>-</span> <span class=mi>16893</span> <span class=o>*</span> <span class=n>v14</span><span class=o>-</span> <span class=mi>254110</span> <span class=o>*</span> <span class=n>v32</span><span class=o>-</span> <span class=mi>479559</span> <span class=o>*</span> <span class=n>v30</span><span class=o>-</span> <span class=mi>50999</span> <span class=o>*</span> <span class=n>v28</span> <span class=o>==</span> <span class=o>-</span><span class=mi>214023755</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v16</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>12</span><span class=p>]</span>    
+<span class=n>v20</span> <span class=o>=</span> <span class=n>v16</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=o>-</span><span class=mi>117388</span> <span class=o>*</span> <span class=n>v24</span><span class=o>-</span> <span class=mi>227694</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=mi>457647</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=mi>293306</span> <span class=o>*</span> <span class=n>v23</span><span class=o>+</span> <span class=mi>101385</span> <span class=o>*</span> <span class=n>v30</span><span class=o>+</span> <span class=mi>293124</span> <span class=o>*</span> <span class=n>v22</span><span class=o>+</span> <span class=mi>92941</span> <span class=o>*</span> <span class=n>v16</span><span class=o>+</span> <span class=mi>496679</span> <span class=o>*</span> <span class=n>v25</span><span class=o>+</span> <span class=mi>79854</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=o>-</span><span class=mi>81913</span> <span class=o>*</span> <span class=n>v31</span><span class=o>-</span> <span class=mi>507308</span> <span class=o>*</span> <span class=n>v27</span><span class=o>-</span> <span class=mi>3285</span> <span class=o>*</span> <span class=n>v15</span><span class=o>-</span> <span class=mi>71736</span> <span class=o>*</span> <span class=n>v26</span> <span class=o>==</span> <span class=mi>50059304</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v17</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>13</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>281406</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=mi>314118</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=o>-</span><span class=mi>480916</span> <span class=o>*</span> <span class=n>v23</span><span class=o>-</span> <span class=mi>124091</span> <span class=o>*</span> <span class=n>v17</span><span class=o>-</span> <span class=mi>442447</span> <span class=o>*</span> <span class=n>v22</span><span class=o>-</span> <span class=mi>25649</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=mi>389372</span> <span class=o>*</span> <span class=n>v16</span><span class=o>+</span> <span class=mi>15089</span> <span class=o>*</span> <span class=n>v30</span><span class=o>+</span> <span class=mi>210603</span> <span class=o>*</span> <span class=n>v26</span><span class=o>+</span> <span class=mi>5</span> <span class=o>*</span> <span class=p>(</span><span class=n>v25</span> <span class=o>+</span> <span class=mi>17363</span> <span class=o>*</span> <span class=n>v27</span> <span class=o>-</span> <span class=mi>91574</span> <span class=o>*</span> <span class=n>v21</span><span class=p>)</span><span class=o>-</span> <span class=mi>469378</span> <span class=o>*</span> <span class=n>v24</span><span class=o>-</span> <span class=mi>117744</span> <span class=o>*</span> <span class=n>v31</span> <span class=o>==</span> <span class=o>-</span><span class=mi>176657564</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>v18</span> <span class=o>=</span> <span class=n>a1</span><span class=p>[</span><span class=mi>14</span><span class=p>]</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>180059</span> <span class=o>*</span> <span class=n>v26</span><span class=o>+</span> <span class=mi>350603</span> <span class=o>*</span> <span class=n>v32</span><span class=o>+</span> <span class=o>-</span><span class=mi>439557</span> <span class=o>*</span> <span class=n>v21</span><span class=o>-</span> <span class=mi>485708</span> <span class=o>*</span> <span class=n>v29</span><span class=o>+</span> <span class=mi>52520</span> <span class=o>*</span> <span class=n>v24</span><span class=o>+</span> <span class=mi>303697</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=mi>395976</span> <span class=o>*</span> <span class=n>v22</span><span class=o>+</span> <span class=mi>406658</span> <span class=o>*</span> <span class=n>v27</span><span class=o>+</span> <span class=o>-</span><span class=mi>354103</span> <span class=o>*</span> <span class=n>v17</span><span class=o>-</span> <span class=mi>61339</span> <span class=o>*</span> <span class=n>v20</span><span class=o>-</span> <span class=mi>495692</span> <span class=o>*</span> <span class=n>v31</span><span class=o>-</span> <span class=mi>198340</span> <span class=o>*</span> <span class=n>v30</span><span class=o>-</span> <span class=mi>28153</span> <span class=o>*</span> <span class=n>v25</span><span class=o>-</span> <span class=mi>113385</span> <span class=o>*</span> <span class=n>v23</span><span class=o>-</span> <span class=mi>492085</span> <span class=o>*</span> <span class=n>v18</span> <span class=o>==</span> <span class=o>-</span><span class=mi>48802225</span> <span class=p>)</span>    
+<span class=n>v9</span> <span class=o>=</span> <span class=mi>0</span>    
+<span class=n>result</span> <span class=o>=</span> <span class=n>v9</span>    
+<span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span> <span class=mi>473763</span> <span class=o>*</span> <span class=n>v25</span><span class=o>+</span> <span class=mi>249640</span> <span class=o>*</span> <span class=n>v26</span><span class=o>+</span> <span class=mi>450341</span> <span class=o>*</span> <span class=n>v30</span><span class=o>+</span> <span class=mi>273347</span> <span class=o>*</span> <span class=n>v17</span><span class=o>+</span> <span class=mi>386739</span> <span class=o>*</span> <span class=n>v31</span><span class=o>+</span> <span class=mi>24246</span> <span class=o>*</span> <span class=n>v27</span><span class=o>+</span> <span class=mi>20430</span> <span class=o>*</span> <span class=n>v21</span><span class=o>+</span> <span class=mi>69055</span> <span class=o>*</span> <span class=n>v28</span><span class=o>+</span> <span class=mi>391476</span> <span class=o>*</span> <span class=n>v22</span><span class=o>+</span> <span class=mi>100872</span> <span class=o>*</span> <span class=n>v23</span><span class=o>+</span> <span class=mi>458039</span> <span class=o>*</span> <span class=n>v20</span><span class=o>+</span> <span class=mi>71004</span> <span class=o>*</span> <span class=n>v24</span><span class=o>+</span> <span class=o>-</span><span class=mi>277369</span> <span class=o>*</span> <span class=n>v29</span><span class=o>-</span> <span class=mi>482854</span> <span class=o>*</span> <span class=n>a1</span><span class=p>[</span><span class=mi>15</span><span class=p>]</span><span class=o>-</span> <span class=mi>468152</span> <span class=o>*</span> <span class=n>v32</span><span class=o>-</span> <span class=mi>409044</span> <span class=o>*</span> <span class=n>v18</span> <span class=o>==</span> <span class=mi>224749784</span> <span class=p>)</span>    
+<span class=k>print</span> <span class=n>solver</span><span class=o>.</span><span class=n>check</span><span class=p>()</span>    
+<span class=k>print</span> <span class=n>solver</span><span class=o>.</span><span class=n>model</span><span class=p>()</span>    
+<span class=c1># 111111-111111-111111-11111111111111    </span>
+</code></pre></td></tr></table></div></div><h2 id=rev>rev</h2><p>rop控制指令的跳转，调试可以看大具体处理流程，用z3解一下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1>#coding=utf-8    </span>
+<span class=kn>from</span> <span class=nn>z3</span> <span class=kn>import</span> <span class=o>*</span>    
     
-<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>    
+<span class=n>solver</span> <span class=o>=</span> <span class=n>Solver</span><span class=p>()</span>    
     
-<span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="n">BitVec</span><span class="p">(</span><span class="s1">&#39;s</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]</span>    
-<span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x64</span><span class="p">,</span> <span class="mh">0x25</span><span class="p">,</span> <span class="mh">0x0F</span><span class="p">,</span> <span class="mh">0x6C</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x23</span><span class="p">,</span> <span class="mh">0x8A</span><span class="p">,</span> <span class="mh">0xDE</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x0E</span><span class="p">,</span> <span class="mh">0xA5</span><span class="p">,</span> <span class="mh">0xE1</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">,</span> <span class="mh">0x37</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x53</span><span class="p">]</span>    
-<span class="c1"># s = [ord(&#39;1&#39;), ord(&#39;5&#39;), ord(&#39;9&#39;), ord(&#39;d&#39;)]    </span>
-<span class="n">rt</span> <span class="o">=</span> <span class="p">[]</span>    
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>    
-  <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>    
-  <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>    
-      <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">a1</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">u</span><span class="p">]])</span>    
-  <span class="k">for</span> <span class="n">edx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">edx</span><span class="p">]</span>    
-      <span class="n">esi</span> <span class="o">=</span> <span class="n">eax</span> <span class="o">*</span> <span class="mi">2</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">esi</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">ecx</span> <span class="o">^</span> <span class="mh">0x1b</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">edx</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">eax</span> <span class="o">&amp;</span> <span class="mi">3</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">eax</span><span class="p">]</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">ecx</span> <span class="o">+</span> <span class="n">ecx</span>    
-      <span class="n">ebx</span> <span class="o">=</span> <span class="n">ecx</span>    
-      <span class="n">ebx</span> <span class="o">=</span> <span class="n">ebx</span> <span class="o">^</span> <span class="mh">0x1b</span>    
-      <span class="n">ebx</span> <span class="o">=</span> <span class="n">ebx</span> <span class="o">^</span> <span class="n">eax</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">eax</span> <span class="o">^</span> <span class="n">ecx</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">edx</span> <span class="o">+</span> <span class="mi">1</span>    
-      <span class="n">ebx</span> <span class="o">=</span> <span class="n">edx</span> <span class="o">+</span> <span class="mi">2</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">ecx</span> <span class="o">&amp;</span> <span class="mi">3</span>    
-      <span class="n">ebx</span> <span class="o">=</span> <span class="n">ebx</span> <span class="o">&amp;</span> <span class="mi">3</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">ecx</span><span class="p">]</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">ecx</span> <span class="o">^</span> <span class="n">s</span><span class="p">[</span><span class="n">ebx</span><span class="p">]</span>    
-      <span class="n">ecx</span> <span class="o">=</span> <span class="n">ecx</span> <span class="o">^</span> <span class="n">esi</span>    
-      <span class="n">eax</span> <span class="o">=</span> <span class="n">eax</span> <span class="o">^</span> <span class="n">ecx</span>    
-      <span class="n">rt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eax</span> <span class="o">^</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">edx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>    
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rt</span><span class="p">)):</span>    
-  <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>    
-<span class="k">print</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>    
-<span class="k">print</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>    
-</code></pre></td></tr></table>
-</div>
-</div><p>Nu1L的wp中用到了angr直接解题，当时我想着用但是不知道怎么输入参数(还是tcl)记录一下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span><span class="nn">claripy</span>    
-<span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s2">&#34;rev_v2&#34;</span><span class="p">)</span>    
-<span class="n">argv1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s2">&#34;argv1&#34;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="mi">8</span><span class="p">)</span>    
-<span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;./rev_v2&#34;</span><span class="p">,</span><span class="n">argv1</span><span class="p">])</span>    
-<span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>    
-<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="mh">0x400481</span><span class="p">)</span>    
-<span class="n">found</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>    
-<span class="n">solution</span> <span class="o">=</span> <span class="n">found</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">argv1</span><span class="p">,</span> <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>    
-<span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>    
-<span class="n">solution</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[:</span><span class="n">solution</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)]</span>    
-<span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>    
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2020-06-26</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/index.md" target="_blank">阅读原始文档</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" data-title="第五空间2020-re"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" data-title="第五空间2020-re"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" data-title="第五空间2020-re"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/" data-title="第五空间2020-re"><i class="fab fa-weibo fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/" class="prev" rel="prev" title="Unicorn"><i class="fas fa-angle-left fa-fw"></i>Unicorn</a>
-            <a href="/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/" class="next" rel="next" title="钓鱼城杯2020-reg">钓鱼城杯2020-reg<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-            
-
-            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<span class=n>a1</span> <span class=o>=</span> <span class=p>[</span><span class=n>BitVec</span><span class=p>(</span><span class=s1>&#39;s</span><span class=si>%i</span><span class=s1>&#39;</span> <span class=o>%</span> <span class=n>i</span><span class=p>,</span> <span class=mi>8</span><span class=p>)</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>16</span><span class=p>)]</span>    
+<span class=n>res</span> <span class=o>=</span> <span class=p>[</span><span class=mh>0x64</span><span class=p>,</span> <span class=mh>0x25</span><span class=p>,</span> <span class=mh>0x0F</span><span class=p>,</span> <span class=mh>0x6C</span><span class=p>,</span> <span class=mh>0x20</span><span class=p>,</span> <span class=mh>0x23</span><span class=p>,</span> <span class=mh>0x8A</span><span class=p>,</span> <span class=mh>0xDE</span><span class=p>,</span> <span class=mh>0x10</span><span class=p>,</span> <span class=mh>0x0E</span><span class=p>,</span> <span class=mh>0xA5</span><span class=p>,</span> <span class=mh>0xE1</span><span class=p>,</span> <span class=mh>0x43</span><span class=p>,</span> <span class=mh>0x37</span><span class=p>,</span> <span class=mh>0x11</span><span class=p>,</span> <span class=mh>0x53</span><span class=p>]</span>    
+<span class=c1># s = [ord(&#39;1&#39;), ord(&#39;5&#39;), ord(&#39;9&#39;), ord(&#39;d&#39;)]    </span>
+<span class=n>rt</span> <span class=o>=</span> <span class=p>[]</span>    
+<span class=k>for</span> <span class=n>t</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>    
+  <span class=n>s</span> <span class=o>=</span> <span class=p>[]</span>    
+  <span class=k>for</span> <span class=n>u</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>    
+      <span class=n>s</span><span class=o>.</span><span class=n>append</span><span class=p>([</span><span class=n>a1</span><span class=p>[</span><span class=n>t</span> <span class=o>+</span> <span class=mi>4</span><span class=o>*</span><span class=n>u</span><span class=p>]])</span>    
+  <span class=k>for</span> <span class=n>edx</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>5</span><span class=p>):</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>s</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span> <span class=o>+</span> <span class=n>edx</span><span class=p>]</span>    
+      <span class=n>esi</span> <span class=o>=</span> <span class=n>eax</span> <span class=o>*</span> <span class=mi>2</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>esi</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>ecx</span> <span class=o>^</span> <span class=mh>0x1b</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>edx</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>eax</span> <span class=o>&amp;</span> <span class=mi>3</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>s</span><span class=p>[</span><span class=n>eax</span><span class=p>]</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>ecx</span> <span class=o>+</span> <span class=n>ecx</span>    
+      <span class=n>ebx</span> <span class=o>=</span> <span class=n>ecx</span>    
+      <span class=n>ebx</span> <span class=o>=</span> <span class=n>ebx</span> <span class=o>^</span> <span class=mh>0x1b</span>    
+      <span class=n>ebx</span> <span class=o>=</span> <span class=n>ebx</span> <span class=o>^</span> <span class=n>eax</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>eax</span> <span class=o>^</span> <span class=n>ecx</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>edx</span> <span class=o>+</span> <span class=mi>1</span>    
+      <span class=n>ebx</span> <span class=o>=</span> <span class=n>edx</span> <span class=o>+</span> <span class=mi>2</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>ecx</span> <span class=o>&amp;</span> <span class=mi>3</span>    
+      <span class=n>ebx</span> <span class=o>=</span> <span class=n>ebx</span> <span class=o>&amp;</span> <span class=mi>3</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>s</span><span class=p>[</span><span class=n>ecx</span><span class=p>]</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>ecx</span> <span class=o>^</span> <span class=n>s</span><span class=p>[</span><span class=n>ebx</span><span class=p>]</span>    
+      <span class=n>ecx</span> <span class=o>=</span> <span class=n>ecx</span> <span class=o>^</span> <span class=n>esi</span>    
+      <span class=n>eax</span> <span class=o>=</span> <span class=n>eax</span> <span class=o>^</span> <span class=n>ecx</span>    
+      <span class=n>rt</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>eax</span> <span class=o>^</span> <span class=p>(</span><span class=mi>4</span><span class=o>*</span><span class=n>t</span> <span class=o>+</span> <span class=n>edx</span> <span class=o>-</span> <span class=mi>1</span><span class=p>))</span>    
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>rt</span><span class=p>)):</span>    
+  <span class=n>solver</span><span class=o>.</span><span class=n>add</span><span class=p>(</span><span class=n>rt</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>==</span> <span class=n>res</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>    
+<span class=k>print</span> <span class=n>solver</span><span class=o>.</span><span class=n>check</span><span class=p>()</span>    
+<span class=k>print</span> <span class=n>solver</span><span class=o>.</span><span class=n>model</span><span class=p>()</span>    
+</code></pre></td></tr></table></div></div><p>Nu1L的wp中用到了angr直接解题，当时我想着用但是不知道怎么输入参数(还是tcl)记录一下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>angr</span><span class=o>,</span><span class=nn>claripy</span>    
+<span class=n>project</span> <span class=o>=</span> <span class=n>angr</span><span class=o>.</span><span class=n>Project</span><span class=p>(</span><span class=s2>&#34;rev_v2&#34;</span><span class=p>)</span>    
+<span class=n>argv1</span> <span class=o>=</span> <span class=n>claripy</span><span class=o>.</span><span class=n>BVS</span><span class=p>(</span><span class=s2>&#34;argv1&#34;</span><span class=p>,</span><span class=mi>100</span><span class=o>*</span><span class=mi>8</span><span class=p>)</span>    
+<span class=n>initial_state</span> <span class=o>=</span> <span class=n>project</span><span class=o>.</span><span class=n>factory</span><span class=o>.</span><span class=n>entry_state</span><span class=p>(</span><span class=n>args</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;./rev_v2&#34;</span><span class=p>,</span><span class=n>argv1</span><span class=p>])</span>    
+<span class=n>simulation</span> <span class=o>=</span> <span class=n>project</span><span class=o>.</span><span class=n>factory</span><span class=o>.</span><span class=n>simgr</span><span class=p>(</span><span class=n>initial_state</span><span class=p>)</span>    
+<span class=n>simulation</span><span class=o>.</span><span class=n>explore</span><span class=p>(</span><span class=n>find</span><span class=o>=</span><span class=mh>0x400481</span><span class=p>)</span>    
+<span class=n>found</span> <span class=o>=</span> <span class=n>simulation</span><span class=o>.</span><span class=n>found</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>    
+<span class=n>solution</span> <span class=o>=</span> <span class=n>found</span><span class=o>.</span><span class=n>solver</span><span class=o>.</span><span class=n>eval</span><span class=p>(</span><span class=n>argv1</span><span class=p>,</span> <span class=n>cast_to</span><span class=o>=</span><span class=nb>bytes</span><span class=p>)</span>    
+<span class=k>print</span><span class=p>(</span><span class=nb>repr</span><span class=p>(</span><span class=n>solution</span><span class=p>))</span>    
+<span class=n>solution</span> <span class=o>=</span> <span class=n>solution</span><span class=p>[:</span><span class=n>solution</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\x00</span><span class=s2>&#34;</span><span class=p>)]</span>    
+<span class=k>print</span><span class=p>(</span><span class=n>solution</span><span class=p>)</span>    
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-06-26</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/ data-title=第五空间2020-re><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/ data-title=第五空间2020-re><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/ data-title=第五空间2020-re><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://linkleyping.top/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42020-re/ data-title=第五空间2020-re><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/ class=prev rel=prev title=Unicorn><i class="fas fa-angle-left fa-fw"></i>Unicorn</a>
+<a href=/%E9%92%93%E9%B1%BC%E5%9F%8E%E6%9D%AF2020-reg/ class=next rel=next title=钓鱼城杯2020-reg>钓鱼城杯2020-reg<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
