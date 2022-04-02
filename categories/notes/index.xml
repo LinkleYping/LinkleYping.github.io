@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>notes - 分类 - EP`s blog</title>
+        <link>https://linkleyping.top/categories/notes/</link>
+        <description>notes - 分类 - EP`s blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 19 Oct 2021 19:48:18 &#43;0800</lastBuildDate><atom:link href="https://linkleyping.top/categories/notes/" rel="self" type="application/rss+xml" /><item>
+    <title>Webview白名单绕过</title>
+    <link>https://linkleyping.top/url-bypass/</link>
+    <pubDate>Tue, 19 Oct 2021 19:48:18 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/url-bypass/</guid>
+    <description><![CDATA[Url绕过 RFC中URL格式定义: 1 &lt;protocol&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;url-path&gt; 其中:部分是Authority字段，用来向所请求的访问受限资源提供用户凭证。比如访问一个需要认证的ft]]></description>
+</item><item>
+    <title>调试android so的.init_array数组</title>
+    <link>https://linkleyping.top/init_array/</link>
+    <pubDate>Wed, 01 Sep 2021 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/init_array/</guid>
+    <description><![CDATA[在init_array中下断 下面是网上的一般做法，感觉可能比较适合老一些的android版本，不过也应该都差不多 从手机中pull出来link]]></description>
+</item><item>
+    <title>Android逆向笔记</title>
+    <link>https://linkleyping.top/stack_unwind/</link>
+    <pubDate>Tue, 13 Apr 2021 09:30:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/stack_unwind/</guid>
+    <description><![CDATA[如何获取移动设备唯一标识 在移动广告领域，设备唯一标识是用来追踪用户的最重要的标识。 对于精准广告和个性化推荐而言，可以通过设备唯一标识，进行千]]></description>
+</item><item>
+    <title>git使用</title>
+    <link>https://linkleyping.top/git%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Tue, 13 Apr 2021 09:30:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/git%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[提交 git commit 创建和切换分支 git branch bugFix // 创建 git checkout bugFix // 切换 合并分支-merge git checkout bugFix; git merge master // 将master分支合并到bugFix 合并分支rebase git checkout]]></description>
+</item><item>
+    <title>ida trace使用</title>
+    <link>https://linkleyping.top/ida_trace/</link>
+    <pubDate>Tue, 13 Apr 2021 09:30:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/ida_trace/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Kotlin开发</title>
+    <link>https://linkleyping.top/kotlin-android%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Sun, 13 Sep 2020 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/kotlin-android%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[Kotlin一些特性 var: 变量，val:常量 定义变量时，可在类型后面加一个问号?，表示该变量是Nullable，不加表示该变量不可为null 扩展]]></description>
+</item><item>
+    <title>Unicorn</title>
+    <link>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/</link>
+    <pubDate>Tue, 16 Jun 2020 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%B8%89%E5%A4%A9-unicorn/</guid>
+    <description><![CDATA[介绍 Unocorn引擎是什么? 简单的来讲，一款模拟器。尽管不太常见，你不能用来模拟整个程序或者系统，同时它也不支持syscall。你只能通过]]></description>
+</item><item>
+    <title>Android脱壳</title>
+    <link>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/</link>
+    <pubDate>Mon, 15 Jun 2020 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/</guid>
+    <description><![CDATA[ApkShelling https://github.com/OakChen/ApkShelling 修改XposedEntry.java中的targetPackages 1 2 private static final String[] targetPackages = new String[]{&#34;com.sfysoft.shellingtest&#34;, &#34;com.sfysoft.shellingtest2&#34;, &#34;com.example.how_debug&#34;}; 重启手机运行加壳程序 1 2 3 4 $ adb logcat -s Xposed 06-15 14:58:01.091 6048]]></description>
+</item><item>
+    <title>反调试技术</title>
+    <link>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/</link>
+    <pubDate>Fri, 12 Jun 2020 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/</guid>
+    <description><![CDATA[静态反调试 查看PEB.BeingDebugged的值 即IsDebuggerPresent()的实现方式，如果该值为1，则表示当前进程被调试。]]></description>
+</item><item>
+    <title>angr使用</title>
+    <link>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/</link>
+    <pubDate>Sat, 06 Jun 2020 15:22:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

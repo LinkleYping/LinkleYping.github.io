@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>看雪2020-第二题 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="看雪2020-第二题" />
+<meta property="og:description" content="第二题 子鼠开天 算法识别 从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码 openssl_0.9.8.sig 其他没有识别出" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-04-21T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-04-21T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="看雪2020-第二题"/>
+<meta name="twitter:description" content="第二题 子鼠开天 算法识别 从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码 openssl_0.9.8.sig 其他没有识别出"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" /><link rel="prev" href="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" /><link rel="next" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "看雪2020-第二题",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  393 ,
+        "url": "https:\/\/linkleyping.top\/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98\/","datePublished": "2020-04-21T15:22:45+08:00","dateModified": "2020-04-21T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">看雪2020-第二题</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-21">2020-04-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 393 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#第二题-子鼠开天">第二题 子鼠开天</a>
+      <ul>
+        <li><a href="#算法识别">算法识别</a></li>
+        <li><a href="#加密过程">加密过程</a></li>
+        <li><a href="#solve">solve</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="第二题-子鼠开天">第二题 子鼠开天</h2>
+<h3 id="算法识别">算法识别</h3>
+<p>从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码 <br>
+<a href="https://github.com/push0ebp/sig-database/blob/master/windows/openssl_0.9.8.sig" target="_blank" rel="noopener noreffer">openssl_0.9.8.sig</a> <br>
+其他没有识别出来的函数可以通过固定参数或者对比openssl源码识别 <br>
+sub_4019B0 -&gt; sha512   (0xF3BCC908, 0x6A09E667&hellip;) <br>
+sub_401560 -&gt; md5   (0x67452301, 0xEFCDAB89&hellip;) <br>
+sub_404FE0 -&gt; AES_set_encrypt_key <br>
+sub_4053A0 -&gt; AES_set_decrypt_key <br>
+sub_sub_4010F0 -&gt; 最后一个参数为1是是AES加密，为0时是AES解密 <br>
+sub_401210 -&gt; rsa</p>
+<h3 id="加密过程">加密过程</h3>
+<p>sn：AES<strong>解密</strong> -&gt; RSA加密 <br>
+name: sha512 -&gt; md5 -&gt; sha512 -&gt; md5 <br>
+sn加密结果的后16字节与nams计算hash后的16字节相等且sn的前两个字节为0002，第16个字节为0</p>
+<h3 id="solve">solve</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8    </span>
+<span class="kn">import</span> <span class="nn">gmpy2</span>    
+<span class="kn">import</span> <span class="nn">hashlib</span>    
+<span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>    
+<span class="kn">import</span> <span class="nn">base64</span>    
+<span class="kn">import</span> <span class="nn">math</span>    
+<span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">b2a_hex</span><span class="p">,</span> <span class="n">a2b_hex</span>    
+    
+<span class="k">class</span> <span class="nc">prpcrypt</span><span class="p">():</span>    
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+      <span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;480b62c3acd6c8a36b18d9e906cd90d2&#34;</span>    
+      <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>    
+      <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_ECB</span>    
+  <span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>    
+      <span class="n">cryptor</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>    
+      <span class="n">length</span> <span class="o">=</span> <span class="mi">16</span>    
+      <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>    
+      <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="n">length</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>    
+              <span class="n">add</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="p">(</span><span class="n">count</span> <span class="o">%</span> <span class="n">length</span><span class="p">)</span>    
+      <span class="k">else</span><span class="p">:</span>    
+          <span class="n">add</span> <span class="o">=</span> <span class="mi">0</span>    
+          <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">add</span><span class="p">)</span>    
+          <span class="bp">self</span><span class="o">.</span><span class="n">ciphertext</span> <span class="o">=</span> <span class="n">cryptor</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>    
+          <span class="k">return</span> <span class="n">b2a_hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ciphertext</span><span class="p">)</span>    
+       
+  <span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>    
+      <span class="n">cryptor</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>    
+      <span class="n">plain_text</span> <span class="o">=</span> <span class="n">cryptor</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">a2b_hex</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>    
+      <span class="k">return</span> <span class="n">plain_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span>    
+    
+<span class="n">n</span> <span class="o">=</span> <span class="mh">0x69823028577465ab3991df045146f91d556dee8870845d8ee1cd3cf77e4a0c39</span>    
+<span class="n">p</span> <span class="o">=</span> <span class="mi">201522792635114097998567775554303915819</span>    
+<span class="n">q</span> <span class="o">=</span> <span class="mi">236811285547763449711675622888914229291</span>    
+<span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>    
+<span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>    
+<span class="n">d</span> <span class="o">=</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>    
+<span class="n">x</span> <span class="o">=</span> <span class="mh">0x02000000000000000000000000000014af58ad4d76d59d8d2171ffb4ca2231</span>    
+<span class="n">msg</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>    
+<span class="n">pr</span> <span class="o">=</span> <span class="n">prpcrypt</span><span class="p">()</span>    
+<span class="n">c1</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="mi">32</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">))</span>    
+<span class="n">c2</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">64</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">))</span>    
+<span class="k">print</span> <span class="n">c1</span><span class="o">+</span><span class="n">c2</span>    
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" data-title="看雪2020-第二题"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" data-title="看雪2020-第二题"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" data-title="看雪2020-第二题"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" data-title="看雪2020-第二题"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="虎符2020部分re"><i class="fas fa-angle-left fa-fw"></i>虎符2020部分re</a>
+            <a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" class="next" rel="next" title="gcc详解">gcc详解<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

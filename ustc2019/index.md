@@ -1,0 +1,636 @@
+# USTC CTF 2019
+
+## USTC CTF 2019    
+看群里发了这个新生赛的宣传，抽空做了一下，有几个题好有趣呀，出题人应该有一颗有趣的灵魂哈哈哈哈。这个主要是一个记录，选择的基本上是我没做出来的题目，看别人的WP写了一份。希望日后做题能有用可以来参考。    
+  
+## 宇宙终极问题    
+有一个定理：每个整数都可以分解成4个数平方和的形式。(Lagrange's four-square theorem)    
+四立方和分解： https://www.alpertron.com.ar/FCUBES.HTM    
+四平方和分解： https://www.alpertron.com.ar/FSQUARES.HTM      
+在别人的WP上找到了一个代码版本求四平方和的脚本，这里记录一下。    
+```Python    
+import gmpy2    
+from Crypto.Util.number import getPrime, getRandomInteger    
+def TonelliShanks(p, a):  # TonelliShanks算法    
+if pow(a, (p - 1) // 2, p) != 1:    
+    return -1    
+q = p - 1    
+m = 0    
+while q % 2 == 0:    
+    q //= 2    
+    m += 1    
+z = 0    
+while pow(z, (p - 1) // 2, p) != p - 1:    
+    z = getRandomInteger(10)    
+c = pow(z, q, p)    
+t = pow(a, q, p)    
+r = pow(a, (q + 1) // 2, p)    
+while m > 1:    
+    tmp = pow(t, 1 << (m - 2), p)    
+    if tmp != 1:    
+        r = r * c % p    
+        t = t * (c * c % p) % p    
+    c = c * c % p    
+    m -= 1    
+return r    
+    
+    
+def find_small_m(x, y, p):    
+x2y2 = x * x + y * y    
+m = x2y2 // p    
+assert 0 == (x2y2 % p) and 0 == (x2y2 % m)    
+while 1 < m:    
+    u, v = x % m, y % m    
+    if u * 2 > m:    
+        u -= m    
+    if v * 2 > m:    
+        v -= m    
+    u2v2 = u * u + v * v    
+    mm = u2v2 // m    
+    assert 0 == (u2v2 % m) and 0 < mm < m    
+        
+    x, y = (u * x + v * y) // m, (u * y - v * x) // m    
+    x2y2 = x * x + y * y    
+    m = x2y2 // p    
+    assert 0 == (x2y2 % p) and 0 == (x2y2 % m)    
+    
+return x, y, m    
+    
+    
+def get2square(r): # 这里还可以求两个数的平方和    
+if r == 2:    
+    return 1, 1    
+assert 1 == r % 4 and gmpy2.is_prime(r)    
+x0 = TonelliShanks(r, r - 1)    
+assert r - 1 == pow(x0, 2, r)    
+k, l, m = find_small_m(x0, 1, r)    
+assert k * k + l * l == m * r    
+assert 1 == m    
+return k, l    
+    
+    
+def get4square(n):    
+print("n =", n)    
+while True:    
+    i = getRandomInteger(100)    
+    j = getRandomInteger(100)    
+    j ^= (i ^ j) & 0x1    
+    r = n - i * i - j * j    
+    if 1 == r % 4 and gmpy2.is_prime(r):    
+        break    
+print("r =", r)    
+    
+k, l = get2square(r)    
+    
+assert i * i + j * j + k * k + l * l == n    
+print("i =", i)    
+print("j =", j)    
+print("k =", k)    
+print("l =", l)    
+return i, j, k, l    
+    
+    
+if __name__ == '__main__':    
+n = getPrime(256) * getPrime(256)    
+print(get4square(n))    
+```  
+还有一问是随机数的平方和分解问题。将一个随机数分解成两个素数的平方和。    
+定理：整数n能分解为两个整数的平方和的充要条件是，n的质因数分解不存在(4k+3)型质数的奇数次方。    
+这里n的分解得到的质数都是4k+1的形式。    
+定理： https://en.wikipedia.org/wiki/Brahmagupta%E2%80%93Fibonacci_identity    
+  
+```Python    
+def get2square_list(n, primes):    
+assert list == type(primes)    
+check_product = 1    
+for p in primes:    
+    assert 2 == p or (1 == p % 4 and gmpy2.is_prime(p))    
+    check_product *= p    
+assert check_product == n    
+u, v = 1, 0    
+for p in primes:    
+    x, y = get2square(p)    
+    u, v = u * x + v * y, u * y - v * x    
+assert u * u + v * v == n    
+return u, v    
+```  
+  
+## Happy LUG    
+基础太差了，考点是DNS。    
+题目说这个域名无法通过浏览器访问，也就是这个域名没有指向任何 IP 地址。实际上一个域名除了可以指向一个或多个 IP 地址（A 或 AAAA 记录）之外还可以包含其他信息，例如指向另一个域名（CNAME 记录），指示接收邮件的服务器（MX 记录），或者提供任意字符串（TXT 记录）。最后一个就是这道题的第二个知识点，域名 xn--g28h.hack.ustclug.org. 有一个 TXT 记录，其中就是 flag。查询 DNS 记录有很多种方式，例如网上搜一个查询服务或者使用 nslookup 等命令行工具，总之查出这个 TXT 记录就对了。    
+用DNS查询TXT记录的方法是：nslookup -q=TXT yourdomain.com    
+```shell    
+λ nslookup -q=TXT xn--g28h.hack.ustclug.org    
+服务器:  UnKnown    
+Address:  10.3.9.5    
+    
+非权威应答:    
+xn--g28h.hack.ustclug.org       text =    
+    
+    "flag{DN5_C4N_H4VE_em0ji_haha}"    
+```  
+  
+## 正则验证器    
+这里用了ReDos这个知识点，是我没见过的知识点...是我太菜了hhh    
+https://en.wikipedia.org/wiki/ReDoS    
+https://www.anquanke.com/post/id/177100    
+```shell    
+Regex: (a*)*$    
+String: aaaaaaaaaaaaaaaaaaaaaaab    
+```  
+上面这个正则由于失败时回溯的存在，每增加一个 a 就会使匹配时间翻一倍    
+  
+## 驴啃计算器    
+是一道数学题，知识点是：给定实数x，一步操作可选择将其变为sin(x),cos(x),tan(x),arcsin(x),arccos(x),arctan(x)，初始时x=0，求证对于任意的正有理数q，可经过有限次操作后使x=q。    
+http://blog.sina.com.cn/s/blog_a661ecd501012xsr.html    
+https://nbviewer.jupyter.org/github/ustclug/hackergame2019-writeups/blob/master/official/%E9%A9%B4%E5%95%83%E8%AE%A1%E7%AE%97%E5%99%A8/calc.ipynb    
+(tips: https://nbviewer.jupyter.org/ 可以打开任意的在线ipynb文档)    
+```Python    
+from __future__ import division    
+    
+from pwn import *    
+from numpy import *    
+from fractions import Fraction    
+    
+calcList = []    
+    
+def genFraction(num,n=20):    
+f = Fraction(num)    
+a = f.numerator    
+b = f.denominator    
+a = a*a    
+b = b*b    
+for i in range(n):    
+    result = a//b    
+    a = a - result*b    
+    #print a,b    
+    a,b = b,a    
+    #print a,b    
+    '''    
+    if result == 1:    
+        break    
+    '''    
+    #if result > 5000:    
+    #    break    
+    yield result    
+    if b == 0:    
+        break    
+        
+def f(x):    
+global calcList    
+calcList += ["atan","sin","acos","tan"]    
+return tan(arccos(sin(arctan(x))))    
+    
+def g(x):    
+global calcList    
+calcList += ["atan","cos"]    
+return f(cos(arctan(x)))    
+    
+def test(aim):    
+global calcList    
+#aim = log(aim)    
+#aim = 42.79781263758425 #tan(72.35711075569202)    
+aim = deg2rad(aim)    
+x = 0    
+fList = []    
+for i in genFraction(aim):    
+    fList.append(i)    
+print fList    
+for i in range(len(fList)):    
+    a = fList.pop()    
+    for j in range(a):    
+        x = g(x)    
+    calcList += ["1/x"]    
+    x = 1/x    
+calcList += ["1/x"]    
+x = 1/x    
+calcList += ["R2D"]    
+print "aim = %f" % rad2deg(aim)    
+print "x = %f" % (rad2deg(x))    
+#print "p = %f" % ((x*x))    
+return ",".join(calcList)    
+    
+    
+    
+import json    
+import requests    
+    
+host = "http://202.38.93.241:10024"    
+    
+    
+def solve(x):    
+return 'sin,cos,x^2' or 'magic'    
+    
+def test2():    
+with requests.session() as sess:    
+    r = sess.get(host + '/challenges')    
+    X = json.loads(r.text)["msg"]    
+    print(X)    
+    data = {    
+        "a1": test(X[0]),    
+        "a2": test(X[1]),    
+        "a3": test(X[2])    
+    }    
+    r = sess.post(host + "/submit", data=data)    
+    resp = json.loads(r.text)    
+    print(resp["msg"])      
+    
+test2()    
+```  
+  
+## 天书残篇    
+是道简单的逆向题，用了Witespace这个语言。在线反汇编器：https://vii5ard.github.io/whitespace/    
+这里有各种奇奇怪怪的语言：https://juejin.im/post/5b02745b6fb9a07aa5429a76    
+顺便有WP提了一下Ook： https://www.cnblogs.com/WangAoBo/p/6373318.html    
+在线解密：https://www.splitbrain.org/services/ook    
+  
+## 我想要个家    
+是我卡住的题...    
+chroot...    
+  
+我没想过用RE的方式解来着--idagolang-helper还原符号，然后用patch的方法。试一下。    
+  
+## 十次方根    
+```python    
+x = 130095999494467643631574289251374479743427759332282644620931023932981730612064829262332840253969261363881910701276769455728130421459878658660627330362688856751252524519341435317968272275310598639991033512763704530123231772642623291899534454658707761230166809620539187116816778418242273580873637781313957589597    
+y = 116513882455567447431772208851676203256471727099349255694179213039239989833646726805040167642952589899809273716764673737423792812107737304956679717082391151505476360762847773608327055926832394948293052633869637754201186227370594688119795413400655007893009882742908697688490841023621108562593724732469462968731    
+z = 88688615046438957657148589794574470139777919686383514327296565433247300792803913489977671293854830459385807133302995575774658605472491904258624914486448276269854207404533062581134557448023142028865220726281791025833570337140263511960407206818858439353134327592503945131371190285416230131136007578355799517986306208039490339159501009668785839201465041101739825050371023956782364610889969860432267781626941824596468923354157981771773589236462813563647577651117020694251283103175874783965004467136515096081442018965974870665038880840823708377340101510978112755669470752689525778937276250835072011344062132449232775717960070624563850487919381138228636278647776184490240264110748648486121139328569423969642059474027527737521891542567351630545570488901368570734520954996585774666946913854038917494322793749823245652065062604226133920469926888309742466030087045251385865707151307850662127591419171619721200858496299127088429333831383287417361021420824398501423875648199373623572614151830871182111045650469239575676312393555191890749537174702485617397506191658938798937462708198240714491454507874141432982611857838173469612147092460359775924447976521509874765598726655964369735759375793871985156532139719500175158914354647101621378769238233    
+n ** 10 % (x * y * y * y) == z    
+求n    
+```  
+可以类似与RSA，但是p=x,q=y^3,e=10    
+phi = (x-1)*(y-1)*y*y    
+```python    
+#!/usr/bin/env python3    
+    
+from easy_math import x as p, y as q, z as c    
+from sympy.ntheory.residue_ntheory import sqrt_mod    
+import sympy.ntheory.residue_ntheory    
+import gmpy2    
+    
+    
+def factor_(nn, *args, **kwargs):    
+t = 0    
+while nn % p == 0:    
+    t += 1    
+    nn //= p    
+s = 0    
+while nn % q == 0:    
+    s += 1    
+    nn //= q    
+if nn != 1:    
+    print(nn)    
+    return None    
+return {p: t, q: s}    
+    
+    
+sympy.ntheory.residue_ntheory.factorint = factor_    
+    
+n = p * q ** 3    
+phi = (p - 1) * (q ** 2) * (q - 1)    
+root_5th_of_c = pow(c, gmpy2.invert(5, phi // 5), n)    
+root_5th_of_1_all = set(pow(i, (phi // 5), n) for i in range(1, 20))    
+root_5th_of_1_all = set(r for r in set(root_5th_of_1_all) if pow(r, 5, n) == 1)    
+root_5th_of_c_all = [root_5th_of_c * r % n for r in root_5th_of_1_all]    
+m_all = [m for r in root_5th_of_c_all for m in sqrt_mod(r, n, True)]    
+print(len(m_all))    
+for m in m_all:    
+h = hex(m)[2:]    
+if len(h) % 2 == 0 and bytes.fromhex(hex(m)[2:]).startswith(b"flag"):    
+    print(bytes.fromhex(hex(m)[2:]).decode()[:32])    
+```  
+## 大整数分解锦标赛    
+随机数预测问题，用反复 Help 得到的随机数来重构 MT19937 的内部状态    
+```python    
+#!/usr/bin/env python3    
+    
+    
+class UncertainBit:    
+def __init__(self, value):    
+    if value == 0 or value == 1 or value == None:    
+        self.value = value    
+    elif value == "0" or value == "1":    
+        self.value = int(value)    
+    elif value == "X":    
+        self.value = None    
+    elif isinstance(value, UncertainBit):    
+        self.value = value.value    
+    else:    
+        raise TypeError()    
+    
+def __and__(self, other):    
+    if self.value != None and other.value != None:    
+        return UncertainBit(self.value & other.value)    
+    if self.value == 0 or other.value == 0:    
+        return UncertainBit(0)    
+    return UncertainBit(None)    
+    
+def __or__(self, other):    
+    if self.value != None and other.value != None:    
+        return UncertainBit(self.value | other.value)    
+    if self.value == 1 or other.value == 1:    
+        return UncertainBit(1)    
+    return UncertainBit(None)    
+    
+def __xor__(self, other):    
+    if self.value != None and other.value != None:    
+        return UncertainBit(self.value ^ other.value)    
+    return UncertainBit(None)    
+    
+def __invert__(self):    
+    if self.value is None:    
+        return UncertainBit(None)    
+    else:    
+        return UncertainBit(1 - self.value)    
+    
+def __repr__(self):    
+    if self.value is None:    
+        return "X"    
+    else:    
+        return str(self.value)    
+    
+def combine(self, other):    
+    if self.value != None and other.value != None:    
+        if self.value != other.value:    
+            raise ValueError()    
+    if self.value != None:    
+        return UncertainBit(self.value)    
+    return UncertainBit(other.value)    
+    
+def repeat(self, n):    
+    return UncertainBitVector(n, [self for _ in range(n)])    
+    
+    
+class UncertainBitVector:    
+def __init__(self, bits, value=None):    
+    self.bits = bits    
+    self.vec = [UncertainBit(0) for _ in range(len(self))]    
+    if value is None:    
+        for i in range(len(self)):    
+            self[i] = None    
+    elif isinstance(value, int):    
+        if value.bit_length() > len(self):    
+            raise ValueError()    
+        for i in range(value.bit_length()):    
+            self[i] = (value >> i) & 1    
+    else:    
+        if len(value) > len(self):    
+            raise ValueError()    
+        for i in range(len(value)):    
+            self[i] = value[i]    
+    
+def __len__(self):    
+    return self.bits    
+    
+def __getitem__(self, key):    
+    if isinstance(key, int):    
+        if key >= len(self):    
+            return UncertainBit(0)    
+        return self.vec[key]    
+    elif isinstance(key, slice):    
+        bv = self.vec[key]    
+        return UncertainBitVector(len(bv), bv)    
+    else:    
+        raise TypeError()    
+    
+def __setitem__(self, key, value):    
+    if isinstance(key, int):    
+        self.vec[key] = UncertainBit(value)    
+    elif isinstance(key, slice):    
+        raise NotImplementedError()    
+    else:    
+        raise TypeError()    
+    
+def __and__(self, other):    
+    if isinstance(other, int):    
+        other = UncertainBitVector(other.bit_length(), other)    
+    bits = min(len(self), len(other))    
+    return UncertainBitVector(bits, [self[i] & other[i] for i in range(bits)])    
+    
+def __rand__(self, other):    
+    return self & other    
+    
+def __or__(self, other):    
+    if isinstance(other, int):    
+        other = UncertainBitVector(other.bit_length(), other)    
+    bits = max(len(self), len(other))    
+    return UncertainBitVector(bits, [self[i] | other[i] for i in range(bits)])    
+    
+def __ror__(self, other):    
+    return self & other    
+    
+def __xor__(self, other):    
+    if isinstance(other, int):    
+        other = UncertainBitVector(other.bit_length(), other)    
+    bits = max(len(self), len(other))    
+    return UncertainBitVector(bits, [self[i] ^ other[i] for i in range(bits)])    
+    
+def __rxor__(self, other):    
+    return self & other    
+    
+def __lshift__(self, other):    
+    bits = len(self) + other    
+    return UncertainBitVector(bits, [0] * other + self.vec)    
+    
+def __rshift__(self, other):    
+    bits = max(len(self) - other, 0)    
+    return UncertainBitVector(bits, self.vec[other:])    
+    
+def __sub__(self, other):    
+    if isinstance(other, int):    
+        other = UncertainBitVector(other.bit_length(), other)    
+    r = []    
+    carry = UncertainBit(0)    
+    for i in range(len(self)):    
+        r.append(self[i] ^ other[i] ^ carry)    
+        carry = ~((self[i] & ~other[i]) | (self[i] & ~carry) | (~other[i] & ~carry))    
+    if carry.value != 0:    
+        raise OverflowError()    
+    return UncertainBitVector(len(self), r)    
+    
+def __repr__(self):    
+    return "".join([str(b) for b in reversed(self.vec)])    
+    
+def sign_ext(self, bits):    
+    if bits < len(self):    
+        raise ValueError()    
+    return UncertainBitVector(bits, self.vec + [self[-1]] * (bits - len(self)))    
+    
+def combine(self, other):    
+    if len(self) != len(other):    
+        raise ValueError()    
+    else:    
+        return UncertainBitVector(    
+            len(self), [self[i].combine(other[i]) for i in range(len(self))]    
+        )    
+    
+def all_known(self):    
+    return all(self[i].value is not None for i in range(len(self)))    
+    
+def int_value(self):    
+    if not self.all_known():    
+        raise ValueError()    
+    v = 0    
+    for i in range(len(self)):    
+        v |= self[i].value << i    
+    return v    
+    
+    
+class MTSolver:    
+N = 624    
+    
+def __init__(self):    
+    self.length = self.N * 6    
+    self.mt = [UncertainBitVector(32) for _ in range(self.length)]    
+    self.pos = 0    
+    
+def known_raw(self, pos, value):    
+    self.mt[pos] = self.mt[pos].combine(value)    
+    
+def known_32bit(self, value):    
+    if len(value) != 32:    
+        raise ValueError()    
+    self.known_raw(self.pos, self.untempering(value))    
+    self.pos += 1    
+    
+def known_prime(self, begin, end, p):    
+    self.known_range(begin - 1, end + 1, self.prime_to_bv(p))    
+    
+def known_range(self, begin, end, n):    
+    bits = (end - begin).bit_length()    
+    try:    
+        rnd = UncertainBitVector(bits, n - begin)    
+    except OverflowError:    
+        rnd = UncertainBit("X").repeat(bits)    
+    for i in range(bits // 32):    
+        self.known_32bit(rnd[i * 32 : i * 32 + 32])    
+    extra = bits % 32    
+    if extra:    
+        bv = UncertainBitVector(    
+            32,    
+            (rnd[bits // 32 * 32 :] << (32 - extra))    
+            ^ UncertainBit("X").repeat(32 - extra),    
+        )    
+        self.known_32bit(bv)    
+    
+def untempering(self, y):    
+    y ^= y >> 18    
+    y ^= (y << 15) & 0xEFC60000    
+    y ^= (    
+        ((y << 7) & 0x9D2C5680)    
+        ^ ((y << 14) & 0x94284000)    
+        ^ ((y << 21) & 0x14200000)    
+        ^ ((y << 28) & 0x10000000)    
+    )    
+    y ^= (y >> 11) ^ (y >> 22)    
+    return y    
+    
+def generate(self, i):    
+    y = (self.mt[i - self.N] & 0x80000000) | (self.mt[i - self.N + 1] & 0x7FFFFFFF)    
+    return (    
+        self.mt[i + 397 - self.N] ^ (y >> 1) ^ (0x9908B0DF & (y & 1).sign_ext(32))    
+    )    
+    
+def do_predit(self):    
+    for i in range(self.N, self.pos - 397 + self.N):    
+        self.known_raw(i, self.generate(i))    
+    
+def prime_to_bv(self, p):    
+    import sympy    
+    
+    pp = sympy.prevprime(p)    
+    end = p - 1    
+    start = pp    
+    bv = UncertainBitVector(p.bit_length(), start)    
+    bv = bv ^ UncertainBit("X").repeat((start ^ end).bit_length())    
+    return bv    
+    
+def __str__(self):    
+    s = []    
+    for i, bv in enumerate(self.mt):    
+        s.append("%s: %s %s" % (i, bv, "<<X>>" if "X" in str(bv) else ""))    
+    return "\n".join(s)    
+    
+def get_mt_window(self):    
+    return self.mt[max(self.pos - self.N, 0) : self.pos]    
+    
+def ready(self):    
+    return self.pos >= self.N and all(bv.all_known() for bv in self.get_mt_window())    
+    
+def get_progress(self):    
+    return sum(int(bv.all_known()) for bv in self.get_mt_window())    
+    
+def get_random(self):    
+    if not self.ready():    
+        raise ValueError()    
+    import random    
+    
+    rnd = random.Random()    
+    rnd.setstate(    
+        (3, tuple(bv.int_value() for bv in self.get_mt_window()) + (self.N,), None)    
+    )    
+    return rnd    
+    
+    
+if __name__ == "__main__":    
+from pwn import * # pip3 install --upgrade git+https://github.com/arthaud/python3-pwntools.git    
+import random    
+import sympy    
+    
+# context.log_level = 'debug'    
+    
+r = remote("127.0.0.1", 10010)    
+r.sendline("your token")    
+r.recvuntil("Welcome")    
+s = MTSolver()    
+for i in range(10):    
+    for j in range(10):    
+        r.sendline("H")    
+    for j in range(10):    
+        print(i * 10 + j)    
+        r.recvuntil("p = ")    
+        p = int(r.recvline().strip())    
+        r.recvuntil("q = ")    
+        q = int(r.recvline().strip())    
+        r.recvuntil("under ")    
+        b = int(r.recvline().split(b" ")[0])    
+    
+        s.known_range(10, 1024, b)    
+        bound = 2 ** b    
+        s.known_prime(3, bound, p)    
+        s.known_prime(3, bound, q)    
+    s.do_predit()    
+    print(s.get_progress(), "/ 624")    
+    if s.ready():    
+        break    
+random.setstate(s.get_random().getstate())    
+    
+r.sendline("B")    
+for i in range(10, 1024, 32):    
+    print(i)    
+    p = sympy.randprime(3, 2 ** i)    
+    q = sympy.randprime(3, 2 ** i)    
+    r.sendline("p = " + str(p))    
+    r.sendline("q = " + str(q))    
+r.interactive()    
+```  
+## tinyELF    
+题目很简单，但是在wp上看到了用angr解题的方法，记录一下。    
+emmm一直说要研究angr，希望能提上日程...菜还是要多读书    
+程序中的可见字符串:    
+```shell    
+strings tinyELF    
+please in put flag:    
+correct    
+```  
+用angr求解什么样的输入可以让程序输出"correct"    
+```python    
+import angr    
+    
+proj = angr.Project("tinyELF")    
+simgr = proj.factory.simgr()    
+simgr.explore(find=lambda s: b"correct" in s.posix.dumps(1))    
+print(simgr.found[0].posix.dumps(0))    
+```  
+运行一下就能出flag    
+

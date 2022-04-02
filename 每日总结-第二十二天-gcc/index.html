@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>gcc详解 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="gcc详解" />
+<meta property="og:description" content="编译流程 gcc、g&#43;&#43;分别是gnu的c、c&#43;&#43;编译器，gcc/g&#43;&#43;在执行编译工作的时候，总共需要4步: 预处理： 生成预处理文件，后缀名 .i (预" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-04-25T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-04-25T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="gcc详解"/>
+<meta name="twitter:description" content="编译流程 gcc、g&#43;&#43;分别是gnu的c、c&#43;&#43;编译器，gcc/g&#43;&#43;在执行编译工作的时候，总共需要4步: 预处理： 生成预处理文件，后缀名 .i (预"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" /><link rel="prev" href="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" /><link rel="next" href="https://linkleyping.top/inshack-2019-papavm/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "gcc详解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2272 ,
+        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc\/","datePublished": "2020-04-25T15:22:45+08:00","dateModified": "2020-04-25T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">gcc详解</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-25">2020-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2272 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#编译流程">编译流程</a></li>
+    <li><a href="#参数详解">参数详解</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="编译流程">编译流程</h2>
+<p>gcc、g++分别是gnu的c、c++编译器，gcc/g++在执行编译工作的时候，总共需要4步:</p>
+<ul>
+<li>预处理： 生成预处理文件，后缀名 .i (预处理器cpp)</li>
+<li>编译： 预处理后的文件编译生成汇编语言文件，后缀名 .s(编译器egcs)</li>
+<li>汇编： 汇编语言文件汇编生成目标代码(机器代码)文件，后缀名.o (汇编器as)</li>
+<li>链接： 链接目标代码, 生成可执行文件 (链接器ld)</li>
+</ul>
+<p>源码从前端经过词法分析、语法分析/语义分析之后生成AST/GENERIC，再转换成GIMPLE中间表示，GCC还需要对GIMPLE进行低级化、IPA处理等，再转成SSA优化后生成RTL，最终才生成汇编代码，整个过程如下：<br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/ff8279eca9bfd880a8a6d0ac511f44cc/11884068-edf42458aba36443.jpg">
+            <img src="/images/ff8279eca9bfd880a8a6d0ac511f44cc/11884068-edf42458aba36443.jpg" alt=""  />
+        </a>
+    </div>
+<br>
+gcc编译系统主要由三部分组成：与语言相关的前端、与语言无关的后端、与机器相关的机器描述<br>
+GCC的优化流程主要是: 编译器首先从编译命令行中解析出优化参数，经过语法分析器将源程序翻译成等价的AST(抽象语法树)形式； 再由中间代码生成器将AST转换为RTL(Register transfer language)；然后由优化器根据解析出的优化参数实施相应的优化策略；最后由代码生成器读入优化后的RTL并生成可执行机器码予以输出。事实上,GCC的优化绝大部分都是在RTL这个层次上实施的。</p>
+<h2 id="参数详解">参数详解</h2>
+<ul>
+<li>-x: <code>gcc -x language filename</code> 设定文件所使用的语言, 使后缀名无效, 对以后的多个有效。language可以是：<code>c, objective-c, c-header, c++, cpp-output, assembler, assembler-with-cpp</code><br>
+eg: <code>gcc -x c test.png</code> language为none时表示自动识别语言</li>
+<li>-c: 只激活预处理,编译,和汇编,也就是他只把程序做成obj文件<br>
+eg: <code>gcc -c test.c</code>只生成.obj文件</li>
+<li>-S 只激活预处理和编译，就是指把文件编译成为汇编代码。</li>
+<li>-E 只激活预处理,这个不生成文件, 你需要把它重定向到一个输出文件里面</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">gcc -E test.c &gt; test.txt  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>-ansi 使用-ansi参数可以支持 ISO C89风格。<br>
+比如下面的代码:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;  </span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>  
+<span class="p">{</span>  
+<span class="c1">// Print the string  
+</span><span class="c1"></span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> The Geek Stuff</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+ <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>使用-ansi参数编译上面的代码会出错，因为ISO C89不支持C++风格的注释。</p>
+<ul>
+<li>-fno-asm 此选项实现ansi选项的功能的一部分，它禁止将asm,inline和typeof用作关键字。</li>
+<li>-include file 包含某个代码，简单来说，就是当某个文件需要另一个文件的时候，就可以用它设定，功能就相当于在代码中使用#include<filename><br>
+eg： <code>gcc hello.c -include /root/pianopan.h</code></li>
+<li>-Idir 在你使用#include &ldquo;file&quot;的时候，gcc/g++会先在当前目录查找你所指定的头文件，如果没有找到，他会到缺省的头文件目录找，如果使用-I指定了目录，他会先在你所指定的目录查找，然后再按常规的顺序去找。对于#include <file>, gcc/g++会到-I指定的目录查找，查找不到，然后将到系统的缺省的头文件目录查找。</li>
+<li>-I- 就是取消前一个参数的功能,所以一般在-Idir之后使用</li>
+<li>-idirafter dir 在-I的目录里面查找失败，将到这个目录里面查找。</li>
+<li>-iprefix prefix，-iwithprefix dir 一般一起使用，当-I的目录查找失败，会到prefix+dir下查找</li>
+<li>-nostdinc 使编译器不在系统缺省的头文件目录里面找头文件，一般和-I联合使用，明确限定头文件的位置</li>
+<li>-nostdinc++ 规定不在g++指定的标准路经中搜索，但仍在其他路径中搜索，此选项在创建libg++库使用</li>
+<li>-C 在预处理的时候,不删除注释信息，一般和-E一起使用，有时候分析程序，用这个很方便的</li>
+<li>-M 生成文件关联的信息。包含目标文件所依赖的所有源代码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">test.o: test.c /usr/include/stdc-predef.h /usr/include/stdio.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h <span class="se">\ </span> 
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/long-double.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h <span class="se">\ </span> 
+ /usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h <span class="se">\ </span> 
+ /usr/lib/gcc/x86_64-linux-gnu/8/include/stdarg.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h <span class="se">\ </span> 
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>-MM 和上面的那个一样，但是它将忽略由#include<file>造成的依赖关系。</li>
+<li>-MD 和-M相同，但是输出将导入到.d的文件里面</li>
+<li>-MMD和-MM相同，但是输出将导入到.d的文件里面</li>
+<li>-Wa,option 此选项传递option给汇编程序；如果option中间有逗号，就将option分成多个选项，然后传递给汇编程序</li>
+<li>-Wl.option 此选项传递option给链接程序；如果option中间有逗号，就将option分成多个选项，然后传递给链接程序.</li>
+<li>-llibrary 指定编译的时候使用的库 例如： gcc -lcurses hello.c</li>
+<li>-Ldir 指定编译的时候，搜索库的路径。如果不指定，编译器将只在标准库的目录找。</li>
+<li>-O0，-O1，-O2，-O3 编译器的优化选项的4个级别，-O0表示没有优化，-O1为缺省值，-O3优化级别最高</li>
+<li>-g 指示编译器，在编译的时候，产生调试信息。</li>
+<li>-gstabs 此选项以stabs格式生成调试信息，但是不包括gdb调试信息</li>
+<li>-gstabs+此选项以stabs格式生成调试信息，并且包含仅供gdb使用的额外调试信息。</li>
+<li>-ggdb 此选项将尽可能的生成gdb可以使用的调试信息。</li>
+<li>-static 此选项将禁止使用动态库。</li>
+<li>-share 此选项将尽量使用动态库。</li>
+<li>-traditional 试图让编译器支持传统的C语言特性</li>
+<li>-w 不生成任何警告信息。默认选项</li>
+<li>-Wall 开启大多数警告</li>
+<li>使用-fPIC产生位置无关的代码<br>
+当产生共享库的时候，应该创建位置无关的代码，这会让共享库使用任意的地址而不是固定的地址，要实现这个功能，需要使用-fPIC参数。<br>
+下面的例子产生libCfile.so动态库。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ gcc -c -Wall -Werror -fPIC Cfile.c  
+$ gcc -shared -o libCfile.so Cfile.o  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>-D 可以用作定义编译时的宏。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;  </span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>  
+<span class="p">{</span>  
+<span class="cp">#ifdef MY_MACRO  
+</span><span class="cp"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> Macro defined </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+<span class="cp">#endif  
+</span><span class="cp"></span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="p">;</span>  
+<span class="c1">// Print the string  
+</span><span class="c1"></span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> The Geek Stuff [%d]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>  
+ <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>-D可以用作从命令行定义宏MY_MACRO。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ gcc -Wall -DMY_MACRO main.c -o main  
+$ ./main  
+ Macro defined   
+ The Geek Stuff <span class="o">[</span>-10<span class="o">]</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用@参数从文件中读取参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ cat opt_file   
+-Wall -omain  
+<span class="c1"># opt_file包含编译参数  </span>
+$ gcc main.c @opt_file  
+main.c: In <span class="k">function</span> ‘main’:  
+main.c:6:11: warning: ‘i’ is used uninitialized in this <span class="k">function</span> <span class="o">[</span>-Wuninitialized<span class="o">]</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>指定支持的c++/c的标准 <code>gcc -std=c++11 hello-world.cpp</code><br>
+标准如 c++11, c++14, c90, c89等。</li>
+<li>使用-static生成静态链接的文件<br>
+静态编译文件(把动态库的函数和其它依赖都编译进最终文件)<br>
+<code>gcc main.c -static -o main -lpthread</code><br>
+相反的使用-shared使用动态库链接</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" data-title="gcc详解"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" data-title="gcc详解"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" data-title="gcc详解"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%A4%A9-gcc/" data-title="gcc详解"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" class="prev" rel="prev" title="看雪2020-第二题"><i class="fas fa-angle-left fa-fw"></i>看雪2020-第二题</a>
+            <a href="/inshack-2019-papavm/" class="next" rel="next" title="InsHack-2019-papavm">InsHack-2019-papavm<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>USTC CTF 2019 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="USTC CTF 2019" />
+<meta property="og:description" content="USTC CTF 2019 看群里发了这个新生赛的宣传，抽空做了一下，有几个题好有趣呀，出题人应该有一颗有趣的灵魂哈哈哈哈。这个主要是一个记录，选择的基本上是我没" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/ustc2019/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2019-10-31T16:13:18+00:00" />
+<meta property="article:modified_time" content="2022-04-02T20:47:48+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="USTC CTF 2019"/>
+<meta name="twitter:description" content="USTC CTF 2019 看群里发了这个新生赛的宣传，抽空做了一下，有几个题好有趣呀，出题人应该有一颗有趣的灵魂哈哈哈哈。这个主要是一个记录，选择的基本上是我没"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/ustc2019/" /><link rel="prev" href="https://linkleyping.top/llvm/" /><link rel="next" href="https://linkleyping.top/2019zgc/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "USTC CTF 2019",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/ustc2019\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3756 ,
+        "url": "https:\/\/linkleyping.top\/ustc2019\/","datePublished": "2019-10-31T16:13:18+00:00","dateModified": "2022-04-02T20:47:48+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">USTC CTF 2019</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-10-31">2019-10-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3756 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ustc-ctf-2019">USTC CTF 2019</a></li>
+    <li><a href="#宇宙终极问题">宇宙终极问题</a></li>
+    <li><a href="#happy-lug">Happy LUG</a></li>
+    <li><a href="#正则验证器">正则验证器</a></li>
+    <li><a href="#驴啃计算器">驴啃计算器</a></li>
+    <li><a href="#天书残篇">天书残篇</a></li>
+    <li><a href="#我想要个家">我想要个家</a></li>
+    <li><a href="#十次方根">十次方根</a></li>
+    <li><a href="#大整数分解锦标赛">大整数分解锦标赛</a></li>
+    <li><a href="#tinyelf">tinyELF</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="ustc-ctf-2019">USTC CTF 2019</h2>
+<p>看群里发了这个新生赛的宣传，抽空做了一下，有几个题好有趣呀，出题人应该有一颗有趣的灵魂哈哈哈哈。这个主要是一个记录，选择的基本上是我没做出来的题目，看别人的WP写了一份。希望日后做题能有用可以来参考。</p>
+<h2 id="宇宙终极问题">宇宙终极问题</h2>
+<p>有一个定理：每个整数都可以分解成4个数平方和的形式。(Lagrange&rsquo;s four-square theorem) <br>
+四立方和分解： <a href="https://www.alpertron.com.ar/FCUBES.HTM">https://www.alpertron.com.ar/FCUBES.HTM</a> <br>
+四平方和分解： <a href="https://www.alpertron.com.ar/FSQUARES.HTM">https://www.alpertron.com.ar/FSQUARES.HTM</a>   <br>
+在别人的WP上找到了一个代码版本求四平方和的脚本，这里记录一下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">gmpy2</span>    
+<span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">getPrime</span><span class="p">,</span> <span class="n">getRandomInteger</span>    
+<span class="k">def</span> <span class="nf">TonelliShanks</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>  <span class="c1"># TonelliShanks算法    </span>
+<span class="k">if</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>    
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>    
+<span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span>    
+<span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="k">while</span> <span class="n">q</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    
+    <span class="n">q</span> <span class="o">//=</span> <span class="mi">2</span>    
+    <span class="n">m</span> <span class="o">+=</span> <span class="mi">1</span>    
+<span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="k">while</span> <span class="nb">pow</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">!=</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>    
+    <span class="n">z</span> <span class="o">=</span> <span class="n">getRandomInteger</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>    
+<span class="n">c</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
+<span class="n">t</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
+<span class="n">r</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
+<span class="k">while</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>    
+    <span class="n">tmp</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="n">tmp</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>    
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">c</span> <span class="o">%</span> <span class="n">p</span>    
+        <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="n">c</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>    
+    <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">c</span> <span class="o">%</span> <span class="n">p</span>    
+    <span class="n">m</span> <span class="o">-=</span> <span class="mi">1</span>    
+<span class="k">return</span> <span class="n">r</span>    
+    
+    
+<span class="k">def</span> <span class="nf">find_small_m</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>    
+<span class="n">x2y2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>    
+<span class="n">m</span> <span class="o">=</span> <span class="n">x2y2</span> <span class="o">//</span> <span class="n">p</span>    
+<span class="k">assert</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">x2y2</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">x2y2</span> <span class="o">%</span> <span class="n">m</span><span class="p">)</span>    
+<span class="k">while</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>    
+    <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span> <span class="o">%</span> <span class="n">m</span>    
+    <span class="k">if</span> <span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">m</span><span class="p">:</span>    
+        <span class="n">u</span> <span class="o">-=</span> <span class="n">m</span>    
+    <span class="k">if</span> <span class="n">v</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">m</span><span class="p">:</span>    
+        <span class="n">v</span> <span class="o">-=</span> <span class="n">m</span>    
+    <span class="n">u2v2</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">v</span>    
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">u2v2</span> <span class="o">//</span> <span class="n">m</span>    
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">u2v2</span> <span class="o">%</span> <span class="n">m</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">mm</span> <span class="o">&lt;</span> <span class="n">m</span>    
+        
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">//</span> <span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">v</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">//</span> <span class="n">m</span>    
+    <span class="n">x2y2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>    
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x2y2</span> <span class="o">//</span> <span class="n">p</span>    
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">x2y2</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">x2y2</span> <span class="o">%</span> <span class="n">m</span><span class="p">)</span>    
+    
+<span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span>    
+    
+    
+<span class="k">def</span> <span class="nf">get2square</span><span class="p">(</span><span class="n">r</span><span class="p">):</span> <span class="c1"># 这里还可以求两个数的平方和    </span>
+<span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>    
+    <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    
+<span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>    
+<span class="n">x0</span> <span class="o">=</span> <span class="n">TonelliShanks</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>    
+<span class="k">assert</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>    
+<span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">find_small_m</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>    
+<span class="k">assert</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">l</span> <span class="o">*</span> <span class="n">l</span> <span class="o">==</span> <span class="n">m</span> <span class="o">*</span> <span class="n">r</span>    
+<span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">m</span>    
+<span class="k">return</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span>    
+    
+    
+<span class="k">def</span> <span class="nf">get4square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;n =&#34;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>    
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>    
+    <span class="n">i</span> <span class="o">=</span> <span class="n">getRandomInteger</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>    
+    <span class="n">j</span> <span class="o">=</span> <span class="n">getRandomInteger</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>    
+    <span class="n">j</span> <span class="o">^=</span> <span class="p">(</span><span class="n">i</span> <span class="o">^</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x1</span>    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">*</span> <span class="n">j</span>    
+    <span class="k">if</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>    
+        <span class="k">break</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;r =&#34;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>    
+    
+<span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">get2square</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>    
+    
+<span class="k">assert</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">l</span> <span class="o">*</span> <span class="n">l</span> <span class="o">==</span> <span class="n">n</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;i =&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;j =&#34;</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;k =&#34;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>    
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;l =&#34;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>    
+<span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span>    
+    
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>    
+<span class="n">n</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>    
+<span class="k">print</span><span class="p">(</span><span class="n">get4square</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>    
+</code></pre></td></tr></table>
+</div>
+</div><p>还有一问是随机数的平方和分解问题。将一个随机数分解成两个素数的平方和。 <br>
+定理：整数n能分解为两个整数的平方和的充要条件是，n的质因数分解不存在(4k+3)型质数的奇数次方。 <br>
+这里n的分解得到的质数都是4k+1的形式。 <br>
+定理： <a href="https://en.wikipedia.org/wiki/Brahmagupta%E2%80%93Fibonacci_identity">https://en.wikipedia.org/wiki/Brahmagupta%E2%80%93Fibonacci_identity</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">get2square_list</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">primes</span><span class="p">):</span>    
+<span class="k">assert</span> <span class="nb">list</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">primes</span><span class="p">)</span>    
+<span class="n">check_product</span> <span class="o">=</span> <span class="mi">1</span>    
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>    
+    <span class="k">assert</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">p</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">p</span> <span class="o">%</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>    
+    <span class="n">check_product</span> <span class="o">*=</span> <span class="n">p</span>    
+<span class="k">assert</span> <span class="n">check_product</span> <span class="o">==</span> <span class="n">n</span>    
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>    
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>    
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get2square</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>    
+    <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">v</span> <span class="o">*</span> <span class="n">x</span>    
+<span class="k">assert</span> <span class="n">u</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">v</span> <span class="o">==</span> <span class="n">n</span>    
+<span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="happy-lug">Happy LUG</h2>
+<p>基础太差了，考点是DNS。 <br>
+题目说这个域名无法通过浏览器访问，也就是这个域名没有指向任何 IP 地址。实际上一个域名除了可以指向一个或多个 IP 地址（A 或 AAAA 记录）之外还可以包含其他信息，例如指向另一个域名（CNAME 记录），指示接收邮件的服务器（MX 记录），或者提供任意字符串（TXT 记录）。最后一个就是这道题的第二个知识点，域名 xn&ndash;g28h.hack.ustclug.org. 有一个 TXT 记录，其中就是 flag。查询 DNS 记录有很多种方式，例如网上搜一个查询服务或者使用 nslookup 等命令行工具，总之查出这个 TXT 记录就对了。 <br>
+用DNS查询TXT记录的方法是：nslookup -q=TXT yourdomain.com</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">λ nslookup -q<span class="o">=</span>TXT xn--g28h.hack.ustclug.org    
+服务器:  UnKnown    
+Address:  10.3.9.5    
+    
+非权威应答:    
+xn--g28h.hack.ustclug.org       <span class="nv">text</span> <span class="o">=</span>    
+    
+    <span class="s2">&#34;flag{DN5_C4N_H4VE_em0ji_haha}&#34;</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="正则验证器">正则验证器</h2>
+<p>这里用了ReDos这个知识点，是我没见过的知识点&hellip;是我太菜了hhh <br>
+<a href="https://en.wikipedia.org/wiki/ReDoS">https://en.wikipedia.org/wiki/ReDoS</a> <br>
+<a href="https://www.anquanke.com/post/id/177100">https://www.anquanke.com/post/id/177100</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Regex: <span class="o">(</span>a*<span class="o">)</span>*$    
+String: aaaaaaaaaaaaaaaaaaaaaaab    
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这个正则由于失败时回溯的存在，每增加一个 a 就会使匹配时间翻一倍</p>
+<h2 id="驴啃计算器">驴啃计算器</h2>
+<p>是一道数学题，知识点是：给定实数x，一步操作可选择将其变为sin(x),cos(x),tan(x),arcsin(x),arccos(x),arctan(x)，初始时x=0，求证对于任意的正有理数q，可经过有限次操作后使x=q。 <br>
+<a href="http://blog.sina.com.cn/s/blog_a661ecd501012xsr.html">http://blog.sina.com.cn/s/blog_a661ecd501012xsr.html</a> <br>
+<a href="https://nbviewer.jupyter.org/github/ustclug/hackergame2019-writeups/blob/master/official/%E9%A9%B4%E5%95%83%E8%AE%A1%E7%AE%97%E5%99%A8/calc.ipynb">https://nbviewer.jupyter.org/github/ustclug/hackergame2019-writeups/blob/master/official/%E9%A9%B4%E5%95%83%E8%AE%A1%E7%AE%97%E5%99%A8/calc.ipynb</a> <br>
+(tips: <a href="https://nbviewer.jupyter.org/">https://nbviewer.jupyter.org/</a> 可以打开任意的在线ipynb文档)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>    
+    
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>    
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>    
+<span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>    
+    
+<span class="n">calcList</span> <span class="o">=</span> <span class="p">[]</span>    
+    
+<span class="k">def</span> <span class="nf">genFraction</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>    
+<span class="n">f</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>    
+<span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">numerator</span>    
+<span class="n">b</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">denominator</span>    
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span>    
+<span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">//</span><span class="n">b</span>    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">result</span><span class="o">*</span><span class="n">b</span>    
+    <span class="c1">#print a,b    </span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span><span class="n">a</span>    
+    <span class="c1">#print a,b    </span>
+    <span class="s1">&#39;&#39;&#39;    
+</span><span class="s1">    if result == 1:    
+</span><span class="s1">        break    
+</span><span class="s1">    &#39;&#39;&#39;</span>    
+    <span class="c1">#if result &gt; 5000:    </span>
+    <span class="c1">#    break    </span>
+    <span class="k">yield</span> <span class="n">result</span>    
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    
+        <span class="k">break</span>    
+        
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
+<span class="k">global</span> <span class="n">calcList</span>    
+<span class="n">calcList</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&#34;atan&#34;</span><span class="p">,</span><span class="s2">&#34;sin&#34;</span><span class="p">,</span><span class="s2">&#34;acos&#34;</span><span class="p">,</span><span class="s2">&#34;tan&#34;</span><span class="p">]</span>    
+<span class="k">return</span> <span class="n">tan</span><span class="p">(</span><span class="n">arccos</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">arctan</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>    
+    
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
+<span class="k">global</span> <span class="n">calcList</span>    
+<span class="n">calcList</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&#34;atan&#34;</span><span class="p">,</span><span class="s2">&#34;cos&#34;</span><span class="p">]</span>    
+<span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">arctan</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>    
+    
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">aim</span><span class="p">):</span>    
+<span class="k">global</span> <span class="n">calcList</span>    
+<span class="c1">#aim = log(aim)    </span>
+<span class="c1">#aim = 42.79781263758425 #tan(72.35711075569202)    </span>
+<span class="n">aim</span> <span class="o">=</span> <span class="n">deg2rad</span><span class="p">(</span><span class="n">aim</span><span class="p">)</span>    
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="n">fList</span> <span class="o">=</span> <span class="p">[]</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">genFraction</span><span class="p">(</span><span class="n">aim</span><span class="p">):</span>    
+    <span class="n">fList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>    
+<span class="k">print</span> <span class="n">fList</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fList</span><span class="p">)):</span>    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">fList</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>    
+        <span class="n">x</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
+    <span class="n">calcList</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&#34;1/x&#34;</span><span class="p">]</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>    
+<span class="n">calcList</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&#34;1/x&#34;</span><span class="p">]</span>    
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>    
+<span class="n">calcList</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&#34;R2D&#34;</span><span class="p">]</span>    
+<span class="k">print</span> <span class="s2">&#34;aim = </span><span class="si">%f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">rad2deg</span><span class="p">(</span><span class="n">aim</span><span class="p">)</span>    
+<span class="k">print</span> <span class="s2">&#34;x = </span><span class="si">%f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>    
+<span class="c1">#print &#34;p = %f&#34; % ((x*x))    </span>
+<span class="k">return</span> <span class="s2">&#34;,&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">calcList</span><span class="p">)</span>    
+    
+    
+    
+<span class="kn">import</span> <span class="nn">json</span>    
+<span class="kn">import</span> <span class="nn">requests</span>    
+    
+<span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;http://202.38.93.241:10024&#34;</span>    
+    
+    
+<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
+<span class="k">return</span> <span class="s1">&#39;sin,cos,x^2&#39;</span> <span class="ow">or</span> <span class="s1">&#39;magic&#39;</span>    
+    
+<span class="k">def</span> <span class="nf">test2</span><span class="p">():</span>    
+<span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/challenges&#39;</span><span class="p">)</span>    
+    <span class="n">X</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="s2">&#34;msg&#34;</span><span class="p">]</span>    
+    <span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>    
+        <span class="s2">&#34;a1&#34;</span><span class="p">:</span> <span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>    
+        <span class="s2">&#34;a2&#34;</span><span class="p">:</span> <span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>    
+        <span class="s2">&#34;a3&#34;</span><span class="p">:</span> <span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>    
+    <span class="p">}</span>    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="s2">&#34;/submit&#34;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>    
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>    
+    <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">[</span><span class="s2">&#34;msg&#34;</span><span class="p">])</span>      
+    
+<span class="n">test2</span><span class="p">()</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="天书残篇">天书残篇</h2>
+<p>是道简单的逆向题，用了Witespace这个语言。在线反汇编器：https://vii5ard.github.io/whitespace/ <br>
+这里有各种奇奇怪怪的语言：https://juejin.im/post/5b02745b6fb9a07aa5429a76 <br>
+顺便有WP提了一下Ook： <a href="https://www.cnblogs.com/WangAoBo/p/6373318.html">https://www.cnblogs.com/WangAoBo/p/6373318.html</a> <br>
+在线解密：https://www.splitbrain.org/services/ook</p>
+<h2 id="我想要个家">我想要个家</h2>
+<p>是我卡住的题&hellip; <br>
+chroot&hellip;</p>
+<p>我没想过用RE的方式解来着&ndash;idagolang-helper还原符号，然后用patch的方法。试一下。</p>
+<h2 id="十次方根">十次方根</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="mi">130095999494467643631574289251374479743427759332282644620931023932981730612064829262332840253969261363881910701276769455728130421459878658660627330362688856751252524519341435317968272275310598639991033512763704530123231772642623291899534454658707761230166809620539187116816778418242273580873637781313957589597</span>    
+<span class="n">y</span> <span class="o">=</span> <span class="mi">116513882455567447431772208851676203256471727099349255694179213039239989833646726805040167642952589899809273716764673737423792812107737304956679717082391151505476360762847773608327055926832394948293052633869637754201186227370594688119795413400655007893009882742908697688490841023621108562593724732469462968731</span>    
+<span class="n">z</span> <span class="o">=</span> <span class="mi">88688615046438957657148589794574470139777919686383514327296565433247300792803913489977671293854830459385807133302995575774658605472491904258624914486448276269854207404533062581134557448023142028865220726281791025833570337140263511960407206818858439353134327592503945131371190285416230131136007578355799517986306208039490339159501009668785839201465041101739825050371023956782364610889969860432267781626941824596468923354157981771773589236462813563647577651117020694251283103175874783965004467136515096081442018965974870665038880840823708377340101510978112755669470752689525778937276250835072011344062132449232775717960070624563850487919381138228636278647776184490240264110748648486121139328569423969642059474027527737521891542567351630545570488901368570734520954996585774666946913854038917494322793749823245652065062604226133920469926888309742466030087045251385865707151307850662127591419171619721200858496299127088429333831383287417361021420824398501423875648199373623572614151830871182111045650469239575676312393555191890749537174702485617397506191658938798937462708198240714491454507874141432982611857838173469612147092460359775924447976521509874765598726655964369735759375793871985156532139719500175158914354647101621378769238233</span>    
+<span class="n">n</span> <span class="o">**</span> <span class="mi">10</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="n">z</span>    
+<span class="err">求</span><span class="n">n</span>    
+</code></pre></td></tr></table>
+</div>
+</div><p>可以类似与RSA，但是p=x,q=y^3,e=10 <br>
+phi = (x-1)*(y-1)<em>y</em>y</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3    </span>
+    
+<span class="kn">from</span> <span class="nn">easy_math</span> <span class="kn">import</span> <span class="n">x</span> <span class="k">as</span> <span class="n">p</span><span class="p">,</span> <span class="n">y</span> <span class="k">as</span> <span class="n">q</span><span class="p">,</span> <span class="n">z</span> <span class="k">as</span> <span class="n">c</span>    
+<span class="kn">from</span> <span class="nn">sympy.ntheory.residue_ntheory</span> <span class="kn">import</span> <span class="n">sqrt_mod</span>    
+<span class="kn">import</span> <span class="nn">sympy.ntheory.residue_ntheory</span>    
+<span class="kn">import</span> <span class="nn">gmpy2</span>    
+    
+    
+<span class="k">def</span> <span class="nf">factor_</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>    
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="k">while</span> <span class="n">nn</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    
+    <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>    
+    <span class="n">nn</span> <span class="o">//=</span> <span class="n">p</span>    
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="k">while</span> <span class="n">nn</span> <span class="o">%</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    
+    <span class="n">s</span> <span class="o">+=</span> <span class="mi">1</span>    
+    <span class="n">nn</span> <span class="o">//=</span> <span class="n">q</span>    
+<span class="k">if</span> <span class="n">nn</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>    
+    <span class="k">print</span><span class="p">(</span><span class="n">nn</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="bp">None</span>    
+<span class="k">return</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">s</span><span class="p">}</span>    
+    
+    
+<span class="n">sympy</span><span class="o">.</span><span class="n">ntheory</span><span class="o">.</span><span class="n">residue_ntheory</span><span class="o">.</span><span class="n">factorint</span> <span class="o">=</span> <span class="n">factor_</span>    
+    
+<span class="n">n</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">q</span> <span class="o">**</span> <span class="mi">3</span>    
+<span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>    
+<span class="n">root_5th_of_c</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">phi</span> <span class="o">//</span> <span class="mi">5</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span>    
+<span class="n">root_5th_of_1_all</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">phi</span> <span class="o">//</span> <span class="mi">5</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>    
+<span class="n">root_5th_of_1_all</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">root_5th_of_1_all</span><span class="p">)</span> <span class="k">if</span> <span class="nb">pow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>    
+<span class="n">root_5th_of_c_all</span> <span class="o">=</span> <span class="p">[</span><span class="n">root_5th_of_c</span> <span class="o">*</span> <span class="n">r</span> <span class="o">%</span> <span class="n">n</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">root_5th_of_1_all</span><span class="p">]</span>    
+<span class="n">m_all</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">root_5th_of_c_all</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">sqrt_mod</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="bp">True</span><span class="p">)]</span>    
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m_all</span><span class="p">))</span>    
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">m_all</span><span class="p">:</span>    
+<span class="n">h</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">m</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>    
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">m</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;flag&#34;</span><span class="p">):</span>    
+    <span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">m</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">decode</span><span class="p">()[:</span><span class="mi">32</span><span class="p">])</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="大整数分解锦标赛">大整数分解锦标赛</h2>
+<p>随机数预测问题，用反复 Help 得到的随机数来重构 MT19937 的内部状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3    </span>
+    
+    
+<span class="k">class</span> <span class="nc">UncertainBit</span><span class="p">:</span>    
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>    
+    <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&#34;0&#34;</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&#34;1&#34;</span><span class="p">:</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&#34;X&#34;</span><span class="p">:</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">None</span>    
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">UncertainBit</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>    
+    
+<span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&amp;</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">|</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">^</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="s2">&#34;X&#34;</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>    
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>    
+    
+    
+<span class="k">class</span> <span class="nc">UncertainBitVector</span><span class="p">:</span>    
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bits</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">bits</span> <span class="o">=</span> <span class="n">bits</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="n">UncertainBit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>    
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>    
+            <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>    
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()):</span>    
+            <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>    
+            <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>    
+    
+<span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bits</span>    
+    
+<span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+            <span class="k">return</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>    
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>    
+        <span class="n">bv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>    
+        <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bv</span><span class="p">),</span> <span class="n">bv</span><span class="p">)</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>    
+    
+<span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>    
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>    
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>    
+    
+<span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="n">other</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">bit_length</span><span class="p">(),</span> <span class="n">other</span><span class="p">)</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bits</span><span class="p">)])</span>    
+    
+<span class="k">def</span> <span class="fm">__rand__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span> <span class="o">&amp;</span> <span class="n">other</span>    
+    
+<span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="n">other</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">bit_length</span><span class="p">(),</span> <span class="n">other</span><span class="p">)</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">|</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bits</span><span class="p">)])</span>    
+    
+<span class="k">def</span> <span class="fm">__ror__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span> <span class="o">&amp;</span> <span class="n">other</span>    
+    
+<span class="k">def</span> <span class="fm">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="n">other</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">bit_length</span><span class="p">(),</span> <span class="n">other</span><span class="p">)</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bits</span><span class="p">)])</span>    
+    
+<span class="k">def</span> <span class="fm">__rxor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span> <span class="o">&amp;</span> <span class="n">other</span>    
+    
+<span class="k">def</span> <span class="fm">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">other</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-</span> <span class="n">other</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">other</span><span class="p">:])</span>    
+    
+<span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>    
+        <span class="n">other</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">bit_length</span><span class="p">(),</span> <span class="n">other</span><span class="p">)</span>    
+    <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>    
+    <span class="n">carry</span> <span class="o">=</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>    
+        <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">carry</span><span class="p">)</span>    
+        <span class="n">carry</span> <span class="o">=</span> <span class="o">~</span><span class="p">((</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">carry</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">~</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">carry</span><span class="p">))</span>    
+    <span class="k">if</span> <span class="n">carry</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">OverflowError</span><span class="p">()</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">r</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vec</span><span class="p">)])</span>    
+    
+<span class="k">def</span> <span class="nf">sign_ext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bits</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="n">bits</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vec</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="p">(</span><span class="n">bits</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>    
+    
+<span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="n">UncertainBitVector</span><span class="p">(</span>    
+            <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))]</span>    
+        <span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">all_known</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>    
+    
+<span class="k">def</span> <span class="nf">int_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_known</span><span class="p">():</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>    
+        <span class="n">v</span> <span class="o">|=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>    
+    <span class="k">return</span> <span class="n">v</span>    
+    
+    
+<span class="k">class</span> <span class="nc">MTSolver</span><span class="p">:</span>    
+<span class="n">N</span> <span class="o">=</span> <span class="mi">624</span>    
+    
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">*</span> <span class="mi">6</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">mt</span> <span class="o">=</span> <span class="p">[</span><span class="n">UncertainBitVector</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)]</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>    
+    
+<span class="k">def</span> <span class="nf">known_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">known_32bit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">32</span><span class="p">:</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">known_raw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">untempering</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>    
+    
+<span class="k">def</span> <span class="nf">known_prime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">known_range</span><span class="p">(</span><span class="n">begin</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prime_to_bv</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>    
+    
+<span class="k">def</span> <span class="nf">known_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>    
+    <span class="n">bits</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>    
+    <span class="k">try</span><span class="p">:</span>    
+        <span class="n">rnd</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span>    
+    <span class="k">except</span> <span class="ne">OverflowError</span><span class="p">:</span>    
+        <span class="n">rnd</span> <span class="o">=</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="s2">&#34;X&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bits</span> <span class="o">//</span> <span class="mi">32</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_32bit</span><span class="p">(</span><span class="n">rnd</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">32</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">32</span><span class="p">])</span>    
+    <span class="n">extra</span> <span class="o">=</span> <span class="n">bits</span> <span class="o">%</span> <span class="mi">32</span>    
+    <span class="k">if</span> <span class="n">extra</span><span class="p">:</span>    
+        <span class="n">bv</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span>    
+            <span class="mi">32</span><span class="p">,</span>    
+            <span class="p">(</span><span class="n">rnd</span><span class="p">[</span><span class="n">bits</span> <span class="o">//</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="p">:]</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">32</span> <span class="o">-</span> <span class="n">extra</span><span class="p">))</span>    
+            <span class="o">^</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="s2">&#34;X&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">32</span> <span class="o">-</span> <span class="n">extra</span><span class="p">),</span>    
+        <span class="p">)</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_32bit</span><span class="p">(</span><span class="n">bv</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">untempering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>    
+    <span class="n">y</span> <span class="o">^=</span> <span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">18</span>    
+    <span class="n">y</span> <span class="o">^=</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xEFC60000</span>    
+    <span class="n">y</span> <span class="o">^=</span> <span class="p">(</span>    
+        <span class="p">((</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x9D2C5680</span><span class="p">)</span>    
+        <span class="o">^</span> <span class="p">((</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x94284000</span><span class="p">)</span>    
+        <span class="o">^</span> <span class="p">((</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="mi">21</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x14200000</span><span class="p">)</span>    
+        <span class="o">^</span> <span class="p">((</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="mi">28</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x10000000</span><span class="p">)</span>    
+    <span class="p">)</span>    
+    <span class="n">y</span> <span class="o">^=</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">11</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">22</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">y</span>    
+    
+<span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>    
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x7FFFFFFF</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="p">(</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">397</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">^</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="mh">0x9908B0DF</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sign_ext</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>    
+    <span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">do_predit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">397</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_raw</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>    
+    
+<span class="k">def</span> <span class="nf">prime_to_bv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>    
+    <span class="kn">import</span> <span class="nn">sympy</span>    
+    
+    <span class="n">pp</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">prevprime</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>    
+    <span class="n">end</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span>    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">pp</span>    
+    <span class="n">bv</span> <span class="o">=</span> <span class="n">UncertainBitVector</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">bit_length</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span>    
+    <span class="n">bv</span> <span class="o">=</span> <span class="n">bv</span> <span class="o">^</span> <span class="n">UncertainBit</span><span class="p">(</span><span class="s2">&#34;X&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">((</span><span class="n">start</span> <span class="o">^</span> <span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">bit_length</span><span class="p">())</span>    
+    <span class="k">return</span> <span class="n">bv</span>    
+    
+<span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bv</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">):</span>    
+        <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">bv</span><span class="p">,</span> <span class="s2">&#34;&lt;&lt;X&gt;&gt;&#34;</span> <span class="k">if</span> <span class="s2">&#34;X&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">bv</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&#34;&#34;</span><span class="p">))</span>    
+    <span class="k">return</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">get_mt_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span>    
+    
+<span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">bv</span><span class="o">.</span><span class="n">all_known</span><span class="p">()</span> <span class="k">for</span> <span class="n">bv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mt_window</span><span class="p">())</span>    
+    
+<span class="k">def</span> <span class="nf">get_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bv</span><span class="o">.</span><span class="n">all_known</span><span class="p">())</span> <span class="k">for</span> <span class="n">bv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mt_window</span><span class="p">())</span>    
+    
+<span class="k">def</span> <span class="nf">get_random</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ready</span><span class="p">():</span>    
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>    
+    <span class="kn">import</span> <span class="nn">random</span>    
+    
+    <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>    
+    <span class="n">rnd</span><span class="o">.</span><span class="n">setstate</span><span class="p">(</span>    
+        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">bv</span><span class="o">.</span><span class="n">int_value</span><span class="p">()</span> <span class="k">for</span> <span class="n">bv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mt_window</span><span class="p">())</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,),</span> <span class="bp">None</span><span class="p">)</span>    
+    <span class="p">)</span>    
+    <span class="k">return</span> <span class="n">rnd</span>    
+    
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>    
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># pip3 install --upgrade git+https://github.com/arthaud/python3-pwntools.git    </span>
+<span class="kn">import</span> <span class="nn">random</span>    
+<span class="kn">import</span> <span class="nn">sympy</span>    
+    
+<span class="c1"># context.log_level = &#39;debug&#39;    </span>
+    
+<span class="n">r</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="mi">10010</span><span class="p">)</span>    
+<span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;your token&#34;</span><span class="p">)</span>    
+<span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Welcome&#34;</span><span class="p">)</span>    
+<span class="n">s</span> <span class="o">=</span> <span class="n">MTSolver</span><span class="p">()</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>    
+        <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;H&#34;</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>    
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>    
+        <span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;p = &#34;</span><span class="p">)</span>    
+        <span class="n">p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>    
+        <span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;q = &#34;</span><span class="p">)</span>    
+        <span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>    
+        <span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;under &#34;</span><span class="p">)</span>    
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34; &#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>    
+    
+        <span class="n">s</span><span class="o">.</span><span class="n">known_range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>    
+        <span class="n">bound</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">b</span>    
+        <span class="n">s</span><span class="o">.</span><span class="n">known_prime</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">bound</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>    
+        <span class="n">s</span><span class="o">.</span><span class="n">known_prime</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">bound</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>    
+    <span class="n">s</span><span class="o">.</span><span class="n">do_predit</span><span class="p">()</span>    
+    <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">get_progress</span><span class="p">(),</span> <span class="s2">&#34;/ 624&#34;</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">ready</span><span class="p">():</span>    
+        <span class="k">break</span>    
+<span class="n">random</span><span class="o">.</span><span class="n">setstate</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">get_random</span><span class="p">()</span><span class="o">.</span><span class="n">getstate</span><span class="p">())</span>    
+    
+<span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">)</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">32</span><span class="p">):</span>    
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>    
+    <span class="n">p</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">randprime</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span>    
+    <span class="n">q</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">randprime</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span>    
+    <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;p = &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>    
+    <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;q = &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>    
+<span class="n">r</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tinyelf">tinyELF</h2>
+<p>题目很简单，但是在wp上看到了用angr解题的方法，记录一下。 <br>
+emmm一直说要研究angr，希望能提上日程&hellip;菜还是要多读书 <br>
+程序中的可见字符串:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">strings tinyELF    
+please in put flag:    
+correct    
+</code></pre></td></tr></table>
+</div>
+</div><p>用angr求解什么样的输入可以让程序输出&quot;correct&quot;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>    
+    
+<span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s2">&#34;tinyELF&#34;</span><span class="p">)</span>    
+<span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">()</span>    
+<span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&#34;correct&#34;</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>    
+<span class="k">print</span><span class="p">(</span><span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    
+</code></pre></td></tr></table>
+</div>
+</div><p>运行一下就能出flag</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e" target="_blank" title="commit by LinkleYping(1056669812@qq.com) 7b7305e20d8e1f8f67d9e59632ac1bfe266bb21e: init blog">
+                                    <i class="fas fa-hashtag fa-fw"></i>7b7305e</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ustc2019/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/ustc2019/" data-title="USTC CTF 2019"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/ustc2019/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/ustc2019/" data-title="USTC CTF 2019"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/ustc2019/" data-title="USTC CTF 2019"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/ustc2019/" data-title="USTC CTF 2019"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/llvm/" class="prev" rel="prev" title="ubuntu下LLVM开发环境的配置"><i class="fas fa-angle-left fa-fw"></i>ubuntu下LLVM开发环境的配置</a>
+            <a href="/2019zgc/" class="next" rel="next" title="2019-中关村网络与信息安全领域专项赛">2019-中关村网络与信息安全领域专项赛<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

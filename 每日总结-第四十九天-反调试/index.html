@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>反调试技术 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="反调试技术" />
+<meta property="og:description" content="静态反调试 查看PEB.BeingDebugged的值 即IsDebuggerPresent()的实现方式，如果该值为1，则表示当前进程被调试。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-06-12T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-06-12T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="反调试技术"/>
+<meta name="twitter:description" content="静态反调试 查看PEB.BeingDebugged的值 即IsDebuggerPresent()的实现方式，如果该值为1，则表示当前进程被调试。"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" /><link rel="next" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "反调试技术",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  5608 ,
+        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95\/","datePublished": "2020-06-12T15:22:45+08:00","dateModified": "2020-06-12T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">反调试技术</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-12">2020-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5608 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#静态反调试">静态反调试</a>
+      <ul>
+        <li><a href="#查看pebbeingdebugged的值">查看PEB.BeingDebugged的值</a></li>
+        <li><a href="#pebldrpeb0xc">PEB.Ldr(PEB+0xC)</a></li>
+        <li><a href="#pebprocess-heappeb0x18">PEB.Process Heap(PEB+0x18)</a></li>
+        <li><a href="#ntglobalfalgpeb0x68">NtGlobalFalg(PEB+0x68)</a></li>
+        <li><a href="#ntqueryinformationprocess系列">NtQueryInformationProcess()系列</a></li>
+        <li><a href="#processdebugport0x7">ProcessDebugPort(0x7)</a></li>
+        <li><a href="#processdebugobjecthandle0x1e">ProcessDebugObjectHandle(0x1E)</a></li>
+        <li><a href="#processdebugflags0x1f">ProcessDebugFlags(0x1F)</a></li>
+        <li><a href="#ntquerysysteminformation">NtQuerySystemInformation()</a></li>
+        <li><a href="#ntqueryobject">NtQueryObject()</a></li>
+        <li><a href="#zwsetinformationthread">ZwSetInformationThread()</a></li>
+        <li><a href="#debugactiveprocessstop">DebugActiveProcessStop()</a></li>
+      </ul>
+    </li>
+    <li><a href="#动态反调试">动态反调试</a>
+      <ul>
+        <li><a href="#异常">异常</a></li>
+        <li><a href="#timing-check">Timing Check</a></li>
+        <li><a href="#陷阱标志">陷阱标志</a></li>
+        <li><a href="#0xcc探测">0xCC探测</a></li>
+        <li><a href="#比较校验和">比较校验和</a></li>
+      </ul>
+    </li>
+    <li><a href="#异常处理">异常处理</a></li>
+    <li><a href="#例子">例子</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="静态反调试">静态反调试</h2>
+<h3 id="查看pebbeingdebugged的值">查看PEB.BeingDebugged的值</h3>
+<p>即<code>IsDebuggerPresent()</code>的实现方式，如果该值为1，则表示当前进程被调试。<br>
+PEB访问方法：</p>
+<ol>
+<li>直接获取PEB地址</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">MOV EAX, DWORD PTR FS:<span class="o">[</span>30<span class="o">]</span> <span class="p">;</span> FS<span class="o">[</span>30<span class="o">]</span> <span class="o">=</span> address of PEB  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>先获取TEB地址，在通过ProcessEnvironmentBlock成员(+30偏移)获取PEB地址</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">MOV EAX, DWORD PTR FS:<span class="o">[</span>18<span class="o">]</span> <span class="p">;</span> FS<span class="o">[</span>18<span class="o">]</span> <span class="o">=</span> address of TEB  
+MOV EAX, DWORD PTR DS:<span class="o">[</span>EAX+30<span class="o">]</span> <span class="p">;</span> DS<span class="o">[</span>EAX+30<span class="o">]</span> <span class="o">=</span> address of PEB  
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="pebldrpeb0xc">PEB.Ldr(PEB+0xC)</h3>
+<p>（仅限在WindowsXP系统，之后的系统无法使用，且以附加形式将无法在堆内存中出现上述标识）<br>
+调试进程时，其堆内存会出现一些奇怪的标志，表示它正处于被调试状态。最醒目的是，未使用的堆内存区域全部填充着0xEEFEEEFE,这证明该进程正在被调试。<br>
+PEB.Ldr指向_PEB_LDR_DATA结构体的指针，而_PEB_LDR_DATA结构体结构体又恰好在堆内存中创建，所以扫描该区域是否存在0xEEFEEEFE区域即可判断。</p>
+<ul>
+<li>破解方法：将相关0xEEFEEEFE区域全部覆盖为NULL即可。</li>
+</ul>
+<h3 id="pebprocess-heappeb0x18">PEB.Process Heap(PEB+0x18)</h3>
+<p>（仅限在WindowsXP系统，且以附加形式将无法在堆内存中出现上述特征）</p>
+<p>PEB.Process Heap成员既可以直接从PEB结构体获取，也可以从<code>GetProcessHeap()</code>API获取。</p>
+<p>HEAP(PEB+0x18)地址(黄色方框)为0x00790000<br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/anti-debug/13348817-7e74638309987cd9.webp">
+            <img src="/images/anti-debug/13348817-7e74638309987cd9.webp" alt=""  />
+        </a>
+    </div>
+<br>
+我们访问0x00790000<br>
+进程正常运行(非调试运行)时，<code>Heap.Flags</code>成员（+0xC）的值为<code>0x2</code>,<code>Heap.ForceFlags</code>成员(+0x10)的值为<code>0x0</code>.<br>
+进程处于被调试状态时，这些值也会随之改变。比较这些值即可判断。<br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/anti-debug/13348817-6ab9fd129ee41ca0.webp">
+            <img src="/images/anti-debug/13348817-6ab9fd129ee41ca0.webp" alt=""  />
+        </a>
+    </div>
+</p>
+<ul>
+<li>破解方法：将Heap.Flags与Heap.ForceFlags的值分别重新设置为2与0即可。</li>
+</ul>
+<h3 id="ntglobalfalgpeb0x68">NtGlobalFalg(PEB+0x68)</h3>
+<p>(将运行中的进程附加到调试器的时候，NtGlobalFalg值不变)<br>
+调试进程时，<code>PEB.NtGlobalFalg</code>成员(+0x68)的值会被设置为0x70.所以，检测该成员的值即可判断进程是否处于被调试阶段.<br>
+NtGlobalFalg 0x70是由下列的flags值进行位或(bit OR)运算的结果</p>
+<blockquote>
+<p>FLG_HEAP_ENABLE_TAIL_CHECK(0X10) <br>
+FLG_HEAP_ENABLE_FREE_CHECK(0X20) <br>
+FLG_HEAP_VALIDATE_PARAMETERS(0X40)</p>
+</blockquote>
+<ul>
+<li>破解方法：设置<code>PEB.NtGlobalFalg</code>为0即可。</li>
+</ul>
+<h3 id="ntqueryinformationprocess系列">NtQueryInformationProcess()系列</h3>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntqueryinformationprocess" target="_blank" rel="noopener noreffer">函数原型</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__kernel_entry</span> <span class="n">NTSTATUS</span> <span class="nf">NtQueryInformationProcess</span><span class="p">(</span>  
+<span class="n">IN</span> <span class="n">HANDLE</span>           <span class="n">ProcessHandle</span><span class="p">,</span>  
+<span class="n">IN</span> <span class="n">PROCESSINFOCLASS</span> <span class="n">ProcessInformationClass</span><span class="p">,</span>  
+<span class="n">OUT</span> <span class="n">PVOID</span>           <span class="n">ProcessInformation</span><span class="p">,</span>  
+<span class="n">IN</span> <span class="n">ULONG</span>            <span class="n">ProcessInformationLength</span><span class="p">,</span>  
+<span class="n">OUT</span> <span class="n">PULONG</span>          <span class="n">ReturnLength</span>  
+<span class="p">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>ProcessInformationClass为enum类型。其中，与调试器探测有关的成员为</p>
+<ul>
+<li>ProcessDebugPort(0x7)</li>
+<li>ProcessDebugObjectHandle(0x1E)</li>
+<li>ProcessDebugFlags(0x1F)</li>
+</ul>
+<h3 id="processdebugport0x7">ProcessDebugPort(0x7)</h3>
+<p>进程处于非调试阶段时，dwDebugPort的值为0，处于调试阶段，则为0xFFFFFFFF<br>
+例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">DWORD</span> <span class="n">dwDebugPort</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  
+<span class="n">pNtQueryInformationProcess</span><span class="p">(</span><span class="n">GetCurrentProcess</span><span class="p">(),</span> <span class="n">ProcessDebugPort</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dwDebugPort</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dwDebugPort</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
+<span class="k">if</span><span class="p">(</span><span class="n">dwDebugPort</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>  
+      <span class="n">printf</span><span class="p">(</span><span class="s">&#34;being debuged</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>即CheckRemoteDebuggerPresent()函数的实现方法，该函数还可以检测其他进程是否处于被调试状态。</p>
+<h3 id="processdebugobjecthandle0x1e">ProcessDebugObjectHandle(0x1E)</h3>
+<p>如果进程处于被调试状态，则调试对象句柄存在，反之，该句柄值为NULL<br>
+例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">HANDLE</span> <span class="n">hDebugObject</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>  
+<span class="n">pNtQueryInformationProcess</span><span class="p">(</span><span class="n">GetCurrentProcess</span><span class="p">(),(</span><span class="n">PROCESSINFOCLASS</span><span class="p">)</span><span class="mi">30</span> <span class="p">,</span> <span class="o">&amp;</span><span class="n">hDebugObject</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">hDebugObject</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>  
+<span class="k">if</span><span class="p">(</span><span class="n">hDebugObject</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span>  
+      <span class="n">printf</span><span class="p">(</span><span class="s">&#34;being debuged</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntqueryinformationprocess" target="_blank" rel="noopener noreffer">API文档</a>头文件中的ProcessInformationClass成员中找不到此值，故直接写入30作为参数。当然，也可以自己声明好PROCESSINFOCLASS。</p>
+<h3 id="processdebugflags0x1f">ProcessDebugFlags(0x1F)</h3>
+<p>函数的第二个参数设置为ProcessDebugFlags(0x1F)后，调用函数后，通过第三个参数即可获取调试标志的值。如果为0，则进程处于被调试状态;若为1,则进程处于非调试状态。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">BOOL</span> <span class="n">bDebugFlag</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>  
+  <span class="n">pNtQueryInformationProcess</span><span class="p">(</span><span class="n">GetCurrentProcess</span><span class="p">(),</span>  
+                             <span class="n">ProcessDebugFlags</span><span class="p">,</span>  
+                             <span class="o">&amp;</span><span class="n">bDebugFlag</span><span class="p">,</span>  
+                             <span class="k">sizeof</span><span class="p">(</span><span class="n">bDebugFlag</span><span class="p">),</span>  
+                             <span class="nb">NULL</span><span class="p">);</span>  
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;NtQueryInformationProcess(ProcessDebugFlags) = 0x%X</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">bDebugFlag</span><span class="p">);</span>  
+  <span class="k">if</span><span class="p">(</span> <span class="n">bDebugFlag</span> <span class="o">==</span> <span class="mh">0x0</span>  <span class="p">)</span>  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;  =&gt; Debugging!!!</span><span class="se">\n\n</span><span class="s">&#34;</span><span class="p">);</span>  
+  <span class="k">else</span>                      <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;  =&gt; Not debugging...</span><span class="se">\n\n</span><span class="s">&#34;</span><span class="p">);</span>  
+  
+</code></pre></td></tr></table>
+</div>
+</div><p>注意，此处BOOL为大写，即与int等价（如果用了bool，会导致结果错误）</p>
+<h3 id="ntquerysysteminformation">NtQuerySystemInformation()</h3>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/desktop/api/winternl/nf-winternl-ntquerysysteminformation" target="_blank" rel="noopener noreffer">API文档</a><br>
+函数原型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__kernel_entry</span> <span class="n">NTSTATUS</span> <span class="nf">NtQuerySystemInformation</span><span class="p">(</span>  
+<span class="n">IN</span> <span class="n">SYSTEM_INFORMATION_CLASS</span> <span class="n">SystemInformationClass</span><span class="p">,</span>  
+<span class="n">OUT</span> <span class="n">PVOID</span>                   <span class="n">SystemInformation</span><span class="p">,</span>  
+<span class="n">IN</span> <span class="n">ULONG</span>                    <span class="n">SystemInformationLength</span><span class="p">,</span>  
+<span class="n">OUT</span> <span class="n">PULONG</span>                  <span class="n">ReturnLength</span>  
+<span class="p">);</span>  
+  
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>SystemInformationClass是枚举类型，其成员SystemKernelDebuggerInformation的值为0x23</li>
+<li>向函数第一个参数传入0x23，通过获取的第二个参数SystemInformation结构体的DebuggerEnabled和DebuggerInfo的值即可判断。</li>
+<li>注：当前(2018.12.26)的API文档中没有了SystemInformation结构体的定义，官方说明NtQuerySystemInformation可能将在未来的Windows版本中发生改变。</li>
+<li>破解方法：windows7中在命令行窗口(管理员模式)执行<code>bcdedit /debug off</code>即可。</li>
+</ul>
+<h3 id="ntqueryobject">NtQueryObject()</h3>
+<p>系统中的调试器调试进程的时候，会创建一个调试对象类型的内核对象。检测该对象是否存在即可判断是否有进程正在被调试。</p>
+<h3 id="zwsetinformationthread">ZwSetInformationThread()</h3>
+<ul>
+<li>通过设置当前线程的信息来将自身从调试器中分离出来。</li>
+<li>原理:隐藏当前线程，使调试器无法再收到该线程的调试事件。</li>
+</ul>
+<h3 id="debugactiveprocessstop">DebugActiveProcessStop()</h3>
+<p>用于分离调试器和被调试进程。</p>
+<h2 id="动态反调试">动态反调试</h2>
+<h3 id="异常">异常</h3>
+<ol>
+<li>SEH</li>
+<li>SetUnhandledExceptionFilter()</li>
+</ol>
+<p>进程中发生异常，若SEH未处理或者注册的SEH不存在，此时会调用执行系统的<code>kernel32!UnhandledExceptionFilter()</code>API.该函数内部会运行系统的最后一个异常处理器(名为Top Level Exception Filter或Last Exception Filter).系统最后的异常处理器通常会弹出错误消息框，然后终止进程运行。<br>
+<code>kernel32!UnhandledExceptionFilter()</code>API内部调用了<code>ntdll!NtQueryInformationProcess(ProcessDebugPort)</code>这个API（静态反调试），来判断是否正在调试进程。若进程正常运行（非调试状态），则运行系统最后的异常处理器，否则将异常派送给调试器。通过<code>kernel32!SetUnhandledExceptionFilter</code>可以修改系统最后的异常处理器。<br>
+基于异常的反调试技术中，通常先故意触发异常，然后在新注册的Last Exception Filter内部判断进程是正常运行还是调试运行，并根据判断结果修改EIP。</p>
+<h3 id="timing-check">Timing Check</h3>
+<p>在调试器中逐行跟踪代码比程序正常运行耗费的时间要长很多，Timing Check技术通过计算运行的时间差异来判断进程是否处于被调试状态。</p>
+<ol>
+<li>时间间隔测量</li>
+</ol>
+<p>测量时间间隔的方法有很多，例如<br>
+基于计数器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">RDTSC <span class="o">(</span>汇编指令<span class="o">)</span>  
+kernel32!QueryPerformanceCounter<span class="o">()</span> / ntdll!NtQueryPerformanceCounter<span class="o">()</span>  
+kernel32!GetTickCount<span class="o">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>基于时间</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">timeGetTime</span><span class="p">()</span>  
+<span class="n">__ftime</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>计数器的精准程度从高到低：<br>
+RDTSC&gt;NtQueryPerformanceCounter()&gt;GetTickCount()</p>
+<ol start="2">
+<li>RDTSC</li>
+</ol>
+<p>x64CPU中存在一个名为TSC(Time Stamp Counter时间戳计数器)的64位寄存器。RDTSC这个汇编指令将TSC值读入EDX:EAX寄存器(高32位被保存到EDX，低32位被保存到EAX)</p>
+<h3 id="陷阱标志">陷阱标志</h3>
+<p>陷阱标志指EFLAGS寄存器的第九个(Index 8)比特位, Trap Flag，（在x64dbg中表示为TF）<br>
+TF设置为1后，CPU将进入单步执行模式。单步执行模式中，CPU执行1条指令后即触发<code>EXCEPTION_SINGLE_STEP</code>异常，然后TF会自动清零(0)。<br>
+INT 2D<br>
+在调试模式下执行完INT 2D后，下一条指令的第一个字节将被调试器忽略。（od的bug？）（若设置TF为1后再执行INT 2D，则不会忽略）</p>
+<h3 id="0xcc探测">0xCC探测</h3>
+<p>API断点0xCC检测</p>
+<h3 id="比较校验和">比较校验和</h3>
+<h2 id="异常处理">异常处理</h2>
+<p>SEH: 结构化异常处理<br>
+VEH: 向量化异常处理<br>
+TopLevelEH：顶层异常处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">EXCEPTION_EXECUTE_HANDLER ：该异常被处理。从异常处下一条指令继续执行  
+EXCEPTION_CONTINUE_SEARCH：不能处理该异常，让别人处理它吧  
+EXCEPTION_CONTINUE_EXECUTION：该异常被忽略。从异常处处继续执行  
+  
+//调试器返回值：  
+DBG_CONTINUE ： 等同于EXCEPTION_CONTINUE_EXECUTION  
+DBG_EXCEPTION_NOT_HANDLED ：等同于EXCEPTION_CONTINUE_SEARCH  
+</code></pre></td></tr></table>
+</div>
+</div><p>异常处理器处理顺序流程：</p>
+<ol>
+<li>交给调试器(进程必须被调试)</li>
+<li>执行VEH</li>
+<li>执行SEH</li>
+<li>TopLevelEH(进程被调试时不会被执行)</li>
+<li>交给调试器(上面的异常处理都说处理不了，就再次交给调试器)</li>
+<li>调用异常端口通知csrss.exe</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// exception.cpp : 此文件包含 &#34;main&#34; 函数。程序执行将在此处开始并结束。  
+</span><span class="c1">//  
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;  </span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;  </span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;atlstr.h&#34;   </span><span class="cp">
+</span><span class="cp"></span>  
+<span class="c1">//先介绍一下返回值的意思  
+</span><span class="c1">//EXCEPTION_EXECUTE_HANDLER			//该指令异常被处理。从下一条指令继续执行  
+</span><span class="c1">//EXCEPTION_CONTINUE_SEARCH			//不能处理该异常，让别人处理它吧  
+</span><span class="c1">//EXCEPTION_CONTINUE_EXECUTION		//该指令被忽略。从该指令处继续执行  
+</span><span class="c1"></span>  
+  
+<span class="kt">void</span> <span class="nf">ShowExceptionInfo</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+  
+<span class="p">}</span>  
+<span class="n">LONG</span> <span class="nf">ShowSelectMessageBox</span><span class="p">(</span><span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="kt">int</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">MessageBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;--------</span><span class="se">\n</span><span class="s">我要“认领”该异常?</span><span class="se">\n</span><span class="s">--------</span><span class="se">\n</span><span class="s">YES：认领该异常。</span><span class="se">\n\n</span><span class="s">NO: 交给别人处理(return EXCEPTION_CONTINUE_SEARCH)&#34;</span><span class="p">),</span> <span class="n">pTitle</span><span class="p">,</span> <span class="n">MB_YESNO</span><span class="p">);</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">!=</span> <span class="n">IDYES</span><span class="p">)</span>  
+	<span class="p">{</span><span class="c1">//让别人处理  
+</span><span class="c1"></span>		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SELE] Select EXCEPTION_CONTINUE_SEARCH</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="k">return</span> <span class="n">EXCEPTION_CONTINUE_SEARCH</span><span class="p">;</span>  
+	<span class="p">}</span>  
+	<span class="n">nRet</span> <span class="o">=</span> <span class="n">MessageBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;--------</span><span class="se">\n</span><span class="s">是“忽略”还是“处理”该异常?</span><span class="se">\n</span><span class="s">--------</span><span class="se">\n</span><span class="s">YES：忽略，从该指令处继续执行(return EXCEPTION_CONTINUE_EXECUTION)。</span><span class="se">\n\n</span><span class="s">NO: 处理，从下一条指令继续执行(return EXCEPTION_EXECUTE_HANDLER)&#34;</span><span class="p">),</span> <span class="n">pTitle</span><span class="p">,</span> <span class="n">MB_YESNO</span><span class="p">);</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">!=</span> <span class="n">IDYES</span><span class="p">)</span>  
+	<span class="p">{</span><span class="c1">//处理  
+</span><span class="c1"></span>		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SELE] Select EXCEPTION_EXECUTE_HANDLER</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="k">return</span> <span class="n">EXCEPTION_EXECUTE_HANDLER</span><span class="p">;</span>  
+	<span class="p">}</span>  
+  
+	<span class="c1">//忽略  
+</span><span class="c1"></span>	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SELE] Select EXCEPTION_CONTINUE_EXECUTION</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="n">EXCEPTION_CONTINUE_EXECUTION</span><span class="p">;</span>  
+<span class="p">}</span>  
+<span class="n">LONG</span> <span class="n">NTAPI</span> <span class="nf">FirstVectExcepHandler</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;*首个* VEH异常处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][1] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">==</span> <span class="n">EXCEPTION_EXECUTE_HANDLER</span><span class="p">)</span>  
+	<span class="p">{</span>  
+		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][1] EXCEPTION_EXECUTE_HANDLER 标志在VEH中无效！,所以第二个VEH被调用。</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="p">}</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">==</span> <span class="n">EXCEPTION_CONTINUE_EXECUTION</span><span class="p">)</span>  
+	<span class="p">{</span>  
+		<span class="k">if</span> <span class="p">(</span><span class="n">MessageBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;jmp int3？(跳过INT3指令,否则还会被断下)&#34;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;是否修正到下一条指令执行&#34;</span><span class="p">),</span> <span class="n">MB_YESNO</span><span class="p">)</span> <span class="o">==</span> <span class="n">IDYES</span><span class="p">)</span>  
+		<span class="p">{</span>  
+			<span class="n">pExcepInfo</span><span class="o">-&gt;</span><span class="n">ContextRecord</span><span class="o">-&gt;</span><span class="n">Eip</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//跳过int3  
+</span><span class="c1"></span>			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][1] 该异常被处理。 且：jmp int3</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="p">}</span>  
+		<span class="k">else</span>  
+		<span class="p">{</span>  
+			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][1] 该异常被处理</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="p">}</span>  
+	<span class="p">}</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][1] out</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="n">LONG</span> <span class="n">NTAPI</span> <span class="nf">LastVectExcepHandler</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;*最后* VEH异常处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][2] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">==</span> <span class="n">EXCEPTION_EXECUTE_HANDLER</span><span class="p">)</span>  
+	<span class="p">{</span>  
+		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][2] EXCEPTION_EXECUTE_HANDLER 标志在VEH中无效！,所以SEH被调用。</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="p">}</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">nRet</span> <span class="o">==</span> <span class="n">EXCEPTION_CONTINUE_EXECUTION</span><span class="p">)</span>  
+	<span class="p">{</span>  
+		<span class="k">if</span> <span class="p">(</span><span class="n">MessageBox</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;jmp int3？(跳过INT3指令,否则还会被断下)&#34;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;是否修正到下一条指令执行&#34;</span><span class="p">),</span> <span class="n">MB_YESNO</span><span class="p">)</span> <span class="o">==</span> <span class="n">IDYES</span><span class="p">)</span>  
+		<span class="p">{</span>  
+			<span class="n">pExcepInfo</span><span class="o">-&gt;</span><span class="n">ContextRecord</span><span class="o">-&gt;</span><span class="n">Eip</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//跳过int3  
+</span><span class="c1"></span>			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][2] 该异常被处理。 且：jmp int3</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="p">}</span>  
+		<span class="k">else</span>  
+		<span class="p">{</span>  
+			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][2] 该异常被处理</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="p">}</span>  
+	<span class="p">}</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [VEH][2] out </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="n">LONG</span> <span class="n">NTAPI</span> <span class="nf">TopLevelExcepFilter</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;*顶级* 异常处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [TOP] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [TOP] out </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));;</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="n">LONG</span> <span class="nf">FirstSEHer</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;第一个SEH处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][1] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][1] out </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+<span class="n">LONG</span> <span class="nf">SecondSEHer</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;第二个SEH处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][2] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][2] out </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));;</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="n">LONG</span> <span class="nf">ThirdSEHer</span><span class="p">(</span><span class="n">PEXCEPTION_POINTERS</span> <span class="n">pExcepInfo</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">TCHAR</span><span class="o">*</span> <span class="n">pTitle</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&#34;第三个SEH处理器&#34;</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][3] in </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">LONG</span> <span class="n">nRet</span> <span class="o">=</span> <span class="n">ShowSelectMessageBox</span><span class="p">(</span><span class="n">pTitle</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][3] out </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));;</span>  
+	<span class="k">return</span> <span class="n">nRet</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="kt">void</span> <span class="nf">ExcepFunction</span><span class="p">()</span>  
+<span class="p">{</span>  
+	<span class="kr">__try</span>  
+	<span class="p">{</span>  
+		<span class="kr">__try</span>  
+		<span class="p">{</span>  
+			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] *[CALL] int 3</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+			<span class="kr">__asm</span> <span class="kt">int</span> <span class="mi">3</span><span class="p">;</span>  
+		<span class="p">}</span>  
+		<span class="kr">__except</span> <span class="p">(</span><span class="n">FirstSEHer</span><span class="p">(</span><span class="n">GetExceptionInformation</span><span class="p">()))</span>  
+		<span class="p">{</span>  
+			<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][1] 被俺处理了~(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+		<span class="p">}</span>  
+	<span class="p">}</span>  
+	<span class="kr">__except</span> <span class="p">(</span><span class="n">SecondSEHer</span><span class="p">(</span><span class="n">GetExceptionInformation</span><span class="p">()))</span>  
+	<span class="p">{</span>  
+		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][2] 被俺处理了(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="p">}</span>  
+<span class="p">}</span>  
+  
+<span class="n">DWORD</span> <span class="kr">__stdcall</span> <span class="nf">ExcepThread</span><span class="p">(</span><span class="n">LPVOID</span> <span class="n">lpThreadParameter</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [ExcepThread] in</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="kr">__try</span>  
+	<span class="p">{</span>  
+		<span class="n">ExcepFunction</span><span class="p">();</span>  
+	<span class="p">}</span>  
+	<span class="kr">__except</span> <span class="p">(</span><span class="n">ThirdSEHer</span><span class="p">(</span><span class="n">GetExceptionInformation</span><span class="p">()))</span>  
+	<span class="p">{</span>  
+		<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [SEH][3] 被俺处理了(只有返回EXCEPTION_EXECUTE_HANDLER才会走到这里)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="p">}</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] [ExcepThread] out</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+  
+<span class="kt">int</span> <span class="nf">_tmain</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">_TCHAR</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>  
+<span class="p">{</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] Add VEH.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">AddVectoredExceptionHandler</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FirstVectExcepHandler</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] Add VEH.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">AddVectoredExceptionHandler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">LastVectExcepHandler</span><span class="p">);</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] Add Top LEF.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="n">SetUnhandledExceptionFilter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TopLevelExcepFilter</span><span class="p">);</span>  
+  
+	<span class="n">HANDLE</span> <span class="n">hThread</span> <span class="o">=</span> <span class="n">CreateThread</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ExcepThread</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>  
+	<span class="k">if</span> <span class="p">(</span><span class="n">hThread</span><span class="p">)</span>  
+	<span class="p">{</span>  
+		<span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hThread</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>  
+	<span class="p">}</span>  
+	<span class="n">_tprintf</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;[EH.Exe] 进程退出</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>  
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="例子">例子</h2>
+<p>空指针六月re公开赛这道题用了很多反调试的技术。</p>
+<ol>
+<li>TLS回调函数中进行反调试检测</li>
+</ol>
+<p>TLS回调函数是指，每当创建/终止进程的线程时，会自动调用执行的函数。创建或终止某线程时，TLS回调函数都会自动调用执行，前后共两次。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__stdcall</span> <span class="nf">TlsCallback_0</span><span class="p">(</span><span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a3</span><span class="p">)</span>  
+<span class="p">{</span>  
+<span class="n">HMODULE</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// eax  
+</span><span class="c1"></span><span class="n">FARPROC</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// eax  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// eax  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v6</span><span class="p">;</span> <span class="c1">// [esp+DCh] [ebp-8h]  
+</span><span class="c1"></span>  
+<span class="n">v6</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="n">v3</span> <span class="o">=</span> <span class="n">GetModuleHandleW</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;ntdll.dll&#34;</span><span class="p">);</span>  
+<span class="n">v4</span> <span class="o">=</span> <span class="n">GetProcAddress</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="s">&#34;NtQueryInformationProcess&#34;</span><span class="p">);</span>  
+<span class="n">result</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__stdcall</span> <span class="o">*</span><span class="p">)(</span><span class="kt">signed</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">signed</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="p">,</span> <span class="kt">signed</span> <span class="kt">int</span><span class="p">,</span> <span class="n">_DWORD</span><span class="p">))</span><span class="n">v4</span><span class="p">)(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="n">result</span> <span class="p">)</span>  
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="n">v6</span> <span class="p">)</span>  
+<span class="p">{</span>  
+  <span class="n">result</span> <span class="o">=</span> <span class="n">TlsIndex</span><span class="p">;</span>  
+  <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">__readfsdword</span><span class="p">(</span><span class="mh">0x2Cu</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">TlsIndex</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0xDEADBEEF</span><span class="p">;</span>  
+<span class="p">}</span>  
+<span class="k">else</span>  
+<span class="p">{</span>  
+  <span class="n">result</span> <span class="o">=</span> <span class="n">TlsIndex</span><span class="p">;</span>  
+  <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">__readfsdword</span><span class="p">(</span><span class="mh">0x2Cu</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">TlsIndex</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+<span class="k">return</span> <span class="n">result</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>NtQueryInformationProcess，等于7检测ProcessDebugPort。 <br>
+2. NtGlobalFalg(PEB+0x68)</p>
+<p>调试进程时，PEB.NtGlobalFalg成员(+0x68)的值会被设置为0x70</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kr">__int64</span> <span class="nf">sub_402740</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="kt">int</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// edx  
+</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// ST00_8  
+</span><span class="c1"></span><span class="kt">signed</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [esp+D0h] [ebp-6Ch]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v4</span><span class="p">[</span><span class="mi">24</span><span class="p">];</span> <span class="c1">// [esp+DCh] [ebp-60h]  
+</span><span class="c1"></span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">__readfsdword</span><span class="p">(</span><span class="mh">0x30u</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x68</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x70</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">43</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">34</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">56</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">67</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">98</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="mi">45</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="mi">63</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="mi">74</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span> <span class="o">=</span> <span class="mi">68</span><span class="p">;</span>  
+<span class="n">v4</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span> <span class="o">=</span> <span class="mi">88</span><span class="p">;</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="n">v4</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">23</span> <span class="p">)</span>  
+<span class="p">{</span>  
+  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>  
+    <span class="n">byte_452F80</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">LOBYTE</span><span class="p">(</span><span class="n">v4</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">^</span> <span class="p">(</span><span class="mi">23</span> <span class="o">-</span> <span class="n">LOBYTE</span><span class="p">(</span><span class="n">v4</span><span class="p">[</span><span class="mi">22</span><span class="p">]));</span>  
+<span class="p">}</span>  
+<span class="n">AddVectoredExceptionHandler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Handler</span><span class="p">);</span>  
+<span class="n">HIDWORD</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>  
+<span class="n">LODWORD</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="k">return</span> <span class="n">v1</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>GetTickCount</li>
+</ol>
+<p>获取时间间隔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sub_402AB0</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="kr">__int16</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// STE8_2  
+</span><span class="c1"></span>  
+<span class="n">v0</span> <span class="o">=</span> <span class="n">GetTickCount</span><span class="p">();</span>  
+<span class="k">return</span> <span class="p">(((</span><span class="kt">unsigned</span> <span class="kr">__int16</span><span class="p">)</span><span class="n">GetTickCount</span><span class="p">()</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>校验和<br>
+这里不仅是代码不能修改，也不能下断点，因为断点的0xcc也会被检测</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">sub_4029E0</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="n">a1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">)</span>  
+<span class="p">{</span>  
+<span class="kt">int</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// [esp+D0h] [ebp-8h]  
+</span><span class="c1"></span>  
+<span class="n">v3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">a1</span> <span class="o">&lt;</span> <span class="n">a2</span> <span class="p">)</span>  
+  <span class="n">v3</span> <span class="o">+=</span> <span class="o">*</span><span class="n">a1</span><span class="o">++</span><span class="p">;</span>  
+<span class="k">return</span> <span class="n">v3</span><span class="p">;</span>  
+<span class="p">}</span>  
+<span class="kr">__int64</span> <span class="nf">sub_402470</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="kt">signed</span> <span class="kt">int</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// edx  
+</span><span class="c1"></span><span class="kr">__int64</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// ST00_8  
+</span><span class="c1"></span><span class="kt">signed</span> <span class="kt">int</span> <span class="n">j</span><span class="p">;</span> <span class="c1">// [esp+D0h] [ebp-DCh]  
+</span><span class="c1"></span><span class="kt">signed</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [esp+DCh] [ebp-D0h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v5</span><span class="p">[</span><span class="mi">24</span><span class="p">];</span> <span class="c1">// [esp+E8h] [ebp-C4h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v6</span><span class="p">;</span> <span class="c1">// [esp+150h] [ebp-5Ch]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v7</span><span class="p">;</span> <span class="c1">// [esp+15Ch] [ebp-50h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v8</span><span class="p">;</span> <span class="c1">// [esp+168h] [ebp-44h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v9</span><span class="p">;</span> <span class="c1">// [esp+174h] [ebp-38h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v10</span><span class="p">;</span> <span class="c1">// [esp+180h] [ebp-2Ch]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v11</span><span class="p">;</span> <span class="c1">// [esp+18Ch] [ebp-20h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v12</span><span class="p">;</span> <span class="c1">// [esp+198h] [ebp-14h]  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v13</span><span class="p">;</span> <span class="c1">// [esp+1A4h] [ebp-8h]  
+</span><span class="c1"></span>  
+<span class="n">v13</span> <span class="o">=</span> <span class="n">sub_402A30</span><span class="p">();</span>  
+<span class="n">v12</span> <span class="o">=</span> <span class="n">sub_402AB0</span><span class="p">();</span>  
+<span class="n">v10</span> <span class="o">=</span> <span class="n">sub_4029E0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">sub_402B50</span> <span class="o">+</span> <span class="mi">80</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">sub_402B50</span> <span class="o">+</span> <span class="mi">188</span><span class="p">);</span>  
+<span class="n">v9</span> <span class="o">=</span> <span class="n">sub_4029E0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">main</span> <span class="o">+</span> <span class="mi">16</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">main</span> <span class="o">+</span> <span class="mi">206</span><span class="p">);</span>  
+<span class="n">v8</span> <span class="o">=</span> <span class="n">sub_4029E0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">sub_402E90</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">sub_402E90</span> <span class="o">+</span> <span class="mi">139</span><span class="p">);</span>  
+<span class="n">v7</span> <span class="o">=</span> <span class="n">sub_4029E0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">TopLevelExceptionFilter</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">TopLevelExceptionFilter</span> <span class="o">+</span> <span class="mi">300</span><span class="p">);</span>  
+<span class="n">v6</span> <span class="o">=</span> <span class="n">sub_4029E0</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">sub_402DC0</span> <span class="o">+</span> <span class="mi">123</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">sub_402DC0</span> <span class="o">+</span> <span class="mi">136</span><span class="p">);</span>  
+<span class="n">v0</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v8</span><span class="p">;</span>  
+<span class="n">v11</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v6</span>  
+    <span class="o">+</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v8</span>  
+    <span class="o">+</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v7</span>  
+    <span class="o">+</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v10</span>  
+    <span class="o">+</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v9</span>  
+    <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">__readfsdword</span><span class="p">(</span><span class="mh">0x2Cu</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">TlsIndex</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span>  
+    <span class="o">+</span> <span class="n">v12</span>  
+    <span class="o">+</span> <span class="n">v13</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">43</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">34</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">56</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">67</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">98</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="mi">45</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="mi">63</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="mi">74</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span> <span class="o">=</span> <span class="mi">68</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span> <span class="o">=</span> <span class="mi">88</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span> <span class="o">=</span> <span class="mi">113</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">57</span><span class="p">;</span>  
+<span class="n">v5</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span> <span class="o">=</span> <span class="mi">97</span><span class="p">;</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="n">v11</span> <span class="p">)</span>  
+<span class="p">{</span>  
+  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>  
+  <span class="p">{</span>  
+    <span class="n">v0</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>  
+    <span class="n">byte_452F80</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">LOBYTE</span><span class="p">(</span><span class="n">v5</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">^</span> <span class="n">v11</span><span class="p">;</span>  
+  <span class="p">}</span>  
+<span class="p">}</span>  
+<span class="k">else</span>  
+<span class="p">{</span>  
+  <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span> <span class="p">)</span>  
+  <span class="p">{</span>  
+    <span class="n">LOBYTE</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span> <span class="o">=</span> <span class="n">v5</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>  
+    <span class="n">byte_452F80</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>  
+  <span class="p">}</span>  
+<span class="p">}</span>  
+<span class="n">HIDWORD</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>  
+<span class="n">LODWORD</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="k">return</span> <span class="n">v1</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>VEH</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">AddVectoredExceptionHandler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Handler</span><span class="p">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>SetUnhandledExceptionFilter</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">sub_402DC0</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="n">DWORD</span> <span class="n">flOldProtect</span><span class="p">;</span> <span class="c1">// [esp+D0h] [ebp-2Ch]  
+</span><span class="c1"></span><span class="n">LPVOID</span> <span class="n">lpAddress</span><span class="p">;</span> <span class="c1">// [esp+DCh] [ebp-20h]  
+</span><span class="c1"></span><span class="n">SIZE_T</span> <span class="n">dwSize</span><span class="p">;</span> <span class="c1">// [esp+E8h] [ebp-14h]  
+</span><span class="c1"></span><span class="n">HMODULE</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// [esp+F4h] [ebp-8h]  
+</span><span class="c1"></span>  
+<span class="n">v4</span> <span class="o">=</span> <span class="n">GetModuleHandleW</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+<span class="n">SetUnhandledExceptionFilter</span><span class="p">((</span><span class="n">LPTOP_LEVEL_EXCEPTION_FILTER</span><span class="p">)</span><span class="n">TopLevelExceptionFilter</span><span class="p">);</span>  
+<span class="n">dwSize</span> <span class="o">=</span> <span class="mi">188</span><span class="p">;</span>  
+<span class="n">lpAddress</span> <span class="o">=</span> <span class="n">sub_402B50</span><span class="p">;</span>  
+<span class="n">dword_452FA0</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">sub_402B50</span><span class="p">;</span>  
+<span class="n">VirtualProtect</span><span class="p">(</span><span class="n">sub_402B50</span><span class="p">,</span> <span class="mh">0xBCu</span><span class="p">,</span> <span class="mh">0x40u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flOldProtect</span><span class="p">);</span>  
+<span class="k">return</span> <span class="n">sub_4032A0</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">lpAddress</span><span class="p">,</span> <span class="n">dwSize</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">byte_452F90</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考链接">参考链接</h2>
+<p><a href="https://bbs.pediy.com/thread-225740.htm" target="_blank" rel="noopener noreffer">反调试技术总结</a> <br>
+<a href="https://bbs.pediy.com/thread-173853.htm" target="_blank" rel="noopener noreffer">白话windows之四 异常处理机制(VEH、SEH、TopLevelEH&hellip;)</a> <br>
+<a href="https://www.jianshu.com/p/14c51e3ba70a" target="_blank" rel="noopener noreffer">动态反调试技术</a> <br>
+<a href="https://www.jianshu.com/p/947c6197c328" target="_blank" rel="noopener noreffer">静态反调试技术</a> <br>
+<a href="https://apeng.fun/2020/06/11/2020npointer-5/" target="_blank" rel="noopener noreffer">2020 空指针 5月RE公开赛</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" data-title="反调试技术"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" data-title="反调试技术"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" data-title="反调试技术"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" data-title="反调试技术"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" class="prev" rel="prev" title="angr使用"><i class="fas fa-angle-left fa-fw"></i>angr使用</a>
+            <a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%94%E5%8D%81%E4%BA%8C%E5%A4%A9-android%E8%84%B1%E5%A3%B3/" class="next" rel="next" title="Android脱壳">Android脱壳<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

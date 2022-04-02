@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>虎符2020部分re - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="虎符2020部分re" />
+<meta property="og:description" content="game 根据python的反汇编代码可以得到下面的逻辑： check0 每个字符为32 - 128 check1(s): len(s) &lt; 100 &amp;&amp; (len * len % 777) ^ 233 == 513 &gt; len(s) = 39 check2(s): ((s[0]*128 &#43; s[1])) * 128) &#43; s[2]&hellip;s[5]=3533889469877 -&gt; s[5]=&lsquo;5&rsquo; check3: arr = map(ord(s)) a = arr[slice(6," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-04-20T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-04-20T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="虎符2020部分re"/>
+<meta name="twitter:description" content="game 根据python的反汇编代码可以得到下面的逻辑： check0 每个字符为32 - 128 check1(s): len(s) &lt; 100 &amp;&amp; (len * len % 777) ^ 233 == 513 &gt; len(s) = 39 check2(s): ((s[0]*128 &#43; s[1])) * 128) &#43; s[2]&hellip;s[5]=3533889469877 -&gt; s[5]=&lsquo;5&rsquo; check3: arr = map(ord(s)) a = arr[slice(6,"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" /><link rel="prev" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/" /><link rel="next" href="https://linkleyping.top/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "虎符2020部分re",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1892 ,
+        "url": "https:\/\/linkleyping.top\/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re\/","datePublished": "2020-04-20T15:22:45+08:00","dateModified": "2020-04-20T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">虎符2020部分re</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-20">2020-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1892 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#game">game</a></li>
+    <li><a href="#vm">vm</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="game">game</h2>
+<p>根据python的反汇编代码可以得到下面的逻辑：</p>
+<ul>
+<li>check0 每个字符为32 - 128</li>
+<li>check1(s): len(s) &lt; 100 &amp;&amp; (len * len % 777) ^ 233 == 513  &gt; len(s) = 39</li>
+<li>check2(s): ((s[0]*128 + s[1])) * 128) + s[2]&hellip;s[5]=3533889469877 -&gt; s[5]=&lsquo;5&rsquo;</li>
+<li>check3: <br>
+arr = map(ord(s)) <br>
+a = arr[slice(6, 30, 3)] <br>
+for i in range(len(a)) <br>
+(a[i]*17684 + 372511)% 257 == arr0[i] <br>
+b = arr[slice(-2, 33, -1)] * 5 <br>
+c = map(lambda x[0] ^ x[1], zip(b, arr[slice(7, 27)])) <br>
+if c != arr1: <br>
+p = 0 <br>
+for i in range(28, 34): <br>
+(arr[i] + 107) / 16 + 77 == arr2[p] <br>
+(arr[i] + 117) % 16 + 99 == arr2[p + 1] <br>
+p = p + 2</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">arr0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">249</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">41</span><span class="p">]</span>    
+<span class="n">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>    
+<span class="n">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">102</span><span class="p">]</span>    
+<span class="n">flag6_30_3</span> <span class="o">=</span> <span class="p">[]</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr0</span><span class="p">)):</span>    
+  <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">):</span>    
+      <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="mi">17684</span> <span class="o">+</span> <span class="mi">372511</span><span class="p">)</span><span class="o">%</span> <span class="mi">257</span> <span class="o">==</span> <span class="n">arr0</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>    
+          <span class="n">flag6_30_3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>    
+          <span class="k">continue</span>    
+<span class="n">flag_35</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>    
+<span class="n">flag_36</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>    
+<span class="n">flag_37</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>    
+<span class="n">flag_34</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>    
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">flag_37</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag_36</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag_35</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag_34</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">5</span>    
+<span class="n">flag_7_27</span> <span class="o">=</span> <span class="p">[]</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">)):</span>    
+  <span class="n">flag_7_27</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>    
+<span class="n">flag_28_34</span> <span class="o">=</span> <span class="p">[]</span>    
+<span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">34</span><span class="p">):</span>    
+  <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">):</span>    
+      <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">107</span><span class="p">)</span> <span class="o">/</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">77</span> <span class="o">==</span> <span class="n">arr2</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">117</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">99</span> <span class="o">==</span> <span class="n">arr2</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>    
+          <span class="n">flag_28_34</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>    
+          <span class="k">continue</span>    
+  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">2</span>    
+<span class="n">s1</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flag_7_27</span><span class="p">)</span>    
+<span class="n">s2</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flag_28_34</span><span class="p">)</span>    
+<span class="n">s3</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">flag_34</span><span class="p">,</span> <span class="n">flag_35</span><span class="p">,</span><span class="n">flag_36</span><span class="p">,</span><span class="n">flag_37</span><span class="p">])</span>    
+<span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;flag{5&#39;</span><span class="o">+</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">s1</span><span class="o">+</span><span class="n">flag6_30_3</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>    
+<span class="k">print</span> <span class="n">flag</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="vm">vm</h2>
+<p>是个逻辑很清楚的vm，但是wtcl比赛时间对我来说有点短不够我翻译的&hellip;后面才做出来的，根据逻辑写出parser</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parser</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>    
+  <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;opcode.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>    
+  <span class="n">pc</span> <span class="o">=</span> <span class="mi">0</span>    
+  <span class="n">ins</span> <span class="o">=</span> <span class="mi">40</span>    
+  <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>    
+  <span class="n">reg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span>    
+  <span class="n">store</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">300</span>    
+  <span class="k">while</span> <span class="n">pc</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>    
+      <span class="n">c</span> <span class="o">=</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="p">]</span>    
+      <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push inputc &#34;</span><span class="p">)</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ins</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;pop --&gt; &#34;</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;outputc </span><span class="si">%d</span><span class="s2"> &#34;</span><span class="o">%</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="k">print</span> <span class="n">store</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;nop&#34;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push </span><span class="si">%d</span><span class="s2"> &#34;</span><span class="o">%</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">2</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push reg[</span><span class="si">%d</span><span class="s2">] &#34;</span><span class="o">%</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reg</span><span class="p">[</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">2</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;pop reg[</span><span class="si">%d</span><span class="s2">] &#34;</span><span class="o">%</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">reg</span><span class="p">[</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">2</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push store[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">store</span><span class="p">[</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;pop store[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">store</span><span class="p">[</span><span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;add&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xa</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;sub&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xb</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;mul&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xc</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="o">/</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xd</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;mod&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="o">%</span><span class="n">a</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xe</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;xor&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span> <span class="o">^</span> <span class="n">a</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0xf</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;and&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x10</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;or&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span> <span class="o">|</span> <span class="n">a</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x11</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;-&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x12</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;~&#34;</span><span class="p">)</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x13</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not equal, go on&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;equal, jmp&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x14</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;equal, go on&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not equal, jump&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x15</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span><span class="o">&lt;=</span><span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;less or equal, go on&#34;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not less or equal, jump&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x16</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;less, go on&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not less, jump&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x17</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;great or equal, go on&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not great or equal, jump&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x18</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;cmp&#34;</span><span class="p">)</span>    
+          <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;greate, go on&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">2</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;not greate, jump&#34;</span><span class="p">)</span>    
+              <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+              <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+              <span class="k">else</span><span class="p">:</span>    
+                  <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x19</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push store[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x1a</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;pop store[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">store</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x1b</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;push reg[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reg</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="mh">0x1c</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;pop reg[</span><span class="si">%d</span><span class="s2">]&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>    
+          <span class="n">reg</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">del</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;--&gt; now stack:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span>    
+      <span class="k">elif</span> <span class="mh">0x1d</span><span class="p">:</span>    
+          <span class="k">if</span> <span class="n">pc</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>    
+              <span class="k">print</span> <span class="nb">hex</span><span class="p">(</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    
+              <span class="k">break</span>    
+          <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mh">0x7f</span><span class="p">:</span>    
+              <span class="n">pc_t</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">+</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+          <span class="k">else</span><span class="p">:</span>    
+              <span class="n">pc_t</span> <span class="o">=</span> <span class="n">pc</span> <span class="o">-</span> <span class="p">(</span><span class="mi">256</span> <span class="o">-</span> <span class="n">code</span><span class="p">[</span><span class="n">pc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>    
+          <span class="n">pc</span> <span class="o">=</span> <span class="n">pc_t</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;jmp </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">%</span><span class="n">pc_t</span><span class="p">)</span>    
+      <span class="k">else</span><span class="p">:</span>    
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;Error&#34;</span><span class="p">)</span>    
+          <span class="k">break</span>    
+    
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>    
+  <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>    
+  <span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>    
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">code</span><span class="p">:</span>    
+      <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>    
+  <span class="n">parser</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    
+</code></pre></td></tr></table>
+</div>
+</div><p>根据parser解析的结果分析加密逻辑就能写出解密的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">enc</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>    
+  <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">42</span>    
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>    
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">6</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">i</span>    
+          <span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">b</span>    
+          <span class="n">m</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="p">((</span><span class="o">~</span><span class="n">b</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+          <span class="n">n</span> <span class="o">=</span> <span class="n">k</span> <span class="o">^</span> <span class="n">m</span>    
+          <span class="n">s1</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="mi">7</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>    
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">42</span><span class="p">):</span>    
+      <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>    
+          <span class="n">a</span> <span class="o">=</span> <span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>    
+          <span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mi">107</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span>    
+      <span class="k">else</span><span class="p">:</span>    
+          <span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">&amp;</span><span class="mh">0xff</span>    
+  <span class="k">return</span> <span class="n">s1</span>    
+    
+<span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>    
+  <span class="n">message</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">42</span>    
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>    
+      <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">&amp;</span><span class="mh">0xff</span>    
+      <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">):</span>    
+          <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="mi">107</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span> <span class="o">==</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>    
+              <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>    
+              <span class="k">break</span>    
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">41</span>    
+  <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">):</span>    
+      <span class="k">if</span> <span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="mi">107</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span> <span class="o">==</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>    
+          <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>    
+          <span class="k">break</span>    
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>    
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>    
+          <span class="n">e</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="mi">7</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>    
+          <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">i</span>    
+          <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">127</span><span class="p">):</span>    
+              <span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">b</span>    
+              <span class="n">m</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="p">((</span><span class="o">~</span><span class="n">b</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span>    
+              <span class="n">n</span> <span class="o">=</span> <span class="n">k</span> <span class="o">^</span> <span class="n">m</span>    
+              <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">e</span><span class="p">:</span>    
+                  <span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">6</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>    
+                  <span class="k">break</span>    
+  <span class="k">return</span> <span class="n">message</span>    
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">102</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">246</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">119</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">189</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">219</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mi">93</span><span class="p">]</span>    
+<span class="n">flag</span> <span class="o">=</span> <span class="n">dec</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>    
+<span class="k">print</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flag</span><span class="p">)</span>    
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" data-title="虎符2020部分re"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" data-title="虎符2020部分re"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" data-title="虎符2020部分re"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E8%99%8E%E7%AC%A62020%E9%83%A8%E5%88%86re/" data-title="虎符2020部分re"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%8D%81%E5%A4%A9%E6%B1%87%E7%BC%96%E8%80%83%E8%AF%95%E5%87%86%E5%A4%87/" class="prev" rel="prev" title="汇编基础"><i class="fas fa-angle-left fa-fw"></i>汇编基础</a>
+            <a href="/%E7%9C%8B%E9%9B%AA2020-%E7%AC%AC%E4%BA%8C%E9%A2%98/" class="next" rel="next" title="看雪2020-第二题">看雪2020-第二题<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

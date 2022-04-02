@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>IISC2020-线下赛re - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="IISC2020-线下赛re" />
+<meta property="og:description" content="帮忙做了一个re题，题目挺简单的，是python 的exe解包，做了还是写写吧hhh python exe解包 首先利用pyinstxtractor脚本将.e" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-11-07T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-11-07T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="IISC2020-线下赛re"/>
+<meta name="twitter:description" content="帮忙做了一个re题，题目挺简单的，是python 的exe解包，做了还是写写吧hhh python exe解包 首先利用pyinstxtractor脚本将.e"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" /><link rel="prev" href="https://linkleyping.top/xnuca2020-re/" /><link rel="next" href="https://linkleyping.top/hitcon-training/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IISC2020-线下赛re",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  1761 ,
+        "url": "https:\/\/linkleyping.top\/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre\/","datePublished": "2020-11-07T15:22:45+08:00","dateModified": "2020-11-07T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">IISC2020-线下赛re</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-07">2020-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1761 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python-exe解包">python exe解包</a></li>
+    <li><a href="#逆向">逆向</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>帮忙做了一个re题，题目挺简单的，是python 的exe解包，做了还是写写吧hhh</p>
+<h2 id="python-exe解包">python exe解包</h2>
+<p>首先利用pyinstxtractor脚本将.exe文件转为.pyc文件，指令格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">python pyinstxtractor.py  exe文件名称  
+</code></pre></td></tr></table>
+</div>
+</div><p>执行完成之后会生成一个<code>xxx_extracted</code>文件夹，反编译之前先把<code>struct</code>文件中<code>E3</code>之前的字符复制到想要反编译的文件中<br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-de8194d2b63b7386.png">
+            <img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-de8194d2b63b7386.png" alt=""  />
+        </a>
+    </div>
+<br>
+这道题需要反编译的文件是<code>snake</code><br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-f57fbd400ab6bb23.png">
+            <img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-f57fbd400ab6bb23.png" alt="before.png"  />
+        </a>
+    </div>
+ 
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-d5cb9e9cc8db5b64.png">
+            <img src="/images/6e1ddf3433fac03345c9f122ebc54d01/11884068-d5cb9e9cc8db5b64.png" alt="after.png"  />
+        </a>
+    </div>
+<br>
+补完头部信息之后可以用uncompyle6反编译<code>uncompyle6 snake.pyc &gt; snake.py</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># uncompyle6 version 3.7.4  </span>
+<span class="c1"># Python bytecode 3.7 (3394)  </span>
+<span class="c1"># Decompiled from: Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)]  </span>
+<span class="c1"># Embedded file name: snake.py  </span>
+<span class="c1"># Compiled at: 1995-09-28 00:18:56  </span>
+<span class="c1"># Size of source mod 2**32: 272 bytes  </span>
+<span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">time</span>  
+<span class="n">maze</span> <span class="o">=</span> <span class="p">[</span>  
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>  
+<span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>  
+<span class="n">seed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>  
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">999999</span><span class="p">))</span>  
+<span class="n">maze</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">987</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  
+<span class="n">maze</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="mi">356</span><span class="p">)</span>  
+<span class="n">maze</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">107</span><span class="p">,</span> <span class="mi">116</span><span class="p">)</span>  
+<span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">833</span><span class="p">,</span> <span class="mi">856</span><span class="p">)</span>  
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>  
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>  
+      <span class="n">tmp</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>  
+      <span class="k">if</span> <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3456</span> <span class="o">+</span> <span class="n">tmp</span>  
+          <span class="k">continue</span>  
+      <span class="k">if</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>  
+          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>  
+  
+          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>  
+      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
+          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>  
+          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">555</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>  
+  
+          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">555</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>  
+      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  
+          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>  
+          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">777</span><span class="p">,</span> <span class="mi">888</span><span class="p">)</span>  
+  
+          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">777</span><span class="p">,</span> <span class="mi">888</span><span class="p">)</span>  
+      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  
+          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">8</span><span class="p">])</span>  
+          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">369</span><span class="p">,</span> <span class="mi">777</span><span class="p">)</span>  
+  
+          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">369</span><span class="p">,</span> <span class="mi">777</span><span class="p">)</span>  
+  
+<span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>  
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">56</span><span class="p">:</span>  
+  <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  
+<span class="n">idx1</span> <span class="o">=</span> <span class="mi">0</span>  
+<span class="n">idx2</span> <span class="o">=</span> <span class="mi">0</span>  
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>  
+  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>  
+      <span class="n">idx1</span> <span class="o">-=</span> <span class="mi">1</span>  
+  <span class="k">else</span><span class="p">:</span>  
+      <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>  
+          <span class="n">idx1</span> <span class="o">+=</span> <span class="mi">1</span>  
+      <span class="k">else</span><span class="p">:</span>  
+          <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>  
+              <span class="n">idx2</span> <span class="o">-=</span> <span class="mi">1</span>  
+          <span class="k">else</span><span class="p">:</span>  
+              <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span>  
+                  <span class="n">idx2</span> <span class="o">+=</span> <span class="mi">1</span>  
+  <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">maze</span><span class="p">[</span><span class="n">idx1</span><span class="p">][</span><span class="n">idx2</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">1234</span><span class="p">:</span>  
+      <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Where are you going?&#39;</span><span class="p">)</span>  
+      <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">maze</span><span class="p">[</span><span class="n">idx1</span><span class="p">][</span><span class="n">idx2</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>  
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;You lost in the maze!&#39;</span><span class="p">)</span>  
+<span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">maze</span><span class="p">:</span>  
+  <span class="k">for</span> <span class="n">xxx</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">:</span>  
+      <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">xxx</span><span class="p">)</span>  
+  
+<span class="n">hash_res</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  
+<span class="k">print</span><span class="p">(</span><span class="n">hash_res</span><span class="p">)</span>  
+<span class="k">if</span> <span class="n">hash_res</span> <span class="o">==</span> <span class="s1">&#39;f1793dcf5ad3858512b944ac34413725a27c63e25618858231e88b9686466b00&#39;</span><span class="p">:</span>  
+  <span class="n">flag1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">8</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>  
+  <span class="n">flag2</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  
+  <span class="n">flag</span> <span class="o">=</span> <span class="n">flag2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">flag1</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  
+  <span class="n">final_flag</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;flag{&#39;</span> <span class="o">+</span> <span class="n">final_flag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">32</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>  
+<span class="c1"># okay decompiling snake.pyc  </span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="逆向">逆向</h2>
+<p>从文件逻辑可以看出来这道题需要走迷宫和爆破这个迷宫(因为有要求迷宫的hash值)<br>
+爆破迷宫的话只需要爆破<code>maze[1][1]</code>, <code>maze[3][4]</code>, <code>maze[7][7]</code>, <code>maze[11][8]</code>的值就可以了，因为这几个值确定了以后整个迷宫就确定了。<br>
+爆破迷宫</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">time</span>  
+<span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>  
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">987</span><span class="p">,</span> <span class="mi">1001</span><span class="p">):</span>  
+  <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="mi">357</span><span class="p">):</span>  
+      <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">107</span><span class="p">,</span> <span class="mi">117</span><span class="p">):</span>  
+          <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">833</span><span class="p">,</span> <span class="mi">857</span><span class="p">):</span>  
+              <span class="n">maze</span> <span class="o">=</span> <span class="p">[</span>  
+                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>  
+              <span class="n">maze</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>  
+              <span class="n">maze</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>  
+              <span class="n">maze</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>  
+              <span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>  
+              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>  
+                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>  
+                      <span class="n">tmp</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>  
+                      <span class="k">if</span> <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+                          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3456</span> <span class="o">+</span> <span class="n">tmp</span>  
+                          <span class="k">continue</span>  
+                      <span class="k">if</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+                          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>  
+                          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+                              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>  
+  
+                          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>  
+                      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
+                          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>  
+                          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+                              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">555</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>  
+  
+                          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">555</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>  
+                      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  
+                          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>  
+                          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+                              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">777</span><span class="p">,</span> <span class="mi">888</span><span class="p">)</span>  
+  
+                          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">777</span><span class="p">,</span> <span class="mi">888</span><span class="p">)</span>  
+                      <span class="k">elif</span> <span class="n">tmp</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  
+                          <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">8</span><span class="p">])</span>  
+                          <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>  
+                              <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">369</span><span class="p">,</span> <span class="mi">777</span><span class="p">)</span>  
+  
+                          <span class="n">maze</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">369</span><span class="p">,</span> <span class="mi">777</span><span class="p">)</span>  
+              <span class="n">maze</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>  
+              <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  
+              <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">maze</span><span class="p">:</span>  
+                  <span class="k">for</span> <span class="n">xxx</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">:</span>  
+                      <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">xxx</span><span class="p">)</span>  
+              <span class="n">hash_res</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  
+              <span class="k">if</span> <span class="n">hash_res</span> <span class="o">==</span> <span class="s1">&#39;f1793dcf5ad3858512b944ac34413725a27c63e25618858231e88b9686466b00&#39;</span><span class="p">:</span>  
+                  <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>  
+                  <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>  
+              <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>  
+                  <span class="k">break</span>  
+          <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>  
+              <span class="k">break</span>  
+      <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>  
+          <span class="k">break</span>  
+  <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>  
+      <span class="k">break</span>  
+  <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  
+<span class="s2">&#34;&#34;&#34;  
+</span><span class="s2">爆破出来的值：  
+</span><span class="s2">maze[1][1] = 996  
+</span><span class="s2">maze[3][4] = 352  
+</span><span class="s2">maze[7][7] = 113  
+</span><span class="s2">maze[11][8] = 849  
+</span><span class="s2">&#34;&#34;&#34;</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>走迷宫:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="n">MIN</span> <span class="o">=</span> <span class="mi">9999999</span>  
+  
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span><span class="c1">#迷宫最大数组  </span>
+<span class="n">book</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span><span class="c1">#标记数组  </span>
+<span class="n">lujing</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>  
+<span class="n">index_step</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">]</span>  
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_x</span><span class="p">,</span><span class="n">start_y</span><span class="p">,</span><span class="n">end_x</span><span class="p">,</span><span class="n">end_y</span><span class="p">,</span><span class="n">migong_array</span><span class="p">,</span><span class="n">step</span><span class="p">):</span>  
+  <span class="s1">&#39;&#39;&#39;  
+</span><span class="s1">  :param start_x: 起始横坐标  
+</span><span class="s1">  :param start_y: 起始纵坐标  
+</span><span class="s1">  :param end_x: 终点横坐标  
+</span><span class="s1">  :param end_y: 终点纵坐标  
+</span><span class="s1">  :param migong_array: 迷宫的数组  
+</span><span class="s1">  :return:  
+</span><span class="s1">  &#39;&#39;&#39;</span>  
+  <span class="n">next_step</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>  <span class="c1">#向右走  </span>
+          <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>  <span class="c1">#向下走  </span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="c1">#向左走  </span>
+          <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#向上走  </span>
+          <span class="p">]</span>  
+  <span class="k">if</span> <span class="p">(</span><span class="n">start_x</span> <span class="o">==</span> <span class="n">end_x</span> <span class="ow">and</span> <span class="n">start_y</span> <span class="o">==</span> <span class="n">end_y</span><span class="p">):</span>  
+      <span class="k">global</span> <span class="n">MIN</span>  
+      <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">&lt;</span> <span class="n">MIN</span><span class="p">):</span>  
+          <span class="n">MIN</span> <span class="o">=</span> <span class="n">step</span>  
+      <span class="k">return</span> <span class="mi">1</span>  
+  
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">next_step</span><span class="p">)):</span>  
+      <span class="n">next_x</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">next_step</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  
+      <span class="n">next_y</span> <span class="o">=</span> <span class="n">start_y</span> <span class="o">+</span> <span class="n">next_step</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>  
+      <span class="k">if</span><span class="p">(</span><span class="n">next_x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">next_y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">next_x</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">migong_array</span><span class="p">)</span> <span class="ow">or</span> <span class="n">next_y</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">migong_array</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>  
+          <span class="k">continue</span>  
+      <span class="k">if</span><span class="p">(</span><span class="mi">0</span><span class="o">&lt;=</span> <span class="n">a</span><span class="p">[</span><span class="n">next_x</span><span class="p">][</span><span class="n">next_y</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">1234</span> <span class="ow">and</span> <span class="n">book</span><span class="p">[</span><span class="n">next_x</span><span class="p">][</span><span class="n">next_y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>  
+          <span class="n">book</span><span class="p">[</span><span class="n">next_x</span><span class="p">][</span><span class="n">next_y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  
+          <span class="k">if</span> <span class="n">dfs</span><span class="p">(</span><span class="n">next_x</span><span class="p">,</span><span class="n">next_y</span><span class="p">,</span><span class="n">end_x</span><span class="p">,</span><span class="n">end_y</span><span class="p">,</span><span class="n">migong_array</span><span class="p">,</span><span class="n">step</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>  
+              <span class="n">lujing</span><span class="p">[</span><span class="n">step</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_step</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  
+              <span class="k">return</span> <span class="mi">1</span>  
+          <span class="n">book</span><span class="p">[</span><span class="n">next_x</span><span class="p">][</span><span class="n">next_y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="k">return</span> <span class="mi">0</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  
+  <span class="n">start_x</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="n">start_y</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="n">end_x</span> <span class="o">=</span> <span class="mi">11</span>  
+  <span class="n">end_y</span> <span class="o">=</span> <span class="mi">11</span>  
+  <span class="n">migong_array</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">545</span><span class="p">,</span> <span class="mi">3457</span><span class="p">,</span> <span class="mi">3458</span><span class="p">,</span> <span class="mi">3459</span><span class="p">,</span> <span class="mi">3460</span><span class="p">,</span> <span class="mi">3461</span><span class="p">,</span> <span class="mi">3462</span><span class="p">,</span> <span class="mi">3463</span><span class="p">,</span> <span class="mi">3464</span><span class="p">,</span> <span class="mi">3465</span><span class="p">,</span> <span class="mi">3466</span><span class="p">,</span> <span class="mi">3467</span><span class="p">],</span> <span class="p">[</span><span class="mi">239</span><span class="p">,</span> <span class="mi">796</span><span class="p">,</span> <span class="mi">3470</span><span class="p">,</span> <span class="mi">3471</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">948</span><span class="p">,</span> <span class="mi">831</span><span class="p">,</span> <span class="mi">3475</span><span class="p">,</span> <span class="mi">3476</span><span class="p">,</span> <span class="mi">3477</span><span class="p">,</span> <span class="mi">3478</span><span class="p">,</span> <span class="mi">3479</span><span class="p">],</span> <span class="p">[</span><span class="mi">3480</span><span class="p">,</span> <span class="mi">1095</span><span class="p">,</span> <span class="mi">843</span><span class="p">,</span> <span class="mi">3483</span><span class="p">,</span> <span class="mi">766</span><span class="p">,</span> <span class="mi">3485</span><span class="p">,</span> <span class="mi">848</span><span class="p">,</span> <span class="mi">464</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">703</span><span class="p">,</span> <span class="mi">3490</span><span class="p">,</span> <span class="mi">3491</span><span class="p">],</span> <span class="p">[</span><span class="mi">3492</span><span class="p">,</span> <span class="mi">3493</span><span class="p">,</span> <span class="mi">864</span><span class="p">,</span> <span class="mi">627</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3497</span><span class="p">,</span> <span class="mi">3498</span><span class="p">,</span> <span class="mi">3499</span><span class="p">,</span> <span class="mi">3500</span><span class="p">,</span> <span class="mi">1064</span><span class="p">,</span> <span class="mi">3502</span><span class="p">,</span> <span class="mi">3503</span><span class="p">],</span> <span class="p">[</span><span class="mi">3504</span><span class="p">,</span> <span class="mi">3505</span><span class="p">,</span> <span class="mi">3506</span><span class="p">,</span> <span class="mi">3507</span><span class="p">,</span> <span class="mi">3508</span><span class="p">,</span> <span class="mi">3509</span><span class="p">,</span> <span class="mi">881</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">985</span><span class="p">,</span> <span class="mi">706</span><span class="p">,</span> <span class="mi">3514</span><span class="p">,</span> <span class="mi">3515</span><span class="p">],</span> <span class="p">[</span><span class="mi">3516</span><span class="p">,</span> <span class="mi">3517</span><span class="p">,</span> <span class="mi">3518</span><span class="p">,</span> <span class="mi">3519</span><span class="p">,</span> <span class="mi">3520</span><span class="p">,</span> <span class="mi">3521</span><span class="p">,</span> <span class="mi">864</span><span class="p">,</span> <span class="mi">3523</span><span class="p">,</span> <span class="mi">3524</span><span class="p">,</span> <span class="mi">3525</span><span class="p">,</span> <span class="mi">3526</span><span class="p">,</span> <span class="mi">3527</span><span class="p">],</span> <span class="p">[</span><span class="mi">3528</span><span class="p">,</span> <span class="mi">1214</span><span class="p">,</span> <span class="mi">779</span><span class="p">,</span> <span class="mi">709</span><span class="p">,</span> <span class="mi">804</span><span class="p">,</span> <span class="mi">3533</span><span class="p">,</span> <span class="mi">813</span><span class="p">,</span> <span class="mi">403</span><span class="p">,</span> <span class="mi">861</span><span class="p">,</span> <span class="mi">1096</span><span class="p">,</span> <span class="mi">829</span><span class="p">,</span> <span class="mi">3539</span><span class="p">],</span> <span class="p">[</span><span class="mi">3540</span><span class="p">,</span> <span class="mi">628</span><span class="p">,</span> <span class="mi">3542</span><span class="p">,</span> <span class="mi">3543</span><span class="p">,</span> <span class="mi">494</span><span class="p">,</span> <span class="mi">3545</span><span class="p">,</span> <span class="mi">3546</span><span class="p">,</span> <span class="mi">395</span><span class="p">,</span> <span class="mi">3548</span><span class="p">,</span> <span class="mi">3549</span><span class="p">,</span> <span class="mi">798</span><span class="p">,</span> <span class="mi">3551</span><span class="p">],</span> <span class="p">[</span><span class="mi">3552</span><span class="p">,</span> <span class="mi">988</span><span class="p">,</span> <span class="mi">3554</span><span class="p">,</span> <span class="mi">3555</span><span class="p">,</span> <span class="mi">485</span><span class="p">,</span> <span class="mi">3557</span><span class="p">,</span> <span class="mi">3558</span><span class="p">,</span> <span class="mi">3559</span><span class="p">,</span> <span class="mi">3560</span><span class="p">,</span> <span class="mi">674</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mi">3563</span><span class="p">],</span> <span class="p">[</span><span class="mi">3564</span><span class="p">,</span> <span class="mi">761</span><span class="p">,</span> <span class="mi">802</span><span class="p">,</span> <span class="mi">3567</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">568</span><span class="p">,</span> <span class="mi">829</span><span class="p">,</span> <span class="mi">721</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">1137</span><span class="p">,</span> <span class="mi">3574</span><span class="p">,</span> <span class="mi">3575</span><span class="p">],</span> <span class="p">[</span><span class="mi">3576</span><span class="p">,</span> <span class="mi">3577</span><span class="p">,</span> <span class="mi">853</span><span class="p">,</span> <span class="mi">763</span><span class="p">,</span> <span class="mi">3580</span><span class="p">,</span> <span class="mi">3581</span><span class="p">,</span> <span class="mi">3582</span><span class="p">,</span> <span class="mi">3583</span><span class="p">,</span> <span class="mi">3584</span><span class="p">,</span> <span class="mi">3585</span><span class="p">,</span> <span class="mi">3586</span><span class="p">,</span> <span class="mi">3587</span><span class="p">],</span> <span class="p">[</span><span class="mi">3588</span><span class="p">,</span> <span class="mi">3589</span><span class="p">,</span> <span class="mi">3590</span><span class="p">,</span> <span class="mi">372</span><span class="p">,</span> <span class="mi">962</span><span class="p">,</span> <span class="mi">923</span><span class="p">,</span> <span class="mi">785</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">368</span><span class="p">,</span> <span class="mi">707</span><span class="p">,</span> <span class="mi">795</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>   <span class="c1">#初始化迷宫  </span>
+  
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">migong_array</span><span class="p">)):</span>  
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">migong_array</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>  
+          <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">migong_array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>  <span class="c1">#将迷宫数组写入a中  </span>
+  <span class="n">book</span><span class="p">[</span><span class="n">start_x</span><span class="p">][</span><span class="n">start_y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1">#将第一步标记为1，证明走过了。避免重复走  </span>
+  
+  <span class="n">dfs</span><span class="p">(</span><span class="n">start_x</span><span class="p">,</span><span class="n">start_y</span><span class="p">,</span><span class="n">end_x</span><span class="p">,</span><span class="n">end_y</span><span class="p">,</span><span class="n">migong_array</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  
+  
+  <span class="k">print</span><span class="p">(</span><span class="s1">&#39;The min length of path is : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MIN</span><span class="p">))</span>  
+  <span class="k">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lujing</span><span class="p">)[:</span><span class="n">MIN</span><span class="p">])</span>  
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-11-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" data-title="IISC2020-线下赛re"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" data-title="IISC2020-线下赛re"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" data-title="IISC2020-线下赛re"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/iisc2020-%E7%BA%BF%E4%B8%8B%E8%B5%9Bre/" data-title="IISC2020-线下赛re"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/xnuca2020-re/" class="prev" rel="prev" title="XNUCA2020-re"><i class="fas fa-angle-left fa-fw"></i>XNUCA2020-re</a>
+            <a href="/hitcon-training/" class="next" rel="next" title="HITCON Training">HITCON Training<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

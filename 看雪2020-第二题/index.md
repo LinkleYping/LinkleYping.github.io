@@ -1,0 +1,64 @@
+# 看雪2020-第二题
+
+    
+## 第二题 子鼠开天    
+### 算法识别    
+从字符串信息可知，文件用了openssl_0.9.8这个库，导入相应版本的sig文件后可以识别部分代码    
+[openssl_0.9.8.sig](https://github.com/push0ebp/sig-database/blob/master/windows/openssl_0.9.8.sig)    
+其他没有识别出来的函数可以通过固定参数或者对比openssl源码识别    
+sub_4019B0 -> sha512   (0xF3BCC908, 0x6A09E667...)    
+sub_401560 -> md5   (0x67452301, 0xEFCDAB89...)    
+sub_404FE0 -> AES_set_encrypt_key    
+sub_4053A0 -> AES_set_decrypt_key    
+sub_sub_4010F0 -> 最后一个参数为1是是AES加密，为0时是AES解密    
+sub_401210 -> rsa    
+### 加密过程    
+sn：AES**解密** -> RSA加密    
+name: sha512 -> md5 -> sha512 -> md5    
+sn加密结果的后16字节与nams计算hash后的16字节相等且sn的前两个字节为0002，第16个字节为0    
+### solve    
+```python    
+#coding=utf-8    
+import gmpy2    
+import hashlib    
+from Crypto.Cipher import AES    
+import base64    
+import math    
+from binascii import b2a_hex, a2b_hex    
+    
+class prpcrypt():    
+  def __init__(self):    
+      s = "480b62c3acd6c8a36b18d9e906cd90d2"    
+      self.key = s.decode('hex')    
+      self.mode = AES.MODE_ECB    
+  def encrypt(self, text):    
+      cryptor = AES.new(self.key, self.mode)    
+      length = 16    
+      count = len(text)    
+      if count % length != 0:    
+              add = length - (count % length)    
+      else:    
+          add = 0    
+          text = text + ('\0' * add)    
+          self.ciphertext = cryptor.encrypt(text)    
+          return b2a_hex(self.ciphertext)    
+       
+  def decrypt(self, text):    
+      cryptor = AES.new(self.key, self.mode)    
+      plain_text = cryptor.decrypt(a2b_hex(text))    
+      return plain_text.rstrip('\0')    
+    
+n = 0x69823028577465ab3991df045146f91d556dee8870845d8ee1cd3cf77e4a0c39    
+p = 201522792635114097998567775554303915819    
+q = 236811285547763449711675622888914229291    
+phi = (p - 1) * (q - 1)    
+e = 65537    
+d = gmpy2.invert(e, phi)    
+x = 0x02000000000000000000000000000014af58ad4d76d59d8d2171ffb4ca2231    
+msg = hex(pow(x,d,n)).strip('L')[2:]    
+pr = prpcrypt()    
+c1 = pr.encrypt(msg[:32].decode('hex'))    
+c2 = pr.encrypt(msg[32:64].decode('hex'))    
+print c1+c2    
+```    
+

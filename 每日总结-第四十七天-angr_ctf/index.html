@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>angr使用 - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="angr使用" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-06-06T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-06-06T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="angr使用"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" /><link rel="prev" href="https://linkleyping.top/rctf2020-%E9%83%A8%E5%88%86re/" /><link rel="next" href="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "angr使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3993 ,
+        "url": "https:\/\/linkleyping.top\/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf\/","datePublished": "2020-06-06T15:22:45+08:00","dateModified": "2020-06-06T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">angr使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-06">2020-06-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3993 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础">基础</a></li>
+    <li><a href="#00_angr_find">00_angr_find</a></li>
+    <li><a href="#01_angr_avoid">01_angr_avoid</a></li>
+    <li><a href="#带参数执行">带参数执行</a></li>
+    <li><a href="#02_angr_find_condition">02_angr_find_condition</a></li>
+    <li><a href="#03_angr_symbolic_registers">03_angr_symbolic_registers</a></li>
+    <li><a href="#04_angr_symbolic_stack">04_angr_symbolic_stack</a></li>
+    <li><a href="#05_angr_symbolic_memory">05_angr_symbolic_memory</a></li>
+    <li><a href="#06_angr_symbolic_dynamic_memory">06_angr_symbolic_dynamic_memory</a></li>
+    <li><a href="#07_angr_symbolic_file">07_angr_symbolic_file</a></li>
+    <li><a href="#08_angr_constraints">08_angr_constraints</a></li>
+    <li><a href="#10_angr_simprocedures">10_angr_simprocedures</a></li>
+    <li><a href="#12_angr_veritesting">12_angr_veritesting</a></li>
+    <li><a href="#13_angr_static_binary">13_angr_static_binary</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="基础">基础</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="kn">as</span> <span class="nn">nx</span>  
+<span class="kn">import</span> <span class="nn">matplotlib</span>  
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>  
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  
+<span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s1">&#39;/bin/true&#39;</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">proj</span><span class="o">.</span><span class="n">filename</span>  <span class="c1"># 文件名  </span>
+<span class="k">print</span> <span class="n">proj</span><span class="o">.</span><span class="n">arch</span>  <span class="c1"># 一个 archinfo.Arch 对象  </span>
+<span class="k">print</span> <span class="nb">hex</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">entry</span><span class="p">)</span>  <span class="c1"># 入口点  </span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">loader</span>  
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">loader</span><span class="o">.</span><span class="n">all_objects</span><span class="p">:</span>  <span class="c1"># 程序加载时会将二进制文件和共享库映射到虚拟地址中,所有对象文件  </span>
+  <span class="k">print</span> <span class="n">obj</span>  
+<span class="c1"># 二进制文件本身是main_object  </span>
+<span class="k">print</span> <span class="n">loader</span><span class="o">.</span><span class="n">main_object</span>  
+<span class="k">print</span> <span class="nb">hex</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">main_object</span><span class="o">.</span><span class="n">min_addr</span><span class="p">)</span>  
+<span class="k">print</span> <span class="nb">hex</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">main_object</span><span class="o">.</span><span class="n">max_addr</span><span class="p">)</span>  
+  
+<span class="c1">## 但是通常会选择关闭auto_load_libs,避免angr加载共享库  </span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s1">&#39;/bin/true&#39;</span><span class="p">,</span> <span class="n">auto_load_libs</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">proj</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">all_objects</span>  
+<span class="c1"># project.factory 提供了很多类对二进制文件进行分析  </span>
+<span class="c1"># project.factory.block() 用于从给定地址解析一个 basic block，对象类型为 Block  </span>
+<span class="n">block</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">entry</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">block</span><span class="o">.</span><span class="n">pp</span><span class="p">()</span> <span class="c1"># 打印  </span>
+<span class="k">print</span> <span class="n">block</span><span class="o">.</span><span class="n">instructions</span>  <span class="c1"># 指令数量  </span>
+<span class="k">print</span> <span class="n">block</span><span class="o">.</span><span class="n">instruction_addrs</span> <span class="c1"># 指令地址  </span>
+<span class="c1"># 将block类型转换为其他形式  </span>
+<span class="k">print</span> <span class="n">block</span><span class="o">.</span><span class="n">capstone</span><span class="o">.</span><span class="n">pp</span><span class="p">()</span>  
+<span class="k">print</span> <span class="n">block</span><span class="o">.</span><span class="n">vex</span><span class="o">.</span><span class="n">pp</span><span class="p">()</span>  
+<span class="c1"># 程序的执行需要初始化一个模拟程序状态的 SimState 对象  </span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+<span class="c1"># 该对象包含了程序的内存、寄存器、文件系统数据等等模拟运行时动态变化的数据  </span>
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">regs</span> <span class="c1"># 寄存器  </span>
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">rip</span>  <span class="c1"># BV64对象  </span>
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">rsp</span>  
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">rsp</span><span class="o">.</span><span class="n">length</span>  
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">mem</span><span class="p">[</span><span class="n">proj</span><span class="o">.</span><span class="n">entry</span><span class="p">]</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">resolved</span> <span class="c1"># 将入口点的内存解释为c语言的int类型  </span>
+<span class="c1"># 这里的 BV，即 bitvectors，可以理解为一个比特串，用于在 angr 里表示 CPU 数据。看到在这里 rdi 有点特殊，它没有具体的数值，而是在符号执行中所使用的符号变量  </span>
+<span class="c1"># python int与bitvector之间的转换  </span>
+<span class="n">bv</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mh">0x1234</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span> <span class="c1"># 创建一个32位的bitvector对象，值为0x1234  </span>
+<span class="k">print</span> <span class="nb">hex</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">bv</span><span class="p">))</span>  
+<span class="n">bv</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mh">0x1234</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="c1"># 64位  </span>
+<span class="c1"># bitvector之间的数学运算  </span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>  
+<span class="n">one_hundred</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">one</span> <span class="o">+</span> <span class="n">one_hundred</span> <span class="c1"># 位数相同时可以直接运算  </span>
+<span class="n">five</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">one</span> <span class="o">+</span> <span class="n">five</span><span class="o">.</span><span class="n">zero_extend</span><span class="p">(</span><span class="mi">64</span> <span class="o">-</span> <span class="mi">27</span><span class="p">)</span> <span class="c1"># 位数不同时需要进行扩展  </span>
+<span class="k">print</span> <span class="n">one</span> <span class="o">+</span> <span class="n">five</span><span class="o">.</span><span class="n">sign_extend</span><span class="p">(</span><span class="mi">64</span> <span class="o">-</span> <span class="mi">27</span><span class="p">)</span>  <span class="c1"># 有符号扩展  </span>
+<span class="c1"># 使用 bitvectors 可以直接来设置寄存器和内存的值，当传入的是 Python int 时，angr 会自动将其转换成 bitvectors  </span>
+<span class="c1"># &gt;&gt;&gt; state.regs.rsi = state.solver.BVV(3, 64)  </span>
+<span class="c1"># &gt;&gt;&gt; state.regs.rsi  </span>
+<span class="c1"># &lt;BV64 0x3&gt;  </span>
+<span class="c1"># &gt;&gt;&gt; state.mem[0x1000].long = 4          # 在地址 0x1000 存放一个 long 类型的值 4  </span>
+<span class="c1"># &gt;&gt;&gt; state.mem[0x1000].long.resolved     # .resolved 获取 bitvectors  </span>
+<span class="c1"># &lt;BV64 0x4&gt;  </span>
+<span class="c1"># &gt;&gt;&gt; state.mem[0x1000].long.concrete     # .concrete 获得 Python int  </span>
+<span class="c1"># 4L  </span>
+<span class="c1"># 初始化的 state 可以经过模拟执行得到一系列的 states，模拟管理器（Simulation Managers）的作用就是对这些 states 进行管理  </span>
+<span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simulation_manager</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  
+<span class="k">print</span> <span class="n">simgr</span><span class="o">.</span><span class="n">active</span> <span class="c1"># 当前状态  </span>
+<span class="n">simgr</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># 模拟执行一个basic block  </span>
+<span class="k">print</span> <span class="n">simgr</span><span class="o">.</span><span class="n">active</span> <span class="c1"># 当前状态被更新  </span>
+<span class="k">print</span> <span class="n">simgr</span><span class="o">.</span><span class="n">active</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">rip</span> <span class="c1"># active[0] 是当前 state  </span>
+<span class="c1"># attention: 被改变的仅仅是simgr的状态，原始状态并不会被改变  </span>
+<span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">rip</span>  
+<span class="c1"># angr 提供了大量函数用于程序分析，在这些函数在 Project.analyses.  </span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s1">&#39;/bin/true&#39;</span><span class="p">,</span> <span class="n">load_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;auto_load_libs&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">})</span>  
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">analyses</span><span class="o">.</span><span class="n">CFGFast</span><span class="p">()</span>  
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>                  <span class="c1"># 画图  </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;temp.png&#39;</span><span class="p">)</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="00_angr_find">00_angr_find</h2>
+<p>find的使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;00_angr_find&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">address</span> <span class="o">=</span> <span class="mh">0x8048675</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">address</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="01_angr_avoid">01_angr_avoid</h2>
+<p>avoid的使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;01_angr_avoid&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">address</span> <span class="o">=</span> <span class="mh">0x80485B5</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">address</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="mh">0x80485A8</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="带参数执行">带参数执行</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">claripy</span>  
+<span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="s1">&#39;./angr2&#39;</span><span class="p">,</span> <span class="n">auto_load_libs</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  
+<span class="n">argv1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s2">&#34;argv1&#34;</span><span class="p">,</span> <span class="mi">9</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span> <span class="o">//</span> <span class="err">这里用的单位是</span><span class="n">bit</span><span class="err">，因此需要乘以</span><span class="mi">8</span>  
+<span class="n">state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;./angr2&#39;</span><span class="p">,</span> <span class="n">argv1</span><span class="p">])</span> <span class="o">//</span> <span class="err">导入参数</span>  
+<span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  
+<span class="k">print</span><span class="p">(</span><span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="mh">0x4007DC</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="mh">0x4007EA</span><span class="p">))</span>  
+<span class="k">print</span><span class="p">(</span><span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">argv1</span><span class="p">,</span> <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">))</span> <span class="o">//</span> <span class="err">直接输出是</span><span class="n">ascii码</span><span class="err">，用</span><span class="n">cast_to</span><span class="o">=</span><span class="n">bytes转为bytes类型</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="02_angr_find_condition">02_angr_find_condition</h2>
+<p>find 跟 avoid 参数可以是一个你已经确定感兴趣或要避免的地址（或者是地址列表）或者是一个可以动态选择“是否感兴趣”的函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span> <span class="c1"># (1)  </span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Good Job.&#39;</span> <span class="ow">in</span> <span class="n">stdout_output</span><span class="p">:</span> <span class="c1"># (2)  </span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># (3)  </span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>     
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Try again.&#39;</span> <span class="ow">in</span>  <span class="n">stdout_output</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">True</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;02_angr_find_condition&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="03_angr_symbolic_registers">03_angr_symbolic_registers</h2>
+<p>当调用<code> scanf()</code>的时候，angr无法处理复杂的格式。可以将符号值注入寄存器。也可以自己选择开始执行的地址，不一定要从entry开始执行，需要用 blank_state() 方法替代了entry_state()。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">claripy</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span> <span class="c1"># (1)  </span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Good Job.&#39;</span> <span class="ow">in</span> <span class="n">stdout_output</span><span class="p">:</span> <span class="c1"># (2)  </span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># (3)  </span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+    <span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>     
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Try again.&#39;</span> <span class="ow">in</span>  <span class="n">stdout_output</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">True</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;03_angr_symbolic_registers&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">start_address</span> <span class="o">=</span> <span class="mh">0x8048980</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span><span class="o">=</span><span class="n">start_address</span><span class="p">)</span>  
+    <span class="c1"># 用 claripy 通过 BVS() 方法生成三个位向量。这个方法需要两个参数：第一个参数表示符号名，第二个参数表示这个符号的长度 单位bit。位数与寄存器的位数相同，是32位  </span>
+    <span class="n">password_size_in_bits</span> <span class="o">=</span> <span class="mi">32</span>  
+    <span class="n">password0</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password0&#39;</span><span class="p">,</span> <span class="n">password_size_in_bits</span><span class="p">)</span>  
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="n">password_size_in_bits</span><span class="p">)</span>  
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password2&#39;</span><span class="p">,</span> <span class="n">password_size_in_bits</span><span class="p">)</span>  
+    <span class="c1"># 更新寄存器的内容  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">eax</span> <span class="o">=</span> <span class="n">password0</span>  
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">ebx</span> <span class="o">=</span> <span class="n">password1</span>  
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">edx</span> <span class="o">=</span> <span class="n">password2</span>  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="c1"># 根据注入的三个符号值调用求解引擎的 eval()方法； format() 方法格式化解并去掉16进制的 “0x”。  </span>
+        <span class="n">solution0</span> <span class="o">=</span> <span class="n">format</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password0</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="c1"># (1)  </span>
+        <span class="n">solution1</span> <span class="o">=</span> <span class="n">format</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password1</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>  
+        <span class="n">solution2</span> <span class="o">=</span> <span class="n">format</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password2</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">solution0</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">solution1</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">solution2</span>  
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;[+] Success! Solution is: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Could not find the solution&#39;</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="04_angr_symbolic_stack">04_angr_symbolic_stack</h2>
+<p>上面一个是变量储存在寄存器上，所以可以直接设置寄存器，这里是变量储存在栈上。针对栈的操作需要注意调整一下栈空间.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">claripy</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span> <span class="c1"># (1)  </span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Good Job.&#39;</span> <span class="ow">in</span> <span class="n">stdout_output</span><span class="p">:</span> <span class="c1"># (2)  </span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># (3)  </span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>     
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Try again.&#39;</span> <span class="ow">in</span>  <span class="n">stdout_output</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">True</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;04_angr_symbolic_stack&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">start_address</span> <span class="o">=</span> <span class="mh">0x08048697</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span><span class="o">=</span><span class="n">start_address</span><span class="p">)</span>  
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">ebp</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">esp</span>  <span class="c1"># 模拟mov ebp, esp  </span>
+  
+    <span class="c1"># esp减8再push进两个4字节的变量，相当于sub esp, 0x10  </span>
+    <span class="n">padding_length_in_bytes</span> <span class="o">=</span> <span class="mi">8</span>  
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">esp</span> <span class="o">-=</span> <span class="n">padding_length_in_bytes</span>  
+    <span class="n">password0</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password0&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+    <span class="c1"># 压栈  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">stack_push</span><span class="p">(</span><span class="n">password0</span><span class="p">)</span>   
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">stack_push</span><span class="p">(</span><span class="n">password1</span><span class="p">)</span>  
+  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="n">solution0</span> <span class="o">=</span> <span class="n">format</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password0</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="c1"># (1)  </span>
+        <span class="n">solution1</span> <span class="o">=</span> <span class="n">format</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password1</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">solution0</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">solution1</span>  
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;[+] Success! Solution is: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Could not find the solution&#39;</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="05_angr_symbolic_memory">05_angr_symbolic_memory</h2>
+<p>angr处理内存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">claripy</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span> <span class="c1"># (1)  </span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Good Job.&#39;</span> <span class="ow">in</span> <span class="n">stdout_output</span><span class="p">:</span> <span class="c1"># (2)  </span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># (3)  </span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>     
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Try again.&#39;</span> <span class="ow">in</span>  <span class="n">stdout_output</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">True</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;05_angr_symbolic_memory&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">start_address</span> <span class="o">=</span> <span class="mh">0x80485FE</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span><span class="o">=</span><span class="n">start_address</span><span class="p">)</span>  
+    <span class="n">password</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>  
+    <span class="n">user_input_address</span> <span class="o">=</span> <span class="mh">0xA1BA1C0</span>  
+    <span class="c1"># 将内容写入内存  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">user_input_address</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>  
+  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>  
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;[+] Success! Solution is: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Could not find the solution&#39;</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="06_angr_symbolic_dynamic_memory">06_angr_symbolic_dynamic_memory</h2>
+<p>上面05中是把输入的内容直接存储在user_inout处的固定地址上，而这道题中，buffer0和buffer1中存储的是malloc分配内存的地址，这个地址是动态的，地址指向的内容才是真正的输入。所以首先要将输入符号存储在内存中，然后将内存地址写入buffer0和buffer1。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding=utf-8  </span>
+<span class="kn">import</span> <span class="nn">angr</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">claripy</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span> <span class="c1"># (1)  </span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Good Job.&#39;</span> <span class="ow">in</span> <span class="n">stdout_output</span><span class="p">:</span> <span class="c1"># (2)  </span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># (3)  </span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>     
+    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;Try again.&#39;</span> <span class="ow">in</span>  <span class="n">stdout_output</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">True</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="bp">False</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;06_angr_symbolic_dynamic_memory&#34;</span>  
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>  
+    <span class="n">start_address</span> <span class="o">=</span> <span class="mh">0x8048696</span>  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span><span class="o">=</span><span class="n">start_address</span><span class="p">)</span>  
+    <span class="n">password0</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password0&#39;</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>  
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>  
+  
+    <span class="n">fake_heap_address0</span> <span class="o">=</span> <span class="mh">0xffffc93c</span> <span class="c1"># (1)  </span>
+    <span class="n">pointer_to_malloc_memory_address0</span> <span class="o">=</span> <span class="mh">0xabcc8a4</span> <span class="c1"># (2)  </span>
+    <span class="n">fake_heap_address1</span> <span class="o">=</span> <span class="mh">0xffffc94c</span> <span class="c1"># (3)  </span>
+    <span class="n">pointer_to_malloc_memory_address1</span> <span class="o">=</span> <span class="mh">0xabcc8ac</span> <span class="c1"># (4)  </span>
+  
+    <span class="c1"># 将buffer0, buffer1中写入虚假的堆地址  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">pointer_to_malloc_memory_address0</span><span class="p">,</span> <span class="n">fake_heap_address0</span><span class="p">,</span> <span class="n">endness</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">arch</span><span class="o">.</span><span class="n">memory_endness</span><span class="p">)</span> <span class="c1"># (5)  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">pointer_to_malloc_memory_address1</span><span class="p">,</span> <span class="n">fake_heap_address1</span><span class="p">,</span> <span class="n">endness</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">arch</span><span class="o">.</span><span class="n">memory_endness</span><span class="p">)</span> <span class="c1"># (6)  </span>
+  
+    <span class="c1"># 在堆地址中写入输入的符号内容  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">fake_heap_address0</span><span class="p">,</span> <span class="n">password0</span><span class="p">)</span> <span class="c1"># (7)  </span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">fake_heap_address1</span><span class="p">,</span> <span class="n">password1</span><span class="p">)</span> <span class="c1"># (8)  </span>
+  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="n">solution0</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password0</span><span class="p">,</span> <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>  
+        <span class="n">solution1</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password1</span><span class="p">,</span> <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>  
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">solution0</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">solution1</span>  
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;[+] Success! Solution is: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Could not find the solution&#39;</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="07_angr_symbolic_file">07_angr_symbolic_file</h2>
+<p>符号化文件中的内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+    <span class="n">start_addr</span> <span class="o">=</span> <span class="mh">0x080488D6</span>  
+    <span class="n">init_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span> <span class="o">=</span> <span class="n">start_addr</span><span class="p">)</span>  
+  
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;OJKSQYDP.txt&#34;</span>  
+    <span class="n">file_size</span> <span class="o">=</span> <span class="mh">0x40</span>  
+  
+    <span class="n">password</span> <span class="o">=</span> <span class="n">init_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">,</span> <span class="n">file_size</span><span class="p">)</span>  
+  
+    <span class="c1"># SimFile是构造文件信息，包括文件名，文件内容和文件大小  </span>
+    <span class="n">simgr_file</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">SimFile</span><span class="p">(</span>  
+        <span class="n">filename</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">file_size</span><span class="p">)</span>  
+  
+    <span class="c1"># angr.fs.insert是将文件插入到文件系统中，需要文件名与符号化的文件  </span>
+    <span class="n">init_state</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">simgr_file</span><span class="p">)</span>  
+  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+  
+<span class="k">print</span><span class="p">(</span><span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span><span class="o">=</span><span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span><span class="o">=</span><span class="n">should_abort</span><span class="p">))</span>  
+<span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password</span><span class="p">,</span>  <span class="n">cast_to</span><span class="o">=</span><span class="nb">bytes</span><span class="p">))</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Solution not found.&#34;</span><span class="p">))</span>  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="08_angr_constraints">08_angr_constraints</h2>
+<p>自己添加约束条件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>  
+<span class="p">{</span>  
+    <span class="kt">signed</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [esp+Ch] [ebp-Ch]  
+</span><span class="c1"></span>  
+    <span class="n">password</span> <span class="o">=</span> <span class="mi">1146115393</span><span class="p">;</span>  
+    <span class="n">dword_804A044</span> <span class="o">=</span> <span class="mi">1380994638</span><span class="p">;</span>  
+    <span class="n">dword_804A048</span> <span class="o">=</span> <span class="mi">1381647695</span><span class="p">;</span>  
+    <span class="n">dword_804A04C</span> <span class="o">=</span> <span class="mi">1112233802</span><span class="p">;</span>  
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x11u</span><span class="p">);</span>  
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the password: &#34;</span><span class="p">);</span>  
+    <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%16s&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>  
+    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>  
+    <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">134520912</span><span class="p">)</span> <span class="o">=</span> <span class="n">complex_function</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">134520912</span><span class="p">),</span> <span class="mi">15</span> <span class="o">-</span> <span class="n">i</span><span class="p">);</span>  
+    <span class="k">if</span> <span class="p">(</span> <span class="n">check_equals_AUPDNNPROEZRJWKB</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span> <span class="mh">0x10u</span><span class="p">)</span> <span class="p">)</span>  
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Good Job.&#34;</span><span class="p">);</span>  
+    <span class="k">else</span>  
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Try again.&#34;</span><span class="p">);</span>  
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>原函数<code>check_equals_AUPDNNPROEZRJWKB</code>是一个比较简单的函数，但是因为字符一个一个比较会产生路径爆炸问题，所以当执行到这个函数里面时，我们用自己的方法来实现，实现的方法是添加约束add_constraints</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+    <span class="n">start_addr</span> <span class="o">=</span> <span class="mh">0x08048625</span>  
+    <span class="n">init_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">blank_state</span><span class="p">(</span><span class="n">addr</span> <span class="o">=</span> <span class="n">start_addr</span><span class="p">)</span>  
+  
+    <span class="n">buff_addr</span> <span class="o">=</span> <span class="mh">0x0804A050</span>  
+    <span class="n">password</span> <span class="o">=</span> <span class="n">init_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">,</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span>  
+  
+    <span class="n">init_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">buff_addr</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>  
+  
+    <span class="n">simgr</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span>  
+  
+    <span class="n">check_addr</span> <span class="o">=</span> <span class="mh">0x08048565</span>  
+          
+    <span class="c1"># 当找到这个函数时  </span>
+    <span class="n">simgr</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">check_addr</span><span class="p">)</span>  
+  
+    <span class="k">if</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+        <span class="n">check_state</span> <span class="o">=</span> <span class="n">simgr</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="n">desired_string</span> <span class="o">=</span> <span class="s2">&#34;AUPDNNPROEZRJWKB&#34;</span>  
+        <span class="n">check_param1</span> <span class="o">=</span>  <span class="n">buff_addr</span>  
+        <span class="n">check_param2</span> <span class="o">=</span> <span class="mh">0x10</span>  
+        <span class="c1"># 获取内存地址处的值  </span>
+        <span class="n">check_bvs</span> <span class="o">=</span> <span class="n">check_state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">check_param1</span><span class="p">,</span> <span class="n">check_param2</span><span class="p">)</span>  
+        <span class="n">check_constraint</span> <span class="o">=</span> <span class="n">desired_string</span> <span class="o">==</span> <span class="n">check_bvs</span>  
+        <span class="n">check_state</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="n">check_constraint</span><span class="p">)</span>  
+        <span class="k">print</span><span class="p">(</span><span class="n">check_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">cast_to</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以直接对check函数进行hook</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">claripy</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+    <span class="c1"># call    check_equals_AUPDNNPROEZRJWKB处的地址  </span>
+    <span class="n">check_equals_called_address</span> <span class="o">=</span> <span class="mh">0x8048673</span>  
+  
+    <span class="n">instruction_to_skip_length</span> <span class="o">=</span> <span class="mi">5</span>  
+  
+<span class="nd">@project.hook</span><span class="p">(</span><span class="n">check_equals_called_address</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">instruction_to_skip_length</span><span class="p">)</span>  
+<span class="k">def</span> <span class="nf">skip_check_equals_</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">user_input_buff_address</span> <span class="o">=</span> <span class="mh">0x804a054</span>  
+    <span class="n">user_input_buff_length</span> <span class="o">=</span> <span class="mi">16</span>  
+    <span class="n">user_input_string</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>  
+        <span class="n">user_input_buff_address</span><span class="p">,</span>  
+        <span class="n">user_input_buff_length</span>  
+    <span class="p">)</span>  
+  
+    <span class="n">check_against_string</span> <span class="o">=</span> <span class="s2">&#34;XKSPZSJKJYQCQXZV&#34;</span>  
+    <span class="c1"># 函数对比的结果保存在eax中返回  </span>
+    <span class="n">state</span><span class="o">.</span><span class="n">regs</span><span class="o">.</span><span class="n">eax</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">If</span> <span class="p">(</span>  
+        <span class="n">user_input_string</span> <span class="o">==</span> <span class="n">check_against_string</span><span class="p">,</span>  
+        <span class="n">claripy</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  
+        <span class="n">claripy</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+    <span class="p">)</span>  
+  
+    <span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span> <span class="o">=</span> <span class="n">should_abort</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Could not find the solution&#34;</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="10_angr_simprocedures">10_angr_simprocedures</h2>
+<p>使用函数名进行hook(出现多个地方call func的时候对每个call指令地址进行hook太麻烦，针对有符号的函数)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">claripy</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+  
+<span class="k">class</span> <span class="nc">mySimPro</span><span class="p">(</span><span class="n">angr</span><span class="o">.</span><span class="n">SimProcedure</span><span class="p">):</span>  
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">,</span> <span class="n">user_input_length</span><span class="p">):</span>  
+        <span class="n">angr_bvs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load</span> <span class="p">(</span>  
+            <span class="n">user_input</span><span class="p">,</span>  
+            <span class="n">user_input_length</span>  
+        <span class="p">)</span>  
+  
+        <span class="n">check_string</span> <span class="o">=</span> <span class="s2">&#34;ORSDDWXHZURJRBDH&#34;</span>  
+  
+        <span class="k">return</span> <span class="n">claripy</span><span class="o">.</span><span class="n">If</span> <span class="p">(</span>  
+            <span class="n">check_string</span> <span class="o">==</span> <span class="n">angr_bvs</span><span class="p">,</span>  
+            <span class="n">claripy</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  
+            <span class="n">claripy</span><span class="o">.</span><span class="n">BVV</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+        <span class="p">)</span>  
+  
+<span class="n">check_symbol</span> <span class="o">=</span> <span class="s2">&#34;check_equals_ORSDDWXHZURJRBDH&#34;</span>  
+<span class="n">project</span><span class="o">.</span><span class="n">hook_symbol</span><span class="p">(</span><span class="n">check_symbol</span><span class="p">,</span> <span class="n">mySimPro</span><span class="p">())</span>  
+  
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span> <span class="o">=</span> <span class="n">should_abort</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Could not find the solution&#34;</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以用符号hook scanf函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">claripy</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+  
+<span class="k">class</span> <span class="nc">ReplacementScanf</span><span class="p">(</span><span class="n">angr</span><span class="o">.</span><span class="n">SimProcedure</span><span class="p">):</span>  
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_string</span><span class="p">,</span> <span class="n">scanf0_address</span><span class="p">,</span> <span class="n">scanf1_address</span><span class="p">):</span>  
+        <span class="n">scanf0</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;scanf0&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+        <span class="n">scanf1</span> <span class="o">=</span> <span class="n">claripy</span><span class="o">.</span><span class="n">BVS</span><span class="p">(</span><span class="s1">&#39;scanf1&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>  
+  
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">scanf0_address</span><span class="p">,</span> <span class="n">scanf0</span><span class="p">,</span> <span class="n">endness</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">arch</span><span class="o">.</span><span class="n">memory_endness</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">scanf1_address</span><span class="p">,</span> <span class="n">scanf1</span><span class="p">,</span> <span class="n">endness</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">arch</span><span class="o">.</span><span class="n">memory_endness</span><span class="p">)</span>  
+  
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">globals</span><span class="p">[</span><span class="s1">&#39;solutions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">scanf0</span><span class="p">,</span> <span class="n">scanf1</span><span class="p">)</span>  
+  
+<span class="n">scanf_symbol</span> <span class="o">=</span> <span class="s2">&#34;__isoc99_scanf&#34;</span>  
+  
+<span class="n">project</span><span class="o">.</span><span class="n">hook_symbol</span><span class="p">(</span><span class="n">scanf_symbol</span><span class="p">,</span> <span class="n">ReplacementScanf</span><span class="p">())</span>  
+  
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span> <span class="o">=</span> <span class="n">should_abort</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="n">stored_solutions</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">globals</span><span class="p">[</span><span class="s1">&#39;solutions&#39;</span><span class="p">]</span>  
+    <span class="n">scanf0_solution</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">stored_solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cast_to</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">)</span>  
+    <span class="n">scanf1_solution</span> <span class="o">=</span> <span class="n">solution_state</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">stored_solutions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cast_to</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">)</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">scanf0_solution</span><span class="p">,</span> <span class="n">scanf1_solution</span><span class="p">)</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Could not find the solution&#34;</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="12_angr_veritesting">12_angr_veritesting</h2>
+<p>学习使用Veritesting的技术解决路径爆炸问题</p>
+<p>Python<br>
+Veritesting</p>
+<ul>
+<li>结合静态符号执行和动态符号执行</li>
+<li>把限制式全部合并到一条路径上</li>
+<li>减少 path explosion 的影响</li>
+</ul>
+<p><code>project.factory.simgr(initial_state, veritesting=True)</code><br>
+IDA打开，其中这个循环会在二叉决策的时候导致路径爆炸</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">31</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>  
+<span class="p">{</span>  
+    <span class="n">v5</span> <span class="o">=</span> <span class="o">*</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">s</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>  
+    <span class="k">if</span> <span class="p">(</span> <span class="n">v5</span> <span class="o">==</span> <span class="n">complex_function</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">93</span><span class="p">)</span> <span class="p">)</span>  
+    <span class="o">++</span><span class="n">v15</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">claripy</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+  
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">veritesting</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span> <span class="o">=</span> <span class="n">should_abort</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Could not find the solution&#34;</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="13_angr_static_binary">13_angr_static_binary</h2>
+<p>针对静态编译的程序，angr提供了一些常用库函数的实现,eg:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;malloc&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;fopen&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;fclose&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;fwrite&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;getchar&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;strncmp&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;strcmp&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;scanf&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;printf&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;puts&#39;]  </span>
+<span class="c1"># angr.SIM_PROCEDURES[&#39;libc&#39;][&#39;exit&#39;]  </span>
+</code></pre></td></tr></table>
+</div>
+</div><p>需要找到这些函数进行hook</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">angr</span>  
+<span class="kn">import</span> <span class="nn">claripy</span>  
+<span class="kn">import</span> <span class="nn">sys</span>  
+  
+  
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>  
+    <span class="n">bin_path</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">project</span> <span class="o">=</span> <span class="n">angr</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>  
+  
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">entry_state</span><span class="p">()</span>  
+  
+    <span class="n">simulation</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">simgr</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>  
+  
+    <span class="n">project</span><span class="o">.</span><span class="n">hook</span><span class="p">(</span><span class="mh">0x804ed40</span><span class="p">,</span> <span class="n">angr</span><span class="o">.</span><span class="n">SIM_PROCEDURES</span><span class="p">[</span><span class="s1">&#39;libc&#39;</span><span class="p">][</span><span class="s1">&#39;printf&#39;</span><span class="p">]())</span>  
+    <span class="n">project</span><span class="o">.</span><span class="n">hook</span><span class="p">(</span><span class="mh">0x804ed80</span><span class="p">,</span> <span class="n">angr</span><span class="o">.</span><span class="n">SIM_PROCEDURES</span><span class="p">[</span><span class="s1">&#39;libc&#39;</span><span class="p">][</span><span class="s1">&#39;scanf&#39;</span><span class="p">]())</span>  
+    <span class="n">project</span><span class="o">.</span><span class="n">hook</span><span class="p">(</span><span class="mh">0x804f350</span><span class="p">,</span> <span class="n">angr</span><span class="o">.</span><span class="n">SIM_PROCEDURES</span><span class="p">[</span><span class="s1">&#39;libc&#39;</span><span class="p">][</span><span class="s1">&#39;puts&#39;</span><span class="p">]())</span>  
+    <span class="n">project</span><span class="o">.</span><span class="n">hook</span><span class="p">(</span><span class="mh">0x8048d10</span><span class="p">,</span> <span class="n">angr</span><span class="o">.</span><span class="n">SIM_PROCEDURES</span><span class="p">[</span><span class="s1">&#39;glibc&#39;</span><span class="p">][</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">]())</span>  
+  
+  
+<span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Good Job.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="k">def</span> <span class="nf">should_abort</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>  
+    <span class="n">stdout_output</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&#34;Try again.&#34;</span> <span class="ow">in</span> <span class="n">stdout_output</span>  
+  
+<span class="n">simulation</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">find</span> <span class="o">=</span> <span class="n">is_successful</span><span class="p">,</span> <span class="n">avoid</span> <span class="o">=</span> <span class="n">should_abort</span><span class="p">)</span>  
+  
+<span class="k">if</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>  
+    <span class="n">solution_state</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">solution_state</span><span class="o">.</span><span class="n">posix</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">raise</span><span class="p">(</span><span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Could not find the solution&#34;</span><span class="p">))</span>  
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考链接">参考链接</h2>
+<p><a href="https://xz.aliyun.com/t/6557">https://xz.aliyun.com/t/6557</a><br>
+<a href="https://lantern.cool/2020/05/15/note-tool-angr/">https://lantern.cool/2020/05/15/note-tool-angr/</a><br>
+<a href="https://xz.aliyun.com/t/7117">https://xz.aliyun.com/t/7117</a><br>
+<a href="https://github.com/firmianay/CTF-All-In-One/blob/master/doc/5.3.1_angr.md">https://github.com/firmianay/CTF-All-In-One/blob/master/doc/5.3.1_angr.md</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" data-title="angr使用"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" data-title="angr使用"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" data-title="angr使用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%A4%A9-angr_ctf/" data-title="angr使用"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/rctf2020-%E9%83%A8%E5%88%86re/" class="prev" rel="prev" title="RCTF2020-部分re"><i class="fas fa-angle-left fa-fw"></i>RCTF2020-部分re</a>
+            <a href="/%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93-%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%A4%A9-%E5%8F%8D%E8%B0%83%E8%AF%95/" class="next" rel="next" title="反调试技术">反调试技术<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

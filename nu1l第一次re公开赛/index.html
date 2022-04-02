@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Nu1L第一次RE公开赛WP - EP`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Nu1L第一次RE公开赛WP" />
+<meta property="og:description" content="因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。 引用 Nu1L官方wp 某大佬的博客 花指令 关于花" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" />
+<meta property="og:image" content="https://linkleyping.top/logo.png"/>
+<meta property="article:published_time" content="2020-04-05T15:22:45+08:00" />
+<meta property="article:modified_time" content="2020-04-05T15:22:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://linkleyping.top/logo.png"/>
+
+<meta name="twitter:title" content="Nu1L第一次RE公开赛WP"/>
+<meta name="twitter:description" content="因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。 引用 Nu1L官方wp 某大佬的博客 花指令 关于花"/>
+<meta name="application-name" content="EP`s blog">
+<meta name="apple-mobile-web-app-title" content="EP`s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" /><link rel="prev" href="https://linkleyping.top/rop%E5%AD%A6%E4%B9%A0/" /><link rel="next" href="https://linkleyping.top/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nu1L第一次RE公开赛WP",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/linkleyping.top\/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B\/"
+        },"image": ["https:\/\/linkleyping.top\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3673 ,
+        "url": "https:\/\/linkleyping.top\/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B\/","datePublished": "2020-04-05T15:22:45+08:00","dateModified": "2020-04-05T15:22:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/linkleyping.top\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "EP"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">  
+    <div class="header-wrapper">  
+        <div class="header-title">  
+            <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+        </div>  
+        <div class="menu">  
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-desktop">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                    <i class="fas fa-adjust fa-fw"></i>  
+                </a>  
+            </div>  
+        </div>  
+    </div>  
+</header><header class="mobile" id="header-mobile">  
+    <div class="header-container">  
+        <div class="header-wrapper">  
+            <div class="header-title">  
+                <a href="/" title="EP`s blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/icon.png"
+        data-srcset="/images/icon.png, /images/icon.png 1.5x, /images/icon.png 2x"
+        data-sizes="auto"
+        alt="/images/icon.png"
+        title="/images/icon.png" />EP`s blog</a>  
+            </div>  
+            <div class="menu-toggle" id="menu-toggle-mobile">  
+                <span></span><span></span><span></span>  
+            </div>  
+        </div>  
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">  
+                    <div class="search mobile" id="search-mobile">  
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">  
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">  
+                            <i class="fas fa-search fa-fw"></i>  
+                        </a>  
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">  
+                            <i class="fas fa-times-circle fa-fw"></i>  
+                        </a>  
+                        <span class="search-button search-loading" id="search-loading-mobile">  
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>  
+                        </span>  
+                    </div>  
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">  
+                        取消  
+                    </a>  
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/LinkleYping" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">  
+                <i class="fas fa-adjust fa-fw"></i>  
+            </a></div>  
+    </div>  
+</header>  
+<div class="search-dropdown desktop">  
+    <div id="search-dropdown-desktop"></div>  
+</div>  
+<div class="search-dropdown mobile">  
+    <div id="search-dropdown-mobile"></div>  
+</div>  
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Nu1L第一次RE公开赛WP</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://linkleyping.top" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>EP</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-05">2020-04-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3673 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引用">引用</a></li>
+    <li><a href="#花指令">花指令</a></li>
+    <li><a href="#天堂之门">天堂之门</a></li>
+    <li><a href="#solve">solve</a></li>
+    <li><a href="#感想">感想</a></li>
+    <li><a href="#补一个控制转移指令的总结">补一个控制转移指令的总结</a>
+      <ul>
+        <li><a href="#call指令">Call指令</a></li>
+        <li><a href="#ret指令">Ret指令</a></li>
+        <li><a href="#jmp指令">Jmp指令</a></li>
+        <li><a href="#条件转移指令">条件转移指令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>因为第二天有xctf所以这道题从晚上九点出来到12点我没有做出来就睡了,看了官方的wp记录一下。</p>
+<h2 id="引用">引用</h2>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4MTg1NzAzMA==&amp;mid=2247483865&amp;idx=1&amp;sn=718b2929fc7aac8ac550a4c6160e5bb4&amp;chksm=fd407bb0ca37f2a649951d2643dce6bbbcb376ef3fed2153b4b0f953c7dcafd150d32d69c296&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1583753556598&amp;sharer_shareid=f0e8c979e190e71002368e0459a8dd84#rd" target="_blank" rel="noopener noreffer">Nu1L官方wp</a> <br>
+<a href="https://www.cnblogs.com/y-m-y/p/12535795.html" target="_blank" rel="noopener noreffer">某大佬的博客</a></p>
+<h2 id="花指令">花指令</h2>
+<p>关于花指令 <br>
+<a href="https://blog.csdn.net/whklhhhh/article/details/88677670">https://blog.csdn.net/whklhhhh/article/details/88677670</a> <br>
+<a href="https://blog.csdn.net/whklhhhh/article/details/88730934">https://blog.csdn.net/whklhhhh/article/details/88730934</a> <br>
+在没有去除花指令之前，打开ida的关键代码如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">sub_123413B0</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// ST40_4  
+</span><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// ST44_4  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// ST78_4  
+</span><span class="c1"></span>  
+<span class="n">nullsub_11</span><span class="p">();</span>  
+<span class="n">sub_12341340</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+<span class="n">v0</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;npointer{&#34;</span><span class="p">);</span>  
+<span class="n">v1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;}&#34;</span><span class="p">);</span>  
+<span class="n">v2</span> <span class="o">=</span> <span class="n">sub_123416AD</span><span class="p">(</span><span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span> <span class="o">+</span> <span class="mi">33</span><span class="p">);</span>  
+<span class="n">nullsub_12</span><span class="p">();</span>  
+<span class="n">sub_12341020</span><span class="p">(</span><span class="s">&#34;Input the correct keys: &#34;</span><span class="p">);</span>  
+<span class="n">nullsub_24</span><span class="p">();</span>  
+<span class="n">sub_12341050</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span> <span class="o">+</span> <span class="mi">33</span><span class="p">);</span>  
+<span class="n">JUMPOUT</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">loc_1234148F</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>JUMPOUT后面的代码没有反编译出来，查看汇编代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">.text:12341487 E8 <span class="m">04</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>                    call    near ptr loc_1234148F+1  
+.text:1234148C <span class="m">77</span> EB                             ja      short loc_12341479  
+.text:1234148E <span class="m">07</span>                                pop     es  
+.text:1234148F  
+.text:1234148F                         loc_1234148F:                     <span class="p">;</span> CODE XREF: sub_123413B0+D7↑p  
+.text:1234148F <span class="m">88</span> <span class="m">36</span>                             mov     <span class="o">[</span>esi<span class="o">]</span>, dh  
+.text:12341491 <span class="m">83</span> <span class="m">04</span> <span class="m">24</span> <span class="m">01</span>                       add     <span class="o">[</span>esp<span class="o">]</span>, <span class="m">1</span>  
+.text:12341495 C3                                retn  
+</code></pre></td></tr></table>
+</div>
+</div><p>call指令等于这样两条指令，一是把自身所在位置的下一条指令的地址压入堆栈，二是jmp到call的地址处，而ret指令可以理解为jmp到call指令压入堆栈的地址，因此，可以用call指令这样来写花指令： <br>
+1.call一个地址，在call下面随便写一点花指令，但是要注意一点与jmp版花指令不同的，我们要记得自己写的花指令占了多少个字节，比如，占了2字节 <br>
+2.在call里面，也就是函数里面，首先pop出压入的地址，然后把这个地址减去花指令占用的字节数，这里是2字节，再重新push进堆栈，然后就ret，这样，call结束以后执行的下一条指令就是我们想要去的位置了，也就是花指令下面的正常的指令了 <br>
+对于这样一个花指令，call一个函数内的地址然后再retn返回，IDA会认为被call的地址是一个新的函数，当前函数就被截断了，影响到了IDA的分析。 <br>
+图中call指令之后在call函数里将栈顶的值加了1，所以call指令后面的77可以忽略直接到<code>EB 07</code>这条指令，这个是<code>jmp 7</code>的意思，可以直接跳到retn指令后面。 <br>
+官方wp中说主程序中穿插的花指令形式如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#define JUNK2(idx) __asm{          \  </span>
+__asm  call next1_junk2_##idx          <span class="se">\ </span> 
+__asm  __emit 0x77          <span class="se">\ </span> 
+__asm  jmp next_junk2_##idx        <span class="se">\ </span> 
+__asm  __emit 0x88          <span class="se">\ </span> 
+__asm  next1_junk2_##idx:            <span class="se">\ </span> 
+__asm  add dword ptr ss:<span class="o">[</span>esp<span class="o">]</span>, <span class="m">1</span>  <span class="se">\ </span> 
+__asm  ret              <span class="se">\ </span> 
+__asm  next_junk2_##idx:              <span class="se">\ </span> 
+<span class="o">}</span>  
+  
+  
+<span class="c1">#define JUNK1(idx) __asm{\  </span>
+__asm jmp jlabel##idx <span class="se">\ </span> 
+__asm __emit 0x88 <span class="se">\ </span> 
+__asm jlabel_##idx : <span class="se">\ </span> 
+__asm ret <span class="se">\ </span> 
+__asm __emit 0xba <span class="se">\ </span> 
+__asm jlabel##idx : <span class="se">\ </span> 
+__asm call jlabel_##idx  <span class="se">\ </span> 
+<span class="o">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>这两个花指令的二进制形式如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="s1">&#39;&#39;&#39;  
+</span><span class="s1">EB0388C3BAE8F9FFFFFF  
+</span><span class="s1">E80400000077EB07883683042401C3  
+</span><span class="s1">&#39;&#39;&#39;</span>  
+<span class="n">stripd</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;gatesXgame_un.exe&#39;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+  <span class="n">raw</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">):</span>  
+      <span class="k">if</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">10</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="se">\xEB\x03\x88\xC3\xBA\xE8\xF9\xFF\xFF\xFF</span><span class="s2">&#34;</span><span class="p">:</span>  
+          <span class="n">stripd</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\x90</span><span class="s2">&#34;</span><span class="o">*</span><span class="mi">10</span>  
+          <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">10</span>  
+      <span class="k">elif</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">15</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="se">\xE8\x04\x00\x00\x00\x77\xEB\x07\x88\x36\x83\x04\x24\x01\xC3</span><span class="s2">&#34;</span><span class="p">:</span>  
+          <span class="n">stripd</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\x90</span><span class="s2">&#34;</span><span class="o">*</span><span class="mi">15</span>  
+          <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">15</span>  
+      <span class="k">else</span><span class="p">:</span>  
+          <span class="n">stripd</span> <span class="o">+=</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  
+          <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>  
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;gate_str.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stripd</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>去除花指令后的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">sub_123413B0</span><span class="p">()</span>  
+<span class="p">{</span>  
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v0</span><span class="p">;</span> <span class="c1">// ST40_4  
+</span><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// ST44_4  
+</span><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="n">Buf1</span><span class="p">;</span> <span class="c1">// [esp+6Ch] [ebp-Ch]  
+</span><span class="c1"></span>  
+<span class="n">sub_12341340</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  
+<span class="n">v0</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;npointer{&#34;</span><span class="p">);</span>  
+<span class="n">v1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;}&#34;</span><span class="p">);</span>  
+<span class="n">Buf1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">sub_123416AD</span><span class="p">(</span><span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span> <span class="o">+</span> <span class="mi">33</span><span class="p">);</span>  
+<span class="n">print</span><span class="p">(</span><span class="s">&#34;Input the correct keys: &#34;</span><span class="p">);</span>  
+<span class="n">sub_12341050</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">Buf1</span><span class="p">,</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span> <span class="o">+</span> <span class="mi">33</span><span class="p">);</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">memcmp</span><span class="p">(</span><span class="n">Buf1</span><span class="p">,</span> <span class="s">&#34;npointer{&#34;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;npointer{&#34;</span><span class="p">))</span>  
+  <span class="o">&amp;&amp;</span> <span class="n">Buf1</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">Buf1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">asc_12343738</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+  <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Buf1</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">Buf1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sub_12341090</span><span class="p">(</span><span class="n">sub_12343798</span><span class="p">,</span> <span class="mh">0x30D3u</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">Buf1</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="s">&#34;npointer{&#34;</span><span class="p">)]))</span> <span class="p">)</span>  
+<span class="p">{</span>  
+  <span class="n">sub_12341340</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+  <span class="n">print</span><span class="p">(</span><span class="s">&#34;Congrats!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+<span class="p">}</span>  
+<span class="k">else</span>  
+<span class="p">{</span>  
+  <span class="n">print</span><span class="p">(</span><span class="s">&#34;Sorry, the gate remains closed.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>  
+<span class="p">}</span>  
+<span class="k">return</span> <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>  
+<span class="p">}</span>  
+  
+<span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">sub_12341090</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">Src</span><span class="p">,</span> <span class="n">SIZE_T</span> <span class="n">dwSize</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a3</span><span class="p">)</span>  
+<span class="p">{</span>  
+<span class="n">HANDLE</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// eax  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// ST38_4  
+</span><span class="c1"></span><span class="n">LPVOID</span> <span class="n">Dst</span><span class="p">;</span> <span class="c1">// [esp+1Ch] [ebp-14h]  
+</span><span class="c1"></span>  
+<span class="n">Dst</span> <span class="o">=</span> <span class="n">VirtualAlloc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dwSize</span><span class="p">,</span> <span class="mh">0x3000u</span><span class="p">,</span> <span class="mh">0x40u</span><span class="p">);</span>  
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">Dst</span> <span class="p">)</span>  
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="n">memcpy</span><span class="p">(</span><span class="n">Dst</span><span class="p">,</span> <span class="n">Src</span><span class="p">,</span> <span class="n">dwSize</span><span class="p">);</span>  
+<span class="n">v4</span> <span class="o">=</span> <span class="n">GetCurrentProcess</span><span class="p">();</span>  
+<span class="n">FlushInstructionCache</span><span class="p">(</span><span class="n">v4</span><span class="p">,</span> <span class="n">Dst</span><span class="p">,</span> <span class="n">dwSize</span><span class="p">);</span>  
+<span class="n">sub_12341240</span><span class="p">();</span>  
+<span class="n">v5</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">*</span><span class="p">)(</span><span class="n">_DWORD</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="p">))</span><span class="n">Dst</span><span class="p">)(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">strlen</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">a3</span><span class="p">));</span>  
+<span class="n">VirtualFree</span><span class="p">(</span><span class="n">Dst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x8000u</span><span class="p">);</span>  
+<span class="k">return</span> <span class="n">v5</span><span class="p">;</span>  
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>所以主要的验证部分在sub_12343798处,在进入检测代码之前设置了一些参数信息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">//edx --&gt; char* flag  
+//ecx --&gt; int idx  
+//edi --&gt; payload_base  
+//ebx --&gt; MAX_STEP <span class="o">(</span>len<span class="o">(</span>flag<span class="o">))</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="天堂之门">天堂之门</h2>
+<p>在Windows64操作系统下，所有的32位程序会被装载到WoW64子系统中运行。而某些windows kernel调用，WoW64会将其钩取为64位调用。在这个过程中，运行的程序会从兼容模式暂时地切换成64位模式运行。利用这个特性，我们可以在程序运行过程中主动切换为64位模式来执行64位代码，以达到某种保护程序(如使静态分析失败、动态跟踪混乱)的目的。<br>
+这种保护方法被称为Heaven&rsquo;s Gate，直译就是天堂之门。架构的切换对于运行在 Wow64 环境下的程序是必不可少的，运行在 64 位 Windows 系统下的 32 位程序在进入系统调用前需要完成下述操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">32-bit ntdll.dll -&gt; wow64cpu.dll’s Heaven’s Gate -&gt; 64-bit ntdll.dll -&gt; syscall into the kernel  
+</code></pre></td></tr></table>
+</div>
+</div><p>WoW64根据段寄存器cs的值来确定程序的运行模式，如果cs的值为0x33，则当前是64位模式；如果cs的值为0x23，则当前为兼容模式。<br>
+这道题采用了这样的方式来切换运行模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">// open_gate_template_x86  
+push 0x33 // cs:0x33  
+sub esp, <span class="m">4</span>  
+mov dword ptr ss:<span class="o">[</span>esp<span class="o">]</span>, grid_dst_ip // next grid  
+add qword ptr ss:<span class="o">[</span>esp<span class="o">]</span>, edi // payload_base  
+inc ecx // step++  
+retf  
+  
+// open_gate_template_x64  
+push 0x23 // cs:0x23  
+sub rsp, <span class="m">8</span>  
+mov qword ptr ss:<span class="o">[</span>rsp<span class="o">]</span>, grid_dst_ip  
+add qword ptr ss:<span class="o">[</span>rsp<span class="o">]</span>, rdi  
+inc rcx // step++  
+retfq  
+</code></pre></td></tr></table>
+</div>
+</div><p>因为架构的切换过程加上验证部分中间依旧穿插了部分花指令，x86到x64的切换大致过程如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">)</span>  
+<span class="n">a</span> <span class="o">=</span> <span class="mh">0x33</span> <span class="o">^</span> <span class="n">b</span>  
+<span class="n">open_gate_template_x86_mutated</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;&#34;&#34;  
+</span><span class="s2">      open_gate_label:  
+</span><span class="s2">          push {hex(a)}  
+</span><span class="s2">          xor dword ptr ss:[esp], {hex(b)}  
+</span><span class="s2">          call next_label // sub esp, 4  
+</span><span class="s2">          .byte {random.randint(0,255)}  
+</span><span class="s2">          next_label:  
+</span><span class="s2">          mov dword ptr ss:[esp], grid_dst_ip  
+</span><span class="s2">          add dword ptr ss:[esp], edi  
+</span><span class="s2">          inc ecx  
+</span><span class="s2">          retf&#34;&#34;&#34;</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>再弄明白这个架构的切换之后，可以看出来验证部分主要是一个迷宫(图搜索),不过需要确定最最开始的两条路径(即最前面两个字母需要时f4)然后后面的路径过程基本一致，可以写出遍历程序求解。 <br>
+补一些关于天堂之门的学习链接 <br>
+<a href="http://rce.co/knockin-on-heavens-gate-dynamic-processor-mode-switching/">http://rce.co/knockin-on-heavens-gate-dynamic-processor-mode-switching/</a> <br>
+<a href="https://medium.com/@fsx30/hooking-heavens-gate-a-wow64-hooking-technique-5235e1aeed73">https://medium.com/@fsx30/hooking-heavens-gate-a-wow64-hooking-technique-5235e1aeed73</a> <br>
+<a href="https://www.malwaretech.com/2014/02/the-0x33-segment-selector-heavens-gate.html">https://www.malwaretech.com/2014/02/the-0x33-segment-selector-heavens-gate.html</a> <br>
+这部分代码调试需要使用WinDbg(x64),这个调试器可以自动完成32到64位的切换，我试了一下使用这个调试器，在执行retf后，寄存器从eax变成了rax，在执行retfq后，寄存器从rax变成了eax.</p>
+<h2 id="solve">solve</h2>
+<p>膜Thiner</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/python  </span>
+  
+  
+<span class="s2">&#34;&#34;&#34;  
+</span><span class="s2">Solution Author: Thiner @ NeSE  
+</span><span class="s2">  
+</span><span class="s2">  
+</span><span class="s2">The challenge is solved with some luck.  
+</span><span class="s2">&#34;&#34;&#34;</span>  
+  
+  
+<span class="s2">&#34;&#34;&#34;  
+</span><span class="s2">note here  
+</span><span class="s2">rbx=total  
+</span><span class="s2">rcx=0  
+</span><span class="s2">rdx=buffer without npointer{}  
+</span><span class="s2">rdi=&amp;code  
+</span><span class="s2">init is 32bit  
+</span><span class="s2">return value is check result  
+</span><span class="s2">  
+</span><span class="s2">  
+</span><span class="s2">offset  : 0x2198  
+</span><span class="s2">virtaddr: 0x12343798  
+</span><span class="s2">code len: 0x30d3  
+</span><span class="s2">&#34;&#34;&#34;</span>  
+  
+  
+<span class="c1"># gatesXgame_un.exe is the upx unpacked binary  </span>
+  
+  
+<span class="kn">import</span> <span class="nn">capstone</span> <span class="kn">as</span> <span class="nn">cs</span>  
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;gatesXgame_un.exe&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+  
+  
+  
+  
+<span class="n">code</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="mh">0x2198</span><span class="p">:</span><span class="mh">0x2198</span><span class="o">+</span><span class="mh">0x30d3</span><span class="p">]</span>  
+  
+  
+<span class="c1"># &#34;&#34;&#34;  </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="p">):</span>  
+    <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\xe8\x01\x00\x00\x00</span><span class="s1">&#39;</span><span class="p">:</span>  
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\xf1</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">6</span><span class="p">:]</span>  
+    <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\xe8\x02\x00\x00\x00</span><span class="s1">&#39;</span><span class="p">:</span>  
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\xcd\x81</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">7</span><span class="p">:]</span>  
+    <span class="k">if</span> <span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\xe8\x03\x00\x00\x00</span><span class="s1">&#39;</span><span class="p">:</span>  
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\xcd\x82\xf1</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">8</span><span class="p">:]</span>  
+  
+  
+<span class="c1"># code=code.replace(&#39;e803000000e4de78&#39;.replace())  </span>
+  
+  
+<span class="n">md32</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">Cs</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">CS_ARCH_X86</span><span class="p">,</span> <span class="n">cs</span><span class="o">.</span><span class="n">CS_MODE_32</span><span class="p">)</span>  
+<span class="n">md64</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">Cs</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">CS_ARCH_X86</span><span class="p">,</span> <span class="n">cs</span><span class="o">.</span><span class="n">CS_MODE_64</span><span class="p">)</span>  
+  
+  
+  
+  
+<span class="k">def</span> <span class="nf">dis32</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>  
+    <span class="k">print</span> <span class="s1">&#39; code 32 {:#x} &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>  
+    <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">md32</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">addr</span><span class="p">:</span><span class="n">addr</span><span class="o">+</span><span class="mh">0x100</span><span class="p">],</span> <span class="n">addr</span><span class="p">)):</span>  
+        <span class="k">print</span> <span class="s1">&#39;{:3d}{:&gt;#8x} {:&gt;7s} {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">mnemonic</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">op_str</span><span class="p">)</span>  
+  
+  
+  
+  
+<span class="k">def</span> <span class="nf">dis64</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>  
+    <span class="k">print</span> <span class="s1">&#39; code 64 {:#x} &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>  
+    <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">md64</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">addr</span><span class="p">:</span><span class="n">addr</span><span class="o">+</span><span class="mh">0x100</span><span class="p">],</span> <span class="n">addr</span><span class="p">)):</span>  
+        <span class="k">print</span> <span class="s1">&#39;{:3d}{:&gt;#8x} {:&gt;7s} {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">mnemonic</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">op_str</span><span class="p">)</span>  
+  
+  
+  
+  
+<span class="k">def</span> <span class="nf">ext32</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>  
+    <span class="c1">#dis32(addr)  </span>
+    <span class="n">head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">md32</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">addr</span><span class="p">:</span><span class="n">addr</span><span class="o">+</span><span class="mh">0x80</span><span class="p">],</span> <span class="n">addr</span><span class="p">))</span>  
+    <span class="c1"># 3+2k  </span>
+    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>  
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  
+        <span class="k">if</span> <span class="n">head</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mnemonic</span> <span class="o">!=</span> <span class="s1">&#39;cmp&#39;</span><span class="p">:</span>  
+            <span class="k">break</span>  
+        <span class="n">ch</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">head</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">op_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">tar</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">head</span><span class="p">[</span><span class="mi">4</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">op_str</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">inst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">md32</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">tar</span><span class="p">:</span><span class="n">tar</span><span class="o">+</span><span class="mh">0x30</span><span class="p">],</span> <span class="n">tar</span><span class="p">))[</span><span class="mi">4</span><span class="p">]</span>  
+        <span class="n">addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">op_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ch</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span>  
+    <span class="k">return</span> <span class="n">l</span>  
+  
+  
+  
+  
+<span class="k">def</span> <span class="nf">ext64</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>  
+    <span class="c1">#dis64(addr)  </span>
+    <span class="n">head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">md64</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">addr</span><span class="p">:</span><span class="n">addr</span><span class="o">+</span><span class="mh">0x80</span><span class="p">],</span> <span class="n">addr</span><span class="p">))</span>  
+    <span class="c1"># 3+5k  </span>
+    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>  
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  
+        <span class="k">if</span> <span class="n">head</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mnemonic</span> <span class="o">!=</span> <span class="s1">&#39;cmp&#39;</span><span class="p">:</span>  
+            <span class="k">break</span>  
+        <span class="n">ch</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">head</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">op_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">tar</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">head</span><span class="p">[</span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">op_str</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">inst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">md64</span><span class="o">.</span><span class="n">disasm</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">tar</span><span class="p">:</span><span class="n">tar</span><span class="o">+</span><span class="mh">0x30</span><span class="p">],</span> <span class="n">tar</span><span class="p">))[</span><span class="mi">5</span><span class="p">]</span>  
+        <span class="n">addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">op_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>  
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ch</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span>  
+    <span class="k">return</span> <span class="n">l</span>  
+  
+  
+  
+  
+<span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;f4&#39;</span>  
+<span class="n">addr</span> <span class="o">=</span> <span class="mh">0x558</span>  
+<span class="n">aset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x49e</span><span class="p">,</span> <span class="mh">0x558</span><span class="p">])</span>  
+<span class="n">switch</span> <span class="o">=</span> <span class="mi">0</span>  
+  
+  
+  
+  
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">aset</span><span class="p">,</span> <span class="n">switch</span><span class="p">):</span>  
+    <span class="k">if</span> <span class="n">switch</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+        <span class="c1"># 32bit  </span>
+        <span class="n">extract</span> <span class="o">=</span> <span class="n">ext32</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="n">extract</span> <span class="o">=</span> <span class="n">ext64</span>  
+    <span class="k">try</span><span class="p">:</span>  
+        <span class="n">ca</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>  
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>  
+        <span class="k">print</span> <span class="s2">&#34;flag may be&#34;</span>  
+        <span class="k">print</span> <span class="s1">&#39;npointer{&#39;</span><span class="o">+</span><span class="n">flag</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>  
+        <span class="k">return</span>  
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ca</span><span class="p">:</span>  
+        <span class="k">if</span> <span class="n">a</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">aset</span><span class="p">:</span>  
+            <span class="n">dfs</span><span class="p">(</span><span class="n">flag</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">aset</span> <span class="o">|</span> <span class="nb">set</span><span class="p">([</span><span class="n">a</span><span class="p">]),</span> <span class="n">switch</span> <span class="o">^</span> <span class="mi">1</span><span class="p">)</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="c1">#print(&#39;dead at&#39;,repr(flag))  </span>
+        <span class="k">pass</span>  
+  
+  
+  
+  
+<span class="n">dfs</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">aset</span><span class="p">,</span> <span class="n">switch</span><span class="p">)</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>代码最前面的修改部分是用来修改花指令的，但是使用int指令代替nop主要是因为int指令可以不改变一条指令的长度</p>
+<h2 id="感想">感想</h2>
+<p>我好菜我好菜我好菜，出题人原话&quot;本题作为逆向公开赛的第一题，其难度较低&quot;，哎继续努力吧.</p>
+<h2 id="补一个控制转移指令的总结">补一个控制转移指令的总结</h2>
+<h3 id="call指令">Call指令</h3>
+<p>一条call指令的字节数可以是（2,5,6）byte，对应不同的操作数，下面分情况讨论。</p>
+<ol>
+<li>假设我们在函数src中调用函数dst，对应的call指令是的机器码长度是5 byte，其中第一个字节是e8代表指令，后面四个字节是一个相对偏移offset，dst=src_next+offset，其中src_next是下一条指令的地址，也可以看出是当前指令的地址加上该指令的长度。可以称这种情况为直接转移。</li>
+<li>假设有一个全局函数指针变量g_pDst指向dst函数，我们在函数src中call这个变量，则对应的机器码长度是6 byte，前两个字节是ff 15代表指令，后面四个字节是一个绝对地址即变量g_pDst的地址。可以称这种情况为内存间接寻址。</li>
+<li>假设函数src中有一个函数指针变量pDst指向dst函数，在函数src中call该变量，因为这个指针式保存在栈中的，编译时无法知道它的全局位置，只知道它相对于栈底的位置，所以根据pDst距离栈底ebp的距离。当距离小于0xff时，机器码长度为3，前两个字节是ff 55代表指令，后面一个字节代表相对ebp的偏移（注意偏移都是负数，比如f8，则ebp-8即为实际内存地址）。当距离大于0xff时，机器码长度为6，前两个字节为ff 95表指令，后四个字节是相对ebp的偏移，计算方法与上面相同。可以称这种情况为栈间接寻址。</li>
+<li>call寄存器，比如call eax、call ebx；还有call eax + 4。可以称这种情况为寄存器直接寻址。</li>
+<li>call寄存器间接转移，比如call [eax]，call [ebx]；以及call [eax] + 4。可以称这种情况为寄存器间接寻址。 <br>
+注：对于第一种情况，还有短转移，也就是偏移为一个字节，但是有些编译器（如MSVC）不会编译这种短的call，总之现在比较少见。为什么没有call functionA + 10 这类代码呢，这是因为编译器在编译的时候会自动计算相加后的地址。</li>
+</ol>
+<h3 id="ret指令">Ret指令</h3>
+<p>ret指令比较简单，只有两种情况，ret和ret n。</p>
+<h3 id="jmp指令">Jmp指令</h3>
+<p>直接的jmp分3种<br>
+Short Jump（短跳转）机器码 EB rel8<br>
+只能跳转到256字节的范围内<br>
+Near Jump（近跳转）机器码 E9 rel16/32<br>
+可跳至同一个段的范围内的地址<br>
+Far Jump（远跳转）机器码EA ptr 16:16/32<br>
+可跳至任意地址，使用48位/32位全指针<br>
+要注意的是，短跳转和近跳转指令中包含的操作数都是相对于(E)IP的偏移，而远跳转指令中包含的是目标的绝对地址，所以短/近跳转会出现跳至同一目标的指令机器码不同，不仅会不同，而且应该不同。而远跳转中包含的是绝对地址，因此转移到同一地址的指令机器码相同</p>
+<h3 id="条件转移指令">条件转移指令</h3>
+<p>条件转移类指令与jmp指令的分类大体类似，但是有一个重要的区别就是，条件转移类指令只有直接转移，没有后面四种，所以条件转移类指令全部是相对偏移的，每种指令可分为长跳转和短跳转。 <br>
+
+
+
+    <div class="post-img-view">
+        <a data-fancybox="gallery" href="/images/ed495c9624349256ef02ab1960a9201b/11884068-c22281944fda6692.jpg">
+            <img src="/images/ed495c9624349256ef02ab1960a9201b/11884068-c22281944fda6692.jpg" alt=""  />
+        </a>
+    </div>
+</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" data-title="Nu1L第一次RE公开赛WP"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" data-title="Nu1L第一次RE公开赛WP"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" data-title="Nu1L第一次RE公开赛WP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://linkleyping.top/nu1l%E7%AC%AC%E4%B8%80%E6%AC%A1re%E5%85%AC%E5%BC%80%E8%B5%9B/" data-title="Nu1L第一次RE公开赛WP"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/rop%E5%AD%A6%E4%B9%A0/" class="prev" rel="prev" title="ROP学习"><i class="fas fa-angle-left fa-fw"></i>ROP学习</a>
+            <a href="/2020i%E6%98%A5%E7%A7%8B%E5%85%AC%E7%9B%8A%E8%B5%9B/" class="next" rel="next" title="i春秋公益赛_部分re题目">i春秋公益赛_部分re题目<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+                <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            
+
+            <div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"algoliaAppID":"RFO4PNFHT1","algoliaIndex":"blog","algoliaSearchKey":"d13f32411166c6212551ffa815910ba5","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
