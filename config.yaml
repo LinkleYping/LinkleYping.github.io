@@ -1,0 +1,13 @@
+---
+baseurl: "https://linkleyping.top"
+DefaultContentLanguage: "zh-cn"
+hasCJKLanguage: true
+languageCode: "zh-cn"
+title: "EP`s blog"
+theme: "LoveIt"
+metaDataFormat: "yaml"
+algolia:
+  index: "blog"
+  key: "78b8cb93a405d8c2982c21ee9119b611"
+  appID: "RFO4PNFHT1"
+---
