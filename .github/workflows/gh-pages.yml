@@ -10,6 +10,8 @@ on:
       - '.gitignore'
       - '.gitmodules'
       - 'bin'
+      - 'public/CNAME'
+      - 'public/ep_bupt-gh-pages'
 
 jobs:
   deploy:
